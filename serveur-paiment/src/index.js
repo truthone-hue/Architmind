@@ -30,6 +30,7 @@ export default {
       if (req.method === "POST" && url.pathname === "/api/paiement/creer") return json(await creer(req, env), 200, cors);
       if (req.method === "POST" && url.pathname === "/api/paiement/verifier") return json(await verifier(req, env), 200, cors);
       if (req.method === "POST" && url.pathname === "/api/paiement/webhook") return await webhook(req, env);
+      if (req.method === "GET" && url.pathname === "/api/sante/complet") return json(await santeComplete(env), 200, cors);
       if (req.method === "GET" && (url.pathname === "/" || url.pathname === "/api/sante"))
         return json({
           ok: true, service: "architmind-paiement",
@@ -110,6 +111,25 @@ async function webhook(req, env) {
     catch (e) { if (!e.definitif) throw e; console.error("paiement refusé :", e.message); }
   }
   return new Response("ok");
+}
+
+/* ---------------- Contrôle des réglages (sans jamais afficher de clé) ---------------- */
+
+async function santeComplete(env) {
+  const essai = async (f) => { try { return await f(); } catch (e) { return "erreur : " + String(e && e.message || e).slice(0, 160); } };
+  const [paystackOk, firebaseOk, brevoOk] = await Promise.all([
+    essai(async () => { await paystack(env, "/transaction?perPage=1"); return "ok"; }),
+    essai(async () => { await fsQuery(env, { from: [{ collectionId: "utilisateurs" }], limit: 1 }); return "ok"; }),
+    essai(async () => {
+      if (!env.BREVO_API_KEY) return "clé absente";
+      const r = await fetch("https://api.brevo.com/v3/senders", { headers: { "api-key": env.BREVO_API_KEY, accept: "application/json" } });
+      if (!r.ok) return "clé refusée (" + r.status + ")";
+      const j = await r.json().catch(() => ({}));
+      const s = (j.senders || []).find((x) => String(x.email).toLowerCase() === String(env.MAIL_EXPEDITEUR || "").trim().toLowerCase());
+      return !s ? "adresse MAIL_EXPEDITEUR absente des expéditeurs Brevo" : s.active === false ? "adresse d'expédition pas encore validée dans Brevo" : "ok";
+    }),
+  ]);
+  return { paystack: paystackOk, firebase: firebaseOk, brevo: brevoOk };
 }
 
 /* ---------------- Activation de l'offre ---------------- */
