@@ -2145,7 +2145,7 @@ if(typeof document!=="undefined")(function(){
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 /* Offres : modifiez ici les prix et les limites */
 const OFFERS={
-  basique:{nom:"Basique",prix:10000,quota:5,d3:false,tools:false,dl:false,desc:"Pour esquisser rapidement vos premiers projets."},
+  basique:{nom:"Basique",prix:0,quota:5,d3:false,tools:false,dl:false,desc:"Gratuite, pour esquisser vos premiers projets."},
   moyen:{nom:"Moyen",prix:30000,quota:20,d3:true,tools:false,dl:true,desc:"Ajoutez la maquette 3D et téléchargez vos plans pour convaincre vos clients."},
   max:{nom:"Max",prix:60000,quota:Infinity,d3:true,tools:true,dl:true,desc:"Personnalisez entièrement la maison en 3D."}};
 let plevel=0,cur=Object.assign({},DEF),level=0,model=null,props=[],selProp=null,dirty=false,lastPropSig=null,opts3d=null;
@@ -2271,7 +2271,7 @@ function watchNotifs(){
 function localNotifs(){
   const a=AUTH.abo;if(!a||!a.expMs) return [];
   const of=OFFERS[a.offre],days=Math.ceil((a.expMs-Date.now())/864e5);
-  if(days<0&&days>=-30) return [{id:"_exp",titre:`Votre offre ${of.nom} a expiré`,texte:`Elle a pris fin le ${dateFr(a.expMs)}. Renouvelez-la pour retrouver ses avantages.`,date:a.expMs,lu:false,local:true,action:"tarifs"}];
+  if(days<0&&days>=-30) return [{id:"_exp",titre:`Votre offre ${of.nom} a expiré`,texte:`Elle a pris fin le ${dateFr(a.expMs)} : vous êtes repassé à l'offre Basique gratuite. Renouvelez-la pour retrouver ses avantages.`,date:a.expMs,lu:false,local:true,action:"tarifs"}];
   if(days>=0&&days<=7) return [{id:"_soon",titre:days===0?`Votre offre ${of.nom} expire aujourd'hui`:`Votre offre ${of.nom} expire dans ${days} jour${days>1?"s":""}`,texte:`Échéance le ${dateFr(a.expMs)}. Renouvelez en un clic pour garder vos avantages.`,date:Date.now(),lu:false,local:true,action:"tarifs"}];
   return [];
 }
@@ -2455,6 +2455,7 @@ async function logout(){try{await FB.auth.signOut()}catch(e){}endSession();AUTH.
 
 /* ---------- Paiement (CinetPay via le serveur de paiement) ---------- */
 async function payer(k,btn){
+  if(!OFFERS[k]||!OFFERS[k].prix) return;
   if(!AUTH.ok){AUTH.pending="tarifs";location.hash="connexion";return}
   if(!navigator.onLine){toast("Le paiement demande une connexion internet.");return}
   if(!CFG.paiementUrl){toast("Le paiement en ligne (Mobile Money et carte bancaire) arrive très bientôt.");return}
@@ -2783,17 +2784,19 @@ function renderTarifs(){
   const a=AUTH.ok?AUTH.abo:null,active=!!(a&&a.expMs>Date.now());
   $("#tgrid").innerHTML=Object.entries(OFFERS).map(([k,of],i)=>{
     const mine=AUTH.ok&&k===acct.offer,paid=mine&&active&&a.offre===k,lower=active&&RANK[k]<RANK[a.offre];
-    const label=!AUTH.ok?"Se connecter pour choisir":paid?`Renouveler l'offre ${of.nom}`:mine?"Offre actuelle":lower?"Incluse dans votre offre":"Choisir l'offre "+of.nom;
+    const label=!AUTH.ok?(of.prix?"Se connecter pour choisir":"Créer un compte gratuit"):paid?`Renouveler l'offre ${of.nom}`:mine?"Offre actuelle":lower?"Incluse dans votre offre":"Choisir l'offre "+of.nom;
     return `<div class="tcard reveal d${i+1}${mine?" cur":""}${k==="max"?" dark":""}">
     ${k==="moyen"?`<span class="pop">Le plus choisi</span>`:""}
     <div><h3>${of.nom}</h3><p class="sub">${of.desc}</p></div>
-    <div class="pr">${fmt(of.prix)} FCFA <small>/ mois</small></div>${paid?`<p class="tvalid">Active jusqu'au ${dateFr(a.expMs)}</p>`:""}
+    <div class="pr">${of.prix?`${fmt(of.prix)} FCFA <small>/ mois</small>`:`Gratuit <small>sans abonnement</small>`}</div>${paid?`<p class="tvalid">Active jusqu'au ${dateFr(a.expMs)}</p>`:""}
     <ul>${feats.map(([l,ok])=>{const has=ok(k),lab=typeof l==="function"?l(k):l;return `<li class="${has?"":"no"}">${has?ICON.yes:ICON.no}${lab}</li>`}).join("")}</ul>
     <button type="button" data-offer="${k}" ${AUTH.ok&&((mine&&!paid)||lower)?"disabled":""}>${label}</button></div>`}).join("");
-  $$("[data-offer]").forEach(b=>b.onclick=()=>payer(b.dataset.offer,b));
+  $$("[data-offer]").forEach(b=>b.onclick=()=>{const k=b.dataset.offer;
+    if(!OFFERS[k].prix){if(!AUTH.ok){AUTH.pending="creation";AUTH.mode="signup";location.hash="connexion"}return}
+    payer(k,b)});
   const pn=$("#paynote");if(pn) pn.textContent=CFG.paiementUrl
-    ?"Paiement sécurisé par CinetPay : Orange Money, MTN MoMo, Moov Money, Wave ou carte bancaire Visa et Mastercard, y compris prépayée. L'abonnement dure un mois et ne se renouvelle jamais sans votre accord : vous êtes prévenu sur le site et par e-mail avant l'échéance, puis vous renouvelez en un clic."
-    :"Le paiement en ligne ouvre très bientôt : Mobile Money (Orange Money, MTN MoMo, Moov Money, Wave) et carte bancaire Visa ou Mastercard, y compris prépayée. Vous serez prévenu sur le site et par e-mail de chaque paiement et avant chaque échéance.";
+    ?"L'offre Basique est gratuite. Moyen et Max se paient de façon sécurisée par CinetPay : Orange Money, MTN MoMo, Moov Money, Wave ou carte bancaire Visa et Mastercard, y compris prépayée. L'abonnement dure un mois et ne se renouvelle jamais sans votre accord : vous êtes prévenu sur le site et par e-mail avant l'échéance, puis vous renouvelez en un clic."
+    :"L'offre Basique est gratuite. Le paiement en ligne des offres Moyen et Max ouvre très bientôt : Mobile Money (Orange Money, MTN MoMo, Moov Money, Wave) et carte bancaire Visa ou Mastercard, y compris prépayée. Vous serez prévenu sur le site et par e-mail de chaque paiement et avant chaque échéance.";
 }
 
 /* ---------- FAQ ---------- */
@@ -2825,10 +2828,10 @@ function faqData(){
       ["La 3D ne s'affiche pas, que faire ?","Utilisez un navigateur récent (Chrome, Edge, Safari ou Firefox) et rechargez la page. Sur certains téléphones anciens, la 3D peut être lente ou indisponible ; le plan et le coût restent accessibles."],
       [`Que permettent les outils de l'offre ${o.max.nom} ?`,"Changer la façade, la couleur des murs, le type et la couleur de la toiture, les menuiseries, le sol intérieur et l'heure de la journée, et afficher ou masquer la végétation et la voiture. Ces réglages sont enregistrés avec le projet."]]},
     {g:"Offres et projets",items:[
-      ["Quelle offre choisir ?",`${o.basique.nom} pour esquisser (${q("basique")}), ${o.moyen.nom} pour présenter vos projets en 3D et télécharger vos plans (${q("moyen")}), ${o.max.nom} pour personnaliser la maquette, ${q("max")}. Les prix sont détaillés dans l'onglet Tarifs.`],
+      ["Quelle offre choisir ?",`${o.basique.nom}, gratuite, pour esquisser (${q("basique")}), ${o.moyen.nom} pour présenter vos projets en 3D et télécharger vos plans (${q("moyen")}), ${o.max.nom} pour personnaliser la maquette, ${q("max")}. Les prix sont détaillés dans l'onglet Tarifs.`],
       ["Qu'est-ce qui compte comme un plan généré ?","Chaque clic sur « Générer le plan » ou « Autre variante », et chaque nouvelle série de propositions. Rouvrir un projet enregistré ne compte pas. Le compteur repart à zéro chaque jour."],
-      ["Comment payer mon abonnement ?",CFG.paiementUrl?"Dans l'onglet Tarifs, choisissez votre offre : vous êtes dirigé vers la page de paiement sécurisée CinetPay. Payez par Mobile Money (Orange Money, MTN MoMo, Moov Money, Wave) ou par carte bancaire Visa ou Mastercard, y compris prépayée. L'offre s'active dès la confirmation du paiement et un reçu vous est envoyé par e-mail.":"Le paiement en ligne ouvre très bientôt, depuis l'onglet Tarifs : Mobile Money (Orange Money, MTN MoMo, Moov Money, Wave) et carte bancaire Visa ou Mastercard, y compris prépayée. En attendant, l'offre Basique reste disponible."],
-      ["Mon abonnement se renouvelle-t-il tout seul ?","Non : aucun prélèvement n'est fait sans votre accord. L'abonnement dure un mois. Avant l'échéance, vous êtes prévenu sur le site, par la cloche de notifications et un bandeau, et par e-mail ; le bouton « Renouveler » relance le paiement en un clic. Chaque paiement est confirmé par une notification et un e-mail."],
+      ["Comment payer mon abonnement ?",CFG.paiementUrl?"L'offre Basique est gratuite ; seules Moyen et Max sont payantes. Dans l'onglet Tarifs, choisissez votre offre : vous êtes dirigé vers la page de paiement sécurisée CinetPay. Payez par Mobile Money (Orange Money, MTN MoMo, Moov Money, Wave) ou par carte bancaire Visa ou Mastercard, y compris prépayée. L'offre s'active dès la confirmation du paiement et un reçu vous est envoyé par e-mail.":"Le paiement en ligne ouvre très bientôt, depuis l'onglet Tarifs : Mobile Money (Orange Money, MTN MoMo, Moov Money, Wave) et carte bancaire Visa ou Mastercard, y compris prépayée. En attendant, l'offre Basique est gratuite et sans limite de durée."],
+      ["Mon abonnement se renouvelle-t-il tout seul ?","Non : aucun prélèvement n'est fait sans votre accord. L'abonnement Moyen ou Max dure un mois ; à l'échéance, votre compte repasse simplement à l'offre Basique gratuite, sans perdre vos plans. Avant l'échéance, vous êtes prévenu sur le site, par la cloche de notifications et un bandeau, et par e-mail ; le bouton « Renouveler » relance le paiement en un clic. Chaque paiement est confirmé par une notification et un e-mail."],
       ["Où sont enregistrés mes projets ?","Dans votre compte, visibles dans l'onglet Mes plans. Vous les retrouvez à chaque connexion, sur tous vos appareils, et ils restent consultables sans internet sur les appareils où vous les avez déjà ouverts."],
       ["Comment télécharger un plan ?",`Avec les offres ${o.moyen.nom} et ${o.max.nom}, le bouton « Télécharger » au-dessus du plan propose trois formats : un PDF à imprimer (format A3, un niveau par page), une image PNG haute définition et un fichier SVG vectoriel. Le fichier s'enregistre sur votre appareil, ordinateur ou téléphone, et vous pouvez l'envoyer à un client.`]]}];
 }

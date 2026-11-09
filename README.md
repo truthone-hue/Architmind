@@ -6,7 +6,7 @@ Fait par **Hunter Agency**.
 
 ## Utiliser l'application
 
-Adresse : **https://tidianeirl-source.github.io/architmind/**
+Adresse : **https://truthone-hue.github.io/architmind/**
 
 Architmind s'installe comme une application, sans passer par un magasin d'applications :
 
@@ -41,7 +41,7 @@ Architmind s'installe comme une application, sans passer par un magasin d'applic
 
 ## Mise en service
 
-1. **Firebase, Authentication.** Activez le fournisseur « Adresse e-mail/Mot de passe ». Dans *Paramètres, Domaines autorisés*, ajoutez `tidianeirl-source.github.io`. Dans *Modèles*, choisissez le français pour les e-mails.
+1. **Firebase, Authentication.** Activez le fournisseur « Adresse e-mail/Mot de passe ». Dans *Paramètres, Domaines autorisés*, ajoutez `truthone-hue.github.io`. Dans *Modèles*, choisissez le français pour les e-mails.
 2. **Firebase, Firestore.** Dans l'onglet *Règles*, collez le contenu de `firestore.rules`, puis cliquez sur *Publier*.
 3. **GitHub Pages.** Dans *Settings, Pages*, choisissez *Deploy from a branch*, puis `main` et `/ (root)`.
 4. **Mise à jour.** Après chaque modification, augmentez `VERSION` dans `sw.js` : les appareils des utilisateurs téléchargeront alors la nouvelle version.
