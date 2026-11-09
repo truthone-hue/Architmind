@@ -1633,11 +1633,56 @@ function furniture(r,ix,iy,iw,ih){
   if(n==="Entrée") return fill(FUR.entry,ix,iy,iw,ih);
   return "";
 }
+/* ---------- Mode lisible (téléphone) : libellés en pixels d'écran ----------
+   P = mètres par pixel d'écran. Les noms des pièces passent sur deux lignes ou s'abrègent
+   pour rester lisibles ; les pièces hautes et étroites reçoivent un libellé vertical. */
+const ABBR=[[/^chambre d'amis$/i,"Ch. amis"],[/^chambre\s+/i,"Ch. "],[/^salle de bain$/i,"SDB"],[/^SDB parentale$/i,"SDB parent."],[/^ch\. parentale$/i,"Ch. parent."],
+  [/^ch\. de service$/i,"Ch. service"],[/^salle à manger$/i,"S. à manger"],[/^salle de sport$/i,"Sport"],[/^dégagement$/i,"Dégag."],[/^buanderie$/i,"Buand."],
+  [/^rangement$/i,"Rangt"],[/^local technique$/i,"Local tech."],[/^gaine technique$/i,"Gaine"],[/^hall d'entrée$/i,"Hall"],[/^douche service$/i,"Douche"],
+  [/^terrasse sur toit$/i,"Terrasse"],[/^terrasse haute$/i,"Terrasse"],[/^salon détente$/i,"Salon"],[/^séjour étage$/i,"Séjour"],[/^local vélos$/i,"Vélos"],
+  [/^cuisine$/i,"Cuis."],[/^terrasse$/i,"Terr."],[/^escalier$/i,"Esc."],[/^dressing$/i,"Dress."],[/^ascenseur.*/i,"Asc."],[/^piscine.*/i,"Piscine"],
+  [/^vide sur patio$/i,"Vide"],[/^pièce principale$/i,"Pièce princ."],[/^groupe électrogène$/i,"Groupe"],[/^panneaux solaires.*/i,"Solaire"],[/^château d'eau.*/i,"Château d'eau"],[/^cellier$/i,"Cell."],[/^bureau$/i,"Bur."],[/^garage$/i,"Gar."],[/^parking$/i,"Park."]];
+const abbr=n=>{for(const [re,t] of ABBR) if(re.test(n)) return n.replace(re,t);return n};
+function fitLabel(nm,w,h,P){
+  // candidats : nom sur une ligne, sur deux lignes, puis abrégé ; on garde le plus lisible
+  const FN=10.5*P,cands=[];
+  const add=(t,pen)=>{t=t.trim();const ws=t.split(/\s+/);cands.push({l:[t],pen});
+    if(ws.length>1){let best=null;for(let i=1;i<ws.length;i++){const a=ws.slice(0,i).join(" "),b=ws.slice(i).join(" "),mx=Math.max(a.length,b.length);if(!best||mx<best.mx) best={mx,l:[a,b]}}cands.push({l:best.l,pen:pen*0.92})}};
+  add(nm,1);const ab=abbr(nm).toUpperCase();if(ab!==nm) add(ab,0.85);
+  const size=l=>Math.min(FN,(w*0.9)/(Math.max(...l.map(x=>x.length))*0.7),(h*0.86)/(l.length*1.2));
+  const one=size(cands[0].l);if(one>=0.85*FN) return {l:cands[0].l,f:one};
+  let best=null;
+  for(const c of cands){const f=size(c.l),sc=f*c.pen;if(!best||sc>best.sc) best={l:c.l,f,sc}}
+  return best;
+}
+function mobLabels(L,P){
+  let s="";
+  L.forEach(r=>{const cx=r.x+r.w/2,cy=r.y+r.h/2,minS=Math.min(r.w,r.h);if(minS<0.9||r.nolabel) return;
+    const nm=r.n.trim().toUpperCase();
+    let rot=false,w=r.w,h=r.h,lab=fitLabel(nm,w,h,P);
+    if(lab.f<7*P&&r.h>r.w*1.3){const v=fitLabel(nm,r.h*0.75,r.w,P);if(v.f>lab.f*1.15){lab=v;rot=true;w=r.h*0.75;h=r.w}}
+    const f=Math.max(lab.f,6*P),n=lab.l.length,lh=f*1.2;
+    // dimensions de la pièce, si la place le permet
+    let dt=`${dec(r.w,1)} × ${dec(r.h,1)}`,f2=Math.min(8.5*P,(w*0.9)/(dt.length*0.6));
+    const showD=f2>=6.5*P&&(n*lh+f2*1.35)<=h*0.9;
+    const H=n*lh+(showD?f2*1.35:0),y0=cy-H/2+f*0.88;
+    const wN=Math.max(...lab.l.map(t=>t.length))*0.7*f,wD=showD?dt.length*0.6*f2:0,wM=Math.min(w-0.1,Math.max(wN,wD)+f*0.6);
+    const halo=`paint-order="stroke" stroke="${PAP}" stroke-width="${(f*0.3).toFixed(3)}" stroke-linejoin="round"`;
+    let g=`<rect x="${(cx-wM/2).toFixed(3)}" y="${(cy-H/2-f*0.25).toFixed(3)}" width="${wM.toFixed(3)}" height="${(H+f*0.45).toFixed(3)}" rx="${(f*0.3).toFixed(3)}" fill="${PAP}"/>`;
+    lab.l.forEach((t,i)=>{g+=`<text x="${cx.toFixed(3)}" y="${(y0+i*lh).toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="600" font-size="${f.toFixed(3)}" fill="${INK}" ${halo}>${t}</text>`});
+    if(showD) g+=`<text x="${cx.toFixed(3)}" y="${(y0+(n-1)*lh+f2*1.35).toFixed(3)}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="${f2.toFixed(3)}" fill="#3E4346" ${halo}>${dt}</text>`;
+    s+=rot?`<g transform="rotate(-90 ${cx.toFixed(3)} ${cy.toFixed(3)})">${g}</g>`:g;
+  });
+  return s;
+}
 function drawTech(m,li,opt={}){
   const thumb=!!opt.thumb;
+  // opt.scr : largeur d'affichage en pixels ; sous 700 px, le plan passe en mode lisible
+  const MOB=!thumb&&opt.scr>0&&opt.scr<700;
   li=Math.min(li||0,m.levels.length-1);
   const O=openings(m,li),L=O.L,B={x:m.bx,y:m.by,w:m.bw,h:m.bd};
-  const ml=thumb?0.6:2.4,mt=thumb?0.6:2.4,mr=thumb?0.6:1.2,mb=thumb?0.6:(O.entry?2.2:1.6),tb=thumb?0:3.4;
+  const P=MOB?m.bw/Math.max(120,opt.scr-66):0;
+  const ml=thumb?0.6:MOB?52*P:2.4,mt=thumb?0.6:MOB?50*P:2.4,mr=thumb?0.6:MOB?14*P:1.2,mb=thumb?0.6:MOB?(O.entry?56*P:34*P):(O.entry?2.2:1.6),tb=thumb?0:MOB?64*P:3.4;
   const vx=B.x-ml,vy=B.y-mt,vw=B.w+ml+mr,vh=B.h+mt+mb+tb;
   let s=`<svg viewBox="${vx.toFixed(2)} ${vy.toFixed(2)} ${vw.toFixed(2)} ${vh.toFixed(2)}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plan ${li?"de l'étage":"du rez-de-chaussée"}">`;
   s+=`<defs><pattern id="g1${li}" width="0.5" height="0.5" patternUnits="userSpaceOnUse"><path d="M0.5 0H0V0.5" fill="none" stroke="#E2E7EB" stroke-width="0.012"/></pattern>
@@ -1696,7 +1741,7 @@ function drawTech(m,li,opt={}){
   }));
   // libellés
   const fs0=thumb?0.32:0.3;
-  L.forEach(r=>{const cx=r.x+r.w/2,cy=r.y+r.h/2,minS=Math.min(r.w,r.h);if(minS<0.9||r.nolabel) return;
+  if(MOB) s+=mobLabels(L,P); else L.forEach(r=>{const cx=r.x+r.w/2,cy=r.y+r.h/2,minS=Math.min(r.w,r.h);if(minS<0.9||r.nolabel) return;
     const fs=Math.min(fs0,Math.max(0.15,minS/6.5),(r.w*0.92)/(r.n.length*0.66)),halo=`paint-order="stroke" stroke="${PAP}" stroke-width="${(fs*0.35).toFixed(3)}" stroke-linejoin="round"`;
     const nm=r.n.toUpperCase(),yN=cy-(thumb?0:fs*0.15);
     if(!thumb){
@@ -1710,40 +1755,61 @@ function drawTech(m,li,opt={}){
       s+=`<text x="${cx.toFixed(3)}" y="${yD.toFixed(3)}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="${f2.toFixed(3)}" fill="#3E4346" ${halo}>${dt}</text>`;
     } else s+=`<text x="${cx.toFixed(3)}" y="${yN.toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="600" font-size="${fs.toFixed(3)}" fill="${INK}" ${halo}>${nm}</text>`;
   });
-  if(!thumb&&m.aptTags&&m.aptTags[li]) m.aptTags[li].forEach(t=>{const ty=t.back?t.y+0.55:t.y+t.h-0.32,tw=Math.min(t.w-0.12,t.label.length*(0.24*0.66+0.02)+0.1);s+=`<rect x="${(t.x+t.w/2-tw/2).toFixed(3)}" y="${(ty-0.21).toFixed(3)}" width="${tw.toFixed(3)}" height="0.27" fill="${PAP}"/>`;s+=`<text x="${(t.x+t.w/2).toFixed(3)}" y="${ty.toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" font-size="0.24" letter-spacing="0.02" fill="#8A5A12" paint-order="stroke" stroke="${PAP}" stroke-width="0.09" stroke-linejoin="round">${t.label}</text>`});
+  if(MOB&&m.aptTags&&m.aptTags[li]) m.aptTags[li].forEach(t=>{
+    // étiquette d'appartement raccourcie si elle déborde : « APPT A · Studio · 35 m² » → « APPT A · 35 m² » → « APPT A »
+    const parts=t.label.split(" · "),opts=[t.label,parts.length>2?parts[0]+" · "+parts[parts.length-1]:t.label,parts[0]];
+    let lb=opts[2],af=0;for(const o of opts){const f=Math.min(9*P,(t.w*0.9)/(o.length*0.66));if(f>=7*P){lb=o;af=f;break}}if(!af) af=Math.max(5.5*P,Math.min(9*P,(t.w*0.9)/(lb.length*0.66)));
+    const ty=t.back?t.y+af*2.1:t.y+t.h-af*1.2,tw=Math.min(t.w-0.12,lb.length*af*0.68+af*0.8);t={label:lb,x:t.x,w:t.w};
+    s+=`<rect x="${(t.x+t.w/2-tw/2).toFixed(3)}" y="${(ty-af*0.95).toFixed(3)}" width="${tw.toFixed(3)}" height="${(af*1.25).toFixed(3)}" rx="${(af*0.25).toFixed(3)}" fill="${PAP}"/><text x="${(t.x+t.w/2).toFixed(3)}" y="${ty.toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" font-size="${af.toFixed(3)}" fill="#8A5A12">${t.label}</text>`});
+  if(!thumb&&!MOB&&m.aptTags&&m.aptTags[li]) m.aptTags[li].forEach(t=>{const ty=t.back?t.y+0.55:t.y+t.h-0.32,tw=Math.min(t.w-0.12,t.label.length*(0.24*0.66+0.02)+0.1);s+=`<rect x="${(t.x+t.w/2-tw/2).toFixed(3)}" y="${(ty-0.21).toFixed(3)}" width="${tw.toFixed(3)}" height="0.27" fill="${PAP}"/>`;s+=`<text x="${(t.x+t.w/2).toFixed(3)}" y="${ty.toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" font-size="0.24" letter-spacing="0.02" fill="#8A5A12" paint-order="stroke" stroke="${PAP}" stroke-width="0.09" stroke-linejoin="round">${t.label}</text>`});
   if(!thumb){
-    // cotations
-    const dim=`stroke="${INK}" stroke-width="0.012"`,tick=(x,y)=>Ln(x-0.09,y+0.09,x+0.09,y-0.09,`stroke="${INK}" stroke-width="0.025"`);
-    const dtext=(x,y,t,rot)=>`<text x="${x.toFixed(3)}" y="${y.toFixed(3)}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="0.22" fill="${INK}"${rot?` transform="rotate(-90 ${x.toFixed(3)} ${y.toFixed(3)})"`:""}>${t}</text>`;
-    const chainH=(y,pts,ext)=>{let z=Ln(pts[0],y,pts[pts.length-1],y,dim);pts.forEach(x=>{z+=tick(x,y)+Ln(x,ext,x,y+(y<ext?-0.12:0.12),`stroke="${INK}" stroke-width="0.008"`)});for(let i=0;i<pts.length-1;i++) z+=dtext((pts[i]+pts[i+1])/2,y-0.08,dec(pts[i+1]-pts[i]));return z};
-    const chainV=(x,pts,ext)=>{let z=Ln(x,pts[0],x,pts[pts.length-1],dim);pts.forEach(y=>{z+=tick(x,y)+Ln(ext,y,x+(x<ext?-0.12:0.12),y,`stroke="${INK}" stroke-width="0.008"`)});for(let i=0;i<pts.length-1;i++) z+=dtext(x-0.08,(pts[i]+pts[i+1])/2,dec(pts[i+1]-pts[i]),1);return z};
+    // cotations (en mode lisible : tailles en pixels d'écran, cotes trop courtes sans texte)
+    const K=MOB?{fs:8.5*P,o1:20*P,o2:40*P,g:5*P,tk:3.2*P,tw:1.1*P,sw:0.7*P,se:0.5*P,ov:3.5*P,tg:2.6*P}:{fs:0.22,o1:0.75,o2:1.5,g:0.15,tk:0.09,tw:0.025,sw:0.012,se:0.008,ov:0.12,tg:0.08};
+    const dim=`stroke="${INK}" stroke-width="${K.sw}"`,tick=(x,y)=>Ln(x-K.tk,y+K.tk,x+K.tk,y-K.tk,`stroke="${INK}" stroke-width="${K.tw}"`);
+    const dtext=(x,y,t,rot,seg)=>MOB&&seg<t.length*0.6*K.fs+K.fs*0.9?"":`<text x="${x.toFixed(3)}" y="${y.toFixed(3)}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="${K.fs}" fill="${INK}"${rot?` transform="rotate(-90 ${x.toFixed(3)} ${y.toFixed(3)})"`:""}>${t}</text>`;
+    const chainH=(y,pts,ext)=>{let z=Ln(pts[0],y,pts[pts.length-1],y,dim);pts.forEach(x=>{z+=tick(x,y)+Ln(x,ext,x,y+(y<ext?-K.ov:K.ov),`stroke="${INK}" stroke-width="${K.se}"`)});for(let i=0;i<pts.length-1;i++) z+=dtext((pts[i]+pts[i+1])/2,y-K.tg,dec(pts[i+1]-pts[i]),0,pts[i+1]-pts[i]);return z};
+    const chainV=(x,pts,ext)=>{let z=Ln(x,pts[0],x,pts[pts.length-1],dim);pts.forEach(y=>{z+=tick(x,y)+Ln(ext,y,x+(x<ext?-K.ov:K.ov),y,`stroke="${INK}" stroke-width="${K.se}"`)});for(let i=0;i<pts.length-1;i++) z+=dtext(x-K.tg,(pts[i]+pts[i+1])/2,dec(pts[i+1]-pts[i]),1,pts[i+1]-pts[i]);return z};
     const uniq=a=>[...new Set(a.map(v=>Math.round(v*100)/100))].sort((a,b)=>a-b);
     const top=uniq(L.filter(r=>Math.abs(r.y-B.y)<EPS).flatMap(r=>[r.x,r.x+r.w]));
     const bot=uniq(L.filter(r=>Math.abs(r.y+r.h-B.y-B.h)<EPS).flatMap(r=>[r.x,r.x+r.w]));
     const lef=uniq(L.filter(r=>Math.abs(r.x-B.x)<EPS).flatMap(r=>[r.y,r.y+r.h]));
-    s+=chainH(B.y-0.75,top,B.y-0.15)+chainH(B.y-1.5,[B.x,B.x+B.w],B.y-0.9);
-    s+=chainV(B.x-0.75,lef,B.x-0.15)+chainV(B.x-1.5,[B.y,B.y+B.h],B.x-0.9);
-    s+=chainH(B.y+B.h+0.75,bot,B.y+B.h+0.15);
-    if(O.entry){s+=`<text x="${O.entry.x.toFixed(3)}" y="${(B.y+B.h+1.45).toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="600" font-size="0.26" letter-spacing="0.04" fill="${INK}">ENTRÉE</text>`+`<polyline points="${O.entry.x-0.15},${B.y+B.h+1.12} ${O.entry.x},${B.y+B.h+0.97} ${O.entry.x+0.15},${B.y+B.h+1.12}" fill="none" stroke="${INK}" stroke-width="0.025"/>`}
-    // cartouche
-    const ty=B.y+B.h+mb+0.3,tx=B.x-ml+0.4,tw=vw-0.8;
-    s+=Ln(tx,ty,tx+tw,ty,`stroke="${INK}" stroke-width="0.03"`);
-    const rot=ROT(m.or);
-    s+=`<g transform="translate(${(tx+0.55).toFixed(3)} ${(ty+1.25).toFixed(3)})"><circle r="0.48" fill="none" stroke="${INK}" stroke-width="0.02"/><g transform="rotate(${rot})"><path d="M0 -0.42 L0.22 0.24 L0 0.1 L-0.22 0.24Z" fill="${INK}"/></g></g><text x="${(tx+0.55).toFixed(3)}" y="${(ty+2.15).toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-size="0.24" font-weight="600" fill="${INK}">N</text>`;
-    const pl=(m.planLevels||[]).find(x=>x.li===li),title=typeLabel(m.p).toUpperCase()+(m.levels.length>1&&pl?" — "+pl.label.toUpperCase():"")+(m.isTower&&!m.fam?` · ${m.nApts} LOGEMENTS`:" · "+m.n+" CH.");
-    const area=L.reduce((t,r)=>t+(r.t==="patio"?0:r.w*r.h),0);
-    s+=`<text x="${(tx+1.3).toFixed(3)}" y="${(ty+0.75).toFixed(3)}" font-family="Outfit,sans-serif" font-weight="700" font-size="0.36" fill="${INK}">PLAN ARCHITECTURAL — ${title}</text>`;
-    s+=`<text x="${(tx+1.3).toFixed(3)}" y="${(ty+1.3).toFixed(3)}" font-family="Outfit,sans-serif" font-weight="500" font-size="0.28" fill="${INK}">SURFACE DU NIVEAU : ${dec(area,1)} m² · BÂTIMENT ${dec(B.w,2)} × ${dec(B.h,2)} m</text>`;
-    s+=`<text x="${(tx+1.3).toFixed(3)}" y="${(ty+1.8).toFixed(3)}" font-family="JetBrains Mono,monospace" font-size="0.22" fill="#3E4346">TERRAIN ${fmt(m.plot)} m² (${dec(m.W,1)} × ${dec(m.D,1)} m) · ${m.lieu.toUpperCase()} · 1:100 · ARCHITMIND CI · ESQUISSE DE PRINCIPE</text>`;
-    // légende
-    const lx=tx+tw-3.1,ly=ty+0.3;
-    if(lx>tx+1.3+7){
-      s+=R(lx,ly,3.1,2.3,`fill="${PAP}" stroke="${INK}" stroke-width="0.02"`)+`<text x="${(lx+0.2).toFixed(3)}" y="${(ly+0.42).toFixed(3)}" font-family="Outfit,sans-serif" font-weight="600" font-size="0.22" fill="${INK}">LÉGENDE</text>`;
-      const t=(y,lab)=>`<text x="${(lx+1.1).toFixed(3)}" y="${(y+0.08).toFixed(3)}" font-family="Outfit,sans-serif" font-size="0.2" fill="${INK}">${lab}</text>`;
-      s+=R(lx+0.25,ly+0.72,0.6,0.16,`fill="${WALL}"`)+t(ly+0.8,"Mur");
-      s+=`<path d="M${lx+0.3} ${ly+1.42} L${lx+0.3} ${ly+1.02} A0.4 0.4 0 0 1 ${lx+0.7} ${ly+1.42}" fill="none" stroke="${INK}" stroke-width="0.016"/>`+t(ly+1.28,"Porte");
-      s+=Ln(lx+0.25,ly+1.68,lx+0.85,ly+1.68,`stroke="${INK}" stroke-width="0.012"`)+Ln(lx+0.25,ly+1.76,lx+0.85,ly+1.76,`stroke="${INK}" stroke-width="0.02"`)+Ln(lx+0.25,ly+1.84,lx+0.85,ly+1.84,`stroke="${INK}" stroke-width="0.012"`)+t(ly+1.76,"Fenêtre");
-      s+=R(lx+0.25,ly+1.98,0.6,0.2,`fill="url(#tile)" stroke="${INK}" stroke-width="0.01"`)+t(ly+2.08,"Extérieur couvert");
+    s+=chainH(B.y-K.o1,top,B.y-K.g)+chainH(B.y-K.o2,[B.x,B.x+B.w],B.y-K.o1-K.g);
+    s+=chainV(B.x-K.o1,lef,B.x-K.g)+chainV(B.x-K.o2,[B.y,B.y+B.h],B.x-K.o1-K.g);
+    s+=chainH(B.y+B.h+K.o1,bot,B.y+B.h+K.g);
+    if(O.entry&&MOB){const ey=B.y+B.h;s+=`<text x="${O.entry.x.toFixed(3)}" y="${(ey+48*P).toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="700" font-size="${(9.5*P).toFixed(3)}" letter-spacing="${(0.6*P).toFixed(3)}" fill="${INK}">ENTRÉE</text>`+`<polyline points="${O.entry.x-5*P},${ey+35*P} ${O.entry.x},${ey+30*P} ${O.entry.x+5*P},${ey+35*P}" fill="none" stroke="${INK}" stroke-width="${1.3*P}"/>`}
+    else if(O.entry){s+=`<text x="${O.entry.x.toFixed(3)}" y="${(B.y+B.h+1.45).toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="600" font-size="0.26" letter-spacing="0.04" fill="${INK}">ENTRÉE</text>`+`<polyline points="${O.entry.x-0.15},${B.y+B.h+1.12} ${O.entry.x},${B.y+B.h+0.97} ${O.entry.x+0.15},${B.y+B.h+1.12}" fill="none" stroke="${INK}" stroke-width="0.025"/>`}
+    if(MOB){
+      // cartouche lisible : titre, surface, terrain ; boussole ; sans légende
+      const ty=B.y+B.h+mb+4*P,tx=vx+10*P,tw=vw-20*P,rot=ROT(m.or);
+      s+=Ln(tx,ty,tx+tw,ty,`stroke="${INK}" stroke-width="${1.2*P}"`);
+      s+=`<g transform="translate(${(tx+13*P).toFixed(3)} ${(ty+24*P).toFixed(3)})"><circle r="${(11*P).toFixed(3)}" fill="none" stroke="${INK}" stroke-width="${(0.9*P).toFixed(3)}"/><g transform="rotate(${rot})"><path d="M0 ${-9.5*P} L${5*P} ${5.5*P} L0 ${2.3*P} L${-5*P} ${5.5*P}Z" fill="${INK}"/></g></g><text x="${(tx+13*P).toFixed(3)}" y="${(ty+47*P).toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-size="${(8*P).toFixed(3)}" font-weight="700" fill="${INK}">N</text>`;
+      const pl=(m.planLevels||[]).find(x=>x.li===li),title=typeLabel(m.p).toUpperCase()+(m.levels.length>1&&pl?" — "+pl.label.toUpperCase():"")+(m.isTower&&!m.fam?` · ${m.nApts} LOGEMENTS`:" · "+m.n+" CH.");
+      const area=L.reduce((t,r)=>t+(r.t==="patio"?0:r.w*r.h),0),x0=tx+32*P,aw=tx+tw-x0;
+      const line=(y,t,f,w,fam,col)=>{const ff=Math.min(f,aw/(t.length*w));return `<text x="${x0.toFixed(3)}" y="${y.toFixed(3)}" font-family="${fam}" font-weight="${fam[0]==="O"?(f>11*P?700:500):400}" font-size="${ff.toFixed(3)}" fill="${col}">${t}</text>`};
+      s+=line(ty+19*P,title,12.5*P,0.62,"Outfit,sans-serif",INK);
+      s+=line(ty+35*P,`${dec(area,1)} m² · bâtiment ${dec(B.w,2)} × ${dec(B.h,2)} m`,10*P,0.55,"Outfit,sans-serif",INK);
+      s+=line(ty+50*P,`TERRAIN ${fmt(m.plot)} m² · ${m.lieu.toUpperCase()}`,8.5*P,0.6,"JetBrains Mono,monospace","#3E4346");
+    } else {
+      // cartouche
+      const ty=B.y+B.h+mb+0.3,tx=B.x-ml+0.4,tw=vw-0.8;
+      s+=Ln(tx,ty,tx+tw,ty,`stroke="${INK}" stroke-width="0.03"`);
+      const rot=ROT(m.or);
+      s+=`<g transform="translate(${(tx+0.55).toFixed(3)} ${(ty+1.25).toFixed(3)})"><circle r="0.48" fill="none" stroke="${INK}" stroke-width="0.02"/><g transform="rotate(${rot})"><path d="M0 -0.42 L0.22 0.24 L0 0.1 L-0.22 0.24Z" fill="${INK}"/></g></g><text x="${(tx+0.55).toFixed(3)}" y="${(ty+2.15).toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-size="0.24" font-weight="600" fill="${INK}">N</text>`;
+      const pl=(m.planLevels||[]).find(x=>x.li===li),title=typeLabel(m.p).toUpperCase()+(m.levels.length>1&&pl?" — "+pl.label.toUpperCase():"")+(m.isTower&&!m.fam?` · ${m.nApts} LOGEMENTS`:" · "+m.n+" CH.");
+      const area=L.reduce((t,r)=>t+(r.t==="patio"?0:r.w*r.h),0);
+      s+=`<text x="${(tx+1.3).toFixed(3)}" y="${(ty+0.75).toFixed(3)}" font-family="Outfit,sans-serif" font-weight="700" font-size="0.36" fill="${INK}">PLAN ARCHITECTURAL — ${title}</text>`;
+      s+=`<text x="${(tx+1.3).toFixed(3)}" y="${(ty+1.3).toFixed(3)}" font-family="Outfit,sans-serif" font-weight="500" font-size="0.28" fill="${INK}">SURFACE DU NIVEAU : ${dec(area,1)} m² · BÂTIMENT ${dec(B.w,2)} × ${dec(B.h,2)} m</text>`;
+      s+=`<text x="${(tx+1.3).toFixed(3)}" y="${(ty+1.8).toFixed(3)}" font-family="JetBrains Mono,monospace" font-size="0.22" fill="#3E4346">TERRAIN ${fmt(m.plot)} m² (${dec(m.W,1)} × ${dec(m.D,1)} m) · ${m.lieu.toUpperCase()} · 1:100 · ARCHITMIND CI · ESQUISSE DE PRINCIPE</text>`;
+      // légende
+      const lx=tx+tw-3.1,ly=ty+0.3;
+      if(lx>tx+1.3+7){
+        s+=R(lx,ly,3.1,2.3,`fill="${PAP}" stroke="${INK}" stroke-width="0.02"`)+`<text x="${(lx+0.2).toFixed(3)}" y="${(ly+0.42).toFixed(3)}" font-family="Outfit,sans-serif" font-weight="600" font-size="0.22" fill="${INK}">LÉGENDE</text>`;
+        const t=(y,lab)=>`<text x="${(lx+1.1).toFixed(3)}" y="${(y+0.08).toFixed(3)}" font-family="Outfit,sans-serif" font-size="0.2" fill="${INK}">${lab}</text>`;
+        s+=R(lx+0.25,ly+0.72,0.6,0.16,`fill="${WALL}"`)+t(ly+0.8,"Mur");
+        s+=`<path d="M${lx+0.3} ${ly+1.42} L${lx+0.3} ${ly+1.02} A0.4 0.4 0 0 1 ${lx+0.7} ${ly+1.42}" fill="none" stroke="${INK}" stroke-width="0.016"/>`+t(ly+1.28,"Porte");
+        s+=Ln(lx+0.25,ly+1.68,lx+0.85,ly+1.68,`stroke="${INK}" stroke-width="0.012"`)+Ln(lx+0.25,ly+1.76,lx+0.85,ly+1.76,`stroke="${INK}" stroke-width="0.02"`)+Ln(lx+0.25,ly+1.84,lx+0.85,ly+1.84,`stroke="${INK}" stroke-width="0.012"`)+t(ly+1.76,"Fenêtre");
+        s+=R(lx+0.25,ly+1.98,0.6,0.2,`fill="url(#tile)" stroke="${INK}" stroke-width="0.01"`)+t(ly+2.08,"Extérieur couvert");
+      }
     }
   }
   return s+"</svg>";
@@ -2209,8 +2275,8 @@ const O=()=>OFFERS[acct.offer];
 function quotaLeft(){if(acct.day!==today()){acct.day=today();acct.count=0}return O().quota-acct.count}
 function useQuota(){if(quotaLeft()<=0) return false;acct.count++;saveAcct();refreshOffer();return true}
 function refreshOffer(){
-  const of=O(),b=$("#offerbadge");b.textContent=of.nom;const fo=$("#footoffer");if(fo) fo.textContent=of.nom;b.title="Offre "+of.nom;b.classList.toggle("max",acct.offer==="max");
-  const left=quotaLeft(),txt=of.quota===Infinity?`<i></i><span>Plans illimités · offre <b>${of.nom}</b></span>`:`<i></i><span>Plans aujourd'hui : <b>${acct.count} / ${of.quota}</b> · offre ${of.nom}</span>`;
+  const of=O(),b=$("#offerbadge"),nm=AUTH.admin?"Admin":of.nom;b.textContent=nm;const fo=$("#footoffer");if(fo) fo.textContent=nm;b.title=AUTH.admin?"Accès administrateur":"Offre "+of.nom;b.classList.toggle("max",acct.offer==="max");
+  const left=quotaLeft(),txt=AUTH.admin?`<i></i><span>Plans illimités · <b>accès administrateur</b></span>`:of.quota===Infinity?`<i></i><span>Plans illimités · offre <b>${of.nom}</b></span>`:`<i></i><span>Plans aujourd'hui : <b>${acct.count} / ${of.quota}</b> · offre ${of.nom}</span>`;
   ["#quota","#quota2"].forEach(s=>{const q=$(s);if(q){q.innerHTML=txt;q.classList.toggle("out",left<=0)}});
   const lim=$("#limit");if(lim){if(left<=0){lim.hidden=false;lim.innerHTML=`Limite de ${of.quota} plans atteinte pour aujourd'hui avec l'offre ${of.nom}. Revenez demain ou <a href="#tarifs">passez à une offre supérieure</a>.`}else lim.hidden=true}
   $("#gen").disabled=$("#var").disabled=left<=0;
@@ -2220,7 +2286,16 @@ function refreshOffer(){
 function limitReached(){toast(`Limite quotidienne atteinte (${O().quota} plans). Passez à une offre supérieure.`)}
 
 /* ---------- Comptes : connexion par e-mail et mot de passe (Firebase) ---------- */
-const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null};
+const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false};
+// Administrateurs : empreintes SHA-256 des adresses e-mail (config.js), pour ne pas publier les adresses.
+// L'accès n'est ouvert qu'une fois l'adresse confirmée par le lien reçu par e-mail.
+async function isAdminEmail(e){const list=(CFG.admins||[]).map(x=>String(x).toLowerCase());if(!e||!list.length) return false;
+  try{const d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(e.trim().toLowerCase()));return list.includes([...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,"0")).join(""))}catch(x){return false}}
+async function checkAdmin(u,force){
+  AUTH.adminEmail=await isAdminEmail(u.email);
+  if(AUTH.adminEmail&&!u.emailVerified&&(force||navigator.onLine)){try{await u.reload()}catch(e){}}
+  const cu=(FB.auth&&FB.auth.currentUser)||u;AUTH.admin=AUTH.adminEmail&&!!cu.emailVerified;
+}
 const GATED=["creation","propositions","mes-plans"];
 const LK="architmind-dernier-email";
 const stGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
@@ -2241,22 +2316,22 @@ function applyUser(d){
   AUTH.profile={nom:d.nom||u.displayName||(u.email||"").split("@")[0]||"Mon compte",profil:d.profil||"",ville:d.ville||"",email:u.email||d.email||""};
   const a=d.abonnement||null,exp=a?tsMs(a.expire):0;
   AUTH.abo=a&&OFFERS[a.offre]?Object.assign({},a,{expMs:exp}):null;
-  acct.offer=AUTH.abo&&exp>Date.now()?a.offre:"basique";acct.expire=exp||null;
+  acct.offer=AUTH.admin?"max":AUTH.abo&&exp>Date.now()?a.offre:"basique";acct.expire=exp||null;
   const q=d.quota||{};acct.day=today();acct.count=q.jour===acct.day?(q.nb||0):0;
 }
 function startSession(u){
   AUTH.user=u;AUTH.uid=u.uid;AUTH.ok=true;
   AUTH.unsub.forEach(f=>f());AUTH.unsub=[];
-  return new Promise(res=>{
+  return checkAdmin(u).then(()=>new Promise(res=>{
     let first=true;const once=()=>{if(first){first=false;res()}};
     AUTH.unsub.push(userDoc().onSnapshot(s=>{applyUser(s.exists?s.data():null);refreshOffer();renderAcct();renderAboBar();renderNotifs();once()},()=>{applyUser(null);once()}));
     setTimeout(()=>{if(first){applyUser(null);once()}},6000);
     watchNotifs();loadPlans();
-  });
+  }));
 }
 function endSession(){
   AUTH.unsub.forEach(f=>f());AUTH.unsub=[];
-  Object.assign(AUTH,{ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],sessionP:null});
+  Object.assign(AUTH,{ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],sessionP:null,admin:false,adminEmail:false});
   acctReset();store.items=[];const nc=$("#navcount");if(nc) nc.textContent="";
   refreshOffer();renderAcct();renderAboBar();renderNotifs();
 }
@@ -2302,7 +2377,13 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-bell]");if
   if(!$("#npanel").hidden&&!$("#npanel").contains(e.target)) closeNotifs()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape") closeNotifs()});
 function renderAboBar(){
-  const bar=$("#abobar");if(!bar) return;const l=AUTH.ok?localNotifs()[0]:null;
+  const bar=$("#abobar");if(!bar) return;
+  if(AUTH.ok&&AUTH.adminEmail&&!AUTH.admin){
+    bar.hidden=false;bar.innerHTML=`<span class="ab-t">Compte administrateur : confirmez votre adresse e-mail avec le lien reçu pour activer l'accès à toutes les fonctionnalités.</span><button type="button" class="ghost" id="ab-send">Renvoyer le lien</button><button type="button" class="btn" id="ab-ok">J'ai confirmé</button>`;
+    $("#ab-send").onclick=()=>{AUTH.user.sendEmailVerification().then(()=>toast("Lien envoyé à "+AUTH.user.email),()=>toast("Envoi impossible pour le moment. Réessayez dans quelques minutes."))};
+    $("#ab-ok").onclick=async()=>{await checkAdmin(AUTH.user,true);if(AUTH.admin){acct.offer="max";refreshOffer();renderAboBar();toast("Accès administrateur activé")}else toast("Adresse pas encore confirmée : ouvrez le lien reçu par e-mail.")};
+    return}
+  const l=AUTH.ok&&!AUTH.admin?localNotifs()[0]:null;
   if(!l){bar.hidden=true;return}
   bar.hidden=false;bar.innerHTML=`<span class="ab-t"></span><a class="btn" href="#tarifs">Renouveler</a>`;bar.querySelector(".ab-t").textContent=l.titre+" · "+l.texte;
 }
@@ -2431,8 +2512,8 @@ function welcome(nom,target){
   const w=$("#welcome"),rm=matchMedia("(prefers-reduced-motion: reduce)").matches;
   $("#wl-name").textContent=nom.split(" ")[0]||nom;
   $("#wl-eyebrow").textContent=AUTH.first?"Compte créé":"Connexion réussie";
-  $("#wl-sub").textContent=AUTH.first?"Votre compte Architmind est prêt. Un e-mail de confirmation vient de vous être envoyé.":"Ravi de vous revoir. Votre espace est prêt.";
-  if(!AUTH.first) loadPlans().then(it=>{const n=it.length;if(n) $("#wl-sub").textContent=`Ravi de vous revoir. ${n} plan${n>1?"s vous attendent":" vous attend"} dans Mes plans.`}).catch(()=>{});
+  $("#wl-sub").textContent=AUTH.admin?"Accès administrateur : toutes les fonctionnalités sont ouvertes.":AUTH.first?"Votre compte Architmind est prêt. Un e-mail de confirmation vient de vous être envoyé.":"Ravi de vous revoir. Votre espace est prêt.";
+  if(!AUTH.first&&!AUTH.admin) loadPlans().then(it=>{const n=it.length;if(n) $("#wl-sub").textContent=`Ravi de vous revoir. ${n} plan${n>1?"s vous attendent":" vous attend"} dans Mes plans.`}).catch(()=>{});
   w.classList.remove("on","out");w.hidden=false;void w.offsetWidth;w.classList.add("on");
   let done=false;const finish=()=>{if(done) return;done=true;clearTimeout(t1);document.removeEventListener("keydown",esc);
     location.hash=target;w.classList.add("out");setTimeout(()=>{w.hidden=true;w.classList.remove("on","out")},rm?60:680)};
@@ -2455,7 +2536,7 @@ async function logout(){try{await FB.auth.signOut()}catch(e){}endSession();AUTH.
 
 /* ---------- Paiement (CinetPay via le serveur de paiement) ---------- */
 async function payer(k,btn){
-  if(!OFFERS[k]||!OFFERS[k].prix) return;
+  if(!OFFERS[k]||!OFFERS[k].prix||AUTH.admin) return;
   if(!AUTH.ok){AUTH.pending="tarifs";location.hash="connexion";return}
   if(!navigator.onLine){toast("Le paiement demande une connexion internet.");return}
   if(!CFG.paiementUrl){toast("Le paiement en ligne (Mobile Money et carte bancaire) arrive très bientôt.");return}
@@ -2569,14 +2650,18 @@ function syncDl(){$$(".dlmenu").forEach(d=>d.classList.toggle("locked",!O().dl))
 function levelTabs(el,m,cur0,on){const PL=m.planLevels||m.levels.map((L,i)=>({li:i,label:lvName(i),short:lvName(i,true)}));el.hidden=PL.length<2;const many=PL.length>3;
   el.innerHTML=PL.map(x=>`<button type="button" data-l="${x.li}" aria-pressed="${x.li===cur0}">${many?x.short:x.label}</button>`).join("");
   el.querySelectorAll("button").forEach(b=>b.onclick=()=>{el.querySelectorAll("button").forEach(q=>q.setAttribute("aria-pressed",String(q===b)));on(+b.dataset.l)})}
+/* ---------- Plan affiché : mode lisible sur téléphone ---------- */
+function drawInto(el,m,li){if(!el) return;const w=el.clientWidth||0;el._m=m;el._li=li;el._w=w;el.innerHTML=drawTech(m,li,w&&w<700?{scr:w}:{})}
+{let RS=0;addEventListener("resize",()=>{clearTimeout(RS);RS=setTimeout(()=>{["#sheet","#psheet"].forEach(q=>{const el=$(q);
+  if(el&&el._m&&el.offsetParent&&Math.abs(el.clientWidth-(el._w||0))>20) drawInto(el,el._m,el._li)})},180)})}
 /* ---------- Création ---------- */
 function renderPlan(){
   model=compute(cur);
   ["#sacts","#savebar","#res3d","#rescost"].forEach(q=>{const e=$(q);if(e) e.hidden=false});
   if(!(model.planLevels||[]).some(x=>x.li===level)) level=0;
-  levelTabs($("#tabs"),model,level,l=>{level=l;$("#sheet").innerHTML=drawTech(model,level);pulse($("#sheet"))});
+  levelTabs($("#tabs"),model,level,l=>{level=l;drawInto($("#sheet"),model,level);pulse($("#sheet"))});
   $("#ptitle").textContent=typeLabel(model.p)+" · "+STYLES[model.style]+" · "+(model.isTower&&!model.fam?model.nApts+" logements":model.n+" chambre"+(model.n>1?"s":""))+" · "+model.lieu;
-  $("#sheet").innerHTML=drawTech(model,level);
+  drawInto($("#sheet"),model,level);
   const notes=[...model.notes];
   if(model.or==="E"||model.or==="O") notes.push({t:"Rue à l'"+(model.or==="E"?"est":"ouest")+" : la façade principale prend le soleil bas. Prévoir brise-soleil verticaux ou claustras."});
   else if(model.or.length===2) notes.push({t:"Rue "+OR_TXT[model.or]+" : la façade principale reçoit le soleil en biais le matin ou le soir. Prévoir des débords de toiture et des brise-soleil."});
@@ -2723,7 +2808,7 @@ function openProp(i,silent){
    </div>`;
   $("#p-edit").onclick=()=>{cur=Object.assign({},o.p);writeForm(cur);level=0;renderedOnce=true;location.hash="creation";setTimeout(renderPlan,0)};
   $("#p-save").onclick=()=>savePlan(o.d.name,o.p,m);
-  plevel=0;levelTabs($("#ptabs"),m,0,l=>{plevel=l;$("#psheet").innerHTML=drawTech(m,l);pulse($("#psheet"))});
+  plevel=0;drawInto($("#psheet"),m,0);levelTabs($("#ptabs"),m,0,l=>{plevel=l;drawInto($("#psheet"),m,l);pulse($("#psheet"))});
   area3D($("#p3d"),m);
   if(!silent) $("#detail").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
 }
@@ -2784,13 +2869,13 @@ function renderTarifs(){
   const a=AUTH.ok?AUTH.abo:null,active=!!(a&&a.expMs>Date.now());
   $("#tgrid").innerHTML=Object.entries(OFFERS).map(([k,of],i)=>{
     const mine=AUTH.ok&&k===acct.offer,paid=mine&&active&&a.offre===k,lower=active&&RANK[k]<RANK[a.offre];
-    const label=!AUTH.ok?(of.prix?"Se connecter pour choisir":"Créer un compte gratuit"):paid?`Renouveler l'offre ${of.nom}`:mine?"Offre actuelle":lower?"Incluse dans votre offre":"Choisir l'offre "+of.nom;
+    const label=!AUTH.ok?(of.prix?"Se connecter pour choisir":"Créer un compte gratuit"):AUTH.admin?"Inclus · accès administrateur":paid?`Renouveler l'offre ${of.nom}`:mine?"Offre actuelle":lower?"Incluse dans votre offre":"Choisir l'offre "+of.nom;
     return `<div class="tcard reveal d${i+1}${mine?" cur":""}${k==="max"?" dark":""}">
     ${k==="moyen"?`<span class="pop">Le plus choisi</span>`:""}
     <div><h3>${of.nom}</h3><p class="sub">${of.desc}</p></div>
     <div class="pr">${of.prix?`${fmt(of.prix)} FCFA <small>/ mois</small>`:`Gratuit <small>sans abonnement</small>`}</div>${paid?`<p class="tvalid">Active jusqu'au ${dateFr(a.expMs)}</p>`:""}
     <ul>${feats.map(([l,ok])=>{const has=ok(k),lab=typeof l==="function"?l(k):l;return `<li class="${has?"":"no"}">${has?ICON.yes:ICON.no}${lab}</li>`}).join("")}</ul>
-    <button type="button" data-offer="${k}" ${AUTH.ok&&((mine&&!paid)||lower)?"disabled":""}>${label}</button></div>`}).join("");
+    <button type="button" data-offer="${k}" ${AUTH.ok&&(AUTH.admin||(mine&&!paid)||lower)?"disabled":""}>${label}</button></div>`}).join("");
   $$("[data-offer]").forEach(b=>b.onclick=()=>{const k=b.dataset.offer;
     if(!OFFERS[k].prix){if(!AUTH.ok){AUTH.pending="creation";AUTH.mode="signup";location.hash="connexion"}return}
     payer(k,b)});

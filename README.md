@@ -29,6 +29,10 @@ Architmind s'installe comme une application, sans passer par un magasin d'applic
 - **Sécurité.** Les règles de `firestore.rules` limitent chaque compte à ses propres données. L'abonnement et les notifications ne peuvent être écrits que par le serveur de paiement.
 - **Paiement.** CinetPay (Mobile Money et carte bancaire), par un serveur de paiement séparé. Tant que `paiementUrl` est vide dans `config.js`, les Tarifs annoncent « paiement bientôt disponible ».
 
+## Administrateurs
+
+Un compte administrateur a accès à toutes les fonctionnalités, sans abonnement. Les adresses e-mail des administrateurs sont listées dans `config.js`, dans `admins`, sous forme d'empreinte SHA-256 de l'adresse écrite en minuscules : les adresses ne sont donc pas publiées. L'accès s'active une fois l'adresse confirmée avec le lien reçu à l'inscription.
+
 ## Fichiers
 
 | Fichier | Rôle |
