@@ -76,3 +76,7 @@ Les tests simulent Paystack, Firebase, Google et Brevo. Ils couvrent :
 | `POST /api/paiement/webhook` | Confirmation envoyée par Paystack |
 
 Fait par Hunter Agency.
+
+## Vérifier les réglages
+
+Ouvrez l'adresse du serveur : la rubrique `reglages` indique `true` pour chaque réglage bien saisi, sans jamais afficher sa valeur.
