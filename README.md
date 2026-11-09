@@ -6,7 +6,7 @@ Fait par **Hunter Agency**.
 
 ## Utiliser l'application
 
-Adresse : **https://truthone-hue.github.io/architmind/**
+Adresse : **https://truthone-hue.github.io/Architmind/**
 
 Architmind s'installe comme une application, sans passer par un magasin d'applications :
 
