@@ -22,5 +22,5 @@ window.ARCHITMIND_CONFIG = {
   // Adresse du serveur de paiement (Vercel), sans barre finale.
   // Exemple : "https://architmind-paiement.vercel.app"
   // Tant qu'elle est vide, les boutons des Tarifs annoncent « paiement bientôt disponible ».
-  paiementUrl: ""
+  paiementUrl: "https://architmind-paiement.cheickcamra24ht.workers.dev"
 };
