@@ -2548,7 +2548,21 @@ function renderAcct(){
 }
 async function logout(){try{await FB.auth.signOut()}catch(e){}endSession();AUTH.pending=null;AUTH.mode="login";location.hash="accueil";toast("Vous êtes déconnecté.")}
 
-/* ---------- Paiement (CinetPay via le serveur de paiement) ---------- */
+/* ---------- Paiement (Paystack via le serveur de paiement) ---------- */
+// Retour de la page de paiement Paystack : ?paiement=1&trxref=…&reference=…
+// Le serveur vérifie le paiement auprès de Paystack ; l'offre s'affiche dès qu'elle est activée.
+{const q=new URLSearchParams(location.search),ref=q.get("reference")||q.get("trxref");
+  if(q.has("paiement")||ref){["paiement","reference","trxref"].forEach(k=>q.delete(k));
+    try{history.replaceState(history.state,"",location.pathname+(q.toString()?"?"+q:"")+"#tarifs")}catch(e){}
+    if(ref&&/^[\w-]{6,80}$/.test(ref)) AUTH.ready.then(async()=>{if(AUTH.sessionP) await AUTH.sessionP;if(!AUTH.ok||!CFG.paiementUrl) return;
+      toast("Vérification du paiement…");
+      try{const t=await AUTH.user.getIdToken();
+        const r=await fetch(CFG.paiementUrl.replace(/\/$/,"")+"/api/paiement/verifier",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+t},body:JSON.stringify({reference:ref})});
+        const j=await r.json().catch(()=>({}));
+        toast(j.statut==="payé"?`Paiement confirmé : offre ${OFFERS[j.offre]?OFFERS[j.offre].nom:""} active jusqu'au ${dateFr(+new Date(j.expire))}.`
+          :j.statut==="echec"?"Le paiement n'a pas abouti. Vous pouvez réessayer depuis les Tarifs."
+          :"Paiement en cours de confirmation : votre offre s'activera dans quelques instants.")}
+      catch(e){toast("Paiement reçu : la confirmation arrive dans quelques instants.")}})}}
 async function payer(k,btn){
   if(!OFFERS[k]||!OFFERS[k].prix||AUTH.admin) return;
   if(!AUTH.ok){AUTH.pending="tarifs";location.hash="connexion";return}
@@ -2558,7 +2572,7 @@ async function payer(k,btn){
   try{
     const t=await AUTH.user.getIdToken();
     const r=await fetch(CFG.paiementUrl.replace(/\/$/,"")+"/api/paiement/creer",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+t},
-      body:JSON.stringify({offre:k,retour:location.href.split("#")[0]+"#paiement"})});
+      body:JSON.stringify({offre:k,retour:location.origin+location.pathname+"?paiement=1"})});
     const j=await r.json().catch(()=>({}));
     if(!r.ok||!j.url) throw new Error(j.erreur||"paiement");
     location.href=j.url;
@@ -2918,8 +2932,8 @@ function renderTarifs(){
     if(!OFFERS[k].prix){if(!AUTH.ok){AUTH.pending="creation";AUTH.mode="signup";location.hash="connexion"}return}
     payer(k,b)});
   const pn=$("#paynote");if(pn) pn.textContent=CFG.paiementUrl
-    ?"L'offre Basique est gratuite. Moyen et Max se paient de façon sécurisée par CinetPay : Orange Money, MTN MoMo, Moov Money, Wave ou carte bancaire Visa et Mastercard, y compris prépayée. L'abonnement dure un mois et ne se renouvelle jamais sans votre accord : vous êtes prévenu sur le site et par e-mail avant l'échéance, puis vous renouvelez en un clic."
-    :"L'offre Basique est gratuite. Le paiement en ligne des offres Moyen et Max ouvre très bientôt : Mobile Money (Orange Money, MTN MoMo, Moov Money, Wave) et carte bancaire Visa ou Mastercard, y compris prépayée. Vous serez prévenu sur le site et par e-mail de chaque paiement et avant chaque échéance.";
+    ?"L'offre Basique est gratuite. Moyen et Max se paient de façon sécurisée avec Paystack : Orange Money, MTN MoMo, Moov Money ou carte bancaire Visa et Mastercard, y compris prépayée. L'abonnement dure un mois et ne se renouvelle jamais sans votre accord : vous êtes prévenu sur le site et par e-mail avant l'échéance, puis vous renouvelez en un clic."
+    :"L'offre Basique est gratuite. Le paiement en ligne des offres Moyen et Max ouvre très bientôt : Mobile Money (Orange Money, MTN MoMo, Moov Money) et carte bancaire Visa ou Mastercard, y compris prépayée. Vous serez prévenu sur le site et par e-mail de chaque paiement et avant chaque échéance.";
 }
 
 /* ---------- FAQ ---------- */
@@ -2953,7 +2967,7 @@ function faqData(){
     {g:"Offres et projets",items:[
       ["Quelle offre choisir ?",`${o.basique.nom}, gratuite, pour esquisser (${q("basique")}), ${o.moyen.nom} pour présenter vos projets en 3D et télécharger vos plans (${q("moyen")}), ${o.max.nom} pour personnaliser la maquette, ${q("max")}. Les prix sont détaillés dans l'onglet Tarifs.`],
       ["Qu'est-ce qui compte comme un plan généré ?","Chaque clic sur « Générer le plan » ou « Autre variante », et chaque nouvelle série de propositions. Rouvrir un projet enregistré ne compte pas. Le compteur repart à zéro chaque jour."],
-      ["Comment payer mon abonnement ?",CFG.paiementUrl?"L'offre Basique est gratuite ; seules Moyen et Max sont payantes. Dans l'onglet Tarifs, choisissez votre offre : vous êtes dirigé vers la page de paiement sécurisée CinetPay. Payez par Mobile Money (Orange Money, MTN MoMo, Moov Money, Wave) ou par carte bancaire Visa ou Mastercard, y compris prépayée. L'offre s'active dès la confirmation du paiement et un reçu vous est envoyé par e-mail.":"Le paiement en ligne ouvre très bientôt, depuis l'onglet Tarifs : Mobile Money (Orange Money, MTN MoMo, Moov Money, Wave) et carte bancaire Visa ou Mastercard, y compris prépayée. En attendant, l'offre Basique est gratuite et sans limite de durée."],
+      ["Comment payer mon abonnement ?",CFG.paiementUrl?"L'offre Basique est gratuite ; seules Moyen et Max sont payantes. Dans l'onglet Tarifs, choisissez votre offre : vous êtes dirigé vers la page de paiement sécurisée Paystack. Payez par Mobile Money (Orange Money, MTN MoMo, Moov Money) ou par carte bancaire Visa ou Mastercard, y compris prépayée. L'offre s'active dès la confirmation du paiement et un reçu vous est envoyé par e-mail.":"Le paiement en ligne ouvre très bientôt, depuis l'onglet Tarifs : Mobile Money (Orange Money, MTN MoMo, Moov Money) et carte bancaire Visa ou Mastercard, y compris prépayée. En attendant, l'offre Basique est gratuite et sans limite de durée."],
       ["Mon abonnement se renouvelle-t-il tout seul ?","Non : aucun prélèvement n'est fait sans votre accord. L'abonnement Moyen ou Max dure un mois ; à l'échéance, votre compte repasse simplement à l'offre Basique gratuite, sans perdre vos plans. Avant l'échéance, vous êtes prévenu sur le site, par la cloche de notifications et un bandeau, et par e-mail ; le bouton « Renouveler » relance le paiement en un clic. Chaque paiement est confirmé par une notification et un e-mail."],
       ["Où sont enregistrés mes projets ?","Dans votre compte, visibles dans l'onglet Mes plans. Vous les retrouvez à chaque connexion, sur tous vos appareils, et ils restent consultables sans internet sur les appareils où vous les avez déjà ouverts."],
       ["Comment télécharger un plan ?",`Avec les offres ${o.moyen.nom} et ${o.max.nom}, le bouton « Télécharger » au-dessus du plan propose trois formats : un PDF à imprimer (format A3, un niveau par page), une image PNG haute définition et un fichier SVG vectoriel. Le fichier s'enregistre sur votre appareil, ordinateur ou téléphone, et vous pouvez l'envoyer à un client.`]]}];

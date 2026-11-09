@@ -27,7 +27,7 @@ Architmind s'installe comme une application, sans passer par un magasin d'applic
   - `utilisateurs/{uid}/plans` : projets enregistrés ;
   - `utilisateurs/{uid}/notifications` : paiement reçu, renouvellement, échéance.
 - **Sécurité.** Les règles de `firestore.rules` limitent chaque compte à ses propres données. L'abonnement et les notifications ne peuvent être écrits que par le serveur de paiement.
-- **Paiement.** CinetPay (Mobile Money et carte bancaire), par un serveur de paiement séparé. Tant que `paiementUrl` est vide dans `config.js`, les Tarifs annoncent « paiement bientôt disponible ».
+- **Paiement.** Paystack (Mobile Money Orange, MTN, Moov et carte bancaire), par le serveur de paiement du dépôt `architmind-paiement`. Tant que `paiementUrl` est vide dans `config.js`, les Tarifs annoncent « paiement bientôt disponible ».
 
 ## Administrateurs
 
@@ -57,4 +57,4 @@ python3 -m http.server 8000
 # puis ouvrir http://localhost:8000
 ```
 
-Ne mettez jamais de clé secrète dans ce dépôt (CinetPay, Brevo, compte de service Firebase). Elles se placent dans les variables d'environnement du serveur de paiement.
+Ne mettez jamais de clé secrète dans ce dépôt (Paystack, Brevo, compte de service Firebase). Elles se placent dans les variables d'environnement du serveur de paiement.
