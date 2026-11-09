@@ -1,0 +1,46 @@
+rules_version = '2';
+
+// Règles de sécurité Architmind CI
+// - Chaque compte ne peut lire et modifier QUE ses propres données.
+// - L'abonnement, les paiements et les notifications sont écrits
+//   uniquement par le serveur de paiement (jamais par le site).
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function connecte() {
+      return request.auth != null;
+    }
+    function proprietaire(uid) {
+      return connecte() && request.auth.uid == uid;
+    }
+
+    // Profil du compte : nom, profil, ville, compteur de plans du jour
+    match /utilisateurs/{uid} {
+      allow read: if proprietaire(uid);
+      allow create: if proprietaire(uid)
+        && !request.resource.data.keys().hasAny(['abonnement']);
+      allow update: if proprietaire(uid)
+        && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['abonnement', 'email']);
+      allow delete: if false;
+
+      // Plans enregistrés
+      match /plans/{planId} {
+        allow read, write: if proprietaire(uid);
+      }
+
+      // Notifications (paiement reçu, renouvellement, échéance)
+      match /notifications/{notifId} {
+        allow read: if proprietaire(uid);
+        allow update: if proprietaire(uid)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lu']);
+        allow create, delete: if false;
+      }
+    }
+
+    // Historique des paiements : lecture de ses propres paiements seulement
+    match /paiements/{paiementId} {
+      allow read: if connecte() && resource.data.uid == request.auth.uid;
+      allow write: if false;
+    }
+  }
+}
