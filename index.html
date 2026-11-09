@@ -18,6 +18,7 @@
 <meta property="og:title" content="Architmind CI">
 <meta property="og:description" content="Du terrain nu à la maison en 3D : plans cotés, coût des travaux et maquette.">
 <meta property="og:image" content="icons/icon-512.png">
+<meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
@@ -1684,7 +1685,7 @@ function drawTech(m,li,opt={}){
   const P=MOB?m.bw/Math.max(120,opt.scr-66):0;
   const ml=thumb?0.6:MOB?52*P:2.4,mt=thumb?0.6:MOB?50*P:2.4,mr=thumb?0.6:MOB?14*P:1.2,mb=thumb?0.6:MOB?(O.entry?56*P:34*P):(O.entry?2.2:1.6),tb=thumb?0:MOB?64*P:3.4;
   const vx=B.x-ml,vy=B.y-mt,vw=B.w+ml+mr,vh=B.h+mt+mb+tb;
-  let s=`<svg viewBox="${vx.toFixed(2)} ${vy.toFixed(2)} ${vw.toFixed(2)} ${vh.toFixed(2)}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plan ${li?"de l'étage":"du rez-de-chaussée"}">`;
+  let s=`<svg viewBox="${vx.toFixed(2)} ${vy.toFixed(2)} ${vw.toFixed(2)} ${vh.toFixed(2)}" xmlns="http://www.w3.org/2000/svg" style="color-scheme:only light" role="img" aria-label="Plan ${li?"de l'étage":"du rez-de-chaussée"}">`;
   s+=`<defs><pattern id="g1${li}" width="0.5" height="0.5" patternUnits="userSpaceOnUse"><path d="M0.5 0H0V0.5" fill="none" stroke="#E2E7EB" stroke-width="0.012"/></pattern>
   <pattern id="g2${li}" width="2" height="2" patternUnits="userSpaceOnUse"><path d="M2 0H0V2" fill="none" stroke="#D3DAE0" stroke-width="0.02"/></pattern>
   <pattern id="rug" width="0.12" height="0.12" patternUnits="userSpaceOnUse"><rect width="0.12" height="0.12" fill="${PAP}"/><circle cx="0.06" cy="0.06" r="0.014" fill="#9AA0A4"/></pattern>
@@ -2219,7 +2220,7 @@ const acct={offer:"basique",day:"",count:0};
 const today=()=>new Date().toLocaleDateString("sv");
 const sigOf=p=>{const q=Object.assign({},DEF,p);return JSON.stringify(Object.keys(q).sort().map(k=>[k,q[k]]))};
 
-function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),2600)}
+function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),Math.max(2600,t.length*60))}
 function pulse(el){if(!el)return;el.classList.remove("refresh");void el.offsetWidth;el.classList.add("refresh")}
 const val=n=>document.querySelector(`input[name=${n}]:checked`).value;
 const ICON={lock:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="10" width="14" height="10" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>`,
@@ -2329,6 +2330,9 @@ function startSession(u){
     watchNotifs();loadPlans();
   }));
 }
+// retour sur le site après avoir ouvert le lien de confirmation : l'accès administrateur s'active seul
+document.addEventListener("visibilitychange",async()=>{if(document.visibilityState!=="visible"||!AUTH.ok||!AUTH.adminEmail||AUTH.admin) return;
+  await checkAdmin(AUTH.user,true);if(AUTH.admin){acct.offer="max";refreshOffer();renderAboBar();if(location.hash==="#tarifs") renderTarifs();toast("Accès administrateur activé")}});
 function endSession(){
   AUTH.unsub.forEach(f=>f());AUTH.unsub=[];
   Object.assign(AUTH,{ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],sessionP:null,admin:false,adminEmail:false});
@@ -2574,9 +2578,32 @@ function svgSized(svg,W){
   if(!/xmlns="http:\/\/www\.w3\.org\/2000\/svg"/.test(out)) out=out.replace("<svg",'<svg xmlns="http://www.w3.org/2000/svg"');
   return {svg:out,W,H};
 }
+// Polices du site intégrées au fichier : le plan téléchargé a le même aspect sur téléphone et sur ordinateur
+let PFONTS;
+const bufB64=buf=>{const a=new Uint8Array(buf);let x="";for(let i=0;i<a.length;i+=8192) x+=String.fromCharCode.apply(null,a.subarray(i,i+8192));return btoa(x)};
+function planFonts(){
+  if(PFONTS) return PFONTS;
+  PFONTS=(async()=>{try{
+    const link=document.querySelector('link[rel="stylesheet"][href*="fonts.googleapis.com"]');if(!link) return "";
+    const css=await (await fetch(link.href)).text(),urls={},out=[];
+    for(const b of css.split("/*").map(x=>x.trim()).filter(x=>/^latin \*\//.test(x))){
+      const fam=(/font-family:\s*'([^']+)'/.exec(b)||[])[1],url=(/url\((https:[^)]+)\)/.exec(b)||[])[1],wt=(/font-weight:\s*([0-9 ]+);/.exec(b)||[])[1]||"400";
+      if(!url||!/^(Outfit|JetBrains Mono)$/.test(fam||"")) continue;
+      if(!urls[url]) urls[url]=fetch(url).then(r=>r.arrayBuffer()).then(buf=>"data:font/woff2;base64,"+bufB64(buf));
+      out.push(urls[url].then(d=>`@font-face{font-family:'${fam}';font-style:normal;font-weight:${wt};src:url(${d}) format('woff2')}`));
+    }
+    return (await Promise.all(out)).join("");
+  }catch(e){return ""}})();
+  return PFONTS;
+}
+const withFonts=(svg,css)=>css?svg.replace("<defs>",`<defs><style>${css}</style>`):svg;
 function svgCanvas(svg,W){return new Promise((res,rej)=>{
   const t=svgSized(svg,W),img=new Image();
-  img.onload=()=>{try{const c=document.createElement("canvas");c.width=t.W;c.height=t.H;const g=c.getContext("2d");g.fillStyle="#FFFFFF";g.fillRect(0,0,t.W,t.H);g.drawImage(img,0,0,t.W,t.H);res(c)}catch(e){rej(e)}};
+  img.onload=()=>{try{const c=document.createElement("canvas");c.width=t.W;c.height=t.H;const g=c.getContext("2d");g.fillStyle="#FFFFFF";g.fillRect(0,0,t.W,t.H);g.drawImage(img,0,0,t.W,t.H);
+    // le fond du plan doit rester clair : sinon, le navigateur l'a assombri (mode sombre forcé)
+    const px=g.getImageData(Math.round(t.W*0.01),Math.round(t.H*0.01),1,1).data;
+    if(px[0]+px[1]+px[2]<540){const e=new Error("assombri");e.code="dark";rej(e);return}
+    res(c)}catch(e){rej(e)}};
   img.onerror=()=>rej(new Error("image"));img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(t.svg)})}
 const canvasBlob=(c,type,q)=>new Promise((res,rej)=>c.toBlob(b=>b?res(b):rej(new Error("blob")),type,q));
 function makePdf(pages){
@@ -2623,10 +2650,10 @@ async function exportPlan(fmt,d){
   const dl=await getDL();if(!dl){toast("Le téléchargement n'est pas disponible dans cette fenêtre.");return}
   d.classList.add("busy");const lab=d.querySelector("summary span"),old=lab.textContent;lab.textContent="Préparation…";
   try{
-    const base="architmind-"+slug(S.name);let filename,data;
-    if(fmt==="svg"){data='<?xml version="1.0" encoding="UTF-8"?>\n'+svgSized(drawTech(S.m,S.li),2400).svg;filename=`${base}-${slug(lvlLabel(S.m,S.li))}.svg`}
-    else if(fmt==="png"){data=await canvasBlob(await svgCanvas(drawTech(S.m,S.li),3000),"image/png");filename=`${base}-${slug(lvlLabel(S.m,S.li))}.png`}
-    else{const pages=[];for(const x of levelsOf(S.m)){const c=await svgCanvas(drawTech(S.m,x.li),2600),b=await canvasBlob(c,"image/jpeg",0.92);pages.push({jpg:new Uint8Array(await b.arrayBuffer()),w:c.width,h:c.height})}
+    const base="architmind-"+slug(S.name),css=await planFonts(),T=li=>withFonts(drawTech(S.m,li),css);let filename,data;
+    if(fmt==="svg"){data='<?xml version="1.0" encoding="UTF-8"?>\n'+svgSized(T(S.li),2400).svg;filename=`${base}-${slug(lvlLabel(S.m,S.li))}.svg`}
+    else if(fmt==="png"){data=await canvasBlob(await svgCanvas(T(S.li),3000),"image/png");filename=`${base}-${slug(lvlLabel(S.m,S.li))}.png`}
+    else{const pages=[];for(const x of levelsOf(S.m)){const c=await svgCanvas(T(x.li),2600),b=await canvasBlob(c,"image/jpeg",0.92);pages.push({jpg:new Uint8Array(await b.arrayBuffer()),w:c.width,h:c.height})}
       data=makePdf(pages);filename=base+".pdf"}
     lab.textContent=old;d.classList.remove("busy");
     const r=await dl.save({filename,data});
@@ -2634,6 +2661,7 @@ async function exportPlan(fmt,d){
   }catch(e){
     lab.textContent=old;d.classList.remove("busy");const c=e&&e.code;
     if(c==="declined") return;
+    if(c==="dark"){toast("Le mode sombre de votre navigateur assombrit le plan. Désactivez-le pour ce site, ou choisissez le format SVG.");return}
     toast(c==="rate_limited"?"Un téléchargement est déjà en cours.":c==="unavailable"||c==="not_granted"?"Le téléchargement n'est pas disponible dans cette fenêtre.":"Le téléchargement a échoué. Réessayez.");
   }
 }
