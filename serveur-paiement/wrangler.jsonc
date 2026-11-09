@@ -1,0 +1,25 @@
+// Configuration Cloudflare du serveur de paiement Architmind CI
+{
+  "name": "architmind-paiement",
+  "main": "src/index.js",
+  "compatibility_date": "2025-09-01",
+  "workers_dev": true,
+
+  // Rappels d'échéance chaque jour à 8 h (heure d'Abidjan = UTC)
+  "triggers": { "crons": ["0 8 * * *"] },
+
+  // Garde les variables saisies dans le tableau de bord Cloudflare (MAIL_EXPEDITEUR…)
+  "keep_vars": true,
+
+  // Valeurs publiques. Les secrets se saisissent dans Cloudflare, jamais ici :
+  //   PAYSTACK_SECRET, FIREBASE_SERVICE_ACCOUNT, BREVO_API_KEY
+  "vars": {
+    "SITE_URL": "https://truthone-hue.github.io/Architmind/",
+    "ORIGINES": "https://truthone-hue.github.io",
+    "FIREBASE_PROJECT_ID": "architmind-74294",
+    "FIREBASE_API_KEY": "AIzaSyDSLPtkkKHg5h6SQToNQMDhBGJSaBBkATI",
+    "MAIL_NOM": "Architmind CI"
+  },
+
+  "observability": { "enabled": true }
+}

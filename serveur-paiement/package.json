@@ -1,0 +1,10 @@
+{
+  "name": "architmind-paiement",
+  "private": true,
+  "type": "module",
+  "description": "Serveur de paiement d'Architmind CI (Paystack, Firebase, Brevo) sur Cloudflare Workers",
+  "scripts": {
+    "test": "node test/test.mjs",
+    "deploy": "wrangler deploy"
+  }
+}
