@@ -1,7 +1,7 @@
 /* Architmind CI : fonctionnement hors ligne.
    À chaque mise à jour du site, augmentez le numéro de VERSION pour que
    les appareils des utilisateurs téléchargent la nouvelle version. */
-const VERSION = "architmind-v5";
+const VERSION = "architmind-v6";
 
 // Fichiers du site, mis en cache dès l'installation
 const CORE = [

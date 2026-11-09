@@ -614,6 +614,17 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
 .ih-card ol svg{width:18px;height:18px;vertical-align:-3px;color:var(--accent2)}
 .ih-card .btn{align-self:stretch;text-align:center;justify-content:center}
 @media (min-width:761px){.ihelp{place-items:center}}
+.ih-sub{margin:-4px 0 0;font-size:14px;color:var(--muted);line-height:1.5}
+.ih-card .ghost{align-self:stretch;text-align:center}
+.ih-card #ih-go{font-size:15px;padding:13px 18px}
+.ihelp.withar{place-items:center}
+.ih-arrow{position:fixed;left:50%;bottom:calc(4px + env(safe-area-inset-bottom,0px));margin-left:-40px;width:80px;display:flex;flex-direction:column;align-items:center;gap:0;color:#fff;font-weight:700;font-size:13px;text-shadow:0 1px 3px rgba(0,0,0,.5);pointer-events:none;animation:ihd 1.1s ease-in-out infinite}
+.ih-arrow svg{width:38px;height:38px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45))}
+.ih-arrow.up{top:calc(4px + env(safe-area-inset-top,0px));bottom:auto;left:auto;right:12px;margin-left:0;flex-direction:column-reverse;animation-name:ihu}
+.ih-arrow.up svg{transform:rotate(180deg)}
+@keyframes ihd{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+@keyframes ihu{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media (prefers-reduced-motion:reduce){.ih-arrow{animation:none}}
 </style>
 <script src="config.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -948,9 +959,12 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
 <div class="ihelp" id="ihelp" role="dialog" aria-modal="true" aria-labelledby="ih-t" hidden>
   <div class="ih-card">
     <h3 id="ih-t">Installer Architmind</h3>
+    <p class="ih-sub" id="ih-sub" hidden></p>
     <ol id="ih-steps"></ol>
-    <button type="button" class="btn" id="ih-ok">J'ai compris</button>
+    <button type="button" class="btn" id="ih-go" hidden></button>
+    <button type="button" class="ghost" id="ih-ok">Fermer</button>
   </div>
+  <div class="ih-arrow" id="ih-arrow" hidden aria-hidden="true"><span>Partager</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M6 13l6 6 6-6"/></svg></div>
 </div>
 <div class="toast" id="toast" role="status"></div>
 
@@ -3071,41 +3085,96 @@ $("#aplan").innerHTML=drawTech(compute(Object.assign({},DEF,{seed:9,n:4})),0,{th
 $$(".nvilles").forEach(e=>e.textContent=Object.keys(CITIES).length);
 $$(".rail a[data-nav]").forEach(l=>{const t=l.querySelector(".lbl");if(t&&!l.hasAttribute("aria-label")) l.setAttribute("aria-label",t.textContent.trim())});
 /* ---------- Application installable et hors ligne ---------- */
+// Un appui sur « Installer l'application » fait tout ce que le navigateur permet :
+// - Chrome, Edge, Samsung Internet, Opera : la fenêtre d'installation du navigateur s'ouvre ; il reste à confirmer.
+// - Navigateur intégré à une application (WhatsApp, TikTok, Facebook…) : la page s'ouvre dans Chrome ou Safari,
+//   qui propose aussitôt l'installation.
+// - iPhone et iPad : Apple interdit l'installation par un site ; une flèche montre où toucher.
+// - Autres navigateurs : marche à suivre adaptée.
 let INSTALL=null;
-const IOS=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
-const standalone=()=>matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
-// Le bouton reste toujours visible (sauf dans l'application installée) : quand le navigateur ne propose
-// pas lui-même l'installation, il affiche la marche à suivre adaptée au navigateur utilisé.
 const UA=navigator.userAgent;
+const IOS=/iPhone|iPad|iPod/.test(UA)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+const IPAD=/iPad/.test(UA)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+const ANDROID=/Android/i.test(UA);
+const standalone=()=>matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: window-controls-overlay)").matches||navigator.standalone===true;
 const NAV=/FBAN|FBAV|FB_IAB|Instagram|Line\/|musical_ly|TikTok|BytedanceWebview|WhatsApp|Snapchat|\bwv\)/i.test(UA)?"app"
-  :IOS?"ios":/SamsungBrowser/i.test(UA)?"samsung":/Android/i.test(UA)&&/Firefox/i.test(UA)?"firefoxa":/Android/i.test(UA)?"android"
+  :IOS?"ios":/SamsungBrowser/i.test(UA)?"samsung":ANDROID&&/Firefox/i.test(UA)?"firefoxa":ANDROID?"android"
   :/Firefox/i.test(UA)?"firefox":/Safari/i.test(UA)&&!/Chrome|Chromium|Edg\//i.test(UA)?"safari":/Edg\//.test(UA)?"edge":"chrome";
+const CHROMIUM=["samsung","android","chrome","edge"].includes(NAV);
 const ISHARE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="(carré avec une flèche vers le haut)"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5v9h14v-9h-1"/></svg>';
 const HELP={
-  ios:["Installer sur iPhone ou iPad",["Ouvrez cette page dans <b>Safari</b>.",`Touchez le bouton <b>Partager</b> ${ISHARE} en bas de l'écran.`,"Choisissez <b>Sur l'écran d'accueil</b>, puis <b>Ajouter</b>."]],
-  samsung:["Installer avec Samsung Internet",["Touchez l'icône d'installation dans la barre d'adresse si elle apparaît.","Sinon, touchez le bouton <b>Menu</b> (trois traits) en bas à droite.","Choisissez <b>Ajouter la page à</b>, puis <b>Écran d'accueil</b>, et confirmez."]],
+  ios:["Ajouter Architmind à l'écran d'accueil",[`Touchez le bouton <b>Partager</b> ${ISHARE} : en bas de l'écran dans Safari, en haut à droite dans Chrome.`,"Faites défiler et choisissez <b>Sur l'écran d'accueil</b>.","Touchez <b>Ajouter</b> : l'icône Architmind apparaît sur l'écran d'accueil."]],
+  samsung:["Installer avec Samsung Internet",["Touchez le bouton <b>Menu</b> (trois traits) en bas à droite.","Choisissez <b>Ajouter la page à</b>, puis <b>Écran d'accueil</b>.","Confirmez avec <b>Ajouter</b>."]],
   android:["Installer sur Android",["Touchez le menu <b>⋮</b> en haut à droite de Chrome.","Choisissez <b>Installer l'application</b> ou <b>Ajouter à l'écran d'accueil</b>.","Confirmez avec <b>Installer</b>."]],
   firefoxa:["Installer avec Firefox",["Touchez le menu <b>⋮</b>.","Choisissez <b>Installer</b> ou <b>Ajouter à l'écran d'accueil</b>.","Confirmez."]],
-  app:["Ouvrez d'abord le site dans votre navigateur",["Vous êtes dans le navigateur d'une application (WhatsApp, TikTok, Facebook…), qui ne permet pas d'installer.","Touchez le menu <b>⋮</b> ou <b>…</b>, puis <b>Ouvrir dans le navigateur</b> ou <b>Ouvrir dans Chrome</b>.","Touchez ensuite <b>Installer l'application</b> sur la page d'accueil."]],
+  app:["Ouvrez le site dans votre navigateur",["Le navigateur de cette application (WhatsApp, TikTok, Facebook…) ne permet pas d'installer.","Touchez le menu <b>⋮</b> ou <b>…</b>, puis <b>Ouvrir dans le navigateur</b>.","Touchez ensuite <b>Installer l'application</b>."]],
   chrome:["Installer sur l'ordinateur",["Cliquez sur l'icône d'installation à droite de la barre d'adresse.","Ou ouvrez le menu <b>⋮</b> de Chrome et choisissez <b>Installer Architmind CI</b>.","Confirmez avec <b>Installer</b>."]],
   edge:["Installer avec Edge",["Cliquez sur l'icône d'installation à droite de la barre d'adresse.","Ou ouvrez le menu <b>…</b>, puis <b>Applications</b>, puis <b>Installer ce site en tant qu'application</b>.","Confirmez avec <b>Installer</b>."]],
   safari:["Installer sur Mac",["Dans la barre de menus de Safari, ouvrez <b>Fichier</b>.","Choisissez <b>Ajouter au Dock</b>.","Confirmez avec <b>Ajouter</b>."]],
   firefox:["Installer sur l'ordinateur",["Firefox sur ordinateur ne permet pas d'installer les applications web.","Ouvrez ce site dans <b>Chrome</b> ou <b>Edge</b>.","Cliquez ensuite sur l'icône d'installation dans la barre d'adresse."]]};
-function showInstallHelp(){const [t,steps]=HELP[NAV]||HELP.chrome;$("#ih-t").textContent=t;$("#ih-steps").innerHTML=steps.map(x=>`<li>${x}</li>`).join("");$("#ihelp").hidden=false;$("#ih-ok").focus()}
+const IHGO=$("#ih-go");
+function sheet({title,sub,steps,go,arrow}){
+  $("#ih-t").textContent=title;const sb=$("#ih-sub");sb.hidden=!sub;sb.textContent=sub||"";
+  const ol=$("#ih-steps");ol.innerHTML=(steps||[]).map(x=>`<li>${x}</li>`).join("");ol.hidden=!(steps&&steps.length);
+  IHGO.hidden=!go;IHGO.disabled=false;if(go){IHGO.textContent=go.label;IHGO.onclick=go.run}
+  const ar=$("#ih-arrow");ar.hidden=!arrow;ar.className="ih-arrow"+(arrow?" "+arrow:"");$("#ihelp").classList.toggle("withar",!!arrow);
+  $("#ihelp").hidden=false;(go?IHGO:$("#ih-ok")).focus();
+}
+const closeSheet=()=>{$("#ihelp").hidden=true};
 function syncInstall(){const show=!standalone();$$("[data-install]").forEach(b=>b.hidden=!show)}
-addEventListener("beforeinstallprompt",e=>{e.preventDefault();INSTALL=e;syncInstall()});
-addEventListener("appinstalled",()=>{INSTALL=null;syncInstall();toast("Architmind est installé sur votre appareil.")});
-document.addEventListener("click",async e=>{const b=e.target.closest("[data-install]");if(!b) return;
-  if(INSTALL){const p=INSTALL;INSTALL=null;p.prompt();try{const r=await p.userChoice;if(r&&r.outcome==="dismissed") INSTALL=null}catch(x){}syncInstall()}
-  else showInstallHelp()});
-$("#ih-ok").onclick=()=>{$("#ihelp").hidden=true};
-$("#ihelp").addEventListener("click",e=>{if(e.target.id==="ihelp") $("#ihelp").hidden=true});
-document.addEventListener("keydown",e=>{if(e.key==="Escape") $("#ihelp").hidden=true});
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();INSTALL=e;syncInstall();
+  if(!$("#ihelp").hidden&&IHGO.dataset.wait){delete IHGO.dataset.wait;IHGO.disabled=false;IHGO.textContent="Installer maintenant"}});
+addEventListener("appinstalled",()=>{INSTALL=null;closeSheet();syncInstall();toast("Architmind est installé : son icône est sur votre écran d'accueil.")});
+// la fenêtre d'installation du navigateur ; renvoie false si le navigateur exige un nouvel appui
+async function promptInstall(){const p=INSTALL;if(!p) return false;INSTALL=null;
+  try{await p.prompt()}catch(x){INSTALL=p;return false}
+  let r=null;try{r=await p.userChoice}catch(x){}
+  closeSheet();syncInstall();
+  if(r&&r.outcome==="accepted") toast("Installation lancée : l'icône Architmind arrive sur votre écran d'accueil.");
+  return true}
+// attendre que le navigateur annonce que l'installation est possible
+const waitPrompt=ms=>INSTALL?Promise.resolve(INSTALL):new Promise(r=>{const h=()=>{clearTimeout(t);setTimeout(()=>r(INSTALL),0)};
+  const t=setTimeout(()=>{removeEventListener("beforeinstallprompt",h);r(null)},ms);addEventListener("beforeinstallprompt",h,{once:true})});
+const installUrl=()=>{const u=new URL(location.href);u.hash="";u.searchParams.set("installer","1");return u.href};
+function openInBrowser(){
+  const u=new URL(installUrl());
+  if(ANDROID) location.href=`intent://${u.host}${u.pathname}${u.search}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(u.href)};end`;
+  else if(IOS) location.href="x-safari-"+u.href;
+  setTimeout(()=>{if(document.visibilityState==="visible"){const [t,steps]=HELP.app;sheet({title:t,steps,go:{label:ANDROID?"Ouvrir dans Chrome":"Ouvrir dans Safari",run:openInBrowser}})}},1800);
+}
+function iosGuide(){sheet({title:HELP.ios[0],sub:"Sur iPhone et iPad, Apple ne permet pas à un site de s'installer tout seul. Trois touches suffisent : la flèche montre où toucher.",steps:HELP.ios[1],arrow:IPAD?"up":"down"})}
+async function doInstall(btn){
+  if(standalone()){toast("Vous êtes déjà dans l'application Architmind.");return}
+  if(INSTALL){if(!(await promptInstall())) sheet({title:"Installer Architmind",sub:"Tout est prêt : touchez le bouton pour confirmer.",go:{label:"Installer maintenant",run:()=>promptInstall()}});return}
+  if(NAV==="app") return openInBrowser();
+  if(NAV==="ios") return iosGuide();
+  if(CHROMIUM){
+    const old=btn?btn.innerHTML:"";if(btn){btn.disabled=true;btn.innerHTML=`<span class="spin light"></span>Préparation…`}
+    const p=await waitPrompt(4000);if(btn){btn.disabled=false;btn.innerHTML=old}
+    if(p){if(!(await promptInstall())) sheet({title:"Installer Architmind",sub:"Tout est prêt : touchez le bouton pour confirmer.",go:{label:"Installer maintenant",run:()=>promptInstall()}});return}
+  }
+  if(NAV==="firefox"&&/Windows/i.test(UA)) return sheet({title:HELP.firefox[0],steps:HELP.firefox[1],go:{label:"Ouvrir dans Microsoft Edge",run:()=>{location.href="microsoft-edge:"+installUrl()}}});
+  const [t,steps]=HELP[NAV]||HELP.chrome;
+  sheet({title:t,sub:CHROMIUM?"Votre navigateur n'a pas proposé l'installation automatique. Si Architmind est déjà installé, son icône est sur votre écran d'accueil ; sinon :":"",steps});
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-install]");if(b) doInstall(b)});
+$("#ih-ok").onclick=closeSheet;
+$("#ihelp").addEventListener("click",e=>{if(e.target.id==="ihelp") closeSheet()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape") closeSheet()});
+// arrivée depuis un autre navigateur (lien « installer ») : proposer l'installation tout de suite
+{const q=new URLSearchParams(location.search);if(q.has("installer")){q.delete("installer");
+  try{history.replaceState(history.state,"",location.pathname+(q.toString()?"?"+q:"")+location.hash)}catch(e){}
+  if(!standalone()) setTimeout(()=>{
+    if(NAV==="ios") return iosGuide();
+    sheet({title:"Installer Architmind",sub:"Touchez le bouton, puis confirmez : l'icône Architmind sera ajoutée à votre écran d'accueil.",go:{label:INSTALL?"Installer maintenant":"Préparation…",run:()=>doInstall(null)}});
+    if(!INSTALL&&CHROMIUM){IHGO.dataset.wait="1";setTimeout(()=>{if(IHGO.dataset.wait){delete IHGO.dataset.wait;IHGO.textContent="Installer maintenant"}},4000)}
+  },900)}}
 const netState=()=>document.documentElement.classList.toggle("offline",!navigator.onLine);
 addEventListener("offline",()=>{netState();toast("Hors ligne : vos plans restent disponibles")});
 addEventListener("online",()=>{netState();toast("Connexion rétablie");if(AUTH.ok) loadPlans()});
 netState();syncInstall();
-if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol)) addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+// service worker enregistré tout de suite : le navigateur peut proposer l'installation plus vite
+if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol)) navigator.serviceWorker.register("sw.js").catch(()=>{});
 writeForm(cur);refreshOffer();route();
 })();
 
