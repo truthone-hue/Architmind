@@ -31,7 +31,15 @@ export default {
       if (req.method === "POST" && url.pathname === "/api/paiement/verifier") return json(await verifier(req, env), 200, cors);
       if (req.method === "POST" && url.pathname === "/api/paiement/webhook") return await webhook(req, env);
       if (req.method === "GET" && (url.pathname === "/" || url.pathname === "/api/sante"))
-        return json({ ok: true, service: "architmind-paiement", mode: String(env.PAYSTACK_SECRET || "").startsWith("sk_live_") ? "réel" : "test" }, 200, cors);
+        return json({
+          ok: true, service: "architmind-paiement",
+          mode: String(env.PAYSTACK_SECRET || "").startsWith("sk_live_") ? "réel" : "test",
+          // présence des réglages uniquement, jamais leur valeur
+          reglages: {
+            PAYSTACK_SECRET: !!env.PAYSTACK_SECRET, FIREBASE_SERVICE_ACCOUNT: !!env.FIREBASE_SERVICE_ACCOUNT,
+            BREVO_API_KEY: !!env.BREVO_API_KEY, MAIL_EXPEDITEUR: !!env.MAIL_EXPEDITEUR,
+          },
+        }, 200, cors);
       return json({ erreur: "Adresse inconnue." }, 404, cors);
     } catch (e) {
       const status = e.status || 500;

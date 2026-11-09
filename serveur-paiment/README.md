@@ -16,7 +16,7 @@ Petit serveur hébergé gratuitement sur **Cloudflare Workers**. Il encaisse les
 ### 1. Déployer sur Cloudflare
 
 1. Dans Cloudflare, ouvrez **Workers & Pages**, puis **Créer**, puis **Importer un dépôt** (Import a repository).
-2. Choisissez le dépôt GitHub `Architmind`. Dans les paramètres de build, indiquez le **répertoire racine** (Root directory) `serveur-paiement`, puis cliquez sur **Déployer**. Cloudflare lit `wrangler.jsonc` et met en ligne le serveur.
+2. Choisissez le dépôt GitHub `Architmind`. Dans les paramètres de build, indiquez le **répertoire racine** (Root directory) `serveur-paiment`, puis cliquez sur **Déployer**. Cloudflare lit `wrangler.jsonc` et met en ligne le serveur.
 3. Notez l'adresse obtenue, par exemple `https://architmind-paiement.votre-compte.workers.dev`.
 
 ### 2. Saisir les secrets
