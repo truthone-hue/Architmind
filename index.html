@@ -947,12 +947,8 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
 <div class="npanel" id="npanel" role="dialog" aria-label="Notifications" hidden></div>
 <div class="ihelp" id="ihelp" role="dialog" aria-modal="true" aria-labelledby="ih-t" hidden>
   <div class="ih-card">
-    <h3 id="ih-t">Installer sur iPhone ou iPad</h3>
-    <ol>
-      <li>Ouvrez cette page dans <b>Safari</b>.</li>
-      <li>Touchez le bouton <b>Partager</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="(carré avec une flèche vers le haut)"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5v9h14v-9h-1"/></svg> en bas de l'écran.</li>
-      <li>Choisissez <b>Sur l'écran d'accueil</b>, puis <b>Ajouter</b>.</li>
-    </ol>
+    <h3 id="ih-t">Installer Architmind</h3>
+    <ol id="ih-steps"></ol>
     <button type="button" class="btn" id="ih-ok">J'ai compris</button>
   </div>
 </div>
@@ -3078,12 +3074,30 @@ $$(".rail a[data-nav]").forEach(l=>{const t=l.querySelector(".lbl");if(t&&!l.has
 let INSTALL=null;
 const IOS=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
 const standalone=()=>matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
-function syncInstall(){const show=!standalone()&&(!!INSTALL||IOS);$$("[data-install]").forEach(b=>b.hidden=!show)}
+// Le bouton reste toujours visible (sauf dans l'application installée) : quand le navigateur ne propose
+// pas lui-même l'installation, il affiche la marche à suivre adaptée au navigateur utilisé.
+const UA=navigator.userAgent;
+const NAV=/FBAN|FBAV|FB_IAB|Instagram|Line\/|musical_ly|TikTok|BytedanceWebview|WhatsApp|Snapchat|\bwv\)/i.test(UA)?"app"
+  :IOS?"ios":/SamsungBrowser/i.test(UA)?"samsung":/Android/i.test(UA)&&/Firefox/i.test(UA)?"firefoxa":/Android/i.test(UA)?"android"
+  :/Firefox/i.test(UA)?"firefox":/Safari/i.test(UA)&&!/Chrome|Chromium|Edg\//i.test(UA)?"safari":/Edg\//.test(UA)?"edge":"chrome";
+const ISHARE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="(carré avec une flèche vers le haut)"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5v9h14v-9h-1"/></svg>';
+const HELP={
+  ios:["Installer sur iPhone ou iPad",["Ouvrez cette page dans <b>Safari</b>.",`Touchez le bouton <b>Partager</b> ${ISHARE} en bas de l'écran.`,"Choisissez <b>Sur l'écran d'accueil</b>, puis <b>Ajouter</b>."]],
+  samsung:["Installer avec Samsung Internet",["Touchez l'icône d'installation dans la barre d'adresse si elle apparaît.","Sinon, touchez le bouton <b>Menu</b> (trois traits) en bas à droite.","Choisissez <b>Ajouter la page à</b>, puis <b>Écran d'accueil</b>, et confirmez."]],
+  android:["Installer sur Android",["Touchez le menu <b>⋮</b> en haut à droite de Chrome.","Choisissez <b>Installer l'application</b> ou <b>Ajouter à l'écran d'accueil</b>.","Confirmez avec <b>Installer</b>."]],
+  firefoxa:["Installer avec Firefox",["Touchez le menu <b>⋮</b>.","Choisissez <b>Installer</b> ou <b>Ajouter à l'écran d'accueil</b>.","Confirmez."]],
+  app:["Ouvrez d'abord le site dans votre navigateur",["Vous êtes dans le navigateur d'une application (WhatsApp, TikTok, Facebook…), qui ne permet pas d'installer.","Touchez le menu <b>⋮</b> ou <b>…</b>, puis <b>Ouvrir dans le navigateur</b> ou <b>Ouvrir dans Chrome</b>.","Touchez ensuite <b>Installer l'application</b> sur la page d'accueil."]],
+  chrome:["Installer sur l'ordinateur",["Cliquez sur l'icône d'installation à droite de la barre d'adresse.","Ou ouvrez le menu <b>⋮</b> de Chrome et choisissez <b>Installer Architmind CI</b>.","Confirmez avec <b>Installer</b>."]],
+  edge:["Installer avec Edge",["Cliquez sur l'icône d'installation à droite de la barre d'adresse.","Ou ouvrez le menu <b>…</b>, puis <b>Applications</b>, puis <b>Installer ce site en tant qu'application</b>.","Confirmez avec <b>Installer</b>."]],
+  safari:["Installer sur Mac",["Dans la barre de menus de Safari, ouvrez <b>Fichier</b>.","Choisissez <b>Ajouter au Dock</b>.","Confirmez avec <b>Ajouter</b>."]],
+  firefox:["Installer sur l'ordinateur",["Firefox sur ordinateur ne permet pas d'installer les applications web.","Ouvrez ce site dans <b>Chrome</b> ou <b>Edge</b>.","Cliquez ensuite sur l'icône d'installation dans la barre d'adresse."]]};
+function showInstallHelp(){const [t,steps]=HELP[NAV]||HELP.chrome;$("#ih-t").textContent=t;$("#ih-steps").innerHTML=steps.map(x=>`<li>${x}</li>`).join("");$("#ihelp").hidden=false;$("#ih-ok").focus()}
+function syncInstall(){const show=!standalone();$$("[data-install]").forEach(b=>b.hidden=!show)}
 addEventListener("beforeinstallprompt",e=>{e.preventDefault();INSTALL=e;syncInstall()});
 addEventListener("appinstalled",()=>{INSTALL=null;syncInstall();toast("Architmind est installé sur votre appareil.")});
 document.addEventListener("click",async e=>{const b=e.target.closest("[data-install]");if(!b) return;
-  if(INSTALL){const p=INSTALL;INSTALL=null;p.prompt();try{await p.userChoice}catch(x){}syncInstall()}
-  else if(IOS){const h=$("#ihelp");h.hidden=false;$("#ih-ok").focus()}});
+  if(INSTALL){const p=INSTALL;INSTALL=null;p.prompt();try{const r=await p.userChoice;if(r&&r.outcome==="dismissed") INSTALL=null}catch(x){}syncInstall()}
+  else showInstallHelp()});
 $("#ih-ok").onclick=()=>{$("#ihelp").hidden=true};
 $("#ihelp").addEventListener("click",e=>{if(e.target.id==="ihelp") $("#ihelp").hidden=true});
 document.addEventListener("keydown",e=>{if(e.key==="Escape") $("#ihelp").hidden=true});
