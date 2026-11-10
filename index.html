@@ -577,6 +577,19 @@ td+td,th+th{padding-left:14px}
 @media (max-width:380px){.inner{padding:6px 12px}td+td,th+th{padding-left:8px}td.n{font-size:11.5px}table{font-size:13px}}
 @media (max-width:360px){.rail a{flex:1 1 0}.rail a .lbl{display:none}.rail a[aria-current="page"]{flex:2.2 1 0}.rail a[aria-current="page"] .lbl{display:block}.rail a svg{width:22px;height:22px}}
 @supports (min-height:100svh){.home{min-height:min(760px,calc(100svh - 40px))}}
+/* Pages allégées : l'essentiel d'abord, le détail à la demande */
+.less{display:none!important}
+.foot .fcol,.fbrand>p:not(.facct){display:none}
+details.adv{border-top:1px solid var(--hair);margin-top:4px}
+details.adv>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:6px 2px;font-weight:600;font-size:14.5px;color:var(--ink)}
+details.adv>summary::-webkit-details-marker{display:none}
+details.adv>summary{flex-wrap:wrap}details.adv>summary small{order:2;flex:1 0 100%;font-weight:400;font-size:12.5px;color:var(--muted);margin-top:-8px;padding-bottom:6px}
+details.adv>summary::after{content:"";width:9px;height:9px;flex:none;margin-right:6px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s}
+details.adv[open]>summary::after{transform:rotate(-135deg)}
+details.adv>summary:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:8px}
+details.adv[open]{padding-bottom:10px}
+details.advbox{display:flex;flex-direction:column}
+details.advbox[open]>fieldset{margin-top:10px}
 /* Version application : e-mail, notifications, abonnement, installation */
 input[type=email]{font:inherit;font-size:15px;font-weight:500;padding:10px 14px;border:1px solid var(--hair);background:var(--card);color:var(--ink);border-radius:var(--r-m);width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
 @media (max-width:760px),(pointer:coarse){input[type=email]{font-size:16px}}
@@ -672,7 +685,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
       </div>
     </div>
 
-    <div class="factband">
+    <div class="factband less">
       <div class="fact reveal"><b class="nvilles">66</b><span>villes et communes, de la côte au Sahel</span></div>
       <div class="fact reveal d1"><b id="fact-styles">7</b><span>styles d'architecture</span></div>
       <div class="fact reveal d2"><b>R+10</b><span>de la villa plain-pied à l'immeuble</span></div>
@@ -688,12 +701,12 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
       </div>
     </section>
 
-    <section class="block">
+    <section class="block less">
       <div class="bhead"><div class="eyebrow">Fonctionnalités</div><h2>Tout ce qu'il faut pour l'esquisse</h2></div>
       <div class="fgrid"><div class="fcard reveal d1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M3.5 12h8v8.5M11.5 12V3.5M15 12h5.5"/></svg></span><h3>Plans techniques cotés</h3><p>Murs, portes, fenêtres, mobilier, cotes et cartouche, comme sur une planche d'architecte.</p></div><div class="fcard reveal d2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12v17l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 11.5h6M9 15h3.5"/></svg></span><h3>Coûts en FCFA</h3><p>Estimation par lot, quantités de matériaux et prix ajustés selon la ville et le standing.</p></div><div class="fcard reveal d3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="9" r="3.5"/><path d="M9 2.5v1.5M9 14v1.5M2.5 9H4M14 9h1.5M4.4 4.4l1 1M12.6 12.6l1 1M4.4 13.6l1-1M12.6 5.4l1-1"/><path d="M11.5 19.5h7a3 3 0 0 0 0-6 4 4 0 0 0-7.5 1.2A2.4 2.4 0 0 0 11.5 19.5z"/></svg></span><h3>Matériaux adaptés au climat</h3><p>Des conseils précis pour la côte humide, la forêt, la savane ou le Sahel.</p></div><div class="fcard reveal d1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></span><h3>Maquette 3D</h3><p>Vue extérieure de la maison sur son terrain et visite intérieure meublée, pièce par pièce.</p></div><div class="fcard reveal d2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="5" y="3" width="10" height="18" rx="1"/><path d="M15 9h4v12h-4M8 7h1M11 7h1M8 10.5h1M11 10.5h1M8 14h1M11 14h1M9 21v-3h2v3"/></svg></span><h3>Villas et immeubles</h3><p>Plain-pied, duplex, R+2, ou immeubles jusqu'à R+10 avec commerces ou parking au rez-de-chaussée.</p></div><div class="fcard reveal d3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3.5 6.5a2 2 0 0 1 2-2h4l2 2h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/><path d="M8 13h8"/></svg></span><h3>Projets enregistrés</h3><p>Retrouvez, rouvrez et comparez vos projets à tout moment dans Mes plans.</p></div></div>
     </section>
 
-    <section class="block">
+    <section class="block less">
       <div class="bhead"><div class="eyebrow">Aide</div><h2>Questions fréquentes</h2><p>Les réponses aux questions les plus posées. Toutes les autres sont dans l'onglet FAQ.</p></div>
       <div class="faqmini" id="faqmini"></div>
       <a class="btn morelink" href="#faq">Voir toutes les questions →</a>
@@ -753,6 +766,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
             <label class="chip"><input type="radio" name="type" value="r2"><span>Maison R+2</span></label>
             <label class="chip"><input type="radio" name="type" value="rn"><span>R+3 et plus</span></label>
           </div>
+          <details class="adv"><summary>Style d'architecture</summary>
           <div class="chips" role="radiogroup" aria-label="Style">
             <label class="chip"><input type="radio" name="style" value="tropical" checked><span>Tropical moderne</span></label>
             <label class="chip"><input type="radio" name="style" value="bio"><span>Bioclimatique à patio</span></label>
@@ -761,7 +775,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
             <label class="chip"><input type="radio" name="style" value="afro"><span>Afro-contemporain</span></label>
             <label class="chip"><input type="radio" name="style" value="colonial"><span>Colonial à véranda</span></label>
             <label class="chip"><input type="radio" name="style" value="mediterraneen"><span>Méditerranéen</span></label>
-          </div>
+          </div></details>
           <div class="row">
             <label class="f" for="ch" data-house>Chambres<select id="ch"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
             <label class="f" for="std">Standing<select id="std"><option value="eco">Économique</option><option value="std" selected>Standard</option><option value="haut">Haut standing</option><option value="luxe">Luxe</option></select></label>
@@ -791,6 +805,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
             <label class="tgl"><input type="checkbox" id="x-genset">Groupe électrogène</label>
           </div>
         </fieldset>
+        <details class="adv advbox"><summary>Options avancées<small>Équipements, reculs, prix au m²</small></summary>
         <fieldset>
           <legend>Équipements</legend>
           <label class="f" for="garage" data-house>Garage<select id="garage"><option value="0">Sans garage</option><option value="1">1 voiture</option><option value="2">2 voitures</option></select></label>
@@ -813,6 +828,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
           </div>
           <label class="f" for="pm">Prix de base au m²<span class="unit" data-u="F"><input id="pm" type="number" inputmode="numeric" enterkeyhint="done" min="50000" max="2000000" step="5000" value="210000"></span></label>
         </fieldset>
+        </details>
         <p class="note warn" id="dirty" hidden>Paramètres modifiés. Cliquez sur « Générer le plan » pour mettre le plan à jour.</p>
         <p class="note warn" id="limit" hidden></p>
         <div class="actions">
@@ -851,13 +867,14 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
         <h3>Estimation des travaux</h3>
         <p class="sub" id="cost-lead"></p>
         <div class="total"><strong id="tot">—</strong><span id="range">—</span></div>
+        <details class="adv"><summary>Détail par lot et quantités</summary>
         <div class="inner"><table><thead><tr><th>Lot</th><th class="n">Part</th><th class="n">Montant</th></tr></thead><tbody id="lots"></tbody></table></div>
-        <div class="inner"><table><thead><tr><th>Quantités estimées</th><th class="n">Qté</th></tr></thead><tbody id="qty"></tbody></table></div>
+        <div class="inner"><table><thead><tr><th>Quantités estimées</th><th class="n">Qté</th></tr></thead><tbody id="qty"></tbody></table></div></details>
       </div>
       <div class="soft reveal">
         <h3>Matériaux conseillés</h3>
         <p class="sub" id="mat-lead"></p>
-        <div class="mats" id="mats"></div>
+        <details class="adv"><summary>Voir les matériaux conseillés</summary><div class="mats" id="mats"></div></details>
       </div>
     </div>
   </section>
