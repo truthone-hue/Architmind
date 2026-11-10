@@ -606,6 +606,14 @@ details.advbox[open]>fieldset{margin-top:10px}
   @media (max-width:760px){.sr.sl,.sr.srr{transform:translateY(54px) scale(.97)}}
   .sr.in{opacity:1;transform:none}
 }
+/* Page du plan généré */
+#dirty{display:none!important}
+.cgrid{grid-template-columns:minmax(0,560px);justify-content:center}
+.resacts{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.resacts button,.resacts .btn{display:inline-flex;align-items:center;gap:8px}
+.resacts svg{width:18px;height:18px;flex:none}
+.resacts .ghostbtn{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 1px var(--hair)}
+@media (max-width:760px){.resacts{display:grid;grid-template-columns:1fr 1fr}.resacts button,.resacts .btn{justify-content:center}}
 /* Version application : e-mail, notifications, abonnement, installation */
 input[type=email]{font:inherit;font-size:15px;font-weight:500;padding:10px 14px;border:1px solid var(--hair);background:var(--card);color:var(--ink);border-radius:var(--r-m);width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
 @media (max-width:760px),(pointer:coarse){input[type=email]{font-size:16px}}
@@ -855,7 +863,22 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
           <button type="button" class="ghost" id="toprop" style="flex:1 1 100%">Voir les propositions →</button>
         </div>
       </form>
+    </div>
+  </section>
 
+  <!-- RESULTAT -->
+  <section class="view" data-view="resultat" hidden>
+    <div class="vhead reveal">
+      <div><div class="eyebrow">Votre plan</div><h2>Plan généré</h2><p class="sub">Consultez le plan, ouvrez la maquette 3D ou modifiez vos réglages.</p></div>
+      <div class="vside"><div class="acctchip" data-acct hidden></div></div>
+    </div>
+    <div class="resacts reveal d1">
+      <button type="button" id="go3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.500v9L12 21l-8-4.500v-9z"/><path d="M12 12l8-4.500M12 12v9M12 12L4 7.500"/></svg>Voir en 3D</button>
+      <a class="btn ghostbtn" href="#creation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/></svg>Modifier le plan</a>
+      <button type="button" class="ghost" id="var2">Autre variante</button>
+      <button type="button" class="ghost" id="toprop2">Voir 3 propositions</button>
+    </div>
+    <div class="rescard">
       <div class="sheetcard reveal d2">
         <div class="sheettop">
           <h3 id="ptitle">Plan</h3>
@@ -2348,7 +2371,7 @@ async function checkAdmin(u,force){
   if(AUTH.adminEmail&&!u.emailVerified&&(force||navigator.onLine)){try{await u.reload()}catch(e){}}
   const cu=(FB.auth&&FB.auth.currentUser)||u;AUTH.admin=AUTH.adminEmail&&!!cu.emailVerified;
 }
-const GATED=["creation","propositions","mes-plans"];
+const GATED=["creation","resultat","propositions","mes-plans"];
 const LK="architmind-dernier-email";
 const stGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
 const stSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
@@ -2750,7 +2773,7 @@ function drawInto(el,m,li){if(!el) return;const w=el.clientWidth||0;el._m=m;el._
 /* ---------- Création ---------- */
 function renderPlan(){
   model=compute(cur);
-  ["#sacts","#savebar","#res3d","#rescost"].forEach(q=>{const e=$(q);if(e) e.hidden=false});
+  ["#sacts","#savebar","#rescost"].forEach(q=>{const e=$(q);if(e) e.hidden=false});$("#res3d").hidden=!SHOW3D;
   if(!(model.planLevels||[]).some(x=>x.li===level)) level=0;
   levelTabs($("#tabs"),model,level,l=>{level=l;drawInto($("#sheet"),model,level);pulse($("#sheet"))});
   $("#ptitle").textContent=typeLabel(model.p)+" · "+STYLES[model.style]+" · "+(model.isTower&&!model.fam?model.nApts+" logements":model.n+" chambre"+(model.n>1?"s":""))+" · "+model.lieu;
@@ -2764,7 +2787,7 @@ function renderPlan(){
   $("#s-c").textContent=Math.round(model.foot/model.plot*100)+" %";$("#s-s").textContent=fmt(model.builtArea)+" m²";
   costs(model);dirty=false;$("#dirty").hidden=true;
   pulse($("#sheet"));
-  area3D($("#c3d"),model);
+  if(SHOW3D) area3D($("#c3d"),model);
 }
 function lotsHtml(m){const base=m.total-(m.extraSum||0);const ex=(m.extras||[]).map(e=>`<tr><td>${e.n}</td><td class="n">forfait</td><td class="n">${F(e.c)}</td></tr>`).join("");return lotsBase(m,base)+ex}
 function lotsBase(m,T){const lots=[["Fondations & terrassement",.13],["Gros œuvre",.29],["Charpente & couverture",.12],["Menuiseries",.11],["Plomberie & sanitaires",.09],["Électricité",.07],["Carrelage & revêtements",.11],["Peinture & finitions",.08]];
@@ -2899,7 +2922,7 @@ function openProp(i,silent){
      </div>
      <div class="soft" style="margin-top:20px"><h3>Comment elle se présentera</h3><div class="story">${st.map(([k,v])=>`<div><b>${k}</b><p>${v}</p></div>`).join("")}</div></div>
    </div>`;
-  $("#p-edit").onclick=()=>{cur=Object.assign({},o.p);writeForm(cur);level=0;renderedOnce=true;location.hash="creation";setTimeout(renderPlan,0)};
+  $("#p-edit").onclick=()=>{cur=Object.assign({},o.p);writeForm(cur);level=0;renderedOnce=true;SHOW3D=false;model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)};
   $("#p-save").onclick=()=>savePlan(o.d.name,o.p,m);
   plevel=0;drawInto($("#psheet"),m,0);levelTabs($("#ptabs"),m,0,l=>{plevel=l;drawInto($("#psheet"),m,l);pulse($("#psheet"))});
   area3D($("#p3d"),m);
@@ -2949,7 +2972,7 @@ async function renderMine(){
   $$(".mcard h3").forEach((h,i)=>h.textContent=items[i].name);
   $$("[data-open]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.open];cur=JSON.parse(it.params);writeForm(cur);$("#pname").value=it.name;level=0;
     if(it.opts3d){try{opts3d=JSON.parse(it.opts3d)}catch(e){}}
-    renderedOnce=true;location.hash="creation";setTimeout(renderPlan,0)});
+    renderedOnce=true;SHOW3D=false;model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)});
   $$("[data-del]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.del];if(b.dataset.armed){deletePlan(it.id)}else{b.dataset.armed="1";b.textContent="Confirmer";b.className="danger";setTimeout(()=>{if(b.isConnected&&b.dataset.armed){delete b.dataset.armed;b.textContent="Supprimer";b.className="ghost"}},4000)}});
 }
 
@@ -3107,7 +3130,7 @@ document.addEventListener("click",e=>{
 })();
 
 /* ---------- Navigation ---------- */
-const VIEWS=["accueil","creation","propositions","mes-plans","tarifs","faq","connexion"];let renderedOnce=false;
+const VIEWS=["accueil","creation","resultat","propositions","mes-plans","tarifs","faq","connexion"];let SHOW3D=false;let renderedOnce=false;
 function route(){
   let v=(location.hash||"").replace("#","");
   if(v==="paiement"){toast("Merci ! Paiement en cours de vérification : votre offre s'active dès sa confirmation.");try{history.replaceState(history.state,"","#tarifs")}catch(e){}v="tarifs"}
@@ -3116,9 +3139,11 @@ function route(){
   stop3D();if(typeof closeDl==="function") closeDl();
   $$("[data-view]").forEach(s=>{s.hidden=s.dataset.view!==v});
   $$("[data-nav]").forEach(a=>a.removeAttribute("aria-current"));
-  $$(`[data-nav="${v}"]`).forEach(a=>a.setAttribute("aria-current","page"));
+  if(v==="resultat"&&!model){try{history.replaceState(history.state,"","#creation")}catch(e){}v="creation";$$("[data-view]").forEach(s=>{s.hidden=s.dataset.view!==v})}
+  $$(`[data-nav="${v==="resultat"?"creation":v}"]`).forEach(a=>a.setAttribute("aria-current","page"));
   $(`[data-view="${v}"]`).querySelectorAll(".reveal").forEach(el=>{el.classList.remove("reveal");void el.offsetWidth;el.classList.add("reveal")});
-  if(v==="creation"){if(!renderedOnce){renderedOnce=true;cur=readForm()}if(model) area3D($("#c3d"),model)}
+  if(v==="creation"){if(!renderedOnce){renderedOnce=true;cur=readForm()}}
+  if(v==="resultat"&&model){const sh=$("#sheet");if(sh._m!==model||!sh._w) drawInto(sh,model,level);if(SHOW3D) area3D($("#c3d"),model)}
   if(v==="propositions") buildProps();
   if(v==="mes-plans") renderMine();
   if(v==="tarifs") renderTarifs();
@@ -3131,8 +3156,14 @@ function route(){
 /* ---------- Évènements ---------- */
 $("#f").addEventListener("change",e=>{if(e.target.id==="std") $("#pm").value=PRICE[$("#std").value];readForm();dirty=true;$("#dirty").hidden=false});
 $("#f").addEventListener("input",()=>readForm());
-$("#f").addEventListener("submit",e=>{e.preventDefault();if(!useQuota()) return limitReached();const s=cur.seed;cur=readForm();cur.seed=s;level=0;renderPlan();toast("Plan généré")});
-$("#var").onclick=()=>{if(!useQuota()) return limitReached();cur=readForm();cur.seed=(cur.seed||1)+1;renderPlan();toast("Nouvelle variante générée")};
+$("#f").addEventListener("submit",e=>{e.preventDefault();if(!useQuota()) return limitReached();const s=cur.seed;cur=readForm();cur.seed=s;level=0;SHOW3D=false;showResult();toast("Plan généré")});
+// la page du plan : le dessin se fait une fois la page affichée (largeur réelle de l'écran)
+function showResult(){model=compute(cur);if(location.hash==="#resultat") renderPlan();else{location.hash="resultat";setTimeout(renderPlan,0)}}
+const variante=()=>{if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;SHOW3D=false;showResult();toast("Nouvelle variante générée")};
+$("#var").onclick=()=>{cur=readForm();variante()};
+$("#var2").onclick=variante;
+$("#toprop2").onclick=()=>{location.hash="propositions"};
+$("#go3d").onclick=()=>{if(!model) return;SHOW3D=true;const r=$("#res3d");r.hidden=false;area3D($("#c3d"),model);r.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})};
 $("#toprop").onclick=()=>{location.hash="propositions"};
 
 $("#save").onclick=()=>savePlan($("#pname").value,cur,model);
