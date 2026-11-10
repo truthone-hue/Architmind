@@ -1,7 +1,7 @@
 /* Architmind CI : fonctionnement hors ligne.
    À chaque mise à jour du site, augmentez le numéro de VERSION pour que
    les appareils des utilisateurs téléchargent la nouvelle version. */
-const VERSION = "architmind-v8";
+const VERSION = "architmind-v9";
 
 // Fichiers du site, mis en cache dès l'installation
 const CORE = [
@@ -9,6 +9,10 @@ const CORE = [
   "./index.html",
   "./config.js",
   "./manifest.webmanifest",
+  "./conditions.html",
+  "./confidentialite.html",
+  "./remboursement.html",
+  "./mentions-legales.html",
   "./icons/favicon.svg",
   "./icons/favicon-32.png",
   "./icons/icon-192.png",

@@ -625,6 +625,10 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
 @keyframes ihd{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
 @keyframes ihu{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @media (prefers-reduced-motion:reduce){.ih-arrow{animation:none}}
+.flegal{display:flex;flex-wrap:wrap;gap:6px 16px}
+.flegal a,.fbottom a{color:inherit;text-underline-offset:3px}
+.flegal a:hover,.fbottom a:hover{color:var(--ink)}
+.legalnote a,.authnote a{color:inherit;text-underline-offset:3px}
 </style>
 <script src="config.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -921,6 +925,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
     </div>
     <div class="tgrid" id="tgrid"></div>
     <p class="storenote" id="paynote" style="text-align:center;max-width:72ch;margin:18px auto 0"></p>
+      <p class="storenote legalnote" style="text-align:center;max-width:72ch;margin:8px auto 0">En payant, vous acceptez les <a href="conditions.html">conditions d'utilisation</a> et la <a href="remboursement.html">politique de remboursement</a>.</p>
   </section>
 
   <footer class="foot">
@@ -935,7 +940,8 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
     <nav class="fcol" aria-label="Découvrir"><h4>Découvrir</h4><a href="#accueil">Accueil</a><a href="#tarifs">Tarifs</a><a href="#faq">Questions fréquentes</a></nav>
     <div class="fcol"><h4>Couverture</h4><span><b class="nvilles">66</b> villes et communes</span><span>Côte d'Ivoire et Afrique de l'Ouest</span><span>De la villa à l'immeuble R+10</span></div>
     <div class="fbottom">
-      <span>© 2026 Architmind CI · Fait par Hunter Agency</span>
+      <span>© 2026 Architmind CI · Fait par Hunter Agency · <a href="mailto:cheickcamra24ht@gmail.com">cheickcamra24ht@gmail.com</a></span>
+      <nav class="flegal" aria-label="Informations légales"><a href="conditions.html">Conditions d'utilisation</a><a href="confidentialite.html">Confidentialité</a><a href="remboursement.html">Remboursement</a><a href="mentions-legales.html">Mentions légales</a></nav>
     </div>
   </footer>
 </main>
@@ -2454,7 +2460,7 @@ function drawAuth(){
       <label class="remember"><input type="checkbox" id="a-keep" checked><span>Rester connecté sur cet appareil</span></label>
       <p class="ferr" id="a-err" role="alert" hidden></p>
       <button class="btn authgo" type="submit" id="a-go">${signup?"Créer mon compte":"Se connecter"} <span aria-hidden="true">→</span></button>
-      ${signup?`<p class="authnote">${IMAIL}<span>Votre adresse e-mail sert à vous connecter et à recevoir les confirmations de paiement et les rappels d'échéance.</span></p>`
+      ${signup?`<p class="authnote">${IMAIL}<span>Votre adresse e-mail sert à vous connecter et à recevoir les confirmations de paiement et les rappels d'échéance. En créant un compte, vous acceptez les <a href="conditions.html">conditions d'utilisation</a> et la <a href="confidentialite.html">politique de confidentialité</a>.</span></p>`
         :`<p class="authnote">${ILOCK}<span><button type="button" class="linkbtn" data-mode="forgot">Mot de passe oublié ?</button> · Pas encore de compte ? <button type="button" class="linkbtn" data-mode="signup">Créez-en un</button></span></p>`}
     </form>`;
   $$("#authbox [data-mode]").forEach(b=>b.onclick=()=>{if(AUTH.mode===b.dataset.mode) return;AUTH.mode=b.dataset.mode;drawAuth();const f=$(AUTH.mode==="signup"?"#a-name":"#a-email");if(f) f.focus()});
@@ -2968,6 +2974,8 @@ function faqData(){
       ["Quelle offre choisir ?",`${o.basique.nom}, gratuite, pour esquisser (${q("basique")}), ${o.moyen.nom} pour présenter vos projets en 3D et télécharger vos plans (${q("moyen")}), ${o.max.nom} pour personnaliser la maquette, ${q("max")}. Les prix sont détaillés dans l'onglet Tarifs.`],
       ["Qu'est-ce qui compte comme un plan généré ?","Chaque clic sur « Générer le plan » ou « Autre variante », et chaque nouvelle série de propositions. Rouvrir un projet enregistré ne compte pas. Le compteur repart à zéro chaque jour."],
       ["Comment payer mon abonnement ?",CFG.paiementUrl?"L'offre Basique est gratuite ; seules Moyen et Max sont payantes. Dans l'onglet Tarifs, choisissez votre offre : vous êtes dirigé vers la page de paiement sécurisée Paystack. Payez par Mobile Money (Orange Money, MTN MoMo, Moov Money) ou par carte bancaire Visa ou Mastercard, y compris prépayée. L'offre s'active dès la confirmation du paiement et un reçu vous est envoyé par e-mail.":"Le paiement en ligne ouvre très bientôt, depuis l'onglet Tarifs : Mobile Money (Orange Money, MTN MoMo, Moov Money) et carte bancaire Visa ou Mastercard, y compris prépayée. En attendant, l'offre Basique est gratuite et sans limite de durée."],
+      ["Puis-je être remboursé ?","Oui, en cas de double paiement, si l'offre ne s'active pas après le paiement, ou si vous le demandez dans les 48 heures qui suivent le paiement. Écrivez à cheickcamra24ht@gmail.com avec la référence du paiement. Tous les détails sont dans la <a href=\"remboursement.html\">politique de remboursement</a>."],
+      ["Comment contacter Architmind ?","Écrivez à <a href=\"mailto:cheickcamra24ht@gmail.com\">cheickcamra24ht@gmail.com</a> : nous répondons sous 2 jours ouvrés. Les <a href=\"conditions.html\">conditions d'utilisation</a>, la <a href=\"confidentialite.html\">politique de confidentialité</a> et les <a href=\"mentions-legales.html\">mentions légales</a> sont accessibles en bas de chaque page."],
       ["Mon abonnement se renouvelle-t-il tout seul ?","Non : aucun prélèvement n'est fait sans votre accord. L'abonnement Moyen ou Max dure un mois ; à l'échéance, votre compte repasse simplement à l'offre Basique gratuite, sans perdre vos plans. Avant l'échéance, vous êtes prévenu sur le site, par la cloche de notifications et un bandeau, et par e-mail ; le bouton « Renouveler » relance le paiement en un clic. Chaque paiement est confirmé par une notification et un e-mail."],
       ["Où sont enregistrés mes projets ?","Dans votre compte, visibles dans l'onglet Mes plans. Vous les retrouvez à chaque connexion, sur tous vos appareils, et ils restent consultables sans internet sur les appareils où vous les avez déjà ouverts."],
       ["Comment télécharger un plan ?",`Avec les offres ${o.moyen.nom} et ${o.max.nom}, le bouton « Télécharger » au-dessus du plan propose trois formats : un PDF à imprimer (format A3, un niveau par page), une image PNG haute définition et un fichier SVG vectoriel. Le fichier s'enregistre sur votre appareil, ordinateur ou téléphone, et vous pouvez l'envoyer à un client.`]]}];
