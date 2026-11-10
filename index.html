@@ -1968,9 +1968,27 @@ function sunState(h,or){
     hor:night?new THREE.Color(0x24304f):mix(0xf2b27c,0xdbe8f1,k),
     gnd:night?new THREE.Color(0x101418):mix(0x6b5a48,0x8f8a76,k)};
 }
-function skyTex(S){const c=document.createElement("canvas");c.width=4;c.height=256;const g=c.getContext("2d");const gr=g.createLinearGradient(0,0,0,256);
-  gr.addColorStop(0,"#"+S.top.getHexString());gr.addColorStop(0.62,"#"+S.hor.getHexString());gr.addColorStop(1,"#"+S.hor.clone().lerp(S.gnd,0.4).getHexString());g.fillStyle=gr;g.fillRect(0,0,4,256);
-  const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;return t}
+function skyTex(S,seed){
+  const hx=c=>"#"+c.getHexString(),flat=()=>{const c=document.createElement("canvas");c.width=4;c.height=256;const g=c.getContext("2d"),gr=g.createLinearGradient(0,0,0,256);
+    gr.addColorStop(0,hx(S.top));gr.addColorStop(0.62,hx(S.hor));gr.addColorStop(1,hx(S.hor.clone().lerp(S.gnd,0.4)));g.fillStyle=gr;g.fillRect(0,0,4,256);const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;return t};
+  try{
+    const W=1024,H=512,c=document.createElement("canvas");c.width=W;c.height=H;const g=c.getContext("2d"),R=rng((seed||1)*131+7);
+    const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,hx(S.top));gr.addColorStop(0.36,hx(S.top.clone().lerp(S.hor,0.55)));gr.addColorStop(0.5,hx(S.hor));gr.addColorStop(0.6,hx(S.hor.clone().lerp(S.gnd,0.35)));gr.addColorStop(1,hx(S.hor.clone().lerp(S.gnd,0.6)));
+    g.fillStyle=gr;g.fillRect(0,0,W,H);
+    const soft=(x,y,r,col,a)=>{[-W,0,W].forEach(dx=>{if(x+dx+r<0||x+dx-r>W) return;const q=g.createRadialGradient(x+dx,y,0,x+dx,y,r);q.addColorStop(0,`rgba(${col},${a})`);q.addColorStop(1,`rgba(${col},0)`);g.fillStyle=q;g.fillRect(x+dx-r,y-r,r*2,r*2)})};
+    if(S.night){for(let i=0;i<420;i++){g.globalAlpha=0.25+R()*0.7;g.fillStyle="#ffffff";const r=R()>0.93?1.6:0.9;g.fillRect(R()*W,R()*H*0.47,r,r)}g.globalAlpha=1}
+    else{
+      const sx=(Math.atan2(S.dir.z,S.dir.x)/(2*Math.PI)+0.5)*W,sy=(0.5-Math.asin(Math.max(-1,Math.min(1,S.dir.y)))/Math.PI)*H;
+      const sc=S.color.clone().lerp(new THREE.Color(0xffffff),0.35),rgb=[sc.r,sc.g,sc.b].map(v=>Math.round(v*255)).join(",");
+      soft(sx,sy,S.gold?190:130,rgb,S.gold?0.55:0.4);soft(sx,sy,46,"255,255,255",0.9);soft(sx,sy,15,"255,255,255",1);
+      const cc=new THREE.Color(0xffffff).lerp(S.color,S.gold?0.45:0.06),crgb=[cc.r,cc.g,cc.b].map(v=>Math.round(v*255)).join(",");
+      for(let k=0;k<16;k++){const cx=R()*W,cy=H*(0.14+R()*0.3),w=50+R()*90,n=7+Math.floor(R()*7);
+        for(let i=0;i<n;i++){const t=R()*2-1;soft(cx+t*w,cy+(R()-0.3)*10-(1-Math.abs(t))*9,(13+R()*20)*(1-Math.abs(t)*0.45),crgb,0.22+R()*0.2)}
+        for(let i=0;i<4;i++) soft(cx+(R()*2-1)*w*0.8,cy+9,16+R()*10,"120,135,155",0.05)}
+    }
+    const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.mapping=THREE.EquirectangularReflectionMapping;return t;
+  }catch(e){return flat()}
+}
 function envScene(S){const sc=new THREE.Scene(),geo=new THREE.SphereGeometry(50,32,16),cols=[],p=geo.attributes.position;
   for(let i=0;i<p.count;i++){const y=p.getY(i)/50;const c=y>0?S.hor.clone().lerp(S.top,Math.pow(y,0.6)):S.hor.clone().lerp(S.gnd,Math.min(1,-y*3));cols.push(c.r,c.g,c.b)}
   geo.setAttribute("color",new THREE.Float32BufferAttribute(cols,3));sc.add(new THREE.Mesh(geo,new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.BackSide})));
@@ -1999,7 +2017,7 @@ function mergeByMaterial(src){
 let viewer=null;
 function stop3D(){if(!viewer) return;cancelAnimationFrame(viewer.raf);viewer.ro&&viewer.ro.disconnect();
   viewer.scene.traverse(o=>{if(o.geometry) o.geometry.dispose();if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(x=>x.dispose())});
-  viewer.env&&viewer.env.dispose();viewer.renderer.dispose();viewer.renderer.domElement.remove();viewer=null}
+  viewer.env&&viewer.env.dispose();viewer.scene.background&&viewer.scene.background.dispose&&viewer.scene.background.dispose();viewer.renderer.dispose();viewer.renderer.domElement.remove();viewer=null}
 
 function mount3D(el,m,o,st){
   let keep=null;
@@ -2017,14 +2035,14 @@ function mount3D(el,m,o,st){
   renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=inside?(S.night?1.0:1.25):(S.night?0.9:1.0);
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
   el.prepend(renderer.domElement);
-  scene.background=skyTex(S);
+  scene.background=skyTex(S,m.p&&m.p.seed);
   const pm=new THREE.PMREMGenerator(renderer);const env=pm.fromScene(envScene(S),0.04);scene.environment=env.texture;pm.dispose();
   if(!inside) scene.fog=new THREE.Fog(S.hor.getHex(),ext*2.4,ext*6);
   // lumières
   scene.add(new THREE.HemisphereLight(S.top.getHex(),S.gnd.getHex(),S.hemi));
   const sun=new THREE.DirectionalLight(S.color,S.intensity);sun.position.copy(S.dir).multiplyScalar(Math.max(big*2,HT*2.5));sun.castShadow=true;
   const sc=Math.max(big*0.8,HT*0.9);Object.assign(sun.shadow.camera,{left:-sc,right:sc,top:sc,bottom:-sc,near:1,far:Math.max(big*5,HT*7)});sun.shadow.camera.updateProjectionMatrix();
-  sun.shadow.mapSize.set(phone?1024:2048,phone?1024:2048);sun.shadow.bias=-0.0004;sun.shadow.normalBias=0.03;scene.add(sun);scene.add(sun.target);
+  const shm=phone?1024:(renderer.capabilities.maxTextureSize>=4096?4096:2048);sun.shadow.mapSize.set(shm,shm);sun.shadow.bias=-0.0004;sun.shadow.normalBias=0.03;scene.add(sun);scene.add(sun.target);
   // matériaux
   const std=(p)=>new THREE.MeshStandardMaterial(Object.assign({roughness:0.85,metalness:0,envMapIntensity:1},p));
   const facade={enduit:std({map:T.plaster,color:o.wall,roughness:0.95}),btc:std({map:T.btc,roughness:0.95}),pierre:std({map:T.stone,roughness:0.9}),bois:std({map:T.wood,roughness:0.75})}[o.facade]||std({map:T.plaster,color:o.wall});
@@ -2050,6 +2068,9 @@ function mount3D(el,m,o,st){
     lamp:new THREE.MeshStandardMaterial({color:0xfff1d6,emissive:0xffd9a0,emissiveIntensity:lightsOn?1.4:0.05,roughness:0.5}),
     car:std({color:0x2E4C6D,metalness:0.6,roughness:0.28}),tire:std({color:0x151515,roughness:0.9})};
   if(!M.floorNight) M.floorNight=M.floorMain;
+  M.leaf3=std({color:0x3D6A31,roughness:0.95});
+  const relief={btc:0.014,pierre:0.02,bois:0.008,enduit:0.0025};
+  [[M.facade,relief[o.facade]||0.0025],[M.roofPitch,o.roofMat==="tuile"?0.03:0.02],[M.paver,0.012],[M.deck,0.01],[M.ground,0.03],[M.patio,0.03],[M.asphalt,0.006],[M.plinth,0.006],[M.roofFlat,0.006]].forEach(([mt,k])=>{if(mt&&mt.map){mt.bumpMap=mt.map;mt.bumpScale=k}});
   const box=(w,h,d,x,y,z,mat,par,opt)=>{const g=new THREE.BoxGeometry(Math.max(0.005,w),Math.max(0.005,h),Math.max(0.005,d));scaleUV(g,w,h,d);const me=new THREE.Mesh(g,mat);me.position.set(x,y,z);me.castShadow=!(opt&&opt.noCast);me.receiveShadow=true;(par||scene).add(me);return me};
   const cyl=(rt,rb,h,x,y,z,mat,par,seg)=>{const me=new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,h,seg||20),mat);me.position.set(x,y,z);me.castShadow=true;me.receiveShadow=true;(par||scene).add(me);return me};
   const sph=(r,x,y,z,mat,par,sx,sy,sz)=>{const me=new THREE.Mesh(new THREE.IcosahedronGeometry(r,2),mat);me.position.set(x,y,z);me.scale.set(sx||1,sy||1,sz||1);me.castShadow=true;me.receiveShadow=true;(par||scene).add(me);return me};
@@ -2074,9 +2095,14 @@ function mount3D(el,m,o,st){
   const palm=(x,z,s)=>{const g=new THREE.Group();let px=0,pz=0,py=0;const lean=rr()*0.5-0.25;for(let i=0;i<7;i++){const h=0.9*s;cyl(0.11*s,0.14*s,h,px,py+h/2,pz,M.bark,g,8);py+=h*0.98;px+=lean*0.12*s}
     for(let i=0;i<9;i++){const a=i/9*Math.PI*2,fr=new THREE.Mesh(new THREE.BoxGeometry(2.4*s,0.03,0.42*s),M.leaf);fr.castShadow=true;fr.position.set(px+Math.cos(a)*1.0*s,py-0.15*s,pz+Math.sin(a)*1.0*s);fr.rotation.set(0,-a,-0.45);g.add(fr)}
     g.position.set(X(x),0,Z(z));scene.add(g)};
-  const broad=(x,z,s)=>{cyl(0.14*s,0.2*s,2.2*s,X(x),1.1*s,Z(z),M.bark);[[0,3.0,0,1.5],[0.7,2.6,0.3,1.1],[-0.6,2.7,-0.3,1.15],[0.1,3.6,-0.4,1.0]].forEach(([a,b,c,r],i)=>sph(r*s,X(x)+a*s,b*s,Z(z)+c*s,i%2?M.leaf2:M.leaf))};
-  const acacia=(x,z,s)=>{cyl(0.1*s,0.16*s,2.6*s,X(x),1.3*s,Z(z),M.bark);sph(1.9*s,X(x),2.9*s,Z(z),M.leaf2,null,1,0.32,1)};
-  const shrub=(x,z,s)=>sph(0.55*s,X(x),0.4*s,Z(z),rr()>0.5?M.leaf:M.leaf2,null,1.2,0.8,1);
+  const LEAVES=[M.leaf,M.leaf2,M.leaf3];
+  const blob=(r,x,y,z,mat,sx,sy,sz)=>{const g=new THREE.IcosahedronGeometry(r,phone?2:3),p=g.attributes.position,f=rr()*6;
+    for(let i=0;i<p.count;i++){const a=p.getX(i)/r,b=p.getY(i)/r,c=p.getZ(i)/r,k=1+0.15*Math.sin(a*5.1+b*3.7+f)*Math.cos(c*4.3+a*2.9-f)+0.07*Math.sin(b*9.3+c*7.1+f*2);p.setXYZ(i,p.getX(i)*k,p.getY(i)*k,p.getZ(i)*k)}
+    const me=new THREE.Mesh(g,mat);me.position.set(x,y,z);me.scale.set(sx||1,sy||1,sz||1);me.rotation.y=f;me.castShadow=true;me.receiveShadow=true;scene.add(me);return me};
+  const broad=(x,z,s)=>{cyl(0.14*s,0.22*s,2.3*s,X(x),1.15*s,Z(z),M.bark);cyl(0.06*s,0.1*s,1.1*s,X(x)+0.35*s,2.4*s,Z(z)+0.1*s,M.bark,null,8).rotation.z=-0.6;cyl(0.06*s,0.1*s,1.1*s,X(x)-0.35*s,2.4*s,Z(z)-0.1*s,M.bark,null,8).rotation.z=0.6;
+    [[0,3.1,0,1.45],[0.8,2.7,0.35,1.05],[-0.7,2.8,-0.3,1.1],[0.15,3.75,-0.4,0.95],[-0.3,2.6,0.75,0.9],[0.45,3.3,-0.8,0.85],[-0.85,3.4,0.3,0.75]].forEach(([a,b,c,r],i)=>blob(r*s,X(x)+a*s,b*s,Z(z)+c*s,LEAVES[i%3],1,0.85,1))};
+  const acacia=(x,z,s)=>{cyl(0.1*s,0.16*s,2.6*s,X(x),1.3*s,Z(z),M.bark);blob(1.9*s,X(x),2.9*s,Z(z),M.leaf2,1,0.3,1);blob(1.1*s,X(x)+0.5*s,3.2*s,Z(z)-0.3*s,M.leaf3,1,0.28,1)};
+  const shrub=(x,z,s)=>blob(0.55*s,X(x),0.4*s,Z(z),LEAVES[Math.floor(rr()*3)],1.2,0.8,1);
   if(o.veg){
     const free=(x,z,pad)=>!(x>m.bx-pad&&x<m.bx+m.bw+pad&&z>m.by-pad&&z<m.by+m.bd+pad)&&!(z>D-m.ra-0.6&&Math.abs(x-gx)<gw/2+1.2)&&x>0.8&&x<W-0.8&&z>0.8&&z<D-0.8;
     let placed=0;for(let i=0;i<60&&placed<7;i++){const x=rr()*W,z=rr()*D;if(!free(x,z,2.2)) continue;const s=0.8+rr()*0.5;
