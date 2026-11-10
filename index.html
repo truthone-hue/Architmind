@@ -596,7 +596,7 @@ details.advbox[open]>fieldset{margin-top:10px}
 .arc text{font:700 24px "Bricolage Grotesque",Outfit,sans-serif;letter-spacing:.14em;fill:var(--ink)}
 @media (max-width:760px){.arc{left:-70%;width:240%;bottom:44px;opacity:.3}}
 @media (prefers-reduced-motion:no-preference){
-  .ldr{display:grid;place-items:center;position:fixed;inset:0;z-index:90;background:var(--ground);transition:opacity .55s ease,visibility .55s}
+  .ldr{display:grid;place-items:center;position:fixed;inset:0;z-index:90;pointer-events:none;background:var(--ground);transition:opacity .55s ease,visibility .55s}
   .ldr.off{opacity:0;visibility:hidden}
   .ldr svg{width:176px;height:176px;animation:ldrspin 5s linear infinite}
   .ldr text{font:700 13.5px Outfit,sans-serif;letter-spacing:.08em;fill:var(--ink)}
