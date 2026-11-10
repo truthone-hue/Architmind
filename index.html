@@ -687,6 +687,21 @@ details.advbox[open]>fieldset{margin-top:10px}
 #rescost.two,#resmat{display:block}
 #rescost[hidden],#resmat[hidden]{display:none}
 #rescost .soft,#resmat{max-width:860px}
+/* Modification des pièces */
+#red{position:fixed;inset:0;z-index:120;background:var(--ground);display:flex;justify-content:center;padding:max(10px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom))}
+#red[hidden]{display:none}
+.red-in{width:min(1100px,100%);display:flex;flex-direction:column;gap:10px;min-height:0}
+.red-head{display:flex;align-items:center;gap:10px}.red-head h2{margin:0;font-size:20px;flex:1;min-width:0}
+.red-lv{display:flex;gap:6px}.red-lv button{min-height:44px;padding:0 14px}
+#red-close{width:46px;min-height:46px;padding:0;border-radius:50%;flex:none}
+#red-svg{flex:1;min-height:0;border-radius:var(--r-l);overflow:hidden;border:1px solid var(--hair);background:#FBFBF8;touch-action:none;user-select:none;-webkit-user-select:none}
+#red-svg svg{width:100%;height:100%;display:block}
+.red-panel{display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:var(--r-l);background:var(--card);border:1px solid var(--hair);min-height:112px}
+.red-panel b{font-size:16px}.red-panel .sub{margin:0;font-size:14px}
+.red-panel select{min-height:48px;font-size:16px}.red-lab{font-size:13px;color:var(--muted);margin-top:4px}
+.red-row{display:flex;gap:10px;margin-top:6px}.red-row button{flex:1;min-height:48px}
+.red-foot{display:flex;gap:8px;align-items:center}.red-foot button{min-height:48px}
+@media (min-width:900px){.red-in{display:grid;grid-template-columns:minmax(0,1fr) 320px;grid-template-rows:auto minmax(0,1fr) auto;column-gap:14px}.red-head{grid-column:1/3}#red-svg{grid-row:2/4}.red-panel{align-self:start}.red-foot{align-self:end;flex-wrap:wrap}}
 /* Version application : e-mail, notifications, abonnement, installation */
 input[type=email]{font:inherit;font-size:15px;font-weight:500;padding:10px 14px;border:1px solid var(--hair);background:var(--card);color:var(--ink);border-radius:var(--r-m);width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
 @media (max-width:760px),(pointer:coarse){input[type=email]{font-size:16px}}
@@ -1019,7 +1034,8 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
       <div class="vside"><div class="acctchip" data-acct hidden></div></div>
     </div>
     <div class="resacts reveal d1">
-      <a class="btn ghostbtn" href="#creation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/></svg>Modifier le plan</a>
+      <a class="btn ghostbtn" href="#creation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/></svg>Changer les réglages</a>
+      <button type="button" class="ghost" id="editrooms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.500" y="3.500" width="17" height="17" rx="2"/><path d="M12 3.500v17M9 9l-2.500 3L9 15M15 9l2.500 3L15 15"/></svg>Modifier les pièces</button>
       <button type="button" class="ghost" id="var2">Autre variante</button>
       <button type="button" class="ghost" id="toprop2">Voir 3 propositions</button>
     </div>
@@ -1170,6 +1186,14 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
   <p class="zhint">Pincez ou touchez deux fois pour zoomer, glissez pour vous déplacer.</p>
 </div>
 <div class="dlpop" id="dlpop" role="menu" aria-label="Formats de téléchargement" hidden></div>
+<div id="red" hidden role="dialog" aria-modal="true" aria-labelledby="red-title">
+  <div class="red-in">
+    <div class="red-head"><h2 id="red-title">Modifier les pièces</h2><div id="red-lv" class="red-lv"></div><button type="button" class="ghost" id="red-close" aria-label="Fermer sans appliquer">✕</button></div>
+    <div id="red-svg"></div>
+    <div id="red-panel" class="red-panel" aria-live="polite"></div>
+    <div class="red-foot"><button type="button" class="ghost" id="red-reset">Plan d'origine</button><span style="flex:1"></span><button type="button" class="ghost" id="red-cancel">Annuler</button><button type="button" id="red-apply">Appliquer</button></div>
+  </div>
+</div>
 <div class="npanel" id="npanel" role="dialog" aria-label="Notifications" hidden></div>
 <div class="ihelp" id="ihelp" role="dialog" aria-modal="true" aria-labelledby="ih-t" hidden>
   <div class="ih-card">
@@ -1434,7 +1458,7 @@ function compute(p){
   if(p.citerne) extras.push({n:"Château d'eau et surpresseur",c:1500000*kCity});
   const extraSum=extras.reduce((t,e)=>t+e.c,0);
   const total=builtArea*pm*Z.k*kType*kStyle*kCity+extraSum;
-  return {planLevels:levels.map((L,i)=>({li:i,label:lvName(i),short:lvName(i,true)})),isTower:false,p,lieu,kCity,extras,extraSum,pool,W,D,ra,rl,zone,or,type,n,std,style,pm,levels,bx,by,bw,bd,foot,plot,builtArea,total,notes,Z,kType};
+  return (window.applyEd||(x=>x))({planLevels:levels.map((L,i)=>({li:i,label:lvName(i),short:lvName(i,true)})),isTower:false,p,lieu,kCity,extras,extraSum,pool,W,D,ra,rl,zone,or,type,n,std,style,pm,levels,bx,by,bw,bd,foot,plot,builtArea,total,notes,Z,kType});
 }
 
 
@@ -2467,13 +2491,13 @@ if(typeof document!=="undefined")(function(){
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 /* Offres : modifiez ici les prix et les limites */
 const OFFERS={
-  basique:{nom:"Basique",prix:0,quota:5,d3:false,tools:false,dl:false,desc:"Gratuite, pour esquisser vos premiers projets."},
-  moyen:{nom:"Moyen",prix:30000,quota:20,d3:true,tools:false,dl:true,desc:"Ajoutez la maquette 3D et téléchargez vos plans pour convaincre vos clients."},
-  max:{nom:"Max",prix:60000,quota:Infinity,d3:true,tools:true,dl:true,desc:"Personnalisez entièrement la maison en 3D."}};
+  basique:{nom:"Basique",prix:0,quota:5,d3:false,tools:false,dl:false,ed:false,desc:"Gratuite, pour esquisser vos premiers projets."},
+  moyen:{nom:"Moyen",prix:30000,quota:20,d3:true,tools:false,dl:true,ed:true,desc:"Ajoutez la maquette 3D, modifiez les pièces et téléchargez vos plans pour convaincre vos clients."},
+  max:{nom:"Max",prix:60000,quota:Infinity,d3:true,tools:true,dl:true,ed:true,desc:"Personnalisez entièrement la maison en 3D."}};
 let plevel=0,cur=Object.assign({},DEF),level=0,model=null,props=[],selProp=null,dirty=false,lastPropSig=null,opts3d=null;
 const acct={offer:"basique",day:"",count:0};
 const today=()=>new Date().toLocaleDateString("sv");
-const sigOf=p=>{const q=Object.assign({},DEF,p);return JSON.stringify(Object.keys(q).sort().map(k=>[k,q[k]]))};
+const sigOf=p=>{const q=Object.assign({},DEF,p);delete q.ed;return JSON.stringify(Object.keys(q).sort().map(k=>[k,q[k]]))};
 
 function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),Math.max(2600,t.length*60))}
 function pulse(el){if(!el)return;el.classList.remove("refresh");void el.offsetWidth;el.classList.add("refresh")}
@@ -3035,6 +3059,116 @@ function setRTab(t){
   if(t==="plan"){const sh=$("#sheet");if(sh._m!==model||!sh._w) drawInto(sh,model,level)}
 }
 
+/* ---------- Modification des pièces (offres Moyen et Max) ----------
+   Les pièces d'un niveau sont des rectangles qui pavent le bâtiment. L'éditeur déplace les cloisons intérieures
+   et change la fonction des pièces ; le résultat est rangé dans p.ed et réappliqué par compute(), si bien que
+   le plan, les téléchargements, les projets enregistrés et la maquette 3D suivent tous le plan modifié. */
+const ED_LOCK=new Set(["Escalier","Ascenseur","Patio","Garage","Vide sur patio","Palier","Coursive"]);
+const ED_NAMES=[["Séjour","day"],["Salle à manger","day"],["Cuisine","wet"],["Chambre","night"],["Ch. parentale","night"],["Chambre d'amis","night"],["Bureau","day"],["Salle de bain","wet"],["WC","wet"],["Dressing","night"],["Buanderie","wet"],["Cellier","day"],["Rangement","day"],["Dégagement","day"],["Entrée","day"],["Bibliothèque","day"],["Salle de jeux","day"],["Salle de sport","day"]];
+const r2=v=>Math.round(v*100)/100;
+function edKey(levels){let h=5381;const s=levels.map(L=>L.map(r=>[r.n,r2(r.x),r2(r.y),r2(r.w),r2(r.h)].join(":")).join("|")).join("/");for(let i=0;i<s.length;i++) h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)+"."+s.length}
+function applyEd(m){
+  const e=m.p&&m.p.ed;if(!e||m.isTower||!Array.isArray(e.L)) return m;
+  try{
+    if(e.k!==edKey(m.levels)||e.L.length!==m.levels.length) return m;
+    for(let li=0;li<e.L.length;li++){if(e.L[li].length!==m.levels[li].length) return m;for(const q of e.L[li]) if(!Array.isArray(q)||q.length!==6||!(q[4]-q[2]>0.3)||!(q[5]-q[3]>0.3)) return m}
+    e.L.forEach((rs,li)=>rs.forEach((q,i)=>{const r=m.levels[li][i],a0=r.w*r.h;r.n=String(q[0]).slice(0,40);r.t=q[1];r.x=q[2];r.y=q[3];r.w=r2(q[4]-q[2]);r.h=r2(q[5]-q[3]);if(r.a&&a0>0) r.a=Math.max(1,Math.round(r.a*(r.w*r.h)/a0))}));
+    const nb=m.levels.reduce((s,L)=>s+L.filter(r=>r.t==="night"&&/^Ch/.test(r.n)).length,0);if(nb) m.n=nb;
+    m.edited=true;
+  }catch(x){}
+  return m;
+}
+window.applyEd=applyEd;
+/* cloisons déplaçables d'un niveau : segments maximaux partagés par des pièces des deux côtés */
+function edWalls(L){
+  const out=[];
+  [["v","x","w","y","h"],["h","y","h","x","w"]].forEach(([o,c,cs,s,ss])=>{
+    const cs0=[...new Set(L.flatMap(r=>[r2(r[c]),r2(r[c]+r[cs])]))];
+    cs0.forEach(C=>{
+      const A=L.filter(r=>Math.abs(r[c]+r[cs]-C)<EPS),B=L.filter(r=>Math.abs(r[c]-C)<EPS);if(!A.length||!B.length) return;
+      const iv=A.concat(B).map(r=>[r[s],r[s]+r[ss]]).sort((p,q)=>p[0]-q[0]),comp=[];
+      iv.forEach(v=>{const l=comp[comp.length-1];if(l&&v[0]<l[1]-EPS) l[1]=Math.max(l[1],v[1]);else comp.push([v[0],v[1]])});
+      comp.forEach(([s0,s1])=>{
+        const inC=r=>r[s]>=s0-EPS&&r[s]+r[ss]<=s1+EPS,a=A.filter(inC),b=B.filter(inC),len=q=>q.reduce((t,r)=>t+r[ss],0);
+        if(!a.length||!b.length||Math.abs(len(a)-(s1-s0))>0.05||Math.abs(len(b)-(s1-s0))>0.05) return;
+        if(a.concat(b).some(r=>ED_LOCK.has(r.n)||r.t==="patio"||r.shop||r.u)) return;
+        const mn=r=>(r.t==="wet"||r.n==="Dégagement"||r.n==="Dressing"||r.n==="Rangement"||r.n==="Cellier"||r.n==="Entrée")?0.9:(r.t==="out"?1.2:1.8);
+        const lo=-Math.min(...a.map(r=>r[cs]-mn(r))),hi=Math.min(...b.map(r=>r[cs]-mn(r)));
+        out.push({o,c:C,s0,s1,a,b,lo:Math.min(0,r2(lo)),hi:Math.max(0,r2(hi)),ck:c,csk:cs});
+      });
+    });
+  });
+  return out;
+}
+function edMove(w,d){d=Math.max(w.lo,Math.min(w.hi,Math.round(d*20)/20));if(!d) return 0;
+  const nc=r2(w.c+d);w.a.forEach(r=>{r[w.csk]=r2(nc-r[w.ck])});w.b.forEach(r=>{const end=r2(r[w.ck]+r[w.csk]);r[w.ck]=nc;r[w.csk]=r2(end-nc)});return d}
+let ED=null;
+Object.assign(window,{edWalls,edMove,edKey,r2});window.__am={get model(){return model},get cur(){return cur}};try{Object.defineProperty(window,"ED",{get:()=>ED,configurable:true})}catch(x){}
+function edOpen(){
+  if(!model) return;
+  if(model.isTower){toast("La modification des pièces est disponible pour les villas, duplex et maisons R+2.");return}
+  if(!O().ed){toast(`La modification des pièces est incluse dans les offres ${OFFERS.moyen.nom} et ${OFFERS.max.nom}.`);location.hash="tarifs";return}
+  const base=compute(Object.assign({},cur,{ed:null}));
+  ED={k:edKey(base.levels),base,li:Math.min(level,model.levels.length-1),L:model.levels.map(L=>L.map(r=>Object.assign({},r))),sel:null,wall:null,drag:null,changed:false};
+  $("#red").hidden=false;document.body.style.overflow="hidden";edDraw();$("#red-close").focus({preventScroll:true});
+}
+function edClose(){$("#red").hidden=true;document.body.style.overflow="";ED=null}
+const ED_COL={day:"#E8B562",night:"#9C8DD6",wet:"#6DB3D1",out:"#7FBF8E",patio:"#7FBF8E"};
+function edDraw(){
+  if(!ED) return;const L=ED.L[ED.li],m=model,pad=0.7,vb=[m.bx-pad,m.by-pad,m.bw+pad*2,m.bd+pad*2],W=edWalls(L);ED.walls=W;
+  const fs=Math.max(0.3,Math.min(0.46,m.bw/30));
+  const rooms=L.map((r,i)=>{const sel=ED.sel===i,small=r.w<fs*4.2||r.h<fs*2.6,nm=abbr(r.n),sz=Math.min(fs,r.w/(Math.max(3,nm.length)*0.56));
+    return `<g data-room="${i}"><rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="${ED_COL[r.t]||"#ccc"}" fill-opacity="${sel?0.6:0.26}" stroke="#1C1917" stroke-width="${sel?0.09:0.05}"/>
+    <text x="${r.x+r.w/2}" y="${r.y+r.h/2+(small?sz*0.35:-sz*0.1)}" font-size="${sz}" font-weight="600" text-anchor="middle" fill="#1C1917">${xe(nm)}</text>
+    ${small?"":`<text x="${r.x+r.w/2}" y="${r.y+r.h/2+fs*0.95}" font-size="${fs*0.72}" text-anchor="middle" fill="#57534E">${dec(r.w,1)} × ${dec(r.h,1)} m</text>`}</g>`}).join("");
+  const walls=W.map((w,i)=>{const on=ED.wall===i,x1=w.o==="v"?w.c:w.s0,y1=w.o==="v"?w.s0:w.c,x2=w.o==="v"?w.c:w.s1,y2=w.o==="v"?w.s1:w.c,mx=(x1+x2)/2,my=(y1+y2)/2,can=w.hi-w.lo>0.04;
+    return `<g data-wall="${i}" style="cursor:${can?(w.o==="v"?"ew-resize":"ns-resize"):"not-allowed"}"><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${on?"#B87A14":"#1C1917"}" stroke-width="${on?0.26:0.16}" stroke-linecap="round" opacity="${can?1:0.35}"/>
+    ${can?`<rect x="${mx-(w.o==="v"?0.17:0.42)}" y="${my-(w.o==="v"?0.42:0.17)}" width="${w.o==="v"?0.34:0.84}" height="${w.o==="v"?0.84:0.34}" rx="0.17" fill="${on?"#B87A14":"#fff"}" stroke="#B87A14" stroke-width="0.06"/>`:""}
+    <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="transparent" stroke-width="0.95"/></g>`}).join("");
+  $("#red-svg").innerHTML=`<svg viewBox="${vb.join(" ")}" style="color-scheme:only light" font-family="Outfit,Arial,sans-serif" role="img" aria-label="Plan à modifier"><rect x="${vb[0]}" y="${vb[1]}" width="${vb[2]}" height="${vb[3]}" fill="#FBFBF8"/><rect x="${m.bx}" y="${m.by}" width="${m.bw}" height="${m.bd}" fill="none" stroke="#1C1917" stroke-width="0.22"/>${rooms}${walls}</svg>`;
+  $("#red-lv").innerHTML=ED.L.length>1?ED.L.map((x,i)=>`<button type="button" class="${i===ED.li?"":"ghost"}" data-lv="${i}">${lvName(i,true)}</button>`).join(""):"";
+  $$("#red-lv [data-lv]").forEach(b=>b.onclick=()=>{ED.li=+b.dataset.lv;ED.sel=ED.wall=null;edDraw()});
+  edPanel();
+}
+function edPanel(){
+  const L=ED.L[ED.li],P=$("#red-panel");
+  if(ED.wall!=null&&ED.walls[ED.wall]){const w=ED.walls[ED.wall],can=w.hi-w.lo>0.04;
+    P.innerHTML=can?`<b>Cloison sélectionnée</b><span class="sub">Faites-la glisser sur le plan, ou déplacez-la par pas de 10 cm.</span>
+      <div class="red-row"><button type="button" class="ghost" data-mv="-0.1" ${w.lo>-0.04?"disabled":""}>${w.o==="v"?"← Gauche":"↑ Haut"}</button><button type="button" class="ghost" data-mv="0.1" ${w.hi<0.04?"disabled":""}>${w.o==="v"?"Droite →":"Bas ↓"}</button></div>`
+      :`<b>Cloison fixe</b><span class="sub">Cette cloison ne peut pas bouger : une pièce voisine est déjà à sa taille minimale.</span>`;
+    P.querySelectorAll("[data-mv]").forEach(b=>b.onclick=()=>{const w2=ED.walls[ED.wall],key=[w2.o,w2.s0,w2.s1],d=edMove(w2,+b.dataset.mv);if(d){ED.changed=true;edDraw();const c2=r2(w2.c+d);ED.wall=ED.walls.findIndex(x=>x.o===key[0]&&Math.abs(x.c-c2)<EPS&&Math.abs(x.s0-key[1])<EPS);edDraw()}});
+  }else if(ED.sel!=null){const r=L[ED.sel],lock=ED_LOCK.has(r.n)||r.t==="out"||r.t==="patio",base=/^Chambre \d+$/.test(r.n)?"Chambre":r.n;
+    const opts=(ED_NAMES.some(x=>x[0]===base)?[]:[[base,r.t]]).concat(ED_NAMES);
+    P.innerHTML=`<b>${xe(r.n)}</b><span class="sub">${dec(r.w,2)} × ${dec(r.h,2)} m, soit ${dec(r.w*r.h,1)} m²</span>`+(lock?`<span class="sub">La fonction de cette pièce ne se change pas.</span>`
+      :`<label class="red-lab" for="red-name">Fonction de la pièce</label><select id="red-name">${opts.map(x=>`<option value="${xe(x[0])}" ${x[0]===base?"selected":""}>${xe(x[0])}</option>`).join("")}</select>`);
+    const s=P.querySelector("#red-name");if(s) s.onchange=()=>{const o=opts.find(x=>x[0]===s.value);if(!o) return;let nm=o[0];
+      if(nm==="Chambre"){const used=new Set(ED.L.flat().filter(q=>q!==r).map(q=>q.n));let k=2;while(used.has("Chambre "+k)) k++;nm="Chambre "+k}
+      r.n=nm;r.t=o[1];ED.changed=true;edDraw()};
+  }else P.innerHTML=`<b>Modifier les pièces</b><span class="sub">Touchez une pièce pour changer sa fonction, ou une cloison (poignée orange) pour la déplacer. Les murs extérieurs et l'escalier ne bougent pas.</span>`;
+}
+function edPoint(e){const svg=$("#red-svg svg"),b=svg.getBoundingClientRect(),v=svg.viewBox.baseVal,k=Math.min(b.width/v.width,b.height/v.height);
+  return {x:v.x+(e.clientX-b.left-(b.width-v.width*k)/2)/k,y:v.y+(e.clientY-b.top-(b.height-v.height*k)/2)/k}}
+function edApply(){
+  if(!ED) return;
+  const ed={k:ED.k,L:ED.L.map(L=>L.map(r=>[r.n,r.t,r2(r.x),r2(r.y),r2(r.x+r.w),r2(r.y+r.h)]))},same=edKey(ED.L)===ED.k&&ED.L.every((L,li)=>L.every((r,i)=>r.t===ED.base.levels[li][i].t)),next=Object.assign({},cur);
+  if(same) delete next.ed;else next.ed=ed;
+  try{const m=compute(next);if(!same&&!m.edited) throw new Error("ed");m.levels.forEach((x,li)=>{openings(m,li);drawTech(m,li,{thumb:true})});
+    cur=next;model=m;level=Math.min(level,m.levels.length-1);SHOW3D=false;RTAB="plan";edClose();renderPlan();toast("Plan modifié. La maquette 3D suit vos changements.")}
+  catch(x){toast("Cette modification n'a pas pu être appliquée. Essayez un déplacement plus petit.")}
+}
+function edReset(){if(!ED) return;ED.L=ED.base.levels.map(L=>L.map(r=>Object.assign({},r)));ED.sel=ED.wall=null;ED.changed=true;edDraw()}
+function edInit(){
+  const host=$("#red-svg");if(!host) return;
+  host.addEventListener("pointerdown",e=>{if(!ED) return;const g=e.target.closest("[data-wall],[data-room]");if(!g){ED.sel=ED.wall=null;edDraw();return}
+    if(g.dataset.wall!=null){ED.wall=+g.dataset.wall;ED.sel=null;const w=ED.walls[ED.wall],p=edPoint(e);ED.drag={key:[w.o,w.s0],c0:w.c,p0:w.o==="v"?p.x:p.y,moved:0};try{host.setPointerCapture(e.pointerId)}catch(x){}edDraw();e.preventDefault()}
+    else{ED.sel=+g.dataset.room;ED.wall=null;edDraw()}});
+  host.addEventListener("pointermove",e=>{if(!ED||!ED.drag) return;const w=ED.walls[ED.wall];if(!w) return;const p=edPoint(e),want=ED.drag.c0+((w.o==="v"?p.x:p.y)-ED.drag.p0)-w.c,d=edMove(w,want);
+    if(d){ED.changed=true;const k=ED.drag.key,c2=r2(w.c+d);edDraw();ED.wall=ED.walls.findIndex(x=>x.o===k[0]&&Math.abs(x.c-c2)<EPS&&Math.abs(x.s0-k[1])<EPS);if(ED.wall<0){ED.wall=null;ED.drag=null}edDraw()}});
+  const end=()=>{if(ED) ED.drag=null};host.addEventListener("pointerup",end);host.addEventListener("pointercancel",end);
+  $("#red-close").onclick=edClose;$("#red-cancel").onclick=edClose;$("#red-apply").onclick=edApply;$("#red-reset").onclick=edReset;
+  $("#editrooms").onclick=edOpen;
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&ED) edClose()});
+}
 /* ---------- Création ---------- */
 function renderPlan(){
   model=compute(cur);
@@ -3245,7 +3379,7 @@ async function renderMine(){
 const RANK={basique:0,moyen:1,max:2};
 function renderTarifs(){
   const feats=[["Plans techniques cotés et meublés",k=>true],["Estimation des travaux et matériaux",k=>true],["Trois propositions par terrain",k=>true],["Mes plans : projets enregistrés",k=>true],
-    [k=>OFFERS[k].quota===Infinity?"Plans illimités":`${OFFERS[k].quota} plans par jour`,k=>true],["Maquette 3D : vue extérieure",k=>OFFERS[k].d3],["Maquette 3D : visite intérieure meublée",k=>OFFERS[k].d3],["Téléchargement des plans : PDF, PNG, SVG",k=>OFFERS[k].dl],
+    [k=>OFFERS[k].quota===Infinity?"Plans illimités":`${OFFERS[k].quota} plans par jour`,k=>true],["Maquette 3D : vue extérieure",k=>OFFERS[k].d3],["Maquette 3D : visite intérieure meublée",k=>OFFERS[k].d3],["Modification des pièces et des cloisons",k=>OFFERS[k].ed],["Téléchargement des plans : PDF, PNG, SVG",k=>OFFERS[k].dl],
     ["Outils 3D : façade, toiture, couleurs, sols",k=>OFFERS[k].tools],["Simulation de l'heure et de la lumière",k=>OFFERS[k].tools]];
   const a=AUTH.ok?AUTH.abo:null,active=!!(a&&a.expMs>Date.now());
   $("#tgrid").innerHTML=Object.entries(OFFERS).map(([k,of],i)=>{
@@ -3424,9 +3558,9 @@ $("#f").addEventListener("input",()=>readForm());
 $("#f").addEventListener("submit",e=>{e.preventDefault();if(!useQuota()) return limitReached();const s=cur.seed;cur=readForm();cur.seed=s;level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
 // la page du plan : le dessin se fait une fois la page affichée (largeur réelle de l'écran)
 function showResult(){model=compute(cur);if(location.hash==="#resultat") renderPlan();else{location.hash="resultat";setTimeout(renderPlan,0)}}
-const variante=()=>{if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
+const variante=()=>{if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;delete cur.ed;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
 $("#var").onclick=()=>{cur=readForm();variante()};
-$("#var2").onclick=variante;
+$("#var2").onclick=variante;edInit();
 $("#toprop2").onclick=()=>{location.hash="propositions"};
 document.querySelectorAll("#rtabs button").forEach(b=>b.onclick=()=>setRTab(b.dataset.rt));
 $("#toprop").onclick=()=>{location.hash="propositions"};
