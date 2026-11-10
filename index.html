@@ -2566,15 +2566,15 @@ function refreshOffer(){
 function limitReached(){toast(`Limite quotidienne atteinte (${O().quota} plans). Passez à une offre supérieure.`)}
 
 /* ---------- Comptes : connexion par e-mail et mot de passe (Firebase) ---------- */
-const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false};
+const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false,verified:false};
 // Administrateurs : empreintes SHA-256 des adresses e-mail (config.js), pour ne pas publier les adresses.
 // L'accès n'est ouvert qu'une fois l'adresse confirmée par le lien reçu par e-mail.
 async function isAdminEmail(e){const list=(CFG.admins||[]).map(x=>String(x).toLowerCase());if(!e||!list.length) return false;
   try{const d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(e.trim().toLowerCase()));return list.includes([...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,"0")).join(""))}catch(x){return false}}
 async function checkAdmin(u,force){
   AUTH.adminEmail=await isAdminEmail(u.email);
-  if(AUTH.adminEmail&&!u.emailVerified&&(force||navigator.onLine)){try{await u.reload()}catch(e){}}
-  const cu=(FB.auth&&FB.auth.currentUser)||u;AUTH.admin=AUTH.adminEmail&&!!cu.emailVerified;
+  if(!u.emailVerified&&(force||navigator.onLine)){try{await u.reload()}catch(e){}}
+  const cu=(FB.auth&&FB.auth.currentUser)||u;AUTH.verified=!!cu.emailVerified;AUTH.admin=AUTH.adminEmail&&AUTH.verified;
 }
 const GATED=["creation","resultat","propositions","mes-plans"];
 const LK="architmind-dernier-email";
@@ -2610,8 +2610,40 @@ function startSession(u){
   }));
 }
 // retour sur le site après avoir ouvert le lien de confirmation : l'accès administrateur s'active seul
-document.addEventListener("visibilitychange",async()=>{if(document.visibilityState!=="visible"||!AUTH.ok||!AUTH.adminEmail||AUTH.admin) return;
-  await checkAdmin(AUTH.user,true);if(AUTH.admin){acct.offer="max";refreshOffer();renderAboBar();if(location.hash==="#tarifs") renderTarifs();toast("Accès administrateur activé")}});
+document.addEventListener("visibilitychange",async()=>{if(document.visibilityState!=="visible"||!AUTH.ok||AUTH.verified) return;
+  await checkAdmin(AUTH.user,true);if(AUTH.admin){acct.offer="max";refreshOffer();if(location.hash==="#tarifs") renderTarifs();toast("Accès administrateur activé")}else if(AUTH.verified) toast("Adresse e-mail confirmée. Vous pouvez générer vos plans.");
+  if(AUTH.verified) renderAboBar()});
+/* Tant que l'adresse e-mail n'est pas confirmée par le lien reçu, la génération des plans reste fermée :
+   c'est la seule preuve que la boîte existe et appartient bien à la personne. */
+function needVerif(){
+  if(!AUTH.ok||AUTH.verified) return false;
+  toast("Confirmez d'abord votre adresse e-mail : ouvrez le lien envoyé à "+AUTH.user.email+".");
+  const bar=$("#abobar");if(bar&&!bar.hidden) bar.scrollIntoView({block:"center",behavior:"smooth"});
+  checkAdmin(AUTH.user,true).then(()=>{if(AUTH.verified){if(AUTH.admin){acct.offer="max";refreshOffer()}renderAboBar();toast("Adresse e-mail confirmée. Vous pouvez générer vos plans.")}}).catch(()=>{});
+  return true;
+}
+/* Contrôle de l'adresse à l'inscription : fautes de frappe courantes, puis existence du nom de domaine
+   et de son service de messagerie (interrogation DNS, seul le domaine est envoyé). */
+const MAIL_TYPO={"gmial.com":"gmail.com","gmai.com":"gmail.com","gmal.com":"gmail.com","gmail.co":"gmail.com","gmail.cm":"gmail.com","gmail.con":"gmail.com","gmail.fr":"gmail.com","gmaill.com":"gmail.com","gnail.com":"gmail.com","gamil.com":"gmail.com","gmail.comm":"gmail.com","gmail.om":"gmail.com","gmil.com":"gmail.com",
+  "yaho.com":"yahoo.com","yahooo.com":"yahoo.com","yahoo.co":"yahoo.com","yahoo.con":"yahoo.com","yhaoo.com":"yahoo.com","yaho.fr":"yahoo.fr","yahooo.fr":"yahoo.fr",
+  "hotmial.com":"hotmail.com","hotmai.com":"hotmail.com","hotmal.com":"hotmail.com","hotmail.co":"hotmail.com","hotmail.con":"hotmail.com","hotmil.com":"hotmail.com","hotmial.fr":"hotmail.fr",
+  "outlok.com":"outlook.com","outloo.com":"outlook.com","outlook.co":"outlook.com","outlook.con":"outlook.com","outlokk.com":"outlook.com","iclod.com":"icloud.com","icloud.co":"icloud.com","icoud.com":"icloud.com"};
+async function dnsHas(domain,type){
+  const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),3500);
+  try{const r=await fetch("https://dns.google/resolve?name="+encodeURIComponent(domain)+"&type="+type,{signal:ctl.signal,headers:{accept:"application/dns-json"}});if(!r.ok) return null;
+    const j=await r.json();if(j.Status===3) return "nx";if(j.Status!==0) return null;return Array.isArray(j.Answer)&&j.Answer.some(a=>a.type===(type==="MX"?15:1))}
+  catch(e){return null}finally{clearTimeout(t)}
+}
+async function checkEmail(email){
+  const at=email.lastIndexOf("@"),local=email.slice(0,at),dom=email.slice(at+1).toLowerCase();
+  if(MAIL_TYPO[dom]) return "Cette adresse semble contenir une faute de frappe. Vouliez-vous dire "+local+"@"+MAIL_TYPO[dom]+" ?";
+  if(/\.\.|^\.|\.$/.test(local)||/^-|-$|\.\./.test(dom)) return "Cette adresse e-mail n'est pas valide.";
+  const mx=await dnsHas(dom,"MX");
+  if(mx===true||mx===null) return "";
+  const a=mx==="nx"?"nx":await dnsHas(dom,"A");
+  if(a===true||a===null) return "";
+  return "Le domaine « "+dom+" » n'existe pas ou ne reçoit pas d'e-mails. Vérifiez l'adresse.";
+}
 function endSession(){
   AUTH.unsub.forEach(f=>f());AUTH.unsub=[];
   Object.assign(AUTH,{ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],sessionP:null,admin:false,adminEmail:false});
@@ -2661,10 +2693,10 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-bell]");if
 document.addEventListener("keydown",e=>{if(e.key==="Escape") closeNotifs()});
 function renderAboBar(){
   const bar=$("#abobar");if(!bar) return;
-  if(AUTH.ok&&AUTH.adminEmail&&!AUTH.admin){
-    bar.hidden=false;bar.innerHTML=`<span class="ab-t">Compte administrateur : confirmez votre adresse e-mail avec le lien reçu pour activer l'accès à toutes les fonctionnalités.</span><button type="button" class="ghost" id="ab-send">Renvoyer le lien</button><button type="button" class="btn" id="ab-ok">J'ai confirmé</button>`;
+  if(AUTH.ok&&!AUTH.verified){
+    bar.hidden=false;bar.innerHTML=`<span class="ab-t">${AUTH.adminEmail?"Compte administrateur : confirmez votre adresse e-mail avec le lien reçu pour activer l'accès à toutes les fonctionnalités.":"Confirmez votre adresse e-mail : ouvrez le lien que nous vous avons envoyé pour générer vos plans. Pensez à regarder dans les indésirables."}</span><button type="button" class="ghost" id="ab-send">Renvoyer le lien</button><button type="button" class="btn" id="ab-ok">J'ai confirmé</button>`;
     $("#ab-send").onclick=()=>{AUTH.user.sendEmailVerification().then(()=>toast("Lien envoyé à "+AUTH.user.email),()=>toast("Envoi impossible pour le moment. Réessayez dans quelques minutes."))};
-    $("#ab-ok").onclick=async()=>{await checkAdmin(AUTH.user,true);if(AUTH.admin){acct.offer="max";refreshOffer();renderAboBar();toast("Accès administrateur activé")}else toast("Adresse pas encore confirmée : ouvrez le lien reçu par e-mail.")};
+    $("#ab-ok").onclick=async()=>{await checkAdmin(AUTH.user,true);if(AUTH.admin){acct.offer="max";refreshOffer();renderAboBar();toast("Accès administrateur activé")}else if(AUTH.verified){renderAboBar();toast("Adresse e-mail confirmée. Vous pouvez générer vos plans.")}else toast("Adresse pas encore confirmée : ouvrez le lien reçu par e-mail.")};
     return}
   const l=AUTH.ok&&!AUTH.admin?localNotifs()[0]:null;
   if(!l){bar.hidden=true;return}
@@ -2757,7 +2789,9 @@ async function doSignup(){
   if(pw.length<8) return authErr("Le mot de passe doit faire au moins 8 caractères.",$("#a-pw"));
   if(pw!==pw2) return authErr("Les deux mots de passe ne sont pas identiques.",$("#a-pw2"));
   if(!navigator.onLine) return authErr("L'inscription demande une connexion internet.");
-  authErr("");authBusy(true,"Création du compte…");
+  authErr("");authBusy(true,"Vérification de l'adresse…");
+  const bad=await checkEmail(email);if(bad){authBusy(false);return authErr(bad,$("#a-email"))}
+  authBusy(true,"Création du compte…");
   try{
     await persist($("#a-keep").checked);
     const profil=document.querySelector("input[name=aprof]:checked").value,ville=$("#a-city").value;
@@ -2795,7 +2829,7 @@ function welcome(nom,target){
   const w=$("#welcome"),rm=matchMedia("(prefers-reduced-motion: reduce)").matches;
   $("#wl-name").textContent=nom.split(" ")[0]||nom;
   $("#wl-eyebrow").textContent=AUTH.first?"Compte créé":"Connexion réussie";
-  $("#wl-sub").textContent=AUTH.admin?"Accès administrateur : toutes les fonctionnalités sont ouvertes.":AUTH.first?"Votre compte Architmind est prêt. Un e-mail de confirmation vient de vous être envoyé.":"Ravi de vous revoir. Votre espace est prêt.";
+  $("#wl-sub").textContent=AUTH.admin?"Accès administrateur : toutes les fonctionnalités sont ouvertes.":AUTH.first?"Votre compte est créé. Ouvrez le lien de confirmation envoyé à votre adresse e-mail pour générer vos plans.":"Ravi de vous revoir. Votre espace est prêt.";
   if(!AUTH.first&&!AUTH.admin) loadPlans().then(it=>{const n=it.length;if(n) $("#wl-sub").textContent=`Ravi de vous revoir. ${n} plan${n>1?"s vous attendent":" vous attend"} dans Mes plans.`}).catch(()=>{});
   w.classList.remove("on","out");w.hidden=false;void w.offsetWidth;w.classList.add("on");
   let done=false;const finish=()=>{if(done) return;done=true;clearTimeout(t1);document.removeEventListener("keydown",esc);
@@ -3555,10 +3589,10 @@ function route(){
 /* ---------- Évènements ---------- */
 $("#f").addEventListener("change",e=>{if(e.target.id==="std") $("#pm").value=PRICE[$("#std").value];readForm();dirty=true;$("#dirty").hidden=false});
 $("#f").addEventListener("input",()=>readForm());
-$("#f").addEventListener("submit",e=>{e.preventDefault();if(!useQuota()) return limitReached();const s=cur.seed;cur=readForm();cur.seed=s;level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
+$("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;if(!useQuota()) return limitReached();const s=cur.seed;cur=readForm();cur.seed=s;level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
 // la page du plan : le dessin se fait une fois la page affichée (largeur réelle de l'écran)
 function showResult(){model=compute(cur);if(location.hash==="#resultat") renderPlan();else{location.hash="resultat";setTimeout(renderPlan,0)}}
-const variante=()=>{if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;delete cur.ed;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
+const variante=()=>{if(needVerif()) return;if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;delete cur.ed;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
 $("#var").onclick=()=>{cur=readForm();variante()};
 $("#var2").onclick=variante;edInit();
 $("#toprop2").onclick=()=>{location.hash="propositions"};
