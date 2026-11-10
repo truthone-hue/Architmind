@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Architmind CI</title>
+<title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
 <meta name="description" content="Plans de maison cotés et meublés, coût des travaux en FCFA et maquette 3D, adaptés à votre ville en Côte d'Ivoire et en Afrique de l'Ouest.">
 <meta name="theme-color" content="#ECEDEA" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0A0C0B" media="(prefers-color-scheme: dark)">
@@ -17,7 +17,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta property="og:title" content="Architmind CI">
 <meta property="og:description" content="Du terrain nu à la maison en 3D : plans cotés, coût des travaux et maquette.">
-<meta property="og:image" content="icons/icon-512.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://truthone-hue.github.io/Architmind/">
+<meta property="og:site_name" content="Architmind CI">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://truthone-hue.github.io/Architmind/icons/partage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://truthone-hue.github.io/Architmind/">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -614,6 +622,71 @@ details.advbox[open]>fieldset{margin-top:10px}
 .resacts svg{width:18px;height:18px;flex:none}
 .resacts .ghostbtn{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 1px var(--hair)}
 @media (max-width:760px){.resacts{display:grid;grid-template-columns:1fr 1fr}.resacts button,.resacts .btn{justify-content:center}}
+/* ---------- Accueil : villa illustrée ---------- */
+.home.hero{container-type:inline-size;display:block;text-align:left;padding:0;color:#fff;border:0;
+  min-height:min(760px,calc(100vh - 40px));background:linear-gradient(180deg,#9C8B7C 0%,#B5A595 36%,#CFC1B2 60%,#8B7B6E 100%)}
+@supports (min-height:100svh){.home.hero{min-height:min(760px,calc(100svh - 40px))}}
+.hero .hvilla{position:absolute;left:0;right:0;bottom:0;width:100%;height:66%;display:block}
+.hero .hshade{position:absolute;inset:auto 0 0 0;height:46%;background:linear-gradient(180deg,rgba(24,18,14,0),rgba(24,18,14,.78));pointer-events:none}
+.hero .htop{position:absolute;left:0;right:0;top:0;padding:clamp(20px,3.4cqw,40px) clamp(20px,3.8cqw,46px) 0;z-index:1}
+.hero .eyebrow{color:rgba(255,255,255,.92)}
+.hero h1{margin:6px 0 0;font-size:clamp(48px,16vw,236px);font-size:clamp(48px,17.6cqw,236px);line-height:.92;letter-spacing:-.05em;white-space:nowrap;
+  background:linear-gradient(180deg,#fff 12%,rgba(255,255,255,.3) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .acc{color:transparent}
+.hero .home-in{position:absolute;left:0;right:0;bottom:0;z-index:2;flex-direction:row;align-items:flex-end;justify-content:space-between;gap:24px;
+  padding:0 clamp(20px,3.8cqw,46px) clamp(22px,3.2cqw,36px)}
+.hero .htext{display:flex;align-items:flex-end;gap:clamp(20px,5cqw,64px);min-width:0}
+.hero .lead{max-width:36ch;margin:0;font-size:16px;line-height:1.5;color:#fff;text-shadow:0 1px 10px rgba(20,14,10,.7)}
+.hero .hstat{display:flex;align-items:center;gap:12px;font-size:14px;line-height:1.3;white-space:nowrap;text-shadow:0 1px 10px rgba(20,14,10,.7)}
+.hero .hstat b{font-family:var(--fd);font-weight:800;font-size:36px;letter-spacing:-.02em}
+.hero .hcard{flex:none;width:min(280px,100%);display:flex;flex-direction:column;gap:3px;padding:18px;border-radius:18px;background:var(--card);color:var(--ink);box-shadow:0 24px 44px -20px rgba(20,14,10,.8);text-align:left}
+.hero .hcard>b{font-size:17px;font-weight:600}
+.hero .hcard>span{font-size:13.5px;color:var(--muted)}
+.hero .start{width:auto;height:52px;border-radius:14px;flex-direction:row;justify-content:center;gap:10px;margin-top:12px;font-size:16px;background:var(--ink);box-shadow:none}
+.hero .start svg{width:19px;height:19px}
+.hero .start::before,.hero .start::after{display:none}
+.hero .hlink{margin-top:10px;align-self:center}
+.hero .installbtn{margin-top:8px;justify-content:center}
+@container (max-width:860px){.hero .hstat{display:none}}
+@container (max-width:660px){
+  .hero .htop{position:relative;order:0}
+  .hero .hvilla{position:relative;order:1;flex:none;align-self:flex-start;width:210%;max-width:none;left:auto;right:auto;margin:-14px 0 0 -55%;height:auto;bottom:auto}
+  .hero .home-in{position:relative;order:2;margin-top:-44px}
+  .hero .hshade{height:62%;background:linear-gradient(180deg,rgba(24,18,14,0),rgba(24,18,14,.9) 46%,rgba(24,18,14,.95))}
+  .hero .home-in{flex-direction:column;align-items:stretch;gap:14px}
+  .hero .hcard{width:100%}
+  .hero .lead{max-width:none;font-size:15.5px}
+}
+@media (max-width:700px){.home.hero{min-height:0;display:flex;flex-direction:column}}
+/* Exemples de plans */
+.exgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.exgrid{grid-template-columns:minmax(0,1fr)}}
+.excard{display:flex;flex-direction:column;border-radius:var(--r-l);background:var(--card);border:1px solid var(--hair);box-shadow:var(--shadow);overflow:hidden}
+.excard .explan{position:relative;aspect-ratio:4/3;background:#FBFBF8;border-bottom:1px solid var(--hair);overflow:hidden}
+.excard .explan svg{position:absolute;left:14px;top:14px;width:calc(100% - 28px);height:calc(100% - 28px)}
+.ctaband{position:relative;overflow:hidden}.ctaband>*{position:relative;z-index:1}.ctaband .arc{position:absolute;z-index:0;left:-12%;width:124%;bottom:-18px;opacity:.16}.ctaband .arc text{fill:var(--card)}
+@media (max-width:760px){.ctaband .arc{left:-70%;width:240%;bottom:-8px}}
+.excard .exin{display:flex;flex-direction:column;gap:4px;padding:16px 18px 18px}
+.excard h3{margin:0;font-size:17px}
+.excard .exmeta{font-size:13.5px;color:var(--muted)}
+.excard .excost{margin-top:8px;display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted)}
+.excard .excost b{font-family:var(--fd);font-size:19px;color:var(--ink);letter-spacing:-.01em;white-space:nowrap}
+.excard button{margin-top:12px;min-height:46px}
+/* Étapes illustrées */
+.step .sico{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent)}
+.step .sico svg{width:38px;height:38px}
+.step h3{margin:4px 0 0}
+/* Page résultat : onglets */
+.rtabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:4px;border-radius:16px;background:color-mix(in srgb,var(--ink) 7%,transparent);margin-bottom:16px;max-width:560px}
+.rtabs button{display:flex;align-items:center;justify-content:center;gap:7px;min-height:46px;padding:0 8px;border-radius:12px;background:transparent;color:var(--ink);font-size:14.5px;font-weight:600;box-shadow:none}
+.rtabs button svg{width:17px;height:17px;flex:none}
+.rtabs button[aria-selected="true"]{background:var(--card);box-shadow:0 1px 2px rgba(0,0,0,.08),0 8px 18px -12px rgba(0,0,0,.4)}
+@media (max-width:420px){.rtabs button svg{display:none}}
+.resacts{margin-bottom:14px}
+#res3d,#rescost,#resmat{margin-top:0!important}
+#rescost.two,#resmat{display:block}
+#rescost[hidden],#resmat[hidden]{display:none}
+#rescost .soft,#resmat{max-width:860px}
 /* Version application : e-mail, notifications, abonnement, installation */
 input[type=email]{font:inherit;font-size:15px;font-weight:500;padding:10px 14px;border:1px solid var(--hair);background:var(--card);color:var(--ink);border-radius:var(--r-m);width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
 @media (max-width:760px),(pointer:coarse){input[type=email]{font-size:16px}}
@@ -692,22 +765,89 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
   <div class="abobar" id="abobar" role="status" hidden></div>
   <!-- ACCUEIL -->
   <section class="view" data-view="accueil">
-    <div class="card home">
-      <div class="bgplan" id="bgplan" aria-hidden="true"></div>
-      <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-      <svg class="arc" viewBox="0 0 1200 260" aria-hidden="true"><defs><path id="arc-p" d="M-200 262 Q600 196 1400 262"/></defs><text><textPath href="#arc-p" startOffset="0">ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · <animate attributeName="startOffset" from="0" to="-1210" dur="26s" repeatCount="indefinite"/></textPath></text></svg>
-      <div class="float f1" aria-hidden="true"><b class="nvilles">66</b>villes couvertes</div>
-      <div class="float f2" aria-hidden="true"><b>R+10</b>villas et immeubles</div>
-      <div class="float f3" aria-hidden="true"><b>3D</b>extérieure et intérieure</div>
-      <div class="float f4" aria-hidden="true"><b>FCFA</b>coûts par lot</div>
+    <div class="card home hero">
+      <svg class="hvilla" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Illustration d'une villa moderne à toit plat, baies vitrées éclairées, terrasse et piscine">
+        <defs>
+          <linearGradient id="hv-glass" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#6B5B4E"/><stop offset=".2" stop-color="#E9A655"/><stop offset=".5" stop-color="#F8CB86"/><stop offset=".8" stop-color="#E39A4A"/><stop offset="1" stop-color="#5D5048"/></linearGradient>
+          <linearGradient id="hv-glass2" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#5A4D44"/><stop offset=".24" stop-color="#D99147"/><stop offset=".52" stop-color="#F3BC70"/><stop offset=".8" stop-color="#D48B42"/><stop offset="1" stop-color="#4E443E"/></linearGradient>
+          <linearGradient id="hv-shade" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2A1D12" stop-opacity=".5"/><stop offset=".35" stop-color="#2A1D12" stop-opacity="0"/></linearGradient>
+          <linearGradient id="hv-slab" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#9A9794"/><stop offset="1" stop-color="#5E5B5A"/></linearGradient>
+          <linearGradient id="hv-wall" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#EDE6DC"/><stop offset="1" stop-color="#B9AC9C"/></linearGradient>
+          <linearGradient id="hv-wood" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#8A5F3C"/><stop offset="1" stop-color="#5C3D26"/></linearGradient>
+          <linearGradient id="hv-ground" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#4E4642"/><stop offset="1" stop-color="#232021"/></linearGradient>
+          <linearGradient id="hv-pool" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5E8F96"/><stop offset="1" stop-color="#1F3A40"/></linearGradient>
+          <linearGradient id="hv-refl" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#F3B768" stop-opacity=".75"/><stop offset="1" stop-color="#F3B768" stop-opacity="0"/></linearGradient>
+          <radialGradient id="hv-lamp"><stop offset="0" stop-color="#FFF3D6"/><stop offset=".35" stop-color="#FFD98F" stop-opacity=".7"/><stop offset="1" stop-color="#FFD98F" stop-opacity="0"/></radialGradient>
+          <filter id="hv-blur" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="5"/></filter>
+          <g id="hv-palm"><path d="M0 0C-3-60 4-120 12-178" fill="none" stroke="#3B3029" stroke-width="9" stroke-linecap="round"/><g fill="none" stroke="#33402F" stroke-width="7" stroke-linecap="round"><path d="M12-178C-20-200-58-196-84-170"/><path d="M12-178C-10-214-44-232-80-226"/><path d="M12-178C14-216 0-248-24-262"/><path d="M12-178C38-212 70-222 102-210"/><path d="M12-178C48-196 84-190 106-162"/><path d="M12-178C40-178 66-160 78-132"/><path d="M12-178C-12-176-36-156-46-128"/></g></g>
+        </defs>
+        <!-- arbres en arrière-plan -->
+        <g opacity=".5"><use href="#hv-palm" transform="translate(96 404) scale(1.25)"/><use href="#hv-palm" transform="translate(1120 404) scale(-1.05 1.05)"/></g>
+        <g fill="#5E5347" opacity=".55"><ellipse cx="60" cy="392" rx="120" ry="34"/><ellipse cx="1130" cy="394" rx="130" ry="30"/><ellipse cx="1010" cy="388" rx="70" ry="24"/></g>
+        <!-- étage -->
+        <rect x="332" y="124" width="548" height="124" fill="url(#hv-glass)"/>
+        <rect x="332" y="124" width="548" height="124" fill="url(#hv-shade)"/>
+        <g fill="#FFE9BE" opacity=".55"><rect x="520" y="150" width="2" height="34"/><rect x="640" y="150" width="2" height="26"/><rect x="760" y="150" width="2" height="34"/></g>
+        <g><circle cx="521" cy="190" r="16" fill="url(#hv-lamp)"/><circle cx="641" cy="182" r="16" fill="url(#hv-lamp)"/><circle cx="761" cy="190" r="16" fill="url(#hv-lamp)"/></g>
+        <path d="M486 248v-30h120v30zM700 248v-22h64v-14h70v36z" fill="#3A2A1E" opacity=".55"/>
+        <g fill="#2B2320" opacity=".8"><rect x="440" y="124" width="3" height="124"/><rect x="550" y="124" width="3" height="124"/><rect x="660" y="124" width="3" height="124"/><rect x="770" y="124" width="3" height="124"/><rect x="332" y="124" width="548" height="3"/></g>
+        <rect x="332" y="124" width="112" height="124" fill="url(#hv-wood)"/>
+        <g stroke="#3F2917" stroke-width="2" opacity=".7"><path d="M346 124v124M360 124v124M374 124v124M388 124v124M402 124v124M416 124v124M430 124v124"/></g>
+        <rect x="402" y="132" width="400" height="5" rx="2.5" fill="#FFE7B8" filter="url(#hv-blur)"/>
+        <rect x="430" y="128" width="380" height="3" rx="1.5" fill="#FFEBC4"/>
+        <!-- toiture en débord -->
+        <rect x="250" y="94" width="712" height="30" fill="url(#hv-slab)"/>
+        <rect x="250" y="94" width="712" height="4" fill="#B9B6B2"/>
+        <rect x="250" y="124" width="712" height="10" fill="#1F1611" opacity=".28"/>
+        <!-- garde-corps vitré de la terrasse -->
+        <g><rect x="182" y="212" width="150" height="36" fill="#E9F1F2" opacity=".2"/><path d="M182 212h150M182 212v36M232 212v36M282 212v36" stroke="#DADFE0" stroke-width="2" opacity=".75" fill="none"/></g>
+        <g><rect x="880" y="212" width="118" height="36" fill="#E9F1F2" opacity=".2"/><path d="M880 212h118M998 212v36M940 212v36" stroke="#DADFE0" stroke-width="2" opacity=".75" fill="none"/></g>
+        <!-- rez-de-chaussée -->
+        <rect x="300" y="270" width="600" height="132" fill="url(#hv-glass2)"/>
+        <rect x="300" y="270" width="600" height="132" fill="url(#hv-shade)"/>
+        <g fill="#FFE9BE" opacity=".5"><rect x="470" y="290" width="2" height="30"/><rect x="600" y="290" width="2" height="40"/></g>
+        <circle cx="471" cy="326" r="15" fill="url(#hv-lamp)"/><circle cx="601" cy="336" r="17" fill="url(#hv-lamp)"/>
+        <path d="M352 402v-34h26v-10h120v10h22v34zM560 402v-26h150v26zM584 376v-8h102v8z" fill="#33251B" opacity=".6"/>
+        <g fill="#2B2320" opacity=".8"><rect x="420" y="270" width="3" height="132"/><rect x="540" y="270" width="3" height="132"/><rect x="660" y="270" width="3" height="132"/><rect x="300" y="270" width="480" height="3"/></g>
+        <rect x="780" y="270" width="120" height="132" fill="url(#hv-wall)"/>
+        <g fill="none" stroke="#A39685" stroke-width="1.5" opacity=".7"><path d="M780 296h120M780 322h120M780 348h120M780 374h120M820 270v26M868 296v26M806 322v26M852 348v26M830 374v28"/></g>
+        <rect x="812" y="312" width="52" height="90" fill="#4A3423"/><rect x="852" y="352" width="4" height="16" rx="2" fill="#D9C7A6"/>
+        <rect x="340" y="278" width="420" height="5" rx="2.5" fill="#FFE7B8" filter="url(#hv-blur)"/>
+        <rect x="360" y="274" width="390" height="3" rx="1.5" fill="#FFEBC4"/>
+        <!-- dalle intermédiaire -->
+        <rect x="170" y="248" width="840" height="22" fill="url(#hv-slab)"/>
+        <rect x="170" y="248" width="840" height="3" fill="#B9B6B2"/>
+        <rect x="170" y="270" width="840" height="9" fill="#1F1611" opacity=".26"/>
+        <rect x="196" y="270" width="14" height="132" fill="#6B6866"/><rect x="972" y="270" width="14" height="132" fill="#6B6866"/>
+        <!-- terrasse, sol et piscine -->
+        <rect x="0" y="402" width="1200" height="118" fill="url(#hv-ground)"/>
+        <rect x="120" y="402" width="960" height="8" fill="#8E8781"/>
+        <path d="M300 410h600l60 110H240z" fill="url(#hv-refl)" opacity=".5"/>
+        <path d="M520 436h560l120 84H470z" fill="url(#hv-pool)"/>
+        <path d="M520 436h560l120 84H470z" fill="url(#hv-refl)" opacity=".55"/>
+        <path d="M520 436h560" stroke="#CFE3E4" stroke-width="2" opacity=".6"/>
+        <g stroke="#DFF0F0" stroke-width="1.5" opacity=".28" fill="none"><path d="M560 458h130M760 462h170M980 470h120M540 486h110M700 492h200M960 500h150"/></g>
+        <g><rect x="150" y="424" width="150" height="10" rx="3" fill="#D8CFC3"/><rect x="150" y="412" width="40" height="14" rx="3" fill="#D8CFC3" transform="rotate(-18 150 426)"/><rect x="160" y="434" width="4" height="12" fill="#2B2320"/><rect x="284" y="434" width="4" height="12" fill="#2B2320"/></g>
+        <g fill="#2F3A2B"><ellipse cx="238" cy="402" rx="34" ry="16"/><ellipse cx="948" cy="402" rx="30" ry="14"/><ellipse cx="1052" cy="404" rx="44" ry="18"/></g>
+        <use href="#hv-palm" transform="translate(1064 420) scale(.82)"/>
+      </svg>
+      <div class="hshade" aria-hidden="true"></div>
+      <div class="htop">
+        <div class="eyebrow reveal"><span>Conception architecturale<span class="eb-x"> · Côte d'Ivoire</span></span></div>
+        <h1 class="reveal d1">Archit<span class="acc">mind</span></h1>
+      </div>
       <div class="home-in">
-        <span class="hmark reveal"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x=".5" y=".5" width="43" height="43" rx="13.5" fill="url(#am-paper)" stroke="rgba(0,0,0,.09)"/><use href="#am-a" x="8.9" y="8.2" width="26.2" height="27" fill="#121212"/></svg></span>
-        <div class="eyebrow reveal d1"><span>Conception architecturale<span class="eb-x"> · Côte d'Ivoire</span></span></div>
-        <h1 class="reveal d2">Archit<span class="acc">mind</span> CI</h1>
-        <p class="lead reveal d3">Du terrain nu à la maison en 3D : plans cotés et meublés adaptés à votre ville, coût des travaux en FCFA, maquette extérieure et intérieure.</p>
-        <a class="btn start" href="#creation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Commencer</a>
-        <a class="hlink reveal d5" href="#faq">Comment ça marche ?</a>
+        <div class="htext">
+          <p class="lead reveal d2">Du terrain nu à la maison en 3D : plans cotés et meublés adaptés à votre ville, coût des travaux en FCFA, maquette extérieure et intérieure.</p>
+          <div class="hstat reveal d3" aria-hidden="true"><b class="nvilles">66</b><span>villes couvertes<br>en Afrique de l'Ouest</span></div>
+        </div>
+        <div class="hcard reveal d3">
+          <b>Votre premier plan</b>
+          <span>Gratuit, en moins de 2 minutes</span>
+          <a class="btn start" href="#creation">Créer mon plan<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="hlink reveal d5" href="#faq">Comment ça marche ?</a>
         <button type="button" class="ghost installbtn reveal d5" data-install hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5"/><path d="M5 19.5h14"/></svg>Installer l'application</button>
+        </div>
       </div>
     </div>
 
@@ -719,11 +859,16 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
     </div>
 
     <section class="block">
+      <div class="bhead"><div class="eyebrow">Exemples</div><h2>Des plans générés par l'outil</h2><p>Trois projets types, avec leur surface et leur coût estimé. Le vôtre sera calculé pour votre terrain et votre ville.</p></div>
+      <div class="exgrid" id="exgrid"></div>
+    </section>
+
+    <section class="block">
       <div class="bhead"><div class="eyebrow">En trois étapes</div><h2>Comment ça marche</h2><p>Un premier plan en quelques clics, pour démarrer une étude ou présenter une idée à un client.</p></div>
       <div class="steps">
-        <div class="step reveal" data-n="01"><span class="num">1</span><h3>Décrivez le terrain</h3><p>Superficie, forme, ville et côté de la rue : l'outil calcule la surface constructible et le climat à prendre en compte.</p></div>
-        <div class="step reveal d1" data-n="02"><span class="num">2</span><h3>Générez et comparez</h3><p>Choisissez le programme, puis générez le plan ou trois propositions différentes, chacune avec son coût des travaux.</p></div>
-        <div class="step reveal d2" data-n="03"><span class="num">3</span><h3>Visualisez et enregistrez</h3><p>Visitez la maison en 3D, ajustez façade et toiture, puis retrouvez vos projets dans Mes plans.</p></div>
+        <div class="step reveal" data-n="01"><span class="sico" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34l18 8 18-8-18-8z"/><path d="M14 34l10 4.500 10-4.500-10-4.500z" stroke-dasharray="3 3"/><path d="M24 24V10"/><path d="M24 6a6 6 0 0 1 6 6c0 4.500-6 10-6 10s-6-5.500-6-10a6 6 0 0 1 6-6z" fill="currentColor" fill-opacity=".14"/></svg></span><h3>Décrivez le terrain</h3><p>Sa superficie, sa ville et le côté de la rue.</p></div>
+        <div class="step reveal d1" data-n="02"><span class="sico" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="8" width="36" height="32" rx="3" fill="currentColor" fill-opacity=".1"/><path d="M6 22h18v18M24 22V8M32 22h10M24 31h8"/></svg></span><h3>Générez le plan</h3><p>Choisissez le nombre de chambres : le plan et son coût arrivent aussitôt.</p></div>
+        <div class="step reveal d2" data-n="03"><span class="sico" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l16 9v18l-16 9-16-9V15z" fill="currentColor" fill-opacity=".1"/><path d="M24 24l16-9M24 24v18M24 24L8 15"/><path d="M30 33.500v-7l5-2.800v7z"/></svg></span><h3>Visitez en 3D</h3><p>Regardez la maison dehors et dedans, puis enregistrez le projet.</p></div>
       </div>
     </section>
 
@@ -739,6 +884,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
     </section>
 
     <div class="ctaband reveal">
+      <svg class="arc" viewBox="0 0 1200 260" aria-hidden="true"><defs><path id="arc-p" d="M-200 262 Q600 196 1400 262"/></defs><text><textPath href="#arc-p" startOffset="0">ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · <animate attributeName="startOffset" from="0" to="-1210" dur="26s" repeatCount="indefinite"/></textPath></text></svg>
       <div><h2>Prêt pour votre prochain projet ?</h2><p>Renseignez votre terrain et obtenez un premier plan, son coût et sa maquette en quelques clics.</p></div>
       <a class="btn" href="#creation">Commencer →</a>
     </div>
@@ -869,16 +1015,21 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
   <!-- RESULTAT -->
   <section class="view" data-view="resultat" hidden>
     <div class="vhead reveal">
-      <div><div class="eyebrow">Votre plan</div><h2>Plan généré</h2><p class="sub">Consultez le plan, ouvrez la maquette 3D ou modifiez vos réglages.</p></div>
+      <div><div class="eyebrow">Votre plan</div><h2>Plan généré</h2><p class="sub">Le plan, la maquette 3D, le coût et les matériaux de votre projet.</p></div>
       <div class="vside"><div class="acctchip" data-acct hidden></div></div>
     </div>
     <div class="resacts reveal d1">
-      <button type="button" id="go3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.500v9L12 21l-8-4.500v-9z"/><path d="M12 12l8-4.500M12 12v9M12 12L4 7.500"/></svg>Voir en 3D</button>
       <a class="btn ghostbtn" href="#creation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/></svg>Modifier le plan</a>
       <button type="button" class="ghost" id="var2">Autre variante</button>
       <button type="button" class="ghost" id="toprop2">Voir 3 propositions</button>
     </div>
-    <div class="rescard">
+    <div class="rtabs reveal d1" id="rtabs" role="tablist" aria-label="Contenu du projet">
+      <button type="button" role="tab" data-rt="plan" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="3.500" y="3.500" width="17" height="17" rx="2"/><path d="M3.500 12h8v8.500M11.500 12V3.500M15 12h5.500"/></svg>Plan</button>
+      <button type="button" role="tab" data-rt="3d" id="go3d" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.500v9L12 21l-8-4.500v-9z"/><path d="M12 12l8-4.500M12 12v9M12 12L4 7.500"/></svg>3D</button>
+      <button type="button" role="tab" data-rt="cout" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.500h12v17l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 11.500h6M9 15h3.500"/></svg>Coût</button>
+      <button type="button" role="tab" data-rt="mat" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M3.500 9.500h17v4h-17zM5.500 13.500h13v6h-13zM7.500 4.500h9v5h-9z"/></svg>Matériaux</button>
+    </div>
+    <div class="rescard" id="respl">
       <div class="sheetcard reveal d2">
         <div class="sheettop">
           <h3 id="ptitle">Plan</h3>
@@ -904,19 +1055,19 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
       <div id="c3d"></div>
     </div>
     <div class="two" id="rescost" hidden>
-      <div class="soft reveal">
+      <div class="soft">
         <h3>Estimation des travaux</h3>
         <p class="sub" id="cost-lead"></p>
         <div class="total"><strong id="tot">—</strong><span id="range">—</span></div>
-        <details class="adv"><summary>Détail par lot et quantités</summary>
+        <details class="adv" open><summary>Détail par lot et quantités</summary>
         <div class="inner"><table><thead><tr><th>Lot</th><th class="n">Part</th><th class="n">Montant</th></tr></thead><tbody id="lots"></tbody></table></div>
         <div class="inner"><table><thead><tr><th>Quantités estimées</th><th class="n">Qté</th></tr></thead><tbody id="qty"></tbody></table></div></details>
       </div>
-      <div class="soft reveal">
-        <h3>Matériaux conseillés</h3>
-        <p class="sub" id="mat-lead"></p>
-        <details class="adv"><summary>Voir les matériaux conseillés</summary><div class="mats" id="mats"></div></details>
-      </div>
+    </div>
+    <div class="soft" id="resmat" hidden>
+      <h3>Matériaux conseillés</h3>
+      <p class="sub" id="mat-lead"></p>
+      <div class="mats" id="mats" style="margin-top:14px"></div>
     </div>
   </section>
 
@@ -2032,19 +2183,19 @@ function mount3D(el,m,o,st){
   const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance"});
   const phone=matchMedia("(pointer:coarse)").matches&&Math.min(screen.width,screen.height)<900;
   renderer.setPixelRatio(Math.min(phone?1.5:2,window.devicePixelRatio||1));renderer.setSize(el.clientWidth||600,el.clientHeight||400);
-  renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=inside?(S.night?1.0:1.25):(S.night?0.9:1.0);
+  renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=inside?(S.night?1.0:1.25):(S.night?0.9:0.82);
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
   el.prepend(renderer.domElement);
   scene.background=skyTex(S,m.p&&m.p.seed);
   const pm=new THREE.PMREMGenerator(renderer);const env=pm.fromScene(envScene(S),0.04);scene.environment=env.texture;pm.dispose();
   if(!inside) scene.fog=new THREE.Fog(S.hor.getHex(),ext*2.4,ext*6);
   // lumières
-  scene.add(new THREE.HemisphereLight(S.top.getHex(),S.gnd.getHex(),S.hemi));
+  scene.add(new THREE.HemisphereLight(S.top.getHex(),S.gnd.getHex(),inside?S.hemi:S.hemi*0.68));
   const sun=new THREE.DirectionalLight(S.color,S.intensity);sun.position.copy(S.dir).multiplyScalar(Math.max(big*2,HT*2.5));sun.castShadow=true;
   const sc=Math.max(big*0.8,HT*0.9);Object.assign(sun.shadow.camera,{left:-sc,right:sc,top:sc,bottom:-sc,near:1,far:Math.max(big*5,HT*7)});sun.shadow.camera.updateProjectionMatrix();
   const shm=phone?1024:(renderer.capabilities.maxTextureSize>=4096?4096:2048);sun.shadow.mapSize.set(shm,shm);sun.shadow.bias=-0.0004;sun.shadow.normalBias=0.03;scene.add(sun);scene.add(sun.target);
   // matériaux
-  const std=(p)=>new THREE.MeshStandardMaterial(Object.assign({roughness:0.85,metalness:0,envMapIntensity:1},p));
+  const std=(p)=>new THREE.MeshStandardMaterial(Object.assign({roughness:0.85,metalness:0,envMapIntensity:inside?1:0.4},p));
   const facade={enduit:std({map:T.plaster,color:o.wall,roughness:0.95}),btc:std({map:T.btc,roughness:0.95}),pierre:std({map:T.stone,roughness:0.9}),bois:std({map:T.wood,roughness:0.75})}[o.facade]||std({map:T.plaster,color:o.wall});
   const M={facade,inner:std({map:T.plaster,color:0xF6F4EF,roughness:0.95}),ceil:std({color:0xF7F6F2,roughness:1}),
     plinth:std({map:T.concrete,color:0x9a9890}),slabSide:std({map:T.plaster,color:0xE8E6E0}),
@@ -2076,6 +2227,10 @@ function mount3D(el,m,o,st){
   const sph=(r,x,y,z,mat,par,sx,sy,sz)=>{const me=new THREE.Mesh(new THREE.IcosahedronGeometry(r,2),mat);me.position.set(x,y,z);me.scale.set(sx||1,sy||1,sz||1);me.castShadow=true;me.receiveShadow=true;(par||scene).add(me);return me};
 
   /* --- terrain, rue, clôture --- */
+  try{const pad=1.8,cw=m.bw+pad*2,cd=m.bd+pad*2,c=document.createElement("canvas");c.width=c.height=256;const g=c.getContext("2d"),px=pad/cw*256,pz=pad/cd*256;
+    for(let k=0;k<40;k++){const t=k/40;g.fillStyle="rgba(0,0,0,0.02)";g.fillRect(px*t,pz*t,256-2*px*t,256-2*pz*t)}
+    const pl=new THREE.Mesh(new THREE.PlaneGeometry(cw,cd),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false,opacity:S.night?0.5:0.9,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2}));
+    pl.rotation.x=-Math.PI/2;pl.position.set(X(m.bx+m.bw/2),0.045,Z(m.by+m.bd/2));pl.renderOrder=1;scene.add(pl)}catch(e){}
   box(W*5,0.1,D*5,0,-0.06,0,M.ground,null,{noCast:true});
   box(W+0.01,0.06,D+0.01,0,0.0,0,M.ground,null,{noCast:true});
   box(W*5,0.04,7,0,0.0,D/2+4.6,M.asphalt,null,{noCast:true});
@@ -2754,7 +2909,7 @@ function fillDl(d){
   if(!O().dl){pop.innerHTML=`<div class="up"><b>Téléchargement des plans</b><span>Inclus dans les offres ${OFFERS.moyen.nom} et ${OFFERS.max.nom} : PDF à imprimer, image PNG et fichier SVG, enregistrés sur votre appareil.</span><a class="btn" href="#tarifs">Voir les offres</a></div>`;
     pop.querySelector("a").onclick=()=>closeDl();return}
   const S=dlSource(d.dataset.dl),nl=S?levelsOf(S.m).length:1;
-  pop.innerHTML=[["pdf","PDF à imprimer",`Format A3${nl>1?` · ${nl} niveaux, un par page`:""}`],["png","Image PNG","Haute définition · niveau affiché"],["svg","Fichier SVG","Vectoriel, pour logiciel de dessin · niveau affiché"]]
+  pop.innerHTML=(d.dataset.dl==="creation"?[["dossier","Dossier de présentation","PDF · page de garde, plans, coût et matériaux"]]:[]).concat([["pdf","PDF à imprimer",`Format A3${nl>1?` · ${nl} niveaux, un par page`:""}`],["png","Image PNG","Haute définition · niveau affiché"],["svg","Fichier SVG","Vectoriel, pour logiciel de dessin · niveau affiché"]])
     .map(([f,t,sub])=>`<button type="button" role="menuitem" data-fmt="${f}">${t}<small>${sub}</small></button>`).join("");
   pop.querySelectorAll("[data-fmt]").forEach(b=>b.onclick=()=>{closeDl();exportPlan(b.dataset.fmt,d)});
 }
@@ -2767,6 +2922,8 @@ async function exportPlan(fmt,d){
     const base="architmind-"+slug(S.name),css=await planFonts(),T=li=>withFonts(drawTech(S.m,li),css);let filename,data;
     if(fmt==="svg"){data='<?xml version="1.0" encoding="UTF-8"?>\n'+svgSized(T(S.li),2400).svg;filename=`${base}-${slug(lvlLabel(S.m,S.li))}.svg`}
     else if(fmt==="png"){data=await canvasBlob(await svgCanvas(T(S.li),3000),"image/png");filename=`${base}-${slug(lvlLabel(S.m,S.li))}.png`}
+    else if(fmt==="dossier"){const D=dossierSvgs(S,css),pages=[],add=async(svg,w)=>{const c=await svgCanvas(svg,w),b=await canvasBlob(c,"image/jpeg",0.92);pages.push({jpg:new Uint8Array(await b.arrayBuffer()),w:c.width,h:c.height})};
+      await add(D.cover,2380);for(const x of levelsOf(S.m)) await add(T(x.li),2600);await add(D.cost,2380);await add(D.mats,2380);data=makePdf(pages);filename=base+"-dossier.pdf"}
     else{const pages=[];for(const x of levelsOf(S.m)){const c=await svgCanvas(T(x.li),2600),b=await canvasBlob(c,"image/jpeg",0.92);pages.push({jpg:new Uint8Array(await b.arrayBuffer()),w:c.width,h:c.height})}
       data=makePdf(pages);filename=base+".pdf"}
     lab.textContent=old;d.classList.remove("busy");
@@ -2796,10 +2953,92 @@ function levelTabs(el,m,cur0,on){const PL=m.planLevels||m.levels.map((L,i)=>({li
 function drawInto(el,m,li){if(!el) return;const w=el.clientWidth||0;el._m=m;el._li=li;el._w=w;el.innerHTML=drawTech(m,li,w&&w<700?{scr:w}:{})}
 {let RS=0;addEventListener("resize",()=>{clearTimeout(RS);RS=setTimeout(()=>{["#sheet","#psheet"].forEach(q=>{const el=$(q);
   if(el&&el._m&&el.offsetParent&&Math.abs(el.clientWidth-(el._w||0))>20) drawInto(el,el._m,el._li)})},180)})}
+/* ---------- Dossier de présentation (PDF) ---------- */
+const xe=t=>String(t==null?"":t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+function wrapTxt(t,n){const out=[];let l="";String(t||"").split(/\s+/).forEach(w=>{if((l+" "+w).trim().length>n&&l){out.push(l);l=w}else l=(l+" "+w).trim()});if(l) out.push(l);return out}
+const tspans=(lines,x,lh)=>lines.map((l,i)=>`<tspan x="${x}" dy="${i?lh:0}">${xe(l)}</tspan>`).join("");
+function dMark(x,y,s){const sym=document.getElementById("am-a");if(!sym) return "";
+  return `<rect x="${x}" y="${y}" width="${s}" height="${s}" rx="${s*0.3}" fill="#121212"/><svg x="${x+s*0.2}" y="${y+s*0.19}" width="${s*0.6}" height="${s*0.62}" viewBox="${sym.getAttribute("viewBox")}" fill="#FFFFFF">${sym.innerHTML}</svg>`}
+const dHead=(css,title,S,n)=>`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1190 842" style="color-scheme:only light" font-family="Outfit,Arial,sans-serif"><defs><style>${css||""}</style></defs><rect width="1190" height="842" fill="#FFFFFF"/>
+  ${dMark(60,46,34)}<text x="106" y="69" font-size="15" font-weight="600" fill="#121212" letter-spacing="1.5">ARCHITMIND CI</text>
+  <text x="1130" y="69" font-size="13" fill="#6B716E" text-anchor="end">${xe(S.name)}</text><rect x="60" y="96" width="1070" height="1" fill="#DDE0DB"/>
+  <text x="60" y="150" font-size="34" font-weight="700" fill="#121212" letter-spacing="-.5">${xe(title)}</text>
+  <text x="60" y="806" font-size="11.500" fill="#8A908D">Esquisse et estimation indicatives générées par Architmind CI. Elles ne remplacent pas l'étude d'un architecte ni les devis des entreprises.</text>
+  <text x="1130" y="806" font-size="11.500" fill="#8A908D" text-anchor="end">${n}</text>`;
+function snap3D(m){
+  try{
+    if(typeof THREE==="undefined"||!O().d3) return null;
+    if(viewer&&viewer.renderer){viewer.renderer.render(viewer.scene,viewer.cam);return viewer.renderer.domElement.toDataURL("image/jpeg",0.9)}
+    const el=document.createElement("div");el.style.cssText="position:fixed;left:-4000px;top:0;width:900px;height:1100px;pointer-events:none";document.body.appendChild(el);
+    const o=opts3d&&opts3d._sig===sigOf(m.p)?opts3d:defaults3d(m);
+    mount3D(el,m,o,{mode:"ext",room:null,roomLi:0,spin:false,roof:true,upper:true,keep:false});let url=null;
+    if(viewer&&viewer.renderer){viewer.renderer.render(viewer.scene,viewer.cam);url=viewer.renderer.domElement.toDataURL("image/jpeg",0.9)}
+    stop3D();el.remove();return url;
+  }catch(e){try{stop3D()}catch(x){}return null}
+}
+function dossierSvgs(S,css){
+  const m=S.m,p=m.p,nl=levelsOf(m).length,total=2+nl+1,prog=m.isTower&&!m.fam?m.nApts+" logements":m.n+" chambre"+(m.n>1?"s":"");
+  const date=new Date().toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"});
+  let shot=snap3D(m);if(!shot||shot.indexOf("data:image/jpeg")!==0||shot.length<4000) shot=null;const name=wrapTxt(S.name,20).slice(0,3);
+  const facts=[["Terrain",fmt(m.plot)+" m²"],["Surface de plancher",fmt(m.builtArea)+" m²"],["Niveaux",String(m.levels.length)],["Programme",prog]];
+  const th=drawTech(m,m.isTower&&!m.fam?1:0,{thumb:true}),vb=(/viewBox="[^"]+"/.exec(th)||['viewBox="0 0 100 70"'])[0];
+  const visual=shot?`<image href="${shot}" x="560" y="60" width="570" height="722" preserveAspectRatio="xMidYMid slice" clip-path="url(#cv)"/>`
+    :`<rect x="560" y="60" width="570" height="722" rx="22" fill="#F4F5F2"/><svg x="590" y="90" width="510" height="662" preserveAspectRatio="xMidYMid meet" ${vb}>${th.replace(/^<svg[^>]*>/,"").replace(/<\/svg>\s*$/,"")}</svg>`;
+  const cover=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1190 842" style="color-scheme:only light" font-family="Outfit,Arial,sans-serif"><defs><style>${css||""}</style><clipPath id="cv"><rect x="560" y="60" width="570" height="722" rx="22"/></clipPath></defs>
+  <rect width="1190" height="842" fill="#FFFFFF"/>${visual}
+  ${dMark(60,60,46)}<text x="120" y="91" font-size="19" font-weight="600" fill="#121212" letter-spacing="2">ARCHITMIND CI</text>
+  <text x="60" y="200" font-size="13" font-weight="600" fill="#B87A14" letter-spacing="2.500">DOSSIER DE PRÉSENTATION</text>
+  <text x="60" y="262" font-size="50" font-weight="700" fill="#121212" letter-spacing="-1">${tspans(name,60,56)}</text>
+  <text x="60" y="${262+name.length*56-10}" font-size="18" fill="#565E5A">${xe(typeLabel(p))} · ${xe(STYLES[m.style]||"")} · ${xe(m.lieu)}</text>
+  <rect x="60" y="${262+name.length*56+18}" width="64" height="4" rx="2" fill="#B87A14"/>
+  ${facts.map(([k,v],i)=>{const x=60+(i%2)*230,y=500+Math.floor(i/2)*78;return `<text x="${x}" y="${y}" font-size="13" fill="#6B716E">${xe(k)}</text><text x="${x}" y="${y+28}" font-size="23" font-weight="600" fill="#121212">${xe(v)}</text>`}).join("")}
+  <rect x="60" y="650" width="440" height="92" rx="16" fill="#F4F5F2"/><text x="82" y="682" font-size="13" fill="#6B716E">Coût estimé des travaux</text>
+  <text x="82" y="720" font-size="30" font-weight="700" fill="#121212">${xe(F(m.total))}</text>
+  <text x="60" y="782" font-size="13" fill="#6B716E">Dossier établi le ${xe(date)}</text></svg>`;
+  // coût
+  const lots=[...document.querySelectorAll("#lots tr")].map(tr=>[...tr.children].map(td=>td.firstChild?td.firstChild.textContent:td.textContent));
+  const qty=[...document.querySelectorAll("#qty tr")].map(tr=>[...tr.children].map(td=>td.textContent));
+  const lead=wrapTxt(document.getElementById("cost-lead").textContent,96);
+  const cost=dHead(css,"Estimation des travaux",S,`${nl+2} / ${total}`)+`
+  <text x="60" y="214" font-size="44" font-weight="700" fill="#121212" letter-spacing="-1">${xe(F(m.total))}</text>
+  <text x="60" y="244" font-size="16" fill="#565E5A">Fourchette : de ${xe(F(m.total*0.85))} à ${xe(F(m.total*1.15))}</text>
+  <text x="60" y="282" font-size="13.500" fill="#6B716E">${tspans(lead,60,19)}</text>
+  <text x="60" y="${330+lead.length*19}" font-size="13" font-weight="600" fill="#6B716E" letter-spacing="1.5">RÉPARTITION PAR LOT</text>
+  ${lots.map((r,i)=>{const y=362+lead.length*19+i*34,pc=parseFloat(r[1])||0;return `<text x="60" y="${y}" font-size="15" fill="#121212">${xe(r[0])}</text><rect x="330" y="${y-11}" width="150" height="8" rx="4" fill="#ECEDEA"/>${pc?`<rect x="330" y="${y-11}" width="${Math.min(150,pc*5)}" height="8" rx="4" fill="#B87A14"/>`:""}<text x="540" y="${y}" font-size="14" fill="#565E5A" text-anchor="end">${xe(r[1])}</text><text x="720" y="${y}" font-size="15" font-weight="600" fill="#121212" text-anchor="end">${xe(r[2])}</text><rect x="60" y="${y+11}" width="660" height="1" fill="#ECEDEA"/>`}).join("")}
+  <rect x="770" y="186" width="360" height="${70+qty.length*36}" rx="18" fill="#F4F5F2"/><text x="794" y="222" font-size="13" font-weight="600" fill="#6B716E" letter-spacing="1.5">QUANTITÉS ESTIMÉES</text>
+  ${qty.map((r,i)=>`<text x="794" y="${262+i*36}" font-size="14.500" fill="#121212">${xe(r[0])}</text><text x="1106" y="${262+i*36}" font-size="15" font-weight="600" fill="#121212" text-anchor="end">${xe(r[1])}</text>`).join("")}</svg>`;
+  // matériaux
+  const ys=[196,196],cards=(m.Z.mats||[]).map(([k,b,t],i)=>{const col=i%2,lines=wrapTxt(t,78),h=92+lines.length*18,x=60+col*545,yy=ys[col];ys[col]+=h+16;
+    return `<rect x="${x}" y="${yy}" width="525" height="${h}" rx="16" fill="#F4F5F2"/><text x="${x+22}" y="${yy+32}" font-size="12" font-weight="600" fill="#B87A14" letter-spacing="1.5">${xe(String(k).toUpperCase())}</text><text x="${x+22}" y="${yy+58}" font-size="17" font-weight="600" fill="#121212">${xe(b)}</text><text x="${x+22}" y="${yy+84}" font-size="13.500" fill="#565E5A">${tspans(lines,x+22,18)}</text>`}).join("");
+  const mats=dHead(css,"Matériaux conseillés",S,`${total} / ${total}`)+`<text x="60" y="176" font-size="15" fill="#565E5A">Choisis pour la ${xe(m.Z.nom)}, à ${xe(m.lieu)}.</text>${cards}</svg>`;
+  return {cover,cost,mats};
+}
+/* ---------- Accueil : exemples de plans ---------- */
+const EXAMPLES=[{type:"pp",n:3,seed:4,area:500,W:20,D:25},{type:"r1",n:4,seed:7,area:500,W:20,D:25},{type:"r2",n:5,seed:3,area:600,W:20,D:30}];
+function renderExamples(){const g=document.getElementById("exgrid");if(!g) return;
+  g.innerHTML=EXAMPLES.map((e,i)=>{let m;try{m=compute(Object.assign({},DEF,e))}catch(x){return ""}
+    return `<article class="excard reveal d${i+1}"><div class="explan" aria-hidden="true">${drawTech(m,0,{thumb:true})}</div><div class="exin"><h3>${typeLabel(m.p)}</h3>
+      <span class="exmeta">${m.n} chambres · ${fmt(m.builtArea)} m² · terrain de ${fmt(m.plot)} m² à ${m.lieu}</span>
+      <div class="excost"><span>Coût estimé des travaux</span><b>${F(m.total)}</b></div>
+      <button type="button" class="ghost" data-ex="${i}">Partir de cet exemple</button></div></article>`}).join("");
+  g.querySelectorAll("[data-ex]").forEach(b=>b.onclick=()=>{cur=Object.assign({},DEF,EXAMPLES[+b.dataset.ex]);writeForm(cur);location.hash="creation"});
+}
+/* ---------- Page résultat : onglets ---------- */
+function syncRes(){
+  if(RTAB==="3d"&&!SHOW3D) RTAB="plan";
+  document.querySelectorAll("#rtabs button").forEach(b=>{const on=b.dataset.rt===RTAB;b.setAttribute("aria-selected",String(on));b.tabIndex=on?0:-1});
+  $("#respl").hidden=RTAB!=="plan";$("#res3d").hidden=RTAB!=="3d";$("#rescost").hidden=RTAB!=="cout"||!model;$("#resmat").hidden=RTAB!=="mat"||!model;
+}
+function setRTab(t){
+  if(!model) return;RTAB=t;SHOW3D=t==="3d";syncRes();
+  if(SHOW3D) area3D($("#c3d"),model);else if(viewer&&$("#c3d").contains(viewer.el)) stop3D();
+  if(t==="plan"){const sh=$("#sheet");if(sh._m!==model||!sh._w) drawInto(sh,model,level)}
+}
+
 /* ---------- Création ---------- */
 function renderPlan(){
   model=compute(cur);
-  ["#sacts","#savebar","#rescost"].forEach(q=>{const e=$(q);if(e) e.hidden=false});$("#res3d").hidden=!SHOW3D;
+  ["#sacts","#savebar"].forEach(q=>{const e=$(q);if(e) e.hidden=false});syncRes();
   if(!(model.planLevels||[]).some(x=>x.li===level)) level=0;
   levelTabs($("#tabs"),model,level,l=>{level=l;drawInto($("#sheet"),model,level);pulse($("#sheet"))});
   $("#ptitle").textContent=typeLabel(model.p)+" · "+STYLES[model.style]+" · "+(model.isTower&&!model.fam?model.nApts+" logements":model.n+" chambre"+(model.n>1?"s":""))+" · "+model.lieu;
@@ -2948,7 +3187,7 @@ function openProp(i,silent){
      </div>
      <div class="soft" style="margin-top:20px"><h3>Comment elle se présentera</h3><div class="story">${st.map(([k,v])=>`<div><b>${k}</b><p>${v}</p></div>`).join("")}</div></div>
    </div>`;
-  $("#p-edit").onclick=()=>{cur=Object.assign({},o.p);writeForm(cur);level=0;renderedOnce=true;SHOW3D=false;model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)};
+  $("#p-edit").onclick=()=>{cur=Object.assign({},o.p);writeForm(cur);level=0;renderedOnce=true;SHOW3D=false;RTAB="plan";model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)};
   $("#p-save").onclick=()=>savePlan(o.d.name,o.p,m);
   plevel=0;drawInto($("#psheet"),m,0);levelTabs($("#ptabs"),m,0,l=>{plevel=l;drawInto($("#psheet"),m,l);pulse($("#psheet"))});
   area3D($("#p3d"),m);
@@ -2998,7 +3237,7 @@ async function renderMine(){
   $$(".mcard h3").forEach((h,i)=>h.textContent=items[i].name);
   $$("[data-open]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.open];cur=JSON.parse(it.params);writeForm(cur);$("#pname").value=it.name;level=0;
     if(it.opts3d){try{opts3d=JSON.parse(it.opts3d)}catch(e){}}
-    renderedOnce=true;SHOW3D=false;model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)});
+    renderedOnce=true;SHOW3D=false;RTAB="plan";model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)});
   $$("[data-del]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.del];if(b.dataset.armed){deletePlan(it.id)}else{b.dataset.armed="1";b.textContent="Confirmer";b.className="danger";setTimeout(()=>{if(b.isConnected&&b.dataset.armed){delete b.dataset.armed;b.textContent="Supprimer";b.className="ghost"}},4000)}});
 }
 
@@ -3058,7 +3297,7 @@ function faqData(){
       ["Quelle offre choisir ?",`${o.basique.nom}, gratuite, pour esquisser (${q("basique")}), ${o.moyen.nom} pour présenter vos projets en 3D et télécharger vos plans (${q("moyen")}), ${o.max.nom} pour personnaliser la maquette, ${q("max")}. Les prix sont détaillés dans l'onglet Tarifs.`],
       ["Qu'est-ce qui compte comme un plan généré ?","Chaque clic sur « Générer le plan » ou « Autre variante », et chaque nouvelle série de propositions. Rouvrir un projet enregistré ne compte pas. Le compteur repart à zéro chaque jour."],
       ["Comment payer mon abonnement ?",CFG.paiementUrl?"L'offre Basique est gratuite ; seules Moyen et Max sont payantes. Dans l'onglet Tarifs, choisissez votre offre : vous êtes dirigé vers la page de paiement sécurisée Paystack. Payez par Mobile Money (Orange Money, MTN MoMo, Moov Money) ou par carte bancaire Visa ou Mastercard, y compris prépayée. L'offre s'active dès la confirmation du paiement et un reçu vous est envoyé par e-mail.":"Le paiement en ligne ouvre très bientôt, depuis l'onglet Tarifs : Mobile Money (Orange Money, MTN MoMo, Moov Money) et carte bancaire Visa ou Mastercard, y compris prépayée. En attendant, l'offre Basique est gratuite et sans limite de durée."],
-      ["Puis-je être remboursé ?","Oui, en cas de double paiement, si l'offre ne s'active pas après le paiement, ou si vous le demandez dans les 48 heures qui suivent le paiement. Écrivez à cheickcamra24ht@gmail.com avec la référence du paiement. Tous les détails sont dans la <a href=\"remboursement.html\">politique de remboursement</a>."],
+      ["Puis-je être remboursé ?","Seulement en cas de dysfonctionnement majeur de notre fait (offre non activée, double débit, service inutilisable plus de 72 heures), signalé dans les 7 jours qui suivent le paiement. Dans les autres cas, il n'y a pas de remboursement. Écrivez à cheickcamra24ht@gmail.com avec la référence du paiement. Tous les détails sont dans la <a href=\"remboursement.html\">politique de remboursement</a>."],
       ["Comment contacter Architmind ?","Écrivez à <a href=\"mailto:cheickcamra24ht@gmail.com\">cheickcamra24ht@gmail.com</a> : nous répondons sous 2 jours ouvrés. Les <a href=\"conditions.html\">conditions d'utilisation</a>, la <a href=\"confidentialite.html\">politique de confidentialité</a> et les <a href=\"mentions-legales.html\">mentions légales</a> sont accessibles en bas de chaque page."],
       ["Mon abonnement se renouvelle-t-il tout seul ?","Non : aucun prélèvement n'est fait sans votre accord. L'abonnement Moyen ou Max dure un mois ; à l'échéance, votre compte repasse simplement à l'offre Basique gratuite, sans perdre vos plans. Avant l'échéance, vous êtes prévenu sur le site, par la cloche de notifications et un bandeau, et par e-mail ; le bouton « Renouveler » relance le paiement en un clic. Chaque paiement est confirmé par une notification et un e-mail."],
       ["Où sont enregistrés mes projets ?","Dans votre compte, visibles dans l'onglet Mes plans. Vous les retrouvez à chaque connexion, sur tous vos appareils, et ils restent consultables sans internet sur les appareils où vous les avez déjà ouverts."],
@@ -3156,7 +3395,7 @@ document.addEventListener("click",e=>{
 })();
 
 /* ---------- Navigation ---------- */
-const VIEWS=["accueil","creation","resultat","propositions","mes-plans","tarifs","faq","connexion"];let SHOW3D=false;let renderedOnce=false;
+const VIEWS=["accueil","creation","resultat","propositions","mes-plans","tarifs","faq","connexion"];let SHOW3D=false,RTAB="plan";RTAB="plan";let renderedOnce=false;
 function route(){
   let v=(location.hash||"").replace("#","");
   if(v==="paiement"){toast("Merci ! Paiement en cours de vérification : votre offre s'active dès sa confirmation.");try{history.replaceState(history.state,"","#tarifs")}catch(e){}v="tarifs"}
@@ -3182,19 +3421,19 @@ function route(){
 /* ---------- Évènements ---------- */
 $("#f").addEventListener("change",e=>{if(e.target.id==="std") $("#pm").value=PRICE[$("#std").value];readForm();dirty=true;$("#dirty").hidden=false});
 $("#f").addEventListener("input",()=>readForm());
-$("#f").addEventListener("submit",e=>{e.preventDefault();if(!useQuota()) return limitReached();const s=cur.seed;cur=readForm();cur.seed=s;level=0;SHOW3D=false;showResult();toast("Plan généré")});
+$("#f").addEventListener("submit",e=>{e.preventDefault();if(!useQuota()) return limitReached();const s=cur.seed;cur=readForm();cur.seed=s;level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
 // la page du plan : le dessin se fait une fois la page affichée (largeur réelle de l'écran)
 function showResult(){model=compute(cur);if(location.hash==="#resultat") renderPlan();else{location.hash="resultat";setTimeout(renderPlan,0)}}
-const variante=()=>{if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;SHOW3D=false;showResult();toast("Nouvelle variante générée")};
+const variante=()=>{if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
 $("#var").onclick=()=>{cur=readForm();variante()};
 $("#var2").onclick=variante;
 $("#toprop2").onclick=()=>{location.hash="propositions"};
-$("#go3d").onclick=()=>{if(!model) return;SHOW3D=true;const r=$("#res3d");r.hidden=false;area3D($("#c3d"),model);r.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})};
+document.querySelectorAll("#rtabs button").forEach(b=>b.onclick=()=>setRTab(b.dataset.rt));
 $("#toprop").onclick=()=>{location.hash="propositions"};
 
 $("#save").onclick=()=>savePlan($("#pname").value,cur,model);
 window.addEventListener("hashchange",route);
-$("#bgplan").innerHTML=drawTech(compute(Object.assign({},DEF,{seed:4})),0,{thumb:true});
+renderExamples();
 $("#aplan").innerHTML=drawTech(compute(Object.assign({},DEF,{seed:9,n:4})),0,{thumb:true});
 $$(".nvilles").forEach(e=>e.textContent=Object.keys(CITIES).length);
 $$(".rail a[data-nav]").forEach(l=>{const t=l.querySelector(".lbl");if(t&&!l.hasAttribute("aria-label")) l.setAttribute("aria-label",t.textContent.trim())});
@@ -3301,7 +3540,7 @@ writeForm(cur);refreshOffer();route();
   const off=()=>ldr&&ldr.classList.add("off");setTimeout(off,1300);
   if(!("IntersectionObserver" in window)) return;
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.14,rootMargin:"0px 0px -6% 0px"});
-  document.querySelectorAll('[data-view="accueil"] .bhead,[data-view="accueil"] .step,[data-view="accueil"] .ctaband,.tcard,.foot').forEach((el,i)=>{
+  document.querySelectorAll('[data-view="accueil"] .bhead,[data-view="accueil"] .step,[data-view="accueil"] .excard,[data-view="accueil"] .ctaband,.tcard,.foot').forEach((el,i)=>{
     el.classList.remove("reveal","d1","d2","d3");el.classList.add("sr");
     if(el.classList.contains("step")) el.classList.add(i%2?"srr":"sl");
     io.observe(el)});
