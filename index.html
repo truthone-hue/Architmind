@@ -975,7 +975,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
             <label class="f" for="ch" data-house>Chambres<select id="ch"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
             <label class="f" for="std">Niveau de finition<select id="std"><option value="eco">Économique</option><option value="std" selected>Standard</option><option value="haut">Haut de gamme</option><option value="luxe">Luxe</option></select></label>
           </div>
-          <label class="f" for="pm"><span>Coût de construction au m² <span class="req">obligatoire</span></span><span class="unit" data-u="F"><input id="pm" type="number" inputmode="numeric" enterkeyhint="done" min="50000" max="2000000" step="5000" placeholder="ex. 210000" required aria-describedby="pmhint pmerr"></span>
+          <label class="f" for="pm"><span>Coût de construction au m² <span class="req">obligatoire</span></span><span class="unit" data-u="F"><input id="pm" type="number" inputmode="numeric" enterkeyhint="done" min="1" step="1000" placeholder="ex. 210000" required aria-describedby="pmhint pmerr"></span>
             <span id="pmhint" style="font-weight:400"></span>
           </label>
           <p class="note warn" id="pmerr" role="alert" hidden></p>
@@ -3281,8 +3281,8 @@ function wishNote(){const el=$("#wishnote");if(!el) return;const w=cur&&cur.wish
   el.innerHTML=(r.ok.length?`<b>Souhaits pris en compte :</b> ${r.ok.map(xe).join(", ")}.`:`<b>Aucun souhait reconnu dans votre texte.</b> Utilisez des mots simples : chambres, garage, bureau, piscine, étage.`)+(r.ko.length?`<br><b>Non pris en compte :</b> ${r.ko.map(xe).join(" ; ")}.`:"")}
 function pmHint(){const s=$("#std"),h=$("#pmhint");if(!h) return;h.innerHTML=`Prix courant pour une finition ${xe(s.options[s.selectedIndex].text.toLowerCase())} : <b>${fmt(PRICE[s.value])} F par m²</b>. <button type="button" class="linkbtn" id="pmuse">Utiliser ce prix</button>`;
   $("#pmuse").onclick=()=>{$("#pm").value=PRICE[s.value];$("#pmerr").hidden=true;$("#pm").dispatchEvent(new Event("change",{bubbles:true}))}}
-function pmOk(){const v=+$("#pm").value,e=$("#pmerr");if(v>=50000&&v<=2000000){e.hidden=true;return true}
-  e.hidden=false;e.textContent=v?"Indiquez un coût entre 50 000 et 2 000 000 F par m².":"Indiquez le coût de construction au m² : il est obligatoire pour calculer le prix des travaux.";
+function pmOk(){const v=+$("#pm").value,e=$("#pmerr");if(v>0&&isFinite(v)){e.hidden=true;return true}
+  e.hidden=false;e.textContent=$("#pm").value?"Indiquez un coût au m² supérieur à zéro.":"Indiquez le coût de construction au m² : il est obligatoire pour calculer le prix des travaux.";
   $("#pm").focus({preventScroll:true});$("#pm").scrollIntoView({block:"center",behavior:"smooth"});return false}
 function wishInit(){const w=$("#wish"),c=$("#wishcount"),up=()=>{c.textContent=w.value.length+" / "+WISH_MAX};w.addEventListener("input",up);up();pmHint();$("#pm").addEventListener("input",()=>{$("#pmerr").hidden=true})}
 window.parseWish=parseWish;
