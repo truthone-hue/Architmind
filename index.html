@@ -590,6 +590,22 @@ details.adv>summary:focus-visible{outline:2px solid var(--accent2);outline-offse
 details.adv[open]{padding-bottom:10px}
 details.advbox{display:flex;flex-direction:column}
 details.advbox[open]>fieldset{margin-top:10px}
+/* Animations : anneau de chargement, texte courbe défilant, apparition au défilement */
+.ldr{display:none}
+.arc{position:absolute;left:-12%;bottom:-14px;width:124%;height:auto;pointer-events:none;opacity:.34}
+.arc text{font:700 24px "Bricolage Grotesque",Outfit,sans-serif;letter-spacing:.14em;fill:var(--ink)}
+@media (max-width:760px){.arc{left:-70%;width:240%;bottom:44px;opacity:.3}}
+@media (prefers-reduced-motion:no-preference){
+  .ldr{display:grid;place-items:center;position:fixed;inset:0;z-index:90;background:var(--ground);transition:opacity .55s ease,visibility .55s}
+  .ldr.off{opacity:0;visibility:hidden}
+  .ldr svg{width:176px;height:176px;animation:ldrspin 5s linear infinite}
+  .ldr text{font:700 13.5px Outfit,sans-serif;letter-spacing:.08em;fill:var(--ink)}
+  @keyframes ldrspin{to{transform:rotate(360deg)}}
+  .sr{opacity:0;transform:translateY(54px) scale(.97);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform,opacity}
+  .sr.sl{transform:translateX(-64px)}.sr.srr{transform:translateX(64px)}
+  @media (max-width:760px){.sr.sl,.sr.srr{transform:translateY(54px) scale(.97)}}
+  .sr.in{opacity:1;transform:none}
+}
 /* Version application : e-mail, notifications, abonnement, installation */
 input[type=email]{font:inherit;font-size:15px;font-weight:500;padding:10px 14px;border:1px solid var(--hair);background:var(--card);color:var(--ink);border-radius:var(--r-m);width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
 @media (max-width:760px),(pointer:coarse){input[type=email]{font-size:16px}}
@@ -663,6 +679,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
   <a href="#tarifs" class="offer" id="offerbadge">Basique</a>
 </nav>
 
+<div class="ldr" id="ldr" aria-hidden="true"><svg viewBox="0 0 200 200"><defs><path id="ldr-c" d="M100 100 m-74 0 a74 74 0 1 1 148 0 a74 74 0 1 1 -148 0"/></defs><text><textPath href="#ldr-c" textLength="460">ARCHITMIND CI · PLANS · COÛTS · MAQUETTE 3D · </textPath></text></svg></div>
 <main class="app">
   <div class="abobar" id="abobar" role="status" hidden></div>
   <!-- ACCUEIL -->
@@ -670,6 +687,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
     <div class="card home">
       <div class="bgplan" id="bgplan" aria-hidden="true"></div>
       <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+      <svg class="arc" viewBox="0 0 1200 260" aria-hidden="true"><defs><path id="arc-p" d="M-200 262 Q600 196 1400 262"/></defs><text><textPath href="#arc-p" startOffset="0">ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · ARCHITMIND CI · PLANS COTÉS · COÛT DES TRAVAUX · MAQUETTE 3D · <animate attributeName="startOffset" from="0" to="-1210" dur="26s" repeatCount="indefinite"/></textPath></text></svg>
       <div class="float f1" aria-hidden="true"><b class="nvilles">66</b>villes couvertes</div>
       <div class="float f2" aria-hidden="true"><b>R+10</b>villas et immeubles</div>
       <div class="float f3" aria-hidden="true"><b>3D</b>extérieure et intérieure</div>
@@ -3217,6 +3235,20 @@ if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol)) navigator.
 writeForm(cur);refreshOffer();route();
 })();
 
+</script>
+<script>
+/* Animations au chargement et au défilement (désactivées si l'appareil demande moins de mouvement) */
+(()=>{
+  const calm=matchMedia("(prefers-reduced-motion: reduce)").matches,ldr=document.getElementById("ldr");
+  if(calm){document.querySelectorAll(".arc animate").forEach(a=>a.remove());return}
+  const off=()=>ldr&&ldr.classList.add("off");setTimeout(off,1300);
+  if(!("IntersectionObserver" in window)) return;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.14,rootMargin:"0px 0px -6% 0px"});
+  document.querySelectorAll('[data-view="accueil"] .bhead,[data-view="accueil"] .step,[data-view="accueil"] .ctaband,.tcard,.foot').forEach((el,i)=>{
+    el.classList.remove("reveal","d1","d2","d3");el.classList.add("sr");
+    if(el.classList.contains("step")) el.classList.add(i%2?"srr":"sl");
+    io.observe(el)});
+})();
 </script>
 </body>
 </html>
