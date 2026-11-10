@@ -702,6 +702,14 @@ details.advbox[open]>fieldset{margin-top:10px}
 .red-row{display:flex;gap:10px;margin-top:6px}.red-row button{flex:1;min-height:48px}
 .red-foot{display:flex;gap:8px;align-items:center}.red-foot button{min-height:48px}
 @media (min-width:900px){.red-in{display:grid;grid-template-columns:minmax(0,1fr) 320px;grid-template-rows:auto minmax(0,1fr) auto;column-gap:14px}.red-head{grid-column:1/3}#red-svg{grid-row:2/4}.red-panel{align-self:start}.red-foot{align-self:end;flex-wrap:wrap}}
+/* Création : champ obligatoire et souhaits */
+.req,.opt{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:600;letter-spacing:.02em;vertical-align:middle}
+.req{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--ink)}.opt{background:color-mix(in srgb,var(--ink) 7%,transparent);color:var(--muted)}
+#wish{width:100%;min-height:92px;resize:vertical;padding:12px 14px;border-radius:var(--r-m);border:1px solid var(--hair);background:var(--card);color:var(--ink);font:inherit;font-weight:400;line-height:1.45}
+#wish:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wishfoot{display:flex;justify-content:space-between;gap:14px;font-size:12.5px;color:var(--muted);margin-top:-4px}#wishcount{white-space:nowrap;font-variant-numeric:tabular-nums}
+.linkbtn{all:unset;cursor:pointer;color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:3px;padding:6px 0}.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#wishnote{margin:0 0 14px;line-height:1.5}
 /* Version application : e-mail, notifications, abonnement, installation */
 input[type=email]{font:inherit;font-size:15px;font-weight:500;padding:10px 14px;border:1px solid var(--hair);background:var(--card);color:var(--ink);border-radius:var(--r-m);width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
 @media (max-width:760px),(pointer:coarse){input[type=email]{font-size:16px}}
@@ -908,13 +916,13 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
   <!-- CREATION -->
   <section class="view" data-view="creation" hidden>
     <div class="vhead reveal">
-      <div><div class="eyebrow">Étape 1</div><h2>Création du plan</h2><p class="sub">Réglez le terrain et le programme, puis générez le plan.</p></div>
+      <div><div class="eyebrow">Étape 1</div><h2>Création du plan</h2><p class="sub">Décrivez votre terrain et votre maison, puis générez le plan.</p></div>
       <div class="vside"><a class="quota" id="quota" href="#tarifs">—</a><div class="acctchip" data-acct hidden></div></div>
     </div>
     <div class="cgrid">
-      <form class="soft form reveal d1" id="f" autocomplete="off">
+      <form class="soft form reveal d1" id="f" autocomplete="off" novalidate>
         <fieldset>
-          <legend>Terrain</legend>
+          <legend>Votre terrain</legend>
           <label class="f" for="area">Superficie du terrain<span class="unit" data-u="m²"><input id="area" type="number" inputmode="numeric" enterkeyhint="done" min="100" max="10000" step="10" value="500" style="padding-right:44px"></span></label>
           <div class="flabel">Forme du terrain
             <div class="chips" role="radiogroup" aria-label="Forme du terrain">
@@ -924,14 +932,14 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
               <label class="chip"><input type="radio" name="shape" value="long"><span>Allongé</span></label>
               <label class="chip"><input type="radio" name="shape" value="tlong"><span>Très allongé</span></label>
             </div>
-            <label class="f" for="fw" style="margin-top:4px">Largeur de façade connue (facultatif)<span class="unit" data-u="m"><input id="fw" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="200" step="0.5" placeholder="ex. 15"></span></label>
+            <label class="f" for="fw" style="margin-top:4px">Largeur du terrain côté rue, si vous la connaissez<span class="unit" data-u="m"><input id="fw" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="200" step="0.5" placeholder="ex. 15"></span></label>
             <span id="dimhint" style="font-weight:400"></span>
           </div>
-          <label class="f" for="city">Situation géographique
+          <label class="f" for="city">Ville du terrain
             <select id="city"></select>
             <span id="cityhint" style="font-weight:400"></span>
           </label>
-          <div class="flabel">La rue est côté
+          <div class="flabel">De quel côté se trouve la rue ?
             <div class="compass" role="radiogroup" aria-label="Orientation de la rue">
               <label class="chip"><input type="radio" name="or" value="NO"><span>NO</span></label>
               <label class="chip"><input type="radio" name="or" value="N"><span>Nord</span></label>
@@ -946,44 +954,55 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
           </div>
         </fieldset>
         <fieldset>
-          <legend>Programme</legend>
+          <legend>Votre maison</legend>
           <div class="chips" role="radiogroup" aria-label="Type">
-            <label class="chip"><input type="radio" name="type" value="pp" checked><span>Plain-pied</span></label>
-            <label class="chip"><input type="radio" name="type" value="r1"><span>Duplex R+1</span></label>
-            <label class="chip"><input type="radio" name="type" value="r2"><span>Maison R+2</span></label>
-            <label class="chip"><input type="radio" name="type" value="rn"><span>R+3 et plus</span></label>
+            <label class="chip"><input type="radio" name="type" value="pp" checked><span>Sans étage</span></label>
+            <label class="chip"><input type="radio" name="type" value="r1"><span>1 étage</span></label>
+            <label class="chip"><input type="radio" name="type" value="r2"><span>2 étages</span></label>
+            <label class="chip"><input type="radio" name="type" value="rn"><span>Immeuble</span></label>
           </div>
-          <details class="adv"><summary>Style d'architecture</summary>
+          <details class="adv"><summary>Style de la maison</summary>
           <div class="chips" role="radiogroup" aria-label="Style">
             <label class="chip"><input type="radio" name="style" value="tropical" checked><span>Tropical moderne</span></label>
-            <label class="chip"><input type="radio" name="style" value="bio"><span>Bioclimatique à patio</span></label>
-            <label class="chip"><input type="radio" name="style" value="mini"><span>Minimaliste</span></label>
-            <label class="chip"><input type="radio" name="style" value="contemporain"><span>Contemporain</span></label>
-            <label class="chip"><input type="radio" name="style" value="afro"><span>Afro-contemporain</span></label>
-            <label class="chip"><input type="radio" name="style" value="colonial"><span>Colonial à véranda</span></label>
+            <label class="chip"><input type="radio" name="style" value="bio"><span>Avec cour intérieure</span></label>
+            <label class="chip"><input type="radio" name="style" value="mini"><span>Simple et épuré</span></label>
+            <label class="chip"><input type="radio" name="style" value="contemporain"><span>Moderne</span></label>
+            <label class="chip"><input type="radio" name="style" value="afro"><span>Africain moderne</span></label>
+            <label class="chip"><input type="radio" name="style" value="colonial"><span>Colonial avec véranda</span></label>
             <label class="chip"><input type="radio" name="style" value="mediterraneen"><span>Méditerranéen</span></label>
           </div></details>
           <div class="row">
             <label class="f" for="ch" data-house>Chambres<select id="ch"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
-            <label class="f" for="std">Standing<select id="std"><option value="eco">Économique</option><option value="std" selected>Standard</option><option value="haut">Haut standing</option><option value="luxe">Luxe</option></select></label>
+            <label class="f" for="std">Niveau de finition<select id="std"><option value="eco">Économique</option><option value="std" selected>Standard</option><option value="haut">Haut de gamme</option><option value="luxe">Luxe</option></select></label>
           </div>
+          <label class="f" for="pm"><span>Coût de construction au m² <span class="req">obligatoire</span></span><span class="unit" data-u="F"><input id="pm" type="number" inputmode="numeric" enterkeyhint="done" min="50000" max="2000000" step="5000" placeholder="ex. 210000" required aria-describedby="pmhint pmerr"></span>
+            <span id="pmhint" style="font-weight:400"></span>
+          </label>
+          <p class="note warn" id="pmerr" role="alert" hidden></p>
+        </fieldset>
+        <fieldset>
+          <legend>Vos souhaits</legend>
+          <label class="f" for="wish"><span>Décrivez votre projet en quelques mots <span class="opt">facultatif</span></span>
+            <textarea id="wish" rows="3" maxlength="300" placeholder="Exemple : 4 chambres, un bureau, un garage pour 2 voitures, une cuisine ouverte et une piscine." aria-describedby="wishhelp"></textarea>
+          </label>
+          <div class="wishfoot"><span id="wishhelp">Le plan tient compte des mots qu'il reconnaît : chambres, étage, garage, bureau, piscine, cuisine ouverte, style, finition.</span><span id="wishcount" aria-live="polite">0 / 300</span></div>
         </fieldset>
         <fieldset id="towerset" hidden>
-          <legend>Options R+3 et plus</legend>
-          <label class="f" for="nf">Nombre d'étages<select id="nf"><option value="3">R+3 (4 niveaux)</option><option value="4" selected>R+4 (5 niveaux)</option><option value="5">R+5 (6 niveaux)</option><option value="6">R+6 (7 niveaux)</option><option value="7">R+7 (8 niveaux)</option><option value="8">R+8 (9 niveaux)</option><option value="9">R+9 (10 niveaux)</option><option value="10">R+10 (11 niveaux)</option></select></label>
+          <legend>Votre immeuble</legend>
+          <label class="f" for="nf">Nombre d'étages<select id="nf"><option value="3">3 étages</option><option value="4" selected>4 étages</option><option value="5">5 étages</option><option value="6">6 étages</option><option value="7">7 étages</option><option value="8">8 étages</option><option value="9">R+9 (10 niveaux)</option><option value="10">R+10 (11 niveaux)</option></select></label>
           <div class="chips" role="radiogroup" aria-label="Usage du bâtiment">
             <label class="chip"><input type="radio" name="usage" value="immeuble" checked><span>Immeuble d'appartements</span></label>
             <label class="chip"><input type="radio" name="usage" value="famille"><span>Maison familiale</span></label>
           </div>
           <div class="row" data-imm>
             <label class="f" for="apts">Appartements par étage<select id="apts"><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option></select></label>
-            <label class="f" for="aptType">Type d'appartement<select id="aptType"><option value="auto">Selon la surface</option><option value="studio">Studio</option><option value="f2">F2 (2 pièces)</option><option value="f3">F3 (3 pièces)</option><option value="f4">F4 (4 pièces)</option></select></label>
+            <label class="f" for="aptType">Taille des appartements<select id="aptType"><option value="auto">Selon la place disponible</option><option value="studio">Studio</option><option value="f2">F2 (2 pièces)</option><option value="f3">F3 (3 pièces)</option><option value="f4">F4 (4 pièces)</option></select></label>
           </div>
           <div class="flabel" data-imm>Rez-de-chaussée
             <div class="chips" role="radiogroup" aria-label="Rez-de-chaussée">
               <label class="chip"><input type="radio" name="rdc" value="apparts" checked><span>Appartements</span></label>
               <label class="chip"><input type="radio" name="rdc" value="commerces"><span>Commerces</span></label>
-              <label class="chip"><input type="radio" name="rdc" value="parking"><span>Parking sur pilotis</span></label>
+              <label class="chip"><input type="radio" name="rdc" value="parking"><span>Parking sous l'immeuble</span></label>
             </div>
           </div>
           <div class="checks">
@@ -992,7 +1011,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
             <label class="tgl"><input type="checkbox" id="x-genset">Groupe électrogène</label>
           </div>
         </fieldset>
-        <details class="adv advbox"><summary>Options avancées<small>Équipements, reculs, prix au m²</small></summary>
+        <details class="adv advbox"><summary>Plus d'options<small>Garage, piscine, distances aux limites du terrain</small></summary>
         <fieldset>
           <legend>Équipements</legend>
           <label class="f" for="garage" data-house>Garage<select id="garage"><option value="0">Sans garage</option><option value="1">1 voiture</option><option value="2">2 voitures</option></select></label>
@@ -1000,20 +1019,19 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
             <label class="tgl"><input type="checkbox" id="x-piscine">Piscine</label>
             <label class="tgl" data-house><input type="checkbox" id="x-bureau">Bureau</label>
             <label class="tgl" data-house><input type="checkbox" id="x-openK">Cuisine ouverte</label>
-            <label class="tgl" data-house><input type="checkbox" id="x-suites">SDB dans chaque chambre</label>
-            <label class="tgl" data-house><input type="checkbox" id="x-service">Chambre de service</label>
-            <label class="tgl" data-house><input type="checkbox" id="x-cellier">Cellier</label>
+            <label class="tgl" data-house><input type="checkbox" id="x-suites">Salle de bain dans chaque chambre</label>
+            <label class="tgl" data-house><input type="checkbox" id="x-service">Chambre pour le personnel</label>
+            <label class="tgl" data-house><input type="checkbox" id="x-cellier">Cellier (réserve)</label>
             <label class="tgl"><input type="checkbox" id="x-solaire">Panneaux solaires</label>
-            <label class="tgl"><input type="checkbox" id="x-citerne">Château d'eau</label>
+            <label class="tgl"><input type="checkbox" id="x-citerne">Réservoir d'eau</label>
           </div>
         </fieldset>
         <fieldset>
-          <legend>Règles &amp; prix</legend>
+          <legend>Distances aux limites du terrain</legend>
           <div class="row">
-            <label class="f" for="ra">Recul avant<span class="unit" data-u="m"><input id="ra" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="15" step="0.5" value="5"></span></label>
-            <label class="f" for="rl">Côtés / fond<span class="unit" data-u="m"><input id="rl" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="10" step="0.5" value="3"></span></label>
+            <label class="f" for="ra">Distance à la rue<span class="unit" data-u="m"><input id="ra" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="15" step="0.5" value="5"></span></label>
+            <label class="f" for="rl">Distance aux voisins<span class="unit" data-u="m"><input id="rl" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="10" step="0.5" value="3"></span></label>
           </div>
-          <label class="f" for="pm">Prix de base au m²<span class="unit" data-u="F"><input id="pm" type="number" inputmode="numeric" enterkeyhint="done" min="50000" max="2000000" step="5000" value="210000"></span></label>
         </fieldset>
         </details>
         <p class="note warn" id="dirty" hidden>Paramètres modifiés. Cliquez sur « Générer le plan » pour mettre le plan à jour.</p>
@@ -1033,6 +1051,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
       <div><div class="eyebrow">Votre plan</div><h2>Plan généré</h2><p class="sub">Le plan, la maquette 3D, le coût et les matériaux de votre projet.</p></div>
       <div class="vside"><div class="acctchip" data-acct hidden></div></div>
     </div>
+    <p class="note" id="wishnote" hidden></p>
     <div class="resacts reveal d1">
       <a class="btn ghostbtn" href="#creation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/></svg>Changer les réglages</a>
       <button type="button" class="ghost" id="editrooms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.500" y="3.500" width="17" height="17" rx="2"/><path d="M12 3.500v17M9 9l-2.500 3L9 15M15 9l2.500 3L15 15"/></svg>Modifier les pièces</button>
@@ -2513,13 +2532,13 @@ function syncTower(){const t=val("type"),imm=t==="rn"&&val("usage")==="immeuble"
 function readForm(){syncTower();const area=Math.max(100,+$("#area").value||500),shape=val("shape"),city=$("#city").value,fw=+$("#fw").value||0,dm=dimsFrom(area,shape,fw),C=CITIES[city];
   $("#dimhint").textContent=`Soit environ ${dec(dm.W,1)} m de façade × ${dec(dm.D,1)} m de profondeur`;
   $("#cityhint").textContent="Climat : "+ZONES[C.zone].nom+(C.k!==1?` · prix local ${C.k>1?"+":"−"}${Math.round(Math.abs(C.k-1)*100)} %`:"");
-  return {area,shape,city,W:dm.W,D:dm.D,ra:+$("#ra").value||0,rl:+$("#rl").value||0,zone:C.zone,or:val("or"),type:val("type"),n:+$("#ch").value,std:$("#std").value,style:val("style"),pm:+$("#pm").value||PRICE[$("#std").value],seed:cur.seed||1,fw,garage:+$("#garage").value,
+  return {area,shape,city,W:dm.W,D:dm.D,ra:+$("#ra").value||0,rl:+$("#rl").value||0,zone:C.zone,or:val("or"),type:val("type"),n:+$("#ch").value,std:$("#std").value,style:val("style"),pm:+$("#pm").value||PRICE[$("#std").value],pmU:+$("#pm").value>0,seed:cur.seed||1,fw,garage:+$("#garage").value,
   piscine:$("#x-piscine").checked,bureau:$("#x-bureau").checked,openK:$("#x-openK").checked,suites:$("#x-suites").checked,service:$("#x-service").checked,cellier:$("#x-cellier").checked,solaire:$("#x-solaire").checked,citerne:$("#x-citerne").checked,
   nf:+$("#nf").value,usage:val("usage"),apts:+$("#apts").value,aptType:$("#aptType").value,rdc:val("rdc"),lift:$("#x-lift").checked,roofTerrace:$("#x-roofT").checked,genset:$("#x-genset").checked}}
 function writeForm(p){
   if(!p.area){p.area=Math.round(p.W*p.D);const r=p.D/p.W;p.shape=r<1.12?"carre":r<1.6?"rect":"long"}
   if(!p.city||!CITIES[p.city]) p.city=Object.keys(CITIES).find(k=>CITIES[k].zone===p.zone)||"grand-bassam";
-  $("#area").value=p.area;$("#city").value=p.city;$("#ra").value=p.ra;$("#rl").value=p.rl;$("#ch").value=p.n;$("#std").value=p.std;$("#pm").value=p.pm;
+  $("#area").value=p.area;$("#city").value=p.city;$("#ra").value=p.ra;$("#rl").value=p.rl;$("#ch").value=p.n;$("#std").value=p.std;$("#pm").value=p.pmU?p.pm:"";if($("#wish")){$("#wish").value=p.wish||"";$("#wish").dispatchEvent(new Event("input"))}if(typeof pmHint==="function") pmHint();
   ["or","type","style","shape"].forEach(k=>{const el=document.querySelector(`input[name=${k}][value="${p[k]}"]`);if(el) el.checked=true});
   $("#fw").value=p.fw||"";$("#garage").value=String(p.garage||0);["piscine","bureau","openK","suites","service","cellier","solaire","citerne"].forEach(k=>$("#x-"+k).checked=!!p[k]);
   $("#nf").value=String(p.nf||4);$("#apts").value=String(p.apts||4);$("#aptType").value=p.aptType||"auto";
@@ -3203,8 +3222,72 @@ function edInit(){
   $("#editrooms").onclick=edOpen;
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&ED) edClose()});
 }
+/* ---------- Souhaits du client (texte libre) ----------
+   Lecture par mots-clés : chaque souhait reconnu règle une option du générateur ; ce qui n'est pas géré
+   est signalé tel quel au client, sans faire semblant. */
+const WISH_MAX=300;
+const wnorm=t=>String(t||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’`]/g,"'").replace(/\s+/g," ").trim();
+const WNUM={un:1,une:1,deux:2,trois:3,quatre:4,cinq:5,six:6,sept:7,huit:8};
+function parseWish(text,p){
+  const t=wnorm(text).slice(0,WISH_MAX+40),set={},ok=[],ko=[],tower=p&&p.type==="rn";
+  if(!t) return {set,ok,ko};
+  const no=w=>new RegExp("(sans|pas de|pas d'|aucun|aucune|ni) (un |une |de |d')?"+w).test(t);
+  let m;
+  if(!tower){
+    if(/\bplain[- ]?pied\b|sans etage|de plain pied|un seul niveau/.test(t)){set.type="pp";ok.push("maison sans étage")}
+    else if(/\b(deux|2) etages\b|r\+2|triplex/.test(t)){set.type="r2";ok.push("maison à 2 étages")}
+    else if(/duplex|\b(un|1) etage\b|r\+1|a etage|avec etage/.test(t)){set.type="r1";ok.push("maison à 1 étage")}
+    if((m=/(\d+|deux|trois|quatre|cinq|six|sept|huit) (grandes |petites |belles )?chambres?|(une) seule chambre/.exec(t))){const n=m[3]?1:(WNUM[m[1]]||+m[1]);if(n>=1&&n<=8){set.n=n;ok.push(n+" chambre"+(n>1?"s":""))}else ko.push("plus de 8 chambres")}
+    if(/garage|voiture|vehicule/.test(t)){if(no("garage")){set.garage=0;ok.push("sans garage")}else{const g=/(2|deux|double|plusieurs) (voitures|vehicules|garages|places)|garage double/.test(t)?2:1;set.garage=g;ok.push("garage "+(g>1?"2 voitures":"1 voiture"))}}
+    if(/bureau|teletravail|coin travail|travailler a la maison/.test(t)){if(no("bureau")){set.bureau=false;ok.push("sans bureau")}else{set.bureau=true;ok.push("bureau")}}
+    if(/cuisine (ouverte|americaine)|open space|sejour ouvert/.test(t)){set.openK=true;ok.push("cuisine ouverte")}
+    else if(/cuisine (fermee|separee|independante)/.test(t)){set.openK=false;ok.push("cuisine fermée")}
+    if(/salle de bain (dans|par|pour) chaque chambre|chaque chambre (avec|a) (sa|une) (salle|douche)|chambres? avec (salle de bain|douche)|sdb privee|\bsuites\b/.test(t)){set.suites=true;ok.push("salle de bain dans chaque chambre")}
+    else if(/suite parentale/.test(t)) ok.push("suite parentale (déjà prévue)");
+    if(/chambre (de |pour )?(le |la )?(service|bonne|domestique|gardien|personnel|nounou)|boyerie|logement (du |de )?gardien/.test(t)){set.service=true;ok.push("chambre pour le personnel")}
+    if(/cellier|reserve|garde[- ]manger|debarras/.test(t)){set.cellier=true;ok.push("cellier")}
+  }else{
+    if(/commerce|boutique|magasin/.test(t)){set.rdc="commerces";ok.push("commerces au rez-de-chaussée")}
+    else if(/parking/.test(t)){set.rdc="parking";ok.push("parking sous l'immeuble")}
+    if(/ascenseur/.test(t)){set.lift=!no("ascenseur");ok.push(set.lift?"ascenseur":"sans ascenseur")}
+    if(/groupe electrogene|generateur/.test(t)){set.genset=true;ok.push("groupe électrogène")}
+    if((m=/\b(studio|f2|f3|f4)s?\b/.exec(t))){set.aptType=m[1];ok.push("appartements "+m[1].toUpperCase())}
+  }
+  if(/piscine/.test(t)){if(no("piscine")){set.piscine=false;ok.push("sans piscine")}else{set.piscine=true;ok.push("piscine")}}
+  if(/solaire|panneaux/.test(t)){set.solaire=true;ok.push("panneaux solaires")}
+  if(/citerne|chateau d'eau|reservoir|bache a eau|forage/.test(t)){set.citerne=true;ok.push("réservoir d'eau")}
+  if(/patio|cour interieure/.test(t)){set.style="bio";ok.push("cour intérieure (patio)")}
+  else if(/veranda|colonial/.test(t)){set.style="colonial";ok.push("style colonial avec véranda")}
+  else if(/minimaliste|epure/.test(t)){set.style="mini";ok.push("style épuré")}
+  else if(/africain|afro/.test(t)){set.style="afro";ok.push("style africain moderne")}
+  else if(/mediterraneen/.test(t)){set.style="mediterraneen";ok.push("style méditerranéen")}
+  else if(/moderne|contemporain/.test(t)){set.style="contemporain";ok.push("style moderne")}
+  if(/luxe|luxueu/.test(t)){set.std="luxe";ok.push("finition luxe")}
+  else if(/haut standing|haut de gamme|standing/.test(t)){set.std="haut";ok.push("finition haut de gamme")}
+  else if(/economique|pas cher|petit budget|moins cher|budget (serre|limite|reduit)/.test(t)){set.std="eco";ok.push("finition économique")}
+  // souhaits compris mais non gérés par le générateur
+  if(/(grande?|vaste|spacieu\w+|immense) (cuisine|sejour|salon|chambre|salle)|(cuisine|sejour|salon|chambre)s? (plus )?(grande?s?|vastes?|spacieu\w+)/.test(t)) ko.push("taille d'une pièce : à régler avec « Modifier les pièces »");
+  if(/dressing|salle de (jeux?|sport|cinema|priere)|home cinema|bibliotheque|buanderie|chambre d'amis|salle a manger/.test(t)) ko.push("pièce particulière : changez la fonction d'une pièce avec « Modifier les pièces »");
+  if(/sous[- ]sol|cave|mezzanine|toit[- ]terrasse|rooftop|balcon/.test(t)&&!tower) ko.push("sous-sol, mezzanine, balcon ou toit-terrasse");
+  if(/jardin|potager|verger|arbres?/.test(t)) ko.push("aménagement du jardin");
+  if(/\bterrasse\b/.test(t)&&!/toit[- ]terrasse/.test(t)) ok.push("terrasse (déjà prévue)");
+  if(/budget|million|fcfa|\bf cfa\b/.test(t)) ko.push("budget total : réglez plutôt le coût au m² et la finition");
+  return {set,ok:[...new Set(ok)],ko:[...new Set(ko)]};
+}
+function applyWish(p){const w=String($("#wish").value||"").slice(0,WISH_MAX).trim();if(!w){delete p.wish;return p}const r=parseWish(w,p);Object.assign(p,r.set);
+  if(r.set.std&&!+$("#pm").value) p.pm=PRICE[p.std];if("type" in r.set||"n" in r.set){const dm=dimsFrom(p.area,p.shape,p.fw);p.W=dm.W;p.D=dm.D}p.wish=w;return p}
+function wishNote(){const el=$("#wishnote");if(!el) return;const w=cur&&cur.wish;if(!w){el.hidden=true;return}
+  const r=parseWish(w,cur);el.hidden=false;
+  el.innerHTML=(r.ok.length?`<b>Souhaits pris en compte :</b> ${r.ok.map(xe).join(", ")}.`:`<b>Aucun souhait reconnu dans votre texte.</b> Utilisez des mots simples : chambres, garage, bureau, piscine, étage.`)+(r.ko.length?`<br><b>Non pris en compte :</b> ${r.ko.map(xe).join(" ; ")}.`:"")}
+function pmHint(){const s=$("#std"),h=$("#pmhint");if(!h) return;h.innerHTML=`Prix courant pour une finition ${xe(s.options[s.selectedIndex].text.toLowerCase())} : <b>${fmt(PRICE[s.value])} F par m²</b>. <button type="button" class="linkbtn" id="pmuse">Utiliser ce prix</button>`;
+  $("#pmuse").onclick=()=>{$("#pm").value=PRICE[s.value];$("#pmerr").hidden=true;$("#pm").dispatchEvent(new Event("change",{bubbles:true}))}}
+function pmOk(){const v=+$("#pm").value,e=$("#pmerr");if(v>=50000&&v<=2000000){e.hidden=true;return true}
+  e.hidden=false;e.textContent=v?"Indiquez un coût entre 50 000 et 2 000 000 F par m².":"Indiquez le coût de construction au m² : il est obligatoire pour calculer le prix des travaux.";
+  $("#pm").focus({preventScroll:true});$("#pm").scrollIntoView({block:"center",behavior:"smooth"});return false}
+function wishInit(){const w=$("#wish"),c=$("#wishcount"),up=()=>{c.textContent=w.value.length+" / "+WISH_MAX};w.addEventListener("input",up);up();pmHint();$("#pm").addEventListener("input",()=>{$("#pmerr").hidden=true})}
+window.parseWish=parseWish;
 /* ---------- Création ---------- */
-function renderPlan(){
+function renderPlan(){wishNote();
   model=compute(cur);
   ["#sacts","#savebar"].forEach(q=>{const e=$(q);if(e) e.hidden=false});syncRes();
   if(!(model.planLevels||[]).some(x=>x.li===level)) level=0;
@@ -3587,14 +3670,14 @@ function route(){
 }
 
 /* ---------- Évènements ---------- */
-$("#f").addEventListener("change",e=>{if(e.target.id==="std") $("#pm").value=PRICE[$("#std").value];readForm();dirty=true;$("#dirty").hidden=false});
+$("#f").addEventListener("change",e=>{if(e.target.id==="std") pmHint();readForm();dirty=true;$("#dirty").hidden=false});
 $("#f").addEventListener("input",()=>readForm());
-$("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;if(!useQuota()) return limitReached();const s=cur.seed;cur=readForm();cur.seed=s;level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
+$("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;if(!pmOk()) return;if(!useQuota()) return limitReached();const s=cur.seed;cur=applyWish(readForm());cur.seed=s;writeForm(cur);level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
 // la page du plan : le dessin se fait une fois la page affichée (largeur réelle de l'écran)
-function showResult(){model=compute(cur);if(location.hash==="#resultat") renderPlan();else{location.hash="resultat";setTimeout(renderPlan,0)}}
+function showResult(){model=compute(cur);wishNote();if(location.hash==="#resultat") renderPlan();else{location.hash="resultat";setTimeout(renderPlan,0)}}
 const variante=()=>{if(needVerif()) return;if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;delete cur.ed;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
-$("#var").onclick=()=>{cur=readForm();variante()};
-$("#var2").onclick=variante;edInit();
+$("#var").onclick=()=>{if(!pmOk()) return;cur=applyWish(readForm());writeForm(cur);variante()};
+$("#var2").onclick=variante;edInit();wishInit();
 $("#toprop2").onclick=()=>{location.hash="propositions"};
 document.querySelectorAll("#rtabs button").forEach(b=>b.onclick=()=>setRTab(b.dataset.rt));
 $("#toprop").onclick=()=>{location.hash="propositions"};
