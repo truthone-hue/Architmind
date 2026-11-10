@@ -16,7 +16,8 @@ window.ARCHITMIND_CONFIG = {
   // Ce sont les empreintes SHA-256 des adresses e-mail (en minuscules), pour ne pas
   // publier les adresses. L'accès s'active quand l'adresse est confirmée par e-mail.
   admins: [
-    "c50349cea005a4034076c7032ef5003757100ac764227bce7db80104227cde25"
+    "c50349cea005a4034076c7032ef5003757100ac764227bce7db80104227cde25",
+    "d7c8c4615a2e44e72fd1d15ce452f0f14360444b6ee84c9b6ea3fd77d44f72dd"
   ],
 
   // Adresse du serveur de paiement (Vercel), sans barre finale.
