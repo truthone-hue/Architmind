@@ -710,6 +710,27 @@ details.advbox[open]>fieldset{margin-top:10px}
 .wishfoot{display:flex;justify-content:space-between;gap:14px;font-size:12.5px;color:var(--muted);margin-top:-4px}#wishcount{white-space:nowrap;font-variant-numeric:tabular-nums}
 .linkbtn{all:unset;cursor:pointer;color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:3px;padding:6px 0}.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #wishnote{margin:0 0 14px;line-height:1.5}
+/* Téléphone : pages allégées */
+@media (max-width:760px){
+  .vhead .sub{display:none}
+  .acctchip .nm,.acctchip [data-logout]{display:none}
+  #var,#toprop{display:none}
+  .block{margin-top:44px}
+  .exgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:2px 16px 12px;scrollbar-width:none}
+  .exgrid::-webkit-scrollbar{display:none}
+  .excard{flex:0 0 84%;scroll-snap-align:center}
+  .steps{gap:10px}
+  .step{display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:14px;row-gap:2px;padding:14px 16px;align-items:center}
+  .step::after{display:none}
+  .step .sico{width:52px;height:52px;border-radius:15px;grid-row:1/3}.step .sico svg{width:30px;height:30px}
+  .step h3{margin:0;font-size:16px}.step p{margin:0;font-size:13.5px;grid-column:2}
+  .resacts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .resacts #var2,.resacts #toprop2{min-height:40px;font-size:13.5px;background:transparent;border-color:transparent;box-shadow:none;text-decoration:underline;text-underline-offset:3px}
+  .stats{gap:6px}.stats .stat{padding:10px 12px}.stats .stat strong{font-size:17px}
+  .foot{margin-top:44px;padding-top:22px;gap:10px}
+  .fbrand .fl{display:none}.fpill{margin-top:0}.facct{margin:8px 0 0}
+  .tcard ul{gap:8px}
+}
 /* Version application : e-mail, notifications, abonnement, installation */
 input[type=email]{font:inherit;font-size:15px;font-weight:500;padding:10px 14px;border:1px solid var(--hair);background:var(--card);color:var(--ink);border-radius:var(--r-m);width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
 @media (max-width:760px),(pointer:coarse){input[type=email]{font-size:16px}}
@@ -923,12 +944,12 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
       <form class="soft form reveal d1" id="f" autocomplete="off" novalidate>
         <fieldset>
           <legend>Votre terrain</legend>
-          <label class="f" for="area">Superficie du terrain<span class="unit" data-u="m²"><input id="area" type="number" inputmode="numeric" enterkeyhint="done" min="100" max="10000" step="10" value="500" style="padding-right:44px"></span></label>
+          <label class="f" for="area">Superficie du terrain<span class="unit" data-u="m²"><input id="area" type="number" inputmode="numeric" enterkeyhint="done" min="100" max="10000" step="10" placeholder="ex. 500" style="padding-right:44px"></span></label>
           <div class="flabel">Forme du terrain
             <div class="chips" role="radiogroup" aria-label="Forme du terrain">
               <label class="chip"><input type="radio" name="shape" value="large"><span>Large</span></label>
               <label class="chip"><input type="radio" name="shape" value="carre"><span>Carré</span></label>
-              <label class="chip"><input type="radio" name="shape" value="rect" checked><span>Rectangle</span></label>
+              <label class="chip"><input type="radio" name="shape" value="rect"><span>Rectangle</span></label>
               <label class="chip"><input type="radio" name="shape" value="long"><span>Allongé</span></label>
               <label class="chip"><input type="radio" name="shape" value="tlong"><span>Très allongé</span></label>
             </div>
@@ -948,7 +969,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
               <span class="cmid" aria-hidden="true">Rue</span>
               <label class="chip"><input type="radio" name="or" value="E"><span>Est</span></label>
               <label class="chip"><input type="radio" name="or" value="SO"><span>SO</span></label>
-              <label class="chip"><input type="radio" name="or" value="S" checked><span>Sud</span></label>
+              <label class="chip"><input type="radio" name="or" value="S"><span>Sud</span></label>
               <label class="chip"><input type="radio" name="or" value="SE"><span>SE</span></label>
             </div>
           </div>
@@ -956,7 +977,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
         <fieldset>
           <legend>Votre maison</legend>
           <div class="chips" role="radiogroup" aria-label="Type">
-            <label class="chip"><input type="radio" name="type" value="pp" checked><span>Sans étage</span></label>
+            <label class="chip"><input type="radio" name="type" value="pp"><span>Sans étage</span></label>
             <label class="chip"><input type="radio" name="type" value="r1"><span>1 étage</span></label>
             <label class="chip"><input type="radio" name="type" value="r2"><span>2 étages</span></label>
             <label class="chip"><input type="radio" name="type" value="rn"><span>Immeuble</span></label>
@@ -972,8 +993,8 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
             <label class="chip"><input type="radio" name="style" value="mediterraneen"><span>Méditerranéen</span></label>
           </div></details>
           <div class="row">
-            <label class="f" for="ch" data-house>Chambres<select id="ch"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
-            <label class="f" for="std">Niveau de finition<select id="std"><option value="eco">Économique</option><option value="std" selected>Standard</option><option value="haut">Haut de gamme</option><option value="luxe">Luxe</option></select></label>
+            <label class="f" for="ch" data-house>Chambres<select id="ch"><option value="" selected disabled hidden>Choisir</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
+            <label class="f" for="std">Niveau de finition<select id="std"><option value="" selected disabled hidden>Choisir</option><option value="eco">Économique</option><option value="std">Standard</option><option value="haut">Haut de gamme</option><option value="luxe">Luxe</option></select></label>
           </div>
           <label class="f" for="pm"><span>Coût de construction au m² <span class="req">obligatoire</span></span><span class="unit" data-u="F"><input id="pm" type="number" inputmode="numeric" enterkeyhint="done" min="1" step="1000" placeholder="ex. 210000" required aria-describedby="pmhint pmerr"></span>
             <span id="pmhint" style="font-weight:400"></span>
@@ -1034,6 +1055,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
           </div>
         </fieldset>
         </details>
+        <p class="note warn" id="formerr" role="alert" hidden></p>
         <p class="note warn" id="dirty" hidden>Paramètres modifiés. Cliquez sur « Générer le plan » pour mettre le plan à jour.</p>
         <p class="note warn" id="limit" hidden></p>
         <div class="actions">
@@ -1048,7 +1070,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
   <!-- RESULTAT -->
   <section class="view" data-view="resultat" hidden>
     <div class="vhead reveal">
-      <div><div class="eyebrow">Votre plan</div><h2>Plan généré</h2><p class="sub">Le plan, la maquette 3D, le coût et les matériaux de votre projet.</p></div>
+      <div><div class="eyebrow">Résultat</div><h2>Votre plan</h2><p class="sub">Le plan, la maquette 3D, le coût et les matériaux de votre projet.</p></div>
       <div class="vside"><div class="acctchip" data-acct hidden></div></div>
     </div>
     <p class="note" id="wishnote" hidden></p>
@@ -1079,9 +1101,9 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
         <div class="notes" id="notes"></div>
         <div class="stats" style="margin-top:12px">
           <div class="stat"><small>Terrain</small><strong id="s-t">—</strong></div>
-          <div class="stat"><small>Emprise bâtie</small><strong id="s-e">—</strong></div>
-          <div class="stat"><small>Emprise au sol</small><strong id="s-c">—</strong></div>
-          <div class="stat"><small>Surface plancher</small><strong id="s-s">—</strong></div>
+          <div class="stat"><small>Maison au sol</small><strong id="s-e">—</strong></div>
+          <div class="stat"><small>Terrain occupé</small><strong id="s-c">—</strong></div>
+          <div class="stat"><small>Surface totale</small><strong id="s-s">—</strong></div>
         </div>
       </div>
     </div>
@@ -1094,7 +1116,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
         <h3>Estimation des travaux</h3>
         <p class="sub" id="cost-lead"></p>
         <div class="total"><strong id="tot">—</strong><span id="range">—</span></div>
-        <details class="adv" open><summary>Détail par lot et quantités</summary>
+        <details class="adv" open><summary>Voir le détail des travaux</summary>
         <div class="inner"><table><thead><tr><th>Lot</th><th class="n">Part</th><th class="n">Montant</th></tr></thead><tbody id="lots"></tbody></table></div>
         <div class="inner"><table><thead><tr><th>Quantités estimées</th><th class="n">Qté</th></tr></thead><tbody id="qty"></tbody></table></div></details>
       </div>
@@ -1483,7 +1505,7 @@ function compute(p){
 
 /* ---------- Bâtiments R+3 et plus : immeubles et grandes maisons ---------- */
 function lvName(i,short){return i===0?(short?"RDC":"Rez-de-chaussée"):(short?"R+"+i:"Étage R+"+i)}
-function typeLabel(p){return {pp:"Villa plain-pied",r1:"Duplex R+1",r2:"Maison R+2"}[p.type]||((p.usage==="famille"?"Maison R+":"Immeuble R+")+(p.nf||4))}
+function typeLabel(p){return {pp:"Villa sans étage",r1:"Duplex à 1 étage",r2:"Maison à 2 étages"}[p.type]||((p.usage==="famille"?"Maison R+":"Immeuble R+")+(p.nf||4))}
 const APT={
   studio:{nom:"Studio",min:18,top:[["Entrée",3,"day",1.2],["SDB",4,"wet",1.6],["Cuisine",5,"wet",1.8]],bot:[["Pièce principale",18,"day",3.2],["Balcon",4,"out",1.5]]},
   f2:{nom:"F2",min:32,top:[["Entrée",3,"day",1.2],["Cuisine",7,"wet",2.0],["SDB",4.5,"wet",1.6]],bot:[["Séjour",18,"day",3.4],["Balcon",5,"out",1.5],["Chambre",11,"night",2.8]]},
@@ -2520,19 +2542,19 @@ const sigOf=p=>{const q=Object.assign({},DEF,p);delete q.ed;return JSON.stringif
 
 function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),Math.max(2600,t.length*60))}
 function pulse(el){if(!el)return;el.classList.remove("refresh");void el.offsetWidth;el.classList.add("refresh")}
-const val=n=>document.querySelector(`input[name=${n}]:checked`).value;
+const val=n=>{const e=document.querySelector(`input[name=${n}]:checked`);return e?e.value:DEF[n]};
 const ICON={lock:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="10" width="14" height="10" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>`,
   yes:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>`,
   no:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg>`};
 
 /* ---------- formulaire ---------- */
 {const g={cote:"Côte — climat côtier humide",foret:"Centre et Ouest — zone forestière",savane:"Nord — savane",sahel:"Sahel"};
-  $("#city").innerHTML=Object.keys(g).map(z=>`<optgroup label="${g[z]}">${Object.entries(CITIES).filter(([k,c])=>c.zone===z).map(([k,c])=>`<option value="${k}">${c.nom}</option>`).join("")}</optgroup>`).join("")}
+  $("#city").innerHTML=`<option value="">Choisissez votre ville</option>`+Object.keys(g).map(z=>`<optgroup label="${g[z]}">${Object.entries(CITIES).filter(([k,c])=>c.zone===z).map(([k,c])=>`<option value="${k}">${c.nom}</option>`).join("")}</optgroup>`).join("")}
 function syncTower(){const t=val("type"),imm=t==="rn"&&val("usage")==="immeuble";$("#towerset").hidden=t!=="rn";$$("[data-imm]").forEach(e=>e.hidden=!imm);$$("[data-house]").forEach(e=>e.hidden=imm)}
-function readForm(){syncTower();const area=Math.max(100,+$("#area").value||500),shape=val("shape"),city=$("#city").value,fw=+$("#fw").value||0,dm=dimsFrom(area,shape,fw),C=CITIES[city];
-  $("#dimhint").textContent=`Soit environ ${dec(dm.W,1)} m de façade × ${dec(dm.D,1)} m de profondeur`;
-  $("#cityhint").textContent="Climat : "+ZONES[C.zone].nom+(C.k!==1?` · prix local ${C.k>1?"+":"−"}${Math.round(Math.abs(C.k-1)*100)} %`:"");
-  return {area,shape,city,W:dm.W,D:dm.D,ra:+$("#ra").value||0,rl:+$("#rl").value||0,zone:C.zone,or:val("or"),type:val("type"),n:+$("#ch").value,std:$("#std").value,style:val("style"),pm:+$("#pm").value||PRICE[$("#std").value],pmU:+$("#pm").value>0,seed:cur.seed||1,fw,garage:+$("#garage").value,
+function readForm(){syncTower();const area=Math.max(100,+$("#area").value||DEF.area),shape=val("shape"),city=$("#city").value||DEF.city,fw=+$("#fw").value||0,dm=dimsFrom(area,shape,fw),C=CITIES[city];
+  $("#dimhint").textContent=+$("#area").value>0&&document.querySelector("input[name=shape]:checked")?`Soit environ ${dec(dm.W,1)} m côté rue × ${dec(dm.D,1)} m de profondeur`:"";
+  $("#cityhint").textContent=!$("#city").value?"":"Climat : "+ZONES[C.zone].nom+(C.k!==1?` · prix local ${C.k>1?"+":"−"}${Math.round(Math.abs(C.k-1)*100)} %`:"");
+  return {area,shape,city,W:dm.W,D:dm.D,ra:+$("#ra").value||0,rl:+$("#rl").value||0,zone:C.zone,or:val("or"),type:val("type"),n:+$("#ch").value||DEF.n,std:$("#std").value||DEF.std,style:val("style"),pm:+$("#pm").value||PRICE[$("#std").value||DEF.std],pmU:+$("#pm").value>0,filled:formMissing().length===0,cityU:!!$("#city").value,seed:cur.seed||1,fw,garage:+$("#garage").value,
   piscine:$("#x-piscine").checked,bureau:$("#x-bureau").checked,openK:$("#x-openK").checked,suites:$("#x-suites").checked,service:$("#x-service").checked,cellier:$("#x-cellier").checked,solaire:$("#x-solaire").checked,citerne:$("#x-citerne").checked,
   nf:+$("#nf").value,usage:val("usage"),apts:+$("#apts").value,aptType:$("#aptType").value,rdc:val("rdc"),lift:$("#x-lift").checked,roofTerrace:$("#x-roofT").checked,genset:$("#x-genset").checked}}
 function writeForm(p){
@@ -2540,6 +2562,7 @@ function writeForm(p){
   if(!p.city||!CITIES[p.city]) p.city=Object.keys(CITIES).find(k=>CITIES[k].zone===p.zone)||"grand-bassam";
   $("#area").value=p.area;$("#city").value=p.city;$("#ra").value=p.ra;$("#rl").value=p.rl;$("#ch").value=p.n;$("#std").value=p.std;$("#pm").value=p.pmU?p.pm:"";if($("#wish")){$("#wish").value=p.wish||"";$("#wish").dispatchEvent(new Event("input"))}if(typeof pmHint==="function") pmHint();
   ["or","type","style","shape"].forEach(k=>{const el=document.querySelector(`input[name=${k}][value="${p[k]}"]`);if(el) el.checked=true});
+  if(!p.filled){$("#area").value="";$("#city").value=p.cityU?p.city:"";$("#ch").value="";$("#std").value="";["or","type","shape"].forEach(k=>document.querySelectorAll(`input[name=${k}]`).forEach(e=>e.checked=false))}
   $("#fw").value=p.fw||"";$("#garage").value=String(p.garage||0);["piscine","bureau","openK","suites","service","cellier","solaire","citerne"].forEach(k=>$("#x-"+k).checked=!!p[k]);
   $("#nf").value=String(p.nf||4);$("#apts").value=String(p.apts||4);$("#aptType").value=p.aptType||"auto";
   ["usage","rdc"].forEach(k=>{const el=document.querySelector(`input[name=${k}][value="${p[k]||DEF[k]}"]`);if(el) el.checked=true});
@@ -2779,7 +2802,7 @@ function drawAuth(){
     </form>`;
   $$("#authbox [data-mode]").forEach(b=>b.onclick=()=>{if(AUTH.mode===b.dataset.mode) return;AUTH.mode=b.dataset.mode;drawAuth();const f=$(AUTH.mode==="signup"?"#a-name":"#a-email");if(f) f.focus()});
   const last=stGet(LK);if(!signup&&last) $("#a-email").value=last;
-  if(signup){$("#a-city").value=CITIES[cur.city]?cur.city:Object.keys(CITIES)[0];
+  if(signup){$("#a-city").value=cur.cityU&&CITIES[cur.city]?cur.city:"";
     const meter=box.querySelector(".pwmeter i"),hint=$("#a-pwhint"),L=["Trop court","Faible","Moyen","Bon","Excellent"];
     $("#a-pw").oninput=e=>{const v=e.target.value,sc=pwScore(v);meter.style.width=(v?Math.max(8,sc*25):0)+"%";meter.dataset.s=sc;hint.textContent=v?"Sécurité : "+L[sc]+(v.length<8?" · 8 caractères au minimum":""):"8 caractères au minimum. Mélangez lettres, chiffres et symboles."}}
   box.querySelector(".pweye").onclick=e=>{const b=e.currentTarget,on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(on));b.setAttribute("aria-label",on?"Masquer le mot de passe":"Afficher le mot de passe");
@@ -2820,7 +2843,7 @@ async function doSignup(){
     cred.user.sendEmailVerification().catch(()=>{});
     stSet(LK,email);AUTH.first=true;
     await (AUTH.sessionP||startSession(cred.user));
-    if(CITIES[ville]&&!renderedOnce){cur=Object.assign({},cur,{city:ville});writeForm(cur)}
+    if(CITIES[ville]&&!renderedOnce){cur=Object.assign({},cur,{city:ville,cityU:true});writeForm(cur)}
     const t=AUTH.pending||"creation";AUTH.pending=null;welcome(nom,t);
   }catch(x){authBusy(false);authErr(fbErr(x))}
 }
@@ -3098,7 +3121,7 @@ function renderExamples(){const g=document.getElementById("exgrid");if(!g) retur
       <span class="exmeta">${m.n} chambres · ${fmt(m.builtArea)} m² · terrain de ${fmt(m.plot)} m² à ${m.lieu}</span>
       <div class="excost"><span>Coût estimé des travaux</span><b>${F(m.total)}</b></div>
       <button type="button" class="ghost" data-ex="${i}">Partir de cet exemple</button></div></article>`}).join("");
-  g.querySelectorAll("[data-ex]").forEach(b=>b.onclick=()=>{cur=Object.assign({},DEF,EXAMPLES[+b.dataset.ex]);writeForm(cur);location.hash="creation"});
+  g.querySelectorAll("[data-ex]").forEach(b=>b.onclick=()=>{cur=Object.assign({},DEF,EXAMPLES[+b.dataset.ex],{filled:true});writeForm(cur);location.hash="creation"});
 }
 /* ---------- Page résultat : onglets ---------- */
 function syncRes(){
@@ -3279,8 +3302,22 @@ function applyWish(p){const w=String($("#wish").value||"").slice(0,WISH_MAX).tri
 function wishNote(){const el=$("#wishnote");if(!el) return;const w=cur&&cur.wish;if(!w){el.hidden=true;return}
   const r=parseWish(w,cur);el.hidden=false;
   el.innerHTML=(r.ok.length?`<b>Souhaits pris en compte :</b> ${r.ok.map(xe).join(", ")}.`:`<b>Aucun souhait reconnu dans votre texte.</b> Utilisez des mots simples : chambres, garage, bureau, piscine, étage.`)+(r.ko.length?`<br><b>Non pris en compte :</b> ${r.ko.map(xe).join(" ; ")}.`:"")}
-function pmHint(){const s=$("#std"),h=$("#pmhint");if(!h) return;h.innerHTML=`Prix courant pour une finition ${xe(s.options[s.selectedIndex].text.toLowerCase())} : <b>${fmt(PRICE[s.value])} F par m²</b>. <button type="button" class="linkbtn" id="pmuse">Utiliser ce prix</button>`;
-  $("#pmuse").onclick=()=>{$("#pm").value=PRICE[s.value];$("#pmerr").hidden=true;$("#pm").dispatchEvent(new Event("change",{bubbles:true}))}}
+function pmHint(){const s=$("#std"),h=$("#pmhint");if(!h) return;const k=s.value||"std",o=[...s.options].find(x=>x.value===k);h.innerHTML=`Prix courant pour une finition ${xe(o.text.toLowerCase())} : <b>${fmt(PRICE[k])} F par m²</b>. <button type="button" class="linkbtn" id="pmuse">Utiliser ce prix</button>`;
+  $("#pmuse").onclick=()=>{$("#pm").value=PRICE[s.value||"std"];$("#pmerr").hidden=true;$("#pm").dispatchEvent(new Event("change",{bubbles:true}))}}
+function formMissing(){
+  const q=n=>document.querySelector(`input[name=${n}]:checked`),t=q("type"),imm=t&&t.value==="rn"&&val("usage")==="immeuble",L=[];
+  if(!(+$("#area").value>0)) L.push(["la superficie du terrain",$("#area")]);
+  if(!q("shape")) L.push(["la forme du terrain",document.querySelector("input[name=shape]")]);
+  if(!$("#city").value) L.push(["la ville",$("#city")]);
+  if(!q("or")) L.push(["le côté de la rue",document.querySelector("input[name=or]")]);
+  if(!t) L.push(["le nombre d'étages",document.querySelector("input[name=type]")]);
+  if(!imm&&!$("#ch").value) L.push(["le nombre de chambres",$("#ch")]);
+  if(!$("#std").value) L.push(["le niveau de finition",$("#std")]);
+  return L}
+function formOk(){const L=formMissing(),e=$("#formerr");
+  if(L.length){e.hidden=false;e.textContent="Il manque : "+L.map(x=>x[0]).join(", ")+".";const el=L[0][1];el.scrollIntoView({block:"center",behavior:"smooth"});try{el.focus({preventScroll:true})}catch(x){}return false}
+  if(+$("#area").value<100){e.hidden=false;e.textContent="La superficie du terrain doit faire au moins 100 m².";$("#area").focus();return false}
+  e.hidden=true;return pmOk()}
 function pmOk(){const v=+$("#pm").value,e=$("#pmerr");if(v>0&&isFinite(v)){e.hidden=true;return true}
   e.hidden=false;e.textContent=$("#pm").value?"Indiquez un coût au m² supérieur à zéro.":"Indiquez le coût de construction au m² : il est obligatoire pour calculer le prix des travaux.";
   $("#pm").focus({preventScroll:true});$("#pm").scrollIntoView({block:"center",behavior:"smooth"});return false}
@@ -3306,14 +3343,14 @@ function renderPlan(){wishNote();
   if(SHOW3D) area3D($("#c3d"),model);
 }
 function lotsHtml(m){const base=m.total-(m.extraSum||0);const ex=(m.extras||[]).map(e=>`<tr><td>${e.n}</td><td class="n">forfait</td><td class="n">${F(e.c)}</td></tr>`).join("");return lotsBase(m,base)+ex}
-function lotsBase(m,T){const lots=[["Fondations & terrassement",.13],["Gros œuvre",.29],["Charpente & couverture",.12],["Menuiseries",.11],["Plomberie & sanitaires",.09],["Électricité",.07],["Carrelage & revêtements",.11],["Peinture & finitions",.08]];
+function lotsBase(m,T){const lots=[["Fondations et terrassement",.13],["Murs et structure",.29],["Toiture",.12],["Portes et fenêtres",.11],["Plomberie et sanitaires",.09],["Électricité",.07],["Carrelage et sols",.11],["Peinture et finitions",.08]];
   return lots.map(([l,p])=>`<tr><td>${l}<div class="bar" style="width:${p*300}%"></div></td><td class="n">${Math.round(p*100)} %</td><td class="n">${F(T*p)}</td></tr>`).join("")}
 function costs(m){
   $("#tot").textContent=F(m.total);$("#range").textContent="de "+F(m.total*0.85)+" à "+F(m.total*1.15);
-  $("#cost-lead").textContent=`${fmt(m.builtArea)} m² × ${fmt(m.pm)} FCFA/m², ajusté pour ${m.lieu} (${m.Z.nom})${m.type!=="pp"?" et les dalles d'étage":""}${m.extras.length?", plus les équipements":""}. Hors terrain, honoraires et VRD.`;
+  $("#cost-lead").textContent=`${fmt(m.builtArea)} m² à ${fmt(m.pm)} FCFA le m², ajusté pour ${m.lieu}${m.type!=="pp"?" et pour les étages":""}${m.extras.length?", plus les équipements":""}. Le terrain, l'architecte et les raccordements (eau, électricité) ne sont pas compris.`;
   $("#lots").innerHTML=lotsHtml(m);
   const S=m.builtArea,wall=2*(m.bw+m.bd)*m.levels.length*1.9*3,terre=m.zone==="savane"||m.zone==="sahel";
-  const q=[["Ciment (sacs de 50 kg)",S*(terre?1.1:1.5)*m.kType],[terre?"Briques de terre compressée":"Agglos creux 15/20",wall*(terre?24:12.5)],["Acier HA (kg)",S*(m.type==="rn"?40+2*m.nf:m.type==="r2"?38:m.type==="r1"?32:22)],["Sable (m³)",S*0.35],["Gravier (m³)",S*0.22*m.kType],["Couverture (m²)",m.foot*1.25]];
+  const q=[["Ciment (sacs de 50 kg)",S*(terre?1.1:1.5)*m.kType],[terre?"Briques de terre compressée":"Parpaings creux (15 et 20 cm)",wall*(terre?24:12.5)],["Fer à béton (kg)",S*(m.type==="rn"?40+2*m.nf:m.type==="r2"?38:m.type==="r1"?32:22)],["Sable (m³)",S*0.35],["Gravier (m³)",S*0.22*m.kType],["Toiture (m²)",m.foot*1.25]];
   $("#qty").innerHTML=q.map(([l,v])=>`<tr><td>${l}</td><td class="n">${fmt(v)}</td></tr>`).join("");
   $("#mat-lead").textContent="Choisis pour la "+m.Z.nom+".";
   $("#mats").innerHTML=m.Z.mats.map(([k,b,p])=>`<div class="mat"><div class="k">${k}</div><b>${b}</b><p>${p}</p></div>`).join("");
@@ -3438,7 +3475,7 @@ function openProp(i,silent){
      </div>
      <div class="soft" style="margin-top:20px"><h3>Comment elle se présentera</h3><div class="story">${st.map(([k,v])=>`<div><b>${k}</b><p>${v}</p></div>`).join("")}</div></div>
    </div>`;
-  $("#p-edit").onclick=()=>{cur=Object.assign({},o.p);writeForm(cur);level=0;renderedOnce=true;SHOW3D=false;RTAB="plan";model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)};
+  $("#p-edit").onclick=()=>{cur=Object.assign({},o.p,{filled:true});writeForm(cur);level=0;renderedOnce=true;SHOW3D=false;RTAB="plan";model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)};
   $("#p-save").onclick=()=>savePlan(o.d.name,o.p,m);
   plevel=0;drawInto($("#psheet"),m,0);levelTabs($("#ptabs"),m,0,l=>{plevel=l;drawInto($("#psheet"),m,l);pulse($("#psheet"))});
   area3D($("#p3d"),m);
@@ -3486,7 +3523,7 @@ async function renderMine(){
     <div class="info">${fmt(p.area||p.W*p.D)} m² · ${p.city&&CITIES[p.city]?CITIES[p.city].nom:ZONES[p.zone].nom} · ${p.type==="rn"&&p.usage!=="famille"?(p.apts||4)+" appts/étage":p.n+" ch."} · ${typeLabel(p)}<br>${fmt(it.area||m.builtArea)} m² bâtis · ${F(it.total||m.total)}<br>${it.createdAt?new Date(it.createdAt).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}):""}</div>
     <div class="actions"><button type="button" data-open="${i}">Ouvrir</button><button type="button" class="ghost" data-del="${i}">Supprimer</button></div></article>`}).join("")}</div>`;
   $$(".mcard h3").forEach((h,i)=>h.textContent=items[i].name);
-  $$("[data-open]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.open];cur=JSON.parse(it.params);writeForm(cur);$("#pname").value=it.name;level=0;
+  $$("[data-open]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.open];cur=JSON.parse(it.params);cur.filled=true;writeForm(cur);$("#pname").value=it.name;level=0;
     if(it.opts3d){try{opts3d=JSON.parse(it.opts3d)}catch(e){}}
     renderedOnce=true;SHOW3D=false;RTAB="plan";model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)});
   $$("[data-del]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.del];if(b.dataset.armed){deletePlan(it.id)}else{b.dataset.armed="1";b.textContent="Confirmer";b.className="danger";setTimeout(()=>{if(b.isConnected&&b.dataset.armed){delete b.dataset.armed;b.textContent="Supprimer";b.className="ghost"}},4000)}});
@@ -3495,9 +3532,10 @@ async function renderMine(){
 /* ---------- Tarifs ---------- */
 const RANK={basique:0,moyen:1,max:2};
 function renderTarifs(){
-  const feats=[["Plans techniques cotés et meublés",k=>true],["Estimation des travaux et matériaux",k=>true],["Trois propositions par terrain",k=>true],["Mes plans : projets enregistrés",k=>true],
-    [k=>OFFERS[k].quota===Infinity?"Plans illimités":`${OFFERS[k].quota} plans par jour`,k=>true],["Maquette 3D : vue extérieure",k=>OFFERS[k].d3],["Maquette 3D : visite intérieure meublée",k=>OFFERS[k].d3],["Modification des pièces et des cloisons",k=>OFFERS[k].ed],["Téléchargement des plans : PDF, PNG, SVG",k=>OFFERS[k].dl],
-    ["Outils 3D : façade, toiture, couleurs, sols",k=>OFFERS[k].tools],["Simulation de l'heure et de la lumière",k=>OFFERS[k].tools]];
+  const base=["Plans avec mesures et meubles","Coût des travaux et matériaux","3 propositions par terrain","Enregistrement de vos projets"];
+  const feats={basique:base.concat([`${OFFERS.basique.quota} plans par jour`]),
+    moyen:["Tout ce que contient Basique",`${OFFERS.moyen.quota} plans par jour`,"Maison en 3D, dehors et dedans","Modification des pièces et des cloisons","Téléchargement des plans et du dossier PDF"],
+    max:["Tout ce que contient Moyen","Plans illimités","Couleurs, façade et toit au choix en 3D","Lumière du jour et de la nuit en 3D"]};
   const a=AUTH.ok?AUTH.abo:null,active=!!(a&&a.expMs>Date.now());
   $("#tgrid").innerHTML=Object.entries(OFFERS).map(([k,of],i)=>{
     const mine=AUTH.ok&&k===acct.offer,paid=mine&&active&&a.offre===k,lower=active&&RANK[k]<RANK[a.offre];
@@ -3506,13 +3544,13 @@ function renderTarifs(){
     ${k==="moyen"?`<span class="pop">Le plus choisi</span>`:""}
     <div><h3>${of.nom}</h3><p class="sub">${of.desc}</p></div>
     <div class="pr">${of.prix?`${fmt(of.prix)} FCFA <small>/ mois</small>`:`Gratuit <small>sans abonnement</small>`}</div>${paid?`<p class="tvalid">Active jusqu'au ${dateFr(a.expMs)}</p>`:""}
-    <ul>${feats.map(([l,ok])=>{const has=ok(k),lab=typeof l==="function"?l(k):l;return `<li class="${has?"":"no"}">${has?ICON.yes:ICON.no}${lab}</li>`}).join("")}</ul>
+    <ul>${(feats[k]||[]).map(l=>`<li>${ICON.yes}${l}</li>`).join("")}</ul>
     <button type="button" data-offer="${k}" ${AUTH.ok&&(AUTH.admin||(mine&&!paid)||lower)?"disabled":""}>${label}</button></div>`}).join("");
   $$("[data-offer]").forEach(b=>b.onclick=()=>{const k=b.dataset.offer;
     if(!OFFERS[k].prix){if(!AUTH.ok){AUTH.pending="creation";AUTH.mode="signup";location.hash="connexion"}return}
     payer(k,b)});
   const pn=$("#paynote");if(pn) pn.textContent=CFG.paiementUrl
-    ?"L'offre Basique est gratuite. Moyen et Max se paient de façon sécurisée avec Paystack : Orange Money, MTN MoMo, Moov Money ou carte bancaire Visa et Mastercard, y compris prépayée. L'abonnement dure un mois et ne se renouvelle jamais sans votre accord : vous êtes prévenu sur le site et par e-mail avant l'échéance, puis vous renouvelez en un clic."
+    ?"Paiement sécurisé par Orange Money, MTN MoMo, Moov Money ou carte bancaire. L'abonnement dure un mois et ne se renouvelle jamais sans votre accord."
     :"L'offre Basique est gratuite. Le paiement en ligne des offres Moyen et Max ouvre très bientôt : Mobile Money (Orange Money, MTN MoMo, Moov Money) et carte bancaire Visa ou Mastercard, y compris prépayée. Vous serez prévenu sur le site et par e-mail de chaque paiement et avant chaque échéance.";
 }
 
@@ -3526,19 +3564,19 @@ function faqData(){
       ["J'ai oublié mon mot de passe, que faire ?","Sur la page de connexion, touchez « Mot de passe oublié ? » et indiquez l'adresse e-mail de votre compte : vous recevrez un lien pour choisir un nouveau mot de passe. Vos plans restent dans votre compte."],
       ["Puis-je installer Architmind sur mon téléphone ou mon ordinateur ?","Oui. Sur Android et sur ordinateur (Chrome ou Edge), touchez « Installer l'application » en bas de la page d'accueil, ou l'icône d'installation dans la barre d'adresse. Sur iPhone et iPad, ouvrez le site dans Safari, touchez le bouton Partager, puis « Sur l'écran d'accueil »."],
       ["Puis-je l'utiliser sans connexion internet ?","Oui, après une première connexion avec internet sur l'appareil : création de plans, propositions, maquette 3D et projets déjà enregistrés fonctionnent hors ligne. Les projets enregistrés hors ligne sont envoyés à votre compte dès le retour de la connexion. L'inscription, le paiement et le changement de mot de passe demandent internet."],
-      ["Comment créer mon premier plan ?","Connectez-vous, puis ouvrez l'onglet Création. Indiquez la superficie et la forme du terrain, la ville et le côté de la rue, puis le programme : type de maison, style, nombre de chambres et standing. Cliquez sur « Générer le plan » : le plan coté, le coût des travaux et les matériaux conseillés s'affichent aussitôt."],
+      ["Comment créer mon premier plan ?","Connectez-vous, puis ouvrez l'onglet Création. Indiquez la superficie et la forme du terrain, la ville et le côté de la rue, puis votre maison : nombre d'étages, chambres, niveau de finition et coût au m². Cliquez sur « Générer le plan » : le plan coté, le coût des travaux et les matériaux conseillés s'affichent aussitôt."],
       ["Dois-je connaître les dimensions exactes du terrain ?","Non. La superficie en m² et la forme du terrain suffisent : l'outil en déduit la largeur de façade et la profondeur. Si vous connaissez la largeur de façade, saisissez-la dans le champ prévu pour un résultat plus juste."],
       ["Pourquoi indiquer le côté de la rue ?","L'entrée est placée côté rue, la flèche du nord est orientée sur le plan et le soleil de la maquette 3D suit la bonne trajectoire. L'outil signale aussi les façades exposées au soleil bas, à protéger par des brise-soleil."],
-      ["À quoi servent les reculs ?","Ce sont les distances à laisser libres entre le bâtiment et les limites du terrain : à l'avant, sur les côtés et au fond. Réglez-les selon les règles d'urbanisme de votre commune ; le bâtiment s'adapte à la surface constructible restante."]]},
+      ["À quoi servent les distances aux limites ?","Ce sont les distances à laisser libres entre le bâtiment et les limites du terrain : à l'avant, sur les côtés et au fond. Réglez-les selon les règles d'urbanisme de votre commune ; le bâtiment s'adapte à la surface constructible restante."]]},
     {g:"Plans",items:[
       ["Comment obtenir une autre disposition des pièces ?","Cliquez sur « Autre variante » : l'outil réorganise les pièces avec les mêmes réglages. Vous pouvez aussi ouvrir l'onglet Propositions pour comparer trois maisons différentes sur le même terrain."],
       ["Comment voir les étages ?","Les onglets au-dessus du plan permettent de passer d'un niveau à l'autre. Pour un immeuble, les étages identiques sont regroupés dans « Étage courant », avec le rez-de-chaussée et le toit-terrasse à part."],
-      ["Que proposent les options R+3 et plus ?","Choisissez « R+3 et plus », puis le nombre d'étages, jusqu'à R+10. En immeuble d'appartements, réglez le nombre et le type d'appartements par étage, et l'usage du rez-de-chaussée : appartements, commerces ou parking sur pilotis. En maison familiale, les chambres occupent les premiers étages et les niveaux supérieurs accueillent les espaces de détente."],
+      ["Que propose l'option Immeuble ?","Choisissez « Immeuble », puis le nombre d'étages, jusqu'à R+10. En immeuble d'appartements, réglez le nombre et le type d'appartements par étage, et l'usage du rez-de-chaussée : appartements, commerces ou parking sur pilotis. En maison familiale, les chambres occupent les premiers étages et les niveaux supérieurs accueillent les espaces de détente."],
       ["Comment voir le plan en plein écran ?","Touchez le plan ou le bouton « Plein écran ». Pincez ou touchez deux fois pour zoomer, glissez pour vous déplacer ; la touche Échap, le bouton de fermeture ou le bouton retour du téléphone ramènent à la page."],
       ["Les plans peuvent-ils servir pour le permis de construire ?","Non. Ce sont des esquisses de principe, pour démarrer une étude et discuter avec un client. Les plans définitifs doivent être établis par un architecte, avec une étude de sol et une étude de structure."]]},
     {g:"Coûts et matériaux",items:[
       ["Comment le coût des travaux est-il calculé ?","Surface de plancher × prix de base au m², ajusté selon la zone climatique, la ville, la hauteur du bâtiment et le style. Les équipements (piscine, ascenseur, panneaux solaires…) sont ajoutés en forfaits. Le résultat est une fourchette de plus ou moins 15 %, hors terrain, honoraires et VRD."],
-      ["Puis-je utiliser mes propres prix ?","Oui. Modifiez le champ « Prix de base au m² » dans Création. Changer de standing remet une valeur par défaut, que vous pouvez de nouveau modifier."],
+      ["Puis-je utiliser mes propres prix ?","Oui. Indiquez votre prix dans le champ « Coût de construction au m² » de Création. Changer de finition remet une valeur par défaut, que vous pouvez de nouveau modifier."],
       ["Comment les matériaux sont-ils choisis ?","Selon la zone climatique de la ville choisie : côtière humide, forestière, savane ou sahélienne. Par exemple, aluminium et enduit hydrofuge sur la côte, briques de terre compressée et double toiture ventilée dans le Nord."]]},
     {g:"Maquette 3D",items:[
       ["Comment voir la maison en 3D ?",`La maquette est incluse dans les offres ${o.moyen.nom} et ${o.max.nom}. Sous le plan ou dans une proposition, choisissez la vue extérieure ou la vue intérieure. Glissez pour tourner, utilisez la molette ou deux doigts pour zoomer, et choisissez une pièce pour la visiter.`],
@@ -3558,16 +3596,15 @@ const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
 const qaHtml=([q,a],open)=>`<details class="qa"${open?" open":""}><summary>${q}</summary><div class="ans"><p>${a}</p></div></details>`;
 function renderFaq(){
   const data=faqData();
-  $("#faqnav").innerHTML=`<button type="button" data-g="-1" aria-pressed="true">Toutes les questions</button>`+data.map((G,i)=>`<button type="button" data-g="${i}" aria-pressed="false">${G.g}</button>`).join("");
-  $("#faqlist").innerHTML=data.map((G,i)=>`<section class="qgroup" id="qg-${i}" data-g="${i}"><h3>${G.g}<small>${G.items.length}</small></h3>${G.items.map((it,k)=>qaHtml(it,i===0&&k===0)).join("")}</section>`).join("")+`<div class="faqempty" id="faqempty" hidden><p id="faqemptytxt"></p><button type="button" class="ghost" id="faqclear">Effacer la recherche</button></div>`;
+  $("#faqnav").innerHTML=data.map((G,i)=>`<button type="button" data-g="${i}" aria-pressed="${i===0}">${G.g}</button>`).join("")+`<button type="button" data-g="-1" aria-pressed="false">Tout voir</button>`;let FG=0;
+  $("#faqlist").innerHTML=data.map((G,i)=>`<section class="qgroup" id="qg-${i}" data-g="${i}"><h3>${G.g}<small>${G.items.length}</small></h3>${G.items.map((it,k)=>qaHtml(it,false)).join("")}</section>`).join("")+`<div class="faqempty" id="faqempty" hidden><p id="faqemptytxt"></p><button type="button" class="ghost" id="faqclear">Effacer la recherche</button></div>`;
   const filter=()=>{const t=norm($("#faqq").value.trim());let shown=0;
-    $$("#faqlist .qgroup").forEach(sec=>{let n=0;sec.querySelectorAll("details.qa").forEach(d=>{const ok=!t||norm(d.textContent).includes(t);d.hidden=!ok;if(ok){n++;if(t) d.open=true}});sec.hidden=n===0;shown+=n});
+    $$("#faqlist .qgroup").forEach(sec=>{let n=0;sec.querySelectorAll("details.qa").forEach(d=>{const ok=!t||norm(d.textContent).includes(t);d.hidden=!ok;if(ok){n++;if(t) d.open=true}});sec.hidden=n===0||(!t&&FG>=0&&+sec.dataset.g!==FG);shown+=n});
     $("#faqempty").hidden=shown>0;$("#faqemptytxt").textContent=`Aucune question ne correspond à « ${$("#faqq").value.trim()} ». Essayez un autre mot, par exemple « 3D », « coût » ou « étages ».`};
   $("#faqq").oninput=filter;
   $("#faqclear").onclick=()=>{$("#faqq").value="";filter();$("#faqq").focus()};
-  $$("#faqnav button").forEach(b=>b.onclick=()=>{$$("#faqnav button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));const g=+b.dataset.g;
-    if(g<0) window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
-    else{const sec=$("#qg-"+g);if(sec.hidden){$("#faqq").value="";filter()}sec.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})}});
+  $$("#faqnav button").forEach(b=>b.onclick=()=>{$$("#faqnav button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));FG=+b.dataset.g;$("#faqq").value="";filter()});
+  filter();
   if($("#faqq").value) filter();
 }
 
@@ -3660,7 +3697,7 @@ function route(){
   $(`[data-view="${v}"]`).querySelectorAll(".reveal").forEach(el=>{el.classList.remove("reveal");void el.offsetWidth;el.classList.add("reveal")});
   if(v==="creation"){if(!renderedOnce){renderedOnce=true;cur=readForm()}}
   if(v==="resultat"&&model){const sh=$("#sheet");if(sh._m!==model||!sh._w) drawInto(sh,model,level);if(SHOW3D) area3D($("#c3d"),model)}
-  if(v==="propositions") buildProps();
+  if(v==="propositions"){if(!cur.filled){toast("Décrivez d'abord votre terrain et votre maison.");location.hash="creation";return}buildProps()}
   if(v==="mes-plans") renderMine();
   if(v==="tarifs") renderTarifs();
   if(v==="faq") renderFaq();
@@ -3670,13 +3707,13 @@ function route(){
 }
 
 /* ---------- Évènements ---------- */
-$("#f").addEventListener("change",e=>{if(e.target.id==="std") pmHint();readForm();dirty=true;$("#dirty").hidden=false});
+$("#f").addEventListener("change",e=>{if(e.target.id==="std") pmHint();if(!$("#formerr").hidden&&!formMissing().length) $("#formerr").hidden=true;readForm();dirty=true;$("#dirty").hidden=false});
 $("#f").addEventListener("input",()=>readForm());
-$("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;if(!pmOk()) return;if(!useQuota()) return limitReached();const s=cur.seed;cur=applyWish(readForm());cur.seed=s;writeForm(cur);level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
+$("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;if(!formOk()) return;if(!useQuota()) return limitReached();const s=cur.seed;cur=applyWish(readForm());cur.seed=s;writeForm(cur);level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
 // la page du plan : le dessin se fait une fois la page affichée (largeur réelle de l'écran)
 function showResult(){model=compute(cur);wishNote();if(location.hash==="#resultat") renderPlan();else{location.hash="resultat";setTimeout(renderPlan,0)}}
 const variante=()=>{if(needVerif()) return;if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;delete cur.ed;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
-$("#var").onclick=()=>{if(!pmOk()) return;cur=applyWish(readForm());writeForm(cur);variante()};
+$("#var").onclick=()=>{if(!formOk()) return;cur=applyWish(readForm());writeForm(cur);variante()};
 $("#var2").onclick=variante;edInit();wishInit();
 $("#toprop2").onclick=()=>{location.hash="propositions"};
 document.querySelectorAll("#rtabs button").forEach(b=>b.onclick=()=>setRTab(b.dataset.rt));
