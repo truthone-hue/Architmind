@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rKnDVadAukd4iZ1CrzB0x1xdKzqLFgs70yzuddrwzL8=' 'sha256-gTOmYPjUOSn1ZCTejVosJJ3U/9fyjIkPBMH/C4t+UNo=' 'sha256-rxlpAkhtTdkf1AzcOWVcL9nDy7CT+2as80ghalGk+YY=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rKnDVadAukd4iZ1CrzB0x1xdKzqLFgs70yzuddrwzL8=' 'sha256-gTOmYPjUOSn1ZCTejVosJJ3U/9fyjIkPBMH/C4t+UNo=' 'sha256-WhKHY+HTmBSaQlnu5rNfiegUpdbs0b7aCjJJhd0Nrco=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -741,6 +741,7 @@ details.advbox[open]>fieldset{margin-top:10px}
 @keyframes skmove{0%{background-position:100% 50%}100%{background-position:0 50%}}
 @media (prefers-reduced-motion:reduce){.sk{animation:none}}
 .mmore{display:flex;justify-content:center;margin-top:18px}.mmore:empty{display:none}
+.exbtn svg{width:16px;height:16px}
 /* Version application : e-mail, notifications, abonnement, installation */
 input[type=email]{font:inherit;font-size:15px;font-weight:500;padding:10px 14px;border:1px solid var(--hair);background:var(--card);color:var(--ink);border-radius:var(--r-m);width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
 @media (max-width:760px),(pointer:coarse){input[type=email]{font-size:16px}}
@@ -1103,7 +1104,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
       <div class="sheetcard reveal d2">
         <div class="sheettop">
           <h3 id="ptitle">Plan</h3>
-          <div class="sacts" id="sacts" hidden><button type="button" class="ghost zopen" data-zoom="#sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Plein écran</button><details class="dlmenu" data-dl="creation"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Télécharger</span></summary></details></div>
+          <div class="sacts" id="sacts" hidden><button type="button" class="ghost zopen" data-zoom="#sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Plein écran</button><details class="dlmenu" data-dl="creation"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Télécharger</span></summary></details><button type="button" class="ghost exbtn" data-export="creation" title="Exporter le plan vers un logiciel d'architecture (fichier DXF)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>Exporter</button></div>
           <div class="tabs" id="tabs" hidden><button type="button" data-l="0" aria-pressed="true">Rez-de-chaussée</button><button type="button" data-l="1" aria-pressed="false">Étage</button></div>
         </div>
         <div class="sheet" id="sheet"><div class="emptyplan"><span class="epic" aria-hidden="true"></span><b>Votre plan apparaîtra ici</b><p>Réglez le terrain et le programme, puis cliquez sur « Générer le plan ».</p></div></div>
@@ -3028,7 +3029,7 @@ function fillDl(d){
   if(!O().dl){pop.innerHTML=`<div class="up"><b>Téléchargement des plans</b><span>Inclus dans les offres ${OFFERS.moyen.nom} et ${OFFERS.max.nom} : PDF à imprimer, image PNG et fichier SVG, enregistrés sur votre appareil.</span><a class="btn" href="#tarifs">Voir les offres</a></div>`;
     pop.querySelector("a").onclick=()=>closeDl();return}
   const S=dlSource(d.dataset.dl),nl=S?levelsOf(S.m).length:1;
-  pop.innerHTML=(d.dataset.dl==="creation"?[["dossier","Dossier de présentation","PDF · page de garde, plans, coût et matériaux"]]:[]).concat([["pdf","PDF à imprimer",`Format A3${nl>1?` · ${nl} niveaux, un par page`:""}`],["png","Image PNG","Haute définition · niveau affiché"],["svg","Fichier SVG","Vectoriel, pour logiciel de dessin · niveau affiché"],["dxf","Fichier DXF","Pour AutoCAD, ArchiCAD, Revit, SketchUp… · tous les niveaux, modifiable"]])
+  pop.innerHTML=(d.dataset.dl==="creation"?[["dossier","Dossier de présentation","PDF · page de garde, plans, coût et matériaux"]]:[]).concat([["pdf","PDF à imprimer",`Format A3${nl>1?` · ${nl} niveaux, un par page`:""}`],["png","Image PNG","Haute définition · niveau affiché"],["svg","Fichier SVG","Vectoriel, pour logiciel de dessin · niveau affiché"]])
     .map(([f,t,sub])=>`<button type="button" role="menuitem" data-fmt="${f}">${t}<small>${sub}</small></button>`).join("");
   pop.querySelectorAll("[data-fmt]").forEach(b=>b.onclick=()=>{closeDl();exportPlan(b.dataset.fmt,d)});
 }
@@ -3064,6 +3065,18 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&DLCUR){const sm=DLC
 window.addEventListener("scroll",()=>{if(DLCUR&&innerWidth>560) closeDl()},{passive:true});
 window.addEventListener("resize",()=>{if(DLCUR) closeDl()});
 function syncDl(){$$(".dlmenu").forEach(d=>d.classList.toggle("locked",!O().dl))}
+// Bouton « Exporter » : le plan part en DXF, le format que lisent les logiciels d'architecture
+async function exportDxf(src,btn){
+  if(!O().dl){toast(`L'export vers un logiciel d'architecture est inclus dans les offres ${OFFERS.moyen.nom} et ${OFFERS.max.nom}.`);return}
+  const S=dlSource(src);if(!S) return;
+  const dl=await getDL();if(!dl){toast("L'export n'est pas disponible dans cette fenêtre.");return}
+  btn.disabled=true;
+  try{const r=await dl.save({filename:"architmind-"+slug(S.name)+".dxf",data:new Blob([planDxf(S.m,S.name)],{type:"application/dxf"})});
+    if(r&&r.status==="saved") toast("Plan exporté en DXF. Ouvrez-le dans AutoCAD, ArchiCAD, Revit ou SketchUp pour le modifier.")}
+  catch(e){if(!(e&&e.code==="declined")) toast("L'export a échoué. Réessayez.")}
+  finally{btn.disabled=false}
+}
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-export]");if(b) exportDxf(b.dataset.export,b)});
 
 
 function levelTabs(el,m,cur0,on){const PL=m.planLevels||m.levels.map((L,i)=>({li:i,label:lvName(i),short:lvName(i,true)}));el.hidden=PL.length<2;const many=PL.length>3;
@@ -3549,7 +3562,7 @@ function openProp(i,silent){
      </div>
      <div class="dgrid" style="margin-top:20px">
        <div class="soft" style="padding:12px;display:flex;flex-direction:column;gap:10px">
-         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:4px 6px"><h3>Plan technique</h3><div class="tabs" id="ptabs" hidden></div><div class="sacts"><button type="button" class="ghost zopen" data-zoom="#psheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Plein écran</button><details class="dlmenu" data-dl="prop"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Télécharger</span></summary></details></div></div>
+         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:4px 6px"><h3>Plan technique</h3><div class="tabs" id="ptabs" hidden></div><div class="sacts"><button type="button" class="ghost zopen" data-zoom="#psheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Plein écran</button><details class="dlmenu" data-dl="prop"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Télécharger</span></summary></details><button type="button" class="ghost exbtn" data-export="prop" title="Exporter le plan vers un logiciel d'architecture (fichier DXF)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>Exporter</button></div></div>
          <div class="sheet" id="psheet" style="margin:0">${drawTech(m,0)}</div>
        </div>
        <div class="soft"><h3>Coût des travaux</h3><div class="total"><strong>${F(m.total)}</strong><span>de ${F(m.total*.85)} à ${F(m.total*1.15)} · hors terrain et honoraires</span></div><div class="inner"><table><tbody>${lotsHtml(m)}</tbody></table></div></div>
@@ -3690,7 +3703,7 @@ function faqData(){
       ["Comment contacter Architmind ?","Écrivez à <a href=\"mailto:Architmind.ci@gmail.com\">Architmind.ci@gmail.com</a> : nous répondons sous 2 jours ouvrés. Les <a href=\"conditions.html\">conditions d'utilisation</a>, la <a href=\"confidentialite.html\">politique de confidentialité</a> et les <a href=\"mentions-legales.html\">mentions légales</a> sont accessibles en bas de chaque page."],
       ["Mon abonnement se renouvelle-t-il tout seul ?","Non : aucun prélèvement n'est fait sans votre accord. L'abonnement Moyen ou Max dure un mois ; à l'échéance, votre compte repasse simplement à l'offre Basique gratuite, sans perdre vos plans. Avant l'échéance, vous êtes prévenu sur le site, par la cloche de notifications et un bandeau, et par e-mail ; le bouton « Renouveler » relance le paiement en un clic. Chaque paiement est confirmé par une notification et un e-mail."],
       ["Où sont enregistrés mes projets ?","Dans votre compte, visibles dans l'onglet Mes plans. Vous les retrouvez à chaque connexion, sur tous vos appareils, et ils restent consultables sans internet sur les appareils où vous les avez déjà ouverts."],
-      ["Comment télécharger un plan ?",`Avec les offres ${o.moyen.nom} et ${o.max.nom}, le bouton « Télécharger » au-dessus du plan propose plusieurs formats : un dossier de présentation en PDF, un PDF à imprimer (format A3, un niveau par page), une image PNG, un fichier SVG et un fichier DXF. Le DXF s'ouvre dans les logiciels d'architecture (AutoCAD, ArchiCAD, Revit, SketchUp, LibreCAD) pour y modifier le plan : murs, cloisons, portes et fenêtres y sont rangés par calques, à l'échelle, en mètres. Le fichier s'enregistre sur votre appareil, ordinateur ou téléphone, et vous pouvez l'envoyer à un client.`]]}];
+      ["Comment télécharger un plan ?",`Avec les offres ${o.moyen.nom} et ${o.max.nom}, le bouton « Télécharger » au-dessus du plan propose plusieurs formats : un dossier de présentation en PDF, un PDF à imprimer (format A3, un niveau par page), une image PNG, et un fichier SVG. Le bouton « Exporter », juste à côté, enregistre le plan au format DXF, qui s'ouvre dans les logiciels d'architecture (AutoCAD, ArchiCAD, Revit, SketchUp, LibreCAD) pour y modifier le plan : murs, cloisons, portes et fenêtres y sont rangés par calques, à l'échelle, en mètres. Le fichier s'enregistre sur votre appareil, ordinateur ou téléphone, et vous pouvez l'envoyer à un client.`]]}];
 }
 const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
 const qaHtml=([q,a],open)=>`<details class="qa"${open?" open":""}><summary>${q}</summary><div class="ans"><p>${a}</p></div></details>`;
