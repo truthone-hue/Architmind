@@ -996,6 +996,9 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
             <label class="f" for="ch" data-house>Chambres<select id="ch"><option value="" selected disabled hidden>Choisir</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
             <label class="f" for="std">Niveau de finition<select id="std"><option value="" selected disabled hidden>Choisir</option><option value="eco">Économique</option><option value="std">Standard</option><option value="haut">Haut de gamme</option><option value="luxe">Luxe</option></select></label>
           </div>
+          <label class="f" for="cov">Part du terrain occupée par la maison<span class="unit" data-u="%"><input id="cov" type="number" inputmode="numeric" enterkeyhint="done" min="10" max="90" step="5" value="50" aria-describedby="covhint"></span>
+            <span id="covhint" style="font-weight:400"></span>
+          </label>
           <label class="f" for="pm"><span>Coût de construction au m² <span class="req">obligatoire</span></span><span class="unit" data-u="F"><input id="pm" type="number" inputmode="numeric" enterkeyhint="done" min="1" step="1000" placeholder="ex. 210000" required aria-describedby="pmhint pmerr"></span>
             <span id="pmhint" style="font-weight:400"></span>
           </label>
@@ -1419,13 +1422,15 @@ function compute(p){
   let need=type==="pp"?sum(P.day)+sum(P.night):type==="r1"?Math.max(sum(P.day)+23,sum(P.night)+27):Math.max(sum(P.day)+23,sum(P.night)/2+29,sum(P.night)/2+33);
   need*=1.12;
   if(P.patio){P.patio.a=Math.max(9,need*0.12);need+=P.patio.a}
-  let foot=Math.min(need,bwMax*bdMax,plot*0.6);
+  const cov=Math.max(0,Math.min(90,+p.cov||0));
+  let foot=cov?Math.min(plot*cov/100,bwMax*bdMax):Math.min(need,bwMax*bdMax,plot*0.6);
   let bw=Math.min(bwMax,Math.max(6,Math.sqrt(foot*1.5)));
   if(or==="E"||or==="O") bw=Math.min(bwMax,Math.max(6,Math.sqrt(foot/1.4)));
   let bd=Math.min(bdMax,foot/bw);
   if(bd<6&&bdMax>=6){bd=Math.min(bdMax,6);bw=Math.min(bwMax,foot/bd)}
   bw=Math.round(bw*10)/10; bd=Math.round(bd*10)/10; foot=bw*bd;
   const scale=foot/need;
+  if(cov&&foot/plot*100<cov-5) notes.push({w:1,t:`Vous demandez une maison sur ${cov} % du terrain, mais les distances à la rue et aux voisins ne laissent que ${Math.round(foot/plot*100)} %. Réduisez ces distances dans « Plus d'options » pour une maison plus grande.`});
   if(scale<0.85) notes.push({w:1,t:`Le programme demande environ ${fmt(need)} m² au sol, le terrain n'en permet que ${fmt(foot)} m² avec ces reculs. Les pièces ont été réduites de ${Math.round((1-scale)*100)} %.`+(type==="pp"?" Un duplex R+1 serait plus confortable.":" Réduisez le nombre de chambres ou le standing.")});
   if(W<12) notes.push({w:1,t:"Terrain étroit : la mitoyenneté sur un côté (recul 0) libérerait de la largeur, si l'urbanisme local l'autorise."});
   const bx=rl+(bwMax-bw)/2,by=D-ra-bd,mirror=r()>0.5;
@@ -1576,10 +1581,10 @@ function computeTower(p){
     let flip=false;units.forEach(u=>{if(u.length>1){if(flip) u.reverse();flip=!flip}});
     const nightFloors=Math.min(nf,Math.max(1,Math.ceil(n/3)));
     const need=Math.max(sum(P.day),sum(nightRaw)/nightFloors)*1.2+cw*5+12;
-    const foot0=Math.min(Math.max(need,90),bwMax*bdMax,plot*0.6);
+    const cov=Math.max(0,Math.min(90,+p.cov||0)),foot0=cov?Math.min(plot*cov/100,bwMax*bdMax):Math.min(Math.max(need,90),bwMax*bdMax,plot*0.6);
     bw=Math.min(bwMax,Math.max(9,Math.sqrt(foot0*1.3)));bd=Math.min(bdMax,Math.max(10,foot0/bw));
   }else{
-    const foot0=Math.min(bwMax*bdMax,plot*0.6);bw=bwMax;bd=Math.min(bdMax,foot0/bw);
+    const cov=Math.max(0,Math.min(90,+p.cov||0)),foot0=Math.min(bwMax*bdMax,plot*(cov?cov/100:0.6));bw=bwMax;bd=Math.min(bdMax,foot0/bw);
     if(bd<10&&bdMax>=10){bd=10;bw=Math.min(bwMax,foot0/bd)}
   }
   bw=Math.round(bw*10)/10;bd=Math.round(bd*10)/10;
@@ -2553,14 +2558,15 @@ const ICON={lock:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 function syncTower(){const t=val("type"),imm=t==="rn"&&val("usage")==="immeuble";$("#towerset").hidden=t!=="rn";$$("[data-imm]").forEach(e=>e.hidden=!imm);$$("[data-house]").forEach(e=>e.hidden=imm)}
 function readForm(){syncTower();const area=Math.max(100,+$("#area").value||DEF.area),shape=val("shape"),city=$("#city").value||DEF.city,fw=+$("#fw").value||0,dm=dimsFrom(area,shape,fw),C=CITIES[city];
   $("#dimhint").textContent=+$("#area").value>0&&document.querySelector("input[name=shape]:checked")?`Soit environ ${dec(dm.W,1)} m côté rue × ${dec(dm.D,1)} m de profondeur`:"";
+  $("#covhint").textContent=+$("#area").value>0?`Soit une maison d'environ ${fmt(area*covVal()/100)} m² au sol sur votre terrain de ${fmt(area)} m².`:"Par défaut, la maison occupe la moitié du terrain.";
   $("#cityhint").textContent=!$("#city").value?"":"Climat : "+ZONES[C.zone].nom+(C.k!==1?` · prix local ${C.k>1?"+":"−"}${Math.round(Math.abs(C.k-1)*100)} %`:"");
-  return {area,shape,city,W:dm.W,D:dm.D,ra:+$("#ra").value||0,rl:+$("#rl").value||0,zone:C.zone,or:val("or"),type:val("type"),n:+$("#ch").value||DEF.n,std:$("#std").value||DEF.std,style:val("style"),pm:+$("#pm").value||PRICE[$("#std").value||DEF.std],pmU:+$("#pm").value>0,filled:formMissing().length===0,cityU:!!$("#city").value,seed:cur.seed||1,fw,garage:+$("#garage").value,
+  return {area,shape,city,W:dm.W,D:dm.D,ra:+$("#ra").value||0,rl:+$("#rl").value||0,zone:C.zone,or:val("or"),type:val("type"),n:+$("#ch").value||DEF.n,std:$("#std").value||DEF.std,style:val("style"),pm:+$("#pm").value||PRICE[$("#std").value||DEF.std],pmU:+$("#pm").value>0,cov:covVal(),filled:formMissing().length===0,cityU:!!$("#city").value,seed:cur.seed||1,fw,garage:+$("#garage").value,
   piscine:$("#x-piscine").checked,bureau:$("#x-bureau").checked,openK:$("#x-openK").checked,suites:$("#x-suites").checked,service:$("#x-service").checked,cellier:$("#x-cellier").checked,solaire:$("#x-solaire").checked,citerne:$("#x-citerne").checked,
   nf:+$("#nf").value,usage:val("usage"),apts:+$("#apts").value,aptType:$("#aptType").value,rdc:val("rdc"),lift:$("#x-lift").checked,roofTerrace:$("#x-roofT").checked,genset:$("#x-genset").checked}}
 function writeForm(p){
   if(!p.area){p.area=Math.round(p.W*p.D);const r=p.D/p.W;p.shape=r<1.12?"carre":r<1.6?"rect":"long"}
   if(!p.city||!CITIES[p.city]) p.city=Object.keys(CITIES).find(k=>CITIES[k].zone===p.zone)||"grand-bassam";
-  $("#area").value=p.area;$("#city").value=p.city;$("#ra").value=p.ra;$("#rl").value=p.rl;$("#ch").value=p.n;$("#std").value=p.std;$("#pm").value=p.pmU?p.pm:"";if($("#wish")){$("#wish").value=p.wish||"";$("#wish").dispatchEvent(new Event("input"))}if(typeof pmHint==="function") pmHint();
+  $("#area").value=p.area;$("#city").value=p.city;$("#ra").value=p.ra;$("#rl").value=p.rl;$("#ch").value=p.n;$("#std").value=p.std;if($("#cov")) $("#cov").value=p.cov||50;$("#pm").value=p.pmU?p.pm:"";if($("#wish")){$("#wish").value=p.wish||"";$("#wish").dispatchEvent(new Event("input"))}if(typeof pmHint==="function") pmHint();
   ["or","type","style","shape"].forEach(k=>{const el=document.querySelector(`input[name=${k}][value="${p[k]}"]`);if(el) el.checked=true});
   if(!p.filled){$("#area").value="";$("#city").value=p.cityU?p.city:"";$("#ch").value="";$("#std").value="";["or","type","shape"].forEach(k=>document.querySelectorAll(`input[name=${k}]`).forEach(e=>e.checked=false))}
   $("#fw").value=p.fw||"";$("#garage").value=String(p.garage||0);["piscine","bureau","openK","suites","service","cellier","solaire","citerne"].forEach(k=>$("#x-"+k).checked=!!p[k]);
@@ -3114,7 +3120,7 @@ function dossierSvgs(S,css){
   return {cover,cost,mats};
 }
 /* ---------- Accueil : exemples de plans ---------- */
-const EXAMPLES=[{type:"pp",n:3,seed:4,area:500,W:20,D:25},{type:"r1",n:4,seed:7,area:500,W:20,D:25},{type:"r2",n:5,seed:3,area:600,W:20,D:30}];
+const EXAMPLES=[{type:"pp",n:3,seed:4,area:500,W:20,D:25,cov:50},{type:"r1",n:4,seed:7,area:500,W:20,D:25,cov:50},{type:"r2",n:5,seed:3,area:600,W:20,D:30,cov:50}];
 function renderExamples(){const g=document.getElementById("exgrid");if(!g) return;
   g.innerHTML=EXAMPLES.map((e,i)=>{let m;try{m=compute(Object.assign({},DEF,e))}catch(x){return ""}
     return `<article class="excard reveal d${i+1}"><div class="explan" aria-hidden="true">${drawTech(m,0,{thumb:true})}</div><div class="exin"><h3>${typeLabel(m.p)}</h3>
@@ -3304,6 +3310,7 @@ function wishNote(){const el=$("#wishnote");if(!el) return;const w=cur&&cur.wish
   el.innerHTML=(r.ok.length?`<b>Souhaits pris en compte :</b> ${r.ok.map(xe).join(", ")}.`:`<b>Aucun souhait reconnu dans votre texte.</b> Utilisez des mots simples : chambres, garage, bureau, piscine, étage.`)+(r.ko.length?`<br><b>Non pris en compte :</b> ${r.ko.map(xe).join(" ; ")}.`:"")}
 function pmHint(){const s=$("#std"),h=$("#pmhint");if(!h) return;const k=s.value||"std",o=[...s.options].find(x=>x.value===k);h.innerHTML=`Prix courant pour une finition ${xe(o.text.toLowerCase())} : <b>${fmt(PRICE[k])} F par m²</b>. <button type="button" class="linkbtn" id="pmuse">Utiliser ce prix</button>`;
   $("#pmuse").onclick=()=>{$("#pm").value=PRICE[s.value||"std"];$("#pmerr").hidden=true;$("#pm").dispatchEvent(new Event("change",{bubbles:true}))}}
+function covVal(){const v=Math.round(+$("#cov").value)||50;return Math.max(10,Math.min(90,v))}
 function formMissing(){
   const q=n=>document.querySelector(`input[name=${n}]:checked`),t=q("type"),imm=t&&t.value==="rn"&&val("usage")==="immeuble",L=[];
   if(!(+$("#area").value>0)) L.push(["la superficie du terrain",$("#area")]);
