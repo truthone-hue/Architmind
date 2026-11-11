@@ -1,7 +1,7 @@
 /* Architmind CI : fonctionnement hors ligne.
    À chaque mise à jour du site, augmentez le numéro de VERSION pour que
    les appareils des utilisateurs téléchargent la nouvelle version. */
-const VERSION = "architmind-v24";
+const VERSION = "architmind-v25";
 
 // Fichiers du site, mis en cache dès l'installation
 const CORE = [
@@ -27,7 +27,7 @@ const CDN = [
   "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js",
   "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
   "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js",
-  "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
 ];
 
 const CDN_HOSTS = ["cdnjs.cloudflare.com", "cdn.jsdelivr.net", "fonts.googleapis.com", "fonts.gstatic.com"];

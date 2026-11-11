@@ -2,13 +2,15 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>Politique de confidentialité · Architmind CI</title>
 <meta name="description" content="Politique de confidentialité d'Architmind CI, édité par Hunter Agency.">
 <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=Outfit:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=Outfit:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 <style>
 :root{--ground:#ECEDEA;--card:#FFFFFF;--soft:#F3F4F1;--ink:#0F1211;--muted:#646D69;--hair:rgba(15,18,17,.1);--accent:#B87A14;--link:#2C7A88;color-scheme:light dark}
 @media (prefers-color-scheme:dark){:root{--ground:#0A0C0B;--card:#141716;--soft:#1C201F;--ink:#F1F3F2;--muted:#9AA29E;--hair:rgba(255,255,255,.1);--accent:#E8B562;--link:#63B7C5}}
@@ -46,7 +48,7 @@ footer{max-width:860px;margin:0 auto;padding:22px 16px 40px;color:var(--muted);f
 <nav class="docs" aria-label="Documents légaux"><a href="conditions.html">Conditions d'utilisation</a><a href="confidentialite.html" aria-current="page">Confidentialité</a><a href="remboursement.html">Remboursement</a><a href="mentions-legales.html">Mentions légales</a></nav>
 <main><article>
 <h1>Politique de confidentialité</h1>
-<p class="maj">Dernière mise à jour : 10 novembre 2026</p>
+<p class="maj">Dernière mise à jour : 11 novembre 2026</p>
 <p class="lead">Cette politique explique quelles données Architmind CI utilise, pourquoi, avec qui elles sont partagées et comment exercer vos droits.</p>
 
 <h2>Responsable</h2>
@@ -55,12 +57,25 @@ footer{max-width:860px;margin:0 auto;padding:22px 16px 40px;color:var(--muted);f
 <h2>Données utilisées</h2>
 <ul>
 <li><b>Compte :</b> nom, adresse e-mail, profil (architecte, particulier…), ville principale. Le mot de passe est géré par Firebase Authentication : il n'est jamais visible, ni par nous ni par les autres utilisateurs.</li>
-<li><b>Projets :</b> les paramètres et le nom des plans que vous enregistrez, et les réglages de la maquette 3D.</li>
+<li><b>Projets :</b> pour chaque plan que vous enregistrez, son nom et ses réglages : superficie et forme du terrain, ville, côté de la rue, type de maison, nombre de chambres, niveau de finition, coût au m², part du terrain occupée, options, texte de la rubrique « Vos souhaits », pièces modifiées et réglages de la maquette 3D. Un plan généré mais non enregistré n'est pas conservé.</li>
 <li><b>Utilisation :</b> le nombre de plans générés dans la journée, pour appliquer la limite de votre offre.</li>
 <li><b>Abonnement :</b> l'offre choisie, ses dates, le montant, le moyen de paiement utilisé (Mobile Money ou carte) et la référence du paiement.</li>
 <li><b>Notifications :</b> les messages de paiement, de renouvellement et d'échéance.</li>
 </ul>
 <p>Vos numéros de carte et vos codes Mobile Money sont saisis uniquement sur la page de Paystack. Ils ne nous sont jamais transmis.</p>
+<p>À l'inscription, nous vérifions que la partie de votre adresse située après le « @ » (par exemple « gmail.com ») peut recevoir des e-mails. Seul ce nom de domaine est envoyé au service DNS de Google, jamais l'adresse complète. Un e-mail de confirmation vous est ensuite envoyé par Firebase.</p>
+<p>Nous ne collectons ni votre position, ni vos contacts, ni vos photos, et nous n'utilisons aucun outil de mesure d'audience.</p>
+
+<h2>Ce que les autres voient</h2>
+<p>Rien. Architmind CI n'a ni profil public, ni messagerie, ni partage entre comptes : votre nom, votre adresse e-mail, vos projets et vos paiements ne sont visibles que par vous, une fois connecté. Seule l'équipe d'Architmind CI peut y accéder, pour faire fonctionner le service ou répondre à une demande de votre part.</p>
+
+<h2>Où sont stockées vos données</h2>
+<ul>
+<li><b>Votre compte, vos projets, votre abonnement et vos notifications</b> sont enregistrés dans la base de données Firebase (Cloud Firestore), sur les serveurs de Google.</li>
+<li><b>Votre mot de passe</b> est gardé par Firebase Authentication sous une forme illisible.</li>
+<li><b>Les détails de vos paiements</b> sont conservés par Paystack ; nous n'en gardons que la référence, le montant, l'offre et la date.</li>
+<li><b>Sur votre appareil</b> : une copie de vos projets et de l'application, pour un affichage immédiat et un usage hors ligne.</li>
+</ul>
 
 <h2>Pourquoi</h2>
 <ul>
@@ -85,6 +100,13 @@ footer{max-width:860px;margin:0 auto;padding:22px 16px 40px;color:var(--muted);f
 
 <h2>Durée de conservation</h2>
 <p>Vos données sont gardées tant que votre compte existe. Si vous demandez sa suppression, elles sont effacées dans les 30 jours, sauf les informations de paiement que la loi nous oblige à conserver pour la comptabilité.</p>
+
+<h2>Supprimer vos données</h2>
+<ul>
+<li><b>Un projet :</b> ouvrez « Mes plans », puis « Supprimer » et « Confirmer ». Il est effacé de votre compte tout de suite.</li>
+<li><b>Votre compte et toutes vos données :</b> écrivez à <a href="mailto:Architmind.ci@gmail.com">Architmind.ci@gmail.com</a> depuis l'adresse e-mail du compte. Nous supprimons le compte, les projets et les notifications dans les 30 jours et nous vous le confirmons.</li>
+<li><b>Les données gardées sur votre appareil :</b> déconnectez-vous, puis effacez les données du site dans les réglages de votre navigateur, ou désinstallez l'application.</li>
+</ul>
 
 <h2>Sécurité</h2>
 <p>Les échanges sont chiffrés (HTTPS). Les règles de sécurité de la base de données empêchent un compte de lire les données d'un autre. L'abonnement et les paiements ne peuvent être modifiés que par notre serveur, après vérification auprès de Paystack.</p>

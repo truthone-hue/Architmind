@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rKnDVadAukd4iZ1CrzB0x1xdKzqLFgs70yzuddrwzL8=' 'sha256-gTOmYPjUOSn1ZCTejVosJJ3U/9fyjIkPBMH/C4t+UNo=' 'sha256-YM/pk7tEIL56+vkvzqR94DakQMqbDt0rvzreC7WnF44=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
 <meta name="description" content="Plans de maison cotés et meublés, coût des travaux en FCFA et maquette 3D, adaptés à votre ville en Côte d'Ivoire et en Afrique de l'Ouest.">
@@ -28,7 +30,9 @@
 <link rel="canonical" href="https://truthone-hue.github.io/Architmind/">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* Layout : application à vues, navigation flottante en verre dépoli à droite ; fond papier quadrillé avec halos de couleur ; cartes claires à liseré fin ; les plans restent des feuilles techniques sur papier */
 :root{
@@ -731,6 +735,12 @@ details.advbox[open]>fieldset{margin-top:10px}
   .fbrand .fl{display:none}.fpill{margin-top:0}.facct{margin:8px 0 0}
   .tcard ul{gap:8px}
 }
+/* Mes plans : blocs gris pendant le chargement */
+.sk{background:linear-gradient(90deg,color-mix(in srgb,var(--ink) 8%,transparent) 25%,color-mix(in srgb,var(--ink) 15%,transparent) 37%,color-mix(in srgb,var(--ink) 8%,transparent) 63%);background-size:400% 100%;animation:skmove 1.4s ease infinite;border-radius:8px}
+.mcard.skel .thumb.sk{border:0;border-radius:14px}.sk.skl{height:14px;margin:2px 4px}
+@keyframes skmove{0%{background-position:100% 50%}100%{background-position:0 50%}}
+@media (prefers-reduced-motion:reduce){.sk{animation:none}}
+.mmore{display:flex;justify-content:center;margin-top:18px}.mmore:empty{display:none}
 /* Version application : e-mail, notifications, abonnement, installation */
 input[type=email]{font:inherit;font-size:15px;font-weight:500;padding:10px 14px;border:1px solid var(--hair);background:var(--card);color:var(--ink);border-radius:var(--r-m);width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
 @media (max-width:760px),(pointer:coarse){input[type=email]{font-size:16px}}
@@ -788,8 +798,8 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
 <svg class="sprite" aria-hidden="true" focusable="false"><defs><linearGradient id="am-paper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FDFDFB"/><stop offset=".55" stop-color="#F1F1EE"/><stop offset="1" stop-color="#E1E1DD"/></linearGradient><symbol id="am-a" viewBox="160 116 726 750"><path d="M492.0 132.0 L687.5 593.6 L610.1 604.0 C470 623 374 698 358 772 C351 810 364 844 394 844 L396 850 L176 850 L178 844 C256 843 310.1 828 316.1 790.0 Z M476.3 288.0 L374.1 670.0 C395 637 500 588 599.9 580.0 Z"/><path d="M616.9 620.0 L694.2 609.6 L770.6 790.0 C780.0 828 822 844 868 844 L870 850 L644 850 L646 844 C682 843 699.4 815 686.7 785.0 Z"/></symbol></defs></svg>
@@ -2663,8 +2673,11 @@ document.addEventListener("visibilitychange",async()=>{if(document.visibilitySta
   if(AUTH.verified) renderAboBar()});
 /* Tant que l'adresse e-mail n'est pas confirmée par le lien reçu, la génération des plans reste fermée :
    c'est la seule preuve que la boîte existe et appartient bien à la personne. */
+// Les comptes créés avant la mise en place de la confirmation ne sont pas bloqués : ils sont seulement invités à confirmer.
+const VERIF_DEPUIS=Date.parse("2026-11-11T12:00:00Z");
+function ancienCompte(){const u=AUTH.user,c=u&&u.metadata&&Date.parse(u.metadata.creationTime||"");return !!c&&c<VERIF_DEPUIS}
 function needVerif(){
-  if(!AUTH.ok||AUTH.verified) return false;
+  if(!AUTH.ok||AUTH.verified||ancienCompte()) return false;
   toast("Confirmez d'abord votre adresse e-mail : ouvrez le lien envoyé à "+AUTH.user.email+".");
   const bar=$("#abobar");if(bar&&!bar.hidden) bar.scrollIntoView({block:"center",behavior:"smooth"});
   checkAdmin(AUTH.user,true).then(()=>{if(AUTH.verified){if(AUTH.admin){acct.offer="max";refreshOffer()}renderAboBar();toast("Adresse e-mail confirmée. Vous pouvez générer vos plans.")}}).catch(()=>{});
@@ -2742,7 +2755,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape") closeNotifs()});
 function renderAboBar(){
   const bar=$("#abobar");if(!bar) return;
   if(AUTH.ok&&!AUTH.verified){
-    bar.hidden=false;bar.innerHTML=`<span class="ab-t">${AUTH.adminEmail?"Compte administrateur : confirmez votre adresse e-mail avec le lien reçu pour activer l'accès à toutes les fonctionnalités.":"Confirmez votre adresse e-mail : ouvrez le lien que nous vous avons envoyé pour générer vos plans. Pensez à regarder dans les indésirables."}</span><button type="button" class="ghost" id="ab-send">Renvoyer le lien</button><button type="button" class="btn" id="ab-ok">J'ai confirmé</button>`;
+    bar.hidden=false;bar.innerHTML=`<span class="ab-t">${AUTH.adminEmail?"Compte administrateur : confirmez votre adresse e-mail avec le lien reçu pour activer l'accès à toutes les fonctionnalités.":(ancienCompte()?"Pour protéger votre compte, confirmez votre adresse e-mail avec le lien que nous pouvons vous envoyer.":"Confirmez votre adresse e-mail : ouvrez le lien que nous vous avons envoyé pour générer vos plans. Pensez à regarder dans les indésirables.")}</span><button type="button" class="ghost" id="ab-send">Renvoyer le lien</button><button type="button" class="btn" id="ab-ok">J'ai confirmé</button>`;
     $("#ab-send").onclick=()=>{AUTH.user.sendEmailVerification().then(()=>toast("Lien envoyé à "+AUTH.user.email),()=>toast("Envoi impossible pour le moment. Réessayez dans quelques minutes."))};
     $("#ab-ok").onclick=async()=>{await checkAdmin(AUTH.user,true);if(AUTH.admin){acct.offer="max";refreshOffer();renderAboBar();toast("Accès administrateur activé")}else if(AUTH.verified){renderAboBar();toast("Adresse e-mail confirmée. Vous pouvez générer vos plans.")}else toast("Adresse pas encore confirmée : ouvrez le lien reçu par e-mail.")};
     return}
@@ -3154,7 +3167,7 @@ function applyEd(m){
   try{
     if(e.k!==edKey(m.levels)||e.L.length!==m.levels.length) return m;
     for(let li=0;li<e.L.length;li++){if(e.L[li].length!==m.levels[li].length) return m;for(const q of e.L[li]) if(!Array.isArray(q)||q.length!==6||!(q[4]-q[2]>0.3)||!(q[5]-q[3]>0.3)) return m}
-    e.L.forEach((rs,li)=>rs.forEach((q,i)=>{const r=m.levels[li][i],a0=r.w*r.h;r.n=String(q[0]).slice(0,40);r.t=q[1];r.x=q[2];r.y=q[3];r.w=r2(q[4]-q[2]);r.h=r2(q[5]-q[3]);if(r.a&&a0>0) r.a=Math.max(1,Math.round(r.a*(r.w*r.h)/a0))}));
+    e.L.forEach((rs,li)=>rs.forEach((q,i)=>{const r=m.levels[li][i],a0=r.w*r.h;r.n=String(q[0]).replace(/[<>&"'`]/g,"").slice(0,40);r.t=q[1];r.x=q[2];r.y=q[3];r.w=r2(q[4]-q[2]);r.h=r2(q[5]-q[3]);if(r.a&&a0>0) r.a=Math.max(1,Math.round(r.a*(r.w*r.h)/a0))}));
     const nb=m.levels.reduce((s,L)=>s+L.filter(r=>r.t==="night"&&/^Ch/.test(r.n)).length,0);if(nb) m.n=nb;
     m.edited=true;
   }catch(x){}
@@ -3365,9 +3378,17 @@ function costs(m){
 
 /* ---------- Zone 3D (selon l'offre) ---------- */
 function lockHtml(title,text,small){return `<div class="lock${small?" small":""}">${small?"":ICON.lock}<div>${small?`<b>${title}</b>`:`<h3>${title}</h3>`}<p class="sub" style="margin:4px auto 0">${text}</p></div><a class="btn" href="#tarifs">Voir les offres</a></div>`}
+document.addEventListener("DOMContentLoaded",()=>{area3D.dcl=true},{once:true});
 function area3D(host,m){
   if(!host) return;
   if(!O().d3){if(viewer&&host.contains(viewer.el)) stop3D();host.innerHTML=lockHtml("Maquette 3D incluse dans l'offre Moyen","Vue extérieure de la maison sur son terrain et visite intérieure pièce par pièce, meubles compris.");return}
+  // la bibliothèque 3D se charge en arrière-plan : si elle n'est pas encore arrivée, on patiente jusqu'à la fin du chargement de la page
+  if(typeof THREE==="undefined"&&!area3D.dcl&&document.readyState!=="complete"){
+    if(viewer&&host.contains(viewer.el)) stop3D();
+    host.innerHTML=`<div class="v3d"><div class="fallback" role="status">Chargement de la maquette 3D…</div></div>`;
+    let done=false;const go=()=>{if(done) return;done=true;area3D.dcl=true;if(host.isConnected&&!host.closest("[hidden]")) area3D(host,m)};
+    document.addEventListener("DOMContentLoaded",go,{once:true});addEventListener("load",go,{once:true});
+    return}
   const sg=sigOf(m.p);
   if(!opts3d||opts3d._sig!==sg) opts3d=Object.assign(defaults3d(m),{_sig:sg});
   const st={mode:"ext",room:null,roomLi:0,spin:true,roof:true,upper:true,keep:false};
@@ -3492,15 +3513,25 @@ function openProp(i,silent){
 /* ---------- Mes plans ---------- */
 // Firestore garde une copie sur l'appareil : hors ligne, les plans s'affichent depuis cette copie
 // et les nouveaux projets sont envoyés au compte dès le retour de la connexion.
-async function loadPlans(){
-  let items=[];
-  if(AUTH.ok){const col=plansCol();
-    try{const snap=await (navigator.onLine?col.get():col.get({source:"cache"}));items=snap.docs.map(d=>Object.assign({},d.data(),{id:d.id}))}
-    catch(e){try{const snap=await col.get({source:"cache"});items=snap.docs.map(d=>Object.assign({},d.data(),{id:d.id}))}catch(x){}}
-    items=items.filter(x=>x&&x.params)}
-  items.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));store.items=items;
-  const nc=$("#navcount");if(nc) nc.textContent=items.length?items.length:"";
-  return items;
+const snapItems=s=>s.docs.map(d=>Object.assign({},d.data(),{id:d.id})).filter(x=>x&&x.params).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+function setPlans(items,uid){store.items=items;store.t=Date.now();store.uid=uid||null;const nc=$("#navcount");if(nc) nc.textContent=items.length?items.length:"";return items}
+// Lecture des projets : d'abord la copie gardée sur l'appareil (affichage immédiat), puis une seule mise à jour
+// depuis le serveur. Le résultat est réutilisé pendant une minute pour ne pas relire la base à chaque écran.
+async function loadPlans(force){
+  if(!AUTH.ok) return setPlans([]);
+  const uid=AUTH.uid;
+  if(!force&&store.items&&store.uid===uid&&Date.now()-(store.t||0)<60000) return store.items;
+  if(store.busy&&store.busyUid===uid) return store.busy;
+  const col=plansCol(),same=it=>store.items&&store.uid===uid&&it.length===store.items.length&&it.every((x,k)=>x.id===store.items[k].id);
+  const fresh=async()=>{const s=await col.get();if(AUTH.uid!==uid) return store.items||[];const it=snapItems(s),ch=!same(it);setPlans(it,uid);if(ch&&location.hash==="#mes-plans") renderMine();return it};
+  store.busyUid=uid;
+  store.busy=(async()=>{
+    let cached=null;
+    try{const c=await col.get({source:"cache"});if(c.docs.length) cached=snapItems(c)}catch(e){}
+    if(cached){setPlans(cached,uid);if(navigator.onLine) fresh().catch(()=>{});return cached}
+    try{return await fresh()}catch(e){return setPlans([],uid)}
+  })();
+  try{return await store.busy}finally{store.busy=null}
 }
 async function savePlan(name,p,m){
   if(!AUTH.ok){AUTH.pending=(location.hash||"#creation").slice(1);location.hash="connexion";return}
@@ -3512,28 +3543,37 @@ async function savePlan(name,p,m){
     // pas d'attente du serveur : l'écriture est gardée sur l'appareil puis synchronisée
     ref.set(rec).catch(e=>toast(e&&e.code==="permission-denied"?"Enregistrement refusé par la base de données.":"La synchronisation de « "+name+" » a échoué."));
     store.items=[Object.assign({id:ref.id},rec)].concat(store.items||[]);$("#navcount").textContent=store.items.length;
+    store.t=Date.now();store.uid=AUTH.uid;
     toast(navigator.onLine?"« "+name+" » enregistré dans Mes plans":"« "+name+" » enregistré sur l'appareil, envoyé au compte au retour de la connexion");
-    loadPlans();
   }catch(e){toast("L'enregistrement a échoué. Réessayez.")}
 }
 async function deletePlan(id){
-  try{plansCol().doc(id).delete().catch(()=>toast("La suppression a échoué."));toast("Projet supprimé")}catch(e){toast("La suppression a échoué.")}
+  try{plansCol().doc(id).delete().catch(()=>{toast("La suppression a échoué.");loadPlans(true).then(()=>{if(location.hash==="#mes-plans") renderMine()})});toast("Projet supprimé")}catch(e){toast("La suppression a échoué.")}
+  if(store.items){setPlans(store.items.filter(x=>x.id!==id),AUTH.uid)}
+  const ml=$("#mlist");if(ml) ml.innerHTML="";
   renderMine();
 }
 async function renderMine(){
-  $("#mlist").innerHTML=`<div class="empty"><p class="sub">Chargement de vos projets…</p></div>`;
+  const MINE_PAGE=20;
+  const mineSkeleton=()=>`<div class="mgrid" aria-busy="true" aria-label="Chargement de vos projets">${[0,1,2].map(()=>`<div class="mcard skel" aria-hidden="true"><div class="thumb sk"></div><div class="sk skl" style="width:60%"></div><div class="sk skl" style="width:88%"></div><div class="sk skl" style="width:42%"></div></div>`).join("")}</div>`;
+  const host=$("#mlist");if(!host.querySelector(".mcard:not(.skel)")) host.innerHTML=mineSkeleton();
   const items=await loadPlans();
   $("#storenote").textContent="Vos projets sont enregistrés dans votre compte et restent consultables hors ligne sur cet appareil. Aucun autre compte ne peut y accéder.";
   if(!items.length){$("#mlist").innerHTML=`<div class="empty reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg><h3>Aucun projet pour l'instant</h3><p class="sub">Créez un plan ou choisissez une proposition, puis cliquez sur « Enregistrer dans Mes plans ».</p><a class="btn" href="#creation">Créer un plan</a></div>`;return}
-  $("#mlist").innerHTML=`<div class="mgrid">${items.map((it,i)=>{let p;try{p=JSON.parse(it.params)}catch(e){return ""}const m=compute(p);
-    return `<article class="mcard reveal d${Math.min(5,i+1)}"><div class="thumb">${drawTech(m,m.isTower&&!m.fam?1:0,{thumb:true})}</div><h3 style="padding:0 4px"></h3>
+  const card=(it,i)=>{let p;try{p=JSON.parse(it.params)}catch(e){return ""}const m=compute(p);
+    return `<article class="mcard reveal d${Math.min(5,i%MINE_PAGE+1)}" data-card="${i}"><div class="thumb">${drawTech(m,m.isTower&&!m.fam?1:0,{thumb:true})}</div><h3 style="padding:0 4px"></h3>
     <div class="info">${fmt(p.area||p.W*p.D)} m² · ${p.city&&CITIES[p.city]?CITIES[p.city].nom:ZONES[p.zone].nom} · ${p.type==="rn"&&p.usage!=="famille"?(p.apts||4)+" appts/étage":p.n+" ch."} · ${typeLabel(p)}<br>${fmt(it.area||m.builtArea)} m² bâtis · ${F(it.total||m.total)}<br>${it.createdAt?new Date(it.createdAt).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}):""}</div>
-    <div class="actions"><button type="button" data-open="${i}">Ouvrir</button><button type="button" class="ghost" data-del="${i}">Supprimer</button></div></article>`}).join("")}</div>`;
-  $$(".mcard h3").forEach((h,i)=>h.textContent=items[i].name);
-  $$("[data-open]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.open];cur=JSON.parse(it.params);cur.filled=true;writeForm(cur);$("#pname").value=it.name;level=0;
+    <div class="actions"><button type="button" data-open="${i}">Ouvrir</button><button type="button" class="ghost" data-del="${i}">Supprimer</button></div></article>`};
+  host.innerHTML=`<div class="mgrid" id="mgrid"></div><div class="mmore" id="mmore"></div>`;let shown=0;
+  const more=()=>{const part=items.slice(shown,shown+MINE_PAGE);$("#mgrid").insertAdjacentHTML("beforeend",part.map((it,k)=>card(it,shown+k)).join(""));
+    part.forEach((it,k)=>{const h=$(`#mgrid [data-card="${shown+k}"] h3`);if(h) h.textContent=it.name});shown+=part.length;const left=items.length-shown;
+    $("#mmore").innerHTML=left>0?`<button type="button" class="ghost" id="mmorebtn">Voir plus (${left} autre${left>1?"s":""} projet${left>1?"s":""})</button>`:"";if(left>0) $("#mmorebtn").onclick=more;
+    $$("[data-open]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.open];cur=JSON.parse(it.params);cur.filled=true;writeForm(cur);$("#pname").value=it.name;level=0;
     if(it.opts3d){try{opts3d=JSON.parse(it.opts3d)}catch(e){}}
     renderedOnce=true;SHOW3D=false;RTAB="plan";model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)});
-  $$("[data-del]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.del];if(b.dataset.armed){deletePlan(it.id)}else{b.dataset.armed="1";b.textContent="Confirmer";b.className="danger";setTimeout(()=>{if(b.isConnected&&b.dataset.armed){delete b.dataset.armed;b.textContent="Supprimer";b.className="ghost"}},4000)}});
+    $$("[data-del]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.del];if(b.dataset.armed){deletePlan(it.id)}else{b.dataset.armed="1";b.textContent="Confirmer";b.className="danger";setTimeout(()=>{if(b.isConnected&&b.dataset.armed){delete b.dataset.armed;b.textContent="Supprimer";b.className="ghost"}},4000)}});
+  };
+  more();
 }
 
 /* ---------- Tarifs ---------- */
@@ -3608,7 +3648,7 @@ function renderFaq(){
   const filter=()=>{const t=norm($("#faqq").value.trim());let shown=0;
     $$("#faqlist .qgroup").forEach(sec=>{let n=0;sec.querySelectorAll("details.qa").forEach(d=>{const ok=!t||norm(d.textContent).includes(t);d.hidden=!ok;if(ok){n++;if(t) d.open=true}});sec.hidden=n===0||(!t&&FG>=0&&+sec.dataset.g!==FG);shown+=n});
     $("#faqempty").hidden=shown>0;$("#faqemptytxt").textContent=`Aucune question ne correspond à « ${$("#faqq").value.trim()} ». Essayez un autre mot, par exemple « 3D », « coût » ou « étages ».`};
-  $("#faqq").oninput=filter;
+  let faqT;$("#faqq").oninput=()=>{clearTimeout(faqT);faqT=setTimeout(filter,250)};
   $("#faqclear").onclick=()=>{$("#faqq").value="";filter();$("#faqq").focus()};
   $$("#faqnav button").forEach(b=>b.onclick=()=>{$$("#faqnav button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));FG=+b.dataset.g;$("#faqq").value="";filter()});
   filter();
@@ -3819,7 +3859,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape") closeSheet()});
   },900)}}
 const netState=()=>document.documentElement.classList.toggle("offline",!navigator.onLine);
 addEventListener("offline",()=>{netState();toast("Hors ligne : vos plans restent disponibles")});
-addEventListener("online",()=>{netState();toast("Connexion rétablie");if(AUTH.ok) loadPlans()});
+addEventListener("online",()=>{netState();toast("Connexion rétablie");if(AUTH.ok) loadPlans(true)});
 netState();syncInstall();
 // service worker enregistré tout de suite : le navigateur peut proposer l'installation plus vite
 if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol)) navigator.serviceWorker.register("sw.js").catch(()=>{});
