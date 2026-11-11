@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rKnDVadAukd4iZ1CrzB0x1xdKzqLFgs70yzuddrwzL8=' 'sha256-gTOmYPjUOSn1ZCTejVosJJ3U/9fyjIkPBMH/C4t+UNo=' 'sha256-YM/pk7tEIL56+vkvzqR94DakQMqbDt0rvzreC7WnF44=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rKnDVadAukd4iZ1CrzB0x1xdKzqLFgs70yzuddrwzL8=' 'sha256-gTOmYPjUOSn1ZCTejVosJJ3U/9fyjIkPBMH/C4t+UNo=' 'sha256-rxlpAkhtTdkf1AzcOWVcL9nDy7CT+2as80ghalGk+YY=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -2945,7 +2945,7 @@ async function payer(k,btn){
 
 /* ---------- Téléchargement des plans (offres Moyen et Max) ---------- */
 let DLNS;
-const MIME={pdf:"application/pdf",png:"image/png",svg:"image/svg+xml"};
+const MIME={pdf:"application/pdf",png:"image/png",svg:"image/svg+xml",dxf:"application/dxf"};
 const getDL=async()=>({save:async({filename,data})=>{
   const ext=(filename.split(".").pop()||"").toLowerCase();
   const blob=data instanceof Blob&&data.type?data:new Blob([data],{type:MIME[ext]||"application/octet-stream"});
@@ -3028,7 +3028,7 @@ function fillDl(d){
   if(!O().dl){pop.innerHTML=`<div class="up"><b>Téléchargement des plans</b><span>Inclus dans les offres ${OFFERS.moyen.nom} et ${OFFERS.max.nom} : PDF à imprimer, image PNG et fichier SVG, enregistrés sur votre appareil.</span><a class="btn" href="#tarifs">Voir les offres</a></div>`;
     pop.querySelector("a").onclick=()=>closeDl();return}
   const S=dlSource(d.dataset.dl),nl=S?levelsOf(S.m).length:1;
-  pop.innerHTML=(d.dataset.dl==="creation"?[["dossier","Dossier de présentation","PDF · page de garde, plans, coût et matériaux"]]:[]).concat([["pdf","PDF à imprimer",`Format A3${nl>1?` · ${nl} niveaux, un par page`:""}`],["png","Image PNG","Haute définition · niveau affiché"],["svg","Fichier SVG","Vectoriel, pour logiciel de dessin · niveau affiché"]])
+  pop.innerHTML=(d.dataset.dl==="creation"?[["dossier","Dossier de présentation","PDF · page de garde, plans, coût et matériaux"]]:[]).concat([["pdf","PDF à imprimer",`Format A3${nl>1?` · ${nl} niveaux, un par page`:""}`],["png","Image PNG","Haute définition · niveau affiché"],["svg","Fichier SVG","Vectoriel, pour logiciel de dessin · niveau affiché"],["dxf","Fichier DXF","Pour AutoCAD, ArchiCAD, Revit, SketchUp… · tous les niveaux, modifiable"]])
     .map(([f,t,sub])=>`<button type="button" role="menuitem" data-fmt="${f}">${t}<small>${sub}</small></button>`).join("");
   pop.querySelectorAll("[data-fmt]").forEach(b=>b.onclick=()=>{closeDl();exportPlan(b.dataset.fmt,d)});
 }
@@ -3040,6 +3040,7 @@ async function exportPlan(fmt,d){
   try{
     const base="architmind-"+slug(S.name),css=await planFonts(),T=li=>withFonts(drawTech(S.m,li),css);let filename,data;
     if(fmt==="svg"){data='<?xml version="1.0" encoding="UTF-8"?>\n'+svgSized(T(S.li),2400).svg;filename=`${base}-${slug(lvlLabel(S.m,S.li))}.svg`}
+    else if(fmt==="dxf"){data=new Blob([planDxf(S.m,S.name)],{type:"application/dxf"});filename=base+".dxf"}
     else if(fmt==="png"){data=await canvasBlob(await svgCanvas(T(S.li),3000),"image/png");filename=`${base}-${slug(lvlLabel(S.m,S.li))}.png`}
     else if(fmt==="dossier"){const D=dossierSvgs(S,css),pages=[],add=async(svg,w)=>{const c=await svgCanvas(svg,w),b=await canvasBlob(c,"image/jpeg",0.92);pages.push({jpg:new Uint8Array(await b.arrayBuffer()),w:c.width,h:c.height})};
       await add(D.cover,2380);for(const x of levelsOf(S.m)) await add(T(x.li),2600);await add(D.cost,2380);await add(D.mats,2380);data=makePdf(pages);filename=base+"-dossier.pdf"}
@@ -3343,6 +3344,58 @@ function pmOk(){const v=+$("#pm").value,e=$("#pmerr");if(v>0&&isFinite(v)){e.hid
   $("#pm").focus({preventScroll:true});$("#pm").scrollIntoView({block:"center",behavior:"smooth"});return false}
 function wishInit(){const w=$("#wish"),c=$("#wishcount"),up=()=>{c.textContent=w.value.length+" / "+WISH_MAX};w.addEventListener("input",up);up();pmHint();$("#pm").addEventListener("input",()=>{$("#pmerr").hidden=true})}
 window.parseWish=parseWish;
+/* ---------- Export DXF (AutoCAD R12, lisible par les logiciels d'architecture) ----------
+   Unités : mètres. Un calque par type d'élément ; tous les niveaux sont posés côte à côte. */
+function planDxf(m,name){
+  const A=t=>String(t==null?"":t).normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[²]/g,"2").replace(/[–—]/g,"-").replace(/[«»"]/g,"'").replace(/[^\x20-\x7E]/g,"").trim();
+  const n=v=>(Math.round(v*10000)/10000).toFixed(4),E=[],W=m.W,D=m.D,gap=Math.max(8,Math.round(W*0.4));
+  let ox=0,minX=0,minY=-4,maxX=0,maxY=D+4;
+  const X=x=>x+ox,Y=y=>D-y;
+  const line=(l,x1,y1,x2,y2)=>E.push("0","LINE","8",l,"10",n(x1),"20",n(y1),"30","0.0","11",n(x2),"21",n(y2),"31","0.0");
+  const poly=(l,pts,closed)=>{E.push("0","POLYLINE","8",l,"66","1","70",closed?"1":"0","10","0.0","20","0.0","30","0.0");pts.forEach(p=>E.push("0","VERTEX","8",l,"10",n(p[0]),"20",n(p[1]),"30","0.0"));E.push("0","SEQEND","8",l)};
+  const rect=(l,x1,y1,x2,y2)=>poly(l,[[x1,y1],[x2,y1],[x2,y2],[x1,y2]],true);
+  const text=(l,x,y,h,t,center)=>{t=A(t);if(!t) return;E.push("0","TEXT","8",l,"10",n(x),"20",n(y),"30","0.0","40",n(h),"1",t);if(center) E.push("72","1","11",n(x),"21",n(y),"31","0.0")};
+  const arc=(l,cx,cy,r,a1,a2)=>E.push("0","ARC","8",l,"10",n(cx),"20",n(cy),"30","0.0","40",n(r),"50",n(a1),"51",n(a2));
+  const deg=(dx,dy)=>{let a=Math.atan2(dy,dx)*180/Math.PI;return a<0?a+360:a};
+  // point du plan (axe du mur c, abscisse s le long du mur) -> coordonnées DXF
+  const P=(o,c,s)=>o==="v"?[X(c),Y(s)]:[X(s),Y(c)];
+  const wall=(l,w,t)=>{const ops=(w.open||[]).slice().sort((a,b)=>a.d0-b.d0);let s=w.s0;const seg=(a,b)=>{if(b-a<0.02) return;const p1=P(w.o,w.c-t/2,a),p2=P(w.o,w.c+t/2,b);rect(l,Math.min(p1[0],p2[0]),Math.min(p1[1],p2[1]),Math.max(p1[0],p2[0]),Math.max(p1[1],p2[1]))};
+    ops.forEach(o=>{seg(s,Math.max(s,o.d0));s=Math.max(s,o.d1)});seg(s,w.s1)};
+  const opening=(w,o,t,side)=>{
+    const a=P(w.o,w.c,o.d0),b=P(w.o,w.c,o.d1),wd=o.d1-o.d0;
+    if(o.k==="door"||o.k==="entry"){
+      // vantail ouvert à 90° du côté de la pièce desservie, et arc de débattement
+      const q=P(w.o,w.c+side*wd,o.d0);line("PORTES",a[0],a[1],q[0],q[1]);
+      const a1=deg(b[0]-a[0],b[1]-a[1]),a2=deg(q[0]-a[0],q[1]-a[1]),ccw=((a2-a1+360)%360)<180;arc("PORTES",a[0],a[1],wd,ccw?a1:a2,ccw?a2:a1);
+      const j1=P(w.o,w.c-t/2,o.d0),j2=P(w.o,w.c+t/2,o.d0),j3=P(w.o,w.c-t/2,o.d1),j4=P(w.o,w.c+t/2,o.d1);line("PORTES",j1[0],j1[1],j2[0],j2[1]);line("PORTES",j3[0],j3[1],j4[0],j4[1]);
+    }else{const l=o.k==="baie"?"BAIES":"FENETRES",p1=P(w.o,w.c-t/2,o.d0),p2=P(w.o,w.c+t/2,o.d1);rect(l,Math.min(p1[0],p2[0]),Math.min(p1[1],p2[1]),Math.max(p1[0],p2[0]),Math.max(p1[1],p2[1]));line(l,a[0],a[1],b[0],b[1])}
+  };
+  levelsOf(m).forEach((lv,k)=>{
+    ox=k*(W+gap);const li=lv.li,O=openings(m,li),L=O.L;maxX=Math.max(maxX,ox+W+2);
+    rect("TERRAIN",X(0),Y(D),X(W),Y(0));text("TERRAIN",X(W/2),-1.6,0.5,"RUE",true);
+    text("TITRE",X(0),D+2.2,0.6,(name||"Projet")+" - "+lvlLabel(m,li));text("TITRE",X(0),D+1.2,0.35,typeLabel(m.p)+" - "+m.lieu+" - terrain "+fmt(m.plot)+" m2 - Architmind CI");
+    // murs extérieurs, puis cloisons et murs séparatifs
+    O.ext.forEach(w=>{wall("MURS_EXTERIEURS",w,TO);(w.open||[]).forEach(o=>opening(w,o,TO,w.dir))});
+    O.pairs.forEach(w=>{if(w.kind==="open"||w.kind==="none") return;const thick=w.kind==="wall"?TI:TO;wall(w.kind==="wall"?"CLOISONS":"MURS_EXTERIEURS",w,thick);
+      (w.open||[]).forEach(o=>{const r=L[o.into!=null?o.into:w.b],mid=w.o==="v"?r.x+r.w/2:r.y+r.h/2;opening(w,o,thick,mid>=w.c?1:-1)})});
+    // pièces : contour, nom et surface
+    L.forEach(r=>{rect("PIECES",X(r.x),Y(r.y+r.h),X(r.x+r.w),Y(r.y));const h=Math.max(0.16,Math.min(0.3,r.w/Math.max(4,A(r.n).length)*1.1)),cx=X(r.x+r.w/2),cy=Y(r.y+r.h/2);
+      text("TEXTES",cx,cy+h*0.35,h,A(r.n).toUpperCase(),true);if(r.h>1.3&&r.w>1.6) text("TEXTES",cx,cy-h*1.25,h*0.7,dec(r.w,2).replace(",",".")+" x "+dec(r.h,2).replace(",",".")+" m",true)});
+    // cotes générales du bâtiment
+    const cy=Y(m.by)+1.1,cx=X(m.bx)-1.1;
+    line("COTES",X(m.bx),cy,X(m.bx+m.bw),cy);line("COTES",X(m.bx),cy-0.25,X(m.bx),cy+0.25);line("COTES",X(m.bx+m.bw),cy-0.25,X(m.bx+m.bw),cy+0.25);text("COTES",X(m.bx+m.bw/2),cy+0.2,0.3,n(m.bw).slice(0,-2)+" m",true);
+    line("COTES",cx,Y(m.by),cx,Y(m.by+m.bd));line("COTES",cx-0.25,Y(m.by),cx+0.25,Y(m.by));line("COTES",cx-0.25,Y(m.by+m.bd),cx+0.25,Y(m.by+m.bd));text("COTES",cx-0.3,Y(m.by+m.bd/2),0.3,n(m.bd).slice(0,-2)+" m",true);
+  });
+  const layers=[["TERRAIN",8],["MURS_EXTERIEURS",7],["CLOISONS",4],["PORTES",1],["FENETRES",5],["BAIES",5],["PIECES",9],["TEXTES",3],["COTES",2],["TITRE",7]];
+  const H=["0","SECTION","2","HEADER","9","$ACADVER","1","AC1009","9","$INSBASE","10","0.0","20","0.0","30","0.0","9","$EXTMIN","10",n(minX-2),"20",n(minY),"30","0.0","9","$EXTMAX","10",n(maxX),"20",n(maxY),"30","0.0","0","ENDSEC",
+    "0","SECTION","2","TABLES",
+    "0","TABLE","2","LTYPE","70","1","0","LTYPE","2","CONTINUOUS","70","64","3","Solid line","72","65","73","0","40","0.0","0","ENDTAB",
+    "0","TABLE","2","LAYER","70",String(layers.length+1),"0","LAYER","2","0","70","0","62","7","6","CONTINUOUS"];
+  layers.forEach(([l,c])=>H.push("0","LAYER","2",l,"70","0","62",String(c),"6","CONTINUOUS"));
+  H.push("0","ENDTAB","0","TABLE","2","STYLE","70","1","0","STYLE","2","STANDARD","70","0","40","0.0","41","1.0","50","0.0","71","0","42","0.2","3","txt","4","","0","ENDTAB","0","ENDSEC","0","SECTION","2","ENTITIES");
+  return H.concat(E,["0","ENDSEC","0","EOF"]).join("\r\n")+"\r\n";
+}
+window.planDxf=planDxf;
 /* ---------- Création ---------- */
 function renderPlan(){wishNote();
   model=compute(cur);
@@ -3581,7 +3634,7 @@ const RANK={basique:0,moyen:1,max:2};
 function renderTarifs(){
   const base=["Plans avec mesures et meubles","Coût des travaux et matériaux","3 propositions par terrain","Enregistrement de vos projets"];
   const feats={basique:base.concat([`${OFFERS.basique.quota} plans par jour`]),
-    moyen:["Tout ce que contient Basique",`${OFFERS.moyen.quota} plans par jour`,"Maison en 3D, dehors et dedans","Modification des pièces et des cloisons","Téléchargement des plans et du dossier PDF"],
+    moyen:["Tout ce que contient Basique",`${OFFERS.moyen.quota} plans par jour`,"Maison en 3D, dehors et dedans","Modification des pièces et des cloisons","Téléchargement : PDF, images et DXF pour logiciels d'architecture"],
     max:["Tout ce que contient Moyen","Plans illimités","Couleurs, façade et toit au choix en 3D","Lumière du jour et de la nuit en 3D"]};
   const a=AUTH.ok?AUTH.abo:null,active=!!(a&&a.expMs>Date.now());
   $("#tgrid").innerHTML=Object.entries(OFFERS).map(([k,of],i)=>{
@@ -3637,7 +3690,7 @@ function faqData(){
       ["Comment contacter Architmind ?","Écrivez à <a href=\"mailto:Architmind.ci@gmail.com\">Architmind.ci@gmail.com</a> : nous répondons sous 2 jours ouvrés. Les <a href=\"conditions.html\">conditions d'utilisation</a>, la <a href=\"confidentialite.html\">politique de confidentialité</a> et les <a href=\"mentions-legales.html\">mentions légales</a> sont accessibles en bas de chaque page."],
       ["Mon abonnement se renouvelle-t-il tout seul ?","Non : aucun prélèvement n'est fait sans votre accord. L'abonnement Moyen ou Max dure un mois ; à l'échéance, votre compte repasse simplement à l'offre Basique gratuite, sans perdre vos plans. Avant l'échéance, vous êtes prévenu sur le site, par la cloche de notifications et un bandeau, et par e-mail ; le bouton « Renouveler » relance le paiement en un clic. Chaque paiement est confirmé par une notification et un e-mail."],
       ["Où sont enregistrés mes projets ?","Dans votre compte, visibles dans l'onglet Mes plans. Vous les retrouvez à chaque connexion, sur tous vos appareils, et ils restent consultables sans internet sur les appareils où vous les avez déjà ouverts."],
-      ["Comment télécharger un plan ?",`Avec les offres ${o.moyen.nom} et ${o.max.nom}, le bouton « Télécharger » au-dessus du plan propose trois formats : un PDF à imprimer (format A3, un niveau par page), une image PNG haute définition et un fichier SVG vectoriel. Le fichier s'enregistre sur votre appareil, ordinateur ou téléphone, et vous pouvez l'envoyer à un client.`]]}];
+      ["Comment télécharger un plan ?",`Avec les offres ${o.moyen.nom} et ${o.max.nom}, le bouton « Télécharger » au-dessus du plan propose plusieurs formats : un dossier de présentation en PDF, un PDF à imprimer (format A3, un niveau par page), une image PNG, un fichier SVG et un fichier DXF. Le DXF s'ouvre dans les logiciels d'architecture (AutoCAD, ArchiCAD, Revit, SketchUp, LibreCAD) pour y modifier le plan : murs, cloisons, portes et fenêtres y sont rangés par calques, à l'échelle, en mètres. Le fichier s'enregistre sur votre appareil, ordinateur ou téléphone, et vous pouvez l'envoyer à un client.`]]}];
 }
 const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
 const qaHtml=([q,a],open)=>`<details class="qa"${open?" open":""}><summary>${q}</summary><div class="ans"><p>${a}</p></div></details>`;
