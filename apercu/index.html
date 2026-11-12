@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rKnDVadAukd4iZ1CrzB0x1xdKzqLFgs70yzuddrwzL8=' 'sha256-aEHEjgkJ6lGn750nMMvCL+1vWcCW1HbVQtm3ifrNcMs=' 'sha256-eSa69yHvclNhrnLa4XJkTqwv9wDvjr65rkyr9WO7450=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rKnDVadAukd4iZ1CrzB0x1xdKzqLFgs70yzuddrwzL8=' 'sha256-PsEA3IWWj8jjz2Xcgu3fqRAYDqKLa/Wsm8ZUw8Khee8=' 'sha256-eSa69yHvclNhrnLa4XJkTqwv9wDvjr65rkyr9WO7450=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -2542,7 +2542,8 @@ function mount3D(el,m,o,st){
     const rank=n=>/^Séjour|^Salon/.test(n)?0:/manger/i.test(n)?1:/^Cuisine/.test(n)?2:/^Hall|^Entrée/.test(n)?3:/bain|SDB|eau|WC/i.test(n)?7:/parent/i.test(n)?5:/^Ch/.test(n)?6:/Terrasse|Balcon/.test(n)?8:4;
     const stops=(st.stops||[]).map(q=>{const r=(m.levels[q.li]||[]).find(r=>r.n===q.n&&(q.u===undefined||r.u===q.u));return r&&r.w*r.h>=3?{r,li:q.li}:null}).filter(Boolean).sort((a,b)=>a.li-b.li||rank(a.r.n)-rank(b.r.n)).slice(0,12);
     const view=q=>{const r=q.r,y0=base+q.li*(H3+SL3),cx=X(r.x+r.w/2),cz=Z(r.y+r.h/2),ex=sides(r,m).map(k=>k.side);
-      let dx=0,dz=0;if(ex.includes("bottom")) dz=1;else if(ex.includes("top")) dz=-1;else if(ex.includes("right")) dx=1;else if(ex.includes("left")) dx=-1;else if(r.h>=r.w) dz=1;else dx=1;
+      let dx=0,dz=0;const long=r.h>=r.w*1.25?"z":r.w>=r.h*1.25?"x":ex.includes("bottom")||ex.includes("top")?"z":ex.includes("right")||ex.includes("left")?"x":r.h>=r.w?"z":"x";
+      if(long==="z") dz=ex.includes("top")&&!ex.includes("bottom")?-1:1;else dx=ex.includes("left")&&!ex.includes("right")?-1:1;
       const hw=Math.max(0.25,r.w/2-0.55),hh=Math.max(0.25,r.h/2-0.55);
       return {p:new THREE.Vector3(cx-dx*hw+(dz?hw*0.55:0),y0+1.55,cz-dz*hh+(dx?hh*0.55:0)),t:new THREE.Vector3(cx+dx*hw*0.5-(dz?hw*0.3:0),y0+1.1,cz+dz*hh*0.5-(dx?hh*0.3:0)),
         c:new THREE.Vector3(cx,y0+H3-0.4,cz),d:Math.max(r.w,r.h)*1.8+3}};
