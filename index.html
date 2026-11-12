@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-4ES5Ql/dK/7oIuEntsExHwsjxIp3lC635aOHc2+uScA=' 'sha256-/K0hLEQ73Atm37SBjHPFmKKZMi6rdWuNqoWvbdnhYTQ=' 'sha256-Sbg/5OQvqZCcuNUacdF6GCBOYt+PetsCtok+8FoGllo=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-oKqjYtB+6yUsrDjW5VOdHYEkbSX7kBiWZ99nL+FwPzQ=' 'sha256-cn4RUPqC2etandQ7G1Z9mmFjW2g4U35z5AxUFUHPx3A=' 'sha256-rh/q2r+RxFgSC7RpvduZ4skpQRwASOIQ82vFlgVCDIA=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -1107,6 +1107,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
             <label class="f" for="ch" data-house>Chambres<select id="ch"><option value="" selected disabled hidden>Choisir</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
             <label class="f" for="std">Niveau de finition<select id="std"><option value="" selected disabled hidden>Choisir</option><option value="eco">Économique</option><option value="std">Standard</option><option value="haut">Haut de gamme</option><option value="luxe">Luxe</option></select></label>
           </div>
+          <p class="note" id="stdhint" hidden></p>
           <label class="f" for="cov"><span>Part du terrain occupée par <span id="covword">la maison</span></span><span class="unit" data-u="%"><input id="cov" type="number" inputmode="numeric" enterkeyhint="done" min="10" max="90" step="5" value="50" aria-describedby="covhint"></span>
             <span id="covhint" style="font-weight:400"></span>
           </label>
@@ -1383,26 +1384,95 @@ const PRICE={eco:160000,std:210000,haut:300000,luxe:420000};
    murs intérieurs par type de pièce et mur d'accent des pièces de vie et des chambres, textiles.
    Ce sont les réglages de départ : l'offre Max peut ensuite changer façade, toiture, menuiseries et sols. */
 const FIN3D={
-  eco:{nom:"économique",wall:"#C89A5B",plinth:0x8E4A30,plinthN:"rouge latérite",trim:0xEADBC0,frame:"blanc",floor:"carrelage",roofColor:"#8C3B2A",tile:0xD9C6A3,
+  eco:{nom:"économique",wall:"#C89A5B",plinth:0x8E4A30,plinthN:"rouge latérite",trim:0xEADBC0,frame:"bois",floor:"carrelage",roofColor:"#8C3B2A",tile:0xD9C6A3,win:"naco",ceil:0xD9B98A,ceilN:"en contreplaqué verni",
     in:{day:0xE9D2A6,night:0xC5D9D2,wet:0xB9D6CC,circ:0xEBDDBE,accDay:0xC98A4B,accNight:0x6FA79B},inN:["crème","ocre","vert d'eau"],duvet:0xD98C5F,rug:0xB7895B,fab2:0x4F7C73},
-  std:{nom:"standard",wall:"#CDAE80",plinth:0xA9623F,plinthN:"terre cuite",trim:0xEFE6D6,frame:"anthra",floor:"carrelage",tile:0xDDD0BA,
+  std:{nom:"standard",wall:"#CDAE80",plinth:0xA9623F,plinthN:"terre cuite",trim:0xEFE6D6,frame:"anthra",floor:"carrelage",tile:0xDDD0BA,win:"coul",ceil:0xF3EFE6,ceilN:"en faux plafond blanc",
     in:{day:0xE3D6BF,night:0xDDCDBB,wet:0xC2D8D2,circ:0xE9DFCB,accDay:0x7F9A7B,accNight:0xC07F62},inN:["lin","vert sauge","terre cuite"],duvet:0x8FA7A0,rug:0xA89A86,fab2:0x5E7C74},
-  haut:{nom:"haut de gamme",wall:"#A79A86",plinth:0x5F5B55,plinthN:"pierre grise",trim:0xE6DFD3,frame:"anthra",floor:"parquet",roofColor:"#3E4246",tile:0xCFC8BC,
+  haut:{nom:"haut de gamme",wall:"#A79A86",plinth:0x5F5B55,plinthN:"pierre grise",trim:0xE6DFD3,frame:"anthra",floor:"marbre",roofColor:"#3E4246",tile:0xCFC8BC,win:"baie",ceil:0xEFEAE0,ceilN:"en staff",
     in:{day:0xE0D8CA,night:0xD5CBBD,wet:0xBCC6C1,circ:0xE4DCCF,accDay:0x3F5A4B,accNight:0x3B4C60},inN:["blanc chaud","vert profond","bleu ardoise"],duvet:0x6F8F86,rug:0x8C7B66,fab2:0x3F5E53},
-  luxe:{nom:"luxe",wall:"#806E5B",plinth:0x2B2E31,plinthN:"anthracite",trim:0xD2C4AC,frame:"bois",floor:"marbre",roofColor:"#3E4246",tile:0xE2DACB,
+  luxe:{nom:"luxe",wall:"#806E5B",plinth:0x2B2E31,plinthN:"anthracite",trim:0xD2C4AC,frame:"bois",floor:"granit",roofColor:"#3E4246",tile:0xE2DACB,win:"baie",ceil:0xB58F62,ceilN:"habillé de bois",
     in:{day:0xD6C8B0,night:0xC4B5A0,wet:0xB5B0A6,circ:0xD2C4AC,accDay:0x27332E,accNight:0x4C2F3A},inN:["ivoire","vert sombre","aubergine"],duvet:0x7A5560,rug:0x5B4A3E,fab2:0x2E4A44}};
-const WALL_NAMES={"#F4F1EA":"blanc cassé","#E9DFCF":"crème","#C89A5B":"ocre","#CDAE80":"sable","#A79A86":"greige","#806E5B":"taupe"};
+const WALL_NAMES={"#F4F1EA":"blanc cassé","#E9DFCF":"crème","#C89A5B":"ocre","#CDAE80":"sable","#A79A86":"greige","#806E5B":"taupe","#B98452":"terre"};
+/* Modèles réels suivis par la maquette des maisons, par zone climatique et niveau de finition (style par défaut).
+   D'après : la revue du logement de la Banque mondiale (logement économique ivoirien : agglos, tôle, fenêtres à lames de verre),
+   les grilles de constructeurs ivoiriens (tôle bac = économique, tuile = haut de gamme, toit-terrasse = moderne), des annonces de villas d'Abidjan,
+   la villa Lagoon (SAOTA), la voûte nubienne, les logements en blocs de terre comprimée de Bamako et de Niamey.
+   terr : toit-terrasse (dalle) ; acc : matériau du pan de façade côté séjour ; ov : débord du toit plat (m) ; ovP : débord du toit en pente (m) ; roofTop : teinte du dessus du toit plat. */
+const MODELES={
+  cote:{eco:{facade:"enduit",roof:"deux",roofMat:"tole",roofColor:"#A9AEB0"},
+    std:{facade:"enduit",roof:"plat"},
+    haut:{facade:"enduit",roof:"plat",terr:true,acc:"pierre",ov:0.8},
+    luxe:{facade:"beton",roof:"plat",terr:true,acc:"bois",ov:1.1}},
+  foret:{eco:{facade:"enduit",roof:"deux",roofMat:"tole",roofColor:"#8C3B2A",ovP:1.0},
+    std:{facade:"enduit",roof:"deux",roofMat:"tole",roofColor:"#5B3E2E",ovP:1.0},
+    haut:{facade:"enduit",roof:"deux",roofMat:"tuile",acc:"pierre",ovP:1.0},
+    luxe:{facade:"enduit",roof:"deux",roofMat:"tuile",acc:"bois",ovP:1.2}},
+  savane:{eco:{facade:"btc",roof:"mono",roofMat:"tole",roofColor:"#A9AEB0"},
+    std:{facade:"btc",roof:"mono",roofMat:"tole",roofColor:"#6A6F71",ovP:1.0},
+    haut:{facade:"btc",roof:"mono",roofMat:"tole",roofColor:"#3E4246",acc:"pierre",ovP:1.0},
+    luxe:{facade:"pierre",roof:"mono",roofMat:"tole",roofColor:"#3E4246",acc:"bois",ovP:1.2}},
+  sahel:{eco:{facade:"enduit",wall:"#B98452",roof:"plat",terr:true,roofTop:0xB89468},
+    std:{facade:"btc",roof:"plat",terr:true,roofTop:0xC2A27C},
+    haut:{facade:"btc",roof:"plat",terr:true,acc:"pierre",ov:0.8},
+    luxe:{facade:"pierre",roof:"plat",terr:true,acc:"bois",ov:1.0}}};
+// pays d'une ville, lu dans son nom ; sans mention, la Côte d'Ivoire
+const paysDe=city=>{const c=CITIES[city];return (c&&(c.nom.match(/\((.+)\)/)||[])[1])||"Côte d'Ivoire"};
+// particularités de pays : au Sénégal les maisons ont un toit-terrasse ; au Ghana la tôle d'aluminium domine et la tuile d'argile couvre les villas de promoteurs
+const PAYS_3D={"Sénégal":()=>({roof:"plat",terr:true}),
+  "Ghana":std=>std==="haut"||std==="luxe"?{roof:"deux",roofMat:"tuile"}:{roof:"deux",roofMat:"tole",roofColor:"#A9AEB0"}};
+/* Exemples réels cités dans le récit : par pays quand une source décrit des maisons de ce pays, sinon par zone climatique. */
+const REF_ZONE={
+  cote:{eco:"les logements économiques des cités d'Abidjan (murs en agglos peints, toit de tôle, fenêtres à lames de verre, 3 pièces sur 67 m² environ)",
+    std:"les villas des cités de promoteurs de Bingerville et d'Anyama (séjour, cuisine, chambres avec placard et salle de bain, terrasse d'entrée, buanderie à l'arrière)",
+    haut:"les duplex haut standing de la Riviera, à Abidjan (toutes les chambres avec salle de bain, suite parentale, chambre du personnel, grandes baies)",
+    luxe:"les grandes villas de la Riviera Golf et la villa Lagoon de l'agence SAOTA, à Abidjan (béton brut, pierre, bois, larges baies vitrées, deux cuisines)"},
+  foret:{eco:"les logements économiques ivoiriens (murs en agglos peints, toit de tôle, fenêtres à lames de verre)",
+    std:"les villas de lotissement ivoiriennes (séjour, cuisine, chambres avec placard, sous un toit de tôle bac)",
+    haut:"les villas haut de gamme ivoiriennes : pour les constructeurs du pays, la tuile est la toiture du haut de gamme, avec marbre et grandes baies",
+    luxe:"les grandes villas ivoiriennes (tuiles, pierre et bois, suites, deux cuisines, logement du personnel)"},
+  savane:{eco:"les logements économiques ivoiriens pour les pièces et, pour les murs, les maisons en terre de la région de Pô, au Burkina Faso (murs épais en latérite, petites ouvertures)",
+    std:"les villas de lotissement ivoiriennes pour les pièces et, pour les murs, les logements en blocs de terre comprimée de Bamako et de Niamey, qui gardent la fraîcheur",
+    haut:"les villas haut standing ivoiriennes pour les pièces et, pour les murs, les logements en blocs de terre comprimée de Bamako et de Niamey, avec cours et terrasses ombragées",
+    luxe:"les grandes villas de la Riviera Golf, à Abidjan, pour les pièces (suites, deux cuisines), avec la pierre et la terre de la région pour les murs"},
+  sahel:{eco:"les maisons à voûte nubienne du Sahel (murs et toit en briques de terre crue, enduit de terre, sans bois ni tôle)",
+    std:"les 280 logements sociaux de Bamako en blocs de terre comprimée et les logements Niamey 2000, au Niger",
+    haut:"les logements Niamey 2000, au Niger (deux niveaux en blocs de terre comprimée, plafonds voûtés, cours et terrasses ombragées)",
+    luxe:"les villas de Tevragh Zeina, à Nouakchott (cinq chambres avec salle de bain, plusieurs salons, deux cuisines, chambre du gardien, garages)"}};
+const REF_PAYS=(()=>{const bj="les villas de la cité de Ouèdo, près de Cotonou",gn="les logements sociaux livrés à Conakry (F3 : un salon et deux chambres ; F4 : un salon et trois chambres)",
+  sn="les villas de la cité CDC de Bambilor, près de Dakar (programme des 100 000 logements)",gh="les maisons de lotissement du Ghana, couvertes de tôle d'aluminium, la toiture la plus courante du pays",
+  gh2="les villas de promoteurs du Ghana, couvertes de tuiles d'argile",ml="les logements sociaux F3 et F4 de Bamako en blocs de terre comprimée, sous voûtes",
+  ne="les logements Niamey 2000 (blocs de terre comprimée, plafonds voûtés, cours et terrasses ombragées)",mr=REF_ZONE.sahel.luxe,
+  tg="les villas basses de 2, 3 et 4 pièces de la cité Mokpokpo, à Adidogomé (Lomé)",td="les logements sociaux de la cité de la Patte d'Oie, à N'Djamena, et les briques de terre stabilisée conseillées au Tchad pour un logement décent",
+  bf="les maisons F3 de la cité de Bassinko, à Ouagadougou (deux chambres, un salon, une douche)";
+  return {"Togo":{eco:tg,std:tg,haut:"les villas duplex d'Adidogomé, à Lomé (quatre chambres avec salle de bain et placard)"},
+    "Bénin":{eco:bj+" (villa sociale : 3 chambres sur 71,5 m²)",std:bj+" (4 chambres, dont une de service, sur 102 m²)"},"Guinée":{eco:gn,std:gn},"Sénégal":{eco:sn,std:sn},
+    "Ghana":{eco:"les logements de Saglemi, près d'Accra (1 à 3 chambres), et "+gh,std:gh,haut:gh2,luxe:gh2},
+    "Burkina Faso":{eco:bf,std:bf+" pour les pièces et, pour les murs, les logements en blocs de terre comprimée de Bamako et de Niamey"},
+    "Mali":{eco:ml,std:ml},"Niger":{std:ne,haut:ne},"Mauritanie":{haut:mr,luxe:mr},"Tchad":{eco:td,std:td}}})();
+const refModele=m=>{const P=REF_PAYS[paysDe(m.p&&m.p.city)];return (P&&P[m.std])||(REF_ZONE[m.zone]||REF_ZONE.cote)[m.std]||REF_ZONE.cote.std};
 function defaults3dBase(m){const z=m.zone;return {facade:(z==="savane"||z==="sahel")?"btc":"enduit",wall:z==="foret"?"#E9DFCF":"#F4F1EA",
   roof:z==="foret"?"deux":z==="savane"?"mono":"plat",roofMat:"tole",roofColor:z==="foret"?"#5B3E2E":z==="sahel"?"#B98E62":"#3E4246",frame:"anthra",floor:"carrelage",hour:10,veg:true,car:true}}
-function defaults3d(m){const F=FIN3D[m.std]||FIN3D.std;
+// modèle réel d'une maison : réglages de sa zone et de sa finition, puis particularités du pays ; win : type de fenêtre montré en 3D
+function modele3d(m){const F=FIN3D[m.std]||FIN3D.std,house=!m.pro&&!m.isTower;if(!house) return {win:"coul"};
+  const P=PAYS_3D[paysDe(m.p&&m.p.city)];return Object.assign({win:F.win},(MODELES[m.zone]||MODELES.cote)[m.std]||{},P?P(m.std):{})}
+function defaults3d(m){const F=FIN3D[m.std]||FIN3D.std,MO=modele3d(m);
   const byStyle={contemporain:{facade:"enduit",roof:"plat",frame:"anthra",floor:"beton"},afro:{facade:"btc",roof:"mono",roofColor:"#5B3E2E",frame:"bois"},colonial:{facade:"enduit",wall:"#E9DFCF",roof:"deux",roofMat:"tuile",frame:"blanc",floor:"parquet"},mediterraneen:{facade:"enduit",wall:"#F4F1EA",roof:"deux",roofMat:"tuile",frame:"bois"},mini:{roof:"plat",facade:"enduit"}}[m.style]||{};
-  // la finition donne la teinte de l'enduit, les menuiseries, le sol et la couleur de toiture ; le style garde la main sur les matériaux
+  // la finition donne la teinte de l'enduit, les menuiseries, le sol et la couleur de toiture ; le modèle réel donne façade et toiture ; le style garde la main sur les matériaux
   const fin={wall:F.wall,frame:F.frame,floor:F.floor};if(F.roofColor) fin.roofColor=F.roofColor;
-  return Object.assign(defaults3dBase(m),fin,m.pro?{roof:"plat",facade:"enduit"}:{},byStyle)}
+  const mod={};["facade","wall","roof","roofMat","roofColor"].forEach(k=>{if(MO[k]!==undefined) mod[k]=MO[k]});
+  return Object.assign(defaults3dBase(m),fin,mod,m.pro?{roof:"plat",facade:"enduit"}:{},byStyle)}
 // phrase du récit qui décrit les teintes de la finition, telles que la maquette 3D les montre
-function finTxt(m){const F=FIN3D[m.std]||FIN3D.std,o=defaults3d(m),fr={anthra:"en aluminium anthracite",blanc:"blanches",bois:"en bois"}[o.frame],fl={carrelage:"en carrelage",parquet:"en parquet",beton:"en béton ciré",marbre:"en marbre"}[o.floor];
-  return `Finition ${F.nom} : ${o.facade==="enduit"?`enduit ${WALL_NAMES[o.wall]||"teinté"}, `:""}soubassement ${F.plinthN}, menuiseries ${fr} et sols ${fl}. À l'intérieur, murs ${F.inN[0]}, avec un mur ${F.inN[1]} dans les ${m.pro?"pièces principales":`pièces de vie et ${F.inN[2]} dans les chambres`}.`}
-const facadeTxt=m=>m.Z.facade+" "+finTxt(m);
+function finTxt(m){const F=FIN3D[m.std]||FIN3D.std,o=defaults3d(m),fr={anthra:"en aluminium anthracite",blanc:"blanches",bois:"en bois"}[o.frame],fl={carrelage:"en carrelage",parquet:"en parquet",beton:"en béton ciré",marbre:"en marbre",granit:"en granit"}[o.floor];
+  return `Finition ${F.nom} : ${o.facade==="enduit"?`enduit ${WALL_NAMES[o.wall]||"teinté"}, `:""}soubassement ${F.plinthN}, menuiseries ${fr} et sols ${fl}. À l'intérieur, plafond ${F.ceilN}, murs ${F.inN[0]}, avec un mur ${F.inN[1]} dans les ${m.pro?"pièces principales":`pièces de vie et ${F.inN[2]} dans les chambres`}.`}
+// paragraphe « La façade » : pour une maison, il est écrit à partir des réglages de la maquette 3D, puis cite l'exemple réel suivi
+function facadeTxt(m){
+  if(m.pro||m.isTower) return m.Z.facade+" "+finTxt(m);
+  const o=defaults3d(m),MO=modele3d(m),tu=o.roofMat==="tuile";
+  const mur={enduit:"Murs enduits et peints",btc:"Murs en briques de terre comprimée laissées apparentes",pierre:"Murs habillés de pierre",bois:"Murs habillés de bois",beton:"Murs en béton brut laissé apparent"}[o.facade]||"Murs enduits";
+  const toit=o.roof==="plat"?(MO.terr?"toit-terrasse"+((MO.ov||0)>=1?" aux larges débords":""):"toiture en bac alu cachée derrière un acrotère"):o.roof==="deux"?`toit à deux pentes en ${tu?"tuiles":"tôle"}${(MO.ovP||0)>=1?", débordant pour protéger les murs de la pluie":""}`:`toit à une pente en ${tu?"tuiles":"tôle"}, débordant`;
+  const fen={naco:"fenêtres à lames de verre orientables",coul:"fenêtres coulissantes",baie:"grandes baies vitrées"}[MO.win]||"fenêtres coulissantes";
+  const acc=MO.acc&&MO.acc!==o.facade?` Côté séjour, un pan de façade est habillé de ${MO.acc==="pierre"?"pierre":"bois"}.`:"";
+  return `${mur}, ${toit} et ${fen}.${acc}${m.zone==="cote"?" Le rez-de-chaussée est surélevé sur un socle de 50 cm.":""} ${finTxt(m)} Modèle réel suivi : ${refModele(m)}.`}
 const DEF={area:500,shape:"rect",city:"grand-bassam",W:20,D:25,ra:5,rl:3,zone:"cote",or:"S",type:"pp",n:3,std:"std",style:"tropical",pm:210000,seed:1,fw:0,garage:0,piscine:false,bureau:false,openK:false,suites:false,service:false,cellier:false,solaire:false,citerne:false,nf:4,usage:"immeuble",apts:4,aptType:"auto",rdc:"apparts",lift:true,roofTerrace:true,genset:false,nb:3,plus:true,et:0};
 const BEAR={N:0,NE:45,E:90,SE:135,S:180,SO:225,O:270,NO:315},ROT=o=>180-(BEAR[o]===undefined?180:BEAR[o]);
 const OR_TXT={N:"au nord",NE:"au nord-est",E:"à l'est",SE:"au sud-est",S:"au sud",SO:"au sud-ouest",O:"à l'ouest",NO:"au nord-ouest"};
@@ -1515,8 +1585,51 @@ const CITIES={
   "nouakchott":{nom:"Nouakchott (Mauritanie)",zone:"sahel",k:1.0},
   "ndjamena":{nom:"N'Djamena (Tchad)",zone:"sahel",k:1.05}};
 function dimsFrom(area,shape,fw){if(fw>=6){const W=Math.round(fw*10)/10;return {W,D:Math.round(area/W*100)/100}}const r=SHAPES[shape]||1.25;let W=Math.round(Math.sqrt(area/r)*2)/2;W=Math.max(8,W);const D=Math.round(area/W*100)/100;return {W,D}}
+/* Programme des pièces, version 2 (pv:2) : calqué sur des maisons réelles pour chaque niveau de finition.
+   Économique (logement économique de cité) : séjour et espace repas en une seule pièce, cuisine, pas d'entrée ni de buanderie, une salle de bain commune qui sert aussi aux visiteurs ; la chambre des parents n'a sa salle d'eau qu'à partir de 3 chambres.
+   Standard (villa de lotissement) : on entre par la terrasse ; séjour et salle à manger, cuisine, buanderie et toilette des visiteurs, chambre des parents avec salle de bain (et une deuxième chambre à partir de 4 chambres).
+   Haut de gamme (duplex haut standing) : entrée, toutes les chambres avec salle de bain, suite parentale avec dressing, bureau.
+   Luxe (grande villa) : en plus, cuisine africaine et salon familial.
+   La chambre du personnel de ces villas reste une option (« Plus d'options ») : ajoutée d'office, elle dégradait trop souvent le plan.
+   Les projets enregistrés avant cette version n'ont pas de « pv » : ils gardent l'ancien programme, donc exactement le même plan. */
+function program2(n,std,style,x){
+  const eco=std==="eco",lux=std==="luxe",hi=std==="haut"||lux,all=hi||!!x.suites,big=lux?1.4:std==="haut"?1.2:1;
+  const day=[],night=[];
+  day.push({n:"Terrasse",a:style==="colonial"?17*big:eco?8:10*big,t:"out"});
+  // en économique, salon et coin repas forment une seule pièce : « Espace repas » est placé contre le séjour, sans cloison entre eux
+  // (les surfaces gardent la part jour/nuit des anciens plans, pour laquelle la mise en plan est réglée)
+  day.push({n:"Séjour",a:eco?19+3*n:(22+3*n)*big*(style==="contemporain"?1.1:1),t:"day"});
+  day.push(eco?{n:"Espace repas",a:8,t:"day"}:{n:"Salle à manger",a:11*big,t:"day"});
+  // la buanderie et le WC restent côte à côte, pour qu'aucune petite pièce ne se retrouve seule en lanière ;
+  // en économique, pas de WC séparé : la salle de bain commune (il y en a toujours une) sert aussi aux visiteurs
+  const pBath=!eco||n>=3||all;
+  day.push({n:"Cuisine",a:eco?9:(hi?14:10)*big,t:"wet"});
+  if(lux) day.push({n:"Cuisine africaine",a:9,t:"wet"});
+  // _grp : deux pièces qui restent côte à côte dans le plan
+  if(!eco) day.push({n:"_grp",a:8,grp:[{n:"Buanderie",a:5,t:"wet"},{n:"WC",a:3,t:"wet"}]});
+  if(hi) day.push({n:"Entrée",a:5*big,t:"day"});
+  if(hi||x.bureau) day.push({n:"Bureau",a:eco?8:10,t:"day"});
+  if(lux) day.push({n:"Salon TV",a:14,t:"day"});
+  if(x.cellier) day.push({n:"Cellier",a:4,t:"day"});
+  if(x.garage) day.push({n:"Garage",a:x.garage>1?32:18,t:"day"});
+  if(x.service){day.push({n:"Ch. de service",a:9,t:"night"});day.push({n:"Douche service",a:3,t:"wet"})}
+  night.push({n:"Dégagement",a:4+2*n,t:"day"});
+  night.push({n:"Ch. parentale",a:eco?12:15*big,t:"night"});
+  if(pBath) night.push({n:"SDB parentale",a:eco?4.5:6*big,t:"wet"});
+  if(hi) night.push({n:"Dressing",a:5,t:"night"});
+  // en standard, à partir de 4 chambres, une deuxième chambre a sa salle de bain (« chambre autonome » des villas de lotissement)
+  // rest : chambres sans salle de bain à elles, qui se partagent une salle de bain commune ; le nombre total de salles de bain reste celui des anciens plans,
+  // pour ne pas rétrécir les chambres
+  const own2=std==="std"&&n>=4;let rest=pBath?0:1;
+  for(let i=2;i<=n;i++){night.push({n:"Chambre "+i,a:eco?10:12*big,t:"night"});
+    if(all||(own2&&i===2)) night.push({n:"SDB "+i,a:4.5,t:"wet",own:1}); else rest++}
+  const k=Math.max(eco?1:0,Math.ceil(rest/(eco||own2?3:2)));
+  for(let i=0;i<k;i++) night.push({n:k>1?"Salle de bain "+"ABC"[i]:"Salle de bain",a:eco?4.5:5,t:"wet",sh:1});
+  return {day,night,suites:all,patio:(style==="bio"||style==="afro")?{n:"Patio",a:0,t:"patio"}:null};
+}
 function program(n,std,style,x){
-  x=x||{};const hi=std==="haut"||std==="luxe",suites=hi||x.suites;
+  x=x||{};if(x.pv>=2) return program2(n,std,style,x);
+  const hi=std==="haut"||std==="luxe",suites=hi||x.suites;
   const big=std==="luxe"?1.4:std==="haut"?1.2:std==="eco"?0.85:1;
   const day=[],night=[];
   day.push({n:"Terrasse",a:(style==="colonial"?17:10)*big,t:"out"});
@@ -1584,6 +1697,7 @@ function compute(p){
   const scale=foot/need;
   if(cov&&foot/plot*100<cov-5) notes.push({w:1,t:`Vous demandez une maison sur ${cov} % du terrain, mais les distances à la rue et aux voisins ne laissent que ${Math.round(foot/plot*100)} %. Réduisez ces distances dans « Plus d'options » pour une maison plus grande.`});
   if(scale<0.85) notes.push({w:1,t:`Le programme demande environ ${fmt(need)} m² au sol, le terrain n'en permet que ${fmt(foot)} m² avec ces reculs. Les pièces ont été réduites de ${Math.round((1-scale)*100)} %.`+(type==="pp"?" Un duplex R+1 serait plus confortable.":" Réduisez le nombre de chambres ou le standing.")});
+  if(p.pv>=2&&scale>1.4) notes.push({t:`Les maisons réelles de ce niveau de finition avec ${n} chambre${n>1?"s":""} font environ ${fmt(need)} m² au sol. La vôtre en fait ${fmt(foot)} : ses pièces sont plus grandes que dans le modèle. Pour vous en rapprocher et baisser le coût, réduisez la part du terrain occupée par la maison.`});
   if(W<12) notes.push({w:1,t:"Terrain étroit : la mitoyenneté sur un côté (recul 0) libérerait de la largeur, si l'urbanisme local l'autorise."});
   const bx=rl+(bwMax-bw)/2,by=D-ra-bd,mirror=r()>0.5;
   const row=(rect,items,out)=>{
@@ -1621,8 +1735,8 @@ function compute(p){
   const nightRaw=P.night.filter(i=>i.n!=="Dégagement");
   const suite=nightRaw.filter(i=>/parentale|Dressing/.test(i.n));
   const units=[];
-  nightRaw.filter(i=>/^Chambre/.test(i.n)).forEach(c=>{const k=c.n.split(" ")[1];const own=nightRaw.find(i=>i.n==="SDB "+k&&P.suites);units.push(own?[c,own]:[c])});
-  nightRaw.filter(i=>/^SDB \d|^Salle de bain/.test(i.n)&&!P.suites).forEach(b=>units.splice(Math.floor(r()*(units.length+1)),0,[b]));
+  nightRaw.filter(i=>/^Chambre/.test(i.n)).forEach(c=>{const k=c.n.split(" ")[1];const own=nightRaw.find(i=>i.n==="SDB "+k&&(P.suites||i.own));units.push(own?[c,own]:[c])});
+  nightRaw.filter(i=>/^SDB \d|^Salle de bain/.test(i.n)&&(!P.suites||i.sh)&&!i.own).forEach(b=>units.splice(Math.floor(r()*(units.length+1)),0,[b]));
   const shufU=shuffleKeep(units,r,false);
   // salles de bain dos à dos : une unité sur deux est retournée
   {let flip=false;shufU.forEach((u,i)=>{if(u.length>1){if(flip) u.reverse();flip=!flip}})}
@@ -1630,6 +1744,8 @@ function compute(p){
   const day=shuffleKeep(P.day,r,false);
   const terr=day.splice(day.findIndex(i=>i.n==="Terrasse"),1)[0];
   if(r()>0.5) day.push(terr); else day.unshift(terr);
+  // plans version 2, économique : l'espace repas suit le séjour dans l'ordre des pièces, pour se retrouver contre lui
+  {const ir=day.findIndex(i=>i.n==="Espace repas");if(ir>=0){const rp=day.splice(ir,1)[0];day.splice(day.findIndex(i=>i.n==="Séjour")+1,0,rp)}}
   let levels;
   if(type==="pp"){
     const frac=P.patio?P.patio.a/(sum(P.day)+sum(P.night)+P.patio.a):0;
@@ -1646,6 +1762,8 @@ function compute(p){
       levels.push(build(nB.length?nB:[{n:"Bureau",a:10,t:"day"},{n:"Salle de sport",a:12,t:"day"}],g2,vide,frac,"Coursive",true))}
   }
   if(mirror) levels.forEach(L=>L.forEach(rm=>{rm.x=2*bx+bw-rm.x-rm.w}));
+  // si l'espace repas n'a pas pu être placé contre le séjour, c'est une salle à manger à part : on l'appelle par son nom
+  {const L0=levels[0],rp=L0.find(q=>q.n==="Espace repas"),sj=L0.find(q=>q.n==="Séjour");if(rp&&!(sj&&shared(rp,sj))) rp.n="Salle à manger"}
   const builtArea=levels.reduce((s,L)=>s+L.reduce((t,rm)=>{const a=rm.w*rm.h;return t+(rm.t==="patio"?0:rm.t==="out"?a*0.5:a)},0),0);
   const CITY=CITIES[p.city]||null,kCity=CITY?CITY.k:1,lieu=CITY?CITY.nom:ZONES[zone].nom;
   const Z=ZONES[zone],kType=type==="r2"?1.16:type==="r1"?1.08:1,kStyle={bio:1.04,mini:1.02,contemporain:1.05,afro:0.97,colonial:1.06,mediterraneen:1.04}[style]||1;
@@ -1728,7 +1846,7 @@ function computeTower(p){
   const bwMax=Math.max(6,W-2*rl),bdMax=Math.max(6,D-ra-rl),plot=W*D,HC=fam?1.2:1.6,cw=2.7+(lift?2.1:0);
   let bw,bd,P=null,units=null;
   if(fam){
-    P=program(n,std,style,p);
+    P=program(n,std,style,Object.assign({},p,{pv:1}));
     const nightRaw=P.night.filter(i=>i.n!=="Dégagement");
     units=[nightRaw.filter(i=>/parentale|Dressing/.test(i.n))];
     nightRaw.filter(i=>/^Chambre/.test(i.n)).forEach(c=>{const k=c.n.split(" ")[1];const own=nightRaw.find(i=>i.n==="SDB "+k&&P.suites);units.push(own?[c,own]:[c])});
@@ -2054,7 +2172,7 @@ function storyPro(m){
 }
 
 const TO=0.2,TI=0.1,EPS=0.02;
-const CIRC=new Set(["Séjour","Salle à manger","Entrée","Dégagement","Séjour étage","Escalier","Palier","Hall d'entrée","Accueil","Couloir"]);
+const CIRC=new Set(["Séjour","Salle à manger","Espace repas","Entrée","Dégagement","Séjour étage","Escalier","Palier","Hall d'entrée","Accueil","Couloir"]);
 function shared(a,b){
   if(Math.abs(a.x+a.w-b.x)<EPS||Math.abs(b.x+b.w-a.x)<EPS){
     const c=Math.abs(a.x+a.w-b.x)<EPS?b.x:a.x,s0=Math.max(a.y,b.y),s1=Math.min(a.y+a.h,b.y+b.h);
@@ -2076,13 +2194,13 @@ function sides(r,m){
 }
 const NOWIN=new Set(["Dégagement","Escalier","Dressing","Palier","Ascenseur","Local technique","Gaine technique","Réserve","Machinerie","Local vélos","Rangement","Archives"]);
 function openings(m,li){
-  const L=m.levels[li],pairs=[];
+  const L=m.levels[li],pairs=[],fin=m.p&&m.p.pv>=2&&!m.pro&&!m.isTower?m.std:null;
   for(let i=0;i<L.length;i++)for(let j=i+1;j<L.length;j++){const s=shared(L[i],L[j]);if(s) pairs.push(Object.assign({a:i,b:j,kind:"wall",open:[]},s))}
   const isOut=r=>r.t==="out",isPat=r=>r.t==="patio";
   pairs.forEach(p=>{const A=L[p.a],B=L[p.b];
     // deux logements, commerces ou parties communes différents : mur séparatif épais
     if(A.u!==B.u&&!isPat(A)&&!isPat(B)){p.kind=isOut(A)&&isOut(B)?"none":(isOut(A)||isOut(B))?"facade":"party";return}
-    if((CIRC.has(A.n)&&CIRC.has(B.n))||(m.p.openK&&((A.n==="Cuisine"&&/^Séjour$|^Salle à manger$/.test(B.n))||(B.n==="Cuisine"&&/^Séjour$|^Salle à manger$/.test(A.n))))) p.kind="open";
+    if((CIRC.has(A.n)&&CIRC.has(B.n))||(m.p.openK&&((A.n==="Cuisine"&&/^Séjour$|^Salle à manger$|^Espace repas$/.test(B.n))||(B.n==="Cuisine"&&/^Séjour$|^Salle à manger$|^Espace repas$/.test(A.n))))) p.kind="open";
     else if((isOut(A)&&isPat(B))||(isPat(A)&&isOut(B))||(isOut(A)&&isOut(B))) p.kind="none";
     else if(isPat(A)||isPat(B)){p.kind="patio";const L2=p.s1-p.s0;if(L2>1.2){const w=Math.min(2.4,L2-0.6),c=(p.s0+p.s1)/2;p.open.push({k:"win",d0:c-w/2,d1:c+w/2,bot:0.4,top:2.3})}}
     else if(isOut(A)||isOut(B)) p.kind="facade";
@@ -2107,18 +2225,21 @@ function openings(m,li){
     if(/^SDB parentale|^Dressing/.test(r.n)) return q.n==="Ch. parentale"?0:CIRC.has(q.n)?3:9;
     if(r.n==="SDB amis") return q.n==="Chambre d'amis"?0:CIRC.has(q.n)?2:9;
     if(/^WC/.test(r.n)&&q.n==="Réserve") return 0;
+    if(fin&&q.n==="Cuisine"&&(r.n==="Cuisine africaine"||r.n==="Buanderie")) return 0;
     if(q.shop) return 1;
-    const o={"Dégagement":0,"Couloir":0,"Palier":0,"Hall d'entrée":0,"Entrée":1,"Accueil":1,"Séjour étage":1,"Séjour":2,"Salle à manger":3,"Escalier":4}[q.n];
-    if(o!==undefined) return r.n==="Cuisine"&&(q.n==="Salle à manger"||q.n==="Séjour")?0:o;
+    const o={"Dégagement":0,"Couloir":0,"Palier":0,"Hall d'entrée":0,"Entrée":1,"Accueil":1,"Séjour étage":1,"Séjour":2,"Salle à manger":3,"Espace repas":3,"Escalier":4}[q.n];
+    if(o!==undefined) return r.n==="Cuisine"&&(q.n==="Salle à manger"||q.n==="Espace repas"||q.n==="Séjour")?0:o;
     if(q.t==="day") return 5; if(q.t==="night") return 6; return 8;
   };
   const doorOn=(p,into,w)=>{const L2=p.s1-p.s0;w=Math.min(w,L2-0.2);const d0=p.s0+0.12;p.open.push({k:"door",d0,d1:d0+w,into,bot:0,top:2.1});if(p.kind!=="party") p.kind="wall"};
   L.forEach((r,i)=>{
     if(CIRC.has(r.n)||isOut(r)||isPat(r)||r.shop) return;
-    const c=pairs.filter(p=>(p.a===i||p.b===i)&&p.kind==="wall").map(p=>({p,q:L[p.a===i?p.b:p.a]})).filter(o=>!isOut(o.q)&&!isPat(o.q)&&!(o.q.t==="wet"&&r.t==="wet"));
+    const c=pairs.filter(p=>(p.a===i||p.b===i)&&p.kind==="wall").map(p=>({p,q:L[p.a===i?p.b:p.a]})).filter(o=>!isOut(o.q)&&!isPat(o.q)&&(!(o.q.t==="wet"&&r.t==="wet")||(fin&&((o.q.n==="Cuisine"&&(r.n==="Cuisine africaine"||r.n==="Buanderie"))||(r.n==="WC"&&o.q.n==="Buanderie")))));
     let best=c.filter(o=>o.p.s1-o.p.s0>=0.95).sort((x,y)=>pref(r,x.q)-pref(r,y.q))[0];
     if(!best) best=c.sort((x,y)=>(y.p.s1-y.p.s0)-(x.p.s1-x.p.s0))[0];
     if(best&&best.p.s1-best.p.s0>=0.7){doorOn(best.p,i,r.n==="Ascenseur"?0.9:r.t==="wet"?0.7:0.8);linked.add(i)}
+    // plans version 2 : une cuisine sans autre accès s'ouvre sur la terrasse
+    else if(fin&&r.n==="Cuisine"){const t=pairs.find(p=>(p.a===i||p.b===i)&&p.kind==="facade"&&!p.open.length&&p.s1-p.s0>=1.1);if(t){t.open.push({k:"door",d0:t.s0+0.15,d1:t.s0+0.95,into:i,bot:0,top:2.1});linked.add(i)}}
   });
   // porte palière de chaque appartement
   L.forEach((r,i)=>{if(!r.entry) return;
@@ -2136,7 +2257,8 @@ function openings(m,li){
   let entry=null;const ext=[];
   L.forEach((r,i)=>{if(isOut(r)||isPat(r)) return;sides(r,m).forEach(s=>{ext.push(Object.assign({room:i,open:[]},s))})});
   if(li===0){
-    const order=["Hall d'entrée","Entrée","Accueil","Séjour","Salle à manger","Bureau"];
+    // plans version 2 : sans autre possibilité côté rue, on entre par le salon TV, la cuisine ou le garage plutôt que de n'avoir aucune porte d'entrée
+    const order=["Hall d'entrée","Entrée","Accueil","Séjour","Salle à manger","Espace repas","Bureau"].concat(fin?["Salon TV","Cuisine","Garage"]:[]);
     const cand=ext.filter(e=>e.side==="bottom").sort((a,b)=>{const ia=order.indexOf(L[a.room].n),ib=order.indexOf(L[b.room].n);return (ia<0?9:ia)-(ib<0?9:ib)})[0];
     if(cand&&order.includes(L[cand.room].n)&&cand.s1-cand.s0>=1.2){const c=(cand.s0+cand.s1)/2;cand.open.push({k:"entry",d0:c-0.45,d1:c+0.45,bot:0,top:2.2});entry={x:c,y:m.by+m.bd}}
     else{const t=L.find(r=>isOut(r)&&Math.abs(r.y+r.h-(m.by+m.bd))<EPS);if(t) entry={x:t.x+t.w/2,y:m.by+m.bd,open:true}}
@@ -2151,10 +2273,15 @@ function openings(m,li){
     if(en){if(en.d0-s0>s1-en.d1) s1=en.d0-0.3; else s0=en.d1+0.3}
     const len=s1-s0;
     if(len<0.8) return;
-    const wet=r.t==="wet",w=wet?Math.min(0.6,len):Math.max(0.9,Math.min(2.2,len*0.5));
+    const wet=r.t==="wet";let w=wet?Math.min(0.6,len):Math.max(0.9,Math.min(2.2,len*0.5)),bot=wet?1.6:0.9,top=2.2;
+    // plans version 2 : petites fenêtres à lames en économique, grandes baies dans les pièces de vie en haut de gamme et en luxe
+    if(fin&&!wet){const dayR=r.t==="day";
+      if(fin==="eco"){w=Math.max(0.8,Math.min(1.2,len*0.4));bot=1.0;top=2.1}
+      else if(fin==="haut"&&dayR){w=Math.max(0.9,Math.min(3.0,len*0.65));bot=0.4;top=2.3}
+      else if(fin==="luxe"){if(dayR){w=Math.max(0.9,Math.min(4.2,len*0.8));bot=0;top=2.4}else{w=Math.max(0.9,Math.min(2.6,len*0.6));bot=0.6;top=2.3}}}
     if(w>len) return;
     const c=(s0+s1)/2;
-    e.open.push({k:"win",d0:c-w/2,d1:c+w/2,bot:wet?1.6:0.9,top:2.2});
+    e.open.push({k:"win",d0:c-w/2,d1:c+w/2,bot,top});
   });
   return {L,pairs,ext,entry};
 }
@@ -2247,8 +2374,8 @@ function furniture(r,ix,iy,iw,ih){
   if(/^Salon|^Salle de sport/.test(n)) return fill(FUR.salon,ix,iy,iw,ih);
   if(/^Chambre/.test(n)) return fill((w,h)=>FUR.bed(w,h,w>=2.8?1.4:1.2,false),ix,iy,iw,ih);
   if(/^Séjour/.test(n)) return fill(FUR.salon,ix,iy,iw,ih);
-  if(n==="Salle à manger") return fill(FUR.dining,ix,iy,iw,ih);
-  if(n==="Cuisine") return fill(FUR.kitchen,ix,iy,iw,ih);
+  if(n==="Salle à manger"||n==="Espace repas") return fill(FUR.dining,ix,iy,iw,ih);
+  if(/^Cuisine/.test(n)) return fill(FUR.kitchen,ix,iy,iw,ih);
   if(/^SDB|^Salle de bain|^Douche/.test(n)) return fill(FUR.bath,ix,iy,iw,ih);
   if(n==="WC") return fill(FUR.wc,ix,iy,iw,ih);
   if(n==="Bureau") return fill(FUR.office,ix,iy,iw,ih);
@@ -2263,7 +2390,7 @@ function furniture(r,ix,iy,iw,ih){
 /* ---------- Mode lisible (téléphone) : libellés en pixels d'écran ----------
    P = mètres par pixel d'écran. Les noms des pièces passent sur deux lignes ou s'abrègent
    pour rester lisibles ; les pièces hautes et étroites reçoivent un libellé vertical. */
-const ABBR=[[/^chambre d'amis$/i,"Ch. amis"],[/^chambre\s+/i,"Ch. "],[/^salle de bain$/i,"SDB"],[/^SDB parentale$/i,"SDB parent."],[/^ch\. parentale$/i,"Ch. parent."],
+const ABBR=[[/^chambre d'amis$/i,"Ch. amis"],[/^chambre\s+/i,"Ch. "],[/^salle de bain$/i,"SDB"],[/^salle de bain ([A-C])$/i,"S. bain $1"],[/^cuisine africaine$/i,"Cuis. afric."],[/^SDB parentale$/i,"SDB parent."],[/^ch\. parentale$/i,"Ch. parent."],
   [/^ch\. de service$/i,"Ch. service"],[/^salle à manger$/i,"S. à manger"],[/^salle de sport$/i,"Sport"],[/^dégagement$/i,"Dégag."],[/^buanderie$/i,"Buand."],
   [/^rangement$/i,"Rangt"],[/^local technique$/i,"Local tech."],[/^gaine technique$/i,"Gaine"],[/^hall d'entrée$/i,"Hall"],[/^douche service$/i,"Douche"],
   [/^terrasse sur toit$/i,"Terrasse"],[/^terrasse haute$/i,"Terrasse"],[/^salon détente$/i,"Salon"],[/^séjour étage$/i,"Séjour"],[/^local vélos$/i,"Vélos"],
@@ -2450,7 +2577,13 @@ function story(m){
   const sej=all.find(r=>r.n==="Séjour"),ter=all.find(r=>r.n==="Terrasse"),pat=all.find(r=>r.n==="Patio");
   const orTxt=OR_TXT[m.or]||"au sud";
   const months=Math.round(4+m.builtArea/45+(m.levels.length-1)*2+(m.pool?1:0));
-  const sam=all.find(r=>r.n==="Salle à manger"),ideas=[];
+  const sam=all.find(r=>r.n==="Salle à manger"),rep=all.find(r=>r.n==="Espace repas"),ideas=[];
+  // plans version 2 : ce que le programme des pièces reprend des maisons réelles de ce niveau de finition
+  const prog=!(m.p.pv>=2)?"":" "+({eco:`Comme dans les logements économiques, ${rep?"le séjour réunit salon et coin repas":"la maison n'a ni entrée ni buanderie"}${all.some(r=>r.n==="SDB parentale")?", la chambre des parents a sa salle d'eau et les autres chambres partagent une salle de bain":" et les chambres partagent une salle de bain"}.`,
+    std:"Comme dans les villas de lotissement, la chambre des parents a sa salle de bain, la maison a sa buanderie et les visiteurs ont leur toilette.",
+    haut:"Comme dans les villas haut standing, chaque chambre a sa salle de bain, la suite des parents a son dressing et la maison a son bureau.",
+    luxe:"Comme dans les grandes villas, chaque chambre a sa salle de bain, une cuisine africaine double la cuisine principale et un salon familial s'ajoute au séjour."}[m.std]||"")
+    +((m.std==="haut"||m.std==="luxe")&&!m.p.service?" La chambre du personnel de ces villas s'ajoute dans « Plus d'options ».":"");
   if(pat) ideas.push(`un patio planté de ${dec(pat.w*pat.h,0)} m² au cœur de la maison, qui apporte lumière et fraîcheur`);
   if(m.p.openK) ideas.push("une cuisine ouverte sur le séjour, pour un seul grand espace de vie");
   if(ter&&ter.w*ter.h>=12) ideas.push(`une terrasse couverte de ${dec(ter.w*ter.h,0)} m², vraie pièce en plus à l'ombre`);
@@ -2460,9 +2593,9 @@ function story(m){
   return [
     ["La façade",facadeTxt(m)],
     ["L'arrivée",`${m.p.city&&CITIES[m.p.city]?"À "+CITIES[m.p.city].nom.replace(/ \(.*\)/,"")+", d":"D"}epuis la rue ${orTxt}, un portail ouvre sur une cour de ${dec(m.ra,1)} m de profondeur, assez pour garer une voiture, avant d'atteindre ${ter?"la terrasse couverte":"l'entrée"}.`],
-    ["La vie à l'intérieur",`Le séjour de ${sej?dec(sej.w*sej.h,0):"—"} m² forme un espace ouvert avec la salle à manger${ter?` et se prolonge dehors sur ${dec(ter.w*ter.h,0)} m² de terrasse`:""}. Les ${m.n} chambres sont regroupées ${m.type!=="pp"?"dans les étages":"vers le fond de la parcelle"}, au calme.`],
+    ["La vie à l'intérieur",`Le séjour de ${sej?dec(sej.w*sej.h,0):"—"} m² ${!(m.p.pv>=2)||(sam&&sej&&shared(sej,sam))?"forme un espace ouvert avec la salle à manger":rep?"forme une seule pièce avec l'espace repas":sam?"est complété par une salle à manger":"est la grande pièce de la maison"}${ter?` et se prolonge dehors sur ${dec(ter.w*ter.h,0)} m² de terrasse`:""}. Les ${m.n} chambres sont regroupées ${m.type!=="pp"?"dans les étages":"vers le fond de la parcelle"}, au calme.`],
     ["Le confort climatique",(pat?`Le patio de ${dec(pat.w*pat.h,0)} m² laisse entrer la lumière et l'air frais au cœur de la maison. `:"")+`Conçue pour la ${m.Z.nom} : ${m.Z.princ}.`],
-    ["Une base qui a fait ses preuves",`C'est l'organisation la plus courante des villas de la région : pièces de vie et terrasse côté rue, chambres au calme ${m.type!=="pp"?"à l'étage":"au fond de la parcelle"}, desservies par un seul couloir.`],
+    ["Une base qui a fait ses preuves",`C'est l'organisation la plus courante des villas de la région : pièces de vie et terrasse côté rue, chambres au calme ${m.type!=="pp"?"à l'étage":"au fond de la parcelle"}, desservies par un seul couloir.${prog}`],
     ["L'idée en plus","Ce plan y ajoute "+ideas.slice(0,3).join(", ")+"."],
     ["Le chantier",`Comptez environ ${months} mois de travaux avec une équipe de 6 à 10 ouvriers, du terrassement à la peinture, pour un budget proche de ${F(m.total)}.`]
   ];
@@ -2604,12 +2737,13 @@ function mount3D(el,m,o,st){
   const sc=Math.max(big*0.8,HT*0.9);Object.assign(sun.shadow.camera,{left:-sc,right:sc,top:sc,bottom:-sc,near:1,far:Math.max(big*5,HT*7)});sun.shadow.camera.updateProjectionMatrix();
   const shm=phone?1024:(renderer.capabilities.maxTextureSize>=4096?4096:2048);sun.shadow.mapSize.set(shm,shm);sun.shadow.bias=-0.0004;sun.shadow.normalBias=0.03;scene.add(sun);scene.add(sun.target);
   // matériaux ; FIN : palette du niveau de finition
-  const FIN=FIN3D[m.std]||FIN3D.std;
+  const FIN=FIN3D[m.std]||FIN3D.std,MOD=modele3d(m); // MOD : modèle réel de la maison (fenêtres, pan de façade du séjour, débords de toit)
   const std=(p)=>new THREE.MeshStandardMaterial(Object.assign({roughness:0.85,metalness:0,envMapIntensity:inside?0.2:0.4},p));
-  const facade={enduit:std({map:T.plaster,color:o.wall,roughness:0.95}),btc:std({map:T.btc,roughness:0.95}),pierre:std({map:T.stone,roughness:0.9}),bois:std({map:T.wood,roughness:0.75})}[o.facade]||std({map:T.plaster,color:o.wall});
-  const M={facade,inner:std({map:T.plaster,color:0xF6F4EF,roughness:0.95}),ceil:std({color:0xF7F6F2,roughness:1}),
+  const facade={enduit:std({map:T.plaster,color:o.wall,roughness:0.95}),btc:std({map:T.btc,roughness:0.95}),pierre:std({map:T.stone,roughness:0.9}),bois:std({map:T.wood,roughness:0.75}),beton:std({map:T.concrete,color:0xB9B4AA,roughness:0.92})}[o.facade]||std({map:T.plaster,color:o.wall});
+  const M={facade,inner:std({map:T.plaster,color:0xF6F4EF,roughness:0.95}),ceil:std({color:FIN.ceil,roughness:1}),
+    accent:MOD.acc&&MOD.acc!==o.facade?std(MOD.acc==="pierre"?{map:T.stone,roughness:0.9}:{map:T.wood,roughness:0.75}):null,
     plinth:std({map:T.concrete,color:FIN.plinth}),slabSide:std({map:T.plaster,color:FIN.trim}),
-    roofFlat:std({map:T.concrete,color:0xC9C6C0,roughness:0.95}),
+    roofFlat:std({map:T.concrete,color:MOD.roofTop||0xC9C6C0,roughness:0.95}),
     roofPitch:o.roofMat==="tuile"?std({map:T.tuile,roughness:0.8}):std({map:T.rib,color:o.roofColor,metalness:0.55,roughness:0.42}),
     coping:std({color:FIN.trim,roughness:0.7}),
     glass:new THREE.MeshStandardMaterial({color:0x1f3340,metalness:0.95,roughness:0.04,transparent:true,opacity:inside?0.18:0.5,envMapIntensity:1.8,side:THREE.DoubleSide,emissive:S.night&&!inside?0xffc27a:0x000000,emissiveIntensity:S.night?0.35:0}),
@@ -2617,8 +2751,8 @@ function mount3D(el,m,o,st){
     door:std({color:0x5a3a24,roughness:0.55}),metal:std({color:0x2c2f31,metalness:0.8,roughness:0.35}),
     ground:std({map:T.ground,roughness:1}),paver:std({map:T.paver,roughness:0.9}),asphalt:std({map:T.asphalt,roughness:0.95}),curb:std({color:0xbdb9b0}),
     fence:std({map:T.plaster,color:o.wall,roughness:0.95}),
-    floorMain:{carrelage:std({map:T.tile,color:FIN.tile,roughness:0.35}),parquet:std({map:T.parquet,roughness:0.55}),beton:std({map:T.concrete,roughness:0.45}),marbre:std({map:T.marble,color:0xD9CDBA,roughness:0.2,envMapIntensity:inside?0.45:1.4})}[o.floor],
-    floorWet:std({map:T.wet,roughness:0.3}),floorNight:o.floor==="carrelage"&&FIN!==FIN3D.eco?std({map:T.parquet,roughness:0.55}):null,deck:std({map:T.deck,roughness:0.75}),patio:std({map:T.ground,roughness:1}),
+    floorMain:{carrelage:std({map:T.tile,color:FIN.tile,roughness:0.35}),parquet:std({map:T.parquet,roughness:0.55}),beton:std({map:T.concrete,roughness:0.45}),marbre:std({map:T.marble,color:0xD9CDBA,roughness:0.2,envMapIntensity:inside?0.45:1.4}),granit:std({map:T.concrete,color:0x74777A,roughness:0.28,envMapIntensity:inside?0.4:1.1})}[o.floor],
+    floorWet:std({map:T.wet,roughness:0.3}),floorNight:/^(carrelage|marbre|granit)$/.test(o.floor)&&FIN!==FIN3D.eco?std({map:T.parquet,roughness:0.55}):null,deck:std({map:T.deck,roughness:0.75}),patio:std({map:T.ground,roughness:1}),
     // mobilier
     fab:std({map:T.fabric,color:0xC9C4BA,roughness:1}),fab2:std({map:T.fabric,color:FIN.fab2,roughness:1}),fab3:std({map:T.fabric,color:0xB9804F,roughness:1}),
     oak:std({map:T.parquet,color:0xffffff,roughness:0.6}),dark:std({color:0x3b2c22,roughness:0.6}),white:std({color:0xF4F4F2,roughness:0.5}),
@@ -2630,7 +2764,7 @@ function mount3D(el,m,o,st){
     car:std({color:0x2E4C6D,metalness:0.6,roughness:0.28}),tire:std({color:0x151515,roughness:0.9})};
   if(!M.floorNight) M.floorNight=M.floorMain;
   M.leaf3=std({color:0x3D6A31,roughness:0.95});
-  const relief={btc:0.014,pierre:0.02,bois:0.008,enduit:0.0025};
+  const relief={btc:0.014,pierre:0.02,bois:0.008,enduit:0.0025,beton:0.004};
   [[M.facade,relief[o.facade]||0.0025],[M.roofPitch,o.roofMat==="tuile"?0.03:0.02],[M.paver,0.012],[M.deck,0.01],[M.ground,0.03],[M.patio,0.03],[M.asphalt,0.006],[M.plinth,0.006],[M.roofFlat,0.006]].forEach(([mt,k])=>{if(mt&&mt.map){mt.bumpMap=mt.map;mt.bumpScale=k}});
   const box=(w,h,d,x,y,z,mat,par,opt)=>{const g=new THREE.BoxGeometry(Math.max(0.005,w),Math.max(0.005,h),Math.max(0.005,d));scaleUV(g,w,h,d);const me=new THREE.Mesh(g,mat);me.position.set(x,y,z);me.castShadow=!(opt&&opt.noCast);me.receiveShadow=true;(par||scene).add(me);return me};
   const cyl=(rt,rb,h,x,y,z,mat,par,seg)=>{const me=new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,h,seg||20),mat);me.position.set(x,y,z);me.castShadow=true;me.receiveShadow=true;(par||scene).add(me);return me};
@@ -2695,9 +2829,9 @@ function mount3D(el,m,o,st){
   let roomSel=null;
   if(inside){const all=m.levels.flatMap((L,li)=>L.map(r=>Object.assign({li},r)));roomSel=all.find(r=>r.n===st.room&&r.li===st.roomLi&&(st.roomU===undefined||r.u===st.roomU))||all.find(r=>r.n===st.room&&r.li===st.roomLi)||all.find(r=>/^Séjour/.test(r.n))||all[0]}
   // im : matériau de la face tournée vers le nord ou l'ouest (neg) et vers le sud ou l'est (pos), selon la pièce qui la voit
-  const faceMats=(ext,o2,im)=>{const a=[M.inner,M.inner,M.facade,M.inner,M.inner,M.inner];
+  const faceMats=(ext,o2,im,fm)=>{const a=[M.inner,M.inner,M.facade,M.inner,M.inner,M.inner];
     if(im){if(o2==="h"){if(im.neg) a[5]=im.neg;if(im.pos) a[4]=im.pos}else{if(im.neg) a[1]=im.neg;if(im.pos) a[0]=im.pos}}
-    if(ext!==undefined&&ext!==null) a[ext]=M.facade;return a};
+    if(ext!==undefined&&ext!==null) a[ext]=fm||M.facade;return a};
   const wm={},wmat=c=>wm[c]||(wm[c]=std({map:T.plaster,color:c,roughness:0.95}));
   const PLAIN=/^(Entrée|Dégagement|Couloir|Escalier|Palier|Hall|Rangement|Cellier|Archives|Local|Réserve|Garage|Dressing|Ascenseur|Machinerie|Gaine)/;
   // mur d'accent : un grand mur intérieur de la pièce (jamais un mur de façade, où sont les fenêtres)
@@ -2712,9 +2846,11 @@ function mount3D(el,m,o,st){
     P(ft,gh,0.08,a+ft/2,y0+hy,0,M.frame);P(ft,gh,0.08,b-ft/2,y0+hy,0,M.frame);
     if(len>1.3) P(0.04,gh,0.07,mid,y0+hy,0,M.frame);
     if(op.bot>0.2&&extSign) P(len+0.12,0.05,0.2,mid,y0+op.bot-0.025,extSign*(t/2+0.06),M.coping);
+    // finition économique : fenêtres à lames de verre orientables
+    if(MOD.win==="naco"&&op.k==="win"&&extSign&&gh>0.5) for(let y=op.bot+0.13;y<op.top-0.08;y+=0.15) P(len-2*ft,0.014,0.1,mid,y0+y,0,M.steel);
   };
-  const segWall=(o2,c,t,s0,s1,y0,ops,grp,extFace,extSign,im)=>{
-    ops=ops.slice().sort((p,q)=>p.d0-q.d0);let cur=s0;const mats=faceMats(extFace,o2,im);
+  const segWall=(o2,c,t,s0,s1,y0,ops,grp,extFace,extSign,im,fm)=>{
+    ops=ops.slice().sort((p,q)=>p.d0-q.d0);let cur=s0;const mats=faceMats(extFace,o2,im,fm);
     const piece=(a,b,ya,yb)=>{if(b-a<0.01||yb-ya<0.01) return;const len=b-a,mid=(a+b)/2,hy=(ya+yb)/2;
       if(o2==="h") box(len,yb-ya,t,X(mid),y0+hy,Z(c),mats,grp); else box(t,yb-ya,len,X(c),y0+hy,Z(mid),mats,grp)};
     ops.forEach(op=>{const a=Math.max(s0,op.d0),b=Math.min(s1,op.d1);if(b<=a) return;piece(cur,a,0,H3);piece(a,b,0,op.bot);piece(a,b,op.top,H3);
@@ -2734,7 +2870,7 @@ function mount3D(el,m,o,st){
     // sols
     L.forEach(r=>{if(r.t==="patio"&&li>0) return;const mat=r.t==="patio"?M.patio:r.t==="out"?(r.gal?M.paver:M.deck):r.t==="wet"?M.floorWet:r.t==="night"?M.floorNight:M.floorMain;box(r.w,0.04,r.h,X(r.x+r.w/2),y0+0.02,Z(r.y+r.h/2),mat,grp,{noCast:true})});
     // murs
-    O.ext.forEach(e=>{const c=rw(L[e.room],e.side);segWall(e.o,e.c,TO,e.s0,e.s1,y0,e.open,grp,extIdx[e.side],extSg[e.side],e.side==="top"||e.side==="left"?{pos:c}:{neg:c})});
+    O.ext.forEach(e=>{const c=rw(L[e.room],e.side);segWall(e.o,e.c,TO,e.s0,e.s1,y0,e.open,grp,extIdx[e.side],extSg[e.side],e.side==="top"||e.side==="left"?{pos:c}:{neg:c},M.accent&&L[e.room].n==="Séjour"?M.accent:null)});
     O.pairs.forEach(p=>{if(p.kind==="open"||p.kind==="none") return;const t=(p.kind==="facade"||p.kind==="party")?TO:p.kind==="patio"?0.15:TI;
       let ef=null,sg=0;if(p.kind==="facade"||p.kind==="patio"){const A=L[p.a],B=L[p.b],ou=(A.t==="out"||A.t==="patio")?A:B;
         if(p.o==="h"){const above=ou.y<p.c-EPS;ef=above?5:4;sg=above?-1:1}else{const left=ou.x<p.c-EPS;ef=left?1:0;sg=left?-1:1}}
@@ -2748,21 +2884,21 @@ function mount3D(el,m,o,st){
       if(li>0) sides(r,m).forEach(sd=>{const g2=sd.o==="h";const zz=sd.side==="top"?r.y:r.y+r.h,xx=sd.side==="left"?r.x:r.x+r.w;
         if(g2){box(r.w,1.0,0.02,X(r.x+r.w/2),y0+0.55,Z(zz),M.glass,grp);box(r.w,0.05,0.06,X(r.x+r.w/2),y0+1.07,Z(zz),M.steel,grp)}else{box(0.02,1.0,r.h,X(xx),y0+0.55,Z(r.y+r.h/2),M.glass,grp);box(0.06,0.05,r.h,X(xx),y0+1.07,Z(r.y+r.h/2),M.steel,grp)}})});
     // dalle haute / plafond
-    const pitched=top&&o.roof!=="plat";
+    const pitched=top&&o.roof!=="plat",OVF=MOD.ov||0.5,AO=OVF-0.1; // débord du toit plat, et position de l'acrotère à son bord
     L.forEach(r=>{if(r.t==="patio") return;if(li>0&&(r.n==="Balcon"||r.n==="Terrasse sur toit")) return;
       if(!top&&r.n==="Escalier") return;
-      const flatTop=top&&!pitched,ov=flatTop?0.5:0.0,ex=c=>c?ov:0;
+      const flatTop=top&&!pitched,ov=flatTop?OVF:0.0,ex=c=>c?ov:0;
       const x0=r.x-ex(Math.abs(r.x-m.bx)<EPS),x1=r.x+r.w+ex(Math.abs(r.x+r.w-m.bx-m.bw)<EPS),z0=r.y-ex(Math.abs(r.y-m.by)<EPS),z1=r.y+r.h+ex(Math.abs(r.y+r.h-m.by-m.bd)<EPS);
       const cb=box(x1-x0,SL3,z1-z0,X((x0+x1)/2),y0+H3+SL3/2,Z((z0+z1)/2),[M.slabSide,M.slabSide,top?M.roofFlat:M.inner,M.ceil,M.slabSide,M.slabSide],top?roofGrp:grp);if(!top) ceils.push(cb)});
     if(top&&!pitched){ // acrotère
       L.forEach(r=>{if(r.t==="patio"||r.n==="Balcon"||r.n==="Terrasse sur toit") return;sides(r,m).forEach(sd=>{const hP=0.55,yy=y0+H3+SL3+hP/2,off=-0.5+0.1;
-        if(sd.o==="h"){const z=sd.side==="top"?r.y-0.4:r.y+r.h+0.4;box(r.w+(sides(r,m).some(q=>q.o==="v")?0.8:0),hP,0.18,X(r.x+r.w/2),yy,Z(z),M.facade,roofGrp)}
-        else{const x=sd.side==="left"?r.x-0.4:r.x+r.w+0.4;box(0.18,hP,r.h+(sides(r,m).some(q=>q.o==="h")?0.8:0),X(x),yy,Z(r.y+r.h/2),M.facade,roofGrp)}})})}
+        if(sd.o==="h"){const z=sd.side==="top"?r.y-AO:r.y+r.h+AO;box(r.w+(sides(r,m).some(q=>q.o==="v")?2*AO:0),hP,0.18,X(r.x+r.w/2),yy,Z(z),M.facade,roofGrp)}
+        else{const x=sd.side==="left"?r.x-AO:r.x+r.w+AO;box(0.18,hP,r.h+(sides(r,m).some(q=>q.o==="h")?2*AO:0),X(x),yy,Z(r.y+r.h/2),M.facade,roofGrp)}})})}
     if(pitched){
       const pat=L.find(r=>r.t==="patio");let boxes=[{x0:m.bx,x1:m.bx+m.bw,z0:m.by,z1:m.by+m.bd}];
       if(L.some(r=>r.n==="Terrasse sur toit")){const g=L.filter(r=>r.t!=="out"&&r.t!=="patio");boxes=[{x0:Math.min(...g.map(r=>r.x)),x1:Math.max(...g.map(r=>r.x+r.w)),z0:Math.min(...g.map(r=>r.y)),z1:Math.max(...g.map(r=>r.y+r.h))}]}
       else if(pat){const a=L.filter(r=>r.y+r.h<=pat.y+EPS&&r.t!=="patio"),b=L.filter(r=>r.y>=pat.y+pat.h-EPS);boxes=[a,b].filter(g=>g.length).map(g=>({x0:Math.min(...g.map(r=>r.x)),x1:Math.max(...g.map(r=>r.x+r.w)),z0:Math.min(...g.map(r=>r.y)),z1:Math.max(...g.map(r=>r.y+r.h))}))}
-      boxes.forEach(bb=>{const ov=0.7,lx=bb.x1-bb.x0,lz=bb.z1-bb.z0,alongX=lx>=lz,span=(alongX?lz:lx)/2+ov,len=(alongX?lx:lz)+ov*2;
+      boxes.forEach(bb=>{const ov=MOD.ovP||0.7,lx=bb.x1-bb.x0,lz=bb.z1-bb.z0,alongX=lx>=lz,span=(alongX?lz:lx)/2+ov,len=(alongX?lx:lz)+ov*2;
         let shape=new THREE.Shape();
         if(o.roof==="deux"){const rh=span*Math.tan(24*Math.PI/180);shape.moveTo(-span,0);shape.lineTo(span,0);shape.lineTo(0,rh);shape.lineTo(-span,0)}
         else{const rh=2*span*Math.tan(10*Math.PI/180);shape.moveTo(-span,0);shape.lineTo(span,0);shape.lineTo(span,0.25);shape.lineTo(-span,0.25+rh);shape.lineTo(-span,0)}
@@ -2941,7 +3077,7 @@ function furn3D(r,M,box,cyl,sph,li,y0,m){
   if(n==="Bibliothèque"){office();return g}
   const garage=()=>{const car=(u)=>{const cg=new THREE.Group();box(1.8,0.6,4.3,0,0.62,0,M.car,cg);box(1.6,0.55,2.2,0,1.18,-0.2,M.car,cg);box(1.62,0.45,2.0,0,1.2,-0.2,M.glass,cg);[[-0.82,1.3],[0.82,1.3],[-0.82,-1.35],[0.82,-1.35]].forEach(([a,b])=>{const t=cyl(0.34,0.34,0.24,a,0.34,b,M.tire,cg,18);t.rotation.z=Math.PI/2});cg.position.set(u,0,h/2);g.add(cg)};if(w<2.1||h<4.6) return;if(w>=4.6){car(1.25);car(w-1.25)}else car(w/2);B(0.6,1.0,w>=4.6?3:1.5,w-0.32,0.5,0.3+0.75,M.metal)};
   if(n==="Ch. parentale") bed(1.6,true); else if(n==="Chambre d'amis") bed(1.4,false); else if(n==="Ch. de service") bed(0.9,false); else if(n==="Garage") garage(); else if(n==="Cellier") dressing(); else if(/^Salon|^Salle de sport/.test(n)) salon(); else if(/^Chambre/.test(n)) bed(w>=2.8?1.4:1.2,false);
-  else if(/^Séjour/.test(n)) salon(); else if(n==="Salle à manger") dining(); else if(n==="Cuisine") kitchen();
+  else if(/^Séjour/.test(n)) salon(); else if(n==="Salle à manger"||n==="Espace repas") dining(); else if(/^Cuisine/.test(n)) kitchen();
   else if(/^SDB|^Salle de bain|^Douche/.test(n)) bath(); else if(n==="WC") wc(); else if(n==="Bureau") office(); else if(n==="Buanderie") laundry();
   else if(n==="Dressing") dressing(); else if(n==="Terrasse") terrace(); else if(n==="Patio") patio(); else if(n==="Entrée") entry(); else return null;
   return g;
@@ -2996,14 +3132,24 @@ function syncTower(want){const t=val("type"),imm=t==="rn"&&val("usage")==="immeu
   $("#prolegend").textContent=T.leg;$("#nblabel").textContent=T.nb;$("#pluslabel").textContent=T.plus;$("#pronote").textContent=T.note(e);
   sel.innerHTML=o.map(n=>`<option value="${n}">${T.lab(n,e)}</option>`).join("");sel.value=String(o.includes(v)?v:v<o[0]?o[0]:o[o.length-1])}
 function proGate(p){if(!isPro(p.type)||O().pro) return false;toast(`Les plans de boutiques et de bureaux sont inclus dans les offres ${OFFERS.moyen.nom} et ${OFFERS.max.nom}.`);location.hash="tarifs";return true}
+// version des plans de maison : 2 pour un nouveau projet (pièces et fenêtres d'après des maisons réelles) ;
+// un projet déjà enregistré garde la sienne tant qu'il est ouvert, pour que son plan ne change pas quand on le modifie
+let formPv=2;
+const STD_TXT={eco:"Économique : comme dans les logements économiques, séjour avec coin repas, cuisine, salle de bain commune et fenêtres à lames de verre.",
+  std:"Standard : comme dans les villas de lotissement, séjour et salle à manger, buanderie, toilette des visiteurs, salle de bain pour les parents.",
+  haut:"Haut de gamme : comme dans les villas haut standing, une salle de bain par chambre, dressing, bureau, grandes baies vitrées et marbre.",
+  luxe:"Luxe : comme dans les grandes villas, en plus une cuisine africaine et un salon familial, avec pierre, bois et granit."};
+// sous le niveau de finition : ce que ce niveau reprend des maisons réelles (maisons, plans version 2)
+function stdHint(){const h=$("#stdhint");if(!h) return;const t=val("type"),k=$("#std").value,txt=formPv>=2&&k&&(!t||/^(pp|r1|r2)$/.test(t))?STD_TXT[k]:"";h.textContent=txt||"";h.hidden=!txt}
 function readForm(){syncTower();const area=Math.max(100,+$("#area").value||DEF.area),shape=val("shape"),city=$("#city").value||DEF.city,fw=+$("#fw").value||0,dm=dimsFrom(area,shape,fw),C=CITIES[city];
   $("#dimhint").textContent=+$("#area").value>0&&document.querySelector("input[name=shape]:checked")?`Soit environ ${dec(dm.W,1)} m côté rue × ${dec(dm.D,1)} m de profondeur`:"";
   $("#covhint").textContent=+$("#area").value>0&&isPro(val("type"))?`Soit au plus ${fmt(area*covVal()/100)} m² au sol sur votre terrain de ${fmt(area)} m². Le reste sert au stationnement.`:+$("#area").value>0?`Soit une maison d'environ ${fmt(area*covVal()/100)} m² au sol sur votre terrain de ${fmt(area)} m².`:isPro(val("type"))?"Par défaut, le bâtiment occupe au plus la moitié du terrain.":"Par défaut, la maison occupe la moitié du terrain.";
   $("#cityhint").textContent=!$("#city").value?"":"Climat : "+ZONES[C.zone].nom+(C.k!==1?` · prix local ${C.k>1?"+":"−"}${Math.round(Math.abs(C.k-1)*100)} %`:"");
-  return {area,shape,city,W:dm.W,D:dm.D,ra:+$("#ra").value||0,rl:+$("#rl").value||0,zone:C.zone,or:val("or"),type:val("type"),n:+$("#ch").value||DEF.n,std:$("#std").value||DEF.std,style:val("style"),pm:+$("#pm").value||PRICE[$("#std").value||DEF.std],pmU:+$("#pm").value>0,cov:covVal(),filled:formMissing().length===0,cityU:!!$("#city").value,seed:cur.seed||1,fw,garage:+$("#garage").value,
+  return {area,shape,city,W:dm.W,D:dm.D,ra:+$("#ra").value||0,rl:+$("#rl").value||0,zone:C.zone,or:val("or"),type:val("type"),n:+$("#ch").value||DEF.n,std:$("#std").value||DEF.std,style:val("style"),pm:+$("#pm").value||PRICE[$("#std").value||DEF.std],pmU:+$("#pm").value>0,cov:covVal(),filled:formMissing().length===0,cityU:!!$("#city").value,seed:cur.seed||1,pv:formPv,fw,garage:+$("#garage").value,
   piscine:$("#x-piscine").checked,bureau:$("#x-bureau").checked,openK:$("#x-openK").checked,suites:$("#x-suites").checked,service:$("#x-service").checked,cellier:$("#x-cellier").checked,solaire:$("#x-solaire").checked,citerne:$("#x-citerne").checked,
   nf:+$("#nf").value,usage:val("usage"),apts:+$("#apts").value,aptType:$("#aptType").value,rdc:val("rdc"),lift:$("#x-lift").checked,roofTerrace:$("#x-roofT").checked,genset:$("#x-genset").checked,nb:+$("#nb").value||DEF.nb,plus:$("#x-plus").checked,et:isPro(val("type"))?Math.max(0,Math.min(2,+val("et")||0)):0}}
 function writeForm(p){
+  formPv=p.filled?(p.pv||1):2;
   if(!p.area){p.area=Math.round(p.W*p.D);const r=p.D/p.W;p.shape=r<1.12?"carre":r<1.6?"rect":"long"}
   if(!p.city||!CITIES[p.city]) p.city=Object.keys(CITIES).find(k=>CITIES[k].zone===p.zone)||"grand-bassam";
   $("#area").value=p.area;$("#city").value=p.city;$("#ra").value=p.ra;$("#rl").value=p.rl;$("#ch").value=p.n;$("#std").value=p.std;if($("#cov")) $("#cov").value=p.cov||50;$("#pm").value=p.pmU?p.pm:"";if($("#wish")){$("#wish").value=p.wish||"";$("#wish").dispatchEvent(new Event("input"))}if(typeof pmHint==="function") pmHint();
@@ -3014,7 +3160,7 @@ function writeForm(p){
   ["usage","rdc"].forEach(k=>{const el=document.querySelector(`input[name=${k}][value="${p[k]||DEF[k]}"]`);if(el) el.checked=true});
   $("#x-lift").checked=p.lift!==undefined?!!p.lift:true;$("#x-roofT").checked=p.roofTerrace!==undefined?!!p.roofTerrace:true;$("#x-genset").checked=!!p.genset;
   {const el=document.querySelector(`input[name=et][value="${Math.max(0,Math.min(2,+p.et||0))}"]`);if(el) el.checked=true}
-  $("#proset").dataset.k="";if(isPro(val("type"))) $("#x-plus").checked=p.plus!==false;syncTower(p.nb||DEF.nb);readForm()}
+  $("#proset").dataset.k="";if(isPro(val("type"))) $("#x-plus").checked=p.plus!==false;syncTower(p.nb||DEF.nb);readForm();stdHint()}
 
 /* ---------- Base de données Firebase : comptes, offre et quota ---------- */
 // Comptes : Firebase Authentication (adresse e-mail + mot de passe).
@@ -3055,7 +3201,7 @@ function refreshOffer(){
 }
 function limitReached(){toast(`Limite quotidienne atteinte (${O().quota} plans). Passez à une offre supérieure.`)}
 
-const NEWS=[{"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation"}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation"}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation"}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation"}];
+const NEWS=[{"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation"}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation"}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation"}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation"}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation"}];
 /* ---------- Comptes : connexion par e-mail et mot de passe (Firebase) ---------- */
 const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false,verified:false};
 // Administrateurs : empreintes SHA-256 des adresses e-mail (config.js), pour ne pas publier les adresses.
@@ -3631,7 +3777,7 @@ function renderExamples(){const g=document.getElementById("exgrid");if(!g) retur
       <span class="exmeta">${m.n} chambres · ${fmt(m.builtArea)} m² · terrain de ${fmt(m.plot)} m² à ${m.lieu}</span>
       <div class="excost"><span>Coût estimé des travaux</span><b>${F(m.total)}</b></div>
       <button type="button" class="ghost" data-ex="${i}">Partir de cet exemple</button></div></article>`}).join("");
-  g.querySelectorAll("[data-ex]").forEach(b=>b.onclick=()=>{cur=Object.assign({},DEF,EXAMPLES[+b.dataset.ex],{filled:true});writeForm(cur);location.hash="creation"});
+  g.querySelectorAll("[data-ex]").forEach(b=>b.onclick=()=>{cur=Object.assign({},DEF,EXAMPLES[+b.dataset.ex],{filled:true,pv:2});writeForm(cur);location.hash="creation"});
 }
 /* ---------- Page résultat : onglets ---------- */
 function syncRes(){
@@ -3989,7 +4135,7 @@ function area3D(host,m){
   // visite guidée : carte de la pièce et commandes
   const TI={prev:'<path d="M15 6l-6 6 6 6"/>',next:'<path d="M9 6l6 6-6 6"/>',play:'<path d="M8 5.5v13l11-6.500z" fill="currentColor"/>',pause:'<path d="M8 5v14M16 5v14"/>',home:'<path d="M4 11l8-7 8 7v9H4z"/>'};
   const tic=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${TI[k]}</svg>`;
-  const floorName=r=>r.t==="out"?"Terrasse en bois":r.t==="wet"?"Carrelage antidérapant":({carrelage:r.t==="night"&&m.std!=="eco"?"Parquet":"Carrelage",parquet:"Parquet",beton:"Béton ciré",marbre:"Marbre"}[opts3d.floor]||"Carrelage");
+  const floorName=r=>r.t==="out"?"Terrasse en bois":r.t==="wet"?"Carrelage antidérapant":r.t==="night"&&m.std!=="eco"&&/^(carrelage|marbre|granit)$/.test(opts3d.floor)?"Parquet":({carrelage:"Carrelage",parquet:"Parquet",beton:"Béton ciré",marbre:"Marbre",granit:"Granit"}[opts3d.floor]||"Carrelage");
   st.stops=rooms;
   st.onTour=info=>{const t=q("tour");if(!t||st.mode!=="tour") return;const r=info.room,sig=info.i+"|"+info.playing+"|"+(info.phase==="doll");if(t.dataset.sig===sig) return;t.dataset.sig=sig;
     const card=info.phase==="doll"||!r?`<small>Vue d'ensemble</small><b>${typeLabel(m.p)}</b><span>${info.n} pièce${info.n>1?"s":""} à visiter</span>`
@@ -4008,12 +4154,12 @@ function area3D(host,m){
     const sw=(k,list)=>`<div class="sw">${list.map(c=>`<button type="button" data-k="${k}" data-v="${c}" aria-pressed="${opts3d[k].toLowerCase()===c.toLowerCase()}" style="background:${c}" aria-label="Couleur ${c}"></button>`).join("")}<input type="color" data-k="${k}" value="${opts3d[k]}" aria-label="Couleur personnalisée"></div>`;
     tools.innerHTML=`<div class="toolshead" style="margin:6px 2px 10px"><h3>Personnaliser la maquette</h3><span class="badge">Offre Max</span></div>
     <div class="tools">
-      <div class="tool"><div class="lab">Façade</div>${opt("facade",[["enduit","Enduit"],["btc","Brique de terre"],["pierre","Pierre"],["bois","Bardage bois"]])}</div>
+      <div class="tool"><div class="lab">Façade</div>${opt("facade",[["enduit","Enduit"],["btc","Brique de terre"],["pierre","Pierre"],["bois","Bardage bois"],["beton","Béton brut"]])}</div>
       <div class="tool"><div class="lab">Couleur des murs</div>${sw("wall",WALLS)}</div>
       <div class="tool"><div class="lab">Toiture</div>${opt("roof",[["plat","Toit plat"],["mono","Une pente"],["deux","Deux pentes"]])}${opt("roofMat",[["tole","Tôle bac"],["tuile","Tuiles"]])}</div>
       <div class="tool"><div class="lab">Couleur de toiture</div>${sw("roofColor",ROOFS)}</div>
       <div class="tool"><div class="lab">Menuiseries</div>${opt("frame",[["anthra","Alu anthracite"],["blanc","Blanc"],["bois","Bois"]])}</div>
-      <div class="tool"><div class="lab">Sol intérieur</div>${opt("floor",[["carrelage","Carrelage"],["parquet","Parquet"],["beton","Béton ciré"],["marbre","Marbre"]])}</div>
+      <div class="tool"><div class="lab">Sol intérieur</div>${opt("floor",[["carrelage","Carrelage"],["parquet","Parquet"],["beton","Béton ciré"],["marbre","Marbre"],["granit","Granit"]])}</div>
       <div class="tool"><div class="lab">Heure de la journée <span data-r="hourv">${opts3d.hour} h</span></div><input type="range" min="6" max="20" step="0.5" value="${opts3d.hour}" data-k="hour" aria-label="Heure de la journée"></div>
       <div class="tool"><div class="lab">Abords</div><label class="tgl"><input type="checkbox" data-k="veg" ${opts3d.veg?"checked":""}>Arbres et végétation</label><label class="tgl"><input type="checkbox" data-k="car" ${opts3d.car?"checked":""}>Voiture dans la cour</label>
         <button type="button" class="ghost" data-reset style="margin-top:4px">Réinitialiser</button></div>
@@ -4352,7 +4498,7 @@ function route(){
 }
 
 /* ---------- Évènements ---------- */
-$("#f").addEventListener("change",e=>{if(e.target.id==="std") pmHint();if(!$("#formerr").hidden&&!formMissing().length) $("#formerr").hidden=true;readForm();dirty=true;$("#dirty").hidden=false});
+$("#f").addEventListener("change",e=>{if(e.target.id==="std") pmHint();stdHint();if(!$("#formerr").hidden&&!formMissing().length) $("#formerr").hidden=true;readForm();dirty=true;$("#dirty").hidden=false});
 $("#f").addEventListener("input",()=>readForm());
 $("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;if(!formOk()) return;if(proGate(readForm())) return;if(!useQuota()) return limitReached();const s=cur.seed;cur=applyWish(readForm());cur.seed=s;writeForm(cur);level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
 // la page du plan : le dessin se fait une fois la page affichée (largeur réelle de l'écran)
