@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rKnDVadAukd4iZ1CrzB0x1xdKzqLFgs70yzuddrwzL8=' 'sha256-gTOmYPjUOSn1ZCTejVosJJ3U/9fyjIkPBMH/C4t+UNo=' 'sha256-WhKHY+HTmBSaQlnu5rNfiegUpdbs0b7aCjJJhd0Nrco=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rKnDVadAukd4iZ1CrzB0x1xdKzqLFgs70yzuddrwzL8=' 'sha256-PsEA3IWWj8jjz2Xcgu3fqRAYDqKLa/Wsm8ZUw8Khee8=' 'sha256-eSa69yHvclNhrnLa4XJkTqwv9wDvjr65rkyr9WO7450=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -744,6 +744,54 @@ details.advbox[open]>fieldset{margin-top:10px}
 @media (prefers-reduced-motion:reduce){.sk{animation:none}}
 .mmore{display:flex;justify-content:center;margin-top:18px}.mmore:empty{display:none}
 .exbtn svg{width:16px;height:16px}
+
+/* ---------- Photos réelles (accueil) ---------- */
+.hero .hphoto{position:absolute;inset:0;background:center 58%/cover no-repeat;opacity:0;transition:opacity .6s ease}
+.hero.has-photo .hphoto{opacity:1}
+.hero.has-photo .hvilla{visibility:hidden}
+.hero.has-photo .hshade{inset:0;height:auto;background:linear-gradient(180deg,rgba(20,15,11,.5) 0%,rgba(20,15,11,.12) 34%,rgba(20,15,11,.18) 52%,rgba(20,15,11,.86) 100%)}
+.hero.has-photo h1{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#fff;text-shadow:0 2px 30px rgba(20,14,10,.35)}
+.hero.has-photo h1 .acc{color:#fff}
+@media (max-width:700px){
+  .home.hero.has-photo{min-height:min(660px,calc(100svh - 150px))}
+  .hero.has-photo .hvilla{display:none}
+  .hero.has-photo .home-in{margin-top:auto;padding-top:120px}
+  .hero.has-photo .hphoto{background-position:62% center}
+  .hero.has-photo .hshade{background:linear-gradient(180deg,rgba(20,15,11,.55) 0%,rgba(20,15,11,.15) 26%,rgba(20,15,11,.5) 46%,rgba(20,15,11,.9) 72%)}
+}
+.pbgrid{display:grid;grid-template-columns:1.35fr 1fr;grid-template-rows:repeat(2,minmax(0,1fr));gap:14px;height:clamp(380px,46vw,560px)}
+.pb{position:relative;display:block;overflow:hidden;border-radius:var(--r-l);background:color-mix(in srgb,var(--ink) 8%,transparent);color:#fff;text-decoration:none}
+.pb-l{grid-row:1 / span 2}
+.pb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.23,1,.32,1)}
+.pb span{position:absolute;left:14px;bottom:14px;padding:8px 14px;border-radius:999px;background:rgba(20,15,11,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:14px;font-weight:600;line-height:1}
+@media (hover:hover) and (pointer:fine){.pb:hover img{transform:scale(1.03)}}
+.pb:active img{transform:scale(.99)}
+.pb:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media (max-width:760px){.pbgrid{grid-template-columns:1fr 1fr;grid-template-rows:auto;height:auto}.pb{aspect-ratio:4/3}.pb-l{grid-row:auto;grid-column:1 / -1;aspect-ratio:16/11}.pb span{left:10px;bottom:10px;font-size:13px;padding:7px 11px}}
+.photoband.nophoto{display:none}
+.ctaband.has-photo{background:linear-gradient(90deg,rgba(15,12,10,.9),rgba(15,12,10,.62)),var(--cta-photo) center/cover no-repeat;color:#fff}
+.ctaband.has-photo::before{display:none}
+.ctaband.has-photo h2{color:#fff}
+.pcredit{opacity:.7}
+body:not(.photos-ok) .pcredit{display:none}
+@media (prefers-reduced-motion:reduce){.hero .hphoto,.pb img{transition:none}}
+
+/* ---------- Visite guidée 3D ---------- */
+.three .tfade{position:absolute;inset:0;pointer-events:none;opacity:0;background:#14100c}
+.three .tourui{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;pointer-events:none}
+.three .tourui[hidden]{display:none}
+.tcard{pointer-events:auto;min-width:0;max-width:min(300px,58%);padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#111;display:flex;flex-direction:column;gap:2px;box-shadow:0 14px 30px -18px rgba(0,0,0,.6);animation:tcardIn .22s cubic-bezier(.23,1,.32,1)}
+.tcard small{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#555}
+.tcard b{font-size:17px;line-height:1.2}
+.tcard span{font-size:13px;color:#444}
+@keyframes tcardIn{from{opacity:0;transform:translateY(6px)}}
+.tbtns{pointer-events:auto;display:flex;gap:6px;flex:none}
+.tbtns button{width:44px;height:44px;min-height:0;padding:0;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.88);color:#111;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 8px 18px -10px rgba(0,0,0,.6);transition:transform .16s ease-out}
+.tbtns button:active{transform:scale(.95)}
+.tbtns button:disabled{opacity:.45}
+.tbtns svg{width:18px;height:18px}
+@media (max-width:600px){.three .tourui{flex-direction:column;align-items:stretch}.tcard{max-width:none;padding:10px 12px}.tcard b{font-size:16px}.tbtns{justify-content:flex-end}}
+@media (prefers-reduced-motion:reduce){.tcard{animation:none}}
 /* Version application : e-mail, notifications, abonnement, installation */
 input[type=email]{font:inherit;font-size:15px;font-weight:500;padding:10px 14px;border:1px solid var(--hair);background:var(--card);color:var(--ink);border-radius:var(--r-m);width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
 @media (max-width:760px),(pointer:coarse){input[type=email]{font-size:16px}}
@@ -888,6 +936,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
         <g fill="#2F3A2B"><ellipse cx="238" cy="402" rx="34" ry="16"/><ellipse cx="948" cy="402" rx="30" ry="14"/><ellipse cx="1052" cy="404" rx="44" ry="18"/></g>
         <use href="#hv-palm" transform="translate(1064 420) scale(.82)"/>
       </svg>
+      <div class="hphoto" aria-hidden="true"></div>
       <div class="hshade" aria-hidden="true"></div>
       <div class="htop">
         <div class="eyebrow reveal"><span>Conception architecturale<span class="eb-x"> · Côte d'Ivoire</span></span></div>
@@ -914,6 +963,15 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
       <div class="fact reveal d2"><b>R+10</b><span>de la villa plain-pied à l'immeuble</span></div>
       <div class="fact reveal d3"><b id="fact-zones">4</b><span>zones climatiques prises en compte</span></div>
     </div>
+
+    <section class="block photoband" id="photoband">
+      <div class="bhead"><div class="eyebrow">Inspiration</div><h2>Des maisons pensées pour le climat d'ici</h2><p>Toiture, ouvertures et orientation ne sont pas les mêmes sur la côte et au Sahel : chaque plan tient compte de la zone climatique de votre ville.</p></div>
+      <div class="pbgrid">
+        <a class="pb pb-l reveal" href="#creation" aria-label="Créer un plan de villa à étage"><img loading="lazy" decoding="async" alt="Villa blanche à étage avec balcon et grandes ouvertures" src="https://images.unsplash.com/photo-1764566917581-2cfd7ba4edd8?auto=format&fit=crop&q=70&w=1100"><span>Villa à étage</span></a>
+        <a class="pb reveal d1" href="#creation" aria-label="Créer un plan de villa sans étage"><img loading="lazy" decoding="async" alt="Villa à toit de tuiles entourée d'un jardin tropical" src="https://images.unsplash.com/photo-1688653802629-5360086bf632?auto=format&fit=crop&q=70&w=800"><span>Villa sans étage</span></a>
+        <a class="pb reveal d2" href="#creation" aria-label="Créer un plan de maison contemporaine"><img loading="lazy" decoding="async" alt="Maison contemporaine à toit plat avec terrasse et piscine" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=70&w=800"><span>Contemporaine</span></a>
+      </div>
+    </section>
 
     <section class="block">
       <div class="bhead"><div class="eyebrow">Exemples</div><h2>Des plans générés par l'outil</h2><p>Trois projets types, avec leur surface et leur coût estimé. Le vôtre sera calculé pour votre terrain et votre ville.</p></div>
@@ -1224,6 +1282,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
     <div class="fbottom">
       <span>© 2026 Architmind CI · Fait par Hunter Agency · <a href="mailto:Architmind.ci@gmail.com">Architmind.ci@gmail.com</a></span>
       <nav class="flegal" aria-label="Informations légales"><a href="conditions.html">Conditions d'utilisation</a><a href="confidentialite.html">Confidentialité</a><a href="remboursement.html">Remboursement</a><a href="mentions-legales.html">Mentions légales</a></nav>
+      <span class="pcredit">Photos d'illustration : Unsplash</span>
     </div>
   </footer>
 </main>
@@ -2251,7 +2310,7 @@ function mergeByMaterial(src){
 let viewer=null;
 function stop3D(){if(!viewer) return;cancelAnimationFrame(viewer.raf);viewer.ro&&viewer.ro.disconnect();
   viewer.scene.traverse(o=>{if(o.geometry) o.geometry.dispose();if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(x=>x.dispose())});
-  viewer.env&&viewer.env.dispose();viewer.scene.background&&viewer.scene.background.dispose&&viewer.scene.background.dispose();viewer.renderer.dispose();viewer.renderer.domElement.remove();viewer=null}
+  viewer.env&&viewer.env.dispose();viewer.clay&&viewer.clay.dispose();viewer.el.querySelectorAll(".tfade").forEach(x=>x.remove());viewer.scene.overrideMaterial=null;viewer.scene.background&&viewer.scene.background.dispose&&viewer.scene.background.dispose();viewer.renderer.dispose();viewer.renderer.domElement.remove();viewer=null}
 
 function mount3D(el,m,o,st){
   let keep=null;
@@ -2260,7 +2319,7 @@ function mount3D(el,m,o,st){
   el.querySelectorAll(".fallback").forEach(x=>x.remove());
   if(typeof THREE==="undefined"){el.insertAdjacentHTML("afterbegin",`<div class="fallback">La maquette 3D n'a pas pu se charger dans ce navigateur. Le plan et le coût restent disponibles.</div>`);return null}
   const W=m.W,D=m.D,X=x=>x-W/2,Z=z=>z-D/2,big=Math.max(W,D),baseH=m.zone==="cote"?0.5:0.3,HT=baseH+m.levels.length*(H3+SL3),ext=Math.max(big,HT);
-  const T=textures(m.zone),S=sunState(o.hour,m.or),inside=st.mode==="int";
+  const tour=st.mode==="tour",T=textures(m.zone),S=sunState(tour?19.2:o.hour,m.or),inside=st.mode==="int"||tour;
   const lightsOn=inside||S.el<10;
   const scene=new THREE.Scene();
   const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance"});
@@ -2363,7 +2422,7 @@ function mount3D(el,m,o,st){
   /* --- bâtiment --- */
   const base=m.zone==="cote"?0.5:0.3;
   box(m.bw+0.3,base,m.bd+0.3,X(m.bx+m.bw/2),base/2,Z(m.by+m.bd/2),M.plinth);
-  const levels=[],roofGrp=new THREE.Group();scene.add(roofGrp);
+  const levels=[],ceils=[],roofGrp=new THREE.Group();scene.add(roofGrp);
   let roomSel=null;
   if(inside){const all=m.levels.flatMap((L,li)=>L.map(r=>Object.assign({li},r)));roomSel=all.find(r=>r.n===st.room&&r.li===st.roomLi&&(st.roomU===undefined||r.u===st.roomU))||all.find(r=>r.n===st.room&&r.li===st.roomLi)||all.find(r=>/^Séjour/.test(r.n))||all[0]}
   const faceMats=(ext)=>{const a=[M.inner,M.inner,M.facade,M.inner,M.inner,M.inner];if(ext!==undefined&&ext!==null) a[ext]=M.facade;return a};
@@ -2415,7 +2474,7 @@ function mount3D(el,m,o,st){
       if(!top&&r.n==="Escalier") return;
       const flatTop=top&&!pitched,ov=flatTop?0.5:0.0,ex=c=>c?ov:0;
       const x0=r.x-ex(Math.abs(r.x-m.bx)<EPS),x1=r.x+r.w+ex(Math.abs(r.x+r.w-m.bx-m.bw)<EPS),z0=r.y-ex(Math.abs(r.y-m.by)<EPS),z1=r.y+r.h+ex(Math.abs(r.y+r.h-m.by-m.bd)<EPS);
-      box(x1-x0,SL3,z1-z0,X((x0+x1)/2),y0+H3+SL3/2,Z((z0+z1)/2),[M.slabSide,M.slabSide,top?M.roofFlat:M.inner,M.ceil,M.slabSide,M.slabSide],top?roofGrp:grp)});
+      const cb=box(x1-x0,SL3,z1-z0,X((x0+x1)/2),y0+H3+SL3/2,Z((z0+z1)/2),[M.slabSide,M.slabSide,top?M.roofFlat:M.inner,M.ceil,M.slabSide,M.slabSide],top?roofGrp:grp);if(!top) ceils.push(cb)});
     if(top&&!pitched){ // acrotère
       L.forEach(r=>{if(r.t==="patio"||r.n==="Balcon"||r.n==="Terrasse sur toit") return;sides(r,m).forEach(sd=>{const hP=0.55,yy=y0+H3+SL3+hP/2,off=-0.5+0.1;
         if(sd.o==="h"){const z=sd.side==="top"?r.y-0.4:r.y+r.h+0.4;box(r.w+(sides(r,m).some(q=>q.o==="v")?0.8:0),hP,0.18,X(r.x+r.w/2),yy,Z(z),M.facade,roofGrp)}
@@ -2435,7 +2494,7 @@ function mount3D(el,m,o,st){
     // mobilier et éclairage
     L.forEach(r=>{const fg=furn3D(r,M,box,cyl,sph,li,y0,m);if(fg) inner.add(fg);
       if(r.t!=="out"&&r.t!=="patio"&&r.n!=="Escalier"){cyl(0.22,0.22,0.04,X(r.x+r.w/2),y0+H3-0.02,Z(r.y+r.h/2),M.lamp,inner,24);
-        const want=inside?(li===roomSel.li&&(roomSel.u===undefined||r.u===roomSel.u)):(lightsOn&&li<=2);
+        const want=tour?false:inside?(li===roomSel.li&&(roomSel.u===undefined||r.u===roomSel.u)):(lightsOn&&li<=2);
         if(want&&nl<12&&(r.w*r.h>4||inside)){const pl=new THREE.PointLight(0xffd6a0,inside?(S.night?1.1:0.55):0.9,Math.max(r.w,r.h)*1.6+2,2);pl.position.set(X(r.x+r.w/2),y0+H3-0.35,Z(r.y+r.h/2));scene.add(pl);nl++}}});
     // escalier
     L.forEach(r=>{if(r.n!=="Escalier"||top) return;const n=17,long=r.h>=r.w,run=(long?r.h:r.w)-0.4,wd=(long?r.w:r.h)-0.2,rise=(H3+SL3)/n,dep=run/n;
@@ -2452,7 +2511,8 @@ function mount3D(el,m,o,st){
   const controls=THREE.OrbitControls?new THREE.OrbitControls(cam,renderer.domElement):{update(){},target:new THREE.Vector3(),addEventListener(){}};
   controls.enableDamping=true;controls.dampingFactor=0.08;
   let room=null;
-  if(inside){
+  if(tour){controls.enabled=false}
+  else if(inside){
     room=roomSel;
     const y0=base+room.li*(H3+SL3),cx=X(room.x+room.w/2),cz=Z(room.y+room.h/2);
     const dx=Math.max(0.3,room.w/2-0.5),dz=Math.max(0.3,room.h/2-0.5);
@@ -2469,8 +2529,63 @@ function mount3D(el,m,o,st){
   roofGrp.visible=inside||(st.roof&&st.upper);if(!inside) levels.forEach((g,i)=>{if(i>0) g.visible=st.upper});
   controls.update();
   const ro=new ResizeObserver(()=>{const w=el.clientWidth,h=el.clientHeight;if(!w||!h) return;renderer.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix()});ro.observe(el);
-  viewer={el,scene,renderer,cam,controls,ro,env,raf:0,mode:st.mode,roofGrp,levels};
-  const loop=()=>{viewer.raf=requestAnimationFrame(loop);controls.update();renderer.render(scene,cam)};loop();
+  /* --- visite guidée : maquette blanche vue du dessus, puis parcours pièce par pièce --- */
+  let tourTick=null,tourApi=null,clay=null;
+  if(tour){
+    const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    clay=new THREE.MeshStandardMaterial({color:0xece8e0,roughness:1,metalness:0});
+    const sky=scene.background,white=new THREE.Color(0xdedad2),amb=new THREE.AmbientLight(0xfff0e0,0.1);
+    scene.add(amb);
+    const light=new THREE.PointLight(0xffd9ad,0.5,14,2);light.visible=false;scene.add(light);
+    const sun0={p:sun.position.clone(),c:sun.color.clone(),i:sun.intensity};
+    const fade=document.createElement("div");fade.className="tfade";el.appendChild(fade);
+    const rank=n=>/^Séjour|^Salon/.test(n)?0:/manger/i.test(n)?1:/^Cuisine/.test(n)?2:/^Hall|^Entrée/.test(n)?3:/bain|SDB|eau|WC/i.test(n)?7:/parent/i.test(n)?5:/^Ch/.test(n)?6:/Terrasse|Balcon/.test(n)?8:4;
+    const stops=(st.stops||[]).map(q=>{const r=(m.levels[q.li]||[]).find(r=>r.n===q.n&&(q.u===undefined||r.u===q.u));return r&&r.w*r.h>=3?{r,li:q.li}:null}).filter(Boolean).sort((a,b)=>a.li-b.li||rank(a.r.n)-rank(b.r.n)).slice(0,12);
+    const view=q=>{const r=q.r,y0=base+q.li*(H3+SL3),cx=X(r.x+r.w/2),cz=Z(r.y+r.h/2),ex=sides(r,m).map(k=>k.side);
+      let dx=0,dz=0;const long=r.h>=r.w*1.25?"z":r.w>=r.h*1.25?"x":ex.includes("bottom")||ex.includes("top")?"z":ex.includes("right")||ex.includes("left")?"x":r.h>=r.w?"z":"x";
+      if(long==="z") dz=ex.includes("top")&&!ex.includes("bottom")?-1:1;else dx=ex.includes("left")&&!ex.includes("right")?-1:1;
+      const hw=Math.max(0.25,r.w/2-0.55),hh=Math.max(0.25,r.h/2-0.55);
+      return {p:new THREE.Vector3(cx-dx*hw+(dz?hw*0.55:0),y0+1.55,cz-dz*hh+(dx?hh*0.55:0)),t:new THREE.Vector3(cx+dx*hw*0.5-(dz?hw*0.3:0),y0+1.1,cz+dz*hh*0.5-(dx?hh*0.3:0)),
+        c:new THREE.Vector3(cx,y0+H3-0.4,cz),d:Math.max(r.w,r.h)*1.8+3}};
+    const bcx=X(m.bx+m.bw/2),bcz=Z(m.by+m.bd/2),dd=Math.max(Math.max(m.bw,m.bd)*1.3+6,m.isTower?HT*1.6:0);
+    const dollT=new THREE.Vector3(bcx,m.isTower?HT*0.4:base+0.8,bcz),look=dollT.clone();let ang=0.9;
+    const dollP=()=>new THREE.Vector3(bcx+Math.cos(ang)*dd*0.74,dollT.y+dd*(m.isTower?0.6:0.92),bcz+Math.sin(ang)*dd*0.74);
+    const Q={i:-1,phase:"doll",t0:performance.now(),last:performance.now(),dur:0,from:null,to:null,playing:true,yaw:0,pitch:0,stay:0,swapped:false,fromDoll:false};
+    const levelFor=li=>{levels.forEach((g,i)=>{g.visible=i<=li});roofGrp.visible=li>=m.levels.length-1};
+    const setDoll=on=>{scene.overrideMaterial=on?clay:null;scene.background=on?white:sky;ceils.forEach(c=>{c.visible=!on});light.visible=!on;
+      if(on){levels.forEach((g,i)=>{g.visible=i===0||!!m.isTower});roofGrp.visible=!!m.isTower;cam.fov=36;cam.near=0.2;
+        sun.position.set(bcx+dd*0.6,dollT.y+dd*1.6,bcz+dd*0.45);sun.color.set(0xffffff);sun.intensity=1.5;amb.intensity=0.05;renderer.toneMappingExposure=0.62}
+      else{cam.fov=cam.aspect<0.8?84:70;cam.near=0.05;sun.position.copy(sun0.p);sun.color.copy(sun0.c);sun.intensity=sun0.i;amb.intensity=0.1;renderer.toneMappingExposure=0.95}
+      cam.updateProjectionMatrix()};
+    const emit=()=>{if(st.onTour) st.onTour({i:Q.i,n:stops.length,phase:Q.phase,playing:Q.playing,room:Q.i>=0?stops[Q.i].r:null,li:Q.i>=0?stops[Q.i].li:0})};
+    const toDoll=()=>{Q.phase="doll";Q.i=-1;Q.t0=performance.now();fade.style.opacity="0";setDoll(true);emit()};
+    const goto=i=>{if(!stops.length) return;if(i>=stops.length){toDoll();return}if(i<0) i=stops.length-1;
+      Q.from={p:cam.position.clone(),t:look.clone()};Q.to=view(stops[i]);Q.fromDoll=Q.phase==="doll";Q.i=i;Q.phase="fly";Q.t0=performance.now();
+      Q.dur=reduce?60:(Q.fromDoll?2400:1300);Q.swapped=false;Q.yaw=0;Q.pitch=0;Q.stay=0;fade.style.background=Q.fromDoll?"#dedad2":"#14100c";emit()};
+    const ease=k=>k<0.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2,dir=new THREE.Vector3(),tmp=new THREE.Vector3();
+    tourTick=()=>{const now=performance.now(),dt=Math.min(0.1,(now-Q.last)/1000);Q.last=now;
+      if(Q.phase==="doll"){if(!reduce&&Q.playing) ang+=dt*0.14;cam.position.copy(dollP());look.copy(dollT);cam.lookAt(look);
+        if(Q.playing&&stops.length&&now-Q.t0>5200) goto(0);return}
+      if(Q.phase==="fly"){const k=Math.min(1,(now-Q.t0)/Q.dur);fade.style.opacity=String(Math.max(0,Math.min(1,1.25-Math.abs(k-0.5)*5)));
+        if(k<0.5){if(Q.fromDoll){const e=ease(k*2);tmp.copy(Q.to.p);tmp.y+=dd*0.45;cam.position.lerpVectors(Q.from.p,tmp,e*0.8);look.lerpVectors(Q.from.t,Q.to.t,e);cam.lookAt(look)}}
+        else{if(!Q.swapped){Q.swapped=true;setDoll(false);levelFor(stops[Q.i].li);light.position.copy(Q.to.c);light.distance=Q.to.d}
+          const e=ease((k-0.5)*2);dir.subVectors(Q.to.t,Q.to.p).setY(0).normalize();cam.position.copy(Q.to.p).addScaledVector(dir,-0.45*(1-e));look.copy(Q.to.t);cam.lookAt(look)}
+        if(k>=1){Q.phase="stay";fade.style.opacity="0";emit()}return}
+      if(Q.playing) Q.stay+=dt;
+      const yaw=(reduce?0:Math.sin(Q.stay*0.42)*0.3)+Q.yaw;dir.subVectors(Q.to.t,Q.to.p);const len=Math.hypot(dir.x,dir.z)||1,a=Math.atan2(dir.z,dir.x)+yaw;
+      cam.position.copy(Q.to.p);look.set(Q.to.p.x+Math.cos(a)*len,Q.to.t.y-Math.tan(Q.pitch)*len,Q.to.p.z+Math.sin(a)*len);cam.lookAt(look);
+      if(Q.playing&&Q.stay>6.5) goto(Q.i+1)};
+    const cv=renderer.domElement;let drag=null;
+    cv.addEventListener("pointerdown",e=>{if(Q.phase!=="stay") return;drag={x:e.clientX,y:e.clientY};try{cv.setPointerCapture(e.pointerId)}catch(_){}if(Q.playing){Q.playing=false;emit()}});
+    cv.addEventListener("pointermove",e=>{if(!drag) return;Q.yaw-=(e.clientX-drag.x)*0.005;Q.pitch=Math.max(-0.6,Math.min(0.6,Q.pitch+(e.clientY-drag.y)*0.004));drag={x:e.clientX,y:e.clientY}});
+    const up=()=>{drag=null};cv.addEventListener("pointerup",up);cv.addEventListener("pointercancel",up);
+    tourApi={next:()=>goto(Q.phase==="doll"?0:Q.i+1),prev:()=>{if(Q.phase==="doll"||Q.i<=0) toDoll();else goto(Q.i-1)},overview:toDoll,
+      toggle:()=>{Q.playing=!Q.playing;Q.t0=performance.now();emit()},tick:()=>tourTick(),state:Q,stops};
+    setDoll(true);
+  }
+  viewer={el,scene,renderer,cam,controls,ro,env,raf:0,mode:st.mode,roofGrp,levels,tour:tourApi,clay};
+  const loop=()=>{viewer.raf=requestAnimationFrame(loop);if(tourTick) tourTick();else controls.update();renderer.render(scene,cam)};loop();
+  if(tourApi){tourTick();if(st.onTour) st.onTour({i:-1,n:tourApi.stops.length,phase:"doll",playing:true,room:null,li:0})}
   return viewer;
 }
 
@@ -3411,6 +3526,20 @@ function planDxf(m,name){
   return H.concat(E,["0","ENDSEC","0","EOF"]).join("\r\n")+"\r\n";
 }
 window.planDxf=planDxf;
+/* ---------- Photos réelles de l'accueil : chargées en plus, l'illustration reste si elles ne viennent pas ---------- */
+(function(){
+  const U=(id,w)=>"https://images.unsplash.com/photo-"+id+"?auto=format&fit=crop&q=70&w="+w;
+  const small=window.matchMedia("(max-width:700px)").matches;
+  const put=(url,fn)=>{const im=new Image();im.onload=()=>{fn(url);document.body.classList.add("photos-ok")};im.src=url};
+  const hero=document.querySelector(".home.hero");
+  if(hero) put(U("1745761320791-5ae142edee8c",small?900:1800),u=>{hero.querySelector(".hphoto").style.backgroundImage='url("'+u+'")';hero.classList.add("has-photo")});
+  const cta=document.querySelector(".ctaband");
+  if(cta) put(U("1790276319469-e495208bfd45",small?800:1600),u=>{cta.style.setProperty("--cta-photo",'url("'+u+'")');cta.classList.add("has-photo")});
+  const band=document.getElementById("photoband");
+  if(band){const off=()=>band.classList.add("nophoto");
+    band.querySelectorAll("img").forEach(im=>{if(im.complete&&!im.naturalWidth&&im.currentSrc) off();im.addEventListener("error",off);im.addEventListener("load",()=>document.body.classList.add("photos-ok"))})}
+})();
+
 /* ---------- Création ---------- */
 function renderPlan(){wishNote();
   model=compute(cur);
@@ -3461,10 +3590,10 @@ function area3D(host,m){
   if(!opts3d||opts3d._sig!==sg) opts3d=Object.assign(defaults3d(m),{_sig:sg});
   const st={mode:"ext",room:null,roomLi:0,spin:true,roof:true,upper:true,keep:false};
   host.innerHTML=`<div class="v3d">
-    <div class="v3dtop"><div class="tabs" data-r="mode"><button type="button" data-mode="ext" aria-pressed="true">Vue extérieure</button><button type="button" data-mode="int" aria-pressed="false">Vue intérieure</button></div>
+    <div class="v3dtop"><div class="tabs" data-r="mode"><button type="button" data-mode="ext" aria-pressed="true">Vue extérieure</button><button type="button" data-mode="int" aria-pressed="false">Vue intérieure</button><button type="button" data-mode="tour" aria-pressed="false">Visite guidée</button></div>
       <span class="tag" data-r="hint">Glissez pour tourner · molette ou pincement pour zoomer</span></div>
     <div class="rooms" data-r="rooms" hidden></div>
-    <div class="three" data-r="three"><div class="ctl" data-r="ctl"></div></div>
+    <div class="three" data-r="three"><div class="ctl" data-r="ctl"></div><div class="tourui" data-r="tour" hidden></div></div>
     <div data-r="tools"></div></div>`;
   const q=k=>host.querySelector(`[data-r="${k}"]`),three=q("three");
   let rooms;
@@ -3483,9 +3612,20 @@ function area3D(host,m){
     const rq=q("rooms");rq.hidden=st.mode!=="int";
     if(st.mode==="int") rq.innerHTML=rooms.map((r,i)=>`<button type="button" data-i="${i}" aria-pressed="${r.n===st.room&&r.li===st.roomLi&&r.u===st.roomU}">${r.n}${m.levels.length>1?" · "+lvShort(r.li)+(m.isTower&&!m.fam&&r.u===1?" (appt A)":""):""}</button>`).join("");
     rq.querySelectorAll("button").forEach(b=>b.onclick=()=>{const r=rooms[+b.dataset.i];st.room=r.n;st.roomLi=r.li;st.roomU=r.u;st.keep=false;go()});
-    q("hint").textContent=st.mode==="int"?"Glissez pour regarder autour de vous · choisissez une pièce":"Glissez pour tourner · molette ou pincement pour zoomer";
+    q("hint").textContent=st.mode==="tour"?"La visite avance toute seule · glissez pour regarder autour de vous":st.mode==="int"?"Glissez pour regarder autour de vous · choisissez une pièce":"Glissez pour tourner · molette ou pincement pour zoomer";
+    q("tour").hidden=st.mode!=="tour";
   };
-  const go=()=>{ctl();mount3D(three,m,opts3d,st);if(viewer&&!st.roof) viewer.roofGrp.visible=false};
+  // visite guidée : carte de la pièce et commandes
+  const TI={prev:'<path d="M15 6l-6 6 6 6"/>',next:'<path d="M9 6l6 6-6 6"/>',play:'<path d="M8 5.5v13l11-6.500z" fill="currentColor"/>',pause:'<path d="M8 5v14M16 5v14"/>',home:'<path d="M4 11l8-7 8 7v9H4z"/>'};
+  const tic=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${TI[k]}</svg>`;
+  const floorName=r=>r.t==="out"?"Terrasse en bois":r.t==="wet"?"Carrelage antidérapant":({carrelage:r.t==="night"?"Parquet":"Carrelage",parquet:"Parquet",beton:"Béton ciré",marbre:"Marbre"}[opts3d.floor]||"Carrelage");
+  st.stops=rooms;
+  st.onTour=info=>{const t=q("tour");if(!t||st.mode!=="tour") return;const r=info.room,sig=info.i+"|"+info.playing+"|"+(info.phase==="doll");if(t.dataset.sig===sig) return;t.dataset.sig=sig;
+    const card=info.phase==="doll"||!r?`<small>Vue d'ensemble</small><b>${typeLabel(m.p)}</b><span>${info.n} pièce${info.n>1?"s":""} à visiter</span>`
+      :`<small>Pièce ${info.i+1} sur ${info.n}${m.levels.length>1?" · "+lvShort(info.li):""}</small><b>${r.n}</b><span>${dec(r.a||r.w*r.h,1)} m² · ${floorName(r)}</span>`;
+    t.innerHTML=`<div class="tcard" aria-live="polite">${card}</div><div class="tbtns"><button type="button" data-t="overview" aria-label="Revenir à la vue d'ensemble"${info.phase==="doll"?" disabled":""}>${tic("home")}</button><button type="button" data-t="prev" aria-label="Pièce précédente">${tic("prev")}</button><button type="button" data-t="toggle" aria-label="${info.playing?"Mettre la visite en pause":"Reprendre la visite"}">${tic(info.playing?"pause":"play")}</button><button type="button" data-t="next" aria-label="Pièce suivante">${tic("next")}</button></div>`;
+    t.querySelectorAll("button").forEach(b=>b.onclick=()=>{if(viewer&&viewer.tour) viewer.tour[b.dataset.t]()})};
+  const go=()=>{ctl();q("tour").dataset.sig="";mount3D(three,m,opts3d,st);if(viewer&&!st.roof) viewer.roofGrp.visible=false};
   q("mode").querySelectorAll("button").forEach(b=>b.onclick=()=>{st.mode=b.dataset.mode;st.keep=false;
     if(st.mode==="int"&&!st.room){const s=rooms.find(r=>/^Séjour/.test(r.n))||rooms[0];st.room=s.n;st.roomLi=s.li;st.roomU=s.u}
     q("mode").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));go()});
