@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-X0AXEW2Wh/AFKEdz1WKij+bdo+bjjYeOIlWfEM9nnLI=' 'sha256-JdNg7FCCJAc/PG1lPQT8mXCDQsMhZ5A9HsyFHCqDgec=' 'sha256-Bt3BZPs64j/HZ6WoULYfLoKBkhTWaD+2eVMZSOwJWt4=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-X0AXEW2Wh/AFKEdz1WKij+bdo+bjjYeOIlWfEM9nnLI=' 'sha256-JdNg7FCCJAc/PG1lPQT8mXCDQsMhZ5A9HsyFHCqDgec=' 'sha256-Bt3BZPs64j/HZ6WoULYfLoKBkhTWaD+2eVMZSOwJWt4=' 'sha256-PBcrm4wjd8qReoAereKK0wC9SCG5vsIFXTVV9Retnww=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -610,11 +610,23 @@ details.advbox[open]>fieldset{margin-top:10px}
 .arc text{font:700 24px "Bricolage Grotesque",Outfit,sans-serif;letter-spacing:.14em;fill:var(--ink)}
 @media (max-width:760px){.arc{left:-70%;width:240%;bottom:44px;opacity:.3}}
 @media (prefers-reduced-motion:no-preference){
-  .ldr{display:grid;place-items:center;position:fixed;inset:0;z-index:90;pointer-events:none;background:var(--ground);transition:opacity .55s ease,visibility .55s}
-  .ldr.off{opacity:0;visibility:hidden}
-  .ldr svg{width:176px;height:176px;animation:ldrspin 5s linear infinite}
-  .ldr text{font:700 13.5px Outfit,sans-serif;letter-spacing:.08em;fill:var(--ink)}
-  @keyframes ldrspin{to{transform:rotate(360deg)}}
+  /* Entrée : écran noir, logo au-dessus du nom révélés par un fondu de gauche à droite, puis l'écran s'efface de gauche à droite.
+     Tout est en CSS, avec transform et opacity seulement : fluide sur téléphone, et l'écran part même si un script échoue. */
+  .ldr{display:block;position:fixed;inset:0;z-index:90;overflow:hidden;pointer-events:none;animation:ldrGone 0s 1.9s forwards}
+  .ldr-bg{position:absolute;top:0;bottom:0;left:-60vw;width:160vw;background:linear-gradient(90deg,transparent 0,#0A0C0B 55vw);animation:ldrOut .6s 1.28s cubic-bezier(.65,0,.35,1) forwards}
+  .ldr-c{position:absolute;inset:0;display:grid;place-items:center;padding:24px}
+  .ldr-in{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px;animation:ldrIn .8s .12s cubic-bezier(.22,1,.36,1) both,ldrTxtOut .22s 1.2s ease-out forwards}
+  /* cache noir à bord fondu qui glisse vers la droite : il découvre le logo et le nom de gauche à droite */
+  .ldr-in::after{content:"";position:absolute;top:-24px;bottom:-24px;left:-50%;width:150%;background:linear-gradient(90deg,transparent 0,#0A0C0B 33.34%);animation:ldrSweep .8s .12s cubic-bezier(.45,0,.2,1) both}
+  .ldr-mark{width:clamp(72px,19vw,96px);height:auto;aspect-ratio:1;display:block}
+  .ldr-name{margin:0;font-family:var(--fd);font-weight:800;font-size:clamp(34px,9.5vw,58px);letter-spacing:-.045em;line-height:1;color:#F3F4F1;white-space:nowrap}
+  .ldr-name span{color:#E8B562}
+  .ldr-tag{margin:0;font:600 11.5px var(--f);letter-spacing:.2em;text-transform:uppercase;color:#9AA29E;white-space:nowrap}
+  @keyframes ldrIn{from{transform:translateX(-16px)}}
+  @keyframes ldrSweep{to{transform:translateX(100%)}}
+  @keyframes ldrTxtOut{to{opacity:0}}
+  @keyframes ldrOut{to{transform:translateX(160vw)}}
+  @keyframes ldrGone{to{visibility:hidden}}
   .sr{opacity:0;transform:translateY(54px) scale(.97);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform,opacity}
   .sr.sl{transform:translateX(-64px)}.sr.srr{transform:translateX(64px)}
   @media (max-width:760px){.sr.sl,.sr.srr{transform:translateY(54px) scale(.97)}}
@@ -887,7 +899,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
   <a href="#tarifs" class="offer" id="offerbadge">Basique</a>
 </nav>
 
-<div class="ldr" id="ldr" aria-hidden="true"><svg viewBox="0 0 200 200"><defs><path id="ldr-c" d="M100 100 m-74 0 a74 74 0 1 1 148 0 a74 74 0 1 1 -148 0"/></defs><text><textPath href="#ldr-c" textLength="460">ARCHITMIND CI · PLANS · COÛTS · MAQUETTE 3D · </textPath></text></svg></div>
+<div class="ldr" id="ldr" aria-hidden="true"><div class="ldr-bg"></div><div class="ldr-c"><div class="ldr-in"><svg class="ldr-mark" viewBox="0 0 44 44"><rect x=".5" y=".5" width="43" height="43" rx="13.5" fill="url(#am-paper)" stroke="rgba(0,0,0,.09)"/><use href="#am-a" x="8.9" y="8.2" width="26.2" height="27" fill="#121212"/></svg><p class="ldr-name">Archit<span>mind</span> CI</p><p class="ldr-tag">Plans · Coûts · Maquette 3D</p></div></div></div>
 <main class="app">
   <div class="abobar" id="abobar" role="status" hidden></div>
   <!-- ACCUEIL -->
@@ -4426,7 +4438,7 @@ writeForm(cur);refreshOffer();route();
 (()=>{
   const calm=matchMedia("(prefers-reduced-motion: reduce)").matches,ldr=document.getElementById("ldr");
   if(calm){document.querySelectorAll(".arc animate").forEach(a=>a.remove());return}
-  const off=()=>ldr&&ldr.classList.add("off");setTimeout(off,1300);
+  setTimeout(()=>ldr&&ldr.remove(),2600); // l'écran d'entrée s'efface tout seul en CSS ; il est ensuite retiré de la page
   if(!("IntersectionObserver" in window)) return;
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.14,rootMargin:"0px 0px -6% 0px"});
   document.querySelectorAll('[data-view="accueil"] .bhead,[data-view="accueil"] .step,[data-view="accueil"] .excard,[data-view="accueil"] .ctaband,.tcard,.foot').forEach((el,i)=>{
