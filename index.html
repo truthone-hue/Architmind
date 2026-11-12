@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-oKqjYtB+6yUsrDjW5VOdHYEkbSX7kBiWZ99nL+FwPzQ=' 'sha256-cn4RUPqC2etandQ7G1Z9mmFjW2g4U35z5AxUFUHPx3A=' 'sha256-rh/q2r+RxFgSC7RpvduZ4skpQRwASOIQ82vFlgVCDIA=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rslrsBdEX0kQDwlASG9Ux1gPYwqH8p/WsvUpK8YCs3w=' 'sha256-cn4RUPqC2etandQ7G1Z9mmFjW2g4U35z5AxUFUHPx3A=' 'sha256-eqoRkDxlDa8CXH0abdJUz1bkyLTmw3li6Esp4sLiKe8=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -306,6 +306,35 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 td.n{font-family:var(--mono);font-size:12.5px}
 .bar{height:5px;border-radius:5px;background:linear-gradient(90deg,var(--accent),var(--day));margin-top:6px}
 .inner{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-m);padding:6px 16px;margin-top:10px}
+.fourch{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.fourch div{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-m);padding:10px 12px}
+.fourch b{display:block;font-family:var(--fd);font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.fourch i{font-style:normal;display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:3px}
+.fourch span{display:block;font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.35}
+.fourch .mid{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.lot{margin-top:16px}
+.loth{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px}
+.loth b{font-family:var(--fd);font-weight:600}
+.loth span{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.dtot{margin-top:14px;border-top:1px solid var(--line);padding-top:10px;font-size:13.5px}
+.dtot div{display:flex;justify-content:space-between;gap:12px;padding:4px 0}
+.dtot div span{font-variant-numeric:tabular-nums;white-space:nowrap}
+.dtot .big{font-weight:700;font-family:var(--fd);font-size:15px;border-top:1px solid var(--line);margin-top:6px;padding-top:10px}
+.cnote{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:12px}
+.cnote b{color:var(--ink);font-weight:600}
+.cnote ul{margin:6px 0 0;padding-left:18px}
+.cnote li{margin:3px 0}
+@media (max-width:600px){.fourch{grid-template-columns:1fr}
+  .devis thead{display:none}
+  .devis tbody tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:5px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .devis tbody tr:last-child{border-bottom:0}
+  .devis tbody td{display:inline;border:0;padding:0;font-size:12.5px}
+  .devis tbody td:first-child{flex:1 0 100%;font-weight:500;color:var(--ink)}
+  .devis tbody td:nth-child(2){order:2;color:var(--muted)}
+  .devis tbody td:nth-child(3){order:1;color:var(--muted)}
+  .devis tbody td:nth-child(4){order:3;color:var(--muted)}
+  .devis tbody td:nth-child(4)::before{content:"× "}
+  .devis tbody td:nth-child(5){order:4;margin-left:auto;font-weight:600;font-variant-numeric:tabular-nums}}
 .mats{display:flex;flex-direction:column;gap:8px;margin-top:12px}
 .mat{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-m);padding:12px 16px}
 .mat .k{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600}
@@ -1244,9 +1273,15 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
         <h3>Estimation des travaux</h3>
         <p class="sub" id="cost-lead"></p>
         <div class="total"><strong id="tot">—</strong><span id="range">—</span></div>
-        <details class="adv" open><summary>Voir le détail des travaux</summary>
+        <div class="fourch" id="fourch"></div>
+        <p class="sub" id="m2line"></p>
+        <details class="adv devis" open><summary>Devis estimatif par lot</summary><div id="devis"></div></details>
+        <details class="adv"><summary>Répartition et quantités de matériaux</summary>
         <div class="inner"><table><thead><tr><th>Lot</th><th class="n">Part</th><th class="n">Montant</th></tr></thead><tbody id="lots"></tbody></table></div>
         <div class="inner"><table><thead><tr><th>Quantités estimées</th><th class="n">Qté</th></tr></thead><tbody id="qty"></tbody></table></div></details>
+        <details class="adv"><summary>À prévoir en plus (non compris)</summary>
+        <div class="inner"><table><tbody id="enplus"></tbody></table></div></details>
+        <div class="cnote" id="cnotes"></div>
       </div>
     </div>
     <div class="soft" id="resmat" hidden>
@@ -2600,7 +2635,182 @@ function story(m){
     ["Le chantier",`Comptez environ ${months} mois de travaux avec une équipe de 6 à 10 ouvriers, du terrassement à la peinture, pour un budget proche de ${F(m.total)}.`]
   ];
 }
-if(typeof module!=="undefined") module.exports={compute,openings,drawTech,story,typeLabel,progLabel,sides,CIRC};
+
+/* ====================== DEVIS ESTIMATIF PAR LOT ======================
+   Les quantités sont de vrais métrés tirés du plan généré : longueurs de murs,
+   surfaces d'ouvertures, nombre de pièces d'eau, surfaces de sol, surface de toiture.
+   Les prix unitaires sont indicatifs pour la Côte d'Ivoire (2026) ; ils sont tous
+   recalés d'un même coefficient pour que le devis retombe exactement sur le coût
+   total affiché par l'outil, qui reste la référence. */
+const COUT_M2_MARCHE={eco:[150000,200000],std:[200000,350000],haut:[250000,500000],luxe:[450000,700000]};
+const HSP=2.9,HNIV=3.2;                         // hauteur sous plafond, hauteur d'étage
+// métrés d'un niveau (li) ou de tout le bâtiment (li non précisé)
+function metres(m,li){
+  const M={Lint:0,Lparty:0,Lfac:0,Sfen:0,Sopen:0,Nfen:0,Npext:0,Npint:0,Scouv:0,Sterr:0,Pint:0,Pwet:0,bain:0,wc:0,cuis:0,buan:0,ch:0,pieces:0,niv:0};
+  m.levels.forEach((L,i)=>{
+    if(li!==undefined&&i!==li) return;
+    M.niv++;
+    let op;try{op=openings(m,i)}catch(e){op={pairs:[],ext:[]}}
+    const aire=o=>(o.d1-o.d0)*((o.top===undefined?2.1:o.top)-(o.bot||0));
+    op.pairs.forEach(p=>{const len=p.s1-p.s0;
+      if(p.kind==="wall") M.Lint+=len; else if(p.kind==="party") M.Lparty+=len; else if(p.kind==="facade") M.Lfac+=len;
+      p.open.forEach(o=>{const a=aire(o);
+        if(o.k==="door"){if(p.kind==="facade"){M.Npext++;M.Sopen+=a}else M.Npint++}
+        else if(p.kind==="facade"||p.kind==="patio"){M.Sfen+=a;M.Sopen+=a;M.Nfen++}})});
+    op.ext.forEach(e=>{M.Lfac+=e.s1-e.s0;
+      e.open.forEach(o=>{const a=aire(o);
+        if(o.k==="door"){M.Npext++;M.Sopen+=a} else {M.Sfen+=a;M.Sopen+=a;M.Nfen++}})});
+    L.forEach(r=>{const a=r.w*r.h;
+      if(r.t==="patio") return;
+      if(r.t==="out"){M.Sterr+=a;return}
+      M.Scouv+=a;M.Pint+=2*(r.w+r.h);M.pieces++;
+      if(/^Chambre|^Ch\./.test(r.n)) M.ch++;
+      if(r.t==="wet"){M.Pwet+=2*(r.w+r.h);
+        if(/^Cuisine/.test(r.n)) M.cuis++;
+        else if(/^WC/.test(r.n)) M.wc++;
+        else if(/^Buanderie/.test(r.n)) M.buan++;
+        else M.bain++}})});
+  return M;
+}
+function devis(m){
+  const M=metres(m),M0=metres(m,0),std=m.std,eco=std==="eco",hi=std==="haut"||std==="luxe",lux=std==="luxe";
+  const ch=x=>eco?x[0]:std==="std"?x[1]:std==="haut"?x[2]:x[3];   // prix selon la finition
+  const o3=(typeof defaults3d==="function")?defaults3d(m):{roof:"plat",roofMat:"tole"};
+  const MO=(typeof modele3d==="function")?modele3d(m):{};
+  const plat=o3.roof==="plat"||m.pro||m.isTower,tuile=o3.roofMat==="tuile";
+  // vrai toit-terrasse en dalle, ou simple toiture en bac alu cachée derrière un acrotère
+  const terrasse=plat&&(MO.terr||m.pro||m.isTower);
+  const NL=Math.max(1,m.levels.length),E=m.foot,Htot=HSP;
+  const Lsem=M0.Lfac+M0.Lint*0.5;                                  // semelles : façade + murs porteurs
+  const Stoit=plat?E:E*(o3.roof==="deux"?1.25:1.18);
+  const Smurext=Math.max(0,M.Lfac*Htot-M.Sopen),Smurint=Math.max(0,M.Lint*Htot-M.Npint*1.9);
+  const Sintfaces=2*M.Lint*Htot+M.Lfac*Htot-M.Sopen*1.4;           // faces à enduire à l'intérieur
+  const pts=M.bain*3+M.wc*2+M.cuis+M.buan;                         // points d'eau
+  const lum=Math.round(M.pieces+M.Scouv/16),pri=Math.round(M.Scouv/9)+M.ch*2;
+  const L=(n,l)=>({n,l:l.filter(x=>x&&x.q>0.001)});
+  // un seul coefficient de calage est appliqué plus bas : inutile d'ajuster les prix ici
+  const li=(d,u,q,pu)=>({d,u,q,pu});
+  const lots=[
+   L("Installation de chantier et terrassement",[
+     li("Installation de chantier, clôture provisoire et magasin","forfait",1,420000),
+     li("Implantation et piquetage du bâtiment","forfait",1,130000),
+     li("Décapage de la terre végétale et nivellement","m²",E*1.5,1200),
+     li("Fouilles en rigole pour semelles","m³",Lsem*0.6*0.8,7000),
+     li("Remblai compacté et évacuation des terres","m³",E*0.30,6000)]),
+   L("Fondations",[
+     li("Béton de propreté dosé à 150 kg/m³","m³",Lsem*0.6*0.05,95000),
+     li("Semelles filantes en béton armé (coffrage et acier compris)","m³",Lsem*0.6*0.25,185000),
+     li("Maçonnerie de soubassement en agglos de 20","m²",Lsem*0.8,11000),
+     li("Chaînage bas en béton armé","ml",Lsem,15000),
+     li("Hérissonnage, film polyane et dallage béton de 12 cm","m²",E,17500)]),
+   L("Gros œuvre : élévation, poteaux, poutres, dalles",[
+     li("Murs extérieurs en agglos de 20","m²",Smurext,11500),
+     li("Cloisons intérieures en agglos de 15","m²",Smurint,9000),
+     li("Murs séparatifs entre logements ou commerces","m²",M.Lparty*Htot,12500),
+     li("Poteaux en béton armé 20 × 20","u",Math.round(M.Lfac/3.6),65000),
+     li("Chaînages hauts, poutres et linteaux","ml",(M.Lfac+M.Lint)*0.9,14000),
+     li("Plancher en dalle pleine de 15 cm (coffrage et acier compris)","m²",E*((NL-1)+(terrasse?1:0)),42000),
+     li("Escalier en béton armé","u",NL>1?NL-1:0,900000)]),
+   L("Charpente et couverture",terrasse?[
+     li("Forme de pente et chape sur dalle","m²",E,7500),
+     li("Étanchéité multicouche et protection","m²",E,17000),
+     li("Acrotère en agglos et couvertine","ml",2*(m.bw+m.bd),16000),
+     li(hi?"Faux plafond en staff":"Faux plafond PVC","m²",E,ch([6500,11000,15000,19000]))]:plat?[
+     li("Charpente légère en bois dur","m²",E*1.1,9000),
+     li("Couverture en tôle bac aluminium cachée derrière un acrotère","m²",E*1.1,8500),
+     li("Acrotère en agglos et couvertine","ml",2*(m.bw+m.bd),16000),
+     li(eco?"Plafond en contreplaqué sur lambourdes":hi?"Faux plafond en staff":"Faux plafond PVC","m²",E,ch([6500,11000,15000,19000]))]:[
+     li("Charpente en bois dur : fermes, pannes et chevrons","m²",Stoit,11000),
+     li(tuile?"Couverture en tuiles":"Couverture en tôle bac aluminium 6/10","m²",Stoit,tuile?19000:8500),
+     li("Faîtage, rives, descentes et gouttières","ml",(m.bw+m.bd)*1.4,9500),
+     li(eco?"Plafond en contreplaqué sur lambourdes":hi?"Faux plafond en staff":"Faux plafond PVC","m²",E,ch([6500,11000,15000,19000]))]),
+   L("Menuiseries : portes et fenêtres",[
+     li("Porte d'entrée","u",1,ch([180000,320000,550000,850000])),
+     li("Portes intérieures (bâti et quincaillerie compris)","u",M.Npint,ch([85000,130000,200000,280000])),
+     li("Porte de service","u",Math.max(0,M.Npext-1),150000),
+     li(eco?"Fenêtres à lames de verre orientables":hi?"Baies vitrées en aluminium":"Fenêtres coulissantes en aluminium","m²",M.Sfen,ch([40000,65000,85000,110000])),
+     li("Grilles de protection sur ouvertures","m²",M.Sfen*0.75,24000)]),
+   L("Plomberie et sanitaires",[
+     li("Alimentation en eau froide : tuyauterie et robinetterie d'arrêt","point",pts,48000),
+     li("Évacuations eaux usées et eaux vannes en PVC","ml",M.bain*7+M.wc*5+M.cuis*6+M.buan*5,9500),
+     li("Cuvette WC complète avec réservoir","u",M.wc+M.bain,ch([95000,145000,250000,400000])),
+     li("Lavabo ou vasque avec robinetterie","u",M.wc+M.bain,ch([70000,120000,220000,350000])),
+     li("Receveur de douche ou baignoire avec robinetterie","u",M.bain,ch([110000,210000,420000,700000])),
+     li("Évier de cuisine avec robinetterie","u",M.cuis,ch([90000,150000,280000,450000])),
+     li("Fosse septique et puisard","ens",1,1100000)]),
+   L("Électricité",[
+     li("Points lumineux : saignées, gaines, câbles et appareillage","point",lum,24000),
+     li("Prises de courant 16 A","u",pri,19000),
+     li("Tableau de répartition et disjoncteurs","u",NL,220000),
+     li("Mise à la terre et protection contre la foudre","forfait",1,180000),
+     li("Attentes pour climatiseurs (split)","u",hi?M.ch+1:0,65000),
+     li("Coffret de branchement CIE et câble d'alimentation","forfait",1,350000)]),
+   L("Revêtements : enduits, carrelage, faïence",[
+     li("Enduit intérieur lissé sur murs","m²",Math.max(0,Sintfaces),4200),
+     li("Enduit extérieur tyrolien ou lissé","m²",Smurext,5200),
+     li("Chape de ravoirage et "+(lux?"marbre ou granit au sol":hi?"grès cérame au sol":"carrelage au sol"),"m²",M.Scouv,ch([13000,19000,30000,45000])),
+     li("Plinthes assorties","ml",M.Pint*0.85,3000),
+     li("Faïence murale dans les pièces d'eau (2 m de haut)","m²",M.Pwet*2*0.8,ch([12000,16000,24000,32000])),
+     li("Carrelage extérieur des terrasses","m²",M.Sterr,ch([11000,15000,22000,32000]))]),
+   L("Peinture",[
+     li("Peinture intérieure : deux couches sur murs et plafonds","m²",Math.max(0,Sintfaces)+M.Scouv,ch([3400,4600,6000,7500])),
+     li("Peinture extérieure de façade","m²",Smurext,ch([4000,4400,5200,6200])),
+     li("Vernis et laques sur menuiseries bois","forfait",eco||m.style==="colonial"?1:0,150000)])
+  ].filter(x=>x.l.length);
+  // plus le bâtiment est haut, plus le gros œuvre coûte cher : échafaudages, levage, structure renforcée
+  if(NL>1){const kn=1+0.09*(NL-1);lots.slice(0,4).forEach(lo=>lo.l.forEach(x=>x.pu*=kn))}
+  // calage : les prix unitaires sont ajustés pour retomber sur le coût total de l'outil
+  const base=m.total-(m.extraSum||0),cible=base*0.93;
+  const brut=lots.reduce((s,lo)=>s+lo.l.reduce((t,x)=>t+x.q*x.pu,0),0);
+  const k=brut>0?cible/brut:1;
+  const arr=(v)=>v>=50000?Math.round(v/500)*500:v>=5000?Math.round(v/100)*100:Math.round(v/10)*10;
+  lots.forEach(lo=>{lo.l.forEach(x=>{x.pu=arr(x.pu*k);x.q=x.u==="u"||x.u==="point"||x.u==="forfait"||x.u==="ens"?Math.round(x.q):Math.round(x.q*10)/10;x.mt=Math.round(x.q*x.pu)});
+    lo.t=lo.l.reduce((t,x)=>t+x.mt,0)});
+  const sousTotal=lots.reduce((s,lo)=>s+lo.t,0);
+  const imprevus=Math.max(0,Math.round(base-sousTotal));
+  const ex=(m.extras||[]).map(e=>({d:e.n,u:"forfait",q:1,pu:Math.round(e.c),mt:Math.round(e.c)}));
+  const total=sousTotal+imprevus+(m.extraSum||0);
+  const m2=m.builtArea>0?total/m.builtArea:0,ref=COUT_M2_MARCHE[std]||COUT_M2_MARCHE.std;
+  // postes où l'incertitude est forte
+  const incert=["Fondations : sans étude de sol, c'est le poste le plus incertain. Un mauvais sol peut faire monter ce lot de 30 % ou plus.",
+    "Prix des matériaux : le ciment, le fer et la tôle changent souvent de prix. Une estimation reste valable quelques mois, pas un an."];
+  if(!plat) incert.push("Charpente et couverture : le prix du bois et de la tôle bouge beaucoup d'un mois à l'autre.");
+  if(hi) incert.push("Revêtements : le marbre, le granit et les baies vitrées sont importés ; leur prix dépend du fournisseur et du dollar.");
+  if(m.kCity>1.02) incert.push(`Transport : à ${m.lieu}, les matériaux arrivent de loin et coûtent plus cher qu'à Abidjan.`);
+  if(NL>2) incert.push("Structure : au-delà de deux niveaux, seul un bureau d'études peut confirmer les sections de béton armé.");
+  const conseils=[
+    "Gardez un plan compact : chaque mètre de façade en moins, c'est de la fondation, du mur, de l'enduit et de la peinture en moins.",
+    "Achetez le ciment et le fer en une seule commande groupée, à la livraison, plutôt qu'au fur et à mesure.",
+    eco?"Faites les murs en agglos de 15 à l'intérieur et gardez les 20 pour les murs extérieurs porteurs.":"Mettez le carrelage de qualité dans le séjour et sur la façade, et un carrelage standard dans les chambres : la différence ne se voit pas.",
+    "Négociez la main-d'œuvre au forfait par lot, avec un contrat écrit, plutôt qu'à la journée.",
+    "Construisez en deux temps si le budget est juste : terminez le gros œuvre et la toiture, puis les finitions quelques mois plus tard."];
+  if(m.zone==="savane"||m.zone==="sahel") conseils.splice(2,0,"Utilisez les briques de terre comprimée fabriquées sur place : elles coûtent moins cher que les agglos et gardent la maison fraîche.");
+  // quantités de matériaux, déduites des mêmes métrés
+  const qte=(n,x)=>({n,v:x});
+  const beton=Lsem*0.6*0.05+Lsem*0.6*0.25+Math.round(M.Lfac/3.6)*0.128+(M.Lfac+M.Lint)*0.9*0.04+E*((NL-1)+(terrasse?1:0))*0.15+E*0.12;
+  const murs=Smurext+Smurint+Lsem*0.8+M.Lparty*Htot,enduits=Math.max(0,Sintfaces)+Smurext;
+  const mat=[
+    qte("Ciment (sacs de 50 kg)",beton*7+murs*0.35+enduits*0.25+M.Scouv*0.3),
+    qte((m.zone==="savane"||m.zone==="sahel")?"Briques de terre comprimée (u)":"Agglos creux 15 et 20 (u)",murs*12.5),
+    qte("Fer à béton (kg)",beton*85),
+    qte("Sable (m³)",beton*0.5+murs*0.03+enduits*0.02),
+    qte("Gravier (m³)",beton*0.8),
+    qte(terrasse?"Étanchéité (m²)":tuile?"Tuiles (m²)":"Tôle bac aluminium (m²)",Stoit),
+    qte("Carrelage et faïence (m²)",M.Scouv+M.Sterr+M.Pwet*1.6),
+    qte("Peinture (litres)",(Math.max(0,Sintfaces)+M.Scouv+Smurext)*0.28)];
+  return {lots,ex,mat,sousTotal,imprevus,imprevusPc:base>0?imprevus/base*100:0,extraSum:m.extraSum||0,total,
+    bas:Math.round(total*0.85),moyen:Math.round(total),haut:Math.round(total*1.15),
+    m2:Math.round(m2),ref,k,metres:M,
+    enPlus:[
+      {d:"Honoraires d'architecte et bureau d'études (6 à 10 %)",mt:Math.round(total*(m.pro||m.isTower?0.08:0.06))},
+      {d:"Étude de sol",mt:Math.round(450000*m.kCity)},
+      {d:"Bornage, permis de construire et taxes",mt:Math.round(400000*m.kCity)},
+      {d:`Clôture en agglos de 2 m et portail (${Math.round(2*(m.W+m.D)-4)} ml)`,mt:Math.round((2*(m.W+m.D)-4)*52000*m.kCity+750000)},
+      {d:"Branchements eau (SODECI) et électricité (CIE)",mt:Math.round(600000*m.kCity)}],
+    incert,conseils};
+}
+
+if(typeof module!=="undefined") module.exports={compute,openings,drawTech,story,typeLabel,progLabel,sides,CIRC,devis,metres};
 </script>
 <script>
 /* ====================== MAQUETTE 3D RÉALISTE ====================== */
@@ -3201,7 +3411,7 @@ function refreshOffer(){
 }
 function limitReached(){toast(`Limite quotidienne atteinte (${O().quota} plans). Passez à une offre supérieure.`)}
 
-const NEWS=[{"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation"}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation"}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation"}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation"}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation"}];
+const NEWS=[{"id": "2026-11-12-devis-par-lot", "date": "2026-11-12T22:15:00Z", "titre": "Nouveau : le devis estimatif par lot", "texte": "Le coût des travaux est maintenant détaillé comme chez un économiste de la construction : dix lots, du terrassement à la peinture, avec les quantités mesurées sur votre plan, les prix unitaires, les imprévus, la fourchette basse et haute, le coût au m² comparé au marché ivoirien, ce qui reste à prévoir en plus et des conseils pour réduire la facture. Le devis complet est aussi dans le dossier PDF.", "lien": "#resultat"}, {"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation"}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation"}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation"}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation"}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation"}];
 /* ---------- Comptes : connexion par e-mail et mot de passe (Firebase) ---------- */
 const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false,verified:false};
 // Administrateurs : empreintes SHA-256 des adresses e-mail (config.js), pour ne pas publier les adresses.
@@ -3667,7 +3877,7 @@ async function exportPlan(fmt,d){
     else if(fmt==="dxf"){data=new Blob([planDxf(S.m,S.name)],{type:"application/dxf"});filename=base+".dxf"}
     else if(fmt==="png"){data=await canvasBlob(await svgCanvas(T(S.li),3000),"image/png");filename=`${base}-${slug(lvlLabel(S.m,S.li))}.png`}
     else if(fmt==="dossier"){const D=dossierSvgs(S,css),pages=[],add=async(svg,w)=>{const c=await svgCanvas(svg,w),b=await canvasBlob(c,"image/jpeg",0.92);pages.push({jpg:new Uint8Array(await b.arrayBuffer()),w:c.width,h:c.height})};
-      await add(D.cover,2380);for(const x of levelsOf(S.m)) await add(T(x.li),2600);await add(D.cost,2380);await add(D.mats,2380);data=makePdf(pages);filename=base+"-dossier.pdf"}
+      await add(D.cover,2380);for(const x of levelsOf(S.m)) await add(T(x.li),2600);await add(D.cost,2380);await add(D.devis,2380);await add(D.mats,2380);data=makePdf(pages);filename=base+"-dossier.pdf"}
     else{const pages=[];for(const x of levelsOf(S.m)){const c=await svgCanvas(T(x.li),2600),b=await canvasBlob(c,"image/jpeg",0.92);pages.push({jpg:new Uint8Array(await b.arrayBuffer()),w:c.width,h:c.height})}
       data=makePdf(pages);filename=base+".pdf"}
     lab.textContent=old;d.classList.remove("busy");
@@ -3733,7 +3943,7 @@ function snap3D(m){
   }catch(e){try{stop3D()}catch(x){}return null}
 }
 function dossierSvgs(S,css){
-  const m=S.m,p=m.p,nl=levelsOf(m).length,total=2+nl+1,prog=m.isTower&&!m.fam?m.nApts+" logements":m.n+" chambre"+(m.n>1?"s":"");
+  const m=S.m,p=m.p,nl=levelsOf(m).length,total=2+nl+2,prog=m.isTower&&!m.fam?m.nApts+" logements":m.n+" chambre"+(m.n>1?"s":"");
   const date=new Date().toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"});
   let shot=snap3D(m);if(!shot||shot.indexOf("data:image/jpeg")!==0||shot.length<4000) shot=null;const name=wrapTxt(S.name,20).slice(0,3);
   const facts=[["Terrain",fmt(m.plot)+" m²"],["Surface de plancher",fmt(m.builtArea)+" m²"],["Niveaux",String(m.levels.length)],["Programme",prog]];
@@ -3763,11 +3973,33 @@ function dossierSvgs(S,css){
   ${lots.map((r,i)=>{const y=362+lead.length*19+i*34,pc=parseFloat(r[1])||0;return `<text x="60" y="${y}" font-size="15" fill="#121212">${xe(r[0])}</text><rect x="330" y="${y-11}" width="150" height="8" rx="4" fill="#ECEDEA"/>${pc?`<rect x="330" y="${y-11}" width="${Math.min(150,pc*5)}" height="8" rx="4" fill="#B87A14"/>`:""}<text x="540" y="${y}" font-size="14" fill="#565E5A" text-anchor="end">${xe(r[1])}</text><text x="720" y="${y}" font-size="15" font-weight="600" fill="#121212" text-anchor="end">${xe(r[2])}</text><rect x="60" y="${y+11}" width="660" height="1" fill="#ECEDEA"/>`}).join("")}
   <rect x="770" y="186" width="360" height="${70+qty.length*36}" rx="18" fill="#F4F5F2"/><text x="794" y="222" font-size="13" font-weight="600" fill="#6B716E" letter-spacing="1.5">QUANTITÉS ESTIMÉES</text>
   ${qty.map((r,i)=>`<text x="794" y="${262+i*36}" font-size="14.500" fill="#121212">${xe(r[0])}</text><text x="1106" y="${262+i*36}" font-size="15" font-weight="600" fill="#121212" text-anchor="end">${xe(r[1])}</text>`).join("")}</svg>`;
+  // devis estimatif par lot, sur deux colonnes ; l'interligne se resserre si le devis est long
+  const DV=devis(m),rows=[];
+  DV.lots.forEach((lo,i)=>{rows.push({t:1,a:`Lot ${i+1} · ${lo.n}`,b:F(lo.t)});
+    lo.l.forEach(x=>rows.push({a:x.d,u:x.u,q:nbq(x.q),pu:fmt(x.pu),b:fmt(x.mt)}))});
+  const half=Math.ceil(rows.length/2),cols=[rows.slice(0,half),rows.slice(half)];
+  const haut=c=>c.reduce((h,r)=>h+(r.t?30:19),0),hmax=Math.max(haut(cols[0]),haut(cols[1]));
+  const fz=Math.max(0.72,Math.min(1,(694-224)/Math.max(1,hmax)));
+  let yEnd=224;
+  const dRows=cols.map((col,ci)=>{const x0=60+ci*565;let y=224;
+    const out=col.map(r=>{const yy=y;y+=(r.t?30:19)*fz;
+      if(r.t) return `<rect x="${x0}" y="${yy-13*fz}" width="525" height="${22*fz}" rx="6" fill="#F4F5F2"/><text x="${x0+8}" y="${yy+2}" font-size="${11.5*Math.min(1,fz+0.12)}" font-weight="600" fill="#121212">${xe(r.a)}</text><text x="${x0+517}" y="${yy+2}" font-size="${11.5*Math.min(1,fz+0.12)}" font-weight="600" fill="#121212" text-anchor="end">${xe(r.b)}</text>`;
+      return `<text x="${x0+8}" y="${yy}" font-size="${10*Math.min(1,fz+0.14)}" fill="#444B48">${xe(r.a.length>52?r.a.slice(0,51)+"…":r.a)}</text><text x="${x0+372}" y="${yy}" font-size="${10*Math.min(1,fz+0.14)}" fill="#6B716E" text-anchor="end">${xe(r.q+" "+r.u)}</text><text x="${x0+444}" y="${yy}" font-size="${10*Math.min(1,fz+0.14)}" fill="#6B716E" text-anchor="end">${xe(r.pu)}</text><text x="${x0+517}" y="${yy}" font-size="${10*Math.min(1,fz+0.14)}" fill="#121212" text-anchor="end">${xe(r.b)}</text>`}).join("");
+    yEnd=Math.max(yEnd,y);return out}).join("");
+  const entetes=[0,1].map(ci=>{const x0=60+ci*565;return `<text x="${x0+8}" y="206" font-size="9.5" font-weight="600" fill="#6B716E" letter-spacing="1">DÉSIGNATION</text><text x="${x0+444}" y="206" font-size="9.5" font-weight="600" fill="#6B716E" letter-spacing="1" text-anchor="end">QTÉ · P.U.</text><text x="${x0+517}" y="206" font-size="9.5" font-weight="600" fill="#6B716E" letter-spacing="1" text-anchor="end">MONTANT</text>`}).join("");
+  const fin=[["Sous-total des lots",F(DV.sousTotal)],[`Aléas et imprévus (${Math.round(DV.imprevusPc)} %)`,F(DV.imprevus)]]
+    .concat(DV.ex.length?[["Équipements et options",F(DV.extraSum)]]:[]).concat([["TOTAL DES TRAVAUX",F(DV.total)]]);
+  const yT=Math.min(790-fin.length*22,yEnd+22);
+  const devisPage=dHead(css,"Devis estimatif par lot",S,`${nl+3} / ${total}`)+`
+  <text x="60" y="176" font-size="13" fill="#565E5A">Quantités mesurées sur le plan ; prix unitaires indicatifs pour ${xe(m.lieu)}, calés sur ${xe(fmt(m.pm))} FCFA le m². Montants en FCFA. Ils changent selon la période et le fournisseur.</text>
+  ${entetes}${dRows}
+  <line x1="625" y1="${yT-16}" x2="1130" y2="${yT-16}" stroke="#E2E5E1" stroke-width="1"/>
+  ${fin.map(([a,b],i)=>`<text x="625" y="${yT+i*22}" font-size="${i===fin.length-1?13:11.5}" font-weight="${i===fin.length-1?700:400}" fill="#121212">${xe(a)}</text><text x="1130" y="${yT+i*22}" font-size="${i===fin.length-1?13:11.5}" font-weight="${i===fin.length-1?700:600}" fill="#121212" text-anchor="end">${xe(b)}</text>`).join("")}</svg>`;
   // matériaux
   const ys=[196,196],cards=(m.Z.mats||[]).map(([k,b,t],i)=>{const col=i%2,lines=wrapTxt(t,78),h=92+lines.length*18,x=60+col*545,yy=ys[col];ys[col]+=h+16;
     return `<rect x="${x}" y="${yy}" width="525" height="${h}" rx="16" fill="#F4F5F2"/><text x="${x+22}" y="${yy+32}" font-size="12" font-weight="600" fill="#B87A14" letter-spacing="1.5">${xe(String(k).toUpperCase())}</text><text x="${x+22}" y="${yy+58}" font-size="17" font-weight="600" fill="#121212">${xe(b)}</text><text x="${x+22}" y="${yy+84}" font-size="13.500" fill="#565E5A">${tspans(lines,x+22,18)}</text>`}).join("");
   const mats=dHead(css,"Matériaux conseillés",S,`${total} / ${total}`)+`<text x="60" y="176" font-size="15" fill="#565E5A">Choisis pour la ${xe(m.Z.nom)}, à ${xe(m.lieu)}.</text>${cards}</svg>`;
-  return {cover,cost,mats};
+  return {cover,cost,devis:devisPage,mats};
 }
 /* ---------- Accueil : exemples de plans ---------- */
 const EXAMPLES=[{type:"pp",n:3,seed:4,area:500,W:20,D:25,cov:50},{type:"r1",n:4,seed:7,area:500,W:20,D:25,cov:50},{type:"r2",n:5,seed:3,area:600,W:20,D:30,cov:50}];
@@ -4075,16 +4307,40 @@ function renderPlan(){wishNote();
   pulse($("#sheet"));
   if(SHOW3D) area3D($("#c3d"),model);
 }
-function lotsHtml(m){const base=m.total-(m.extraSum||0);const ex=(m.extras||[]).map(e=>`<tr><td>${e.n}</td><td class="n">forfait</td><td class="n">${F(e.c)}</td></tr>`).join("");return lotsBase(m,base)+ex}
-function lotsBase(m,T){const lots=[["Fondations et terrassement",.13],["Murs et structure",.29],["Toiture",.12],["Portes et fenêtres",.11],["Plomberie et sanitaires",.09],["Électricité",.07],["Carrelage et sols",.11],["Peinture et finitions",.08]];
-  return lots.map(([l,p])=>`<tr><td>${l}<div class="bar" style="width:${p*300}%"></div></td><td class="n">${Math.round(p*100)} %</td><td class="n">${F(T*p)}</td></tr>`).join("")}
+function lotsHtml(m,d){d=d||devis(m);const ex=(d.ex||[]).map(e=>`<tr><td>${e.d}</td><td class="n">forfait</td><td class="n">${F(e.mt)}</td></tr>`).join("");
+  const T=d.sousTotal+d.imprevus;
+  return d.lots.map(lo=>{const p=T>0?lo.t/T:0;return `<tr><td>${lo.n}<div class="bar" style="width:${p*300}%"></div></td><td class="n">${Math.round(p*100)} %</td><td class="n">${F(lo.t)}</td></tr>`}).join("")
+    +`<tr><td>Aléas et imprévus</td><td class="n">${Math.round(d.imprevusPc)} %</td><td class="n">${F(d.imprevus)}</td></tr>`+ex}
+const nbq=v=>Number.isInteger(v)?fmt(v):dec(v,1);
+function devisHtml(d){
+  return d.lots.map((lo,i)=>`<div class="lot"><div class="loth"><b>Lot ${i+1} · ${lo.n}</b><span>${F(lo.t)}</span></div>
+    <div class="inner"><table><thead><tr><th>Désignation</th><th>U</th><th class="n">Qté</th><th class="n">P.U.</th><th class="n">Montant</th></tr></thead>
+    <tbody>${lo.l.map(x=>`<tr><td>${x.d}</td><td>${x.u}</td><td class="n">${nbq(x.q)}</td><td class="n">${fmt(x.pu)}</td><td class="n">${fmt(x.mt)}</td></tr>`).join("")}</tbody></table></div></div>`).join("")
+  +`<div class="dtot">
+     <div><span>Sous-total des lots</span><span>${F(d.sousTotal)}</span></div>
+     <div><span>Aléas et imprévus (${Math.round(d.imprevusPc)} %)</span><span>${F(d.imprevus)}</span></div>
+     ${d.ex.length?`<div><span>Équipements et options</span><span>${F(d.extraSum)}</span></div>`:""}
+     <div class="big"><span>Total des travaux</span><span>${F(d.total)}</span></div></div>`}
 function costs(m){
-  $("#tot").textContent=F(m.total);$("#range").textContent="de "+F(m.total*0.85)+" à "+F(m.total*1.15);
+  const d=devis(m);
+  $("#tot").textContent=F(m.total);$("#range").textContent="de "+F(d.bas)+" à "+F(d.haut);
   $("#cost-lead").textContent=`${fmt(m.builtArea)} m² à ${fmt(m.pm)} FCFA le m², ajusté pour ${m.lieu}${(m.pro?m.levels.length>1:m.type!=="pp")?" et pour les étages":""}${m.extras.length?", plus les équipements":""}. Le terrain, l'architecte et les raccordements (eau, électricité) ne sont pas compris.`;
-  $("#lots").innerHTML=lotsHtml(m);
-  const S=m.builtArea,wall=2*(m.bw+m.bd)*m.levels.length*1.9*3,terre=m.zone==="savane"||m.zone==="sahel";
-  const q=[["Ciment (sacs de 50 kg)",S*(terre?1.1:1.5)*m.kType],[terre?"Briques de terre compressée":"Parpaings creux (15 et 20 cm)",wall*(terre?24:12.5)],["Fer à béton (kg)",S*(m.type==="rn"?40+2*m.nf:m.levels.length>2?38:m.levels.length>1?32:22)],["Sable (m³)",S*0.35],["Gravier (m³)",S*0.22*m.kType],["Toiture (m²)",m.foot*1.25]];
-  $("#qty").innerHTML=q.map(([l,v])=>`<tr><td>${l}</td><td class="n">${fmt(v)}</td></tr>`).join("");
+  $("#fourch").innerHTML=[["Estimation basse",d.bas,"mid",false,"si vous achetez au bon moment et sans mauvaise surprise"],
+    ["Estimation moyenne",d.moyen,"",true,"le montant le plus probable"],
+    ["Estimation haute",d.haut,"",false,"si les prix montent ou si le sol est difficile"]]
+    .map(([t,v,,mid,sub])=>`<div class="${mid?"mid":""}"><i>${t}</i><b>${F(v)}</b><span>${sub}</span></div>`).join("");
+  const [r0,r1]=d.ref,pos=d.m2<r0?"en dessous de":d.m2>r1?"au-dessus de":"dans";
+  $("#m2line").textContent=`Soit ${fmt(d.m2)} FCFA le m² de plancher. Pour une finition ${FIN3D[m.std]?FIN3D[m.std].nom:""}, les constructeurs ivoiriens annoncent ${fmt(r0)} à ${fmt(r1)} FCFA le m² : votre projet est ${pos} cette fourchette.`;
+  $("#devis").innerHTML=devisHtml(d);
+  $("#lots").innerHTML=lotsHtml(m,d);
+  $("#qty").innerHTML=d.mat.map(x=>`<tr><td>${x.n}</td><td class="n">${fmt(x.v)}</td></tr>`).join("");
+  $("#enplus").innerHTML=d.enPlus.map(e=>`<tr><td>${e.d}</td><td class="n">${F(e.mt)}</td></tr>`).join("")
+    +`<tr><td>Terrain</td><td class="n">selon le quartier</td></tr>`;
+  const kw=d.k<0.8||d.k>1.3;
+  $("#cnotes").innerHTML=`<b>Prix indicatifs.</b> Les quantités sont mesurées sur votre plan ; les prix unitaires sont ceux pratiqués en Côte d'Ivoire et sont calés sur le coût au m² que vous avez indiqué. Ils changent selon la ville, la période et le fournisseur : faites toujours confirmer par deux ou trois entreprises.
+   ${kw?`<br><b>À savoir :</b> pour tenir dans ${fmt(m.pm)} FCFA le m², les prix unitaires ont été ${d.k<1?"baissés":"augmentés"} d'environ ${Math.round(Math.abs(1-d.k)*100)} %. Si ce coût au m² ne correspond pas à votre finition, modifiez-le dans le formulaire.`:""}
+   <br><br><b>Postes les plus incertains</b><ul>${d.incert.map(x=>`<li>${x}</li>`).join("")}</ul>
+   <br><b>Pour réduire la facture sans baisser la qualité</b><ul>${d.conseils.map(x=>`<li>${x}</li>`).join("")}</ul>`;
   $("#mat-lead").textContent="Choisis pour la "+m.Z.nom+".";
   $("#mats").innerHTML=m.Z.mats.map(([k,b,p])=>`<div class="mat"><div class="k">${k}</div><b>${b}</b><p>${p}</p></div>`).join("");
 }
