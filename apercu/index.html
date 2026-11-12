@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ppimoRy9Y73MDXBy6Hcu3iwPZskpCqaws6F/zBKSnsU=' 'sha256-ttE7//JPjdSW0Mbv7eZPs+pYcJCL9APVHx2HkNRwOos=' 'sha256-Ysb0CybGx0VcjCR9OUhnL8IA5ojJdGwiUuQOL0oMU0Q=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ppimoRy9Y73MDXBy6Hcu3iwPZskpCqaws6F/zBKSnsU=' 'sha256-ukYAY5HxRW7hsBaISyuIS9tVye2V+FP8yme9H4k3IxE=' 'sha256-Ysb0CybGx0VcjCR9OUhnL8IA5ojJdGwiUuQOL0oMU0Q=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -2554,9 +2554,10 @@ function mount3D(el,m,o,st){
   const fh=1.9,ft=0.2;
   const fseg=(x0,x1,z,alongX)=>{const L=Math.abs(x1-x0);if(L<0.05) return;if(alongX){box(L,fh,ft,X((x0+x1)/2),fh/2,Z(z),M.fence);box(L+0.06,0.06,ft+0.08,X((x0+x1)/2),fh+0.03,Z(z),M.coping)}else{box(ft,fh,L,X(z),fh/2,Z((x0+x1)/2),M.fence);box(ft+0.08,0.06,L+0.06,X(z),fh+0.03,Z((x0+x1)/2),M.coping)}};
   fseg(0,W,0.1,true);fseg(0.1,D,0.1,false);fseg(0.1,D,W-0.1,false);
-  fseg(0,gx-gw/2,D-0.1,true);fseg(gx+gw/2,W,D-0.1,true);
+  if(m.pro){if(m.ra>0.6) box(W-0.4,0.02,m.ra,0,0.035,Z(D-m.ra/2),M.paver,null,{noCast:true})}
+  else{fseg(0,gx-gw/2,D-0.1,true);fseg(gx+gw/2,W,D-0.1,true);
   for(let i=0;i<=Math.floor(gw/0.12);i++) box(0.04,1.7,0.04,X(gx-gw/2+i*0.12),0.88,Z(D-0.1),M.metal);
-  box(gw,0.06,0.06,X(gx),1.72,Z(D-0.1),M.metal);box(gw,0.06,0.06,X(gx),0.1,Z(D-0.1),M.metal);
+  box(gw,0.06,0.06,X(gx),1.72,Z(D-0.1),M.metal);box(gw,0.06,0.06,X(gx),0.1,Z(D-0.1),M.metal)}
   /* --- végétation --- */
   const rr=rng(m.p.seed*97+3);
   const palm=(x,z,s)=>{const g=new THREE.Group();let px=0,pz=0,py=0;const lean=rr()*0.5-0.25;for(let i=0;i<7;i++){const h=0.9*s;cyl(0.11*s,0.14*s,h,px,py+h/2,pz,M.bark,g,8);py+=h*0.98;px+=lean*0.12*s}
@@ -2714,8 +2715,8 @@ function mount3D(el,m,o,st){
     const view=q=>{const r=q.r,y0=base+q.li*(H3+SL3),cx=X(r.x+r.w/2),cz=Z(r.y+r.h/2),ex=sides(r,m).map(k=>k.side);
       let dx=0,dz=0;const long=r.h>=r.w*1.25?"z":r.w>=r.h*1.25?"x":ex.includes("bottom")||ex.includes("top")?"z":ex.includes("right")||ex.includes("left")?"x":r.h>=r.w?"z":"x";
       if(long==="z") dz=ex.includes("top")&&!ex.includes("bottom")?-1:1;else dx=ex.includes("left")&&!ex.includes("right")?-1:1;
-      const hw=Math.max(0.25,r.w/2-0.55),hh=Math.max(0.25,r.h/2-0.55);
-      return {p:new THREE.Vector3(cx-dx*hw+(dz?hw*0.55:0),y0+1.55,cz-dz*hh+(dx?hh*0.55:0)),t:new THREE.Vector3(cx+dx*hw*0.5-(dz?hw*0.3:0),y0+1.1,cz+dz*hh*0.5-(dx?hh*0.3:0)),
+      const hw=Math.max(0.25,r.w/2-0.55),hh=Math.max(0.25,r.h/2-0.55),f=Math.max(0.15,Math.min(1,(Math.min(r.w,r.h)/Math.max(r.w,r.h)-0.5)*2));
+      return {p:new THREE.Vector3(cx-dx*hw+(dz?hw*0.55*f:0),y0+1.55,cz-dz*hh+(dx?hh*0.55*f:0)),t:new THREE.Vector3(cx+dx*hw*0.5-(dz?hw*0.3*f:0),y0+1.1,cz+dz*hh*0.5-(dx?hh*0.3*f:0)),
         c:new THREE.Vector3(cx,y0+H3-0.4,cz),d:Math.max(r.w,r.h)*1.8+3}};
     const bcx=X(m.bx+m.bw/2),bcz=Z(m.by+m.bd/2),dd=Math.max(Math.max(m.bw,m.bd)*1.3+6,m.isTower?HT*1.6:0);
     const dollT=new THREE.Vector3(bcx,m.isTower?HT*0.4:base+0.8,bcz),look=dollT.clone();let ang=0.9;
