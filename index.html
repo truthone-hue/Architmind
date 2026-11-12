@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rKnDVadAukd4iZ1CrzB0x1xdKzqLFgs70yzuddrwzL8=' 'sha256-PsEA3IWWj8jjz2Xcgu3fqRAYDqKLa/Wsm8ZUw8Khee8=' 'sha256-eSa69yHvclNhrnLa4XJkTqwv9wDvjr65rkyr9WO7450=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ppimoRy9Y73MDXBy6Hcu3iwPZskpCqaws6F/zBKSnsU=' 'sha256-ukYAY5HxRW7hsBaISyuIS9tVye2V+FP8yme9H4k3IxE=' 'sha256-CL4CDS8hj9oQx5HalYP19Qt57dmQCh1gb9CAr90rbAM=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -792,6 +792,12 @@ body:not(.photos-ok) .pcredit{display:none}
 .tbtns svg{width:18px;height:18px}
 @media (max-width:600px){.three .tourui{flex-direction:column;align-items:stretch}.tcard{max-width:none;padding:10px 12px}.tcard b{font-size:16px}.tbtns{justify-content:flex-end}}
 @media (prefers-reduced-motion:reduce){.tcard{animation:none}}
+
+/* ---------- Autres bâtiments (boutiques, bureaux) ---------- */
+.prolab{margin-top:12px}
+.prohead{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.prolab .badge{font-size:10px;padding:3px 8px}
+#pronote{margin:10px 0 0}
 /* Version application : e-mail, notifications, abonnement, installation */
 input[type=email]{font:inherit;font-size:15px;font-weight:500;padding:10px 14px;border:1px solid var(--hair);background:var(--card);color:var(--ink);border-radius:var(--r-m);width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
 @media (max-width:760px),(pointer:coarse){input[type=email]{font-size:16px}}
@@ -1046,14 +1052,20 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
           </div>
         </fieldset>
         <fieldset>
-          <legend>Votre maison</legend>
+          <legend id="bldleg">Votre maison</legend>
           <div class="chips" role="radiogroup" aria-label="Type">
             <label class="chip"><input type="radio" name="type" value="pp"><span>Sans étage</span></label>
             <label class="chip"><input type="radio" name="type" value="r1"><span>1 étage</span></label>
             <label class="chip"><input type="radio" name="type" value="r2"><span>2 étages</span></label>
             <label class="chip"><input type="radio" name="type" value="rn"><span>Immeuble</span></label>
           </div>
-          <details class="adv"><summary>Style de la maison</summary>
+          <div class="flabel prolab"><span class="prohead">Autres bâtiments <span class="badge">Offres Moyen et Max</span></span>
+            <div class="chips" role="radiogroup" aria-label="Autres bâtiments">
+              <label class="chip"><input type="radio" name="type" value="com"><span>Boutiques</span></label>
+              <label class="chip"><input type="radio" name="type" value="bur"><span>Bureaux</span></label>
+            </div>
+          </div>
+          <details class="adv" data-nopro><summary>Style de la maison</summary>
           <div class="chips" role="radiogroup" aria-label="Style">
             <label class="chip"><input type="radio" name="style" value="tropical" checked><span>Tropical moderne</span></label>
             <label class="chip"><input type="radio" name="style" value="bio"><span>Avec cour intérieure</span></label>
@@ -1067,7 +1079,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
             <label class="f" for="ch" data-house>Chambres<select id="ch"><option value="" selected disabled hidden>Choisir</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
             <label class="f" for="std">Niveau de finition<select id="std"><option value="" selected disabled hidden>Choisir</option><option value="eco">Économique</option><option value="std">Standard</option><option value="haut">Haut de gamme</option><option value="luxe">Luxe</option></select></label>
           </div>
-          <label class="f" for="cov">Part du terrain occupée par la maison<span class="unit" data-u="%"><input id="cov" type="number" inputmode="numeric" enterkeyhint="done" min="10" max="90" step="5" value="50" aria-describedby="covhint"></span>
+          <label class="f" for="cov"><span>Part du terrain occupée par <span id="covword">la maison</span></span><span class="unit" data-u="%"><input id="cov" type="number" inputmode="numeric" enterkeyhint="done" min="10" max="90" step="5" value="50" aria-describedby="covhint"></span>
             <span id="covhint" style="font-weight:400"></span>
           </label>
           <label class="f" for="pm"><span>Coût de construction au m² <span class="req">obligatoire</span></span><span class="unit" data-u="F"><input id="pm" type="number" inputmode="numeric" enterkeyhint="done" min="1" step="1000" placeholder="ex. 210000" required aria-describedby="pmhint pmerr"></span>
@@ -1075,12 +1087,18 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
           </label>
           <p class="note warn" id="pmerr" role="alert" hidden></p>
         </fieldset>
-        <fieldset>
+        <fieldset data-nopro>
           <legend>Vos souhaits</legend>
           <label class="f" for="wish"><span>Décrivez votre projet en quelques mots <span class="opt">facultatif</span></span>
             <textarea id="wish" rows="3" maxlength="300" placeholder="Exemple : 4 chambres, un bureau, un garage pour 2 voitures, une cuisine ouverte et une piscine." aria-describedby="wishhelp"></textarea>
           </label>
           <div class="wishfoot"><span id="wishhelp">Le plan tient compte des mots qu'il reconnaît : chambres, étage, garage, bureau, piscine, cuisine ouverte, style, finition.</span><span id="wishcount" aria-live="polite">0 / 300</span></div>
+        </fieldset>
+        <fieldset id="proset" hidden>
+          <legend id="prolegend">Vos boutiques</legend>
+          <label class="f" for="nb"><span id="nblabel">Nombre de boutiques</span><select id="nb"><option value="3">3 boutiques</option></select></label>
+          <div class="checks"><label class="tgl"><input type="checkbox" id="x-plus" checked><span id="pluslabel">Galerie couverte devant les vitrines</span></label></div>
+          <p class="note" id="pronote"></p>
         </fieldset>
         <fieldset id="towerset" hidden>
           <legend>Votre immeuble</legend>
@@ -1111,7 +1129,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
           <legend>Équipements</legend>
           <label class="f" for="garage" data-house>Garage<select id="garage"><option value="0">Sans garage</option><option value="1">1 voiture</option><option value="2">2 voitures</option></select></label>
           <div class="checks">
-            <label class="tgl"><input type="checkbox" id="x-piscine">Piscine</label>
+            <label class="tgl" data-nopro><input type="checkbox" id="x-piscine">Piscine</label>
             <label class="tgl" data-house><input type="checkbox" id="x-bureau">Bureau</label>
             <label class="tgl" data-house><input type="checkbox" id="x-openK">Cuisine ouverte</label>
             <label class="tgl" data-house><input type="checkbox" id="x-suites">Salle de bain dans chaque chambre</label>
@@ -1175,7 +1193,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
         <div class="notes" id="notes"></div>
         <div class="stats" style="margin-top:12px">
           <div class="stat"><small>Terrain</small><strong id="s-t">—</strong></div>
-          <div class="stat"><small>Maison au sol</small><strong id="s-e">—</strong></div>
+          <div class="stat"><small id="s-el">Maison au sol</small><strong id="s-e">—</strong></div>
           <div class="stat"><small>Terrain occupé</small><strong id="s-c">—</strong></div>
           <div class="stat"><small>Surface totale</small><strong id="s-s">—</strong></div>
         </div>
@@ -1326,7 +1344,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
 <script>
 /* ====================== MOTEUR (fonctions pures) ====================== */
 const PRICE={eco:160000,std:210000,haut:300000,luxe:420000};
-const DEF={area:500,shape:"rect",city:"grand-bassam",W:20,D:25,ra:5,rl:3,zone:"cote",or:"S",type:"pp",n:3,std:"std",style:"tropical",pm:210000,seed:1,fw:0,garage:0,piscine:false,bureau:false,openK:false,suites:false,service:false,cellier:false,solaire:false,citerne:false,nf:4,usage:"immeuble",apts:4,aptType:"auto",rdc:"apparts",lift:true,roofTerrace:true,genset:false};
+const DEF={area:500,shape:"rect",city:"grand-bassam",W:20,D:25,ra:5,rl:3,zone:"cote",or:"S",type:"pp",n:3,std:"std",style:"tropical",pm:210000,seed:1,fw:0,garage:0,piscine:false,bureau:false,openK:false,suites:false,service:false,cellier:false,solaire:false,citerne:false,nf:4,usage:"immeuble",apts:4,aptType:"auto",rdc:"apparts",lift:true,roofTerrace:true,genset:false,nb:3,plus:true};
 const BEAR={N:0,NE:45,E:90,SE:135,S:180,SO:225,O:270,NO:315},ROT=o=>180-(BEAR[o]===undefined?180:BEAR[o]);
 const OR_TXT={N:"au nord",NE:"au nord-est",E:"à l'est",SE:"au sud-est",S:"au sud",SO:"au sud-ouest",O:"à l'ouest",NO:"au nord-ouest"};
 const TYPES={pp:"Villa plain-pied",r1:"Duplex R+1",r2:"Maison R+2"},LVL=["Rez-de-chaussée","Étage R+1","Étage R+2"],LVS=["RDC","R+1","R+2"];
@@ -1486,6 +1504,7 @@ function partition(rect,items,out){
 function compute(p){
   p=Object.assign({},DEF,p);
   if(p.type==="rn") return computeTower(p);
+  if(isPro(p.type)) return computePro(p);
   const {W,D,ra,rl,zone,or,type,n,std,style}=p;
   const pm=p.pm||PRICE[std];
   const r=rng(p.seed*7919+n*13+(style.length*31)+(type==="r1"?5:type==="r2"?9:0));
@@ -1582,7 +1601,8 @@ function compute(p){
 
 /* ---------- Bâtiments R+3 et plus : immeubles et grandes maisons ---------- */
 function lvName(i,short){return i===0?(short?"RDC":"Rez-de-chaussée"):(short?"R+"+i:"Étage R+"+i)}
-function typeLabel(p){return {pp:"Villa sans étage",r1:"Duplex à 1 étage",r2:"Maison à 2 étages"}[p.type]||((p.usage==="famille"?"Maison R+":"Immeuble R+")+(p.nf||4))}
+function typeLabel(p){if(p.type==="com") return (p.nb||DEF.nb)>1?"Boutiques en bande":"Boutique";if(p.type==="bur") return "Bureaux";
+  return {pp:"Villa sans étage",r1:"Duplex à 1 étage",r2:"Maison à 2 étages"}[p.type]||((p.usage==="famille"?"Maison R+":"Immeuble R+")+(p.nf||4))}
 const APT={
   studio:{nom:"Studio",min:18,top:[["Entrée",3,"day",1.2],["SDB",4,"wet",1.6],["Cuisine",5,"wet",1.8]],bot:[["Pièce principale",18,"day",3.2],["Balcon",4,"out",1.5]]},
   f2:{nom:"F2",min:32,top:[["Entrée",3,"day",1.2],["Cuisine",7,"wet",2.0],["SDB",4.5,"wet",1.6]],bot:[["Séjour",18,"day",3.4],["Balcon",5,"out",1.5],["Chambre",11,"night",2.8]]},
@@ -1812,8 +1832,130 @@ function storyTower(m){
 }
 
 /* ---------- Ouvertures : portes, fenêtres, baies, plan ouvert ---------- */
+/* ---------- Bâtiments professionnels : boutiques et bureaux (un niveau) ----------
+   Chaque type part d'une disposition courante (commerces de rue en bande, bureaux à couloir central)
+   et y ajoute une idée adaptée au climat : galerie couverte, couloir traversant, terrasse de pause. */
+const isPro=t=>t==="com"||t==="bur";
+function progLabel(m,short){
+  if(m.isTower&&!m.fam) return m.nApts+" logements";
+  if(m.pro) return short?m.pro.short:m.pro.sum;
+  return m.n+(short?" ch.":" chambre"+(m.n>1?"s":""))}
+function computePro(p){
+  const {W,D,ra,rl,zone,or,type,std}=p,pm=p.pm||PRICE[std],notes=[],sum=a=>a.reduce((s,i)=>s+i.a,0);
+  const r=rng(p.seed*7919+(type==="com"?101:211)+(+p.nb||3)*17);
+  const bwMax=Math.max(4,W-2*rl),bdMax=Math.max(4,D-ra-rl),plot=W*D,cov=Math.max(10,Math.min(90,+p.cov||50));
+  const covFoot=Math.min(plot*cov/100,bwMax*bdMax),big=std==="luxe"?1.3:std==="haut"?1.15:std==="eco"?0.9:1;
+  const ask=Math.max(1,Math.min(12,Math.round(+p.nb||3))),mirror=r()>0.5,L=[];
+  let nb=ask,bw,bd,bx,by,pro;
+  if(type==="com"){
+    nb=Math.min(nb,6);
+    const gd=p.plus!==false&&bdMax>=8?2:0,dMax=Math.min(bdMax,12+gd),dMin=Math.min(bdMax,6.5+gd);
+    bw=bwMax;bd=covFoot/bw;
+    if(bd>dMax) bd=dMax;
+    if(bd<dMin){bd=dMin;bw=Math.min(bwMax,Math.max(Math.min(bwMax,5),covFoot/bd))}
+    bw=Math.round(bw*10)/10;bd=Math.round(bd*10)/10;
+    while(nb>1&&bw/nb<3.2) nb--;
+    if(nb<Math.min(ask,6)) notes.push({w:1,t:`La façade de ${dec(bw,1)} m ne permet que ${nb} boutique${nb>1?"s":""} d'au moins 3,2 m de large. Choisissez un terrain plus large ou réduisez les distances aux voisins.`});
+    bx=rl+(bwMax-bw)/2;by=D-ra-bd;
+    const uw=bw/nb,sd=bd-gd,rh=Math.round(Math.max(Math.min(2.2,sd*0.4),Math.min(3.2,sd*0.28))*10)/10;let sales=0,desk=false;
+    if(sd-rh<3.2) notes.push({w:1,t:"Ce terrain est trop peu profond pour une boutique confortable : réduisez la distance à la rue ou au fond du terrain."});
+    for(let i=0;i<nb;i++){const x=bx+i*uw,u="s"+(i+1);
+      if(nb===1){const wW=Math.min(1.6,Math.max(1.3,uw*0.16)),bW=uw>=7?Math.min(3.6,uw*0.3):0,rW=uw-wW-bW;desk=bW>0;
+        if(bW) L.push({n:"Bureau",a:0,t:"day",u,x,y:by,w:bW,h:rh});
+        L.push({n:"Réserve",a:0,t:"day",u,x:x+bW,y:by,w:rW,h:rh});
+        L.push({n:"WC",a:0,t:"wet",u,x:x+bW+rW,y:by,w:wW,h:rh});
+        L.push({n:"Magasin",a:0,t:"day",u,x,y:by+rh,w:uw,h:sd-rh,shop:true,gond:true})}
+      else{const wW=uw>=3.8?1.5:1.3;
+        L.push({n:"Réserve",a:0,t:"day",u,x,y:by,w:uw-wW,h:rh});
+        L.push({n:"WC",a:0,t:"wet",u,x:x+uw-wW,y:by,w:wW,h:rh});
+        L.push({n:"Magasin "+(i+1),a:0,t:"day",u,x,y:by+rh,w:uw,h:sd-rh,shop:true,gond:true})}
+      sales+=uw*(sd-rh)}
+    if(gd){const k=Math.max(nb,Math.ceil(bw/5.5)),gw=bw/k;for(let i=0;i<k;i++) L.push({n:"Galerie",a:0,t:"out",gal:true,nolabel:i!==Math.floor(k/2),x:bx+i*gw,y:by+sd,w:gw,h:gd})}
+    const pct=Math.round(bw*bd/plot*100);
+    if(pct<cov-5) notes.push({w:1,t:`Vous demandez un bâtiment sur ${cov} % du terrain ; il en occupe ${pct} %. Une boutique de plus de 12 m de profondeur serait mal éclairée au fond, et les distances à la rue et aux voisins sont respectées. Le reste du terrain sert au stationnement et aux livraisons.`});
+    pro={kind:"com",nb,sales,gd,uw,desk,sum:nb>1?nb+" boutiques":fmt(sales)+" m² de vente",short:nb>1?nb+" bout.":fmt(sales)+" m²"};
+  }else{
+    nb=Math.max(2,nb);
+    const hC=1.6,lo=3.2,restMax=Math.min(bdMax-hC,12.5);
+    const minW=i=>i.t==="wet"?1.4:i.t==="out"?2.4:i.n==="Salle de réunion"?3:/^Bureau|^Direction|^Accueil/.test(i.n)?2.5:i.n==="Coin repas"?1.8:i.n==="Local technique"?1.2:1.5;
+    const sumMin=a=>a.reduce((t,i)=>t+minW(i),0);
+    // programme pour k bureaux, et dimensions du bâtiment dans la limite « lim » de surface au sol
+    const plan=(k,withPause,lim)=>{
+      const off=[{n:"Direction",a:16*big,t:"day"}];for(let i=1;i<k;i++) off.push({n:"Bureau "+i,a:11.5*big,t:"day"});
+      const acc={n:"Accueil",a:Math.max(11,9+k*0.6)*big,t:"day"},reu={n:"Salle de réunion",a:Math.min(26,12+k*1.2)*big,t:"day"};
+      const serv=[{n:"Archives",a:Math.min(9,4+k*0.4),t:"day"}];if(k>=6) serv.push({n:"Local technique",a:3.5,t:"day"});
+      serv.push({n:"WC F",a:3.6,t:"wet"},{n:"WC H",a:3.6,t:"wet"},{n:"Coin repas",a:Math.min(12,6+k*0.5),t:"day"});
+      const pause=withPause?{n:"Terrasse de pause",a:Math.min(16,8+k*0.6),t:"out"}:null;
+      // bureaux répartis entre le côté rue et le côté cour, pour deux rangées de même surface
+      const fixT=[...serv];if(pause) fixT.push(pause);
+      let best=null;for(let kt=0;kt<=k;kt++){const T=off.slice(k-kt),B=off.slice(0,k-kt),wn=Math.max(sumMin(T)+sumMin(fixT),sumMin(B)+sumMin([acc,reu])),d=Math.abs(sum(T)+sum(fixT)-sum(B)-acc.a-reu.a);
+        if(!best||wn<best.wn-1e-9||(Math.abs(wn-best.wn)<1e-9&&d<best.d)) best={wn,d,T,B}}
+      const oB=best.B,oT=best.T,aB=acc.a+reu.a+sum(oB),aT=sum(fixT)+sum(oT),top=[...oT,...fixT];
+      const S=aB+aT,wNeed=best.wn;
+      let rest=9.2,w=Math.max(S/rest,wNeed);
+      if(w>bwMax){w=bwMax;rest=S/w}
+      rest=Math.max(2*lo,Math.min(rest,restMax));
+      if(w*(rest+hC)>lim){rest=Math.max(2*lo,Math.min(rest,lim/w-hC));if(w*(rest+hC)>lim) w=Math.max(wNeed,lim/(rest+hC))}
+      const scale=w*rest/S,ok=wNeed<=bwMax+1e-9&&restMax>=2*lo-1e-9&&scale>=0.8&&w*(rest+hC)<=lim*1.02+1e-9;
+      return {k,top,oB,acc,reu,pause,S,aT,w,rest,scale,ok}};
+    const wantP=p.plus!==false,full=bwMax*bdMax;let C=null;
+    for(let k=nb;k>=2&&!C;k--) for(const wp of wantP?[true,false]:[false]){const c=plan(k,wp,covFoot);if(c.ok){C=c;break}}
+    if(!C){const c=plan(2,false,full);C=c;
+      notes.push({w:1,t:c.ok?`La part du terrain choisie (${cov} %) est trop petite pour des bureaux : le plus petit bâtiment possible occupe ${Math.round(c.w*(c.rest+hC)/plot*100)} % du terrain.`:"Ce terrain est trop petit pour des bureaux confortables avec ces distances aux limites : les pièces ont été fortement réduites. Choisissez un terrain plus grand ou réduisez les distances à la rue et aux voisins."})}
+    if(C.k<nb) notes.push({w:1,t:`Le terrain et la part occupée choisie permettent ${C.k} bureaux au lieu de ${nb}. Augmentez la part du terrain occupée ou réduisez les distances aux limites pour en avoir plus.`});
+    if(wantP&&!C.pause) notes.push({t:"La terrasse de pause a été retirée, faute de place."});
+    if(C.ok&&C.scale<0.9) notes.push({w:1,t:`Pour tenir sur ce terrain, les pièces ont été réduites de ${Math.round((1-C.scale)*100)} %.`});
+    nb=C.k;
+    const half=Math.floor(C.oB.length/2),bot=r()>0.5?[C.reu,C.acc,...C.oB]:[...C.oB.slice(0,half),C.acc,C.reu,...C.oB.slice(half)];
+    bw=Math.min(bwMax,Math.ceil(C.w*10-1e-6)/10);bd=Math.round(Math.min(bdMax,C.rest+hC)*10)/10;
+    const rest=bd-hC,l2=Math.min(lo,rest/2);
+    bx=rl+(bwMax-bw)/2;by=D-ra-bd;
+    const dT=Math.max(l2,Math.min(rest-l2,rest*C.aT/C.S)),dB=rest-dT;
+    const row=(y,h,items)=>{let ws=items.map(i=>i.a);const t=ws.reduce((a,b)=>a+b,0);ws=ws.map(v=>bw*v/t);
+      for(let k=0;k<8;k++){let fix=0,free=0;ws.forEach((w,j)=>{const m0=minW(items[j]);if(w<=m0+1e-9) fix+=m0;else free+=w});if(free<=0||fix>=bw) break;const f=(bw-fix)/free;ws=ws.map((w,j)=>{const m0=minW(items[j]);return w<=m0+1e-9?m0:w*f})}
+      const tot=ws.reduce((a,b)=>a+b,0);let xx=bx;items.forEach((it,j)=>{const w=ws[j]*bw/tot;L.push(Object.assign({},it,{x:xx,y,w,h}));xx+=w})};
+    row(by,dT,C.top);
+    L.push({n:"Couloir",a:0,t:"day",x:bx,y:by+dT,w:bw,h:hC});
+    row(by+dT+hC,dB,bot);
+    pro={kind:"bur",nb,pause:!!C.pause,sum:nb+" bureaux",short:nb+" bur."};
+  }
+  if(mirror) L.forEach(rm=>{rm.x=2*bx+bw-rm.x-rm.w});
+  const levels=[L];
+  const builtArea=L.reduce((t,rm)=>{const a=rm.w*rm.h;return t+(rm.t==="out"?a*0.5:a)},0);
+  const CITY=CITIES[p.city]||null,kCity=CITY?CITY.k:1,lieu=CITY?CITY.nom:ZONES[zone].nom,Z=ZONES[zone];
+  const extras=[];
+  if(p.solaire) extras.push({n:"Panneaux solaires (kit 3 kWc)",c:2800000*kCity});
+  if(p.citerne) extras.push({n:"Château d'eau et surpresseur",c:1500000*kCity});
+  const extraSum=extras.reduce((t,e)=>t+e.c,0),total=builtArea*pm*Z.k*kCity+extraSum;
+  pro.park=ra>=5?Math.floor(W/2.5):ra>=2.5?Math.floor(W/5.5):0;
+  notes.push({t:"Bâtiment qui reçoit du public ou des salariés : avant le permis de construire, faites valider la sécurité incendie, les sorties de secours et l'accès des personnes handicapées par un architecte."});
+  return (window.applyEd||(x=>x))({planLevels:[{li:0,label:lvName(0),short:lvName(0,true)}],isTower:false,p:Object.assign({},p,{nb}),lieu,kCity,extras,extraSum,pool:null,W,D,ra,rl,zone,or,type,n:nb,std,style:p.style,pm,levels,bx,by,bw,bd,foot:bw*bd,plot,builtArea,total,notes,Z,kType:1,pro});
+}
+function storyPro(m){
+  const P=m.pro,L=m.levels[0],orTxt=OR_TXT[m.or]||"au sud",city=m.p.city&&CITIES[m.p.city]?"À "+CITIES[m.p.city].nom.replace(/ \(.*\)/,"")+", d":"D";
+  const months=Math.round(3+m.builtArea/60),a=r=>dec(r.w*r.h,0);
+  const park=P.park?`la cour avant de ${dec(m.ra,1)} m peut accueillir environ ${P.park} places de stationnement`:"le bâtiment est proche de la rue, sans stationnement sur le terrain";
+  const chantier=["Le chantier",`Comptez environ ${months} mois de travaux avec une équipe de 6 à 10 ouvriers, du terrassement à la peinture, pour un budget proche de ${F(m.total)}.`];
+  if(P.kind==="com"){const shop=L.find(r=>r.shop);
+    return [
+      ["La façade",m.Z.facade],
+      ["L'arrivée",`${city}epuis la rue ${orTxt}, ${park}. ${P.gd?"Les clients longent les vitrines à l'abri, sous une galerie couverte de 2 m de large.":"Chaque boutique ouvre directement sur la rue par sa porte et sa vitrine."}`],
+      ["Les boutiques",P.nb>1?`${P.nb} boutiques de ${dec(P.uw,1)} m de façade, avec chacune environ ${a(shop)} m² de surface de vente, une réserve et un sanitaire à l'arrière. Chaque boutique a sa propre entrée : elles peuvent être louées séparément.`:`Une surface de vente de ${fmt(P.sales)} m² d'un seul tenant, avec rayonnages au centre, réserve${P.desk?", bureau":""} et sanitaire à l'arrière.`],
+      ["Une base qui a fait ses preuves","La disposition est celle des commerces de rue de la région : porte et vitrine côté rue, vente à l'avant, réserve et sanitaire au fond, murs épais entre deux boutiques."],
+      ["L'idée en plus",P.gd?`La galerie couverte protège les clients du soleil et de la pluie, garde les vitrines à l'ombre et limite la chaleur dans les boutiques. Conçu pour la ${m.Z.nom} : ${m.Z.princ}.`:`Sans galerie, toute la profondeur sert à la vente. Conçu pour la ${m.Z.nom} : ${m.Z.princ}.`],
+      chantier]}
+  const reu=L.find(r=>r.n==="Salle de réunion"),ter=L.find(r=>r.n==="Terrasse de pause");
+  return [
+    ["La façade",m.Z.facade],
+    ["L'arrivée",`${city}epuis la rue ${orTxt}, ${park}. La porte d'entrée ouvre sur l'accueil, placé côté rue.`],
+    ["La vie à l'intérieur",`L'accueil donne sur un couloir central qui dessert ${P.nb} bureaux, dont celui de la direction, et une salle de réunion de ${reu?a(reu):"—"} m² proche de l'entrée. Les sanitaires, les archives et le coin repas sont regroupés côté cour.`],
+    ["Une base qui a fait ses preuves",`C'est le plan à couloir central, le plus courant pour les bureaux : chaque pièce a sa fenêtre et sa porte sur le couloir, et la profondeur du bâtiment (${dec(m.bd,1)} m) laisse entrer la lumière du jour partout.`],
+    ["L'idée en plus",`Le couloir traverse le bâtiment d'un bout à l'autre, avec une fenêtre à chaque extrémité : l'air circule sans climatisation dans les circulations${ter?`. La terrasse de pause couverte de ${a(ter)} m² offre un espace de repos à l'ombre, à côté du coin repas`:""}. Conçu pour la ${m.Z.nom} : ${m.Z.princ}.`],
+    chantier];
+}
+
 const TO=0.2,TI=0.1,EPS=0.02;
-const CIRC=new Set(["Séjour","Salle à manger","Entrée","Dégagement","Séjour étage","Escalier","Palier","Hall d'entrée"]);
+const CIRC=new Set(["Séjour","Salle à manger","Entrée","Dégagement","Séjour étage","Escalier","Palier","Hall d'entrée","Accueil","Couloir"]);
 function shared(a,b){
   if(Math.abs(a.x+a.w-b.x)<EPS||Math.abs(b.x+b.w-a.x)<EPS){
     const c=Math.abs(a.x+a.w-b.x)<EPS?b.x:a.x,s0=Math.max(a.y,b.y),s1=Math.min(a.y+a.h,b.y+b.h);
@@ -1833,7 +1975,7 @@ function sides(r,m){
   if(Math.abs(r.x+r.w-(m.bx+m.bw))<EPS) s.push({side:"right",o:"v",c:m.bx+m.bw-TO/2,s0:r.y,s1:r.y+r.h,inC:m.bx+m.bw-TO,dir:-1});
   return s;
 }
-const NOWIN=new Set(["Dégagement","Escalier","Dressing","Palier","Ascenseur","Local technique","Gaine technique","Réserve","Machinerie","Local vélos","Rangement"]);
+const NOWIN=new Set(["Dégagement","Escalier","Dressing","Palier","Ascenseur","Local technique","Gaine technique","Réserve","Machinerie","Local vélos","Rangement","Archives"]);
 function openings(m,li){
   const L=m.levels[li],pairs=[];
   for(let i=0;i<L.length;i++)for(let j=i+1;j<L.length;j++){const s=shared(L[i],L[j]);if(s) pairs.push(Object.assign({a:i,b:j,kind:"wall",open:[]},s))}
@@ -1856,11 +1998,18 @@ function openings(m,li){
     if(/Galerie|Coursive/.test(r.n)) c.filter(o=>CIRC.has(o.q.n)&&o.p.s1-o.p.s0>=1.2&&o!==pick).forEach(o=>{const L2=o.p.s1-o.p.s0,w=Math.min(2.6,L2-0.5),cc=(o.p.s0+o.p.s1)/2;o.p.open.push({k:"baie",d0:cc-w/2,d1:cc+w/2,bot:0,top:2.3})});
     if(pick){const L2=pick.p.s1-pick.p.s0,w=Math.min(2.6,L2-0.5),cc=(pick.p.s0+pick.p.s1)/2;if(!pick.p.open.some(o=>o.k==="baie")) pick.p.open.push({k:"baie",d0:cc-w/2,d1:cc+w/2,bot:0,top:2.3});linked.add(pick.p.a===i?pick.p.b:pick.p.a)}
   });
+  // boutiques derrière une galerie couverte : porte et vitrine sur la galerie
+  {const front={};pairs.forEach(p=>{if(p.kind!=="facade"||p.o!=="h") return;const A=L[p.a],B=L[p.b],sh=A.shop?p.a:B.shop?p.b:-1;if(sh<0||!L[sh===p.a?p.b:p.a].gal) return;
+    const len=p.s1-p.s0;if(len<1.6) return;let s0=p.s0+0.25;
+    if(!front[sh]){front[sh]=1;const dw=Math.min(1.1,len*0.35);p.open.push({k:"door",d0:s0,d1:s0+dw,into:sh,bot:0,top:2.3});s0+=dw+0.25}
+    if(p.s1-0.25-s0>0.8) p.open.push({k:"win",d0:s0,d1:p.s1-0.25,bot:0.3,top:2.5})})}
   // portes intérieures
   const pref=(r,q)=>{
     if(/^SDB parentale|^Dressing/.test(r.n)) return q.n==="Ch. parentale"?0:CIRC.has(q.n)?3:9;
     if(r.n==="SDB amis") return q.n==="Chambre d'amis"?0:CIRC.has(q.n)?2:9;
-    const o={"Dégagement":0,"Palier":0,"Hall d'entrée":0,"Entrée":1,"Séjour étage":1,"Séjour":2,"Salle à manger":3,"Escalier":4}[q.n];
+    if(/^WC/.test(r.n)&&q.n==="Réserve") return 0;
+    if(q.shop) return 1;
+    const o={"Dégagement":0,"Couloir":0,"Palier":0,"Hall d'entrée":0,"Entrée":1,"Accueil":1,"Séjour étage":1,"Séjour":2,"Salle à manger":3,"Escalier":4}[q.n];
     if(o!==undefined) return r.n==="Cuisine"&&(q.n==="Salle à manger"||q.n==="Séjour")?0:o;
     if(q.t==="day") return 5; if(q.t==="night") return 6; return 8;
   };
@@ -1888,7 +2037,7 @@ function openings(m,li){
   let entry=null;const ext=[];
   L.forEach((r,i)=>{if(isOut(r)||isPat(r)) return;sides(r,m).forEach(s=>{ext.push(Object.assign({room:i,open:[]},s))})});
   if(li===0){
-    const order=["Hall d'entrée","Entrée","Séjour","Salle à manger","Bureau"];
+    const order=["Hall d'entrée","Entrée","Accueil","Séjour","Salle à manger","Bureau"];
     const cand=ext.filter(e=>e.side==="bottom").sort((a,b)=>{const ia=order.indexOf(L[a.room].n),ib=order.indexOf(L[b.room].n);return (ia<0?9:ia)-(ib<0?9:ib)})[0];
     if(cand&&order.includes(L[cand.room].n)&&cand.s1-cand.s0>=1.2){const c=(cand.s0+cand.s1)/2;cand.open.push({k:"entry",d0:c-0.45,d1:c+0.45,bot:0,top:2.2});entry={x:c,y:m.by+m.bd}}
     else{const t=L.find(r=>isOut(r)&&Math.abs(r.y+r.h-(m.by+m.bd))<EPS);if(t) entry={x:t.x+t.w/2,y:m.by+m.bd,open:true}}
@@ -1962,6 +2111,11 @@ const FUR={
   lift(w,h){return R(0.05,0.05,w-0.1,h-0.1)+Ln(0.05,0.05,w-0.05,h-0.05)+Ln(w-0.05,0.05,0.05,h-0.05)},
   hall(w,h){if(w<1.2||h<1.5) return "";const L=Math.min(1.8,h-0.6);let s=R(0.02,0.3,0.25,L);for(let i=1;i<6;i++) s+=Ln(0.02,0.3+i*L/6,0.27,0.3+i*L/6);return s+Ci(w-0.35,0.35,0.22)+Ci(w-0.35,0.35,0.1)},
   shop(w,h){if(w<1.8||h<2.4) return "";let s=R(0.02,0.2,0.45,h-0.4);for(let y=0.6;y<h-0.3;y+=0.5) s+=Ln(0.02,y,0.47,y);const cl=Math.min(2.2,h*0.45);return s+R(w-0.62,0.3,0.6,cl)+R(w-0.98,0.3+cl/2-0.2,0.3,0.4,'rx="0.1"')},
+  shopL(w,h){if(w<1.8||h<2.4) return "";const sl=h-1.7,cl=Math.min(2.2,h*0.45);let s=R(0.02,0.2,0.45,sl);for(let y=0.6;y<sl;y+=0.5) s+=Ln(0.02,y,0.47,y);s+=R(w-0.62,0.3,0.6,cl)+R(w-0.98,0.3+cl/2-0.2,0.3,0.4,'rx="0.1"');
+    if(w>=5&&h>=4.2) for(let x=1.7;x+0.5<=w-1.6;x+=1.9){s+=R(x,1.0,0.5,h-2.9);for(let y=1.5;y<h-2.0;y+=0.5) s+=Ln(x,y,x+0.5,y)}return s},
+  shopW(w,h){if(w<2.4||h<3) return "";const cl=Math.min(2.2,h*0.45);let s=R(0.4,1.8,0.6,cl)+R(1.05,1.8+cl/2-0.2,0.3,0.4,'rx="0.1"');
+    for(let x=2.2;x+0.5<=w-1.6;x+=1.9){s+=R(x,1.2,0.5,h-2.4);for(let y=1.7;y<h-1.3;y+=0.5) s+=Ln(x,y,x+0.5,y)}return s},
+  reception(w,h){if(w<1.6||h<1.8) return "";const dw=Math.min(1.8,w-0.3);let s=R(w/2-dw/2,0.5,dw,0.55,'rx="0.04"')+Ci(w/2,0.25,0.2);if(h>=3) s+=R(0.06,h-1.5,0.5,0.5,'rx="0.08"')+R(0.06,h-0.85,0.5,0.5,'rx="0.08"');return s},
   parking(w,h){if(w<2.4||h<2.6) return "";let s="";const car=(x,y,horiz)=>{const cw=1.8,cl=4.4;return horiz?R(x,y,cl,cw,'rx="0.35"')+R(x+1.0,y+0.15,0.55,cw-0.3,'rx="0.12"')+R(x+3.0,y+0.15,0.45,cw-0.3,'rx="0.12"'):R(x,y,cw,cl,'rx="0.35"')+R(x+0.15,y+1.0,cw-0.3,0.55,'rx="0.12"')+R(x+0.15,y+3.0,cw-0.3,0.45,'rx="0.12"')};
     const dash='stroke-dasharray="0.25 0.15"';
     if(w>=4.8){for(let y=0.1,k=0;y+2.4<=h;y+=2.5,k++){s+=Ln(0,y,4.8,y,dash);if(k%3!==2) s+=car(0.2,y+0.35,true);if(w>=9.8){s+=Ln(w-4.8,y,w,y,dash);if(k%3!==1) s+=car(w-4.6,y+0.35,true)}}}
@@ -1974,7 +2128,13 @@ function furniture(r,ix,iy,iw,ih){
   const n=r.n;
   if(n==="Ascenseur") return place(FUR.lift,ix,iy,iw,ih,0);
   if(n==="Hall d'entrée") return fill(FUR.hall,ix,iy,iw,ih);
-  if(r.shop) return fill(FUR.shop,ix,iy,iw,ih);
+  if(r.shop) return fill(r.gond?(iw>ih?FUR.shopW:FUR.shopL):FUR.shop,ix,iy,iw,ih);
+  if(n==="Accueil") return fill(FUR.reception,ix,iy,iw,ih);
+  if(n==="Salle de réunion"||n==="Terrasse de pause") return fill(FUR.dining,ix,iy,iw,ih);
+  if(n==="Coin repas") return fill(FUR.kitchen,ix,iy,iw,ih);
+  if(n==="Archives") return fill(FUR.dressing,ix,iy,iw,ih);
+  if(/^Bureau |^Direction$/.test(n)) return fill(FUR.office,ix,iy,iw,ih);
+  if(/^WC /.test(n)) return fill(FUR.wc,ix,iy,iw,ih);
   if(n==="Parking") return fill(FUR.parking,ix,iy,iw,ih);
   if(n==="Réserve"||n==="Rangement"||n==="Local vélos") return fill(FUR.dressing,ix,iy,iw,ih);
   if(n==="Pièce principale") return fill((w,h)=>FUR.bed(w,h,1.4,false),ix,iy,iw,ih);
@@ -2009,7 +2169,7 @@ const ABBR=[[/^chambre d'amis$/i,"Ch. amis"],[/^chambre\s+/i,"Ch. "],[/^salle de
   [/^rangement$/i,"Rangt"],[/^local technique$/i,"Local tech."],[/^gaine technique$/i,"Gaine"],[/^hall d'entrée$/i,"Hall"],[/^douche service$/i,"Douche"],
   [/^terrasse sur toit$/i,"Terrasse"],[/^terrasse haute$/i,"Terrasse"],[/^salon détente$/i,"Salon"],[/^séjour étage$/i,"Séjour"],[/^local vélos$/i,"Vélos"],
   [/^cuisine$/i,"Cuis."],[/^terrasse$/i,"Terr."],[/^escalier$/i,"Esc."],[/^dressing$/i,"Dress."],[/^ascenseur.*/i,"Asc."],[/^piscine.*/i,"Piscine"],
-  [/^vide sur patio$/i,"Vide"],[/^pièce principale$/i,"Pièce princ."],[/^groupe électrogène$/i,"Groupe"],[/^panneaux solaires.*/i,"Solaire"],[/^château d'eau.*/i,"Château d'eau"],[/^cellier$/i,"Cell."],[/^bureau$/i,"Bur."],[/^garage$/i,"Gar."],[/^parking$/i,"Park."]];
+  [/^vide sur patio$/i,"Vide"],[/^pièce principale$/i,"Pièce princ."],[/^groupe électrogène$/i,"Groupe"],[/^panneaux solaires.*/i,"Solaire"],[/^château d'eau.*/i,"Château d'eau"],[/^cellier$/i,"Cell."],[/^bureau$/i,"Bur."],[/^bureau\s+(\d+)$/i,"Bur. $1"],[/^salle de réunion$/i,"Réunion"],[/^coin repas$/i,"Repas"],[/^terrasse de pause$/i,"Pause"],[/^galerie$/i,"Gal."],[/^archives$/i,"Arch."],[/^magasin\s+(\d+)$/i,"Mag. $1"],[/^direction$/i,"Direct."],[/^garage$/i,"Gar."],[/^parking$/i,"Park."]];
 const abbr=n=>{for(const [re,t] of ABBR) if(re.test(n)) return n.replace(re,t);return n};
 function fitLabel(nm,w,h,P){
   // candidats : nom sur une ligne, sur deux lignes, puis abrégé ; on garde le plus lisible
@@ -2151,7 +2311,7 @@ function drawTech(m,li,opt={}){
       const ty=B.y+B.h+mb+4*P,tx=vx+10*P,tw=vw-20*P,rot=ROT(m.or);
       s+=Ln(tx,ty,tx+tw,ty,`stroke="${INK}" stroke-width="${1.2*P}"`);
       s+=`<g transform="translate(${(tx+13*P).toFixed(3)} ${(ty+24*P).toFixed(3)})"><circle r="${(11*P).toFixed(3)}" fill="none" stroke="${INK}" stroke-width="${(0.9*P).toFixed(3)}"/><g transform="rotate(${rot})"><path d="M0 ${-9.5*P} L${5*P} ${5.5*P} L0 ${2.3*P} L${-5*P} ${5.5*P}Z" fill="${INK}"/></g></g><text x="${(tx+13*P).toFixed(3)}" y="${(ty+47*P).toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-size="${(8*P).toFixed(3)}" font-weight="700" fill="${INK}">N</text>`;
-      const pl=(m.planLevels||[]).find(x=>x.li===li),title=typeLabel(m.p).toUpperCase()+(m.levels.length>1&&pl?" — "+pl.label.toUpperCase():"")+(m.isTower&&!m.fam?` · ${m.nApts} LOGEMENTS`:" · "+m.n+" CH.");
+      const pl=(m.planLevels||[]).find(x=>x.li===li),title=typeLabel(m.p).toUpperCase()+(m.levels.length>1&&pl?" — "+pl.label.toUpperCase():"")+" · "+progLabel(m,true).toUpperCase();
       const area=L.reduce((t,r)=>t+(r.t==="patio"?0:r.w*r.h),0),x0=tx+32*P,aw=tx+tw-x0;
       const line=(y,t,f,w,fam,col)=>{const ff=Math.min(f,aw/(t.length*w));return `<text x="${x0.toFixed(3)}" y="${y.toFixed(3)}" font-family="${fam}" font-weight="${fam[0]==="O"?(f>11*P?700:500):400}" font-size="${ff.toFixed(3)}" fill="${col}">${t}</text>`};
       s+=line(ty+19*P,title,12.5*P,0.62,"Outfit,sans-serif",INK);
@@ -2163,7 +2323,7 @@ function drawTech(m,li,opt={}){
       s+=Ln(tx,ty,tx+tw,ty,`stroke="${INK}" stroke-width="0.03"`);
       const rot=ROT(m.or);
       s+=`<g transform="translate(${(tx+0.55).toFixed(3)} ${(ty+1.25).toFixed(3)})"><circle r="0.48" fill="none" stroke="${INK}" stroke-width="0.02"/><g transform="rotate(${rot})"><path d="M0 -0.42 L0.22 0.24 L0 0.1 L-0.22 0.24Z" fill="${INK}"/></g></g><text x="${(tx+0.55).toFixed(3)}" y="${(ty+2.15).toFixed(3)}" text-anchor="middle" font-family="Outfit,sans-serif" font-size="0.24" font-weight="600" fill="${INK}">N</text>`;
-      const pl=(m.planLevels||[]).find(x=>x.li===li),title=typeLabel(m.p).toUpperCase()+(m.levels.length>1&&pl?" — "+pl.label.toUpperCase():"")+(m.isTower&&!m.fam?` · ${m.nApts} LOGEMENTS`:" · "+m.n+" CH.");
+      const pl=(m.planLevels||[]).find(x=>x.li===li),title=typeLabel(m.p).toUpperCase()+(m.levels.length>1&&pl?" — "+pl.label.toUpperCase():"")+" · "+progLabel(m,true).toUpperCase();
       const area=L.reduce((t,r)=>t+(r.t==="patio"?0:r.w*r.h),0);
       s+=`<text x="${(tx+1.3).toFixed(3)}" y="${(ty+0.75).toFixed(3)}" font-family="Outfit,sans-serif" font-weight="700" font-size="0.36" fill="${INK}">PLAN ARCHITECTURAL — ${title}</text>`;
       s+=`<text x="${(tx+1.3).toFixed(3)}" y="${(ty+1.3).toFixed(3)}" font-family="Outfit,sans-serif" font-weight="500" font-size="0.28" fill="${INK}">SURFACE DU NIVEAU : ${dec(area,1)} m² · BÂTIMENT ${dec(B.w,2)} × ${dec(B.h,2)} m</text>`;
@@ -2186,26 +2346,36 @@ function drawTech(m,li,opt={}){
 /* ---------- Récit « dans la vraie vie » ---------- */
 function story(m){
   if(m.isTower) return storyTower(m);
+  if(m.pro) return storyPro(m);
   const L0=m.levels[0],all=m.levels.flat();
   const sej=all.find(r=>r.n==="Séjour"),ter=all.find(r=>r.n==="Terrasse"),pat=all.find(r=>r.n==="Patio");
   const orTxt=OR_TXT[m.or]||"au sud";
   const months=Math.round(4+m.builtArea/45+(m.levels.length-1)*2+(m.pool?1:0));
+  const sam=all.find(r=>r.n==="Salle à manger"),ideas=[];
+  if(pat) ideas.push(`un patio planté de ${dec(pat.w*pat.h,0)} m² au cœur de la maison, qui apporte lumière et fraîcheur`);
+  if(m.p.openK) ideas.push("une cuisine ouverte sur le séjour, pour un seul grand espace de vie");
+  if(ter&&ter.w*ter.h>=12) ideas.push(`une terrasse couverte de ${dec(ter.w*ter.h,0)} m², vraie pièce en plus à l'ombre`);
+  if(m.p.solaire) ideas.push("des panneaux solaires pour alléger la facture d'électricité");
+  if(m.p.citerne) ideas.push("une réserve d'eau pour tenir pendant les coupures");
+  if(!ideas.length) ideas.push(sej&&sam&&shared(sej,sam)?"un séjour et une salle à manger réunis sans cloison, pour plus de lumière et d'air":"des ouvertures placées pour la ventilation naturelle");
   return [
     ["La façade",m.Z.facade],
     ["L'arrivée",`${m.p.city&&CITIES[m.p.city]?"À "+CITIES[m.p.city].nom.replace(/ \(.*\)/,"")+", d":"D"}epuis la rue ${orTxt}, un portail ouvre sur une cour de ${dec(m.ra,1)} m de profondeur, assez pour garer une voiture, avant d'atteindre ${ter?"la terrasse couverte":"l'entrée"}.`],
     ["La vie à l'intérieur",`Le séjour de ${sej?dec(sej.w*sej.h,0):"—"} m² forme un espace ouvert avec la salle à manger${ter?` et se prolonge dehors sur ${dec(ter.w*ter.h,0)} m² de terrasse`:""}. Les ${m.n} chambres sont regroupées ${m.type!=="pp"?"dans les étages":"vers le fond de la parcelle"}, au calme.`],
     ["Le confort climatique",(pat?`Le patio de ${dec(pat.w*pat.h,0)} m² laisse entrer la lumière et l'air frais au cœur de la maison. `:"")+`Conçue pour la ${m.Z.nom} : ${m.Z.princ}.`],
+    ["Une base qui a fait ses preuves",`C'est l'organisation la plus courante des villas de la région : pièces de vie et terrasse côté rue, chambres au calme ${m.type!=="pp"?"à l'étage":"au fond de la parcelle"}, desservies par un seul couloir.`],
+    ["L'idée en plus","Ce plan y ajoute "+ideas.slice(0,3).join(", ")+"."],
     ["Le chantier",`Comptez environ ${months} mois de travaux avec une équipe de 6 à 10 ouvriers, du terrassement à la peinture, pour un budget proche de ${F(m.total)}.`]
   ];
 }
-if(typeof module!=="undefined") module.exports={compute,openings,drawTech,story};
+if(typeof module!=="undefined") module.exports={compute,openings,drawTech,story,typeLabel,progLabel,sides,CIRC};
 </script>
 <script>
 /* ====================== MAQUETTE 3D RÉALISTE ====================== */
 const H3=2.9,SL3=0.28;
 const WALLS=["#F4F1EA","#E9DFCF","#D9C3A0","#C98F6B","#B8BDBF","#6F7D78"];
 const ROOFS=["#3E4246","#5B3E2E","#8C3B2A","#B98E62","#E9E6DF","#2F4A3A"];
-function defaults3d(m){const z=m.zone;const byStyle={contemporain:{facade:"enduit",wall:"#F4F1EA",roof:"plat",frame:"anthra",floor:"beton"},afro:{facade:"btc",roof:"mono",roofColor:"#5B3E2E",frame:"bois"},colonial:{facade:"enduit",wall:"#E9DFCF",roof:"deux",roofMat:"tuile",frame:"blanc",floor:"parquet"},mediterraneen:{facade:"enduit",wall:"#F4F1EA",roof:"deux",roofMat:"tuile",frame:"bois"},mini:{roof:"plat",facade:"enduit",wall:"#F4F1EA"}}[m.style]||{};return Object.assign(defaults3dBase(m),byStyle)}
+function defaults3d(m){const z=m.zone;const byStyle={contemporain:{facade:"enduit",wall:"#F4F1EA",roof:"plat",frame:"anthra",floor:"beton"},afro:{facade:"btc",roof:"mono",roofColor:"#5B3E2E",frame:"bois"},colonial:{facade:"enduit",wall:"#E9DFCF",roof:"deux",roofMat:"tuile",frame:"blanc",floor:"parquet"},mediterraneen:{facade:"enduit",wall:"#F4F1EA",roof:"deux",roofMat:"tuile",frame:"bois"},mini:{roof:"plat",facade:"enduit",wall:"#F4F1EA"}}[m.style]||{};return Object.assign(defaults3dBase(m),m.pro?{roof:"plat",facade:"enduit",wall:"#F4F1EA"}:byStyle)}
 function defaults3dBase(m){const z=m.zone;return {facade:(z==="savane"||z==="sahel")?"btc":"enduit",wall:z==="foret"?"#E9DFCF":"#F4F1EA",
   roof:z==="foret"?"deux":z==="savane"?"mono":"plat",roofMat:"tole",roofColor:z==="foret"?"#5B3E2E":z==="sahel"?"#B98E62":"#3E4246",frame:"anthra",floor:"carrelage",hour:10,veg:true,car:true}}
 
@@ -2384,9 +2554,10 @@ function mount3D(el,m,o,st){
   const fh=1.9,ft=0.2;
   const fseg=(x0,x1,z,alongX)=>{const L=Math.abs(x1-x0);if(L<0.05) return;if(alongX){box(L,fh,ft,X((x0+x1)/2),fh/2,Z(z),M.fence);box(L+0.06,0.06,ft+0.08,X((x0+x1)/2),fh+0.03,Z(z),M.coping)}else{box(ft,fh,L,X(z),fh/2,Z((x0+x1)/2),M.fence);box(ft+0.08,0.06,L+0.06,X(z),fh+0.03,Z((x0+x1)/2),M.coping)}};
   fseg(0,W,0.1,true);fseg(0.1,D,0.1,false);fseg(0.1,D,W-0.1,false);
-  fseg(0,gx-gw/2,D-0.1,true);fseg(gx+gw/2,W,D-0.1,true);
+  if(m.pro){if(m.ra>0.6) box(W-0.4,0.02,m.ra,0,0.035,Z(D-m.ra/2),M.paver,null,{noCast:true})}
+  else{fseg(0,gx-gw/2,D-0.1,true);fseg(gx+gw/2,W,D-0.1,true);
   for(let i=0;i<=Math.floor(gw/0.12);i++) box(0.04,1.7,0.04,X(gx-gw/2+i*0.12),0.88,Z(D-0.1),M.metal);
-  box(gw,0.06,0.06,X(gx),1.72,Z(D-0.1),M.metal);box(gw,0.06,0.06,X(gx),0.1,Z(D-0.1),M.metal);
+  box(gw,0.06,0.06,X(gx),1.72,Z(D-0.1),M.metal);box(gw,0.06,0.06,X(gx),0.1,Z(D-0.1),M.metal)}
   /* --- végétation --- */
   const rr=rng(m.p.seed*97+3);
   const palm=(x,z,s)=>{const g=new THREE.Group();let px=0,pz=0,py=0;const lean=rr()*0.5-0.25;for(let i=0;i<7;i++){const h=0.9*s;cyl(0.11*s,0.14*s,h,px,py+h/2,pz,M.bark,g,8);py+=h*0.98;px+=lean*0.12*s}
@@ -2454,7 +2625,7 @@ function mount3D(el,m,o,st){
     const lev=new THREE.Group(),grp=new THREE.Group(),inner=new THREE.Group();lev.add(grp);lev.add(inner);lev.userData.shell=grp;scene.add(lev);levels.push(lev);
     const O=openings(m,li);
     // sols
-    L.forEach(r=>{if(r.t==="patio"&&li>0) return;const mat=r.t==="patio"?M.patio:r.t==="out"?M.deck:r.t==="wet"?M.floorWet:r.t==="night"?M.floorNight:M.floorMain;box(r.w,0.04,r.h,X(r.x+r.w/2),y0+0.02,Z(r.y+r.h/2),mat,grp,{noCast:true})});
+    L.forEach(r=>{if(r.t==="patio"&&li>0) return;const mat=r.t==="patio"?M.patio:r.t==="out"?(r.gal?M.paver:M.deck):r.t==="wet"?M.floorWet:r.t==="night"?M.floorNight:M.floorMain;box(r.w,0.04,r.h,X(r.x+r.w/2),y0+0.02,Z(r.y+r.h/2),mat,grp,{noCast:true})});
     // murs
     O.ext.forEach(e=>segWall(e.o,e.c,TO,e.s0,e.s1,y0,e.open,grp,extIdx[e.side],extSg[e.side]));
     O.pairs.forEach(p=>{if(p.kind==="open"||p.kind==="none") return;const t=(p.kind==="facade"||p.kind==="party")?TO:p.kind==="patio"?0.15:TI;
@@ -2539,13 +2710,13 @@ function mount3D(el,m,o,st){
     const light=new THREE.PointLight(0xffd9ad,0.5,14,2);light.visible=false;scene.add(light);
     const sun0={p:sun.position.clone(),c:sun.color.clone(),i:sun.intensity};
     const fade=document.createElement("div");fade.className="tfade";el.appendChild(fade);
-    const rank=n=>/^Séjour|^Salon/.test(n)?0:/manger/i.test(n)?1:/^Cuisine/.test(n)?2:/^Hall|^Entrée/.test(n)?3:/bain|SDB|eau|WC/i.test(n)?7:/parent/i.test(n)?5:/^Ch/.test(n)?6:/Terrasse|Balcon/.test(n)?8:4;
+    const rank=n=>/^Séjour|^Salon|^Accueil|^Magasin/.test(n)?0:/manger/i.test(n)?1:/^Cuisine/.test(n)?2:/^Hall|^Entrée/.test(n)?3:/bain|SDB|eau|WC/i.test(n)?7:/parent/i.test(n)?5:/^Ch/.test(n)?6:/Terrasse|Balcon/.test(n)?8:4;
     const stops=(st.stops||[]).map(q=>{const r=(m.levels[q.li]||[]).find(r=>r.n===q.n&&(q.u===undefined||r.u===q.u));return r&&r.w*r.h>=3?{r,li:q.li}:null}).filter(Boolean).sort((a,b)=>a.li-b.li||rank(a.r.n)-rank(b.r.n)).slice(0,12);
     const view=q=>{const r=q.r,y0=base+q.li*(H3+SL3),cx=X(r.x+r.w/2),cz=Z(r.y+r.h/2),ex=sides(r,m).map(k=>k.side);
       let dx=0,dz=0;const long=r.h>=r.w*1.25?"z":r.w>=r.h*1.25?"x":ex.includes("bottom")||ex.includes("top")?"z":ex.includes("right")||ex.includes("left")?"x":r.h>=r.w?"z":"x";
       if(long==="z") dz=ex.includes("top")&&!ex.includes("bottom")?-1:1;else dx=ex.includes("left")&&!ex.includes("right")?-1:1;
-      const hw=Math.max(0.25,r.w/2-0.55),hh=Math.max(0.25,r.h/2-0.55);
-      return {p:new THREE.Vector3(cx-dx*hw+(dz?hw*0.55:0),y0+1.55,cz-dz*hh+(dx?hh*0.55:0)),t:new THREE.Vector3(cx+dx*hw*0.5-(dz?hw*0.3:0),y0+1.1,cz+dz*hh*0.5-(dx?hh*0.3:0)),
+      const hw=Math.max(0.25,r.w/2-0.55),hh=Math.max(0.25,r.h/2-0.55),f=Math.max(0.15,Math.min(1,(Math.min(r.w,r.h)/Math.max(r.w,r.h)-0.5)*2));
+      return {p:new THREE.Vector3(cx-dx*hw+(dz?hw*0.55*f:0),y0+1.55,cz-dz*hh+(dx?hh*0.55*f:0)),t:new THREE.Vector3(cx+dx*hw*0.5-(dz?hw*0.3*f:0),y0+1.1,cz+dz*hh*0.5-(dx?hh*0.3*f:0)),
         c:new THREE.Vector3(cx,y0+H3-0.4,cz),d:Math.max(r.w,r.h)*1.8+3}};
     const bcx=X(m.bx+m.bw/2),bcz=Z(m.by+m.bd/2),dd=Math.max(Math.max(m.bw,m.bd)*1.3+6,m.isTower?HT*1.6:0);
     const dollT=new THREE.Vector3(bcx,m.isTower?HT*0.4:base+0.8,bcz),look=dollT.clone();let ang=0.9;
@@ -2637,10 +2808,21 @@ function furn3D(r,M,box,cyl,sph,li,y0,m){
   const terrace=()=>{if(w<1.6||h<2.2) return;const ch=(u)=>{B(0.65,0.3,1.7,u,0.15,0.3+0.85,M.oak);B(0.62,0.08,1.2,u,0.34,0.3+1.1,M.fab);const bk=B(0.62,0.08,0.6,u,0.5,0.45,M.fab);bk.rotation.x=0.7};ch(w/2-0.4);if(w>=2.4) ch(w/2+0.45);plant(0.35,h-0.4,1.3);plant(w-0.35,h-0.4,1)};
   const patio=()=>{const t=Math.min(w,h);C(0.1,0.14,1.8,w/2,0.9,h/2,M.bark,10);sph(t*0.32,w/2,2.1,h/2,M.leaf);sph(t*0.22,w/2+t*0.2,1.7,h/2-t*0.1,M.leaf2);B(1.2,0.42,0.4,w/2,0.21,Math.max(0.4,h/2-t*0.4),M.oak)};
   const entry=()=>{if(w<1||h<1.4) return;B(0.32,0.8,Math.min(1.1,h-0.6),0.18,0.4,0.4+Math.min(1.1,h-0.6)/2,M.oak);B(0.02,0.7,0.5,0.01,1.5,0.95,M.mirror);plant(w-0.3,0.3,1)};
+  const reception=()=>{if(w<1.6||h<1.8) return;const dw=Math.min(1.8,w-0.3);B(dw,1.05,0.55,w/2,0.525,0.78,M.oak);B(dw+0.04,0.04,0.6,w/2,1.07,0.78,M.stoneTop);C(0.22,0.22,0.06,w/2,0.48,0.3,M.fab2,20);
+    if(h>=3){B(0.5,0.42,0.5,0.31,0.21,h-1.25,M.fab);B(0.5,0.42,0.5,0.31,0.21,h-0.6,M.fab)}plant(w-0.35,h-0.35,1.2)};
   const n=r.n;
+  if(n==="Accueil"){reception();return g}
+  if(n==="Salle de réunion"||n==="Terrasse de pause"){dining();if(n==="Terrasse de pause"&&w>=2.4) plant(0.35,0.35,1.2);return g}
+  if(n==="Coin repas"){kitchen();return g}
+  if(n==="Archives"){if(w>=1) B(0.5,2.0,h-0.2,0.27,1.0,h/2,M.metal);return g}
+  if(/^Bureau |^Direction$/.test(n)){office();return g}
+  if(/^WC /.test(n)){wc();return g}
   if(n==="Ascenseur"){B(w-0.1,2.3,h-0.1,w/2,1.15,h/2,M.steel);return g}
   if(n==="Hall d'entrée"){if(w>=1.2&&h>=1.5) B(0.3,1.2,Math.min(1.6,h-0.6),0.17,0.9,0.3+Math.min(1.6,h-0.6)/2,M.metal);plant(w-0.35,0.35,1.2);return g}
-  if(r.shop){if(w>=1.8&&h>=2.4){B(0.45,2.0,h-0.4,0.25,1.0,h/2,M.oak);const cl=Math.min(2.2,h*0.45);B(0.6,1.0,cl,w-0.32,0.5,0.3+cl/2,M.white)}return g}
+  if(r.shop){if(w>=1.8&&h>=2.4){const cl=Math.min(2.2,h*0.45);
+    if(!r.gond){B(0.45,2.0,h-0.4,0.25,1.0,h/2,M.oak);B(0.6,1.0,cl,w-0.32,0.5,0.3+cl/2,M.white)}
+    else if(tall){const sl=h-1.7;B(0.45,2.0,sl,0.25,1.0,0.2+sl/2,M.oak);B(0.6,1.0,cl,w-0.32,0.5,0.3+cl/2,M.white);if(w>=5&&h>=4.2) for(let u=1.7;u+0.5<=w-1.6;u+=1.9) B(0.5,1.4,h-2.9,u+0.25,0.7,1.0+(h-2.9)/2,M.white)}
+    else if(w>=2.4&&h>=3){B(0.6,1.0,cl,0.7,0.5,1.8+cl/2,M.white);for(let u=2.2;u+0.5<=w-1.6;u+=1.9) B(0.5,1.4,h-2.4,u+0.25,0.7,h/2,M.white)}}return g}
   if(n==="Réserve"||n==="Rangement"||n==="Local vélos"){if(w>=1) B(0.5,2.0,h-0.2,0.27,1.0,h/2,M.metal);return g}
   if(n==="Parking"){const car=(u,v)=>{const cg=new THREE.Group();box(1.8,0.6,4.3,0,0.62,0,M.car,cg);box(1.6,0.55,2.2,0,1.18,-0.2,M.car,cg);box(1.62,0.45,2.0,0,1.2,-0.2,M.glass,cg);[[-0.82,1.3],[0.82,1.3],[-0.82,-1.35],[0.82,-1.35]].forEach(([a,b])=>{const t=cyl(0.34,0.34,0.24,a,0.34,b,M.tire,cg,18);t.rotation.z=Math.PI/2});cg.position.set(u,0,v);cg.rotation.y=Math.PI/2;g.add(cg)};
     if(w>=4.8){for(let v=0.1,k=0;v+2.4<=h&&k<10;v+=2.5,k++){if(k%3!==2) car(2.4,v+1.25);if(w>=9.8&&k%3!==1) car(w-2.4,v+1.25)}}
@@ -2666,8 +2848,8 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 /* Offres : modifiez ici les prix et les limites */
 const OFFERS={
   basique:{nom:"Basique",prix:0,quota:5,d3:false,tools:false,dl:false,ed:false,desc:"Gratuite, pour esquisser vos premiers projets."},
-  moyen:{nom:"Moyen",prix:30000,quota:20,d3:true,tools:false,dl:true,ed:true,desc:"Ajoutez la maquette 3D, modifiez les pièces et téléchargez vos plans pour convaincre vos clients."},
-  max:{nom:"Max",prix:60000,quota:Infinity,d3:true,tools:true,dl:true,ed:true,desc:"Personnalisez entièrement la maison en 3D."}};
+  moyen:{nom:"Moyen",prix:30000,quota:20,d3:true,tools:false,dl:true,ed:true,pro:true,desc:"Ajoutez la maquette 3D, modifiez les pièces et téléchargez vos plans pour convaincre vos clients."},
+  max:{nom:"Max",prix:60000,quota:Infinity,d3:true,tools:true,dl:true,ed:true,pro:true,desc:"Personnalisez entièrement la maison en 3D."}};
 let plevel=0,cur=Object.assign({},DEF),level=0,model=null,props=[],selProp=null,dirty=false,lastPropSig=null,opts3d=null;
 const acct={offer:"basique",day:"",count:0};
 const today=()=>new Date().toLocaleDateString("sv");
@@ -2683,14 +2865,23 @@ const ICON={lock:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 /* ---------- formulaire ---------- */
 {const g={cote:"Côte — climat côtier humide",foret:"Centre et Ouest — zone forestière",savane:"Nord — savane",sahel:"Sahel"};
   $("#city").innerHTML=`<option value="">Choisissez votre ville</option>`+Object.keys(g).map(z=>`<optgroup label="${g[z]}">${Object.entries(CITIES).filter(([k,c])=>c.zone===z).map(([k,c])=>`<option value="${k}">${c.nom}</option>`).join("")}</optgroup>`).join("")}
-function syncTower(){const t=val("type"),imm=t==="rn"&&val("usage")==="immeuble";$("#towerset").hidden=t!=="rn";$$("[data-imm]").forEach(e=>e.hidden=!imm);$$("[data-house]").forEach(e=>e.hidden=imm)}
+const PRO_TXT={com:{leg:"Vos boutiques",nb:"Nombre de boutiques",plus:"Galerie couverte devant les vitrines",opts:[1,2,3,4,5,6],def:3,lab:n=>n===1?"1 grande boutique":n+" boutiques",
+    note:"Disposition courante des commerces de rue : vitrine côté rue, vente à l'avant, réserve et sanitaire au fond. Plan sur un seul niveau."},
+  bur:{leg:"Vos bureaux",nb:"Nombre de bureaux",plus:"Terrasse de pause couverte",opts:[2,3,4,5,6,8,10,12],def:4,lab:n=>n+" bureaux",
+    note:"Plan à couloir central : accueil, bureaux, salle de réunion, sanitaires, archives et coin repas. Plan sur un seul niveau."}};
+function syncTower(){const t=val("type"),imm=t==="rn"&&val("usage")==="immeuble",pro=isPro(t);$("#towerset").hidden=t!=="rn";$$("[data-imm]").forEach(e=>e.hidden=!imm);$$("[data-house]").forEach(e=>e.hidden=imm||pro);
+  $$("[data-nopro]").forEach(e=>e.hidden=pro);const ps=$("#proset");ps.hidden=!pro;$("#covword").textContent=pro?"le bâtiment":"la maison";$("#bldleg").textContent=pro?"Votre bâtiment":"Votre maison";
+  if(pro&&ps.dataset.k!==t){const T=PRO_TXT[t],sel=$("#nb"),v=ps.dataset.k?+sel.value:(cur&&cur.nb)||T.def;ps.dataset.k=t;
+    $("#prolegend").textContent=T.leg;$("#nblabel").textContent=T.nb;$("#pluslabel").textContent=T.plus;$("#pronote").textContent=T.note;
+    sel.innerHTML=T.opts.map(n=>`<option value="${n}">${T.lab(n)}</option>`).join("");sel.value=String(T.opts.includes(v)?v:T.def)}}
+function proGate(p){if(!isPro(p.type)||O().pro) return false;toast(`Les plans de boutiques et de bureaux sont inclus dans les offres ${OFFERS.moyen.nom} et ${OFFERS.max.nom}.`);location.hash="tarifs";return true}
 function readForm(){syncTower();const area=Math.max(100,+$("#area").value||DEF.area),shape=val("shape"),city=$("#city").value||DEF.city,fw=+$("#fw").value||0,dm=dimsFrom(area,shape,fw),C=CITIES[city];
   $("#dimhint").textContent=+$("#area").value>0&&document.querySelector("input[name=shape]:checked")?`Soit environ ${dec(dm.W,1)} m côté rue × ${dec(dm.D,1)} m de profondeur`:"";
-  $("#covhint").textContent=+$("#area").value>0?`Soit une maison d'environ ${fmt(area*covVal()/100)} m² au sol sur votre terrain de ${fmt(area)} m².`:"Par défaut, la maison occupe la moitié du terrain.";
+  $("#covhint").textContent=+$("#area").value>0&&isPro(val("type"))?`Soit au plus ${fmt(area*covVal()/100)} m² au sol sur votre terrain de ${fmt(area)} m². Le reste sert au stationnement.`:+$("#area").value>0?`Soit une maison d'environ ${fmt(area*covVal()/100)} m² au sol sur votre terrain de ${fmt(area)} m².`:isPro(val("type"))?"Par défaut, le bâtiment occupe au plus la moitié du terrain.":"Par défaut, la maison occupe la moitié du terrain.";
   $("#cityhint").textContent=!$("#city").value?"":"Climat : "+ZONES[C.zone].nom+(C.k!==1?` · prix local ${C.k>1?"+":"−"}${Math.round(Math.abs(C.k-1)*100)} %`:"");
   return {area,shape,city,W:dm.W,D:dm.D,ra:+$("#ra").value||0,rl:+$("#rl").value||0,zone:C.zone,or:val("or"),type:val("type"),n:+$("#ch").value||DEF.n,std:$("#std").value||DEF.std,style:val("style"),pm:+$("#pm").value||PRICE[$("#std").value||DEF.std],pmU:+$("#pm").value>0,cov:covVal(),filled:formMissing().length===0,cityU:!!$("#city").value,seed:cur.seed||1,fw,garage:+$("#garage").value,
   piscine:$("#x-piscine").checked,bureau:$("#x-bureau").checked,openK:$("#x-openK").checked,suites:$("#x-suites").checked,service:$("#x-service").checked,cellier:$("#x-cellier").checked,solaire:$("#x-solaire").checked,citerne:$("#x-citerne").checked,
-  nf:+$("#nf").value,usage:val("usage"),apts:+$("#apts").value,aptType:$("#aptType").value,rdc:val("rdc"),lift:$("#x-lift").checked,roofTerrace:$("#x-roofT").checked,genset:$("#x-genset").checked}}
+  nf:+$("#nf").value,usage:val("usage"),apts:+$("#apts").value,aptType:$("#aptType").value,rdc:val("rdc"),lift:$("#x-lift").checked,roofTerrace:$("#x-roofT").checked,genset:$("#x-genset").checked,nb:+$("#nb").value||DEF.nb,plus:$("#x-plus").checked}}
 function writeForm(p){
   if(!p.area){p.area=Math.round(p.W*p.D);const r=p.D/p.W;p.shape=r<1.12?"carre":r<1.6?"rect":"long"}
   if(!p.city||!CITIES[p.city]) p.city=Object.keys(CITIES).find(k=>CITIES[k].zone===p.zone)||"grand-bassam";
@@ -2700,7 +2891,8 @@ function writeForm(p){
   $("#fw").value=p.fw||"";$("#garage").value=String(p.garage||0);["piscine","bureau","openK","suites","service","cellier","solaire","citerne"].forEach(k=>$("#x-"+k).checked=!!p[k]);
   $("#nf").value=String(p.nf||4);$("#apts").value=String(p.apts||4);$("#aptType").value=p.aptType||"auto";
   ["usage","rdc"].forEach(k=>{const el=document.querySelector(`input[name=${k}][value="${p[k]||DEF[k]}"]`);if(el) el.checked=true});
-  $("#x-lift").checked=p.lift!==undefined?!!p.lift:true;$("#x-roofT").checked=p.roofTerrace!==undefined?!!p.roofTerrace:true;$("#x-genset").checked=!!p.genset;readForm()}
+  $("#x-lift").checked=p.lift!==undefined?!!p.lift:true;$("#x-roofT").checked=p.roofTerrace!==undefined?!!p.roofTerrace:true;$("#x-genset").checked=!!p.genset;
+  $("#proset").dataset.k="";syncTower();if(isPro(val("type"))){$("#nb").value=String(p.nb||DEF.nb);if(!$("#nb").value) $("#nb").value=String(PRO_TXT[val("type")].def);$("#x-plus").checked=p.plus!==false}readForm()}
 
 /* ---------- Base de données Firebase : comptes, offre et quota ---------- */
 // Comptes : Firebase Authentication (adresse e-mail + mot de passe).
@@ -2741,6 +2933,7 @@ function refreshOffer(){
 }
 function limitReached(){toast(`Limite quotidienne atteinte (${O().quota} plans). Passez à une offre supérieure.`)}
 
+const NEWS=[{"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation"}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation"}];
 /* ---------- Comptes : connexion par e-mail et mot de passe (Firebase) ---------- */
 const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false,verified:false};
 // Administrateurs : empreintes SHA-256 des adresses e-mail (config.js), pour ne pas publier les adresses.
@@ -2769,7 +2962,7 @@ AUTH.ready=new Promise(res=>{
 });
 function applyUser(d){
   d=d||{};const u=AUTH.user||{};
-  AUTH.profile={nom:d.nom||u.displayName||(u.email||"").split("@")[0]||"Mon compte",profil:d.profil||"",ville:d.ville||"",email:u.email||d.email||""};
+  AUTH.profile={nom:d.nom||u.displayName||(u.email||"").split("@")[0]||"Mon compte",profil:d.profil||"",ville:d.ville||"",email:u.email||d.email||"",newsVu:+d.newsVu||0};
   const a=d.abonnement||null,exp=a?tsMs(a.expire):0;
   AUTH.abo=a&&OFFERS[a.offre]?Object.assign({},a,{expMs:exp}):null;
   acct.offer=AUTH.admin?"max":AUTH.abo&&exp>Date.now()?a.offre:"basique";acct.expire=exp||null;
@@ -2782,7 +2975,7 @@ function startSession(u){
     let first=true;const once=()=>{if(first){first=false;res()}};
     AUTH.unsub.push(userDoc().onSnapshot(s=>{applyUser(s.exists?s.data():null);refreshOffer();renderAcct();renderAboBar();renderNotifs();once()},()=>{applyUser(null);once()}));
     setTimeout(()=>{if(first){applyUser(null);once()}},6000);
-    watchNotifs();loadPlans();
+    watchNotifs();loadPlans();setTimeout(newsToast,2500);
   }));
 }
 // retour sur le site après avoir ouvert le lien de confirmation : l'accès administrateur s'active seul
@@ -2844,18 +3037,36 @@ function localNotifs(){
   if(days>=0&&days<=7) return [{id:"_soon",titre:days===0?`Votre offre ${of.nom} expire aujourd'hui`:`Votre offre ${of.nom} expire dans ${days} jour${days>1?"s":""}`,texte:`Échéance le ${dateFr(a.expMs)}. Renouvelez en un clic pour garder vos avantages.`,date:Date.now(),lu:false,local:true,action:"tarifs"}];
   return [];
 }
-const allNotifs=()=>[...localNotifs(),...(AUTH.notifs||[])];
+// Nouveautés du site : la liste NEWS est ajoutée à chaque mise en ligne (fichier news.json).
+// Chaque compte ne voit que les nouveautés parues après sa création, pendant 90 jours ; la date de la dernière lue est gardée dans le compte.
+const NEWS_KEY=()=>"am_news_"+AUTH.uid;let newsFresh=new Set();
+function newsNotifs(){
+  if(!AUTH.ok||typeof NEWS==="undefined"||!NEWS.length) return [];
+  const born=Date.parse((AUTH.user&&AUTH.user.metadata&&AUTH.user.metadata.creationTime)||"")||0;
+  const seen=Math.max((AUTH.profile&&AUTH.profile.newsVu)||0,+stGet(NEWS_KEY())||0),old=Date.now()-90*864e5;
+  return NEWS.map(n=>Object.assign({},n,{ms:Date.parse(n.date)})).filter(n=>n.ms>born&&n.ms>old).sort((a,b)=>b.ms-a.ms).slice(0,5)
+    .map(n=>({id:"_news_"+n.id,titre:n.titre,texte:n.texte,date:n.ms,lu:n.ms<=seen,local:true,news:true,action:n.action||""}));
+}
+function newsRead(){
+  const nn=newsNotifs().filter(x=>!x.lu);if(!nn.length) return;
+  const ms=Math.max(...nn.map(x=>x.date));stSet(NEWS_KEY(),String(ms));if(AUTH.profile) AUTH.profile.newsVu=ms;
+  try{userDoc().update({newsVu:ms}).catch(()=>{})}catch(e){}
+}
+function newsToast(){
+  if(!AUTH.ok) return;const n=newsNotifs().find(x=>!x.lu);if(!n) return;
+  const k="am_newst_"+AUTH.uid;if(stGet(k)===n.id) return;stSet(k,n.id);toast(n.titre+". Ouvrez la cloche pour en savoir plus.")}
+const allNotifs=()=>[...localNotifs(),...[...newsNotifs(),...(AUTH.notifs||[])].sort((a,b)=>tsMs(b.date)-tsMs(a.date))];
 const IBELL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0"/></svg>';
-function renderNotifs(){
+function bellBadge(){
   const n=AUTH.ok?allNotifs().filter(x=>!x.lu).length:0;
   $$("[data-bell]").forEach(b=>{b.querySelector("b").textContent=n||"";b.querySelector("b").hidden=!n;b.setAttribute("aria-label",n?`Notifications, ${n} non lue${n>1?"s":""}`:"Notifications")});
-  if(!$("#npanel").hidden) fillNotifs();
 }
+function renderNotifs(){bellBadge();if(!$("#npanel").hidden) fillNotifs()}
 function fillNotifs(){
   const list=allNotifs(),p=$("#npanel");
   p.innerHTML=`<div class="nhead"><b>Notifications</b><button type="button" class="ghost zb" id="nclose" aria-label="Fermer">${'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>'}</button></div>`+
-    (list.length?list.map(x=>`<button type="button" class="nitem${x.lu?"":" new"}" data-nid="${x.id}"><span class="nt"></span><span class="nx"></span><small>${x.date?dateFr(tsMs(x.date)):""}</small></button>`).join("")
-      :`<p class="nempty">Aucune notification pour le moment. Vous serez prévenu ici et par e-mail des paiements, des renouvellements et des échéances.</p>`);
+    (list.length?list.map(x=>`<button type="button" class="nitem${x.lu&&!newsFresh.has(x.id)?"":" new"}" data-nid="${x.id}"><span class="nt"></span><span class="nx"></span><small>${x.date?dateFr(tsMs(x.date)):""}</small></button>`).join("")
+      :`<p class="nempty">Aucune notification pour le moment. Les nouveautés du site s'affichent ici ; les paiements, les renouvellements et les échéances vous sont aussi envoyés par e-mail.</p>`);
   list.forEach(x=>{const b=p.querySelector(`[data-nid="${x.id}"]`);b.querySelector(".nt").textContent=x.titre||"";b.querySelector(".nx").textContent=x.texte||"";
     b.onclick=()=>{closeNotifs();if(x.action) location.hash=x.action}});
   $("#nclose").onclick=closeNotifs;
@@ -2865,8 +3076,10 @@ function openNotifs(btn){
   const r=btn.getBoundingClientRect(),w=p.offsetWidth;p.style.left=Math.max(12,Math.min(r.right-w,innerWidth-w-12))+"px";p.style.top=(r.bottom+8)+"px";
   // marquer comme lues les notifications du serveur
   (AUTH.notifs||[]).filter(x=>!x.lu).forEach(x=>{userDoc().collection("notifications").doc(x.id).update({lu:true}).catch(()=>{})});
+  // les nouveautés affichées sont comptées comme lues (le surlignage reste visible tant que le panneau est ouvert)
+  newsFresh=new Set(newsNotifs().filter(x=>!x.lu).map(x=>x.id));newsRead();bellBadge();
 }
-function closeNotifs(){$("#npanel").hidden=true}
+function closeNotifs(){$("#npanel").hidden=true;newsFresh.clear()}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-bell]");if(b){e.stopPropagation();$("#npanel").hidden?openNotifs(b):closeNotifs();return}
   if(!$("#npanel").hidden&&!$("#npanel").contains(e.target)) closeNotifs()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape") closeNotifs()});
@@ -3239,7 +3452,7 @@ function dossierSvgs(S,css){
   ${dMark(60,60,46)}<text x="120" y="91" font-size="19" font-weight="600" fill="#121212" letter-spacing="2">ARCHITMIND CI</text>
   <text x="60" y="200" font-size="13" font-weight="600" fill="#B87A14" letter-spacing="2.500">DOSSIER DE PRÉSENTATION</text>
   <text x="60" y="262" font-size="50" font-weight="700" fill="#121212" letter-spacing="-1">${tspans(name,60,56)}</text>
-  <text x="60" y="${262+name.length*56-10}" font-size="18" fill="#565E5A">${xe(typeLabel(p))} · ${xe(STYLES[m.style]||"")} · ${xe(m.lieu)}</text>
+  <text x="60" y="${262+name.length*56-10}" font-size="18" fill="#565E5A">${xe([typeLabel(p),m.pro?"":STYLES[m.style]||"",m.lieu].filter(Boolean).join(" · "))}</text>
   <rect x="60" y="${262+name.length*56+18}" width="64" height="4" rx="2" fill="#B87A14"/>
   ${facts.map(([k,v],i)=>{const x=60+(i%2)*230,y=500+Math.floor(i/2)*78;return `<text x="${x}" y="${y}" font-size="13" fill="#6B716E">${xe(k)}</text><text x="${x}" y="${y+28}" font-size="23" font-weight="600" fill="#121212">${xe(v)}</text>`}).join("")}
   <rect x="60" y="650" width="440" height="92" rx="16" fill="#F4F5F2"/><text x="82" y="682" font-size="13" fill="#6B716E">Coût estimé des travaux</text>
@@ -3332,7 +3545,7 @@ let ED=null;
 Object.assign(window,{edWalls,edMove,edKey,r2});window.__am={get model(){return model},get cur(){return cur}};try{Object.defineProperty(window,"ED",{get:()=>ED,configurable:true})}catch(x){}
 function edOpen(){
   if(!model) return;
-  if(model.isTower){toast("La modification des pièces est disponible pour les villas, duplex et maisons R+2.");return}
+  if(model.isTower||model.pro){toast("La modification des pièces est disponible pour les villas, duplex et maisons R+2.");return}
   if(!O().ed){toast(`La modification des pièces est incluse dans les offres ${OFFERS.moyen.nom} et ${OFFERS.max.nom}.`);location.hash="tarifs";return}
   const base=compute(Object.assign({},cur,{ed:null}));
   ED={k:edKey(base.levels),base,li:Math.min(level,model.levels.length-1),L:model.levels.map(L=>L.map(r=>Object.assign({},r))),sel:null,wall:null,drag:null,changed:false};
@@ -3447,7 +3660,7 @@ function parseWish(text,p){
   if(/budget|million|fcfa|\bf cfa\b/.test(t)) ko.push("budget total : réglez plutôt le coût au m² et la finition");
   return {set,ok:[...new Set(ok)],ko:[...new Set(ko)]};
 }
-function applyWish(p){const w=String($("#wish").value||"").slice(0,WISH_MAX).trim();if(!w){delete p.wish;return p}const r=parseWish(w,p);Object.assign(p,r.set);
+function applyWish(p){const w=String($("#wish").value||"").slice(0,WISH_MAX).trim();if(!w||isPro(p.type)){delete p.wish;return p}const r=parseWish(w,p);Object.assign(p,r.set);
   if(r.set.std&&!+$("#pm").value) p.pm=PRICE[p.std];if("type" in r.set||"n" in r.set){const dm=dimsFrom(p.area,p.shape,p.fw);p.W=dm.W;p.D=dm.D}p.wish=w;return p}
 function wishNote(){const el=$("#wishnote");if(!el) return;const w=cur&&cur.wish;if(!w){el.hidden=true;return}
   const r=parseWish(w,cur);el.hidden=false;
@@ -3456,13 +3669,13 @@ function pmHint(){const s=$("#std"),h=$("#pmhint");if(!h) return;const k=s.value
   $("#pmuse").onclick=()=>{$("#pm").value=PRICE[s.value||"std"];$("#pmerr").hidden=true;$("#pm").dispatchEvent(new Event("change",{bubbles:true}))}}
 function covVal(){const v=Math.round(+$("#cov").value)||50;return Math.max(10,Math.min(90,v))}
 function formMissing(){
-  const q=n=>document.querySelector(`input[name=${n}]:checked`),t=q("type"),imm=t&&t.value==="rn"&&val("usage")==="immeuble",L=[];
+  const q=n=>document.querySelector(`input[name=${n}]:checked`),t=q("type"),imm=t&&t.value==="rn"&&val("usage")==="immeuble",pro=t&&isPro(t.value),L=[];
   if(!(+$("#area").value>0)) L.push(["la superficie du terrain",$("#area")]);
   if(!q("shape")) L.push(["la forme du terrain",document.querySelector("input[name=shape]")]);
   if(!$("#city").value) L.push(["la ville",$("#city")]);
   if(!q("or")) L.push(["le côté de la rue",document.querySelector("input[name=or]")]);
   if(!t) L.push(["le nombre d'étages",document.querySelector("input[name=type]")]);
-  if(!imm&&!$("#ch").value) L.push(["le nombre de chambres",$("#ch")]);
+  if(!imm&&!pro&&!$("#ch").value) L.push(["le nombre de chambres",$("#ch")]);
   if(!$("#std").value) L.push(["le niveau de finition",$("#std")]);
   return L}
 function formOk(){const L=formMissing(),e=$("#formerr");
@@ -3546,7 +3759,7 @@ function renderPlan(){wishNote();
   ["#sacts","#savebar"].forEach(q=>{const e=$(q);if(e) e.hidden=false});syncRes();
   if(!(model.planLevels||[]).some(x=>x.li===level)) level=0;
   levelTabs($("#tabs"),model,level,l=>{level=l;drawInto($("#sheet"),model,level);pulse($("#sheet"))});
-  $("#ptitle").textContent=typeLabel(model.p)+" · "+STYLES[model.style]+" · "+(model.isTower&&!model.fam?model.nApts+" logements":model.n+" chambre"+(model.n>1?"s":""))+" · "+model.lieu;
+  $("#ptitle").textContent=[typeLabel(model.p),model.pro?"":STYLES[model.style],progLabel(model),model.lieu].filter(Boolean).join(" · ");
   drawInto($("#sheet"),model,level);
   const notes=[...model.notes];
   if(model.or==="E"||model.or==="O") notes.push({t:"Rue à l'"+(model.or==="E"?"est":"ouest")+" : la façade principale prend le soleil bas. Prévoir brise-soleil verticaux ou claustras."});
@@ -3554,7 +3767,7 @@ function renderPlan(){wishNote();
   if(model.pool) notes.push({t:`Piscine de ${dec(model.pool.w,1)} × ${dec(model.pool.h,1)} m prévue dans le jardin arrière (visible sur la maquette 3D).`});
   $("#notes").innerHTML=notes.map(n=>`<div class="note${n.w?" warn":""}">${n.t}</div>`).join("");
   $("#s-t").textContent=fmt(model.plot)+" m²";$("#s-e").textContent=fmt(model.foot)+" m²";
-  $("#s-c").textContent=Math.round(model.foot/model.plot*100)+" %";$("#s-s").textContent=fmt(model.builtArea)+" m²";
+  $("#s-c").textContent=Math.round(model.foot/model.plot*100)+" %";$("#s-el").textContent=model.pro?"Bâtiment au sol":"Maison au sol";$("#s-s").textContent=fmt(model.builtArea)+" m²";
   costs(model);dirty=false;$("#dirty").hidden=true;
   pulse($("#sheet"));
   if(SHOW3D) area3D($("#c3d"),model);
@@ -3564,7 +3777,7 @@ function lotsBase(m,T){const lots=[["Fondations et terrassement",.13],["Murs et 
   return lots.map(([l,p])=>`<tr><td>${l}<div class="bar" style="width:${p*300}%"></div></td><td class="n">${Math.round(p*100)} %</td><td class="n">${F(T*p)}</td></tr>`).join("")}
 function costs(m){
   $("#tot").textContent=F(m.total);$("#range").textContent="de "+F(m.total*0.85)+" à "+F(m.total*1.15);
-  $("#cost-lead").textContent=`${fmt(m.builtArea)} m² à ${fmt(m.pm)} FCFA le m², ajusté pour ${m.lieu}${m.type!=="pp"?" et pour les étages":""}${m.extras.length?", plus les équipements":""}. Le terrain, l'architecte et les raccordements (eau, électricité) ne sont pas compris.`;
+  $("#cost-lead").textContent=`${fmt(m.builtArea)} m² à ${fmt(m.pm)} FCFA le m², ajusté pour ${m.lieu}${m.type!=="pp"&&!m.pro?" et pour les étages":""}${m.extras.length?", plus les équipements":""}. Le terrain, l'architecte et les raccordements (eau, électricité) ne sont pas compris.`;
   $("#lots").innerHTML=lotsHtml(m);
   const S=m.builtArea,wall=2*(m.bw+m.bd)*m.levels.length*1.9*3,terre=m.zone==="savane"||m.zone==="sahel";
   const q=[["Ciment (sacs de 50 kg)",S*(terre?1.1:1.5)*m.kType],[terre?"Briques de terre compressée":"Parpaings creux (15 et 20 cm)",wall*(terre?24:12.5)],["Fer à béton (kg)",S*(m.type==="rn"?40+2*m.nf:m.type==="r2"?38:m.type==="r1"?32:22)],["Sable (m³)",S*0.35],["Gravier (m³)",S*0.22*m.kType],["Toiture (m²)",m.foot*1.25]];
@@ -3598,7 +3811,8 @@ function area3D(host,m){
   const q=k=>host.querySelector(`[data-r="${k}"]`),three=q("three");
   let rooms;
   if(m.isTower&&!m.fam){rooms=[];m.levels.forEach((L,li)=>L.forEach(r=>{if(r.nolabel||r.t==="patio") return;if((li===0&&(r.n==="Hall d'entrée"||r.shop))||(li===1&&r.u===1&&r.n!=="Dégagement")||(li===m.levels.length-1&&r.n==="Terrasse sur toit")) rooms.push({n:r.n,li,u:r.u})}))}
-  else rooms=m.levels.flatMap((L,li)=>L.filter(r=>r.t!=="patio"&&r.n!=="Dégagement"&&!r.nolabel&&(r.t!=="out"||r.n==="Terrasse sur toit")&&!["Local technique","Gaine technique","Machinerie","Ascenseur","Palier"].includes(r.n)).map(r=>({n:r.n,li,u:r.u})));
+  else rooms=m.levels.flatMap((L,li)=>L.filter(r=>r.t!=="patio"&&r.n!=="Dégagement"&&r.n!=="Couloir"&&!r.nolabel&&(r.t!=="out"||r.n==="Terrasse sur toit")&&!["Local technique","Gaine technique","Machinerie","Ascenseur","Palier"].includes(r.n)).map(r=>({n:r.n,li,u:r.u})));
+  if(m.pro&&m.pro.kind==="com"){const L0=m.levels[0],u1=(L0.find(r=>r.shop)||{}).u;rooms=L0.filter(r=>r.shop).concat(L0.filter(r=>!r.shop&&r.t!=="out"&&r.u===u1)).map(r=>({n:r.n,li:0,u:r.u}))}
   rooms=rooms.slice(0,40);
   const lvShort=li=>((m.planLevels||[]).find(x=>x.li===li)||{short:lvName(li,true)}).short;
   const ctl=()=>{
@@ -3622,7 +3836,7 @@ function area3D(host,m){
   st.stops=rooms;
   st.onTour=info=>{const t=q("tour");if(!t||st.mode!=="tour") return;const r=info.room,sig=info.i+"|"+info.playing+"|"+(info.phase==="doll");if(t.dataset.sig===sig) return;t.dataset.sig=sig;
     const card=info.phase==="doll"||!r?`<small>Vue d'ensemble</small><b>${typeLabel(m.p)}</b><span>${info.n} pièce${info.n>1?"s":""} à visiter</span>`
-      :`<small>Pièce ${info.i+1} sur ${info.n}${m.levels.length>1?" · "+lvShort(info.li):""}</small><b>${r.n}</b><span>${dec(r.a||r.w*r.h,1)} m² · ${floorName(r)}</span>`;
+      :`<small>Pièce ${info.i+1} sur ${info.n}${m.levels.length>1?" · "+lvShort(info.li):""}</small><b>${r.n}</b><span>${dec(r.w*r.h,1)} m² · ${floorName(r)}</span>`;
     t.innerHTML=`<div class="tcard" aria-live="polite">${card}</div><div class="tbtns"><button type="button" data-t="overview" aria-label="Revenir à la vue d'ensemble"${info.phase==="doll"?" disabled":""}>${tic("home")}</button><button type="button" data-t="prev" aria-label="Pièce précédente">${tic("prev")}</button><button type="button" data-t="toggle" aria-label="${info.playing?"Mettre la visite en pause":"Reprendre la visite"}">${tic(info.playing?"pause":"play")}</button><button type="button" data-t="next" aria-label="Pièce suivante">${tic("next")}</button></div>`;
     t.querySelectorAll("button").forEach(b=>b.onclick=()=>{if(viewer&&viewer.tour) viewer.tour[b.dataset.t]()})};
   const go=()=>{ctl();q("tour").dataset.sig="";mount3D(three,m,opts3d,st);if(viewer&&!st.roof) viewer.roofGrp.visible=false};
@@ -3663,6 +3877,14 @@ const PROP_DEF=[
   {name:"Maison Patio",style:"bio",type:"pp",desc:"Bioclimatique, organisée autour d'un patio planté"},
   {name:"Duplex Horizon",style:"mini",type:"r1",desc:"Duplex minimaliste, chambres à l'étage"}];
 function propDefs(base){
+  if(base.type==="com") return [
+    {name:"Galerie marchande",over:{plus:true},desc:"Boutiques en bande derrière une galerie couverte"},
+    {name:"Boutiques sur rue",over:{plus:false},desc:"Vitrines directement sur la rue, toute la profondeur pour la vente"},
+    {name:"Grand magasin",over:{nb:1,plus:true},desc:"Un seul grand magasin avec rayonnages, réserve et bureau"}];
+  if(base.type==="bur") return [
+    {name:"Bureaux Lagune",over:{plus:true},desc:"Couloir central traversant et terrasse de pause couverte"},
+    {name:"Bureaux compacts",over:{plus:false},desc:"Le même programme sans terrasse, pour un budget réduit"},
+    {name:"Bureaux Horizon",over:{plus:true,nb:Math.min(12,(base.nb||DEF.nb)+2)},desc:"Deux bureaux de plus, pour accompagner la croissance de l'équipe"}];
   if(base.type==="rn"&&base.usage!=="famille") return [
     {name:"Résidence Lagune",over:{style:"contemporain",rdc:"apparts"},desc:"Immeuble d'habitation, appartements dès le rez-de-chaussée"},
     {name:"Résidence Boulevard",over:{style:"mediterraneen",rdc:"commerces"},desc:"Commerces sur rue et appartements dans les étages"},
@@ -3677,15 +3899,16 @@ function propDefs(base){
     {name:"Duplex Horizon",over:{style:"mini",type:"r1"},desc:"Duplex minimaliste, chambres à l'étage"}]}
 function buildProps(){
   const base=readForm(),sg=sigOf(base);
+  if(isPro(base.type)&&!O().pro){$("#pgrid").innerHTML="";$("#prop-sub").textContent="";$("#detail").innerHTML=`<div class="card">${lockHtml("Boutiques et bureaux : offres Moyen et Max","Les plans de boutiques et de bureaux, avec leur coût et leur maquette 3D, sont inclus dans les offres payantes.")}</div>`;return}
   if(sg!==lastPropSig){
     if(!useQuota()){$("#pgrid").innerHTML="";$("#detail").innerHTML=`<div class="card">${lockHtml("Limite quotidienne atteinte",`Votre offre ${O().nom} permet ${O().quota} plans par jour. Revenez demain ou passez à une offre supérieure pour générer de nouvelles propositions.`)}</div>`;return}
     lastPropSig=sg;selProp=null;
   }
   props=propDefs(base).map((d,i)=>{const p=Object.assign({},base,d.over,{seed:base.seed*3+i+11});return {d,p,m:compute(p)}});
-  $("#prop-sub").textContent=`${base.type==="rn"&&base.usage!=="famille"?"Trois immeubles conçus":"Trois maisons conçues"} pour votre terrain de ${fmt(base.area)} m² à ${CITIES[base.city].nom}, ${base.type==="rn"?(base.usage!=="famille"?`R+${base.nf}, ${base.apts} appartements par étage`:`R+${base.nf}, ${base.n} chambre${base.n>1?"s":""}`):`${base.n} chambre${base.n>1?"s":""}`}. ${base.type==="rn"&&base.usage!=="famille"?"Choisissez-en un":"Choisissez-en une"} pour voir son plan, son coût et sa maquette 3D.`;
+  $("#prop-sub").textContent=isPro(base.type)?`Trois bâtiments conçus pour votre terrain de ${fmt(base.area)} m² à ${CITIES[base.city].nom}. Choisissez-en un pour voir son plan, son coût et sa maquette 3D.`:`${base.type==="rn"&&base.usage!=="famille"?"Trois immeubles conçus":"Trois maisons conçues"} pour votre terrain de ${fmt(base.area)} m² à ${CITIES[base.city].nom}, ${base.type==="rn"?(base.usage!=="famille"?`R+${base.nf}, ${base.apts} appartements par étage`:`R+${base.nf}, ${base.n} chambre${base.n>1?"s":""}`):`${base.n} chambre${base.n>1?"s":""}`}. ${base.type==="rn"&&base.usage!=="famille"?"Choisissez-en un":"Choisissez-en une"} pour voir son plan, son coût et sa maquette 3D.`;
   $("#pgrid").innerHTML=props.map((o,i)=>`<button type="button" class="pcard reveal d${i+1}" data-i="${i}" aria-pressed="${selProp===i}">
     <div class="thumb">${drawTech(o.m,o.m.isTower&&!o.m.fam?1:0,{thumb:true})}</div>
-    <div class="meta"><h3>${o.d.name}</h3><div class="tagrow"><span class="tag">${typeLabel(o.p)}</span><span class="tag">${fmt(o.m.builtArea)} m²</span><span class="tag">${o.m.isTower&&!o.m.fam?o.m.nApts+" logements":o.m.n+" ch."}</span></div>
+    <div class="meta"><h3>${o.d.name}</h3><div class="tagrow"><span class="tag">${typeLabel(o.p)}</span><span class="tag">${fmt(o.m.builtArea)} m²</span><span class="tag">${progLabel(o.m,true)}</span></div>
     <span class="sub" style="margin:0">${o.d.desc}</span><span class="price">${F(o.m.total)}</span></div></button>`).join("");
   $$(".pcard").forEach(b=>b.addEventListener("click",()=>openProp(+b.dataset.i)));
   if(selProp!==null) openProp(selProp,true); else $("#detail").innerHTML="";
@@ -3770,7 +3993,7 @@ async function renderMine(){
   if(!items.length){$("#mlist").innerHTML=`<div class="empty reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg><h3>Aucun projet pour l'instant</h3><p class="sub">Créez un plan ou choisissez une proposition, puis cliquez sur « Enregistrer dans Mes plans ».</p><a class="btn" href="#creation">Créer un plan</a></div>`;return}
   const card=(it,i)=>{let p;try{p=JSON.parse(it.params)}catch(e){return ""}const m=compute(p);
     return `<article class="mcard reveal d${Math.min(5,i%MINE_PAGE+1)}" data-card="${i}"><div class="thumb">${drawTech(m,m.isTower&&!m.fam?1:0,{thumb:true})}</div><h3 style="padding:0 4px"></h3>
-    <div class="info">${fmt(p.area||p.W*p.D)} m² · ${p.city&&CITIES[p.city]?CITIES[p.city].nom:ZONES[p.zone].nom} · ${p.type==="rn"&&p.usage!=="famille"?(p.apts||4)+" appts/étage":p.n+" ch."} · ${typeLabel(p)}<br>${fmt(it.area||m.builtArea)} m² bâtis · ${F(it.total||m.total)}<br>${it.createdAt?new Date(it.createdAt).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}):""}</div>
+    <div class="info">${fmt(p.area||p.W*p.D)} m² · ${p.city&&CITIES[p.city]?CITIES[p.city].nom:ZONES[p.zone].nom} · ${isPro(p.type)?(p.type==="com"?((p.nb||DEF.nb)>1?(p.nb||DEF.nb)+" boutiques":"1 boutique"):(p.nb||DEF.nb)+" bureaux"):p.type==="rn"&&p.usage!=="famille"?(p.apts||4)+" appts/étage":p.n+" ch."} · ${typeLabel(p)}<br>${fmt(it.area||m.builtArea)} m² bâtis · ${F(it.total||m.total)}<br>${it.createdAt?new Date(it.createdAt).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}):""}</div>
     <div class="actions"><button type="button" data-open="${i}">Ouvrir</button><button type="button" class="ghost" data-del="${i}">Supprimer</button></div></article>`};
   host.innerHTML=`<div class="mgrid" id="mgrid"></div><div class="mmore" id="mmore"></div>`;let shown=0;
   const more=()=>{const part=items.slice(shown,shown+MINE_PAGE);$("#mgrid").insertAdjacentHTML("beforeend",part.map((it,k)=>card(it,shown+k)).join(""));
@@ -3789,7 +4012,7 @@ const RANK={basique:0,moyen:1,max:2};
 function renderTarifs(){
   const base=["Plans avec mesures et meubles","Coût des travaux et matériaux","3 propositions par terrain","Enregistrement de vos projets"];
   const feats={basique:base.concat([`${OFFERS.basique.quota} plans par jour`]),
-    moyen:["Tout ce que contient Basique",`${OFFERS.moyen.quota} plans par jour`,"Maison en 3D, dehors et dedans","Modification des pièces et des cloisons","Téléchargement : PDF, images et DXF pour logiciels d'architecture"],
+    moyen:["Tout ce que contient Basique",`${OFFERS.moyen.quota} plans par jour`,"Maison en 3D, dehors et dedans","Modification des pièces et des cloisons","Plans de boutiques et de bureaux","Téléchargement : PDF, images et DXF pour logiciels d'architecture"],
     max:["Tout ce que contient Moyen","Plans illimités","Couleurs, façade et toit au choix en 3D","Lumière du jour et de la nuit en 3D"]};
   const a=AUTH.ok?AUTH.abo:null,active=!!(a&&a.expMs>Date.now());
   $("#tgrid").innerHTML=Object.entries(OFFERS).map(([k,of],i)=>{
@@ -3826,6 +4049,7 @@ function faqData(){
     {g:"Plans",items:[
       ["Comment obtenir une autre disposition des pièces ?","Cliquez sur « Autre variante » : l'outil réorganise les pièces avec les mêmes réglages. Vous pouvez aussi ouvrir l'onglet Propositions pour comparer trois maisons différentes sur le même terrain."],
       ["Comment voir les étages ?","Les onglets au-dessus du plan permettent de passer d'un niveau à l'autre. Pour un immeuble, les étages identiques sont regroupés dans « Étage courant », avec le rez-de-chaussée et le toit-terrasse à part."],
+      ["Peut-on faire autre chose que des maisons ?","Oui. Avec les offres Moyen et Max, l'onglet Création propose aussi des boutiques (une grande, ou plusieurs en bande avec une galerie couverte) et des bureaux (accueil, bureaux, salle de réunion, sanitaires, coin repas). Ces plans partent de dispositions courantes dans la région et y ajoutent une idée adaptée au climat. Ce sont des esquisses : pour un bâtiment qui reçoit du public, faites valider la sécurité incendie et l'accessibilité par un architecte."],
       ["Que propose l'option Immeuble ?","Choisissez « Immeuble », puis le nombre d'étages, jusqu'à R+10. En immeuble d'appartements, réglez le nombre et le type d'appartements par étage, et l'usage du rez-de-chaussée : appartements, commerces ou parking sur pilotis. En maison familiale, les chambres occupent les premiers étages et les niveaux supérieurs accueillent les espaces de détente."],
       ["Comment voir le plan en plein écran ?","Touchez le plan ou le bouton « Plein écran ». Pincez ou touchez deux fois pour zoomer, glissez pour vous déplacer ; la touche Échap, le bouton de fermeture ou le bouton retour du téléphone ramènent à la page."],
       ["Les plans peuvent-ils servir pour le permis de construire ?","Non. Ce sont des esquisses de principe, pour démarrer une étude et discuter avec un client. Les plans définitifs doivent être établis par un architecte, avec une étude de sol et une étude de structure."]]},
@@ -3964,10 +4188,10 @@ function route(){
 /* ---------- Évènements ---------- */
 $("#f").addEventListener("change",e=>{if(e.target.id==="std") pmHint();if(!$("#formerr").hidden&&!formMissing().length) $("#formerr").hidden=true;readForm();dirty=true;$("#dirty").hidden=false});
 $("#f").addEventListener("input",()=>readForm());
-$("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;if(!formOk()) return;if(!useQuota()) return limitReached();const s=cur.seed;cur=applyWish(readForm());cur.seed=s;writeForm(cur);level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
+$("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;if(!formOk()) return;if(proGate(readForm())) return;if(!useQuota()) return limitReached();const s=cur.seed;cur=applyWish(readForm());cur.seed=s;writeForm(cur);level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
 // la page du plan : le dessin se fait une fois la page affichée (largeur réelle de l'écran)
 function showResult(){model=compute(cur);wishNote();if(location.hash==="#resultat") renderPlan();else{location.hash="resultat";setTimeout(renderPlan,0)}}
-const variante=()=>{if(needVerif()) return;if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;delete cur.ed;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
+const variante=()=>{if(needVerif()) return;if(proGate(cur)) return;if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;delete cur.ed;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
 $("#var").onclick=()=>{if(!formOk()) return;cur=applyWish(readForm());writeForm(cur);variante()};
 $("#var2").onclick=variante;edInit();wishInit();
 $("#toprop2").onclick=()=>{location.hash="propositions"};
