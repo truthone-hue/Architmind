@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rKnDVadAukd4iZ1CrzB0x1xdKzqLFgs70yzuddrwzL8=' 'sha256-G7tI55qZb67XCAIBSsIeWby5MBRrCjn3saMJ5F9T5rA=' 'sha256-eSa69yHvclNhrnLa4XJkTqwv9wDvjr65rkyr9WO7450=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rKnDVadAukd4iZ1CrzB0x1xdKzqLFgs70yzuddrwzL8=' 'sha256-aEHEjgkJ6lGn750nMMvCL+1vWcCW1HbVQtm3ifrNcMs=' 'sha256-eSa69yHvclNhrnLa4XJkTqwv9wDvjr65rkyr9WO7450=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -2533,34 +2533,34 @@ function mount3D(el,m,o,st){
   let tourTick=null,tourApi=null,clay=null;
   if(tour){
     const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-    clay=new THREE.MeshStandardMaterial({color:0xf3f1ec,roughness:1,metalness:0});
-    const sky=scene.background,white=new THREE.Color(0xf1efea);
-    scene.add(new THREE.AmbientLight(0xfff0e0,0.32));
-    const light=new THREE.PointLight(0xffd9ad,0.95,14,2);light.visible=false;scene.add(light);
+    clay=new THREE.MeshStandardMaterial({color:0xece8e0,roughness:1,metalness:0});
+    const sky=scene.background,white=new THREE.Color(0xdedad2),amb=new THREE.AmbientLight(0xfff0e0,0.1);
+    scene.add(amb);
+    const light=new THREE.PointLight(0xffd9ad,0.5,14,2);light.visible=false;scene.add(light);
     const sun0={p:sun.position.clone(),c:sun.color.clone(),i:sun.intensity};
     const fade=document.createElement("div");fade.className="tfade";el.appendChild(fade);
-    const rank=n=>/^Séjour|^Salon/.test(n)?0:/manger/i.test(n)?1:/^Cuisine/.test(n)?2:/^Hall|^Entrée/.test(n)?3:/parent/i.test(n)?5:/^Ch/.test(n)?6:/bain|SDB|eau|WC/i.test(n)?7:/Terrasse|Balcon/.test(n)?8:4;
+    const rank=n=>/^Séjour|^Salon/.test(n)?0:/manger/i.test(n)?1:/^Cuisine/.test(n)?2:/^Hall|^Entrée/.test(n)?3:/bain|SDB|eau|WC/i.test(n)?7:/parent/i.test(n)?5:/^Ch/.test(n)?6:/Terrasse|Balcon/.test(n)?8:4;
     const stops=(st.stops||[]).map(q=>{const r=(m.levels[q.li]||[]).find(r=>r.n===q.n&&(q.u===undefined||r.u===q.u));return r&&r.w*r.h>=3?{r,li:q.li}:null}).filter(Boolean).sort((a,b)=>a.li-b.li||rank(a.r.n)-rank(b.r.n)).slice(0,12);
     const view=q=>{const r=q.r,y0=base+q.li*(H3+SL3),cx=X(r.x+r.w/2),cz=Z(r.y+r.h/2),ex=sides(r,m).map(k=>k.side);
       let dx=0,dz=0;if(ex.includes("bottom")) dz=1;else if(ex.includes("top")) dz=-1;else if(ex.includes("right")) dx=1;else if(ex.includes("left")) dx=-1;else if(r.h>=r.w) dz=1;else dx=1;
       const hw=Math.max(0.25,r.w/2-0.55),hh=Math.max(0.25,r.h/2-0.55);
       return {p:new THREE.Vector3(cx-dx*hw+(dz?hw*0.55:0),y0+1.55,cz-dz*hh+(dx?hh*0.55:0)),t:new THREE.Vector3(cx+dx*hw*0.5-(dz?hw*0.3:0),y0+1.1,cz+dz*hh*0.5-(dx?hh*0.3:0)),
         c:new THREE.Vector3(cx,y0+H3-0.4,cz),d:Math.max(r.w,r.h)*1.8+3}};
-    const bcx=X(m.bx+m.bw/2),bcz=Z(m.by+m.bd/2),dd=Math.max(Math.max(m.bw,m.bd)*0.95+5,m.isTower?HT*1.6:0);
+    const bcx=X(m.bx+m.bw/2),bcz=Z(m.by+m.bd/2),dd=Math.max(Math.max(m.bw,m.bd)*1.3+6,m.isTower?HT*1.6:0);
     const dollT=new THREE.Vector3(bcx,m.isTower?HT*0.4:base+0.8,bcz),look=dollT.clone();let ang=0.9;
     const dollP=()=>new THREE.Vector3(bcx+Math.cos(ang)*dd*0.74,dollT.y+dd*(m.isTower?0.6:0.92),bcz+Math.sin(ang)*dd*0.74);
     const Q={i:-1,phase:"doll",t0:performance.now(),last:performance.now(),dur:0,from:null,to:null,playing:true,yaw:0,pitch:0,stay:0,swapped:false,fromDoll:false};
     const levelFor=li=>{levels.forEach((g,i)=>{g.visible=i<=li});roofGrp.visible=li>=m.levels.length-1};
     const setDoll=on=>{scene.overrideMaterial=on?clay:null;scene.background=on?white:sky;ceils.forEach(c=>{c.visible=!on});light.visible=!on;
       if(on){levels.forEach((g,i)=>{g.visible=i===0||!!m.isTower});roofGrp.visible=!!m.isTower;cam.fov=36;cam.near=0.2;
-        sun.position.set(bcx+dd*0.6,dollT.y+dd*1.6,bcz+dd*0.45);sun.color.set(0xffffff);sun.intensity=1.9}
-      else{cam.fov=cam.aspect<0.8?84:70;cam.near=0.05;sun.position.copy(sun0.p);sun.color.copy(sun0.c);sun.intensity=sun0.i}
+        sun.position.set(bcx+dd*0.6,dollT.y+dd*1.6,bcz+dd*0.45);sun.color.set(0xffffff);sun.intensity=1.5;amb.intensity=0.05;renderer.toneMappingExposure=0.62}
+      else{cam.fov=cam.aspect<0.8?84:70;cam.near=0.05;sun.position.copy(sun0.p);sun.color.copy(sun0.c);sun.intensity=sun0.i;amb.intensity=0.1;renderer.toneMappingExposure=0.95}
       cam.updateProjectionMatrix()};
     const emit=()=>{if(st.onTour) st.onTour({i:Q.i,n:stops.length,phase:Q.phase,playing:Q.playing,room:Q.i>=0?stops[Q.i].r:null,li:Q.i>=0?stops[Q.i].li:0})};
     const toDoll=()=>{Q.phase="doll";Q.i=-1;Q.t0=performance.now();fade.style.opacity="0";setDoll(true);emit()};
     const goto=i=>{if(!stops.length) return;if(i>=stops.length){toDoll();return}if(i<0) i=stops.length-1;
       Q.from={p:cam.position.clone(),t:look.clone()};Q.to=view(stops[i]);Q.fromDoll=Q.phase==="doll";Q.i=i;Q.phase="fly";Q.t0=performance.now();
-      Q.dur=reduce?60:(Q.fromDoll?2400:1300);Q.swapped=false;Q.yaw=0;Q.pitch=0;Q.stay=0;fade.style.background=Q.fromDoll?"#f1efea":"#14100c";emit()};
+      Q.dur=reduce?60:(Q.fromDoll?2400:1300);Q.swapped=false;Q.yaw=0;Q.pitch=0;Q.stay=0;fade.style.background=Q.fromDoll?"#dedad2":"#14100c";emit()};
     const ease=k=>k<0.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2,dir=new THREE.Vector3(),tmp=new THREE.Vector3();
     tourTick=()=>{const now=performance.now(),dt=Math.min(0.1,(now-Q.last)/1000);Q.last=now;
       if(Q.phase==="doll"){if(!reduce&&Q.playing) ang+=dt*0.14;cam.position.copy(dollP());look.copy(dollT);cam.lookAt(look);
