@@ -1,0 +1,26 @@
+{
+  "name": "Architmind CI",
+  "short_name": "Architmind",
+  "description": "Plans de maison cotés et meublés, coût des travaux en FCFA et maquette 3D, adaptés à votre ville en Côte d'Ivoire et en Afrique de l'Ouest.",
+  "lang": "fr",
+  "dir": "ltr",
+  "id": "./",
+  "start_url": "./#accueil",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "any",
+  "background_color": "#0A0C0B",
+  "theme_color": "#ECEDEA",
+  "categories": ["productivity", "design", "business"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Créer un plan", "short_name": "Création", "url": "./#creation", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Mes plans", "short_name": "Mes plans", "url": "./#mes-plans", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
