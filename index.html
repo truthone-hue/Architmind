@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ppimoRy9Y73MDXBy6Hcu3iwPZskpCqaws6F/zBKSnsU=' 'sha256-ukYAY5HxRW7hsBaISyuIS9tVye2V+FP8yme9H4k3IxE=' 'sha256-RTk9+uG+PmMsdUycY983Qbd3JldpWCEZdhnCYxD0d+4=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-X0AXEW2Wh/AFKEdz1WKij+bdo+bjjYeOIlWfEM9nnLI=' 'sha256-JdNg7FCCJAc/PG1lPQT8mXCDQsMhZ5A9HsyFHCqDgec=' 'sha256-Bt3BZPs64j/HZ6WoULYfLoKBkhTWaD+2eVMZSOwJWt4=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -1081,14 +1081,14 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
               <label class="chip"><input type="radio" name="type" value="bur"><span>Bureaux</span></label>
             </div>
           </div>
-          <details class="adv" data-nopro><summary>Style de la maison</summary>
+          <details class="adv"><summary><span>Style <span id="styleword">de la maison</span></span></summary>
           <div class="chips" role="radiogroup" aria-label="Style">
             <label class="chip"><input type="radio" name="style" value="tropical" checked><span>Tropical moderne</span></label>
-            <label class="chip"><input type="radio" name="style" value="bio"><span>Avec cour intérieure</span></label>
+            <label class="chip" data-nopro><input type="radio" name="style" value="bio"><span>Avec cour intérieure</span></label>
             <label class="chip"><input type="radio" name="style" value="mini"><span>Simple et épuré</span></label>
             <label class="chip"><input type="radio" name="style" value="contemporain"><span>Moderne</span></label>
             <label class="chip"><input type="radio" name="style" value="afro"><span>Africain moderne</span></label>
-            <label class="chip"><input type="radio" name="style" value="colonial"><span>Colonial avec véranda</span></label>
+            <label class="chip"><input type="radio" name="style" value="colonial"><span id="st-colonial">Colonial avec véranda</span></label>
             <label class="chip"><input type="radio" name="style" value="mediterraneen"><span>Méditerranéen</span></label>
           </div></details>
           <div class="row">
@@ -1103,18 +1103,25 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
           </label>
           <p class="note warn" id="pmerr" role="alert" hidden></p>
         </fieldset>
-        <fieldset data-nopro>
+        <fieldset id="proset" hidden>
+          <legend id="prolegend">Vos boutiques</legend>
+          <div class="flabel">Nombre d'étages
+            <div class="chips" role="radiogroup" aria-label="Nombre d'étages">
+              <label class="chip"><input type="radio" name="et" value="0" checked><span>Sans étage</span></label>
+              <label class="chip"><input type="radio" name="et" value="1"><span>1 étage</span></label>
+              <label class="chip"><input type="radio" name="et" value="2"><span>2 étages</span></label>
+            </div>
+          </div>
+          <label class="f" for="nb"><span id="nblabel">Nombre de boutiques</span><select id="nb"><option value="3">3 boutiques</option></select></label>
+          <div class="checks"><label class="tgl"><input type="checkbox" id="x-plus" checked><span id="pluslabel">Galerie couverte devant les vitrines</span></label></div>
+          <p class="note" id="pronote"></p>
+        </fieldset>
+        <fieldset>
           <legend>Vos souhaits</legend>
           <label class="f" for="wish"><span>Décrivez votre projet en quelques mots <span class="opt">facultatif</span></span>
             <textarea id="wish" rows="3" maxlength="300" placeholder="Exemple : 4 chambres, un bureau, un garage pour 2 voitures, une cuisine ouverte et une piscine." aria-describedby="wishhelp"></textarea>
           </label>
           <div class="wishfoot"><span id="wishhelp">Le plan tient compte des mots qu'il reconnaît : chambres, étage, garage, bureau, piscine, cuisine ouverte, style, finition.</span><span id="wishcount" aria-live="polite">0 / 300</span></div>
-        </fieldset>
-        <fieldset id="proset" hidden>
-          <legend id="prolegend">Vos boutiques</legend>
-          <label class="f" for="nb"><span id="nblabel">Nombre de boutiques</span><select id="nb"><option value="3">3 boutiques</option></select></label>
-          <div class="checks"><label class="tgl"><input type="checkbox" id="x-plus" checked><span id="pluslabel">Galerie couverte devant les vitrines</span></label></div>
-          <p class="note" id="pronote"></p>
         </fieldset>
         <fieldset id="towerset" hidden>
           <legend>Votre immeuble</legend>
@@ -1360,10 +1367,12 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
 <script>
 /* ====================== MOTEUR (fonctions pures) ====================== */
 const PRICE={eco:160000,std:210000,haut:300000,luxe:420000};
-const DEF={area:500,shape:"rect",city:"grand-bassam",W:20,D:25,ra:5,rl:3,zone:"cote",or:"S",type:"pp",n:3,std:"std",style:"tropical",pm:210000,seed:1,fw:0,garage:0,piscine:false,bureau:false,openK:false,suites:false,service:false,cellier:false,solaire:false,citerne:false,nf:4,usage:"immeuble",apts:4,aptType:"auto",rdc:"apparts",lift:true,roofTerrace:true,genset:false,nb:3,plus:true};
+const DEF={area:500,shape:"rect",city:"grand-bassam",W:20,D:25,ra:5,rl:3,zone:"cote",or:"S",type:"pp",n:3,std:"std",style:"tropical",pm:210000,seed:1,fw:0,garage:0,piscine:false,bureau:false,openK:false,suites:false,service:false,cellier:false,solaire:false,citerne:false,nf:4,usage:"immeuble",apts:4,aptType:"auto",rdc:"apparts",lift:true,roofTerrace:true,genset:false,nb:3,plus:true,et:0};
 const BEAR={N:0,NE:45,E:90,SE:135,S:180,SO:225,O:270,NO:315},ROT=o=>180-(BEAR[o]===undefined?180:BEAR[o]);
 const OR_TXT={N:"au nord",NE:"au nord-est",E:"à l'est",SE:"au sud-est",S:"au sud",SO:"au sud-ouest",O:"à l'ouest",NO:"au nord-ouest"};
 const TYPES={pp:"Villa plain-pied",r1:"Duplex R+1",r2:"Maison R+2"},LVL=["Rez-de-chaussée","Étage R+1","Étage R+2"],LVS=["RDC","R+1","R+2"];
+const PRO_STYLE={mini:1,contemporain:1,afro:1,colonial:1,mediterraneen:1}; // styles proposés pour les boutiques et bureaux, en plus du style par défaut
+const styleLabel=m=>m.pro?(PRO_STYLE[m.style]?(m.style==="colonial"?"Colonial":STYLES[m.style]):""):STYLES[m.style]||"";
 const STYLES={tropical:"Tropical moderne",bio:"Bioclimatique à patio",mini:"Minimaliste",contemporain:"Contemporain",afro:"Afro-contemporain",colonial:"Colonial à véranda",mediterraneen:"Méditerranéen"};
 const fmt=n=>Math.round(n).toLocaleString('fr-FR').replace(/[  ]/g,' ');
 const F=n=>fmt(n)+' FCFA';
@@ -1617,7 +1626,8 @@ function compute(p){
 
 /* ---------- Bâtiments R+3 et plus : immeubles et grandes maisons ---------- */
 function lvName(i,short){return i===0?(short?"RDC":"Rez-de-chaussée"):(short?"R+"+i:"Étage R+"+i)}
-function typeLabel(p){if(p.type==="com") return (p.nb||DEF.nb)>1?"Boutiques en bande":"Boutique";if(p.type==="bur") return "Bureaux";
+function typeLabel(p){const e=Math.max(0,Math.min(2,Math.round(+p.et||0))),se=e?` à ${e} étage${e>1?"s":""}`:"";
+  if(p.type==="com") return ((p.nb||DEF.nb)>1?(e?"Boutiques":"Boutiques en bande"):"Boutique")+se;if(p.type==="bur") return "Bureaux"+se;
   return {pp:"Villa sans étage",r1:"Duplex à 1 étage",r2:"Maison à 2 étages"}[p.type]||((p.usage==="famille"?"Maison R+":"Immeuble R+")+(p.nf||4))}
 const APT={
   studio:{nom:"Studio",min:18,top:[["Entrée",3,"day",1.2],["SDB",4,"wet",1.6],["Cuisine",5,"wet",1.8]],bot:[["Pièce principale",18,"day",3.2],["Balcon",4,"out",1.5]]},
@@ -1848,9 +1858,11 @@ function storyTower(m){
 }
 
 /* ---------- Ouvertures : portes, fenêtres, baies, plan ouvert ---------- */
-/* ---------- Bâtiments professionnels : boutiques et bureaux (un niveau) ----------
+/* ---------- Bâtiments professionnels : boutiques et bureaux (sans étage, 1 ou 2 étages) ----------
    Chaque type part d'une disposition courante (commerces de rue en bande, bureaux à couloir central)
-   et y ajoute une idée adaptée au climat : galerie couverte, couloir traversant, terrasse de pause. */
+   et y ajoute une idée adaptée au climat : galerie couverte, couloir traversant, terrasse de pause.
+   Avec des étages (p.et = 1 ou 2), l'escalier est au même endroit à chaque niveau : au bout de la galerie
+   pour les boutiques (coursive à l'étage), ouvert sur le couloir pour les bureaux. */
 const isPro=t=>t==="com"||t==="bur";
 function progLabel(m,short){
   if(m.isTower&&!m.fam) return m.nApts+" logements";
@@ -1861,94 +1873,127 @@ function computePro(p){
   const r=rng(p.seed*7919+(type==="com"?101:211)+(+p.nb||3)*17);
   const bwMax=Math.max(4,W-2*rl),bdMax=Math.max(4,D-ra-rl),plot=W*D,cov=Math.max(10,Math.min(90,+p.cov||50));
   const covFoot=Math.min(plot*cov/100,bwMax*bdMax),big=std==="luxe"?1.3:std==="haut"?1.15:std==="eco"?0.9:1;
-  const ask=Math.max(1,Math.min(12,Math.round(+p.nb||3))),mirror=r()>0.5,L=[];
+  const et=Math.max(0,Math.min(2,Math.round(+p.et||0))),SW=2.6; // SW : largeur de la cage d'escalier
+  let NL=et+1; // nombre de niveaux
+  const ask=Math.max(1,Math.min(12*NL,Math.round(+p.nb||3))),mirror=r()>0.5,levels=[];
   let nb=ask,bw,bd,bx,by,pro;
   if(type==="com"){
-    nb=Math.min(nb,6);
-    const gd=p.plus!==false&&bdMax>=8?2:0,dMax=Math.min(bdMax,12+gd),dMin=Math.min(bdMax,6.5+gd);
+    if(NL>1&&(bdMax<7.5||bwMax-SW<3.2)){NL=1;notes.push({w:1,t:"Ce terrain est trop petit pour ajouter un étage aux boutiques : il faut la place d'un escalier et d'une coursive. Le plan reste sans étage."})}
+    const top=6*NL;nb=Math.max(NL,Math.min(nb,top));
+    // avec un étage, la galerie est toujours là : elle porte la coursive qui dessert les boutiques du haut
+    const gd=NL>1||(p.plus!==false&&bdMax>=8)?2:0,dMax=Math.min(bdMax,12+gd),dMin=Math.min(bdMax,6.5+gd),sw=NL>1?SW:0;
     bw=bwMax;bd=covFoot/bw;
     if(bd>dMax) bd=dMax;
-    if(bd<dMin){bd=dMin;bw=Math.min(bwMax,Math.max(Math.min(bwMax,5),covFoot/bd))}
+    if(bd<dMin){bd=dMin;bw=Math.min(bwMax,Math.max(Math.min(bwMax,NL>1?SW+3.2:5),covFoot/bd))}
     bw=Math.round(bw*10)/10;bd=Math.round(bd*10)/10;
-    while(nb>1&&bw/nb<3.2) nb--;
-    if(nb<Math.min(ask,6)) notes.push({w:1,t:`La façade de ${dec(bw,1)} m ne permet que ${nb} boutique${nb>1?"s":""} d'au moins 3,2 m de large. Choisissez un terrain plus large ou réduisez les distances aux voisins.`});
+    if(bw*bd>covFoot*1.03+0.5) notes.push({w:1,t:`La part du terrain choisie (${cov} %) est trop petite pour ${NL>1?"ce bâtiment":"une boutique"} : le plus petit bâtiment possible occupe ${Math.round(bw*bd/plot*100)} % du terrain.`});
+    // boutiques réparties entre les niveaux, le rez-de-chaussée d'abord ; au moins 3,2 m de façade chacune
+    const cnt=[];for(let i=0;i<NL;i++){let n=Math.floor(nb/NL)+(i<nb%NL?1:0);while(n>1&&(bw-sw)/n<3.2) n--;cnt.push(n)}
+    nb=cnt.reduce((a,b)=>a+b,0);
+    if(nb<Math.min(ask,top)) notes.push({w:1,t:NL>1?`La façade de ${dec(bw,1)} m ne permet que ${cnt[0]} boutique${cnt[0]>1?"s":""} d'au moins 3,2 m de large par niveau, soit ${nb} en tout. Choisissez un terrain plus large ou réduisez les distances aux voisins.`:`La façade de ${dec(bw,1)} m ne permet que ${nb} boutique${nb>1?"s":""} d'au moins 3,2 m de large. Choisissez un terrain plus large ou réduisez les distances aux voisins.`});
     bx=rl+(bwMax-bw)/2;by=D-ra-bd;
-    const uw=bw/nb,sd=bd-gd,rh=Math.round(Math.max(Math.min(2.2,sd*0.4),Math.min(3.2,sd*0.28))*10)/10;let sales=0,desk=false;
+    const sd=bd-gd,rh=Math.round(Math.max(Math.min(2.2,sd*0.4),Math.min(3.2,sd*0.28))*10)/10;let sales=0,desk=false,num=0;
     if(sd-rh<3.2) notes.push({w:1,t:"Ce terrain est trop peu profond pour une boutique confortable : réduisez la distance à la rue ou au fond du terrain."});
-    for(let i=0;i<nb;i++){const x=bx+i*uw,u="s"+(i+1);
-      if(nb===1){const wW=Math.min(1.6,Math.max(1.3,uw*0.16)),bW=uw>=7?Math.min(3.6,uw*0.3):0,rW=uw-wW-bW;desk=bW>0;
-        if(bW) L.push({n:"Bureau",a:0,t:"day",u,x,y:by,w:bW,h:rh});
-        L.push({n:"Réserve",a:0,t:"day",u,x:x+bW,y:by,w:rW,h:rh});
-        L.push({n:"WC",a:0,t:"wet",u,x:x+bW+rW,y:by,w:wW,h:rh});
-        L.push({n:"Magasin",a:0,t:"day",u,x,y:by+rh,w:uw,h:sd-rh,shop:true,gond:true})}
-      else{const wW=uw>=3.8?1.5:1.3;
-        L.push({n:"Réserve",a:0,t:"day",u,x,y:by,w:uw-wW,h:rh});
-        L.push({n:"WC",a:0,t:"wet",u,x:x+uw-wW,y:by,w:wW,h:rh});
-        L.push({n:"Magasin "+(i+1),a:0,t:"day",u,x,y:by+rh,w:uw,h:sd-rh,shop:true,gond:true})}
-      sales+=uw*(sd-rh)}
-    if(gd){const k=Math.max(nb,Math.ceil(bw/5.5)),gw=bw/k;for(let i=0;i<k;i++) L.push({n:"Galerie",a:0,t:"out",gal:true,nolabel:i!==Math.floor(k/2),x:bx+i*gw,y:by+sd,w:gw,h:gd})}
+    if(NL>1&&p.plus===false) notes.push({t:"Avec un étage, la galerie couverte est toujours présente : elle porte la coursive qui dessert les boutiques du haut."});
+    for(let li=0;li<NL;li++){const L=[],n=cnt[li],uw=(bw-sw)/n;
+      if(sw){const sh=sd-4.2>=1.5?4.2:sd,rg=sd-sh>=4.4?sd-sh-2.2:0; // escalier à deux volées côté galerie, local technique derrière, rangement au fond
+        if(rg) L.push({n:"Rangement",a:0,t:"day",x:bx,y:by,w:sw,h:rg});
+        if(sh<sd) L.push({n:"Local technique",a:0,t:"day",x:bx,y:by+rg,w:sw,h:sd-sh-rg});
+        L.push({n:"Escalier",a:0,t:"day",x:bx,y:by+sd-sh,w:sw,h:sh})}
+      for(let i=0;i<n;i++){const x=bx+sw+i*uw,u="s"+(i+1);num++;
+        if(n===1){const wW=Math.min(1.6,Math.max(1.3,uw*0.16)),bW=uw>=7?Math.min(3.6,uw*0.3):0,rW=uw-wW-bW;if(bW) desk=true;
+          if(bW) L.push({n:"Bureau",a:0,t:"day",u,x,y:by,w:bW,h:rh});
+          L.push({n:"Réserve",a:0,t:"day",u,x:x+bW,y:by,w:rW,h:rh});
+          L.push({n:"WC",a:0,t:"wet",u,x:x+bW+rW,y:by,w:wW,h:rh});
+          L.push({n:nb===1?"Magasin":"Magasin "+num,a:0,t:"day",u,x,y:by+rh,w:uw,h:sd-rh,shop:true,gond:true})}
+        else{const wW=uw>=3.8?1.5:1.3;
+          L.push({n:"Réserve",a:0,t:"day",u,x,y:by,w:uw-wW,h:rh});
+          L.push({n:"WC",a:0,t:"wet",u,x:x+uw-wW,y:by,w:wW,h:rh});
+          L.push({n:"Magasin "+num,a:0,t:"day",u,x,y:by+rh,w:uw,h:sd-rh,shop:true,gond:true})}
+        sales+=uw*(sd-rh)}
+      if(gd){const k=Math.max(n,Math.ceil((bw-sw)/5.5)),gw=(bw-sw)/k,gn=li?"Coursive":"Galerie";
+        for(let i=0;i<k;i++) L.push({n:gn,a:0,t:"out",gal:true,nolabel:i!==Math.floor(k/2),x:bx+sw+i*gw,y:by+sd,w:gw,h:gd});
+        if(sw) L.push({n:gn,a:0,t:"out",gal:true,nolabel:true,x:bx,y:by+sd,w:sw,h:gd})}
+      levels.push(L)}
     const pct=Math.round(bw*bd/plot*100);
     if(pct<cov-5) notes.push({w:1,t:`Vous demandez un bâtiment sur ${cov} % du terrain ; il en occupe ${pct} %. Une boutique de plus de 12 m de profondeur serait mal éclairée au fond, et les distances à la rue et aux voisins sont respectées. Le reste du terrain sert au stationnement et aux livraisons.`});
-    pro={kind:"com",nb,sales,gd,uw,desk,sum:nb>1?nb+" boutiques":fmt(sales)+" m² de vente",short:nb>1?nb+" bout.":fmt(sales)+" m²"};
+    pro={kind:"com",nb,sales,gd,uw:(bw-sw)/cnt[0],desk,cnt,sum:nb>1?nb+" boutiques":fmt(sales)+" m² de vente",short:nb>1?nb+" bout.":fmt(sales)+" m²"};
   }else{
     nb=Math.max(2,nb);
     const hC=1.6,lo=3.2,restMax=Math.min(bdMax-hC,12.5);
     const minW=i=>i.t==="wet"?1.4:i.t==="out"?2.4:i.n==="Salle de réunion"?3:/^Bureau|^Direction|^Accueil/.test(i.n)?2.5:i.n==="Coin repas"?1.8:i.n==="Local technique"?1.2:1.5;
     const sumMin=a=>a.reduce((t,i)=>t+minW(i),0);
-    // programme pour k bureaux, et dimensions du bâtiment dans la limite « lim » de surface au sol
-    const plan=(k,withPause,lim)=>{
+    // programme pour k bureaux sur nl niveaux, et dimensions du bâtiment dans la limite « lim » de surface au sol
+    const plan=(k,withPause,lim,nl)=>{
       const off=[{n:"Direction",a:16*big,t:"day"}];for(let i=1;i<k;i++) off.push({n:"Bureau "+i,a:11.5*big,t:"day"});
       const acc={n:"Accueil",a:Math.max(11,9+k*0.6)*big,t:"day"},reu={n:"Salle de réunion",a:Math.min(26,12+k*1.2)*big,t:"day"};
       const serv=[{n:"Archives",a:Math.min(9,4+k*0.4),t:"day"}];if(k>=6) serv.push({n:"Local technique",a:3.5,t:"day"});
       serv.push({n:"WC F",a:3.6,t:"wet"},{n:"WC H",a:3.6,t:"wet"},{n:"Coin repas",a:Math.min(12,6+k*0.5),t:"day"});
       const pause=withPause?{n:"Terrasse de pause",a:Math.min(16,8+k*0.6),t:"out"}:null;
-      // bureaux répartis entre le côté rue et le côté cour, pour deux rangées de même surface
       const fixT=[...serv];if(pause) fixT.push(pause);
-      let best=null;for(let kt=0;kt<=k;kt++){const T=off.slice(k-kt),B=off.slice(0,k-kt),wn=Math.max(sumMin(T)+sumMin(fixT),sumMin(B)+sumMin([acc,reu])),d=Math.abs(sum(T)+sum(fixT)-sum(B)-acc.a-reu.a);
-        if(!best||wn<best.wn-1e-9||(Math.abs(wn-best.wn)<1e-9&&d<best.d)) best={wn,d,T,B}}
-      const oB=best.B,oT=best.T,aB=acc.a+reu.a+sum(oB),aT=sum(fixT)+sum(oT),top=[...oT,...fixT];
-      const S=aB+aT,wNeed=best.wn;
+      // pièces fixes de chaque niveau : accueil et services en bas ; sanitaires, archives et salle de réunion à chaque étage
+      const sw=nl>1?SW:0,sA=sw*4.2,lv=[{fixT,fixB:[acc,reu],off:[]}];
+      for(let i=1;i<nl;i++) lv.push({fixT:[{n:"Archives",a:Math.min(7,3+k*0.3),t:"day"},{n:"WC F",a:3.6,t:"wet"},{n:"WC H",a:3.6,t:"wet"}],fixB:[{n:"Salle de réunion",a:Math.min(20,10+k*0.8)*big,t:"day"}],off:[]});
+      if(nl===1) lv[0].off=off;
+      else{ // la direction s'installe au dernier niveau, au calme ; chaque bureau va au niveau le moins rempli
+        const load=q=>sum(q.fixT)+sum(q.fixB)+sum(q.off);
+        lv[nl-1].off.push(off[0]);
+        for(let i=1;i<k;i++){let b=lv[0];lv.forEach(q=>{if(load(q)<load(b)-1e-9) b=q});b.off.push(off[i])}
+        let num=0;lv.forEach(q=>q.off.forEach(o=>{if(o.n!=="Direction") o.n="Bureau "+(++num)}))}
+      // dans chaque niveau, bureaux répartis entre le côté rue et le côté cour, pour deux rangées de même surface
+      lv.forEach(q=>{const o=q.off,kk=o.length;let best=null;
+        for(let kt=0;kt<=kk;kt++){const T=o.slice(kk-kt),B=o.slice(0,kk-kt),wn=Math.max(sumMin(T)+sumMin(q.fixT)+sw,sumMin(B)+sumMin(q.fixB)),d=Math.abs(q.fixB.reduce((v,i)=>v-i.a,sum(T)+sum(q.fixT)+sA-sum(B)));
+          if(!best||wn<best.wn-1e-9||(Math.abs(wn-best.wn)<1e-9&&d<best.d)) best={wn,d,T,B}}
+        q.oB=best.B;q.top=[...best.T,...q.fixT];q.aT=sum(q.fixT)+sum(best.T)+sA;q.S=sum(q.fixB)+sum(best.B)+q.aT;q.wn=best.wn});
+      const S=Math.max(...lv.map(q=>q.S)),wNeed=Math.max(...lv.map(q=>q.wn));
       let rest=9.2,w=Math.max(S/rest,wNeed);
       if(w>bwMax){w=bwMax;rest=S/w}
       rest=Math.max(2*lo,Math.min(rest,restMax));
       if(w*(rest+hC)>lim){rest=Math.max(2*lo,Math.min(rest,lim/w-hC));if(w*(rest+hC)>lim) w=Math.max(wNeed,lim/(rest+hC))}
       const scale=w*rest/S,ok=wNeed<=bwMax+1e-9&&restMax>=2*lo-1e-9&&scale>=0.8&&w*(rest+hC)<=lim*1.02+1e-9;
-      return {k,top,oB,acc,reu,pause,S,aT,w,rest,scale,ok}};
+      return {k,nl,lv,pause,S,aT:lv[0].aT,S0:lv[0].S,w,rest,scale,ok}};
     const wantP=p.plus!==false,full=bwMax*bdMax;let C=null;
-    for(let k=nb;k>=2&&!C;k--) for(const wp of wantP?[true,false]:[false]){const c=plan(k,wp,covFoot);if(c.ok){C=c;break}}
-    if(!C){const c=plan(2,false,full);C=c;
+    for(let nl=NL;nl>=1&&!C;nl--) for(let k=nb;k>=Math.max(2,nl)&&!C;k--) for(const wp of wantP?[true,false]:[false]){const c=plan(k,wp,covFoot,nl);if(c.ok){C=c;break}}
+    if(!C){const c=plan(2,false,full,1);C=c;
       notes.push({w:1,t:c.ok?`La part du terrain choisie (${cov} %) est trop petite pour des bureaux : le plus petit bâtiment possible occupe ${Math.round(c.w*(c.rest+hC)/plot*100)} % du terrain.`:"Ce terrain est trop petit pour des bureaux confortables avec ces distances aux limites : les pièces ont été fortement réduites. Choisissez un terrain plus grand ou réduisez les distances à la rue et aux voisins."})}
+    if(C.nl<NL) notes.push({w:1,t:`Ce terrain ne permet pas ${NL-1>1?"2 étages":"d'étage"} de bureaux avec ces distances aux limites : le plan ${C.nl>1?"compte 1 étage":"reste sans étage"}.`});
     if(C.k<nb) notes.push({w:1,t:`Le terrain et la part occupée choisie permettent ${C.k} bureaux au lieu de ${nb}. Augmentez la part du terrain occupée ou réduisez les distances aux limites pour en avoir plus.`});
     if(wantP&&!C.pause) notes.push({t:"La terrasse de pause a été retirée, faute de place."});
     if(C.ok&&C.scale<0.9) notes.push({w:1,t:`Pour tenir sur ce terrain, les pièces ont été réduites de ${Math.round((1-C.scale)*100)} %.`});
-    nb=C.k;
-    const half=Math.floor(C.oB.length/2),bot=r()>0.5?[C.reu,C.acc,...C.oB]:[...C.oB.slice(0,half),C.acc,C.reu,...C.oB.slice(half)];
+    nb=C.k;NL=C.nl;
+    const bots=C.lv.map((q,li)=>{const oB=q.oB,half=Math.floor(oB.length/2);
+      return li?(r()>0.5?[...q.fixB,...oB]:[...oB,...q.fixB]):(r()>0.5?[q.fixB[1],q.fixB[0],...oB]:[...oB.slice(0,half),q.fixB[0],q.fixB[1],...oB.slice(half)])});
     bw=Math.min(bwMax,Math.ceil(C.w*10-1e-6)/10);bd=Math.round(Math.min(bdMax,C.rest+hC)*10)/10;
-    const rest=bd-hC,l2=Math.min(lo,rest/2);
+    const rest=bd-hC,l2=Math.min(lo,rest/2),sw=NL>1?SW:0;
     bx=rl+(bwMax-bw)/2;by=D-ra-bd;
-    const dT=Math.max(l2,Math.min(rest-l2,rest*C.aT/C.S)),dB=rest-dT;
-    const row=(y,h,items)=>{let ws=items.map(i=>i.a);const t=ws.reduce((a,b)=>a+b,0);ws=ws.map(v=>bw*v/t);
-      for(let k=0;k<8;k++){let fix=0,free=0;ws.forEach((w,j)=>{const m0=minW(items[j]);if(w<=m0+1e-9) fix+=m0;else free+=w});if(free<=0||fix>=bw) break;const f=(bw-fix)/free;ws=ws.map((w,j)=>{const m0=minW(items[j]);return w<=m0+1e-9?m0:w*f})}
-      const tot=ws.reduce((a,b)=>a+b,0);let xx=bx;items.forEach((it,j)=>{const w=ws[j]*bw/tot;L.push(Object.assign({},it,{x:xx,y,w,h}));xx+=w})};
-    row(by,dT,C.top);
-    L.push({n:"Couloir",a:0,t:"day",x:bx,y:by+dT,w:bw,h:hC});
-    row(by+dT+hC,dB,bot);
-    pro={kind:"bur",nb,pause:!!C.pause,sum:nb+" bureaux",short:nb+" bur."};
+    const dT=Math.max(l2,Math.min(rest-l2,rest*C.aT/C.S0)),dB=rest-dT;
+    const row=(L,y,h,items,x0,wd)=>{let ws=items.map(i=>i.a);const t=ws.reduce((a,b)=>a+b,0);ws=ws.map(v=>wd*v/t);
+      for(let k=0;k<8;k++){let fix=0,free=0;ws.forEach((w,j)=>{const m0=minW(items[j]);if(w<=m0+1e-9) fix+=m0;else free+=w});if(free<=0||fix>=wd) break;const f=(wd-fix)/free;ws=ws.map((w,j)=>{const m0=minW(items[j]);return w<=m0+1e-9?m0:w*f})}
+      const tot=ws.reduce((a,b)=>a+b,0);let xx=x0;items.forEach((it,j)=>{const w=ws[j]*wd/tot;L.push(Object.assign({},it,{x:xx,y,w,h}));xx+=w})};
+    C.lv.forEach((q,li)=>{const L=[];
+      if(sw){const sh=dT-4.6>=1.5?4.6:dT; // escalier ouvert sur le couloir, rangement derrière
+        if(sh<dT) L.push({n:"Rangement",a:0,t:"day",x:bx,y:by,w:sw,h:dT-sh});
+        L.push({n:"Escalier",a:0,t:"day",x:bx,y:by+dT-sh,w:sw,h:sh})}
+      row(L,by,dT,q.top,bx+sw,bw-sw);
+      L.push({n:"Couloir",a:0,t:"day",x:bx,y:by+dT,w:bw,h:hC});
+      row(L,by+dT+hC,dB,bots[li],bx,bw);
+      levels.push(L)});
+    pro={kind:"bur",nb,pause:!!C.pause,cnt:C.lv.map(q=>q.off.length),sum:nb+" bureaux",short:nb+" bur."};
   }
-  if(mirror) L.forEach(rm=>{rm.x=2*bx+bw-rm.x-rm.w});
-  const levels=[L];
-  const builtArea=L.reduce((t,rm)=>{const a=rm.w*rm.h;return t+(rm.t==="out"?a*0.5:a)},0);
+  if(mirror) levels.forEach(L=>L.forEach(rm=>{rm.x=2*bx+bw-rm.x-rm.w}));
+  const builtArea=levels.reduce((s,L)=>s+L.reduce((t,rm)=>{const a=rm.w*rm.h;return t+(rm.t==="out"?a*0.5:a)},0),0);
   const CITY=CITIES[p.city]||null,kCity=CITY?CITY.k:1,lieu=CITY?CITY.nom:ZONES[zone].nom,Z=ZONES[zone];
+  const kType=NL===3?1.16:NL===2?1.08:1,kStyle={mini:1.02,contemporain:1.05,afro:0.97,colonial:1.06,mediterraneen:1.04}[p.style]||1;
   const extras=[];
   if(p.solaire) extras.push({n:"Panneaux solaires (kit 3 kWc)",c:2800000*kCity});
   if(p.citerne) extras.push({n:"Château d'eau et surpresseur",c:1500000*kCity});
-  const extraSum=extras.reduce((t,e)=>t+e.c,0),total=builtArea*pm*Z.k*kCity+extraSum;
+  const extraSum=extras.reduce((t,e)=>t+e.c,0),total=builtArea*pm*Z.k*kCity*kType*kStyle+extraSum;
   pro.park=ra>=5?Math.floor(W/2.5):ra>=2.5?Math.floor(W/5.5):0;
   notes.push({t:"Bâtiment qui reçoit du public ou des salariés : avant le permis de construire, faites valider la sécurité incendie, les sorties de secours et l'accès des personnes handicapées par un architecte."});
-  return (window.applyEd||(x=>x))({planLevels:[{li:0,label:lvName(0),short:lvName(0,true)}],isTower:false,p:Object.assign({},p,{nb}),lieu,kCity,extras,extraSum,pool:null,W,D,ra,rl,zone,or,type,n:nb,std,style:p.style,pm,levels,bx,by,bw,bd,foot:bw*bd,plot,builtArea,total,notes,Z,kType:1,pro});
+  return (window.applyEd||(x=>x))({planLevels:levels.map((L,i)=>({li:i,label:lvName(i),short:lvName(i,true)})),isTower:false,p:Object.assign({},p,{nb,et:NL-1}),lieu,kCity,extras,extraSum,pool:null,W,D,ra,rl,zone,or,type,n:nb,std,style:p.style,pm,levels,bx,by,bw,bd,foot:bw*bd,plot,builtArea,total,notes,Z,kType,pro});
 }
 function storyPro(m){
-  const P=m.pro,L=m.levels[0],orTxt=OR_TXT[m.or]||"au sud",city=m.p.city&&CITIES[m.p.city]?"À "+CITIES[m.p.city].nom.replace(/ \(.*\)/,"")+", d":"D";
+  const P=m.pro,L=m.levels[0],NL=m.levels.length,up=P.nb-P.cnt[0],orTxt=OR_TXT[m.or]||"au sud",city=m.p.city&&CITIES[m.p.city]?"À "+CITIES[m.p.city].nom.replace(/ \(.*\)/,"")+", d":"D";
   const months=Math.round(3+m.builtArea/60),a=r=>dec(r.w*r.h,0);
   const park=P.park?`la cour avant de ${dec(m.ra,1)} m peut accueillir environ ${P.park} places de stationnement`:"le bâtiment est proche de la rue, sans stationnement sur le terrain";
   const chantier=["Le chantier",`Comptez environ ${months} mois de travaux avec une équipe de 6 à 10 ouvriers, du terrassement à la peinture, pour un budget proche de ${F(m.total)}.`];
@@ -1956,15 +2001,17 @@ function storyPro(m){
     return [
       ["La façade",m.Z.facade],
       ["L'arrivée",`${city}epuis la rue ${orTxt}, ${park}. ${P.gd?"Les clients longent les vitrines à l'abri, sous une galerie couverte de 2 m de large.":"Chaque boutique ouvre directement sur la rue par sa porte et sa vitrine."}`],
-      ["Les boutiques",P.nb>1?`${P.nb} boutiques de ${dec(P.uw,1)} m de façade, avec chacune environ ${a(shop)} m² de surface de vente, une réserve et un sanitaire à l'arrière. Chaque boutique a sa propre entrée : elles peuvent être louées séparément.`:`Une surface de vente de ${fmt(P.sales)} m² d'un seul tenant, avec rayonnages au centre, réserve${P.desk?", bureau":""} et sanitaire à l'arrière.`],
-      ["Une base qui a fait ses preuves","La disposition est celle des commerces de rue de la région : porte et vitrine côté rue, vente à l'avant, réserve et sanitaire au fond, murs épais entre deux boutiques."],
+      ["Les boutiques",NL>1?`${P.nb} boutiques sur ${NL} niveaux : ${P.cnt[0]} au rez-de-chaussée, de ${dec(P.uw,1)} m de façade et d'environ ${a(shop)} m² de surface de vente, et ${up} ${NL>2?"dans les étages":"à l'étage"}. Chacune a sa réserve, son sanitaire et sa propre entrée : elles peuvent être louées séparément.`:P.nb>1?`${P.nb} boutiques de ${dec(P.uw,1)} m de façade, avec chacune environ ${a(shop)} m² de surface de vente, une réserve et un sanitaire à l'arrière. Chaque boutique a sa propre entrée : elles peuvent être louées séparément.`:`Une surface de vente de ${fmt(P.sales)} m² d'un seul tenant, avec rayonnages au centre, réserve${P.desk?", bureau":""} et sanitaire à l'arrière.`],
+      ...(NL>1?[[NL>2?"Les étages":"L'étage",`Un escalier placé au bout de la galerie mène ${NL>2?"aux coursives couvertes des étages":"à la coursive couverte de l'étage"} : les clients y passent à l'abri, devant les vitrines. Les boutiques du haut conviennent bien aux services dont les clients viennent exprès : couture, coiffure, bureautique, cabinet.`]]:[]),
+      ["Une base qui a fait ses preuves",NL>1?"C'est la disposition des petits centres commerciaux de la région : galerie en bas, coursive en haut, un escalier commun, vente à l'avant, réserve et sanitaire au fond, murs épais entre deux boutiques.":"La disposition est celle des commerces de rue de la région : porte et vitrine côté rue, vente à l'avant, réserve et sanitaire au fond, murs épais entre deux boutiques."],
       ["L'idée en plus",P.gd?`La galerie couverte protège les clients du soleil et de la pluie, garde les vitrines à l'ombre et limite la chaleur dans les boutiques. Conçu pour la ${m.Z.nom} : ${m.Z.princ}.`:`Sans galerie, toute la profondeur sert à la vente. Conçu pour la ${m.Z.nom} : ${m.Z.princ}.`],
       chantier]}
   const reu=L.find(r=>r.n==="Salle de réunion"),ter=L.find(r=>r.n==="Terrasse de pause");
   return [
     ["La façade",m.Z.facade],
     ["L'arrivée",`${city}epuis la rue ${orTxt}, ${park}. La porte d'entrée ouvre sur l'accueil, placé côté rue.`],
-    ["La vie à l'intérieur",`L'accueil donne sur un couloir central qui dessert ${P.nb} bureaux, dont celui de la direction, et une salle de réunion de ${reu?a(reu):"—"} m² proche de l'entrée. Les sanitaires, les archives et le coin repas sont regroupés côté cour.`],
+    ["La vie à l'intérieur",NL>1?`L'accueil donne sur un couloir central qui dessert ${P.cnt[0]?P.cnt[0]+" bureau"+(P.cnt[0]>1?"x":"")+" et ":""}une salle de réunion de ${reu?a(reu):"—"} m² proche de l'entrée. Les sanitaires, les archives et le coin repas sont regroupés côté cour.`:`L'accueil donne sur un couloir central qui dessert ${P.nb} bureaux, dont celui de la direction, et une salle de réunion de ${reu?a(reu):"—"} m² proche de l'entrée. Les sanitaires, les archives et le coin repas sont regroupés côté cour.`],
+    ...(NL>1?[[NL>2?"Les étages":"L'étage",`Un escalier ouvert sur le couloir mène ${NL>2?"aux étages":"à l'étage"} : ${up} bureau${up>1?"x":""}, dont celui de la direction au dernier niveau, au calme. Chaque étage a sa salle de réunion, ses sanitaires et ses archives, et le même couloir traversant qu'au rez-de-chaussée.`]]:[]),
     ["Une base qui a fait ses preuves",`C'est le plan à couloir central, le plus courant pour les bureaux : chaque pièce a sa fenêtre et sa porte sur le couloir, et la profondeur du bâtiment (${dec(m.bd,1)} m) laisse entrer la lumière du jour partout.`],
     ["L'idée en plus",`Le couloir traverse le bâtiment d'un bout à l'autre, avec une fenêtre à chaque extrémité : l'air circule sans climatisation dans les circulations${ter?`. La terrasse de pause couverte de ${a(ter)} m² offre un espace de repos à l'ombre, à côté du coin repas`:""}. Conçu pour la ${m.Z.nom} : ${m.Z.princ}.`],
     chantier];
@@ -2391,7 +2438,7 @@ if(typeof module!=="undefined") module.exports={compute,openings,drawTech,story,
 const H3=2.9,SL3=0.28;
 const WALLS=["#F4F1EA","#E9DFCF","#D9C3A0","#C98F6B","#B8BDBF","#6F7D78"];
 const ROOFS=["#3E4246","#5B3E2E","#8C3B2A","#B98E62","#E9E6DF","#2F4A3A"];
-function defaults3d(m){const z=m.zone;const byStyle={contemporain:{facade:"enduit",wall:"#F4F1EA",roof:"plat",frame:"anthra",floor:"beton"},afro:{facade:"btc",roof:"mono",roofColor:"#5B3E2E",frame:"bois"},colonial:{facade:"enduit",wall:"#E9DFCF",roof:"deux",roofMat:"tuile",frame:"blanc",floor:"parquet"},mediterraneen:{facade:"enduit",wall:"#F4F1EA",roof:"deux",roofMat:"tuile",frame:"bois"},mini:{roof:"plat",facade:"enduit",wall:"#F4F1EA"}}[m.style]||{};return Object.assign(defaults3dBase(m),m.pro?{roof:"plat",facade:"enduit",wall:"#F4F1EA"}:byStyle)}
+function defaults3d(m){const z=m.zone;const byStyle={contemporain:{facade:"enduit",wall:"#F4F1EA",roof:"plat",frame:"anthra",floor:"beton"},afro:{facade:"btc",roof:"mono",roofColor:"#5B3E2E",frame:"bois"},colonial:{facade:"enduit",wall:"#E9DFCF",roof:"deux",roofMat:"tuile",frame:"blanc",floor:"parquet"},mediterraneen:{facade:"enduit",wall:"#F4F1EA",roof:"deux",roofMat:"tuile",frame:"bois"},mini:{roof:"plat",facade:"enduit",wall:"#F4F1EA"}}[m.style]||{};return Object.assign(defaults3dBase(m),m.pro?Object.assign({roof:"plat",facade:"enduit",wall:"#F4F1EA"},byStyle):byStyle)}
 function defaults3dBase(m){const z=m.zone;return {facade:(z==="savane"||z==="sahel")?"btc":"enduit",wall:z==="foret"?"#E9DFCF":"#F4F1EA",
   roof:z==="foret"?"deux":z==="savane"?"mono":"plat",roofMat:"tole",roofColor:z==="foret"?"#5B3E2E":z==="sahel"?"#B98E62":"#3E4246",frame:"anthra",floor:"carrelage",hour:10,veg:true,car:true}}
 
@@ -2881,15 +2928,29 @@ const ICON={lock:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 /* ---------- formulaire ---------- */
 {const g={cote:"Côte — climat côtier humide",foret:"Centre et Ouest — zone forestière",savane:"Nord — savane",sahel:"Sahel"};
   $("#city").innerHTML=`<option value="">Choisissez votre ville</option>`+Object.keys(g).map(z=>`<optgroup label="${g[z]}">${Object.entries(CITIES).filter(([k,c])=>c.zone===z).map(([k,c])=>`<option value="${k}">${c.nom}</option>`).join("")}</optgroup>`).join("")}
-const PRO_TXT={com:{leg:"Vos boutiques",nb:"Nombre de boutiques",plus:"Galerie couverte devant les vitrines",opts:[1,2,3,4,5,6],def:3,lab:n=>n===1?"1 grande boutique":n+" boutiques",
-    note:"Disposition courante des commerces de rue : vitrine côté rue, vente à l'avant, réserve et sanitaire au fond. Plan sur un seul niveau."},
-  bur:{leg:"Vos bureaux",nb:"Nombre de bureaux",plus:"Terrasse de pause couverte",opts:[2,3,4,5,6,8,10,12],def:4,lab:n=>n+" bureaux",
-    note:"Plan à couloir central : accueil, bureaux, salle de réunion, sanitaires, archives et coin repas. Plan sur un seul niveau."}};
-function syncTower(){const t=val("type"),imm=t==="rn"&&val("usage")==="immeuble",pro=isPro(t);$("#towerset").hidden=t!=="rn";$$("[data-imm]").forEach(e=>e.hidden=!imm);$$("[data-house]").forEach(e=>e.hidden=imm||pro);
+const WISH_TXT={house:["Exemple : 4 chambres, un bureau, un garage pour 2 voitures, une cuisine ouverte et une piscine.","Le plan tient compte des mots qu'il reconnaît : chambres, étage, garage, bureau, piscine, cuisine ouverte, style, finition."],
+  com:["Exemple : 6 boutiques sur 1 étage, finition haut de gamme, panneaux solaires.","Le plan tient compte des mots qu'il reconnaît : nombre de boutiques, étage, galerie, style, finition, panneaux solaires, réservoir d'eau."],
+  bur:["Exemple : 8 bureaux sur 2 étages, sans terrasse, style moderne.","Le plan tient compte des mots qu'il reconnaît : nombre de bureaux, étage, terrasse, style, finition, panneaux solaires, réservoir d'eau."]};
+// boutiques et bureaux : le nombre demandé est le total, réparti entre les niveaux (e = nombre d'étages)
+const PRO_TXT={com:{leg:"Vos boutiques",nb:"Nombre de boutiques",plus:"Galerie couverte devant les vitrines",def:3,
+    opts:e=>e===2?[3,4,5,6,8,9,10,12,15,18]:e===1?[2,3,4,5,6,8,10,12]:[1,2,3,4,5,6],lab:(n,e)=>n===1?"1 grande boutique":n+" boutiques"+(e?" en tout":""),
+    note:e=>e?"Galerie en bas, coursive couverte en haut, escalier commun au bout de la galerie : la disposition des petits centres commerciaux. Les boutiques sont réparties entre les niveaux.":"Disposition courante des commerces de rue : vitrine côté rue, vente à l'avant, réserve et sanitaire au fond."},
+  bur:{leg:"Vos bureaux",nb:"Nombre de bureaux",plus:"Terrasse de pause couverte",def:4,
+    opts:e=>e===2?[3,4,6,8,10,12,15,18,24,30,36]:e===1?[2,3,4,6,8,10,12,16,20,24]:[2,3,4,5,6,8,10,12],lab:(n,e)=>n+" bureaux"+(e?" en tout":""),
+    note:e=>e?"Couloir central à chaque niveau et escalier ouvert sur le couloir. Accueil en bas, direction au dernier niveau ; les bureaux sont répartis entre les niveaux.":"Plan à couloir central : accueil, bureaux, salle de réunion, sanitaires, archives et coin repas."}};
+function syncTower(want){const t=val("type"),imm=t==="rn"&&val("usage")==="immeuble",pro=isPro(t);$("#towerset").hidden=t!=="rn";$$("[data-imm]").forEach(e=>e.hidden=!imm);$$("[data-house]").forEach(e=>e.hidden=imm||pro);
   $$("[data-nopro]").forEach(e=>e.hidden=pro);const ps=$("#proset");ps.hidden=!pro;$("#covword").textContent=pro?"le bâtiment":"la maison";$("#bldleg").textContent=pro?"Votre bâtiment":"Votre maison";
-  if(pro&&ps.dataset.k!==t){const T=PRO_TXT[t],sel=$("#nb"),v=ps.dataset.k?+sel.value:(cur&&cur.nb)||T.def;ps.dataset.k=t;
-    $("#prolegend").textContent=T.leg;$("#nblabel").textContent=T.nb;$("#pluslabel").textContent=T.plus;$("#pronote").textContent=T.note;
-    sel.innerHTML=T.opts.map(n=>`<option value="${n}">${T.lab(n)}</option>`).join("");sel.value=String(T.opts.includes(v)?v:T.def)}}
+  $("#styleword").textContent=pro?"du bâtiment":"de la maison";$("#st-colonial").textContent=pro?"Colonial":"Colonial avec véranda";
+  {const W=WISH_TXT[pro?t:"house"],w=$("#wish");if(w.placeholder!==W[0]){w.placeholder=W[0];$("#wishhelp").textContent=W[1]}}
+  if(!pro) return;
+  if(val("style")==="bio"){const d=document.querySelector("input[name=style][value=tropical]");if(d) d.checked=true}
+  const e=Math.max(0,Math.min(2,+val("et")||0)),key=t+e,xp=$("#x-plus"),lock=t==="com"&&e>0;
+  xp.disabled=lock;if(lock) xp.checked=true; // avec un étage, la galerie porte la coursive : elle est toujours là
+  if(ps.dataset.k===key) return;
+  const T=PRO_TXT[t],sel=$("#nb"),v=+want||(ps.dataset.k?+sel.value:(cur&&cur.nb)||T.def),o=T.opts(e);ps.dataset.k=key;
+  if(v>o[0]&&v<o[o.length-1]&&!o.includes(v)){o.push(v);o.sort((x,y)=>x-y)}
+  $("#prolegend").textContent=T.leg;$("#nblabel").textContent=T.nb;$("#pluslabel").textContent=T.plus;$("#pronote").textContent=T.note(e);
+  sel.innerHTML=o.map(n=>`<option value="${n}">${T.lab(n,e)}</option>`).join("");sel.value=String(o.includes(v)?v:v<o[0]?o[0]:o[o.length-1])}
 function proGate(p){if(!isPro(p.type)||O().pro) return false;toast(`Les plans de boutiques et de bureaux sont inclus dans les offres ${OFFERS.moyen.nom} et ${OFFERS.max.nom}.`);location.hash="tarifs";return true}
 function readForm(){syncTower();const area=Math.max(100,+$("#area").value||DEF.area),shape=val("shape"),city=$("#city").value||DEF.city,fw=+$("#fw").value||0,dm=dimsFrom(area,shape,fw),C=CITIES[city];
   $("#dimhint").textContent=+$("#area").value>0&&document.querySelector("input[name=shape]:checked")?`Soit environ ${dec(dm.W,1)} m côté rue × ${dec(dm.D,1)} m de profondeur`:"";
@@ -2897,7 +2958,7 @@ function readForm(){syncTower();const area=Math.max(100,+$("#area").value||DEF.a
   $("#cityhint").textContent=!$("#city").value?"":"Climat : "+ZONES[C.zone].nom+(C.k!==1?` · prix local ${C.k>1?"+":"−"}${Math.round(Math.abs(C.k-1)*100)} %`:"");
   return {area,shape,city,W:dm.W,D:dm.D,ra:+$("#ra").value||0,rl:+$("#rl").value||0,zone:C.zone,or:val("or"),type:val("type"),n:+$("#ch").value||DEF.n,std:$("#std").value||DEF.std,style:val("style"),pm:+$("#pm").value||PRICE[$("#std").value||DEF.std],pmU:+$("#pm").value>0,cov:covVal(),filled:formMissing().length===0,cityU:!!$("#city").value,seed:cur.seed||1,fw,garage:+$("#garage").value,
   piscine:$("#x-piscine").checked,bureau:$("#x-bureau").checked,openK:$("#x-openK").checked,suites:$("#x-suites").checked,service:$("#x-service").checked,cellier:$("#x-cellier").checked,solaire:$("#x-solaire").checked,citerne:$("#x-citerne").checked,
-  nf:+$("#nf").value,usage:val("usage"),apts:+$("#apts").value,aptType:$("#aptType").value,rdc:val("rdc"),lift:$("#x-lift").checked,roofTerrace:$("#x-roofT").checked,genset:$("#x-genset").checked,nb:+$("#nb").value||DEF.nb,plus:$("#x-plus").checked}}
+  nf:+$("#nf").value,usage:val("usage"),apts:+$("#apts").value,aptType:$("#aptType").value,rdc:val("rdc"),lift:$("#x-lift").checked,roofTerrace:$("#x-roofT").checked,genset:$("#x-genset").checked,nb:+$("#nb").value||DEF.nb,plus:$("#x-plus").checked,et:isPro(val("type"))?Math.max(0,Math.min(2,+val("et")||0)):0}}
 function writeForm(p){
   if(!p.area){p.area=Math.round(p.W*p.D);const r=p.D/p.W;p.shape=r<1.12?"carre":r<1.6?"rect":"long"}
   if(!p.city||!CITIES[p.city]) p.city=Object.keys(CITIES).find(k=>CITIES[k].zone===p.zone)||"grand-bassam";
@@ -2908,7 +2969,8 @@ function writeForm(p){
   $("#nf").value=String(p.nf||4);$("#apts").value=String(p.apts||4);$("#aptType").value=p.aptType||"auto";
   ["usage","rdc"].forEach(k=>{const el=document.querySelector(`input[name=${k}][value="${p[k]||DEF[k]}"]`);if(el) el.checked=true});
   $("#x-lift").checked=p.lift!==undefined?!!p.lift:true;$("#x-roofT").checked=p.roofTerrace!==undefined?!!p.roofTerrace:true;$("#x-genset").checked=!!p.genset;
-  $("#proset").dataset.k="";syncTower();if(isPro(val("type"))){$("#nb").value=String(p.nb||DEF.nb);if(!$("#nb").value) $("#nb").value=String(PRO_TXT[val("type")].def);$("#x-plus").checked=p.plus!==false}readForm()}
+  {const el=document.querySelector(`input[name=et][value="${Math.max(0,Math.min(2,+p.et||0))}"]`);if(el) el.checked=true}
+  $("#proset").dataset.k="";if(isPro(val("type"))) $("#x-plus").checked=p.plus!==false;syncTower(p.nb||DEF.nb);readForm()}
 
 /* ---------- Base de données Firebase : comptes, offre et quota ---------- */
 // Comptes : Firebase Authentication (adresse e-mail + mot de passe).
@@ -2949,7 +3011,7 @@ function refreshOffer(){
 }
 function limitReached(){toast(`Limite quotidienne atteinte (${O().quota} plans). Passez à une offre supérieure.`)}
 
-const NEWS=[{"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation"}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation"}];
+const NEWS=[{"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation"}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation"}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation"}];
 /* ---------- Comptes : connexion par e-mail et mot de passe (Firebase) ---------- */
 const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false,verified:false};
 // Administrateurs : empreintes SHA-256 des adresses e-mail (config.js), pour ne pas publier les adresses.
@@ -3493,7 +3555,7 @@ function dossierSvgs(S,css){
   ${dMark(60,60,46)}<text x="120" y="91" font-size="19" font-weight="600" fill="#121212" letter-spacing="2">ARCHITMIND CI</text>
   <text x="60" y="200" font-size="13" font-weight="600" fill="#B87A14" letter-spacing="2.500">DOSSIER DE PRÉSENTATION</text>
   <text x="60" y="262" font-size="50" font-weight="700" fill="#121212" letter-spacing="-1">${tspans(name,60,56)}</text>
-  <text x="60" y="${262+name.length*56-10}" font-size="18" fill="#565E5A">${xe([typeLabel(p),m.pro?"":STYLES[m.style]||"",m.lieu].filter(Boolean).join(" · "))}</text>
+  <text x="60" y="${262+name.length*56-10}" font-size="18" fill="#565E5A">${xe([typeLabel(p),styleLabel(m),m.lieu].filter(Boolean).join(" · "))}</text>
   <rect x="60" y="${262+name.length*56+18}" width="64" height="4" rx="2" fill="#B87A14"/>
   ${facts.map(([k,v],i)=>{const x=60+(i%2)*230,y=500+Math.floor(i/2)*78;return `<text x="${x}" y="${y}" font-size="13" fill="#6B716E">${xe(k)}</text><text x="${x}" y="${y+28}" font-size="23" font-weight="600" fill="#121212">${xe(v)}</text>`}).join("")}
   <rect x="60" y="650" width="440" height="92" rx="16" fill="#F4F5F2"/><text x="82" y="682" font-size="13" fill="#6B716E">Coût estimé des travaux</text>
@@ -3656,11 +3718,20 @@ const WISH_MAX=300;
 const wnorm=t=>String(t||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’`]/g,"'").replace(/\s+/g," ").trim();
 const WNUM={un:1,une:1,deux:2,trois:3,quatre:4,cinq:5,six:6,sept:7,huit:8};
 function parseWish(text,p){
-  const t=wnorm(text).slice(0,WISH_MAX+40),set={},ok=[],ko=[],tower=p&&p.type==="rn";
+  const t=wnorm(text).slice(0,WISH_MAX+40),set={},ok=[],ko=[],tower=p&&p.type==="rn",pro=!!p&&isPro(p.type),com=pro&&p.type==="com";
   if(!t) return {set,ok,ko};
   const no=w=>new RegExp("(sans|pas de|pas d'|aucun|aucune|ni) (un |une |de |d')?"+w).test(t);
   let m;
-  if(!tower){
+  if(pro){
+    if(/\bplain[- ]?pied\b|sans etage|de plain pied|un seul niveau/.test(t)){set.et=0;ok.push("sans étage")}
+    else if(/\b(deux|2) etages\b|r\+2|(trois|3) niveaux/.test(t)){set.et=2;ok.push("2 étages")}
+    else if(/\b(un|1) etage\b|r\+1|a etage|avec etage|(deux|2) niveaux/.test(t)){set.et=1;ok.push("1 étage")}
+    const e=("et" in set?set.et:Math.max(0,Math.min(2,+p.et||0))),mx=(com?6:12)*(e+1),mn=com?e+1:2,what=com?"boutique":"bureau",pl=n=>n>1?(com?"s":"x"):"";
+    if((m=(com?/(\d+|une?|deux|trois|quatre|cinq|six|sept|huit) (grandes? |petites? )?(boutiques?|magasins?|commerces?)/:/(\d+|une?|deux|trois|quatre|cinq|six|sept|huit) (grands? |petits? )?bureaux?\b/).exec(t))){const n=WNUM[m[1]]||+m[1];
+      if(n>=mn&&n<=mx){set.nb=n;ok.push(n+" "+what+pl(n))}else ko.push(n<mn?`au moins ${mn} ${what}${pl(mn)} pour ce nombre d'étages`:`plus de ${mx} ${what}${pl(mx)} pour ce nombre d'étages`)}
+    if(com&&/galerie/.test(t)){set.plus=!no("galerie");ok.push(set.plus?"galerie couverte":"sans galerie")}
+    if(!com&&/terrasse|pause/.test(t)){set.plus=!no("terrasse");ok.push(set.plus?"terrasse de pause":"sans terrasse de pause")}
+  }else if(!tower){
     if(/\bplain[- ]?pied\b|sans etage|de plain pied|un seul niveau/.test(t)){set.type="pp";ok.push("maison sans étage")}
     else if(/\b(deux|2) etages\b|r\+2|triplex/.test(t)){set.type="r2";ok.push("maison à 2 étages")}
     else if(/duplex|\b(un|1) etage\b|r\+1|a etage|avec etage/.test(t)){set.type="r1";ok.push("maison à 1 étage")}
@@ -3680,11 +3751,11 @@ function parseWish(text,p){
     if(/groupe electrogene|generateur/.test(t)){set.genset=true;ok.push("groupe électrogène")}
     if((m=/\b(studio|f2|f3|f4)s?\b/.exec(t))){set.aptType=m[1];ok.push("appartements "+m[1].toUpperCase())}
   }
-  if(/piscine/.test(t)){if(no("piscine")){set.piscine=false;ok.push("sans piscine")}else{set.piscine=true;ok.push("piscine")}}
+  if(/piscine/.test(t)){if(pro) ko.push("piscine");else if(no("piscine")){set.piscine=false;ok.push("sans piscine")}else{set.piscine=true;ok.push("piscine")}}
   if(/solaire|panneaux/.test(t)){set.solaire=true;ok.push("panneaux solaires")}
   if(/citerne|chateau d'eau|reservoir|bache a eau|forage/.test(t)){set.citerne=true;ok.push("réservoir d'eau")}
-  if(/patio|cour interieure/.test(t)){set.style="bio";ok.push("cour intérieure (patio)")}
-  else if(/veranda|colonial/.test(t)){set.style="colonial";ok.push("style colonial avec véranda")}
+  if(/patio|cour interieure/.test(t)){if(pro) ko.push("cour intérieure");else{set.style="bio";ok.push("cour intérieure (patio)")}}
+  else if(/veranda|colonial/.test(t)){set.style="colonial";ok.push(pro?"style colonial":"style colonial avec véranda")}
   else if(/minimaliste|epure/.test(t)){set.style="mini";ok.push("style épuré")}
   else if(/africain|afro/.test(t)){set.style="afro";ok.push("style africain moderne")}
   else if(/mediterraneen/.test(t)){set.style="mediterraneen";ok.push("style méditerranéen")}
@@ -3693,19 +3764,20 @@ function parseWish(text,p){
   else if(/haut standing|haut de gamme|standing/.test(t)){set.std="haut";ok.push("finition haut de gamme")}
   else if(/economique|pas cher|petit budget|moins cher|budget (serre|limite|reduit)/.test(t)){set.std="eco";ok.push("finition économique")}
   // souhaits compris mais non gérés par le générateur
-  if(/(grande?|vaste|spacieu\w+|immense) (cuisine|sejour|salon|chambre|salle)|(cuisine|sejour|salon|chambre)s? (plus )?(grande?s?|vastes?|spacieu\w+)/.test(t)) ko.push("taille d'une pièce : à régler avec « Modifier les pièces »");
-  if(/dressing|salle de (jeux?|sport|cinema|priere)|home cinema|bibliotheque|buanderie|chambre d'amis|salle a manger/.test(t)) ko.push("pièce particulière : changez la fonction d'une pièce avec « Modifier les pièces »");
-  if(/sous[- ]sol|cave|mezzanine|toit[- ]terrasse|rooftop|balcon/.test(t)&&!tower) ko.push("sous-sol, mezzanine, balcon ou toit-terrasse");
+  if(!pro&&/(grande?|vaste|spacieu\w+|immense) (cuisine|sejour|salon|chambre|salle)|(cuisine|sejour|salon|chambre)s? (plus )?(grande?s?|vastes?|spacieu\w+)/.test(t)) ko.push("taille d'une pièce : à régler avec « Modifier les pièces »");
+  if(!pro&&/dressing|salle de (jeux?|sport|cinema|priere)|home cinema|bibliotheque|buanderie|chambre d'amis|salle a manger/.test(t)) ko.push("pièce particulière : changez la fonction d'une pièce avec « Modifier les pièces »");
+  if(pro&&/(grande?|vaste|spacieu\w+|immense) (boutique|magasin|bureau|salle|reserve|accueil)|ascenseur|parking couvert|sous[- ]sol/.test(t)) ko.push("taille d'une pièce, ascenseur, parking couvert ou sous-sol");
+  if(/sous[- ]sol|cave|mezzanine|toit[- ]terrasse|rooftop|balcon/.test(t)&&!tower&&!pro) ko.push("sous-sol, mezzanine, balcon ou toit-terrasse");
   if(/jardin|potager|verger|arbres?/.test(t)) ko.push("aménagement du jardin");
-  if(/\bterrasse\b/.test(t)&&!/toit[- ]terrasse/.test(t)) ok.push("terrasse (déjà prévue)");
+  if(!pro&&/\bterrasse\b/.test(t)&&!/toit[- ]terrasse/.test(t)) ok.push("terrasse (déjà prévue)");
   if(/budget|million|fcfa|\bf cfa\b/.test(t)) ko.push("budget total : réglez plutôt le coût au m² et la finition");
   return {set,ok:[...new Set(ok)],ko:[...new Set(ko)]};
 }
-function applyWish(p){const w=String($("#wish").value||"").slice(0,WISH_MAX).trim();if(!w||isPro(p.type)){delete p.wish;return p}const r=parseWish(w,p);Object.assign(p,r.set);
+function applyWish(p){const w=String($("#wish").value||"").slice(0,WISH_MAX).trim();if(!w){delete p.wish;return p}const r=parseWish(w,p);Object.assign(p,r.set);
   if(r.set.std&&!+$("#pm").value) p.pm=PRICE[p.std];if("type" in r.set||"n" in r.set){const dm=dimsFrom(p.area,p.shape,p.fw);p.W=dm.W;p.D=dm.D}p.wish=w;return p}
 function wishNote(){const el=$("#wishnote");if(!el) return;const w=cur&&cur.wish;if(!w){el.hidden=true;return}
   const r=parseWish(w,cur);el.hidden=false;
-  el.innerHTML=(r.ok.length?`<b>Souhaits pris en compte :</b> ${r.ok.map(xe).join(", ")}.`:`<b>Aucun souhait reconnu dans votre texte.</b> Utilisez des mots simples : chambres, garage, bureau, piscine, étage.`)+(r.ko.length?`<br><b>Non pris en compte :</b> ${r.ko.map(xe).join(" ; ")}.`:"")}
+  el.innerHTML=(r.ok.length?`<b>Souhaits pris en compte :</b> ${r.ok.map(xe).join(", ")}.`:`<b>Aucun souhait reconnu dans votre texte.</b> Utilisez des mots simples : ${isPro(cur.type)?(cur.type==="com"?"boutiques, étage, galerie, finition":"bureaux, étage, terrasse, finition"):"chambres, garage, bureau, piscine, étage"}.`)+(r.ko.length?`<br><b>Non pris en compte :</b> ${r.ko.map(xe).join(" ; ")}.`:"")}
 function pmHint(){const s=$("#std"),h=$("#pmhint");if(!h) return;const k=s.value||"std",o=[...s.options].find(x=>x.value===k);h.innerHTML=`Prix courant pour une finition ${xe(o.text.toLowerCase())} : <b>${fmt(PRICE[k])} F par m²</b>. <button type="button" class="linkbtn" id="pmuse">Utiliser ce prix</button>`;
   $("#pmuse").onclick=()=>{$("#pm").value=PRICE[s.value||"std"];$("#pmerr").hidden=true;$("#pm").dispatchEvent(new Event("change",{bubbles:true}))}}
 function covVal(){const v=Math.round(+$("#cov").value)||50;return Math.max(10,Math.min(90,v))}
@@ -3800,7 +3872,7 @@ function renderPlan(){wishNote();
   ["#sacts","#savebar"].forEach(q=>{const e=$(q);if(e) e.hidden=false});syncRes();
   if(!(model.planLevels||[]).some(x=>x.li===level)) level=0;
   levelTabs($("#tabs"),model,level,l=>{level=l;drawInto($("#sheet"),model,level);pulse($("#sheet"))});
-  $("#ptitle").textContent=[typeLabel(model.p),model.pro?"":STYLES[model.style],progLabel(model),model.lieu].filter(Boolean).join(" · ");
+  $("#ptitle").textContent=[typeLabel(model.p),styleLabel(model),progLabel(model),model.lieu].filter(Boolean).join(" · ");
   drawInto($("#sheet"),model,level);
   const notes=[...model.notes];
   if(model.or==="E"||model.or==="O") notes.push({t:"Rue à l'"+(model.or==="E"?"est":"ouest")+" : la façade principale prend le soleil bas. Prévoir brise-soleil verticaux ou claustras."});
@@ -3818,10 +3890,10 @@ function lotsBase(m,T){const lots=[["Fondations et terrassement",.13],["Murs et 
   return lots.map(([l,p])=>`<tr><td>${l}<div class="bar" style="width:${p*300}%"></div></td><td class="n">${Math.round(p*100)} %</td><td class="n">${F(T*p)}</td></tr>`).join("")}
 function costs(m){
   $("#tot").textContent=F(m.total);$("#range").textContent="de "+F(m.total*0.85)+" à "+F(m.total*1.15);
-  $("#cost-lead").textContent=`${fmt(m.builtArea)} m² à ${fmt(m.pm)} FCFA le m², ajusté pour ${m.lieu}${m.type!=="pp"&&!m.pro?" et pour les étages":""}${m.extras.length?", plus les équipements":""}. Le terrain, l'architecte et les raccordements (eau, électricité) ne sont pas compris.`;
+  $("#cost-lead").textContent=`${fmt(m.builtArea)} m² à ${fmt(m.pm)} FCFA le m², ajusté pour ${m.lieu}${(m.pro?m.levels.length>1:m.type!=="pp")?" et pour les étages":""}${m.extras.length?", plus les équipements":""}. Le terrain, l'architecte et les raccordements (eau, électricité) ne sont pas compris.`;
   $("#lots").innerHTML=lotsHtml(m);
   const S=m.builtArea,wall=2*(m.bw+m.bd)*m.levels.length*1.9*3,terre=m.zone==="savane"||m.zone==="sahel";
-  const q=[["Ciment (sacs de 50 kg)",S*(terre?1.1:1.5)*m.kType],[terre?"Briques de terre compressée":"Parpaings creux (15 et 20 cm)",wall*(terre?24:12.5)],["Fer à béton (kg)",S*(m.type==="rn"?40+2*m.nf:m.type==="r2"?38:m.type==="r1"?32:22)],["Sable (m³)",S*0.35],["Gravier (m³)",S*0.22*m.kType],["Toiture (m²)",m.foot*1.25]];
+  const q=[["Ciment (sacs de 50 kg)",S*(terre?1.1:1.5)*m.kType],[terre?"Briques de terre compressée":"Parpaings creux (15 et 20 cm)",wall*(terre?24:12.5)],["Fer à béton (kg)",S*(m.type==="rn"?40+2*m.nf:m.levels.length>2?38:m.levels.length>1?32:22)],["Sable (m³)",S*0.35],["Gravier (m³)",S*0.22*m.kType],["Toiture (m²)",m.foot*1.25]];
   $("#qty").innerHTML=q.map(([l,v])=>`<tr><td>${l}</td><td class="n">${fmt(v)}</td></tr>`).join("");
   $("#mat-lead").textContent="Choisis pour la "+m.Z.nom+".";
   $("#mats").innerHTML=m.Z.mats.map(([k,b,p])=>`<div class="mat"><div class="k">${k}</div><b>${b}</b><p>${p}</p></div>`).join("");
@@ -3918,6 +3990,15 @@ const PROP_DEF=[
   {name:"Maison Patio",style:"bio",type:"pp",desc:"Bioclimatique, organisée autour d'un patio planté"},
   {name:"Duplex Horizon",style:"mini",type:"r1",desc:"Duplex minimaliste, chambres à l'étage"}];
 function propDefs(base){
+  const et=isPro(base.type)?Math.max(0,Math.min(2,+base.et||0)):0;
+  if(base.type==="com"&&et) return [
+    {name:"Centre commercial",over:{},desc:"Galerie en bas, coursive couverte en haut, escalier commun"},
+    {name:"Galerie marchande",over:{et:0,nb:Math.min(6,base.nb||DEF.nb)},desc:"Les boutiques au rez-de-chaussée seulement, sans étage, pour un budget réduit"},
+    {name:"Grandes surfaces",over:{nb:et+1},desc:"Une seule grande boutique par niveau, avec réserve et bureau"}];
+  if(base.type==="bur"&&et) return [
+    {name:"Bureaux Lagune",over:{plus:true},desc:"Couloir central à chaque niveau, direction en haut, terrasse de pause couverte"},
+    {name:"Bureaux compacts",over:{plus:false},desc:"Le même programme sans terrasse, pour un budget réduit"},
+    {name:"Bureaux de plain-pied",over:{et:0,nb:Math.min(12,base.nb||DEF.nb)},desc:"Tous les bureaux au rez-de-chaussée, si le terrain le permet"}];
   if(base.type==="com") return [
     {name:"Galerie marchande",over:{plus:true},desc:"Boutiques en bande derrière une galerie couverte"},
     {name:"Boutiques sur rue",over:{plus:false},desc:"Vitrines directement sur la rue, toute la profondeur pour la vente"},
@@ -4090,7 +4171,7 @@ function faqData(){
     {g:"Plans",items:[
       ["Comment obtenir une autre disposition des pièces ?","Cliquez sur « Autre variante » : l'outil réorganise les pièces avec les mêmes réglages. Vous pouvez aussi ouvrir l'onglet Propositions pour comparer trois maisons différentes sur le même terrain."],
       ["Comment voir les étages ?","Les onglets au-dessus du plan permettent de passer d'un niveau à l'autre. Pour un immeuble, les étages identiques sont regroupés dans « Étage courant », avec le rez-de-chaussée et le toit-terrasse à part."],
-      ["Peut-on faire autre chose que des maisons ?","Oui. Avec les offres Moyen et Max, l'onglet Création propose aussi des boutiques (une grande, ou plusieurs en bande avec une galerie couverte) et des bureaux (accueil, bureaux, salle de réunion, sanitaires, coin repas). Ces plans partent de dispositions courantes dans la région et y ajoutent une idée adaptée au climat. Ce sont des esquisses : pour un bâtiment qui reçoit du public, faites valider la sécurité incendie et l'accessibilité par un architecte."],
+      ["Peut-on faire autre chose que des maisons ?","Oui. Avec les offres Moyen et Max, l'onglet Création propose aussi des boutiques (une grande, ou plusieurs en bande avec une galerie couverte) et des bureaux (accueil, bureaux, salle de réunion, sanitaires, coin repas). Comme pour une maison, vous choisissez le nombre d'étages (sans étage, 1 ou 2), le style, la finition, et vous pouvez décrire vos souhaits en quelques mots. Ces plans partent de dispositions courantes dans la région et y ajoutent une idée adaptée au climat. Ce sont des esquisses : pour un bâtiment qui reçoit du public, faites valider la sécurité incendie et l'accessibilité par un architecte."],
       ["Que propose l'option Immeuble ?","Choisissez « Immeuble », puis le nombre d'étages, jusqu'à R+10. En immeuble d'appartements, réglez le nombre et le type d'appartements par étage, et l'usage du rez-de-chaussée : appartements, commerces ou parking sur pilotis. En maison familiale, les chambres occupent les premiers étages et les niveaux supérieurs accueillent les espaces de détente."],
       ["Comment voir le plan en plein écran ?","Touchez le plan ou le bouton « Plein écran ». Pincez ou touchez deux fois pour zoomer, glissez pour vous déplacer ; la touche Échap, le bouton de fermeture ou le bouton retour du téléphone ramènent à la page."],
       ["Les plans peuvent-ils servir pour le permis de construire ?","Non. Ce sont des esquisses de principe, pour démarrer une étude et discuter avec un client. Les plans définitifs doivent être établis par un architecte, avec une étude de sol et une étude de structure."]]},
