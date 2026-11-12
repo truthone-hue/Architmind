@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vllAH9UVOT0EcOlc0V8Hl06KgKMLcDwx0dc+FlRS2tU=' 'sha256-irNc04peyVwLiA9yAD5+H0xK/6hHWhpV9u+m2s5qvqw=' 'sha256-Bt3BZPs64j/HZ6WoULYfLoKBkhTWaD+2eVMZSOwJWt4=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-BzsWDhIm3jcb7smc0fuwGyS5k/qTanmEV+KpavvcdSU=' 'sha256-nlYBKJ7p3qgxyBscqjEMqI7JMgkNcicBLj/zzrvJ5SA=' 'sha256-XEVpi8PwldIBZeu5uXdZHWzOoh6mgrawgidXuTMI1qY=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -1385,13 +1385,13 @@ const PRICE={eco:160000,std:210000,haut:300000,luxe:420000};
 const FIN3D={
   eco:{nom:"économique",wall:"#C89A5B",plinth:0x8E4A30,plinthN:"rouge latérite",trim:0xEADBC0,frame:"blanc",floor:"carrelage",roofColor:"#8C3B2A",tile:0xD9C6A3,
     in:{day:0xE9D2A6,night:0xC5D9D2,wet:0xB9D6CC,circ:0xEBDDBE,accDay:0xC98A4B,accNight:0x6FA79B},inN:["crème","ocre","vert d'eau"],duvet:0xD98C5F,rug:0xB7895B,fab2:0x4F7C73},
-  std:{nom:"standard",wall:"#CFB48A",plinth:0xA9623F,plinthN:"terre cuite",trim:0xEFE6D6,frame:"anthra",floor:"carrelage",tile:0xDDD0BA,
+  std:{nom:"standard",wall:"#CDAE80",plinth:0xA9623F,plinthN:"terre cuite",trim:0xEFE6D6,frame:"anthra",floor:"carrelage",tile:0xDDD0BA,
     in:{day:0xE3D6BF,night:0xDDCDBB,wet:0xC2D8D2,circ:0xE9DFCB,accDay:0x7F9A7B,accNight:0xC07F62},inN:["lin","vert sauge","terre cuite"],duvet:0x8FA7A0,rug:0xA89A86,fab2:0x5E7C74},
   haut:{nom:"haut de gamme",wall:"#A79A86",plinth:0x5F5B55,plinthN:"pierre grise",trim:0xE6DFD3,frame:"anthra",floor:"parquet",roofColor:"#3E4246",tile:0xCFC8BC,
     in:{day:0xE0D8CA,night:0xD5CBBD,wet:0xBCC6C1,circ:0xE4DCCF,accDay:0x3F5A4B,accNight:0x3B4C60},inN:["blanc chaud","vert profond","bleu ardoise"],duvet:0x6F8F86,rug:0x8C7B66,fab2:0x3F5E53},
-  luxe:{nom:"luxe",wall:"#8E7C68",plinth:0x2B2E31,plinthN:"anthracite",trim:0xD2C4AC,frame:"bois",floor:"marbre",roofColor:"#3E4246",tile:0xE2DACB,
+  luxe:{nom:"luxe",wall:"#806E5B",plinth:0x2B2E31,plinthN:"anthracite",trim:0xD2C4AC,frame:"bois",floor:"marbre",roofColor:"#3E4246",tile:0xE2DACB,
     in:{day:0xE4D8C2,night:0xC4B5A0,wet:0xB5B0A6,circ:0xDDD0BA,accDay:0x27332E,accNight:0x4C2F3A},inN:["ivoire","vert sombre","aubergine"],duvet:0x7A5560,rug:0x5B4A3E,fab2:0x2E4A44}};
-const WALL_NAMES={"#F4F1EA":"blanc cassé","#E9DFCF":"crème","#C89A5B":"ocre","#CFB48A":"sable","#A79A86":"greige","#8E7C68":"taupe"};
+const WALL_NAMES={"#F4F1EA":"blanc cassé","#E9DFCF":"crème","#C89A5B":"ocre","#CDAE80":"sable","#A79A86":"greige","#806E5B":"taupe"};
 function defaults3dBase(m){const z=m.zone;return {facade:(z==="savane"||z==="sahel")?"btc":"enduit",wall:z==="foret"?"#E9DFCF":"#F4F1EA",
   roof:z==="foret"?"deux":z==="savane"?"mono":"plat",roofMat:"tole",roofColor:z==="foret"?"#5B3E2E":z==="sahel"?"#B98E62":"#3E4246",frame:"anthra",floor:"carrelage",hour:10,veg:true,car:true}}
 function defaults3d(m){const F=FIN3D[m.std]||FIN3D.std;
@@ -2472,7 +2472,7 @@ if(typeof module!=="undefined") module.exports={compute,openings,drawTech,story,
 <script>
 /* ====================== MAQUETTE 3D RÉALISTE ====================== */
 const H3=2.9,SL3=0.28;
-const WALLS=["#F4F1EA","#E9DFCF","#CFB48A","#C89A5B","#D9C3A0","#C98F6B","#A79A86","#8E7C68","#B8BDBF","#6F7D78"];
+const WALLS=["#F4F1EA","#E9DFCF","#CDAE80","#C89A5B","#D9C3A0","#C98F6B","#A79A86","#806E5B","#B8BDBF","#6F7D78"];
 const ROOFS=["#3E4246","#5B3E2E","#8C3B2A","#B98E62","#E9E6DF","#2F4A3A"];
 
 /* ---------- textures procédurales ---------- */
@@ -2617,7 +2617,7 @@ function mount3D(el,m,o,st){
     door:std({color:0x5a3a24,roughness:0.55}),metal:std({color:0x2c2f31,metalness:0.8,roughness:0.35}),
     ground:std({map:T.ground,roughness:1}),paver:std({map:T.paver,roughness:0.9}),asphalt:std({map:T.asphalt,roughness:0.95}),curb:std({color:0xbdb9b0}),
     fence:std({map:T.plaster,color:o.wall,roughness:0.95}),
-    floorMain:{carrelage:std({map:T.tile,color:FIN.tile,roughness:0.35}),parquet:std({map:T.parquet,roughness:0.55}),beton:std({map:T.concrete,roughness:0.45}),marbre:std({map:T.marble,roughness:0.15,envMapIntensity:1.4})}[o.floor],
+    floorMain:{carrelage:std({map:T.tile,color:FIN.tile,roughness:0.35}),parquet:std({map:T.parquet,roughness:0.55}),beton:std({map:T.concrete,roughness:0.45}),marbre:std({map:T.marble,color:0xE6DCCC,roughness:0.2,envMapIntensity:inside?0.45:1.4})}[o.floor],
     floorWet:std({map:T.wet,roughness:0.3}),floorNight:o.floor==="carrelage"&&FIN!==FIN3D.eco?std({map:T.parquet,roughness:0.55}):null,deck:std({map:T.deck,roughness:0.75}),patio:std({map:T.ground,roughness:1}),
     // mobilier
     fab:std({map:T.fabric,color:0xC9C4BA,roughness:1}),fab2:std({map:T.fabric,color:FIN.fab2,roughness:1}),fab3:std({map:T.fabric,color:0xB9804F,roughness:1}),
@@ -3055,7 +3055,7 @@ function refreshOffer(){
 }
 function limitReached(){toast(`Limite quotidienne atteinte (${O().quota} plans). Passez à une offre supérieure.`)}
 
-const NEWS=[{"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation"}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation"}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation"}];
+const NEWS=[{"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:30:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation"}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation"}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation"}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation"}];
 /* ---------- Comptes : connexion par e-mail et mot de passe (Firebase) ---------- */
 const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false,verified:false};
 // Administrateurs : empreintes SHA-256 des adresses e-mail (config.js), pour ne pas publier les adresses.
@@ -3989,7 +3989,7 @@ function area3D(host,m){
   // visite guidée : carte de la pièce et commandes
   const TI={prev:'<path d="M15 6l-6 6 6 6"/>',next:'<path d="M9 6l6 6-6 6"/>',play:'<path d="M8 5.5v13l11-6.500z" fill="currentColor"/>',pause:'<path d="M8 5v14M16 5v14"/>',home:'<path d="M4 11l8-7 8 7v9H4z"/>'};
   const tic=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${TI[k]}</svg>`;
-  const floorName=r=>r.t==="out"?"Terrasse en bois":r.t==="wet"?"Carrelage antidérapant":({carrelage:r.t==="night"?"Parquet":"Carrelage",parquet:"Parquet",beton:"Béton ciré",marbre:"Marbre"}[opts3d.floor]||"Carrelage");
+  const floorName=r=>r.t==="out"?"Terrasse en bois":r.t==="wet"?"Carrelage antidérapant":({carrelage:r.t==="night"&&m.std!=="eco"?"Parquet":"Carrelage",parquet:"Parquet",beton:"Béton ciré",marbre:"Marbre"}[opts3d.floor]||"Carrelage");
   st.stops=rooms;
   st.onTour=info=>{const t=q("tour");if(!t||st.mode!=="tour") return;const r=info.room,sig=info.i+"|"+info.playing+"|"+(info.phase==="doll");if(t.dataset.sig===sig) return;t.dataset.sig=sig;
     const card=info.phase==="doll"||!r?`<small>Vue d'ensemble</small><b>${typeLabel(m.p)}</b><span>${info.n} pièce${info.n>1?"s":""} à visiter</span>`
