@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GgiUsEwTCcBPrEycGijp42szvSu+jqxqlxu9z62ADQw=' 'sha256-jms7mbSpCxqzh3yTNzH/hk2u0XM0bepY1gRLncGNamU=' 'sha256-Bt3BZPs64j/HZ6WoULYfLoKBkhTWaD+2eVMZSOwJWt4=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vllAH9UVOT0EcOlc0V8Hl06KgKMLcDwx0dc+FlRS2tU=' 'sha256-irNc04peyVwLiA9yAD5+H0xK/6hHWhpV9u+m2s5qvqw=' 'sha256-Bt3BZPs64j/HZ6WoULYfLoKBkhTWaD+2eVMZSOwJWt4=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -1383,15 +1383,15 @@ const PRICE={eco:160000,std:210000,haut:300000,luxe:420000};
    murs intérieurs par type de pièce et mur d'accent des pièces de vie et des chambres, textiles.
    Ce sont les réglages de départ : l'offre Max peut ensuite changer façade, toiture, menuiseries et sols. */
 const FIN3D={
-  eco:{nom:"économique",wall:"#D9B98A",plinth:0x9C5236,plinthN:"rouge latérite",trim:0xF0E4CE,frame:"blanc",floor:"carrelage",roofColor:"#8C3B2A",tile:0xEADFCB,
-    in:{day:0xF3E6CB,night:0xDDE8E3,wet:0xD6E7E0,circ:0xF3E9D2,accDay:0xDDA76A,accNight:0x8FB5AC},inN:["crème","ocre","vert d'eau"],duvet:0xD98C5F,rug:0xB7895B,fab2:0x4F7C73},
-  std:{nom:"standard",wall:"#E6D8BE",plinth:0xB9714A,plinthN:"terre cuite",trim:0xF3EDE2,frame:"anthra",floor:"carrelage",tile:0xF1EADC,
-    in:{day:0xEFE7D8,night:0xEAE0D3,wet:0xDCE6E2,circ:0xF1EBDF,accDay:0x9DB09A,accNight:0xCFA089},inN:["lin","vert sauge","terre cuite rosée"],duvet:0x8FA7A0,rug:0xA89A86,fab2:0x5E7C74},
-  haut:{nom:"haut de gamme",wall:"#CFC6B8",plinth:0x77726A,plinthN:"pierre grise",trim:0xEBE5DB,frame:"anthra",floor:"parquet",roofColor:"#3E4246",tile:0xE8E4DC,
-    in:{day:0xEEE9E0,night:0xE6DFD5,wet:0xD5D9D5,circ:0xEFEAE2,accDay:0x51695A,accNight:0x4A5A6C},inN:["blanc chaud","vert profond","bleu ardoise"],duvet:0x6F8F86,rug:0x8C7B66,fab2:0x3F5E53},
-  luxe:{nom:"luxe",wall:"#BCAE9B",plinth:0x33373A,plinthN:"anthracite",trim:0xDCD2BF,frame:"bois",floor:"marbre",roofColor:"#3E4246",tile:0xEFEAE0,
-    in:{day:0xF0E9DC,night:0xD8CDBD,wet:0xCBC7BF,circ:0xECE4D5,accDay:0x33423C,accNight:0x5C3D47},inN:["ivoire","vert sombre","aubergine"],duvet:0x7A5560,rug:0x5B4A3E,fab2:0x2E4A44}};
-const WALL_NAMES={"#F4F1EA":"blanc cassé","#E9DFCF":"crème","#D9B98A":"ocre clair","#E6D8BE":"ivoire sable","#CFC6B8":"greige","#BCAE9B":"taupe"};
+  eco:{nom:"économique",wall:"#C89A5B",plinth:0x8E4A30,plinthN:"rouge latérite",trim:0xEADBC0,frame:"blanc",floor:"carrelage",roofColor:"#8C3B2A",tile:0xD9C6A3,
+    in:{day:0xE9D2A6,night:0xC5D9D2,wet:0xB9D6CC,circ:0xEBDDBE,accDay:0xC98A4B,accNight:0x6FA79B},inN:["crème","ocre","vert d'eau"],duvet:0xD98C5F,rug:0xB7895B,fab2:0x4F7C73},
+  std:{nom:"standard",wall:"#CFB48A",plinth:0xA9623F,plinthN:"terre cuite",trim:0xEFE6D6,frame:"anthra",floor:"carrelage",tile:0xDDD0BA,
+    in:{day:0xE3D6BF,night:0xDDCDBB,wet:0xC2D8D2,circ:0xE9DFCB,accDay:0x7F9A7B,accNight:0xC07F62},inN:["lin","vert sauge","terre cuite"],duvet:0x8FA7A0,rug:0xA89A86,fab2:0x5E7C74},
+  haut:{nom:"haut de gamme",wall:"#A79A86",plinth:0x5F5B55,plinthN:"pierre grise",trim:0xE6DFD3,frame:"anthra",floor:"parquet",roofColor:"#3E4246",tile:0xCFC8BC,
+    in:{day:0xE0D8CA,night:0xD5CBBD,wet:0xBCC6C1,circ:0xE4DCCF,accDay:0x3F5A4B,accNight:0x3B4C60},inN:["blanc chaud","vert profond","bleu ardoise"],duvet:0x6F8F86,rug:0x8C7B66,fab2:0x3F5E53},
+  luxe:{nom:"luxe",wall:"#8E7C68",plinth:0x2B2E31,plinthN:"anthracite",trim:0xD2C4AC,frame:"bois",floor:"marbre",roofColor:"#3E4246",tile:0xE2DACB,
+    in:{day:0xE4D8C2,night:0xC4B5A0,wet:0xB5B0A6,circ:0xDDD0BA,accDay:0x27332E,accNight:0x4C2F3A},inN:["ivoire","vert sombre","aubergine"],duvet:0x7A5560,rug:0x5B4A3E,fab2:0x2E4A44}};
+const WALL_NAMES={"#F4F1EA":"blanc cassé","#E9DFCF":"crème","#C89A5B":"ocre","#CFB48A":"sable","#A79A86":"greige","#8E7C68":"taupe"};
 function defaults3dBase(m){const z=m.zone;return {facade:(z==="savane"||z==="sahel")?"btc":"enduit",wall:z==="foret"?"#E9DFCF":"#F4F1EA",
   roof:z==="foret"?"deux":z==="savane"?"mono":"plat",roofMat:"tole",roofColor:z==="foret"?"#5B3E2E":z==="sahel"?"#B98E62":"#3E4246",frame:"anthra",floor:"carrelage",hour:10,veg:true,car:true}}
 function defaults3d(m){const F=FIN3D[m.std]||FIN3D.std;
@@ -2472,7 +2472,7 @@ if(typeof module!=="undefined") module.exports={compute,openings,drawTech,story,
 <script>
 /* ====================== MAQUETTE 3D RÉALISTE ====================== */
 const H3=2.9,SL3=0.28;
-const WALLS=["#F4F1EA","#E9DFCF","#E6D8BE","#D9B98A","#D9C3A0","#C98F6B","#CFC6B8","#BCAE9B","#B8BDBF","#6F7D78"];
+const WALLS=["#F4F1EA","#E9DFCF","#CFB48A","#C89A5B","#D9C3A0","#C98F6B","#A79A86","#8E7C68","#B8BDBF","#6F7D78"];
 const ROOFS=["#3E4246","#5B3E2E","#8C3B2A","#B98E62","#E9E6DF","#2F4A3A"];
 
 /* ---------- textures procédurales ---------- */
@@ -2591,20 +2591,21 @@ function mount3D(el,m,o,st){
   const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance"});
   const phone=matchMedia("(pointer:coarse)").matches&&Math.min(screen.width,screen.height)<900;
   renderer.setPixelRatio(Math.min(phone?1.5:2,window.devicePixelRatio||1));renderer.setSize(el.clientWidth||600,el.clientHeight||400);
-  renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=inside?(S.night?1.0:1.25):(S.night?0.9:0.82);
+  renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=inside?(S.night?0.7:0.6):(S.night?0.9:0.82);
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
   el.prepend(renderer.domElement);
   scene.background=skyTex(S,m.p&&m.p.seed);
   const pm=new THREE.PMREMGenerator(renderer);const env=pm.fromScene(envScene(S),0.04);scene.environment=env.texture;pm.dispose();
   if(!inside) scene.fog=new THREE.Fog(S.hor.getHex(),ext*2.4,ext*6);
   // lumières
-  scene.add(new THREE.HemisphereLight(S.top.getHex(),S.gnd.getHex(),inside?S.hemi:S.hemi*0.68));
+  // dedans, la lumière d'ambiance est chaude (réfléchie par les murs) ; dehors elle garde le bleu du ciel
+  scene.add(new THREE.HemisphereLight(inside?0xfff1dc:S.top.getHex(),inside?0xcdbfa8:S.gnd.getHex(),inside?S.hemi*0.86:S.hemi*0.68));
   const sun=new THREE.DirectionalLight(S.color,S.intensity);sun.position.copy(S.dir).multiplyScalar(Math.max(big*2,HT*2.5));sun.castShadow=true;
   const sc=Math.max(big*0.8,HT*0.9);Object.assign(sun.shadow.camera,{left:-sc,right:sc,top:sc,bottom:-sc,near:1,far:Math.max(big*5,HT*7)});sun.shadow.camera.updateProjectionMatrix();
   const shm=phone?1024:(renderer.capabilities.maxTextureSize>=4096?4096:2048);sun.shadow.mapSize.set(shm,shm);sun.shadow.bias=-0.0004;sun.shadow.normalBias=0.03;scene.add(sun);scene.add(sun.target);
   // matériaux ; FIN : palette du niveau de finition
   const FIN=FIN3D[m.std]||FIN3D.std;
-  const std=(p)=>new THREE.MeshStandardMaterial(Object.assign({roughness:0.85,metalness:0,envMapIntensity:inside?1:0.4},p));
+  const std=(p)=>new THREE.MeshStandardMaterial(Object.assign({roughness:0.85,metalness:0,envMapIntensity:inside?0.2:0.4},p));
   const facade={enduit:std({map:T.plaster,color:o.wall,roughness:0.95}),btc:std({map:T.btc,roughness:0.95}),pierre:std({map:T.stone,roughness:0.9}),bois:std({map:T.wood,roughness:0.75})}[o.facade]||std({map:T.plaster,color:o.wall});
   const M={facade,inner:std({map:T.plaster,color:0xF6F4EF,roughness:0.95}),ceil:std({color:0xF7F6F2,roughness:1}),
     plinth:std({map:T.concrete,color:FIN.plinth}),slabSide:std({map:T.plaster,color:FIN.trim}),
@@ -2831,8 +2832,8 @@ function mount3D(el,m,o,st){
     const levelFor=li=>{levels.forEach((g,i)=>{g.visible=i<=li});roofGrp.visible=li>=m.levels.length-1};
     const setDoll=on=>{scene.background=on?white:sky;ceils.forEach(c=>{c.visible=!on});light.visible=!on;
       if(on){levels.forEach((g,i)=>{g.visible=i===0||!!m.isTower});roofGrp.visible=!!m.isTower;cam.fov=36;cam.near=0.2;
-        sun.position.set(bcx+dd*0.6,dollT.y+dd*1.6,bcz+dd*0.45);sun.color.set(0xfff4e6);sun.intensity=1.25;amb.intensity=0.3;renderer.toneMappingExposure=0.82}
-      else{cam.fov=cam.aspect<0.8?84:70;cam.near=0.05;sun.position.copy(sun0.p);sun.color.copy(sun0.c);sun.intensity=sun0.i;amb.intensity=0.1;renderer.toneMappingExposure=0.95}
+        sun.position.set(bcx+dd*0.6,dollT.y+dd*1.6,bcz+dd*0.45);sun.color.set(0xfff4e6);sun.intensity=1.25;amb.intensity=0.3;renderer.toneMappingExposure=0.5}
+      else{cam.fov=cam.aspect<0.8?84:70;cam.near=0.05;sun.position.copy(sun0.p);sun.color.copy(sun0.c);sun.intensity=sun0.i;amb.intensity=0.1;renderer.toneMappingExposure=0.7}
       cam.updateProjectionMatrix()};
     const emit=()=>{if(st.onTour) st.onTour({i:Q.i,n:stops.length,phase:Q.phase,playing:Q.playing,room:Q.i>=0?stops[Q.i].r:null,li:Q.i>=0?stops[Q.i].li:0})};
     const toDoll=()=>{Q.phase="doll";Q.i=-1;Q.t0=performance.now();fade.style.opacity="0";setDoll(true);emit()};
