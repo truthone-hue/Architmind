@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ppimoRy9Y73MDXBy6Hcu3iwPZskpCqaws6F/zBKSnsU=' 'sha256-ukYAY5HxRW7hsBaISyuIS9tVye2V+FP8yme9H4k3IxE=' 'sha256-CL4CDS8hj9oQx5HalYP19Qt57dmQCh1gb9CAr90rbAM=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ppimoRy9Y73MDXBy6Hcu3iwPZskpCqaws6F/zBKSnsU=' 'sha256-ukYAY5HxRW7hsBaISyuIS9tVye2V+FP8yme9H4k3IxE=' 'sha256-RTk9+uG+PmMsdUycY983Qbd3JldpWCEZdhnCYxD0d+4=' 'sha256-wURoRIWBGrLg6uqoT0ccaSAB9c/YvLyneMyMeTF9ggo=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -780,18 +780,18 @@ body:not(.photos-ok) .pcredit{display:none}
 .three .tfade{position:absolute;inset:0;pointer-events:none;opacity:0;background:#14100c}
 .three .tourui{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;pointer-events:none}
 .three .tourui[hidden]{display:none}
-.tcard{pointer-events:auto;min-width:0;max-width:min(300px,58%);padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#111;display:flex;flex-direction:column;gap:2px;box-shadow:0 14px 30px -18px rgba(0,0,0,.6);animation:tcardIn .22s cubic-bezier(.23,1,.32,1)}
-.tcard small{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#555}
-.tcard b{font-size:17px;line-height:1.2}
-.tcard span{font-size:13px;color:#444}
+.tourcard{pointer-events:auto;min-width:0;max-width:min(300px,58%);padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#111;display:flex;flex-direction:column;gap:2px;box-shadow:0 14px 30px -18px rgba(0,0,0,.6);animation:tcardIn .22s cubic-bezier(.23,1,.32,1)}
+.tourcard small{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#555}
+.tourcard b{font-size:17px;line-height:1.2}
+.tourcard span{font-size:13px;color:#444}
 @keyframes tcardIn{from{opacity:0;transform:translateY(6px)}}
 .tbtns{pointer-events:auto;display:flex;gap:6px;flex:none}
 .tbtns button{width:44px;height:44px;min-height:0;padding:0;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.88);color:#111;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 8px 18px -10px rgba(0,0,0,.6);transition:transform .16s ease-out}
 .tbtns button:active{transform:scale(.95)}
 .tbtns button:disabled{opacity:.45}
 .tbtns svg{width:18px;height:18px}
-@media (max-width:600px){.three .tourui{flex-direction:column;align-items:stretch}.tcard{max-width:none;padding:10px 12px}.tcard b{font-size:16px}.tbtns{justify-content:flex-end}}
-@media (prefers-reduced-motion:reduce){.tcard{animation:none}}
+@media (max-width:600px){.three .tourui{flex-direction:column;align-items:stretch}.tourcard{max-width:none;padding:10px 12px}.tourcard b{font-size:16px}.tbtns{justify-content:flex-end}}
+@media (prefers-reduced-motion:reduce){.tourcard{animation:none}}
 
 /* ---------- Autres bâtiments (boutiques, bureaux) ---------- */
 .prolab{margin-top:12px}
@@ -850,6 +850,22 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
 .flegal a,.fbottom a{color:inherit;text-underline-offset:3px}
 .flegal a:hover,.fbottom a:hover{color:var(--ink)}
 .legalnote a,.authnote a{color:inherit;text-underline-offset:3px}
+/* offre déjà active : bouton en contour lisible plutôt que grisé */
+.tcard button:disabled{opacity:1;background:none;color:inherit;box-shadow:inset 0 0 0 1px color-mix(in srgb,currentColor 32%,transparent)}
+/* champ piège anti-robot : hors écran, jamais vu ni atteint au clavier */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+/* bandeau d'information (cookies, statistiques) */
+.cbar{position:fixed;z-index:39;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:430px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:12px 12px 12px 16px;border-radius:18px;
+  background:var(--card);color:var(--ink);border:1px solid var(--hair);box-shadow:var(--shadow-lg);font-size:13px;line-height:1.45;animation:tcardIn .25s cubic-bezier(.23,1,.32,1)}
+.cbar p{margin:0;flex:1 1 180px}
+.cbar a{color:inherit;text-underline-offset:3px;white-space:nowrap}
+.cbtns{display:flex;gap:8px;margin-left:auto}
+.cbtns button{padding:10px 16px;font-size:13px;min-height:44px}
+@media (max-width:760px),(max-height:520px){.cbar{left:8px;right:8px;max-width:none;bottom:calc(92px + env(safe-area-inset-bottom,0px))}}
+@media (prefers-reduced-motion:reduce){.cbar{animation:none}}
+.cmanage{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.cmanage:hover{transform:none;box-shadow:none;color:var(--ink)}
+.cmanage:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 </style>
 <script src="config.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -3119,7 +3135,7 @@ async function renderAuth(){
 }
 function pwScore(pw){let sc=0;if(pw.length>=8) sc++;if(pw.length>=12) sc++;if(/[a-zà-ÿ]/i.test(pw)&&/\d/.test(pw)) sc++;if(/[^\p{L}\p{N}]/u.test(pw)||(/[a-z]/.test(pw)&&/[A-Z]/.test(pw))) sc++;return pw.length<8?Math.min(sc,1):sc}
 function drawAuth(){
-  const box=$("#authbox"),m=AUTH.mode,signup=m==="signup",forgot=m==="forgot";
+  const box=$("#authbox"),m=AUTH.mode,signup=m==="signup",forgot=m==="forgot";AUTH.formT=Date.now();
   if(forgot){
     box.innerHTML=`<div class="authic">${IMAIL}</div><div class="eyebrow">Mot de passe oublié</div><h2>Réinitialiser le mot de passe</h2>
       <p class="sub">Entrez l'adresse e-mail de votre compte : vous recevrez un lien pour choisir un nouveau mot de passe.</p>
@@ -3143,7 +3159,8 @@ function drawAuth(){
       ${signup?`<div class="pwmeter" aria-hidden="true"><i></i></div><p class="pwhint" id="a-pwhint" aria-live="polite">8 caractères au minimum. Mélangez lettres, chiffres et symboles.</p>
       <label class="f" for="a-pw2">Confirmer le mot de passe<input id="a-pw2" type="password" autocomplete="new-password" maxlength="128" enterkeyhint="next" required></label>
       <div class="flabel">Vous êtes<div class="chips" role="radiogroup" aria-label="Vous êtes">${PROFILS.map((x,i)=>`<label class="chip"><input type="radio" name="aprof" value="${x}"${i===0?" checked":""}><span>${x}</span></label>`).join("")}</div></div>
-      <label class="f" for="a-city">Ville principale<select id="a-city">${$("#city").innerHTML}</select></label>`:""}
+      <label class="f" for="a-city">Ville principale<select id="a-city">${$("#city").innerHTML}</select></label>
+      <input class="hp" id="a-hp" name="am_verif" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">`:""}
       <label class="remember"><input type="checkbox" id="a-keep" checked><span>Rester connecté sur cet appareil</span></label>
       <p class="ferr" id="a-err" role="alert" hidden></p>
       <button class="btn authgo" type="submit" id="a-go">${signup?"Créer mon compte":"Se connecter"} <span aria-hidden="true">→</span></button>
@@ -3180,6 +3197,9 @@ async function doSignup(){
   if(!EMAIL_OK.test(email)) return authErr("Indiquez une adresse e-mail valide.",$("#a-email"));
   if(pw.length<8) return authErr("Le mot de passe doit faire au moins 8 caractères.",$("#a-pw"));
   if(pw!==pw2) return authErr("Les deux mots de passe ne sont pas identiques.",$("#a-pw2"));
+  // Anti-robot : un visiteur ne voit pas le champ piège et met plus de 2 s à remplir le formulaire.
+  // Limite connue : n'arrête pas un robot qui appelle Firebase directement (il faudrait App Check + reCAPTCHA).
+  const hp=$("#a-hp");if((hp&&hp.value)||Date.now()-AUTH.formT<2000){if(hp) hp.value="";return authErr("Inscription trop rapide. Patientez deux secondes, puis réessayez.")}
   if(!navigator.onLine) return authErr("L'inscription demande une connexion internet.");
   authErr("");authBusy(true,"Vérification de l'adresse…");
   const bad=await checkEmail(email);if(bad){authBusy(false);return authErr(bad,$("#a-email"))}
@@ -3274,6 +3294,27 @@ async function payer(k,btn){
   }catch(e){if(btn){btn.disabled=false;btn.innerHTML=old}toast("Le paiement n'a pas pu démarrer. Réessayez dans un instant.")}
 }
 
+/* ---------- Bandeau d'information et statistiques de visite ---------- */
+// Le site ne dépose aucun cookie publicitaire. Les statistiques (Cloudflare Web Analytics, sans cookie)
+// ne se chargent que si un jeton est renseigné dans config.js ET que le visiteur a accepté.
+const CK="am_consent",STATS=/^[0-9a-f]{32}$/.test(CFG.statsToken||"")?CFG.statsToken:"";
+function loadStats(){
+  if(!STATS||document.querySelector("script[data-cf-beacon]")) return;
+  const s=document.createElement("script");s.defer=true;s.src="https://static.cloudflareinsights.com/beacon.min.js";
+  s.setAttribute("data-cf-beacon",JSON.stringify({token:STATS}));document.head.appendChild(s)}
+function consentBar(force){
+  const v=stGet(CK);if(v==="oui") loadStats();
+  // sans statistiques : simple information, vue une fois ; avec statistiques : question posée tant qu'il n'y a pas de réponse
+  if((!force&&(STATS?v==="oui"||v==="non":v))||$("#cbar")) return;
+  const b=document.createElement("div");b.id="cbar";b.className="cbar";b.setAttribute("role","region");b.setAttribute("aria-label","Cookies et statistiques");
+  b.innerHTML=`<p>${STATS?"Aucun cookie publicitaire sur ce site. Acceptez-vous des statistiques de visite anonymes, sans cookie ?"
+    :"Ce site n'utilise ni cookie publicitaire ni outil de suivi."} <a href="confidentialite.html">En savoir plus</a></p>
+    <div class="cbtns">${STATS?`<button type="button" class="ghost" data-c="non">Refuser</button><button type="button" data-c="oui">Accepter</button>`:`<button type="button" data-c="ok">J'ai compris</button>`}</div>`;
+  b.querySelectorAll("[data-c]").forEach(x=>x.onclick=()=>{stSet(CK,x.dataset.c);b.remove();if(x.dataset.c==="oui") loadStats()});
+  document.body.appendChild(b)}
+// avec statistiques : lien en bas de page pour changer d'avis à tout moment
+if(STATS){const fl=$(".flegal");if(fl){const m=document.createElement("button");m.type="button";m.className="cmanage";m.textContent="Statistiques de visite";m.onclick=()=>consentBar(true);fl.appendChild(m)}}
+consentBar();
 /* ---------- Téléchargement des plans (offres Moyen et Max) ---------- */
 let DLNS;
 const MIME={pdf:"application/pdf",png:"image/png",svg:"image/svg+xml",dxf:"application/dxf"};
@@ -3837,7 +3878,7 @@ function area3D(host,m){
   st.onTour=info=>{const t=q("tour");if(!t||st.mode!=="tour") return;const r=info.room,sig=info.i+"|"+info.playing+"|"+(info.phase==="doll");if(t.dataset.sig===sig) return;t.dataset.sig=sig;
     const card=info.phase==="doll"||!r?`<small>Vue d'ensemble</small><b>${typeLabel(m.p)}</b><span>${info.n} pièce${info.n>1?"s":""} à visiter</span>`
       :`<small>Pièce ${info.i+1} sur ${info.n}${m.levels.length>1?" · "+lvShort(info.li):""}</small><b>${r.n}</b><span>${dec(r.w*r.h,1)} m² · ${floorName(r)}</span>`;
-    t.innerHTML=`<div class="tcard" aria-live="polite">${card}</div><div class="tbtns"><button type="button" data-t="overview" aria-label="Revenir à la vue d'ensemble"${info.phase==="doll"?" disabled":""}>${tic("home")}</button><button type="button" data-t="prev" aria-label="Pièce précédente">${tic("prev")}</button><button type="button" data-t="toggle" aria-label="${info.playing?"Mettre la visite en pause":"Reprendre la visite"}">${tic(info.playing?"pause":"play")}</button><button type="button" data-t="next" aria-label="Pièce suivante">${tic("next")}</button></div>`;
+    t.innerHTML=`<div class="tourcard" aria-live="polite">${card}</div><div class="tbtns"><button type="button" data-t="overview" aria-label="Revenir à la vue d'ensemble"${info.phase==="doll"?" disabled":""}>${tic("home")}</button><button type="button" data-t="prev" aria-label="Pièce précédente">${tic("prev")}</button><button type="button" data-t="toggle" aria-label="${info.playing?"Mettre la visite en pause":"Reprendre la visite"}">${tic(info.playing?"pause":"play")}</button><button type="button" data-t="next" aria-label="Pièce suivante">${tic("next")}</button></div>`;
     t.querySelectorAll("button").forEach(b=>b.onclick=()=>{if(viewer&&viewer.tour) viewer.tour[b.dataset.t]()})};
   const go=()=>{ctl();q("tour").dataset.sig="";mount3D(three,m,opts3d,st);if(viewer&&!st.roof) viewer.roofGrp.visible=false};
   q("mode").querySelectorAll("button").forEach(b=>b.onclick=()=>{st.mode=b.dataset.mode;st.keep=false;

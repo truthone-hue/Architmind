@@ -23,5 +23,10 @@ window.ARCHITMIND_CONFIG = {
   // Adresse du serveur de paiement (Vercel), sans barre finale.
   // Exemple : "https://architmind-paiement.vercel.app"
   // Tant qu'elle est vide, les boutons des Tarifs annoncent « paiement bientôt disponible ».
-  paiementUrl: "https://architmind-paiement.cheickcamra24ht.workers.dev"
+  paiementUrl: "https://architmind-paiement.cheickcamra24ht.workers.dev",
+
+  // Statistiques de visite (Cloudflare Web Analytics, sans cookie) : jeton de 32 caractères donné par Cloudflare.
+  // Ce jeton est public, ce n'est pas un secret. Tant qu'il est vide, aucune statistique n'est recueillie.
+  // Après l'avoir renseigné, le site doit être reconstruit (les règles de sécurité de la page en dépendent).
+  statsToken: ""
 };
