@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rslrsBdEX0kQDwlASG9Ux1gPYwqH8p/WsvUpK8YCs3w=' 'sha256-cn4RUPqC2etandQ7G1Z9mmFjW2g4U35z5AxUFUHPx3A=' 'sha256-eqoRkDxlDa8CXH0abdJUz1bkyLTmw3li6Esp4sLiKe8=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-33BCadoRHjUQe/DaTOOBjImh9lYB5vh0vGWEjGDsWOM=' 'sha256-cn4RUPqC2etandQ7G1Z9mmFjW2g4U35z5AxUFUHPx3A=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-wJvbF9oYaRFdMT6Z+uiZNMCBWMuldXS+tSmgcDhxUqc=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -28,6 +28,9 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://truthone-hue.github.io/Architmind/">
+<link rel="alternate" hreflang="fr" href="https://truthone-hue.github.io/Architmind/">
+<link rel="alternate" hreflang="en" href="https://truthone-hue.github.io/Architmind/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://truthone-hue.github.io/Architmind/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Architmind CI","alternateName":"Architmind","url":"https://truthone-hue.github.io/Architmind/","inLanguage":"fr"},{"@type":"SoftwareApplication","name":"Architmind CI","applicationCategory":"DesignApplication","operatingSystem":"Web","url":"https://truthone-hue.github.io/Architmind/","image":"https://truthone-hue.github.io/Architmind/icons/partage.jpg","description":"Plans de maison cotés et meublés, coût des travaux en FCFA et maquette 3D, adaptés à votre ville en Côte d'Ivoire et en Afrique de l'Ouest.","inLanguage":"fr","areaServed":"CI","offers":[{"@type":"Offer","name":"Basique","price":"0","priceCurrency":"XOF"},{"@type":"Offer","name":"Moyen","price":"30000","priceCurrency":"XOF"},{"@type":"Offer","name":"Max","price":"60000","priceCurrency":"XOF"}],"publisher":{"@type":"Organization","name":"Hunter Agency","email":"Architmind.ci@gmail.com"}}]}</script>
 <meta name="color-scheme" content="light dark">
@@ -834,6 +837,12 @@ body:not(.photos-ok) .pcredit{display:none}
 @media (max-width:600px){.three .tourui{flex-direction:column;align-items:stretch}.tourcard{max-width:none;padding:10px 12px}.tourcard b{font-size:16px}.tbtns{justify-content:flex-end}}
 @media (prefers-reduced-motion:reduce){.tourcard{animation:none}}
 
+/* ---------- Langue ---------- */
+html.i18n-wait .app,html.i18n-wait .rail{visibility:hidden}
+.langsw{display:grid;place-items:center;width:40px;height:30px;margin:6px auto 0;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 11.5px/1 var(--fb,inherit);letter-spacing:.08em;cursor:pointer}
+.langsw:hover{border-color:var(--accent)}
+.langsw:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:760px), (max-height:520px){.langsw{margin:0 2px 0 0;align-self:center;flex:0 0 auto;width:36px;height:36px}}
 /* ---------- Autres bâtiments (boutiques, bureaux) ---------- */
 .prolab{margin-top:12px}
 .prohead{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -916,16 +925,23 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
 <script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
+<script>/* Langue : français par défaut ; anglais si demandé (?lang=en, choix enregistré) ou si le navigateur est en anglais.
+   Décidée ici, avant l'affichage, pour que le visiteur anglophone ne voie pas le français une fraction de seconde. */
+(function(){var L="fr";try{var q=new URLSearchParams(location.search).get("lang");
+if(q==="en"||q==="fr"){localStorage.setItem("am_lang",q);L=q}else{var s=localStorage.getItem("am_lang");
+if(s==="en"||s==="fr")L=s;else if(/^en\b/i.test(navigator.language||"")&&!/bot|crawl|spider|slurp|google|bing|lighthouse/i.test(navigator.userAgent||""))L="en"}}catch(e){}
+window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.documentElement.classList.add("i18n-wait");setTimeout(function(){document.documentElement.classList.remove("i18n-wait")},4000)}})();</script>
 <svg class="sprite" aria-hidden="true" focusable="false"><defs><linearGradient id="am-paper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FDFDFB"/><stop offset=".55" stop-color="#F1F1EE"/><stop offset="1" stop-color="#E1E1DD"/></linearGradient><symbol id="am-a" viewBox="160 116 726 750"><path d="M492.0 132.0 L687.5 593.6 L610.1 604.0 C470 623 374 698 358 772 C351 810 364 844 394 844 L396 850 L176 850 L178 844 C256 843 310.1 828 316.1 790.0 Z M476.3 288.0 L374.1 670.0 C395 637 500 588 599.9 580.0 Z"/><path d="M616.9 620.0 L694.2 609.6 L770.6 790.0 C780.0 828 822 844 868 844 L870 850 L644 850 L646 844 C682 843 699.4 815 686.7 785.0 Z"/></symbol></defs></svg>
 <nav class="rail" aria-label="Navigation">
   <a href="#accueil" class="markl" aria-label="Architmind CI, accueil"><svg class="mark" viewBox="0 0 44 44" aria-hidden="true"><rect x=".5" y=".5" width="43" height="43" rx="13.5" fill="url(#am-paper)" stroke="rgba(0,0,0,.09)"/><use href="#am-a" x="8.9" y="8.2" width="26.2" height="27" fill="#121212"/></svg></a>
-  <a href="#accueil" data-nav="accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-5h-6v5H5a1 1 0 0 1-1-1z"/></svg><span class="lbl">Accueil</span></a>
+  <a href="#accueil" data-nav="accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-5h-6v5H5a1 1 0 0 1-1-1z"/></svg><span class="lbl" data-en="Home">Accueil</span></a>
   <a href="#creation" data-nav="creation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 12h8V4M12 12v8"/></svg><span class="lbl">Création</span></a>
   <a href="#propositions" data-nav="propositions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span class="lbl">Propositions</span></a>
   <a href="#mes-plans" data-nav="mes-plans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg><span class="lbl">Mes plans</span><span class="count" id="navcount"></span></a>
   <a href="#tarifs" data-nav="tarifs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.4"/></svg><span class="lbl">Tarifs</span></a>
   <a href="#faq" data-nav="faq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.6"/><path d="M12 17h.01"/></svg><span class="lbl">FAQ</span></a>
   <a href="#tarifs" class="offer" id="offerbadge">Basique</a>
+  <button type="button" class="langsw" id="langsw" data-noi18n aria-label="English version" title="English version">EN</button>
 </nav>
 
 <div class="ldr" id="ldr" aria-hidden="true"><div class="ldr-bg"></div><div class="ldr-c"><div class="ldr-in"><svg class="ldr-mark" viewBox="0 0 44 44"><rect x=".5" y=".5" width="43" height="43" rx="13.5" fill="url(#am-paper)" stroke="rgba(0,0,0,.09)"/><use href="#am-a" x="8.9" y="8.2" width="26.2" height="27" fill="#121212"/></svg><p class="ldr-name">Archit<span>mind</span> CI</p><p class="ldr-tag">Plans · Coûts · Maquette 3D</p></div></div></div>
@@ -1366,7 +1382,7 @@ button.nitem:hover,button.nitem:focus-visible{background:var(--soft);transform:n
       <button type="button" class="ghost installbtn" data-install hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5"/><path d="M5 19.5h14"/></svg>Installer l'application</button>
     </div>
     <nav class="fcol" aria-label="Outil"><h4>Outil</h4><a href="#creation">Création</a><a href="#propositions">Propositions</a><a href="#mes-plans">Mes plans</a></nav>
-    <nav class="fcol" aria-label="Découvrir"><h4>Découvrir</h4><a href="#accueil">Accueil</a><a href="#tarifs">Tarifs</a><a href="#faq">Questions fréquentes</a></nav>
+    <nav class="fcol" aria-label="Découvrir"><h4>Découvrir</h4><a href="#accueil" data-en="Home">Accueil</a><a href="#tarifs">Tarifs</a><a href="#faq">Questions fréquentes</a></nav>
     <div class="fcol"><h4>Couverture</h4><span><b class="nvilles">66</b> villes et communes</span><span>Côte d'Ivoire et Afrique de l'Ouest</span><span>De la villa à l'immeuble R+10</span></div>
     <div class="fbottom">
       <span>© 2026 Architmind CI · Fait par Hunter Agency · <a href="mailto:Architmind.ci@gmail.com">Architmind.ci@gmail.com</a></span>
@@ -2432,12 +2448,14 @@ const ABBR=[[/^chambre d'amis$/i,"Ch. amis"],[/^chambre\s+/i,"Ch. "],[/^salle de
   [/^cuisine$/i,"Cuis."],[/^terrasse$/i,"Terr."],[/^escalier$/i,"Esc."],[/^dressing$/i,"Dress."],[/^ascenseur.*/i,"Asc."],[/^piscine.*/i,"Piscine"],
   [/^vide sur patio$/i,"Vide"],[/^pièce principale$/i,"Pièce princ."],[/^groupe électrogène$/i,"Groupe"],[/^panneaux solaires.*/i,"Solaire"],[/^château d'eau.*/i,"Château d'eau"],[/^cellier$/i,"Cell."],[/^bureau$/i,"Bur."],[/^bureau\s+(\d+)$/i,"Bur. $1"],[/^salle de réunion$/i,"Réunion"],[/^coin repas$/i,"Repas"],[/^terrasse de pause$/i,"Pause"],[/^galerie$/i,"Gal."],[/^archives$/i,"Arch."],[/^magasin\s+(\d+)$/i,"Mag. $1"],[/^direction$/i,"Direct."],[/^garage$/i,"Gar."],[/^parking$/i,"Park."]];
 const abbr=n=>{for(const [re,t] of ABBR) if(re.test(n)) return n.replace(re,t);return n};
+// libellé traduit si la page est en anglais (la fonction tr est définie plus loin, dans le bloc langue)
+const trL=x=>typeof tr==="function"?tr(x):x;
 function fitLabel(nm,w,h,P){
   // candidats : nom sur une ligne, sur deux lignes, puis abrégé ; on garde le plus lisible
   const FN=10.5*P,cands=[];
   const add=(t,pen)=>{t=t.trim();const ws=t.split(/\s+/);cands.push({l:[t],pen});
     if(ws.length>1){let best=null;for(let i=1;i<ws.length;i++){const a=ws.slice(0,i).join(" "),b=ws.slice(i).join(" "),mx=Math.max(a.length,b.length);if(!best||mx<best.mx) best={mx,l:[a,b]}}cands.push({l:best.l,pen:pen*0.92})}};
-  add(nm,1);const ab=abbr(nm).toUpperCase();if(ab!==nm) add(ab,0.85);
+  const nmT=trL(nm).toUpperCase();add(nmT,1);const ab=trL(abbr(nm).toUpperCase()).toUpperCase();if(ab!==nmT) add(ab,0.85);
   const size=l=>Math.min(FN,(w*0.9)/(Math.max(...l.map(x=>x.length))*0.7),(h*0.86)/(l.length*1.2));
   const one=size(cands[0].l);if(one>=0.85*FN) return {l:cands[0].l,f:one};
   let best=null;
@@ -2531,8 +2549,8 @@ function drawTech(m,li,opt={}){
   // libellés
   const fs0=thumb?0.32:0.3;
   if(MOB) s+=mobLabels(L,P); else L.forEach(r=>{const cx=r.x+r.w/2,cy=r.y+r.h/2,minS=Math.min(r.w,r.h);if(minS<0.9||r.nolabel) return;
-    const fs=Math.min(fs0,Math.max(0.15,minS/6.5),(r.w*0.92)/(r.n.length*0.66)),halo=`paint-order="stroke" stroke="${PAP}" stroke-width="${(fs*0.35).toFixed(3)}" stroke-linejoin="round"`;
-    const nm=r.n.toUpperCase(),yN=cy-(thumb?0:fs*0.15);
+    const rn=trL(r.n),fs=Math.min(fs0,Math.max(0.15,minS/6.5),(r.w*0.92)/(rn.length*0.66)),halo=`paint-order="stroke" stroke="${PAP}" stroke-width="${(fs*0.35).toFixed(3)}" stroke-linejoin="round"`;
+    const nm=trL(r.n.toUpperCase()).toUpperCase(),yN=cy-(thumb?0:fs*0.15);
     if(!thumb){
       // cache de texte (comme sur un plan DAO) : aucun trait du mobilier ne traverse le libellé
       let dt=`(${dec(r.w,1)} m × ${dec(r.h,1)} m)`,f2=fs*0.68;
@@ -3295,6 +3313,136 @@ function furn3D(r,M,box,cyl,sph,li,y0,m){
 
 </script>
 <script>
+/* I18N-DEBUT ================== LANGUE : français (par défaut) ou anglais ==================
+   La page est écrite en français et reste identique en français. En anglais, un dictionnaire
+   (i18n-en.js, téléchargé seulement si l'anglais est choisi) remplace chaque texte au moment où
+   il s'affiche. Clé = texte français normalisé, nombres remplacés par §, noms de villes par ¤ ;
+   un texte long absent du dictionnaire est traduit phrase par phrase.
+   Les exports (PDF, images, DXF) passent par trMarkup / tr avant d'être produits. */
+var LANG=(typeof window!=="undefined"&&window.AM_LANG)||"fr";
+var I18N={d:null,r:[],u:null,city:null};
+var I18N_NUM=/\d{1,3}(?:[ \u00a0\u202f]\d{3})+(?:,\d+)?|\d+(?:,\d+)?/g;
+var I18N_PAYS={"Sénégal":"Senegal","Guinée":"Guinea","Bénin":"Benin","Mauritanie":"Mauritania","Tchad":"Chad"};
+var I18N_DIR={"au nord":"on the north side","au nord-est":"on the north-east side","à l'est":"on the east side","au sud-est":"on the south-east side","au sud":"on the south side","au sud-ouest":"on the south-west side","à l'ouest":"on the west side","au nord-ouest":"on the north-west side"};
+var I18N_DIRRE=/(?<![\wÀ-ÿ])(au nord-est|au nord-ouest|au sud-est|au sud-ouest|au nord|au sud|à l'est|à l'ouest)(?![\wÀ-ÿ'-])/g;
+// noms de villes : complets, courts (sans le pays) et en majuscules (cartouches des plans)
+function i18nCityRe(){
+  if(I18N.city!==null) return I18N.city;
+  const set=new Set();
+  if(typeof CITIES!=="undefined") for(const c of Object.values(CITIES)){const n=c.nom,k=n.replace(/ \(.*\)/,"");
+    for(const x of [n,k]){set.add(x);set.add(x.toUpperCase())}}
+  const noms=[...set].sort((a,b)=>b.length-a.length).map(n=>n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"));
+  I18N.city=noms.length?new RegExp("(?<![\\wÀ-ÿ'’-])(?:"+noms.join("|")+")(?![\\wÀ-ÿ'’-])","g"):false;
+  return I18N.city}
+var I18N_MOIS=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+var I18N_MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+var I18N_DATE=new RegExp("\\b(\\d{1,2})(?:er)? ("+I18N_MOIS.join("|")+") (\\d{4})\\b","g");
+var I18N_MAIL=/[^\s@«»"<>()]+@[^\s@«»"<>()]+\.[A-Za-z]{2,}/g;
+function dateEn(d){const m=/^(\d{1,2})(?:er)? (\S+) (\d{4})$/.exec(d);return m?m[1]+" "+I18N_MONTHS[I18N_MOIS.indexOf(m[2])]+" "+m[3]:d}
+// texte -> clé du dictionnaire : nombres (§), villes (¤), orientations (◊), dates (‡) et adresses e-mail (✉) mis de côté
+function i18nPrep(s){
+  const nums=[],cities=[],dirs=[],dates=[],mails=[];let k=String(s).replace(/[\s\u00a0\u202f]+/g," ").trim();
+  k=k.replace(I18N_MAIL,m=>{mails.push(m);return "✉"});
+  k=k.replace(I18N_DATE,m=>{dates.push(m);return "‡"});
+  const re=i18nCityRe();if(re) k=k.replace(re,m=>{cities.push(m);return "¤"});
+  k=k.replace(I18N_DIRRE,m=>{dirs.push(m);return "◊"});
+  k=k.replace(I18N_NUM,m=>{nums.push(m);return "§"});
+  return {k,nums,cities,dirs,dates,mails}}
+// nombres à l'anglaise : « 1 250 000 » -> « 1,250,000 », « 4,5 » -> « 4.5 » (une année reste « 2026 »)
+function numEn(x){const p=String(x).split(",");const i=/[ \u00a0\u202f]/.test(p[0])?p[0].replace(/[ \u00a0\u202f]/g,","):p[0];return p.length>1?i+"."+p[1]:i}
+function cityEn(c){return c.replace(/\(([^)]+)\)/,(m,p)=>{
+  for(const fr in I18N_PAYS){if(fr===p) return "("+I18N_PAYS[fr]+")";if(fr.toUpperCase()===p) return "("+I18N_PAYS[fr].toUpperCase()+")"}
+  return m})}
+function trOne(s){
+  const {k,nums,cities,dirs,dates,mails}=i18nPrep(s);let en=I18N.d[k];
+  if(en===undefined&&/[A-ZÀ-Ý]/.test(k)&&k===k.toUpperCase()){
+    if(!I18N.u){I18N.u={};for(const x in I18N.d) I18N.u[x.toUpperCase()]=I18N.d[x]}
+    const u=I18N.u[k];if(u!==undefined) en=u.toUpperCase()}
+  if(en===undefined){const t=String(s).replace(/[\s\u00a0\u202f]+/g," ").trim();
+    for(const [re,rp] of I18N.r){re.lastIndex=0;if(re.test(t)){re.lastIndex=0;const r=t.replace(re,rp);if(r!==t) return r}}
+    return null}
+  let ni=0,ci=0,di=0,ti=0,mi=0;
+  return en.replace(/§\{(\d+)\}|§/g,(m,j)=>numEn(nums[j!==undefined?+j:ni++]||"")).replace(/¤/g,()=>cityEn(cities[ci++]||"")).replace(/◊/g,()=>I18N_DIR[dirs[di++]]||"")
+    .replace(/‡/g,()=>dateEn(dates[ti++]||"")).replace(/✉/g,()=>mails[mi++]||"")}
+function tr(s){
+  if(LANG!=="en"||!I18N.d||typeof s!=="string") return s;
+  // nombres seuls (cotes du plan, montants) : virgule décimale -> point, espaces de milliers -> virgules
+  // (un nombre déjà à l'anglaise, comme « 1,653 », n'est pas retouché)
+  if(!/[A-Za-zÀ-ÿ]/.test(s)) return /\d,\d|\d[  ]\d{3}/.test(s)?s.replace(I18N_NUM,x=>/,\d{3}$/.test(x)&&!/[  ]/.test(x)?x:numEn(x)):s;
+  const lead=s.match(/^[\s ]*/)[0],trail=s.match(/[\s ]*$/)[0];
+  const one=trOne(s);if(one!==null) return lead+one+trail;
+  const parts=s.trim().split(/(?<=[.!?…])\s+(?=[A-ZÀ-ÝÉ«"(0-9])/);
+  if(parts.length>1){let ok=false;const out=parts.map(p=>{let t=trOne(p);if(t===null&&p.includes(" · ")){const r=tr(p);if(r!==p) t=r}if(t!==null){ok=true;return t}return p});
+    if(ok) return lead+out.join(" ")+trail}
+  // morceaux séparés par « · » (titres, cartouches, lignes de projet)
+  if(s.includes(" · ")){const segs=s.trim().split(" · "),out=segs.map(x=>tr(x));if(out.some((x,i)=>x!==segs[i])) return lead+out.join(" · ")+trail}
+  return s}
+// textes d'un SVG ou d'un morceau de HTML (exports)
+function trMarkup(h){
+  if(LANG!=="en"||!I18N.d||typeof h!=="string") return h;
+  const dec=x=>x.replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,"&");
+  const enc=x=>x.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  return h.replace(/(<style[^>]*>[\s\S]*?<\/style>)|>([^<>]*[A-Za-zÀ-ÿ0-9][^<>]*)</g,(m,st,t)=>{if(st) return st;const d=dec(t),r=tr(d);return r===d?m:">"+enc(r)+"<"})}
+// --- traduction de la page affichée ---
+var I18N_ORIG=typeof WeakMap!=="undefined"?new WeakMap():null,I18N_ATT=["placeholder","title","aria-label","alt"],I18N_OBS=null;
+function i18nSkip(n){const p=n.parentNode;if(!p||p.nodeType!==1) return false;
+  if(/^(SCRIPT|STYLE|TEXTAREA|NOSCRIPT|CODE)$/.test(p.nodeName)) return true;
+  return !!(p.closest&&p.closest("[data-noi18n]"))}
+function i18nText(n){const v=n.nodeValue;if(!v||!/[A-Za-zÀ-ÿ]|\d[,  ]\d/.test(v)||i18nSkip(n)) return;
+  const p=n.parentNode,t=p&&p.dataset&&p.dataset.en&&p.childNodes.length===1?p.dataset.en:tr(v);if(t!==v){I18N_ORIG.set(n,v);n.nodeValue=t}}
+function i18nAttrs(el){if(!el.getAttribute||(el.closest&&el.closest("[data-noi18n]"))) return;
+  for(const a of I18N_ATT){const v=el.getAttribute(a);if(!v) continue;const t=tr(v);
+    if(t!==v){const o=el.__i18n||(el.__i18n={});o[a]=v;el.setAttribute(a,t)}}}
+function i18nTree(r){
+  if(!r) return;if(r.nodeType===3) return i18nText(r);if(r.nodeType!==1) return;
+  i18nAttrs(r);i18nLinks(r);if(r.querySelectorAll) r.querySelectorAll("[placeholder],[title],[aria-label],[alt]").forEach(i18nAttrs);
+  const w=document.createTreeWalker(r,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())) i18nText(n)}
+function i18nWatch(){if(I18N_OBS) return;
+  I18N_OBS=new MutationObserver(ms=>{for(const m of ms){
+      if(m.type==="characterData") i18nText(m.target);
+      else if(m.type==="attributes") i18nAttrs(m.target);
+      else m.addedNodes.forEach(i18nTree)}
+    I18N_OBS.takeRecords()});
+  I18N_OBS.observe(document.documentElement,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:I18N_ATT})}
+function i18nRestore(){
+  if(I18N_OBS){I18N_OBS.disconnect();I18N_OBS=null}
+  const w=document.createTreeWalker(document.documentElement,NodeFilter.SHOW_TEXT);let n;
+  while((n=w.nextNode())){const o=I18N_ORIG.get(n);if(o!==undefined){n.nodeValue=o;I18N_ORIG.delete(n)}}
+  document.querySelectorAll("*").forEach(el=>{if(el.__i18n){for(const a in el.__i18n) el.setAttribute(a,el.__i18n[a]);delete el.__i18n}})}
+// liens vers les pages légales, titre et description de la page
+var I18N_LINKS={"conditions.html":"en/terms.html","confidentialite.html":"en/privacy.html","remboursement.html":"en/refunds.html","mentions-legales.html":"en/legal-notice.html"};
+function i18nLink(a){const h=a.getAttribute("href");if(!h) return;const fr=a.dataset.hrefFr||h,b=fr.split("#")[0];
+  if(I18N_LINKS[b]){a.dataset.hrefFr=fr;a.setAttribute("href",LANG==="en"?I18N_LINKS[b]:fr)}}
+function i18nLinks(r){r=r||document;if(r.nodeType===1&&r.matches("a[href]")) i18nLink(r);if(r.querySelectorAll) r.querySelectorAll("a[href]").forEach(i18nLink)}
+var I18N_META=null;
+function i18nMeta(){const mm=[...document.querySelectorAll('meta[name="description"],meta[property="og:title"],meta[property="og:description"],meta[name="twitter:title"],meta[name="twitter:description"]')];
+  if(!I18N_META) I18N_META={title:document.title,m:mm.map(x=>x.getAttribute("content"))};
+  document.title=LANG==="en"?tr(I18N_META.title):I18N_META.title;
+  const c=document.querySelector('link[rel="canonical"]');if(c){if(!c.dataset.fr) c.dataset.fr=c.getAttribute("href");c.setAttribute("href",LANG==="en"?c.dataset.fr+"?lang=en":c.dataset.fr)}
+  mm.forEach((x,i)=>x.setAttribute("content",LANG==="en"?tr(I18N_META.m[i]||""):I18N_META.m[i]||""))}
+function i18nBtn(){const b=document.getElementById("langsw");if(!b) return;
+  b.textContent=LANG==="en"?"FR":"EN";
+  b.setAttribute("aria-label",LANG==="en"?"Version française":"English version");b.title=b.getAttribute("aria-label")}
+function i18nLoad(cb){
+  if(I18N.d){cb&&cb();return}
+  const sc=document.createElement("script");sc.src="i18n-en.js";
+  sc.onload=()=>{const D=window.I18N_EN||{};I18N.d=D.d||{};I18N.r=D.r||[];cb&&cb()};
+  sc.onerror=()=>{document.documentElement.classList.remove("i18n-wait");LANG="fr";document.documentElement.lang="fr";i18nBtn()};
+  document.head.appendChild(sc)}
+function setLang(L,save){
+  if(save){try{localStorage.setItem("am_lang",L)}catch(e){}}
+  if(L==="en"){i18nLoad(()=>{LANG="en";window.AM_LANG="en";document.documentElement.lang="en";
+      i18nTree(document.body);i18nMeta();i18nLinks();i18nWatch();i18nBtn();
+      document.documentElement.classList.remove("i18n-wait");
+      document.dispatchEvent(new CustomEvent("am-lang",{detail:"en"}))})}
+  else{i18nRestore();LANG="fr";window.AM_LANG="fr";document.documentElement.lang="fr";i18nMeta();i18nLinks();i18nBtn();
+    document.dispatchEvent(new CustomEvent("am-lang",{detail:"fr"}))}}
+if(typeof document!=="undefined"){
+  const b=document.getElementById("langsw");if(b) b.addEventListener("click",()=>setLang(LANG==="en"?"fr":"en",true));
+  if(LANG==="en") setLang("en",false); else i18nBtn()}
+/* I18N-FIN */
+</script>
+<script>
 /* ====================== INTERFACE ====================== */
 if(typeof document!=="undefined")(function(){
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -3411,7 +3559,7 @@ function refreshOffer(){
 }
 function limitReached(){toast(`Limite quotidienne atteinte (${O().quota} plans). Passez à une offre supérieure.`)}
 
-const NEWS=[{"id": "2026-11-12-devis-par-lot", "date": "2026-11-12T22:15:00Z", "titre": "Nouveau : le devis estimatif par lot", "texte": "Le coût des travaux est maintenant détaillé comme chez un économiste de la construction : dix lots, du terrassement à la peinture, avec les quantités mesurées sur votre plan, les prix unitaires, les imprévus, la fourchette basse et haute, le coût au m² comparé au marché ivoirien, ce qui reste à prévoir en plus et des conseils pour réduire la facture. Le devis complet est aussi dans le dossier PDF.", "lien": "#resultat"}, {"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation"}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation"}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation"}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation"}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation"}];
+const NEWS=[{"id": "2026-11-13-anglais", "date": "2026-11-13T16:30:00Z", "titre": "Nouveau : Architmind CI en anglais", "texte": "Le site existe maintenant en anglais. Utilisez le bouton EN / FR du menu pour changer de langue. Plans, devis, maquette 3D, dossier PDF, notifications et pages légales sont traduits ; un navigateur réglé en anglais ouvre directement le site dans cette langue.", "action": "creation", "titre_en": "New: Architmind CI in English", "texte_en": "The site is now available in English. Use the EN / FR button in the menu to switch language. Plans, quotes, the 3D model, the PDF file, notifications and legal pages are translated; a browser set to English opens the site directly in that language."}, {"id": "2026-11-12-devis-par-lot", "date": "2026-11-12T22:15:00Z", "titre": "Nouveau : le devis estimatif par lot", "texte": "Le coût des travaux est maintenant détaillé comme chez un économiste de la construction : dix lots, du terrassement à la peinture, avec les quantités mesurées sur votre plan, les prix unitaires, les imprévus, la fourchette basse et haute, le coût au m² comparé au marché ivoirien, ce qui reste à prévoir en plus et des conseils pour réduire la facture. Le devis complet est aussi dans le dossier PDF.", "lien": "#resultat", "titre_en": "New: the estimated quote by trade", "texte_en": "The building cost is now broken down the way a quantity surveyor does it: ten trades, from earthworks to painting, with quantities measured on your plan, unit prices, contingencies, the low and high range, the cost per m² compared with the Ivorian market, what to budget on top and tips to cut the bill. The full quote is also in the PDF file."}, {"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation", "titre_en": "New: houses modelled on real homes", "texte_en": "The plans and the 3D model now follow real houses for each level of finish: low-cost home, estate villa, high-end villa, large villa. Walls, roof and windows adapt to your city, in the 11 countries covered. Your saved projects keep their plan."}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation", "titre_en": "New: colours in the 3D model", "texte_en": "The 3D model and the guided tour take on the colours of your level of finish: façade, floors and walls, with a feature wall in the living spaces and bedrooms."}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation", "titre_en": "New: upper floors for shops and offices", "texte_en": "In Create, shops and offices can now have 1 or 2 upper floors. You also choose their style and can describe your wishes in a few words, as for a house."}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation", "titre_en": "New: shop and office plans", "texte_en": "In Create, choose \"Shops\" or \"Offices\" to get the plan, the cost and the 3D model. Included in the Medium and Max plans."}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation", "titre_en": "New: guided tour in 3D", "texte_en": "In the 3D tab of a plan, \"Guided tour\" shows the model from above, then walks through the building room by room."}];
 /* ---------- Comptes : connexion par e-mail et mot de passe (Firebase) ---------- */
 const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false,verified:false};
 // Administrateurs : empreintes SHA-256 des adresses e-mail (config.js), pour ne pas publier les adresses.
@@ -3848,7 +3996,7 @@ function makePdf(pages){
 }
 function dlSource(src){
   if(src==="prop"){const o=props[selProp];return o?{m:o.m,li:plevel,name:o.d.name}:null}
-  return model?{m:model,li:level,name:$("#pname").value.trim()||(typeLabel(model.p)+" "+model.lieu)}:null;
+  return model?{m:model,li:level,name:$("#pname").value.trim()||(tr(typeLabel(model.p))+" "+model.lieu)}:null;
 }
 let DLCUR=null;
 function closeDl(){const pop=$("#dlpop");if(pop) pop.hidden=true;if(DLCUR){const d=DLCUR;DLCUR=null;d.open=false}}
@@ -3872,11 +4020,11 @@ async function exportPlan(fmt,d){
   const dl=await getDL();if(!dl){toast("Le téléchargement n'est pas disponible dans cette fenêtre.");return}
   d.classList.add("busy");const lab=d.querySelector("summary span"),old=lab.textContent;lab.textContent="Préparation…";
   try{
-    const base="architmind-"+slug(S.name),css=await planFonts(),T=li=>withFonts(drawTech(S.m,li),css);let filename,data;
-    if(fmt==="svg"){data='<?xml version="1.0" encoding="UTF-8"?>\n'+svgSized(T(S.li),2400).svg;filename=`${base}-${slug(lvlLabel(S.m,S.li))}.svg`}
+    const base="architmind-"+slug(S.name),css=await planFonts(),T=li=>withFonts(trMarkup(drawTech(S.m,li)),css);let filename,data;
+    if(fmt==="svg"){data='<?xml version="1.0" encoding="UTF-8"?>\n'+svgSized(T(S.li),2400).svg;filename=`${base}-${slug(tr(lvlLabel(S.m,S.li)))}.svg`}
     else if(fmt==="dxf"){data=new Blob([planDxf(S.m,S.name)],{type:"application/dxf"});filename=base+".dxf"}
-    else if(fmt==="png"){data=await canvasBlob(await svgCanvas(T(S.li),3000),"image/png");filename=`${base}-${slug(lvlLabel(S.m,S.li))}.png`}
-    else if(fmt==="dossier"){const D=dossierSvgs(S,css),pages=[],add=async(svg,w)=>{const c=await svgCanvas(svg,w),b=await canvasBlob(c,"image/jpeg",0.92);pages.push({jpg:new Uint8Array(await b.arrayBuffer()),w:c.width,h:c.height})};
+    else if(fmt==="png"){data=await canvasBlob(await svgCanvas(T(S.li),3000),"image/png");filename=`${base}-${slug(tr(lvlLabel(S.m,S.li)))}.png`}
+    else if(fmt==="dossier"){const D=dossierSvgs(S,css),pages=[];for(const k in D) D[k]=trMarkup(D[k]);const add=async(svg,w)=>{const c=await svgCanvas(svg,w),b=await canvasBlob(c,"image/jpeg",0.92);pages.push({jpg:new Uint8Array(await b.arrayBuffer()),w:c.width,h:c.height})};
       await add(D.cover,2380);for(const x of levelsOf(S.m)) await add(T(x.li),2600);await add(D.cost,2380);await add(D.devis,2380);await add(D.mats,2380);data=makePdf(pages);filename=base+"-dossier.pdf"}
     else{const pages=[];for(const x of levelsOf(S.m)){const c=await svgCanvas(T(x.li),2600),b=await canvasBlob(c,"image/jpeg",0.92);pages.push({jpg:new Uint8Array(await b.arrayBuffer()),w:c.width,h:c.height})}
       data=makePdf(pages);filename=base+".pdf"}
@@ -3943,10 +4091,11 @@ function snap3D(m){
   }catch(e){try{stop3D()}catch(x){}return null}
 }
 function dossierSvgs(S,css){
-  const m=S.m,p=m.p,nl=levelsOf(m).length,total=2+nl+2,prog=m.isTower&&!m.fam?m.nApts+" logements":m.n+" chambre"+(m.n>1?"s":"");
+  // en anglais, les textes sont traduits ici, avant d'être coupés en lignes (tr ne change rien en français)
+  const m=S.m,p=m.p,nl=levelsOf(m).length,total=2+nl+2,prog=tr(m.isTower&&!m.fam?m.nApts+" logements":m.n+" chambre"+(m.n>1?"s":""));
   const date=new Date().toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"});
-  let shot=snap3D(m);if(!shot||shot.indexOf("data:image/jpeg")!==0||shot.length<4000) shot=null;const name=wrapTxt(S.name,20).slice(0,3);
-  const facts=[["Terrain",fmt(m.plot)+" m²"],["Surface de plancher",fmt(m.builtArea)+" m²"],["Niveaux",String(m.levels.length)],["Programme",prog]];
+  let shot=snap3D(m);if(!shot||shot.indexOf("data:image/jpeg")!==0||shot.length<4000) shot=null;const name=wrapTxt(tr(S.name),20).slice(0,3);
+  const facts=[["Terrain",fmt(m.plot)+" m²"],["Surface de plancher",fmt(m.builtArea)+" m²"],["Niveaux",String(m.levels.length)],["Programme",prog]].map(([k,v])=>[tr(k),v]);
   const th=drawTech(m,m.isTower&&!m.fam?1:0,{thumb:true}),vb=(/viewBox="[^"]+"/.exec(th)||['viewBox="0 0 100 70"'])[0];
   const visual=shot?`<image href="${shot}" x="560" y="60" width="570" height="722" preserveAspectRatio="xMidYMid slice" clip-path="url(#cv)"/>`
     :`<rect x="560" y="60" width="570" height="722" rx="22" fill="#F4F5F2"/><svg x="590" y="90" width="510" height="662" preserveAspectRatio="xMidYMid meet" ${vb}>${th.replace(/^<svg[^>]*>/,"").replace(/<\/svg>\s*$/,"")}</svg>`;
@@ -3970,7 +4119,7 @@ function dossierSvgs(S,css){
   <text x="60" y="244" font-size="16" fill="#565E5A">Fourchette : de ${xe(F(m.total*0.85))} à ${xe(F(m.total*1.15))}</text>
   <text x="60" y="282" font-size="13.500" fill="#6B716E">${tspans(lead,60,19)}</text>
   <text x="60" y="${330+lead.length*19}" font-size="13" font-weight="600" fill="#6B716E" letter-spacing="1.5">RÉPARTITION PAR LOT</text>
-  ${lots.map((r,i)=>{const y=362+lead.length*19+i*34,pc=parseFloat(r[1])||0;return `<text x="60" y="${y}" font-size="15" fill="#121212">${xe(r[0])}</text><rect x="330" y="${y-11}" width="150" height="8" rx="4" fill="#ECEDEA"/>${pc?`<rect x="330" y="${y-11}" width="${Math.min(150,pc*5)}" height="8" rx="4" fill="#B87A14"/>`:""}<text x="540" y="${y}" font-size="14" fill="#565E5A" text-anchor="end">${xe(r[1])}</text><text x="720" y="${y}" font-size="15" font-weight="600" fill="#121212" text-anchor="end">${xe(r[2])}</text><rect x="60" y="${y+11}" width="660" height="1" fill="#ECEDEA"/>`}).join("")}
+  ${lots.map((r,i)=>{const y=362+lead.length*19+i*34,pc=parseFloat(r[1])||0;return `<text x="60" y="${y}" font-size="${r[0].length>36?13:15}" fill="#121212">${xe(r[0])}</text><rect x="330" y="${y-11}" width="150" height="8" rx="4" fill="#ECEDEA"/>${pc?`<rect x="330" y="${y-11}" width="${Math.min(150,pc*5)}" height="8" rx="4" fill="#B87A14"/>`:""}<text x="540" y="${y}" font-size="14" fill="#565E5A" text-anchor="end">${xe(r[1])}</text><text x="720" y="${y}" font-size="15" font-weight="600" fill="#121212" text-anchor="end">${xe(r[2])}</text><rect x="60" y="${y+11}" width="660" height="1" fill="#ECEDEA"/>`}).join("")}
   <rect x="770" y="186" width="360" height="${70+qty.length*36}" rx="18" fill="#F4F5F2"/><text x="794" y="222" font-size="13" font-weight="600" fill="#6B716E" letter-spacing="1.5">QUANTITÉS ESTIMÉES</text>
   ${qty.map((r,i)=>`<text x="794" y="${262+i*36}" font-size="14.500" fill="#121212">${xe(r[0])}</text><text x="1106" y="${262+i*36}" font-size="15" font-weight="600" fill="#121212" text-anchor="end">${xe(r[1])}</text>`).join("")}</svg>`;
   // devis estimatif par lot, sur deux colonnes ; l'interligne se resserre si le devis est long
@@ -3984,7 +4133,7 @@ function dossierSvgs(S,css){
   const dRows=cols.map((col,ci)=>{const x0=60+ci*565;let y=224;
     const out=col.map(r=>{const yy=y;y+=(r.t?30:19)*fz;
       if(r.t) return `<rect x="${x0}" y="${yy-13*fz}" width="525" height="${22*fz}" rx="6" fill="#F4F5F2"/><text x="${x0+8}" y="${yy+2}" font-size="${11.5*Math.min(1,fz+0.12)}" font-weight="600" fill="#121212">${xe(r.a)}</text><text x="${x0+517}" y="${yy+2}" font-size="${11.5*Math.min(1,fz+0.12)}" font-weight="600" fill="#121212" text-anchor="end">${xe(r.b)}</text>`;
-      return `<text x="${x0+8}" y="${yy}" font-size="${10*Math.min(1,fz+0.14)}" fill="#444B48">${xe(r.a.length>52?r.a.slice(0,51)+"…":r.a)}</text><text x="${x0+372}" y="${yy}" font-size="${10*Math.min(1,fz+0.14)}" fill="#6B716E" text-anchor="end">${xe(r.q+" "+r.u)}</text><text x="${x0+444}" y="${yy}" font-size="${10*Math.min(1,fz+0.14)}" fill="#6B716E" text-anchor="end">${xe(r.pu)}</text><text x="${x0+517}" y="${yy}" font-size="${10*Math.min(1,fz+0.14)}" fill="#121212" text-anchor="end">${xe(r.b)}</text>`}).join("");
+      const ra=tr(r.a);return `<text x="${x0+8}" y="${yy}" font-size="${10*Math.min(1,fz+0.14)}" fill="#444B48">${xe(ra.length>52?ra.slice(0,51)+"…":ra)}</text><text x="${x0+372}" y="${yy}" font-size="${10*Math.min(1,fz+0.14)}" fill="#6B716E" text-anchor="end">${xe(r.q+" "+tr(r.u))}</text><text x="${x0+444}" y="${yy}" font-size="${10*Math.min(1,fz+0.14)}" fill="#6B716E" text-anchor="end">${xe(r.pu)}</text><text x="${x0+517}" y="${yy}" font-size="${10*Math.min(1,fz+0.14)}" fill="#121212" text-anchor="end">${xe(r.b)}</text>`}).join("");
     yEnd=Math.max(yEnd,y);return out}).join("");
   const entetes=[0,1].map(ci=>{const x0=60+ci*565;return `<text x="${x0+8}" y="206" font-size="9.5" font-weight="600" fill="#6B716E" letter-spacing="1">DÉSIGNATION</text><text x="${x0+444}" y="206" font-size="9.5" font-weight="600" fill="#6B716E" letter-spacing="1" text-anchor="end">QTÉ · P.U.</text><text x="${x0+517}" y="206" font-size="9.5" font-weight="600" fill="#6B716E" letter-spacing="1" text-anchor="end">MONTANT</text>`}).join("");
   const fin=[["Sous-total des lots",F(DV.sousTotal)],[`Aléas et imprévus (${Math.round(DV.imprevusPc)} %)`,F(DV.imprevus)]]
@@ -3996,7 +4145,7 @@ function dossierSvgs(S,css){
   <line x1="625" y1="${yT-16}" x2="1130" y2="${yT-16}" stroke="#E2E5E1" stroke-width="1"/>
   ${fin.map(([a,b],i)=>`<text x="625" y="${yT+i*22}" font-size="${i===fin.length-1?13:11.5}" font-weight="${i===fin.length-1?700:400}" fill="#121212">${xe(a)}</text><text x="1130" y="${yT+i*22}" font-size="${i===fin.length-1?13:11.5}" font-weight="${i===fin.length-1?700:600}" fill="#121212" text-anchor="end">${xe(b)}</text>`).join("")}</svg>`;
   // matériaux
-  const ys=[196,196],cards=(m.Z.mats||[]).map(([k,b,t],i)=>{const col=i%2,lines=wrapTxt(t,78),h=92+lines.length*18,x=60+col*545,yy=ys[col];ys[col]+=h+16;
+  const ys=[196,196],cards=(m.Z.mats||[]).map(([k,b,t],i)=>{k=tr(k);b=tr(b);t=tr(t);const col=i%2,lines=wrapTxt(t,78),h=92+lines.length*18,x=60+col*545,yy=ys[col];ys[col]+=h+16;
     return `<rect x="${x}" y="${yy}" width="525" height="${h}" rx="16" fill="#F4F5F2"/><text x="${x+22}" y="${yy+32}" font-size="12" font-weight="600" fill="#B87A14" letter-spacing="1.5">${xe(String(k).toUpperCase())}</text><text x="${x+22}" y="${yy+58}" font-size="17" font-weight="600" fill="#121212">${xe(b)}</text><text x="${x+22}" y="${yy+84}" font-size="13.500" fill="#565E5A">${tspans(lines,x+22,18)}</text>`}).join("");
   const mats=dHead(css,"Matériaux conseillés",S,`${total} / ${total}`)+`<text x="60" y="176" font-size="15" fill="#565E5A">Choisis pour la ${xe(m.Z.nom)}, à ${xe(m.lieu)}.</text>${cards}</svg>`;
   return {cover,cost,devis:devisPage,mats};
@@ -4138,60 +4287,61 @@ function edInit(){
    est signalé tel quel au client, sans faire semblant. */
 const WISH_MAX=300;
 const wnorm=t=>String(t||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’`]/g,"'").replace(/\s+/g," ").trim();
-const WNUM={un:1,une:1,deux:2,trois:3,quatre:4,cinq:5,six:6,sept:7,huit:8};
+const WNUM={un:1,une:1,deux:2,trois:3,quatre:4,cinq:5,six:6,sept:7,huit:8,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,a:1,an:1};
 function parseWish(text,p){
   const t=wnorm(text).slice(0,WISH_MAX+40),set={},ok=[],ko=[],tower=p&&p.type==="rn",pro=!!p&&isPro(p.type),com=pro&&p.type==="com";
   if(!t) return {set,ok,ko};
-  const no=w=>new RegExp("(sans|pas de|pas d'|aucun|aucune|ni) (un |une |de |d')?"+w).test(t);
+  // souhaits en français, et aussi en anglais (mots ajoutés en plus, le français ne change pas)
+  const no=(...ws)=>ws.some(w=>new RegExp("(sans|pas de|pas d'|aucun|aucune|ni|no|without|not) (un |une |de |d'|a |an |any )?"+w).test(t));
   let m;
   if(pro){
-    if(/\bplain[- ]?pied\b|sans etage|de plain pied|un seul niveau/.test(t)){set.et=0;ok.push("sans étage")}
-    else if(/\b(deux|2) etages\b|r\+2|(trois|3) niveaux/.test(t)){set.et=2;ok.push("2 étages")}
-    else if(/\b(un|1) etage\b|r\+1|a etage|avec etage|(deux|2) niveaux/.test(t)){set.et=1;ok.push("1 étage")}
+    if(/\bplain[- ]?pied\b|sans etage|de plain pied|un seul niveau|single[- ]stor(e)?y|one[- ]stor(e)?y|ground floor only|no upper floor/.test(t)){set.et=0;ok.push("sans étage")}
+    else if(/\b(deux|2) etages\b|r\+2|(trois|3) niveaux|\b(two|2) (upper )?floors\b|\b(three|3)[- ]stor(e)?y|\b(three|3) levels\b|g\+2/.test(t)){set.et=2;ok.push("2 étages")}
+    else if(/\b(un|1) etage\b|r\+1|a etage|avec etage|(deux|2) niveaux|\b(one|1|an) (upper )?floor\b|\b(two|2)[- ]stor(e)?y|\b(two|2) levels\b|upstairs|g\+1/.test(t)){set.et=1;ok.push("1 étage")}
     const e=("et" in set?set.et:Math.max(0,Math.min(2,+p.et||0))),mx=(com?6:12)*(e+1),mn=com?e+1:2,what=com?"boutique":"bureau",pl=n=>n>1?(com?"s":"x"):"";
-    if((m=(com?/(\d+|une?|deux|trois|quatre|cinq|six|sept|huit) (grandes? |petites? )?(boutiques?|magasins?|commerces?)/:/(\d+|une?|deux|trois|quatre|cinq|six|sept|huit) (grands? |petits? )?bureaux?\b/).exec(t))){const n=WNUM[m[1]]||+m[1];
+    if((m=(com?/(\d+|une?|deux|trois|quatre|cinq|six|sept|huit|one|two|three|four|five|six|seven|eight) (grandes? |petites? |large |small |big )?(boutiques?|magasins?|commerces?|shops?)\b/:/(\d+|une?|deux|trois|quatre|cinq|six|sept|huit|one|two|three|four|five|six|seven|eight) (grands? |petits? |large |small |big )?(bureaux?|offices?)\b/).exec(t))){const n=WNUM[m[1]]||+m[1];
       if(n>=mn&&n<=mx){set.nb=n;ok.push(n+" "+what+pl(n))}else ko.push(n<mn?`au moins ${mn} ${what}${pl(mn)} pour ce nombre d'étages`:`plus de ${mx} ${what}${pl(mx)} pour ce nombre d'étages`)}
-    if(com&&/galerie/.test(t)){set.plus=!no("galerie");ok.push(set.plus?"galerie couverte":"sans galerie")}
-    if(!com&&/terrasse|pause/.test(t)){set.plus=!no("terrasse");ok.push(set.plus?"terrasse de pause":"sans terrasse de pause")}
+    if(com&&/galerie|gallery|arcade|covered walkway/.test(t)){set.plus=!no("galerie","gallery","arcade","covered walkway");ok.push(set.plus?"galerie couverte":"sans galerie")}
+    if(!com&&/terrasse|pause|terrace|break area/.test(t)){set.plus=!no("terrasse","terrace","break area");ok.push(set.plus?"terrasse de pause":"sans terrasse de pause")}
   }else if(!tower){
-    if(/\bplain[- ]?pied\b|sans etage|de plain pied|un seul niveau/.test(t)){set.type="pp";ok.push("maison sans étage")}
-    else if(/\b(deux|2) etages\b|r\+2|triplex/.test(t)){set.type="r2";ok.push("maison à 2 étages")}
-    else if(/duplex|\b(un|1) etage\b|r\+1|a etage|avec etage/.test(t)){set.type="r1";ok.push("maison à 1 étage")}
-    if((m=/(\d+|deux|trois|quatre|cinq|six|sept|huit) (grandes |petites |belles )?chambres?|(une) seule chambre/.exec(t))){const n=m[3]?1:(WNUM[m[1]]||+m[1]);if(n>=1&&n<=8){set.n=n;ok.push(n+" chambre"+(n>1?"s":""))}else ko.push("plus de 8 chambres")}
-    if(/garage|voiture|vehicule/.test(t)){if(no("garage")){set.garage=0;ok.push("sans garage")}else{const g=/(2|deux|double|plusieurs) (voitures|vehicules|garages|places)|garage double/.test(t)?2:1;set.garage=g;ok.push("garage "+(g>1?"2 voitures":"1 voiture"))}}
-    if(/bureau|teletravail|coin travail|travailler a la maison/.test(t)){if(no("bureau")){set.bureau=false;ok.push("sans bureau")}else{set.bureau=true;ok.push("bureau")}}
-    if(/cuisine (ouverte|americaine)|open space|sejour ouvert/.test(t)){set.openK=true;ok.push("cuisine ouverte")}
-    else if(/cuisine (fermee|separee|independante)/.test(t)){set.openK=false;ok.push("cuisine fermée")}
-    if(/salle de bain (dans|par|pour) chaque chambre|chaque chambre (avec|a) (sa|une) (salle|douche)|chambres? avec (salle de bain|douche)|sdb privee|\bsuites\b/.test(t)){set.suites=true;ok.push("salle de bain dans chaque chambre")}
-    else if(/suite parentale/.test(t)) ok.push("suite parentale (déjà prévue)");
-    if(/chambre (de |pour )?(le |la )?(service|bonne|domestique|gardien|personnel|nounou)|boyerie|logement (du |de )?gardien/.test(t)){set.service=true;ok.push("chambre pour le personnel")}
-    if(/cellier|reserve|garde[- ]manger|debarras/.test(t)){set.cellier=true;ok.push("cellier")}
+    if(/\bplain[- ]?pied\b|sans etage|de plain pied|un seul niveau|single[- ]stor(e)?y|one[- ]stor(e)?y|bungalow|no upstairs/.test(t)){set.type="pp";ok.push("maison sans étage")}
+    else if(/\b(deux|2) etages\b|r\+2|triplex|\b(three|3)[- ]stor(e)?y|\b(two|2) upper floors|g\+2/.test(t)){set.type="r2";ok.push("maison à 2 étages")}
+    else if(/duplex|\b(un|1) etage\b|r\+1|a etage|avec etage|\b(two|2)[- ]stor(e)?y|\b(one|an|1) upper floor|upstairs|g\+1/.test(t)){set.type="r1";ok.push("maison à 1 étage")}
+    if((m=/(\d+|deux|trois|quatre|cinq|six|sept|huit) (grandes |petites |belles )?chambres?|(une) seule chambre/.exec(t)||/(\d+|one|two|three|four|five|six|seven|eight) ((?:large |small |big |nice )?)(?:bed|bedroom)s?\b|(a) single bedroom/.exec(t))){const n=m[3]?1:(WNUM[m[1]]||+m[1]);if(n>=1&&n<=8){set.n=n;ok.push(n+" chambre"+(n>1?"s":""))}else ko.push("plus de 8 chambres")}
+    if(/garage|voiture|vehicule|carport|\bcars\b|parking space/.test(t)){if(no("garage")){set.garage=0;ok.push("sans garage")}else{const g=/(2|deux|double|plusieurs) (voitures|vehicules|garages|places)|garage double|(2|two|double|several) (cars|car garage|garages|spaces)|double garage|(2|two)[- ]car/.test(t)?2:1;set.garage=g;ok.push("garage "+(g>1?"2 voitures":"1 voiture"))}}
+    if(/bureau|teletravail|coin travail|travailler a la maison|\bstudy\b|home office|\boffice\b|work from home/.test(t)){if(no("bureau","study","office","home office")){set.bureau=false;ok.push("sans bureau")}else{set.bureau=true;ok.push("bureau")}}
+    if(/cuisine (ouverte|americaine)|open space|sejour ouvert|open[- ]plan|open kitchen/.test(t)){set.openK=true;ok.push("cuisine ouverte")}
+    else if(/cuisine (fermee|separee|independante)|closed kitchen|separate kitchen/.test(t)){set.openK=false;ok.push("cuisine fermée")}
+    if(/salle de bain (dans|par|pour) chaque chambre|chaque chambre (avec|a) (sa|une) (salle|douche)|chambres? avec (salle de bain|douche)|sdb privee|\bsuites\b|en[- ]suite|bathroom (in|for) (each|every) (bed)?room|(each|every) bedroom (with|has) (a |its own )?(bathroom|shower)/.test(t)){set.suites=true;ok.push("salle de bain dans chaque chambre")}
+    else if(/suite parentale|master (suite|bedroom)/.test(t)) ok.push("suite parentale (déjà prévue)");
+    if(/chambre (de |pour )?(le |la )?(service|bonne|domestique|gardien|personnel|nounou)|boyerie|logement (du |de )?gardien|staff (room|bedroom|quarters)|maid'?s? room|boys'? quarters|guard'?s? (room|house)|housekeeper/.test(t)){set.service=true;ok.push("chambre pour le personnel")}
+    if(/cellier|reserve|garde[- ]manger|debarras|pantry|store ?room|larder/.test(t)){set.cellier=true;ok.push("cellier")}
   }else{
-    if(/commerce|boutique|magasin/.test(t)){set.rdc="commerces";ok.push("commerces au rez-de-chaussée")}
+    if(/commerce|boutique|magasin|\bshops?\b|retail/.test(t)){set.rdc="commerces";ok.push("commerces au rez-de-chaussée")}
     else if(/parking/.test(t)){set.rdc="parking";ok.push("parking sous l'immeuble")}
-    if(/ascenseur/.test(t)){set.lift=!no("ascenseur");ok.push(set.lift?"ascenseur":"sans ascenseur")}
-    if(/groupe electrogene|generateur/.test(t)){set.genset=true;ok.push("groupe électrogène")}
+    if(/ascenseur|\blift\b|elevator/.test(t)){set.lift=!no("ascenseur","lift","elevator");ok.push(set.lift?"ascenseur":"sans ascenseur")}
+    if(/groupe electrogene|generateur|generator/.test(t)){set.genset=true;ok.push("groupe électrogène")}
     if((m=/\b(studio|f2|f3|f4)s?\b/.exec(t))){set.aptType=m[1];ok.push("appartements "+m[1].toUpperCase())}
   }
-  if(/piscine/.test(t)){if(pro) ko.push("piscine");else if(no("piscine")){set.piscine=false;ok.push("sans piscine")}else{set.piscine=true;ok.push("piscine")}}
-  if(/solaire|panneaux/.test(t)){set.solaire=true;ok.push("panneaux solaires")}
-  if(/citerne|chateau d'eau|reservoir|bache a eau|forage/.test(t)){set.citerne=true;ok.push("réservoir d'eau")}
-  if(/patio|cour interieure/.test(t)){if(pro) ko.push("cour intérieure");else{set.style="bio";ok.push("cour intérieure (patio)")}}
+  if(/piscine|\bpool\b|swimming/.test(t)){if(pro) ko.push("piscine");else if(no("piscine","pool","swimming pool")){set.piscine=false;ok.push("sans piscine")}else{set.piscine=true;ok.push("piscine")}}
+  if(/solaire|panneaux|solar/.test(t)){set.solaire=true;ok.push("panneaux solaires")}
+  if(/citerne|chateau d'eau|reservoir|bache a eau|forage|water tank|water tower|borehole|cistern/.test(t)){set.citerne=true;ok.push("réservoir d'eau")}
+  if(/patio|cour interieure|courtyard/.test(t)){if(pro) ko.push("cour intérieure");else{set.style="bio";ok.push("cour intérieure (patio)")}}
   else if(/veranda|colonial/.test(t)){set.style="colonial";ok.push(pro?"style colonial":"style colonial avec véranda")}
-  else if(/minimaliste|epure/.test(t)){set.style="mini";ok.push("style épuré")}
-  else if(/africain|afro/.test(t)){set.style="afro";ok.push("style africain moderne")}
-  else if(/mediterraneen/.test(t)){set.style="mediterraneen";ok.push("style méditerranéen")}
-  else if(/moderne|contemporain/.test(t)){set.style="contemporain";ok.push("style moderne")}
-  if(/luxe|luxueu/.test(t)){set.std="luxe";ok.push("finition luxe")}
-  else if(/haut standing|haut de gamme|standing/.test(t)){set.std="haut";ok.push("finition haut de gamme")}
-  else if(/economique|pas cher|petit budget|moins cher|budget (serre|limite|reduit)/.test(t)){set.std="eco";ok.push("finition économique")}
+  else if(/minimaliste|epure|minimalist|clean lines/.test(t)){set.style="mini";ok.push("style épuré")}
+  else if(/africain|afro|african/.test(t)){set.style="afro";ok.push("style africain moderne")}
+  else if(/mediterraneen|mediterranean/.test(t)){set.style="mediterraneen";ok.push("style méditerranéen")}
+  else if(/moderne|contemporain|modern|contemporary/.test(t)){set.style="contemporain";ok.push("style moderne")}
+  if(/luxe|luxueu|luxury|luxurious/.test(t)){set.std="luxe";ok.push("finition luxe")}
+  else if(/haut standing|haut de gamme|standing|high[- ]end|upmarket|premium/.test(t)){set.std="haut";ok.push("finition haut de gamme")}
+  else if(/economique|pas cher|petit budget|moins cher|budget (serre|limite|reduit)|cheap|low[- ]cost|affordable|economical|tight budget|low budget/.test(t)){set.std="eco";ok.push("finition économique")}
   // souhaits compris mais non gérés par le générateur
-  if(!pro&&/(grande?|vaste|spacieu\w+|immense) (cuisine|sejour|salon|chambre|salle)|(cuisine|sejour|salon|chambre)s? (plus )?(grande?s?|vastes?|spacieu\w+)/.test(t)) ko.push("taille d'une pièce : à régler avec « Modifier les pièces »");
-  if(!pro&&/dressing|salle de (jeux?|sport|cinema|priere)|home cinema|bibliotheque|buanderie|chambre d'amis|salle a manger/.test(t)) ko.push("pièce particulière : changez la fonction d'une pièce avec « Modifier les pièces »");
+  if(!pro&&/(grande?|vaste|spacieu\w+|immense) (cuisine|sejour|salon|chambre|salle)|(cuisine|sejour|salon|chambre)s? (plus )?(grande?s?|vastes?|spacieu\w+)|(large|big|spacious|huge) (kitchen|living room|lounge|bedroom|room)/.test(t)) ko.push("taille d'une pièce : à régler avec « Modifier les pièces »");
+  if(!pro&&/dressing|salle de (jeux?|sport|cinema|priere)|home cinema|bibliotheque|buanderie|chambre d'amis|salle a manger|walk-in|game room|\bgym\b|library|laundry|guest room|dining room|prayer room/.test(t)) ko.push("pièce particulière : changez la fonction d'une pièce avec « Modifier les pièces »");
   if(pro&&/(grande?|vaste|spacieu\w+|immense) (boutique|magasin|bureau|salle|reserve|accueil)|ascenseur|parking couvert|sous[- ]sol/.test(t)) ko.push("taille d'une pièce, ascenseur, parking couvert ou sous-sol");
-  if(/sous[- ]sol|cave|mezzanine|toit[- ]terrasse|rooftop|balcon/.test(t)&&!tower&&!pro) ko.push("sous-sol, mezzanine, balcon ou toit-terrasse");
-  if(/jardin|potager|verger|arbres?/.test(t)) ko.push("aménagement du jardin");
-  if(!pro&&/\bterrasse\b/.test(t)&&!/toit[- ]terrasse/.test(t)) ok.push("terrasse (déjà prévue)");
+  if(/sous[- ]sol|cave|mezzanine|toit[- ]terrasse|rooftop|balcon|basement|cellar|roof terrace/.test(t)&&!tower&&!pro) ko.push("sous-sol, mezzanine, balcon ou toit-terrasse");
+  if(/jardin|potager|verger|arbres?|garden|orchard|\btrees?\b/.test(t)) ko.push("aménagement du jardin");
+  if(!pro&&/\bterrasse\b|\bterrace\b/.test(t)&&!/toit[- ]terrasse|roof terrace/.test(t)) ok.push("terrasse (déjà prévue)");
   if(/budget|million|fcfa|\bf cfa\b/.test(t)) ko.push("budget total : réglez plutôt le coût au m² et la finition");
   return {set,ok:[...new Set(ok)],ko:[...new Set(ko)]};
 }
@@ -4200,7 +4350,7 @@ function applyWish(p){const w=String($("#wish").value||"").slice(0,WISH_MAX).tri
 function wishNote(){const el=$("#wishnote");if(!el) return;const w=cur&&cur.wish;if(!w){el.hidden=true;return}
   const r=parseWish(w,cur);el.hidden=false;
   el.innerHTML=(r.ok.length?`<b>Souhaits pris en compte :</b> ${r.ok.map(xe).join(", ")}.`:`<b>Aucun souhait reconnu dans votre texte.</b> Utilisez des mots simples : ${isPro(cur.type)?(cur.type==="com"?"boutiques, étage, galerie, finition":"bureaux, étage, terrasse, finition"):"chambres, garage, bureau, piscine, étage"}.`)+(r.ko.length?`<br><b>Non pris en compte :</b> ${r.ko.map(xe).join(" ; ")}.`:"")}
-function pmHint(){const s=$("#std"),h=$("#pmhint");if(!h) return;const k=s.value||"std",o=[...s.options].find(x=>x.value===k);h.innerHTML=`Prix courant pour une finition ${xe(o.text.toLowerCase())} : <b>${fmt(PRICE[k])} F par m²</b>. <button type="button" class="linkbtn" id="pmuse">Utiliser ce prix</button>`;
+function pmHint(){const s=$("#std"),h=$("#pmhint");if(!h) return;const k=s.value||"std",o=[...s.options].find(x=>x.value===k);h.innerHTML=`Prix courant pour une finition ${xe(FIN3D[k]?FIN3D[k].nom:o.text.toLowerCase())} : <b>${fmt(PRICE[k])} F par m²</b>. <button type="button" class="linkbtn" id="pmuse">Utiliser ce prix</button>`;
   $("#pmuse").onclick=()=>{$("#pm").value=PRICE[s.value||"std"];$("#pmerr").hidden=true;$("#pm").dispatchEvent(new Event("change",{bubbles:true}))}}
 function covVal(){const v=Math.round(+$("#cov").value)||50;return Math.max(10,Math.min(90,v))}
 function formMissing(){
@@ -4232,7 +4382,7 @@ function planDxf(m,name){
   const line=(l,x1,y1,x2,y2)=>E.push("0","LINE","8",l,"10",n(x1),"20",n(y1),"30","0.0","11",n(x2),"21",n(y2),"31","0.0");
   const poly=(l,pts,closed)=>{E.push("0","POLYLINE","8",l,"66","1","70",closed?"1":"0","10","0.0","20","0.0","30","0.0");pts.forEach(p=>E.push("0","VERTEX","8",l,"10",n(p[0]),"20",n(p[1]),"30","0.0"));E.push("0","SEQEND","8",l)};
   const rect=(l,x1,y1,x2,y2)=>poly(l,[[x1,y1],[x2,y1],[x2,y2],[x1,y2]],true);
-  const text=(l,x,y,h,t,center)=>{t=A(t);if(!t) return;E.push("0","TEXT","8",l,"10",n(x),"20",n(y),"30","0.0","40",n(h),"1",t);if(center) E.push("72","1","11",n(x),"21",n(y),"31","0.0")};
+  const text=(l,x,y,h,t,center)=>{t=A(tr(t));if(!t) return;E.push("0","TEXT","8",l,"10",n(x),"20",n(y),"30","0.0","40",n(h),"1",t);if(center) E.push("72","1","11",n(x),"21",n(y),"31","0.0")};
   const arc=(l,cx,cy,r,a1,a2)=>E.push("0","ARC","8",l,"10",n(cx),"20",n(cy),"30","0.0","40",n(r),"50",n(a1),"51",n(a2));
   const deg=(dx,dy)=>{let a=Math.atan2(dy,dx)*180/Math.PI;return a<0?a+360:a};
   // point du plan (axe du mur c, abscisse s le long du mur) -> coordonnées DXF
@@ -4768,6 +4918,8 @@ $("#toprop").onclick=()=>{location.hash="propositions"};
 
 $("#save").onclick=()=>savePlan($("#pname").value,cur,model);
 window.addEventListener("hashchange",route);
+// changement de langue : le plan affiché est redessiné (ses libellés sont écrits dans la langue choisie)
+document.addEventListener("am-lang",()=>{try{if(location.hash==="#resultat"&&model) renderPlan();else wishNote()}catch(e){}});
 renderExamples();
 $("#aplan").innerHTML=drawTech(compute(Object.assign({},DEF,{seed:9,n:4})),0,{thumb:true});
 $$(".nvilles").forEach(e=>e.textContent=Object.keys(CITIES).length);

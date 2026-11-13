@@ -1,18 +1,23 @@
 /* Architmind CI : fonctionnement hors ligne.
    À chaque mise à jour du site, augmentez le numéro de VERSION pour que
    les appareils des utilisateurs téléchargent la nouvelle version. */
-const VERSION = "architmind-v43";
+const VERSION = "architmind-v44";
 
 // Fichiers du site, mis en cache dès l'installation
 const CORE = [
   "./",
   "./index.html",
   "./config.js",
+  "./i18n-en.js",
   "./manifest.webmanifest",
   "./conditions.html",
   "./confidentialite.html",
   "./remboursement.html",
   "./mentions-legales.html",
+  "./en/terms.html",
+  "./en/privacy.html",
+  "./en/refunds.html",
+  "./en/legal-notice.html",
   "./icons/favicon.svg",
   "./icons/favicon-32.png",
   "./icons/icon-192.png",
