@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-2bG8a4N+vErzvY6IdheD34LngN5POQqc2kIbi4FndL4=' 'sha256-Hxr0VdBKWYpcfrtsL5T/jJzrHie/qG1TT1OtvOWIIt8=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-4e1ZFvME73uoXoDGSwcQWbvQNyESTkMgW8kjIosSCuU=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-wlPr5BE3hkz51muItM4lFKdPhJUkxl7lu6ggbLm86uU=' 'sha256-hB3a8yPZi15dIAnbecefMc+O/qm3s7NKBIat2NImSeI=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-jA0XDOtU6OQpqSRwwovdm+Zh2Kb2GO2CUqu07zTHFuo=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -1127,7 +1127,7 @@ window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.docume
       <form class="soft form reveal d1" id="f" autocomplete="off" novalidate>
         <fieldset>
           <legend>Votre terrain</legend>
-          <label class="f" for="area">Superficie du terrain<span class="unit" data-u="m²"><input id="area" type="number" inputmode="numeric" enterkeyhint="done" min="100" max="10000" step="10" placeholder="ex. 500" style="padding-right:44px"></span></label>
+          <label class="f" for="area">Superficie du terrain<span class="unit" data-u="m²"><input id="area" type="number" inputmode="numeric" enterkeyhint="done" min="100" max="300000" step="10" placeholder="ex. 500" style="padding-right:44px"></span></label>
           <div class="flabel">Forme du terrain
             <div class="chips" role="radiogroup" aria-label="Forme du terrain">
               <label class="chip"><input type="radio" name="shape" value="large"><span>Large</span></label>
@@ -1136,7 +1136,7 @@ window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.docume
               <label class="chip"><input type="radio" name="shape" value="long"><span>Allongé</span></label>
               <label class="chip"><input type="radio" name="shape" value="tlong"><span>Très allongé</span></label>
             </div>
-            <label class="f" for="fw" style="margin-top:4px">Largeur du terrain côté rue, si vous la connaissez<span class="unit" data-u="m"><input id="fw" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="200" step="0.5" placeholder="ex. 15"></span></label>
+            <label class="f" for="fw" style="margin-top:4px">Largeur du terrain côté rue, si vous la connaissez<span class="unit" data-u="m"><input id="fw" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="1000" step="0.5" placeholder="ex. 15"></span></label>
             <span id="dimhint" style="font-weight:400"></span>
           </div>
           <label class="f" for="city">Ville du terrain
@@ -1169,6 +1169,15 @@ window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.docume
             <div class="chips" role="radiogroup" aria-label="Autres bâtiments">
               <label class="chip"><input type="radio" name="type" value="com"><span>Boutiques</span></label>
               <label class="chip"><input type="radio" name="type" value="bur"><span>Bureaux</span></label>
+            </div>
+          </div>
+          <div class="flabel prolab"><span class="prohead">Grands projets <span class="badge">Offre Max</span></span>
+            <div class="chips" role="radiogroup" aria-label="Grands projets">
+              <label class="chip"><input type="radio" name="type" value="cite"><span>Cité résidentielle</span></label>
+              <label class="chip"><input type="radio" name="type" value="residence"><span>Résidence d'immeubles</span></label>
+              <label class="chip"><input type="radio" name="type" value="marche"><span>Marché couvert</span></label>
+              <label class="chip"><input type="radio" name="type" value="ecole"><span>École</span></label>
+              <label class="chip"><input type="radio" name="type" value="sante"><span>Centre de santé</span></label>
             </div>
           </div>
           <details class="adv"><summary><span>Style <span id="styleword">de la maison</span></span></summary>
@@ -1206,6 +1215,47 @@ window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.docume
           <label class="f" for="nb"><span id="nblabel">Nombre de boutiques</span><select id="nb"><option value="3">3 boutiques</option></select></label>
           <div class="checks"><label class="tgl"><input type="checkbox" id="x-plus" checked><span id="pluslabel">Galerie couverte devant les vitrines</span></label></div>
           <p class="note" id="pronote"></p>
+        </fieldset>
+        <fieldset id="bigset" hidden>
+          <legend id="biglegend">Votre projet</legend>
+          <div data-big="cite">
+            <div class="row">
+              <label class="f" for="lot">Taille des lots<select id="lot"><option value="200">200 m²</option><option value="250">250 m²</option><option value="300" selected>300 m²</option><option value="400">400 m²</option><option value="500">500 m²</option><option value="600">600 m²</option></select></label>
+              <label class="f" for="ht">Maisons<select id="ht"><option value="pp" selected>Sans étage</option><option value="r1">Duplex à 1 étage</option></select></label>
+            </div>
+            <div class="checks"><label class="tgl"><input type="checkbox" id="x-eqE">Réserve pour une école</label><label class="tgl"><input type="checkbox" id="x-eqM">Réserve pour un marché</label></div>
+          </div>
+          <div data-big="residence">
+            <div class="row">
+              <label class="f" for="nbld">Nombre d'immeubles<select id="nbld"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>8</option><option>10</option><option>12</option></select></label>
+              <label class="f" for="rnf">Étages<select id="rnf"><option value="3">R+3</option><option value="4" selected>R+4</option><option value="5">R+5</option><option value="6">R+6</option><option value="8">R+8</option><option value="10">R+10</option></select></label>
+            </div>
+            <div class="row">
+              <label class="f" for="rapts">Appartements par étage<select id="rapts"><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option></select></label>
+              <label class="f" for="raptType">Taille des appartements<select id="raptType"><option value="auto">Selon la place disponible</option><option value="studio">Studio</option><option value="f2">F2 (2 pièces)</option><option value="f3">F3 (3 pièces)</option><option value="f4">F4 (4 pièces)</option></select></label>
+            </div>
+          </div>
+          <div data-big="marche">
+            <div class="row">
+              <label class="f" for="nst">Nombre d'étals<select id="nst"><option>40</option><option>60</option><option>80</option><option>100</option><option selected>150</option><option>200</option><option>300</option><option>400</option><option>600</option></select></label>
+              <label class="f" for="nsh">Boutiques au pourtour<select id="nsh"><option>0</option><option>8</option><option>12</option><option selected>20</option><option>30</option><option>40</option><option>60</option></select></label>
+            </div>
+            <div class="flabel">Toiture de la halle
+              <div class="chips" role="radiogroup" aria-label="Toiture de la halle">
+                <label class="chip"><input type="radio" name="mroof" value="ombrieres" checked><span>Ombrières colorées</span></label>
+                <label class="chip"><input type="radio" name="mroof" value="voutes"><span>Voûtes en terre</span></label>
+              </div>
+            </div>
+          </div>
+          <div data-big="ecole">
+            <label class="f" for="ncl">Nombre de classes<select id="ncl"><option>3</option><option>4</option><option selected>6</option><option>8</option><option>10</option><option>12</option><option>15</option><option>18</option></select></label>
+            <div class="checks"><label class="tgl"><input type="checkbox" id="x-lib">Bibliothèque</label><label class="tgl"><input type="checkbox" id="x-cant">Cantine et cuisine</label></div>
+          </div>
+          <div data-big="sante">
+            <label class="f" for="beds">Lits d'hospitalisation<select id="beds"><option value="0" selected>Sans hospitalisation</option><option>4</option><option>8</option><option>12</option><option>20</option><option>30</option></select></label>
+            <div class="checks"><label class="tgl"><input type="checkbox" id="x-mat">Maternité</label><label class="tgl"><input type="checkbox" id="x-labo">Laboratoire</label></div>
+          </div>
+          <p class="note" id="bignote"></p>
         </fieldset>
         <fieldset>
           <legend>Vos souhaits</legend>
@@ -1576,7 +1626,9 @@ function defaults3d(m){const F=FIN3D[m.std]||FIN3D.std,MO=modele3d(m);
   // la finition donne la teinte de l'enduit, les menuiseries, le sol et la couleur de toiture ; le modèle réel donne façade et toiture ; le style garde la main sur les matériaux
   const fin={wall:F.wall,frame:F.frame,floor:F.floor};if(F.roofColor) fin.roofColor=F.roofColor;
   const mod={};["facade","wall","roof","roofMat","roofColor"].forEach(k=>{if(MO[k]!==undefined) mod[k]=MO[k]});
-  return Object.assign(defaults3dBase(m),fin,mod,m.pro?{roof:"plat",facade:"enduit"}:{},byStyle,o3Of(m))}
+  if(m.site) return Object.assign(defaults3d(m.unit),o3Of(m));
+  const bigL=m.pro&&m.pro.big?{roof:m.pro.kind==="marche"?"plat":"deux",roofMat:"tole",facade:m.zone==="savane"||m.zone==="sahel"?"btc":"enduit"}:null;
+  return Object.assign(defaults3dBase(m),fin,mod,bigL||(m.pro?{roof:"plat",facade:"enduit"}:{}),byStyle,o3Of(m))}
 // phrase du récit qui décrit les teintes de la finition, telles que la maquette 3D les montre
 function finTxt(m){const F=FIN3D[m.std]||FIN3D.std,o=defaults3d(m),fr={anthra:"en aluminium anthracite",blanc:"blanches",bois:"en bois"}[o.frame],fl={carrelage:"en carrelage",parquet:"en parquet",beton:"en béton ciré",marbre:"en marbre",granit:"en granit"}[o.floor];
   return `Finition ${F.nom} : ${o.facade==="enduit"?`enduit ${WALL_NAMES[o.wall]||"teinté"}, `:""}soubassement ${F.plinthN}, menuiseries ${fr} et sols ${fl}. À l'intérieur, plafond ${F.ceilN}, murs ${F.inN[0]}, avec un mur ${F.inN[1]} dans les ${m.pro?"pièces principales":`pièces de vie et ${F.inN[2]} dans les chambres`}.`}
@@ -1589,7 +1641,7 @@ function facadeTxt(m){
   const fen={naco:"fenêtres à lames de verre orientables",coul:"fenêtres coulissantes",baie:"grandes baies vitrées"}[MO.win]||"fenêtres coulissantes";
   const acc=MO.acc&&MO.acc!==o.facade?` Côté séjour, un pan de façade est habillé de ${MO.acc==="pierre"?"pierre":"bois"}.`:"";
   return `${mur}, ${toit} et ${fen}.${acc}${m.zone==="cote"?" Le rez-de-chaussée est surélevé sur un socle de 50 cm.":""} ${finTxt(m)} Modèle réel suivi : ${refModele(m)}.`}
-const DEF={area:500,shape:"rect",city:"grand-bassam",W:20,D:25,ra:5,rl:3,zone:"cote",or:"S",type:"pp",n:3,std:"std",style:"tropical",pm:210000,seed:1,fw:0,garage:0,piscine:false,bureau:false,openK:false,suites:false,service:false,cellier:false,solaire:false,citerne:false,nf:4,usage:"immeuble",apts:4,aptType:"auto",rdc:"apparts",lift:true,roofTerrace:true,genset:false,nb:3,plus:true,et:0};
+const DEF={area:500,shape:"rect",city:"grand-bassam",W:20,D:25,ra:5,rl:3,zone:"cote",or:"S",type:"pp",n:3,std:"std",style:"tropical",pm:210000,seed:1,fw:0,garage:0,piscine:false,bureau:false,openK:false,suites:false,service:false,cellier:false,solaire:false,citerne:false,nf:4,usage:"immeuble",apts:4,aptType:"auto",rdc:"apparts",lift:true,roofTerrace:true,genset:false,nb:3,plus:true,et:0,lot:300,ht:"pp",eqE:false,eqM:false,nbld:3,rnf:4,rapts:4,raptType:"auto",nst:150,nsh:20,mroof:"ombrieres",ncl:6,lib:false,cant:false,beds:0,mat:false,labo:false};
 const BEAR={N:0,NE:45,E:90,SE:135,S:180,SO:225,O:270,NO:315},ROT=o=>180-(BEAR[o]===undefined?180:BEAR[o]);
 const OR_TXT={N:"au nord",NE:"au nord-est",E:"à l'est",SE:"au sud-est",S:"au sud",SO:"au sud-ouest",O:"à l'ouest",NO:"au nord-ouest"};
 const TYPES={pp:"Villa plain-pied",r1:"Duplex R+1",r2:"Maison R+2"},LVL=["Rez-de-chaussée","Étage R+1","Étage R+2"],LVS=["RDC","R+1","R+2"];
@@ -1794,6 +1846,7 @@ function partition(rect,items,out){
 function compute(p){
   p=Object.assign({},DEF,p);
   if(p.type==="rn") return computeTower(p);
+  if(isBig(p.type)) return computeBig(p);
   if(isPro(p.type)) return computePro(p);
   const {W,D,ra,rl,zone,or,type,n,std,style}=p;
   const pm=p.pm||PRICE[std];
@@ -1896,7 +1949,7 @@ function compute(p){
 
 /* ---------- Bâtiments R+3 et plus : immeubles et grandes maisons ---------- */
 function lvName(i,short){return i===0?(short?"RDC":"Rez-de-chaussée"):(short?"R+"+i:"Étage R+"+i)}
-function typeLabel(p){const e=Math.max(0,Math.min(2,Math.round(+p.et||0))),se=e?` à ${e} étage${e>1?"s":""}`:"";
+function typeLabel(p){if(isBig(p.type)) return BIG[p.type];const e=Math.max(0,Math.min(2,Math.round(+p.et||0))),se=e?` à ${e} étage${e>1?"s":""}`:"";
   if(p.type==="com") return ((p.nb||DEF.nb)>1?(e?"Boutiques":"Boutiques en bande"):"Boutique")+se;if(p.type==="bur") return "Bureaux"+se;
   return {pp:"Villa sans étage",r1:"Duplex à 1 étage",r2:"Maison à 2 étages"}[p.type]||((p.usage==="famille"?"Maison R+":"Immeuble R+")+(p.nf||4))}
 const APT={
@@ -2138,6 +2191,343 @@ function progLabel(m,short){
   if(m.isTower&&!m.fam) return m.nApts+" logements";
   if(m.pro) return short?m.pro.short:m.pro.sum;
   return m.n+(short?" ch.":" chambre"+(m.n>1?"s":""))}
+/* ====================== GRANDS PROJETS (offre Max) ======================
+   École, centre de santé, marché couvert : un bâtiment dont le plan suit des principes publiés d'architectes reconnus
+   en Afrique de l'Ouest (cités dans le récit). Cité résidentielle et résidence d'immeubles : un plan masse (lots ou
+   immeubles, voirie, espaces verts) dont chaque logement est la maison ou l'immeuble du générateur habituel. */
+const BIG={cite:"Cité résidentielle",residence:"Résidence d'immeubles",ecole:"École",sante:"Centre de santé",marche:"Marché couvert"};
+const isBig=t=>Object.prototype.hasOwnProperty.call(BIG,t);
+const clampI=(v,a,b,d)=>{v=Math.round(+v);return isFinite(v)?Math.max(a,Math.min(b,v)):d};
+const r2e=v=>Math.round(v*100)/100;
+function bigCtx(p){const CITY=CITIES[p.city]||null;
+  return {kCity:CITY?CITY.k:1,lieu:CITY?CITY.nom:ZONES[p.zone].nom,Z:ZONES[p.zone],pm:p.pm||PRICE[p.std],plot:p.W*p.D,bwMax:Math.max(6,p.W-2*p.rl),bdMax:Math.max(6,p.D-p.ra-p.rl)}}
+// une rangée de pièces : largeurs voulues ramenées à la largeur disponible, positions au centimètre
+function bigRow(L,y,h,items,x0,wd){const t=items.reduce((s,i)=>s+i.w,0);let acc=0,xp=r2e(x0);
+  items.forEach((it,i)=>{acc+=it.w;const xn=i===items.length-1?r2e(x0+wd):r2e(x0+wd*acc/t);L.push(Object.assign({a:0},it,{x:xp,y:r2e(y),w:r2e(xn-xp),h:r2e(h)}));xp=xn})}
+const bigW=a=>a.reduce((s,i)=>s+i.w,0);
+function computeBig(p){
+  const c=bigCtx(p),notes=[],k=p.type;
+  if(k==="cite"||k==="residence") return k==="cite"?bigCite(p,c,notes):bigResidence(p,c,notes);
+  const B=k==="ecole"?bigEcole(p,c,notes):k==="sante"?bigSante(p,c,notes):bigMarche(p,c,notes);
+  const {levels,bx,by,bw,bd,pro}=B,plot=c.plot;
+  const builtArea=levels.reduce((s,L)=>s+L.reduce((t,rm)=>{const a=rm.w*rm.h;return t+(rm.t==="patio"?0:rm.t==="out"?a*(rm.hall?0.6:0.5):a)},0),0);
+  const extras=[];
+  if(p.solaire) extras.push({n:"Panneaux solaires (kit 3 kWc)",c:2800000*c.kCity});
+  if(p.citerne) extras.push({n:"Château d'eau et surpresseur",c:1500000*c.kCity});
+  const extraSum=extras.reduce((t,e)=>t+e.c,0),total=builtArea*c.pm*c.Z.k*c.kCity+extraSum;
+  pro.park=0;
+  notes.push({t:"Bâtiment qui reçoit du public : avant le permis de construire, faites valider la sécurité incendie, les sorties de secours et l'accès des personnes handicapées par un architecte et un bureau de contrôle."});
+  return (window.applyEd||(x=>x))({planLevels:levels.map((L,i)=>({li:i,label:lvName(i),short:lvName(i,true)})),isTower:false,p,lieu:c.lieu,kCity:c.kCity,extras,extraSum,pool:null,
+    W:p.W,D:p.D,ra:p.ra,rl:p.rl,zone:p.zone,or:p.or,type:p.type,n:pro.nb,std:p.std,style:p.style,pm:c.pm,levels,bx,by,bw,bd,foot:bw*bd,plot,builtArea,total,notes,Z:c.Z,kType:1,pro});
+}
+/* --- École : barrettes de classes autour d'une cour (lycée Schorge, Kéré), toit décollé du plafond (école de Gando, Kéré) --- */
+function bigEcole(p,c,notes){
+  const ask=clampI(p.ncl,3,18,6),cd=7,vd=2.4;let N=ask,cw=8;
+  const serv=[{n:"Entrée",t:"day",w:3,acc:"ext",toGal:1,win:"n"},{n:"Bureau du directeur",t:"day",w:4,acc:"gal",win:"e"},{n:"Salle des maîtres",t:"day",w:5,acc:"gal",win:"x"},{n:"Réserve",t:"day",w:3,acc:"gal",win:"h"}];
+  if(p.lib) serv.push({n:"Bibliothèque",t:"day",w:8,acc:"gal",win:"x"});
+  if(p.cant) serv.push({n:"Cantine",t:"day",w:9,acc:"gal",win:"x"},{n:"Cuisine",t:"wet",w:4,via:"Cantine",win:"h"});
+  serv.push({n:"Latrines filles",t:"wet",w:3.5,acc:"gal",win:"h"},{n:"Latrines garçons",t:"wet",w:3.5,acc:"gal",win:"h"});
+  const S=bigW(serv),court=c.bdMax>=2*cd+2*vd+8; // assez profond : deux barrettes autour de la cour ; sinon une seule barrette, la cour derrière
+  const split=(N,cw)=>{if(!court) return {k:0,W:N*cw+S};let best=null;for(let k=Math.ceil(N/2);k<=N;k++){const W=Math.max(k*cw,(N-k)*cw+S);if(!best||W<best.W-1e-9) best={k,W}}return best};
+  let b=split(N,cw);if(b.W>c.bwMax){cw=7;b=split(N,cw)}
+  while(b.W>c.bwMax&&N>3){N--;b=split(N,cw)}
+  if(N<ask) notes.push({w:1,t:`Le terrain permet ${N} classes au lieu de ${ask} : choisissez un terrain plus large.`});
+  // les pièces se resserrent de 15 % au plus ; au-delà, le bâtiment garde sa taille et dépasse les distances aux limites
+  let bw=b.W;if(bw>c.bwMax){if(c.bwMax/bw>=0.85) bw=c.bwMax;else notes.push({w:1,t:`Ce terrain est trop étroit pour cette école : il faut au moins ${fmt(b.W*0.85+2*p.rl)} m de large.`})}
+  if(!court) notes.push({t:"Terrain peu profond : les classes sont alignées sur une seule rangée, la cour de récréation est derrière."});
+  const dc=court?Math.max(8,Math.min(20,c.bdMax-2*cd-2*vd)):Math.min(20,Math.max(0,c.bdMax-cd-vd));
+  const bd=court?2*cd+2*vd+dc:cd+vd+(dc>=6?dc:0),bx=bigX(p,c,bw),by=bigY(p,bd),L=[];
+  if(bd>p.D-1) notes.push({w:1,t:"Ce terrain est trop peu profond pour une école : choisissez un terrain plus profond."});
+  const cls=i=>({n:"Salle de classe "+i,t:"day",w:cw,acc:"gal",win:"x",cls:1});
+  const fill=row=>{if(bw-bigW(row)>=0.5) row.push({n:"Préau",t:"out",gal:1,w:bw-bigW(row)});return row};
+  const gal=row=>row.map((it,i)=>({n:"Galerie",t:"out",gal:1,w:it.w,nolabel:i!==Math.floor(row.length/2)}));
+  if(court){const k1=b.k,top=[];for(let i=1;i<=k1;i++) top.push(cls(i));fill(top);
+    const bot=[serv[0],serv[1],serv[2],serv[3]];for(let i=k1+1;i<=N;i++) bot.push(cls(i));bot.push(...serv.slice(4));fill(bot);
+    bigRow(L,by,cd,top,bx,bw);bigRow(L,by+cd,vd,gal(top),bx,bw);
+    bigRow(L,by+cd+vd,dc,[{n:"Cour de récréation",t:"patio",w:bw}],bx,bw);
+    bigRow(L,by+cd+vd+dc,vd,gal(bot),bx,bw);bigRow(L,by+cd+2*vd+dc,cd,bot,bx,bw)}
+  else{const row=[serv[0],serv[1],serv[2],serv[3]];for(let i=1;i<=N;i++) row.push(cls(i));row.push(...serv.slice(4));fill(row);
+    // une barrette : la galerie est côté rue, l'entrée la traverse ; la cour est derrière
+    row[0]=Object.assign({},row[0],{acc:"gal",toGal:0});let y=by;
+    if(dc>=6){bigRow(L,y,dc,[{n:"Cour de récréation",t:"patio",w:bw}],bx,bw);y+=dc}
+    bigRow(L,y,cd,row,bx,bw);bigRow(L,y+cd,vd,gal(row).map((g,i)=>i===0?{n:"Porche",t:"out",gal:1,w:g.w}:g),bx,bw)}
+  return {levels:[L],bx,by,bw,bd,pro:{kind:"ecole",big:1,nb:N,ncl:N,cw,cd,bar:!court,sum:N+" classes",short:N+" cl.",lib:!!p.lib,cant:!!p.cant}};
+}
+// position du bâtiment : centré entre les distances aux limites, ou centré sur le terrain s'il est plus large que la place disponible
+// le bâtiment respecte la distance à la rue, garde 0,5 m au fond si possible, et ne sort jamais du terrain par le fond
+const bigY=(p,bd)=>r2e(Math.max(0,Math.min(Math.max(0.5,p.D-p.ra-bd),p.D-bd)));
+const bigX=(p,c,bw)=>r2e(bw<=c.bwMax+0.01?p.rl+(c.bwMax-bw)/2:Math.max(0,(p.W-bw)/2));
+/* --- Centre de santé : modules de mêmes dimensions de part et d'autre d'une galerie centrale ombragée (clinique de Léo, Kéré) --- */
+function bigSante(p,c,notes){
+  const ask=clampI(p.beds,0,30,0),dep=6,gd=3.5;
+  // rangées pour un nombre de lits donné ; le nombre de lits baisse si le bâtiment ne tient pas sur la largeur du terrain
+  const rowsFor=beds=>{
+    const bot=[{n:"Entrée",t:"day",w:3,acc:"ext",toGal:1,win:"n"},{n:"Accueil et caisse",t:"day",w:4,acc:"gal",win:"e"},{n:"Pharmacie",t:"day",w:4,acc:"gal",win:"h"}];
+    if(p.labo) bot.push({n:"Laboratoire",t:"day",w:4,acc:"gal",win:"e"});
+    bot.push({n:"Bureau du major",t:"day",w:3.5,acc:"gal",win:"e"},{n:"Réserve",t:"day",w:3,acc:"gal",win:"h"},{n:"WC patients F",t:"wet",w:2.4,acc:"gal",win:"h"},{n:"WC patients H",t:"wet",w:2.4,acc:"gal",win:"h"});
+    const top=[{n:"Consultation 1",t:"day",w:4,acc:"gal",win:"x"},{n:"Consultation 2",t:"day",w:4,acc:"gal",win:"x"},{n:"Salle de soins",t:"day",w:4.5,acc:"gal",win:"x"},{n:"Vaccination",t:"day",w:4,acc:"gal",win:"x"}];
+    if(beds){const rooms=Math.ceil(beds/4);for(let i=0;i<rooms;i++){const b=Math.min(4,beds-i*4);top.push({n:rooms>1?"Hospitalisation "+(i+1):"Hospitalisation",t:"night",w:Math.max(3.6,b*8/dep),acc:"gal",win:"x",beds:b})}
+      top.push({n:"Salle de garde",t:"day",w:3,acc:"gal",win:"e"})}
+    if(p.mat) top.push({n:"Salle de travail",t:"day",w:4,acc:"gal",win:"x"},{n:"Salle d'accouchement",t:"day",w:5,acc:"gal",win:"x"},{n:"Suites de couches",t:"night",w:5.4,acc:"gal",win:"x",beds:4},{n:"Stérilisation",t:"wet",w:3,acc:"gal",win:"h"},{n:"Douches patients",t:"wet",w:2.6,acc:"gal",win:"h"});
+    // équilibre des deux rangées : les dernières pièces de soins passent côté rue si la rangée du haut est trop longue
+    while(bigW(top)-bigW(bot)>4&&top.length>4) bot.splice(bot.length-2,0,top.pop());
+    return {top,bot,bw:Math.max(bigW(top),bigW(bot))}};
+  let beds=ask,R0=rowsFor(beds);
+  while(R0.bw>c.bwMax&&beds>0){beds=Math.max(0,beds-4);R0=rowsFor(beds)}
+  if(beds<ask) notes.push({w:1,t:`La largeur du terrain permet ${beds} lits au lieu de ${ask} : choisissez un terrain plus large.`});
+  const {top,bot}=R0;let bw=R0.bw;
+  [top,bot].forEach(r=>{if(bw-bigW(r)>=0.5) r.push({n:"Préau",t:"out",gal:1,w:bw-bigW(r)})});
+  if(bw>c.bwMax){if(c.bwMax/bw>=0.85) bw=c.bwMax;else notes.push({w:1,t:`Ce terrain est trop étroit pour ce centre de santé : il faut au moins ${fmt(bw*0.85+2*p.rl)} m de large.`})}
+  const bd=2*dep+gd,bx=bigX(p,c,bw),by=bigY(p,bd),L=[];
+  if(c.bdMax<bd) notes.push({w:1,t:"Ce terrain est peu profond pour ce centre de santé : réduisez la distance à la rue ou au fond du terrain."});
+  bigRow(L,by,dep,top,bx,bw);bigRow(L,by+dep,gd,[{n:"Galerie d'attente",t:"out",gal:1,w:bw}],bx,bw);bigRow(L,by+dep+gd,dep,bot,bx,bw);
+  return {levels:[L],bx,by,bw,bd,pro:{kind:"sante",big:1,nb:beds,beds,mat:!!p.mat,labo:!!p.labo,sum:beds?`centre de santé, ${beds} lits`:"centre de santé",short:beds?beds+" lits":"santé"}};
+}
+/* --- Marché couvert : halle d'étals, allées perpendiculaires, boutiques au pourtour (marché central de Koudougou) ;
+       ombrières colorées (marché de Dandaji, atelier masōmī) ou voûtes en briques de terre --- */
+// étals d'une halle, à leur place dans la pièce (recalculés à chaque dessin : la halle peut être agrandie dans l'éditeur)
+const stallsOf=r=>stallGrid(r.w,r.h).slice(0,r.ns||0).map(g=>({x:r.x+g.x,y:r.y+g.y,w:g.w,h:g.h}));
+function stallGrid(w,h){const out=[],per=Math.floor((w-1)/2);if(per<1) return out;const x0=(w-per*2)/2;
+  for(let y=1.25;y+3<=h-1.25+1e-9;y+=5.5) for(let i=0;i<per;i++) out.push({x:x0+i*2,y,w:2,h:1.5},{x:x0+i*2,y:y+1.5,w:2,h:1.5});
+  return out}
+function bigMarche(p,c,notes){
+  const want=clampI(p.nst,20,800,150),shopsW=clampI(p.nsh,0,200,20),rd=4.5,aw=4,ew=5;
+  const cap=(Wh,Dh)=>4*stallGrid((Wh-aw)/2,(Dh-aw)/2).length;
+  const maxW=Math.max(16,c.bwMax-2*rd),maxD=Math.max(16,c.bdMax-2*rd),ratio=Math.max(0.6,Math.min(1.6,maxD/maxW));
+  let Wh=Math.min(maxW,Math.max(16,Math.sqrt(want*6.6/ratio)+aw)),Dh=16;
+  while(cap(Wh,Dh)<want&&Dh<maxD) Dh=Math.min(maxD,Dh+0.5);
+  while(cap(Wh,Dh)<want&&Wh<maxW) Wh=Math.min(maxW,Wh+0.5);
+  Wh=r2e(Wh);Dh=r2e(Dh);
+  const n=Math.min(want,cap(Wh,Dh));
+  if(n<want) notes.push({w:1,t:`Le terrain permet ${n} étals au lieu de ${want} : choisissez un terrain plus grand ou réduisez les distances aux limites.`});
+  const bw=r2e(Wh+2*rd),bd=r2e(Dh+2*rd),bx=bigX(p,c,bw),by=bigY(p,bd),L=[];
+  if(bw>c.bwMax+0.5||bd>c.bdMax+0.5) notes.push({w:1,t:"Le marché dépasse les distances aux limites : choisissez un terrain plus grand."});
+  // pourtour : services aux angles, entrées au milieu de chaque côté, boutiques entre les deux
+  // boutiques réparties sur les quatre côtés à tour de rôle, le côté rue d'abord
+  const halfW=(Wh-ew)/2,halfD=(Dh-ew)/2,capS=[halfW,halfD,halfD,halfW].map(h=>2*Math.floor(h/3.2)),want4=[0,0,0,0];
+  for(let left=shopsW,i=0,g=0;left>0&&g<4;i=(i+1)%4){if(want4[i]<capS[i]){want4[i]++;left--;g=0}else g++}
+  let shops=0;
+  const sideItems=(len,k)=>{const half=(len-ew)/2,out=[];[Math.ceil(k/2),Math.floor(k/2)].forEach((use,j)=>{const arr=[];
+      for(let i=0;i<use;i++){shops++;arr.push({n:"Boutique "+shops,t:"day",shop:1,free:1,acc:"ext",win:"n",w:3.2})}
+      const rest=half-use*3.2;if(rest>=0.5) arr[j?"push":"unshift"]({n:"Galerie",t:"out",gal:1,nolabel:1,w:rest});else if(arr.length) arr[arr.length-1].w+=rest;
+      out.push(...arr);if(!j) out.push({n:"Entrée",t:"out",gal:1,w:ew})});return out};
+  const corner=(n,t,win)=>({n,t,acc:"ext",win,w:rd});
+  const bottom=[corner("Gestion du marché","day","e")].concat(sideItems(Wh,want4[0]),[corner("Poste de garde","day","e")]);
+  const leftS=sideItems(Dh,want4[1]),rightS=sideItems(Dh,want4[2]);
+  const topS=[corner("Toilettes publiques","wet","h")].concat(sideItems(Wh,want4[3]),[corner("Magasin de stockage","day","h")]);
+  if(shops<shopsW) notes.push({w:1,t:`Le pourtour du marché permet ${shops} boutiques au lieu de ${shopsW}.`});
+  bigRow(L,by,rd,topS,bx,bw);bigRow(L,by+bd-rd,rd,bottom,bx,bw);
+  // côtés : colonnes de pièces (on pose la rangée puis on la fait pivoter)
+  const col=(items,x)=>{const T=[];bigRow(T,0,rd,items,0,Dh);T.forEach(r=>{L.push(Object.assign({},r,{x,y:r2e(by+rd+r.x),w:rd,h:r.w}))})};
+  col(leftS,bx);col(rightS,r2e(bx+bw-rd));
+  // halle : quatre carrés d'étals et deux allées qui se croisent
+  const x0=r2e(bx+rd),y0=r2e(by+rd),qw=r2e((Wh-aw)/2),qd=r2e((Dh-aw)/2),G=stallGrid(qw,qd),per=Math.ceil(n/4);let left=n;
+  [[x0,y0],[r2e(x0+qw+aw),y0],[x0,r2e(y0+qd+aw)],[r2e(x0+qw+aw),r2e(y0+qd+aw)]].forEach(([x,y],i)=>{const take=Math.min(G.length,per,left);left-=take;
+    L.push({n:"Étals",t:"out",gal:1,hall:1,a:0,x,y,w:qw,h:qd,nolabel:i>0,ns:take})});
+  L.filter(r=>r.ns!==undefined).forEach(r=>{while(left>0&&r.ns<G.length){r.ns++;left--}});
+  L.push({n:"Allée",t:"out",gal:1,hall:1,a:0,x:r2e(x0+qw),y:y0,w:aw,h:Dh},{n:"Allée",t:"out",gal:1,hall:1,a:0,nolabel:1,x:x0,y:r2e(y0+qd),w:qw,h:aw},{n:"Allée",t:"out",gal:1,hall:1,a:0,nolabel:1,x:r2e(x0+qw+aw),y:r2e(y0+qd),w:qw,h:aw});
+  const st=L.reduce((s,r)=>s+(r.ns||0),0);
+  return {levels:[L],bx,by,bw,bd,pro:{kind:"marche",big:1,nb:st,stalls:st,shops,roof:p.mroof==="voutes"?"voutes":"ombrieres",tree:{x:r2e(x0+qw+aw/2),y:r2e(y0+qd+aw/2)},sum:`${st} étals et ${shops} boutiques`,short:st+" étals"}};
+}
+/* --- portes et fenêtres des grands bâtiments : chaque pièce sait par où on y entre (galerie, extérieur, pièce voisine)
+       et quelles fenêtres elle reçoit (des deux côtés pour la ventilation traversante, en façade, ou petites et hautes) --- */
+function bigOpenings(m,li,L,pairs,ext){
+  let entry=null;const idx=n=>L.findIndex(r=>r.n===n);
+  const wins=(w,bot,top,ww,gp)=>{const busy=w.open.map(o=>[o.d0-0.35,o.d1+0.35]).sort((a,b)=>a[0]-b[0]);let a=w.s0+0.45;const free=[];
+    busy.forEach(([b0,b1])=>{if(b0>a) free.push([a,b0]);a=Math.max(a,b1)});if(w.s1-0.45>a) free.push([a,w.s1-0.45]);
+    free.forEach(([f0,f1])=>{const len=f1-f0,k=Math.floor((len+gp)/(ww+gp));if(k<1) return;const used=k*ww+(k-1)*gp,s=f0+(len-used)/2;
+      for(let i=0;i<k;i++){const d0=r2e(s+i*(ww+gp));w.open.push({k:"win",d0,d1:r2e(d0+ww),bot,top})}})};
+  L.forEach((r,i)=>{if(r.t==="out"||r.t==="patio") return;
+    const galP=pairs.filter(p=>(p.a===i||p.b===i)&&p.kind==="facade"&&L[p.a===i?p.b:p.a].gal).sort((x,y)=>(y.s1-y.s0)-(x.s1-x.s0));
+    const exts=ext.filter(e=>e.room===i),dw=r.shop?Math.min(2.6,r.w-0.6):r.cls?1.0:r.n==="Entrée"?1.4:0.9;
+    if(r.acc==="gal"&&galP[0]){const g=galP[0],len=g.s1-g.s0;if(len>=dw+0.4){const d0=r2e(g.s0+0.3);g.open.push({k:"door",d0,d1:r2e(d0+dw),into:i,bot:0,top:2.2})}}
+    else if(r.acc==="ext"&&exts.length){const e=exts.find(x=>x.side==="bottom")||exts.find(x=>x.side==="top")||exts[0];
+      if(e.s1-e.s0>=dw+0.4){const cc=(e.s0+e.s1)/2;e.open.push({k:"entry",d0:r2e(cc-dw/2),d1:r2e(cc+dw/2),bot:0,top:2.3,shop:!!r.shop});if(li===0&&e.side==="bottom"&&r.n==="Entrée"&&!entry) entry={x:cc,y:m.by+m.bd}}}
+    if(r.via){const j=idx(r.via),p=j<0?null:pairs.find(q=>(q.a===i&&q.b===j)||(q.a===j&&q.b===i));if(p&&p.s1-p.s0>=1.2){p.kind="wall";const d0=r2e(p.s0+0.2);p.open.push({k:"door",d0,d1:r2e(d0+0.9),into:i,bot:0,top:2.1})}}
+    if(r.toGal&&galP[0]){const g=galP[0],len=g.s1-g.s0,w=Math.min(2.2,len-0.4),cc=(g.s0+g.s1)/2;g.open.push({k:"door",d0:r2e(cc-w/2),d1:r2e(cc+w/2),into:i,bot:0,top:2.3})}
+    if(r.win==="x"){galP.forEach(g=>wins(g,1.0,2.3,1.2,0.8));exts.filter(e=>!galP[0]||e.o===galP[0].o).forEach(e=>wins(e,1.0,2.3,1.2,0.8))}
+    else if(r.win==="e") exts.forEach(e=>wins(e,1.0,2.3,1.2,1.0));
+    else if(r.win==="h") exts.forEach(e=>wins(e,1.7,2.2,0.6,1.4));
+  });
+  if(!entry&&li===0){const g=L.find(r=>(r.n==="Entrée"||r.n==="Porche")&&r.t==="out"&&Math.abs(r.y+r.h-(m.by+m.bd))<EPS);if(g) entry={x:g.x+g.w/2,y:m.by+m.bd,open:true}}
+  return entry;
+}
+/* --- Cité résidentielle : îlots de deux rangs de lots dos à dos, voies secondaires, voie principale vers la rue --- */
+function bigCite(p,c,notes){
+  const W=p.W,D=p.D,lot=clampI(p.lot,150,1000,300),ht=p.ht==="r1"?"r1":"pp";
+  const lw=Math.max(10,Math.round(Math.sqrt(lot/1.6)*2)/2),ld=r2e(Math.max(12,lot/lw)),rw=10,mw=W>=90?15:10;
+  const roads=[],lots=[],zones=[];
+  const mx=W>=90?r2e((W-mw)/2):0,segs=mx>0?[[0,mx],[mx+mw,W]]:[[mw,W]];
+  // îlots de deux rangées dos à dos : la rangée du bas donne sur la rue ou la voie du dessous, celle du haut sur une voie au-dessus
+  const rows=[];let y=D;
+  while(y-ld>=0){rows.push({y0:r2e(y-ld),dir:"s"});if(y-2*ld-rw<0) break;rows.push({y0:r2e(y-2*ld),dir:"n"});roads.push({x:0,y:r2e(y-2*ld-rw),w:W,h:rw});y-=2*ld+rw}
+  const yTop=rows.length?Math.min(...rows.map(r=>r.y0)):D;
+  roads.push({x:mx,y:roads.length?Math.min(...roads.map(r=>r.y)):r2e(yTop),w:mw,h:r2e(D-(roads.length?Math.min(...roads.map(r=>r.y)):yTop)),main:1});
+  if(yTop>=3) zones.push({k:"vert",x:0,y:0,w:W,h:r2e(yTop)});
+  // au bout de la voie principale, la bande entre les deux rangées du haut est plantée
+  if(mx>0&&roads.length>1){const yr=Math.min(...roads.filter(r=>!r.main).map(r=>r.y));if(yr-yTop>=3) zones.push({k:"vert",x:mx,y:r2e(yTop),w:mw,h:r2e(yr-yTop)})}
+  rows.forEach((rw0,ri)=>segs.forEach(([x0,x1],si)=>{const n=Math.floor((x1-x0)/lw);if(n<1) return;const w=(x1-x0)/n;
+    for(let i=0;i<n;i++) lots.push({x:r2e(x0+i*w),y:rw0.y0,w:r2e(w),h:ld,dir:rw0.dir,row:ri,blk:Math.floor(ri/2),seg:si,k:"lot"})}));
+  if(!lots.length) notes.push({w:1,t:"Ce terrain est trop petit pour une cité : il faut la place d'au moins une rangée de lots."});
+  // réserves : espace vert (environ 10 % du terrain), école et marché, prises dans un îlot, contre la voie principale
+  const plot=W*D,blks=[...new Set(lots.map(l=>l.blk))],segN=segs.length>1?1:0,mid=mx+mw/2;
+  const take=(kind,area,blk)=>{if(blk===undefined) return 0;let got=0;const cols={};
+    lots.filter(l=>l.k==="lot"&&l.blk===blk&&l.seg===segN).forEach(l=>{(cols[l.x]=cols[l.x]||[]).push(l)});
+    Object.values(cols).sort((a,b)=>Math.abs(a[0].x+a[0].w/2-mid)-Math.abs(b[0].x+b[0].w/2-mid)).forEach(c=>{if(got<area) c.forEach(l=>{l.k=kind;got+=l.w*l.h})});return got};
+  let green=zones.reduce((s,z)=>s+z.w*z.h,0);
+  const free=()=>lots.filter(l=>l.k==="lot").length;
+  if(free()>12&&green<plot*0.10) green+=take("vert",plot*0.10-green,blks[Math.floor(blks.length/2)]);
+  if(p.eqE){if(plot>=20000&&free()>20) take("ecole",4000,blks[Math.max(0,Math.floor(blks.length/2)-1)]);else notes.push({t:"La réserve pour une école demande un terrain d'au moins 2 hectares."})}
+  if(p.eqM){if(plot>=15000&&free()>16) take("marche",2500,blks[0]);else notes.push({t:"La réserve pour un marché demande un terrain d'au moins 1,5 hectare."})}
+  // maison type, calculée pour un lot
+  const up=Object.assign({},p,{type:ht,W:lw,D:ld,area:Math.round(lw*ld),ra:Math.min(5,r2e(ld*0.2)),rl:Math.min(2,r2e(lw*0.1)),cov:Math.max(30,Math.min(60,+p.cov||45)),ed:p.ed||null,shape:"rect"});
+  const unit=compute(up),houses=lots.filter(l=>l.k==="lot");
+  houses.forEach(l=>{const fx=r2e(l.x+Math.max(0.5,Math.min(unit.bx,l.w-unit.bw-0.5))),fy=l.dir==="s"?r2e(l.y+unit.by):r2e(l.y+l.h-unit.by-unit.bd);l.fp={x:fx,y:fy,w:unit.bw,h:unit.bd}});
+  const nH=houses.length,roadA=roads.reduce((s,r)=>s+r.w*r.h,0),roadL=roads.reduce((s,r)=>s+Math.max(r.w,r.h),0),greenA=lots.filter(l=>l.k==="vert").reduce((s,l)=>s+l.w*l.h,0)+zones.reduce((s,z)=>s+z.w*z.h,0);
+  const eco=p.std==="eco",vrd=[
+    {d:eco?"Voirie en latérite compactée":"Voirie revêtue (enrobé bicouche)",u:"m²",q:Math.round(roadA),pu:eco?8000:24000},
+    {d:"Caniveaux de drainage des eaux de pluie",u:"ml",q:Math.round(roadL*2),pu:eco?30000:45000},
+    {d:"Réseau d'eau potable",u:"ml",q:Math.round(roadL),pu:18000},
+    {d:"Réseau électrique basse tension",u:"ml",q:Math.round(roadL),pu:32000},
+    {d:"Éclairage public (candélabres)",u:"u",q:Math.max(1,Math.ceil(roadL/30)),pu:550000},
+    {d:"Espaces verts plantés",u:"m²",q:Math.round(greenA),pu:3500}];
+  vrd.forEach(v=>{v.pu=Math.round(v.pu*c.kCity)});
+  const vT=vrd.reduce((s,v)=>s+v.q*v.pu,0);vrd.push({d:"Études, bornage et dossier de lotissement",u:"forfait",q:1,pu:Math.round(vT*0.03)});
+  notes.push({t:"Une cité demande un plan de lotissement établi par un géomètre, une étude des voiries et réseaux et l'approbation de la mairie : les largeurs de voies suivent le règlement d'urbanisme local."});
+  const site={kind:"cite",roads,lots,zones,lw,ld,rw,mw,lot,green:Math.round(greenA/plot*100)};
+  return bigSiteModel(p,c,site,unit,nH,vrd,notes,{kind:"cite",big:1,site:1,nb:nH,sum:nH+" maisons",short:nH+" mais.",lot,ht});
+}
+/* --- Résidence d'immeubles : voie d'accès et stationnement au centre, immeubles espacés, le reste en jardin --- */
+function bigResidence(p,c,notes){
+  const W=p.W,D=p.D,want=clampI(p.nbld,1,12,3),nf=clampI(p.rnf,3,10,4),apts=clampI(p.rapts,2,6,4);
+  const up=Object.assign({},p,{type:"rn",usage:"immeuble",nf,apts,aptType:p.raptType||"auto",rdc:"apparts",lift:nf>=4,roofTerrace:true,W:30,D:24,area:720,ra:3,rl:3,cov:50,ed:p.ed||null,shape:"rect"});
+  const unit=compute(up),bw=unit.bw,bd=unit.bd,H=(nf+1)*3.2,road=8,park=5,mg=4,sp=Math.max(8,Math.round(H*0.5));
+  const both=W>=2*(bw+mg)+road+2*park+2;const rx=both?r2e((W-road)/2):mg+park;
+  const zonesX=both?[[mg,rx-park-mg],[rx+road+park+mg,W-mg]]:[[rx+road+park+mg,W-mg]];
+  const blds=[];let rowY=D-mg;
+  while(blds.length<want&&rowY-bd>=mg){zonesX.forEach(([x0,x1])=>{const cols=Math.floor((x1-x0+sp)/(bw+sp));const used=cols*bw+(cols-1)*sp,s=x0+(x1-x0-used)/2;
+      for(let i=0;i<cols&&blds.length<want;i++) blds.push({x:r2e(s+i*(bw+sp)),y:r2e(rowY-bd),w:bw,h:bd})});rowY-=bd+sp}
+  if(!blds.length) notes.push({w:1,t:"Ce terrain est trop petit pour une résidence : il faut la place d'au moins un immeuble, de la voie d'accès et du stationnement."});
+  if(blds.length<want) notes.push({w:1,t:`Le terrain permet ${blds.length} immeubles au lieu de ${want}, avec ${sp} m entre deux immeubles pour la lumière et la ventilation.`});
+  blds.forEach((b,i)=>b.id=String.fromCharCode(65+i));
+  const yEnd=blds.length?Math.min(...blds.map(b=>b.y))-1:D/2,roadR={x:rx,y:r2e(Math.max(mg,yEnd)),w:road,h:r2e(D-Math.max(mg,yEnd)),main:1};
+  const parks=[];[[rx-park,road],[rx+road,road]].slice(0,both?2:2).forEach(([px])=>{for(let y=D-6;y-2.5>=roadR.y;y-=2.5) parks.push({x:r2e(px),y:r2e(y-2.5),w:park,h:2.5})});
+  const guard={x:r2e(rx+road+0.5),y:r2e(D-4.5),w:4,h:4};
+  const nA=blds.length*unit.nApts;
+  if(parks.length<nA) notes.push({t:`Le stationnement compte ${parks.length} places pour ${nA} logements : prévoyez un parking complémentaire ou un rez-de-chaussée sur pilotis.`});
+  const roadA=roadR.w*roadR.h,parkA=parks.length*park*2.5,builtA=blds.reduce((s,b)=>s+b.w*b.h,0),greenA=Math.max(0,W*D-roadA-parkA-builtA-16),eco=p.std==="eco";
+  const vrd=[
+    {d:eco?"Voie d'accès en latérite compactée":"Voie d'accès revêtue (enrobé)",u:"m²",q:Math.round(roadA),pu:eco?8000:24000},
+    {d:"Places de stationnement en pavés",u:"m²",q:Math.round(parkA),pu:eco?12000:18000},
+    {d:"Caniveaux de drainage des eaux de pluie",u:"ml",q:Math.round(roadR.h*2+W),pu:eco?30000:45000},
+    {d:"Réseaux d'eau, d'électricité et d'assainissement",u:"ml",q:Math.round(roadR.h+blds.length*15),pu:65000},
+    {d:"Éclairage extérieur",u:"u",q:Math.max(2,Math.ceil(roadR.h/20)),pu:450000},
+    {d:"Jardins et espaces verts",u:"m²",q:Math.round(greenA),pu:3500},
+    {d:"Clôture et poste de garde",u:"forfait",q:1,pu:Math.round((2*(W+D))*52000+4500000)}];
+  vrd.forEach(v=>{v.pu=Math.round(v.pu*c.kCity)});
+  notes.push({t:`Immeubles R+${nf} : prévoir une étude géotechnique, un bureau d'études structure et un bureau de contrôle (sécurité incendie, ascenseurs) avant le permis de construire.`});
+  const site={kind:"residence",blds,road:roadR,parks,guard,nf,apts,sp,green:Math.round(greenA/(W*D)*100)};
+  return bigSiteModel(p,c,site,unit,blds.length,vrd,notes,{kind:"residence",big:1,site:1,nb:blds.length,nApts:nA,sum:`${blds.length} immeubles, ${nA} logements`,short:nA+" logts"});
+}
+function bigSiteModel(p,c,site,unit,n,vrd,notes,pro){
+  const vT=vrd.reduce((s,v)=>s+v.q*v.pu,0),pl=unit.planLevels||unit.levels.map((x,i)=>({li:i,label:lvName(i),short:lvName(i,true)}));
+  return {planLevels:[{li:-1,label:"Plan masse",short:"Plan masse"}].concat(pl),isTower:false,p,lieu:c.lieu,kCity:c.kCity,extras:[],extraSum:0,pool:null,
+    W:p.W,D:p.D,ra:p.ra,rl:p.rl,zone:p.zone,or:p.or,type:p.type,n:unit.n,std:p.std,style:p.style,pm:c.pm,levels:unit.levels,bx:0,by:0,bw:p.W,bd:p.D,
+    foot:n*unit.foot,plot:p.W*p.D,builtArea:n*unit.builtArea,total:Math.round(n*unit.total+vT),notes,Z:c.Z,kType:1,pro,site,unit,vrd,vrdT:vT,nUnits:n,edited:!!unit.edited};
+}
+/* --- plan masse --- */
+function drawSite(m,opt={}){
+  const S=m.site,W=m.W,D=m.D,thumb=!!opt.thumb,fs=Math.max(1,Math.min(W,D)/70),pad=thumb?2:fs*5,street=thumb?0:fs*7,tb=thumb?0:fs*12;
+  const vx=-pad,vy=-pad,vw=W+2*pad,vh=D+2*pad+street+tb;
+  const U=t=>esc(trL(t).toUpperCase()),esc=t=>String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  const T=(x,y,t,sz,a="")=>`<text x="${x.toFixed(2)}" y="${y.toFixed(2)}" font-size="${sz.toFixed(2)}" font-family="Outfit,Arial,sans-serif" ${a}>${t}</text>`;
+  let s=`<svg viewBox="${vx.toFixed(2)} ${vy.toFixed(2)} ${vw.toFixed(2)} ${vh.toFixed(2)}" xmlns="http://www.w3.org/2000/svg" style="color-scheme:only light" role="img" aria-label="${esc(trL("Plan masse"))}">`;
+  s+=`<defs><pattern id="sgr" width="${fs*1.2}" height="${fs*1.2}" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="${fs*1.2}" height="${fs*1.2}" fill="#EAF2E5"/><line x1="0" y1="0" x2="0" y2="${fs*1.2}" stroke="#C6DCBC" stroke-width="${fs*0.15}"/></pattern>
+    <pattern id="shat" width="${fs*1.4}" height="${fs*1.4}" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="${fs*1.4}" height="${fs*1.4}" fill="#F6EFE2"/><line x1="0" y1="0" x2="0" y2="${fs*1.4}" stroke="#E0C9A2" stroke-width="${fs*0.18}"/></pattern></defs>`;
+  s+=R(vx,vy,vw,vh,`fill="${PAP}"`);
+  if(street) s+=R(-pad,D+fs*1.2,W+2*pad,street-fs*1.2,`fill="#D9DCDE"`)+T(W/2,D+street*0.62,U("Voie publique"),fs*1.4,`text-anchor="middle" fill="#5F6669" letter-spacing="${fs*0.3}"`);
+  s+=R(0,0,W,D,`fill="#F7F6F1" stroke="${INK}" stroke-width="${fs*0.12}" stroke-dasharray="${fs*0.8} ${fs*0.4}"`);
+  const tree=(x,y,r)=>`<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${r.toFixed(2)}" fill="#B9D6A8" stroke="#6E9E5E" stroke-width="${(r*0.12).toFixed(2)}"/>`;
+  const obst=S.kind==="cite"?[]:[S.road,S.guard,...S.blds,...S.parks].map(o=>({x:o.x-2.5,y:o.y-2.5,w:o.w+5,h:o.h+5}));
+  const greenRect=(x,y,w,h)=>{let z=R(x,y,w,h,`fill="url(#sgr)"`);const st=Math.max(fs*3,Math.min(9,Math.min(w,h)/2));
+    if(!thumb) for(let yy=y+st/2;yy<y+h-st/2+0.01;yy+=st) for(let xx=x+st/2;xx<x+w-st/2+0.01;xx+=st) if(!obst.some(o=>xx>o.x&&xx<o.x+o.w&&yy>o.y&&yy<o.y+o.h)) z+=tree(xx,yy,Math.min(st*0.32,fs*1.3));return z};
+  if(S.kind==="cite"){
+    (S.zones||[]).forEach(z=>{s+=greenRect(z.x,z.y,z.w,z.h)});
+    S.roads.forEach(r=>{s+=R(r.x,r.y,r.w,r.h,`fill="#D9DCDE"`);const a=`stroke="#FFFFFF" stroke-width="${fs*0.15}" stroke-dasharray="${fs*1.2} ${fs*0.9}"`;s+=r.w>r.h?Ln(r.x,r.y+r.h/2,r.x+r.w,r.y+r.h/2,a):Ln(r.x+r.w/2,r.y,r.x+r.w/2,r.y+r.h,a)});
+    // réserves regroupées : un seul rectangle par sorte et par îlot
+    const groups={};S.lots.forEach(l=>{if(l.k==="lot") return;const g=l.k+":"+l.blk+":"+l.seg;(groups[g]=groups[g]||[]).push(l)});
+    Object.values(groups).forEach(G=>{const x0=Math.min(...G.map(l=>l.x)),y0=Math.min(...G.map(l=>l.y)),x1=Math.max(...G.map(l=>l.x+l.w)),y1=Math.max(...G.map(l=>l.y+l.h)),k=G[0].k;
+      G.forEach(l=>{s+=k==="vert"?greenRect(l.x,l.y,l.w,l.h):R(l.x,l.y,l.w,l.h,`fill="url(#shat)"`)});
+      if(k!=="vert") s+=R(x0,y0,x1-x0,y1-y0,`fill="none" stroke="#B88B3E" stroke-width="${fs*0.1}"`);
+      if(!thumb){const lab=U(k==="vert"?"Espace vert":k==="ecole"?"Réserve école":"Réserve marché");s+=T((x0+x1)/2,(y0+y1)/2,lab,fs*1.1,`text-anchor="middle" font-weight="600" fill="#3E4346" paint-order="stroke" stroke="#FFFFFF" stroke-width="${fs*0.3}"`)+T((x0+x1)/2,(y0+y1)/2+fs*1.5,fmt(G.reduce((a,l)=>a+l.w*l.h,0))+" m²",fs*0.9,`text-anchor="middle" fill="#3E4346" paint-order="stroke" stroke="#FFFFFF" stroke-width="${fs*0.3}"`)}});
+    S.lots.forEach((l,i)=>{if(l.k!=="lot") return;s+=R(l.x,l.y,l.w,l.h,`fill="none" stroke="#8E959A" stroke-width="${fs*0.06}"`);
+      if(l.fp) s+=R(l.fp.x,l.fp.y,l.fp.w,l.fp.h,`fill="${WALL}"`)});
+    if(!thumb&&S.lots.length<=220){let k=0;S.lots.forEach(l=>{if(l.k!=="lot") return;k++;s+=T(l.x+l.w/2,l.dir==="s"?l.y+l.h-fs*0.5:l.y+fs*1.2,String(k),fs*0.75,`text-anchor="middle" fill="#6A7175"`)})}
+  }else{
+    s+=greenRect(0,0,W,D);
+    const r=S.road;s+=R(r.x,r.y,r.w,r.h,`fill="#D9DCDE"`)+Ln(r.x+r.w/2,r.y,r.x+r.w/2,r.y+r.h,`stroke="#FFFFFF" stroke-width="${fs*0.15}" stroke-dasharray="${fs*1.2} ${fs*0.9}"`);
+    S.parks.forEach(q=>{s+=R(q.x,q.y,q.w,q.h,`fill="#E4E6E8" stroke="#FFFFFF" stroke-width="${fs*0.08}"`)});
+    s+=R(S.guard.x,S.guard.y,S.guard.w,S.guard.h,`fill="${WALL}"`);
+    S.blds.forEach(b=>{s+=R(b.x,b.y,b.w,b.h,`fill="${WALL}"`);if(!thumb) s+=T(b.x+b.w/2,b.y+b.h/2,`${b.id} · ${trL("R+"+S.nf)}`,fs*1.3,`text-anchor="middle" dominant-baseline="middle" font-weight="600" fill="#FFFFFF"`)});
+  }
+  if(!thumb){
+    // nord, échelle, cartouche
+    const nx=W-fs*2,ny=D+street+fs*6.6;s+=`<g transform="translate(${nx.toFixed(2)} ${ny.toFixed(2)})"><circle r="${(fs*1.8).toFixed(2)}" fill="#FFFFFF" stroke="${INK}" stroke-width="${(fs*0.08).toFixed(2)}"/><g transform="rotate(${ROT(m.or)})"><path d="M0 ${(-fs*1.4).toFixed(2)}L${(fs*0.6).toFixed(2)} ${(fs*0.8).toFixed(2)}L0 ${(fs*0.3).toFixed(2)}L${(-fs*0.6).toFixed(2)} ${(fs*0.8).toFixed(2)}Z" fill="${INK}"/></g></g>`+T(nx-fs*2.6,ny+fs*0.4,"N",fs*1.1,`text-anchor="middle" font-weight="700" fill="${INK}"`);
+    const sc=Math.pow(10,Math.floor(Math.log10(W/4))),len=sc*(W/4/sc>=5?5:W/4/sc>=2?2:1),sy=D+street+fs*2.2;
+    s+=R(0,sy,len,fs*0.4,`fill="${INK}"`)+T(0,sy+fs*1.8,"0",fs*0.9,`fill="${INK}"`)+T(len,sy+fs*1.8,fmt(len)+" m",fs*0.9,`text-anchor="end" fill="${INK}"`);
+    const ty=D+street+fs*5.2,title=`${U("Plan masse")} — ${U(BIG[m.type]||"")} · ${U(m.pro.sum)}`;
+    s+=T(0,ty,title,fs*1.25,`font-weight="700" fill="${INK}"`)+T(0,ty+fs*1.9,`${U("Terrain")} ${fmt(m.plot)} m² (${dec(W,1)} × ${dec(D,1)} m) · ${U(m.lieu)} · ARCHITMIND CI · ${U("Esquisse de principe")}`,fs*0.95,`fill="#3E4346"`);
+    const lg=S.kind==="cite"?[["#D9DCDE","Voirie"],[WALL,"Maisons"],["url(#sgr)","Espaces verts"],["url(#shat)","Réserves"]]:[["#D9DCDE","Voie et stationnement"],[WALL,"Immeubles"],["url(#sgr)","Jardins"]];
+    lg.forEach(([f,t],i)=>{const lx=i*W/4;s+=R(lx,ty+fs*3.1,fs*1.4,fs*1,`fill="${f}" stroke="#8E959A" stroke-width="${fs*0.05}"`)+T(lx+fs*1.9,ty+fs*3.9,esc(trL(t)),fs*0.95,`fill="${INK}"`)});
+  }
+  return s+`</svg>`;
+}
+/* --- récit des grands projets : principes d'architectes reconnus, avec le nom du projet qui les a montrés --- */
+function storyBig(m){
+  const P=m.pro,k=P.kind,warm=m.zone==="savane"||m.zone==="sahel",F_=x=>F(x),months=Math.round(6+m.builtArea/(k==="marche"?120:90));
+  if(k==="ecole"){const L=m.levels[0],cl=L.find(r=>r.cls),A=cl?Math.round(cl.w*cl.h):56;
+    return [["Le principe",P.bar?`${P.ncl} classes alignées le long d'une galerie couverte, comme à l'école primaire de Gando de Francis Kéré (Burkina Faso), avec la cour de récréation derrière le bâtiment.`:`${P.ncl} classes en barrettes autour d'une cour de récréation protégée, comme au lycée Schorge de Francis Kéré à Koudougou (Burkina Faso), où des modules entourent une cour centrale qui sert aussi aux rassemblements et aux fêtes.`],
+      ["Les classes",`Chaque classe mesure environ ${A} m² et s'ouvre sur une galerie couverte de 2,4 m : les élèves attendent à l'ombre, et les fenêtres placées des deux côtés de la classe font traverser l'air.`],
+      ["Le confort climatique","Principe de l'école primaire de Gando, de Francis Kéré : le toit en tôle est posé au-dessus du plafond, avec un vide entre les deux. L'air circule dans ce vide et les classes restent fraîches ; les grands débords du toit protègent les murs du soleil et de la pluie."],
+      ["Les matériaux",warm?"Murs en briques de terre comprimée fabriquées sur place avec un peu de ciment, comme à Gando, où les habitants ont appris à construire en bâtissant leur école.":"Murs en agglos enduits, plus courants sur la côte ; dans le nord, les briques de terre comprimée de l'école de Gando gardent mieux la fraîcheur."],
+      ["Le programme","Direction, salle des maîtres, réserve, latrines séparées pour les filles et les garçons."+(P.lib?" Une bibliothèque complète l'école.":"")+(P.cant?" Une cantine et sa cuisine permettent de nourrir les élèves sur place.":"")],
+      ["Le chantier",`Comptez environ ${months} mois de travaux, pour un budget proche de ${F_(m.total)}.`]]}
+  if(k==="sante") return [["Le principe","Les salles sont des modules de mêmes dimensions, alignés de part et d'autre d'une galerie centrale ombragée où patientent les malades et leurs familles, comme à la clinique de Léo (Burkina Faso), de Francis Kéré, construite autour d'un couloir extérieur central."],
+      ["Les soins","Consultations, salle de soins et vaccination d'un côté ; accueil, pharmacie et bureau du major côté rue."+(P.labo?" Un laboratoire d'analyses complète l'accueil.":"")+(P.beds?` Hospitalisation de ${P.beds} lits avec une salle de garde.`:"")+(P.mat?" Maternité : salle de travail, salle d'accouchement, suites de couches et stérilisation.":"")],
+      ["Le confort climatique",`Comme à Léo, de grands toits débordants protègent les murs et ombragent les abords ; chaque salle a des fenêtres sur la galerie et sur l'extérieur pour la ventilation traversante.${warm?" Les murs en briques de terre comprimée gardent la fraîcheur de la nuit pendant la journée.":""}`],
+      ["À valider","Un centre de santé suit les normes du ministère de la Santé (circuits propre et sale, eau, déchets médicaux) : faites valider le projet par un architecte et par les services de santé du district."],
+      ["Le chantier",`Comptez environ ${months} mois de travaux, pour un budget proche de ${F_(m.total)}.`]];
+  if(k==="marche") return [["Le principe",`${P.stalls} étals sous une grande halle ouverte et ${P.shops} boutiques sur le pourtour, desservis par deux allées perpendiculaires qui se croisent au centre : c'est l'organisation du marché central de Koudougou (Burkina Faso), primé par le prix Aga Khan d'architecture, où les boutiques bordent la halle et les portes se ferment la nuit.`],
+      ["La toiture",P.roof==="voutes"?"La halle est couverte de voûtes en briques de terre comprimée posées sur des arcs, comme à Koudougou, protégées de la pluie par une tôle : la terre garde la fraîcheur.":"Les étals sont abrités par des ombrières métalliques colorées, comme au marché de Dandaji (Niger), de Mariam Kamara (atelier masōmī) : elles coupent le soleil et laissent passer l'air. Un arbre est gardé au croisement des allées, pour l'ombre et les rencontres."],
+      ["La circulation","Quatre entrées, une au milieu de chaque côté, fermées la nuit par des grilles. Prévoyez le stationnement des motos le long de deux côtés du marché, hors des allées, comme à Koudougou."],
+      ["Les services","Toilettes publiques, magasin de stockage, bureau de gestion du marché et poste de garde occupent les quatre angles."],
+      ["Le chantier",`Comptez environ ${months} mois de travaux, pour un budget proche de ${F_(m.total)}.`]];
+  const u=m.unit,S=m.site;
+  if(k==="cite") return [["Le principe",`${P.nb} lots d'environ ${fmt(S.lot)} m² le long de voies de ${S.rw} m, reliées à la rue par une voie principale de ${S.mw} m. Chaque lot reçoit la même maison, dessinée par le générateur : son plan est dans les onglets suivants.`],
+      ["La maison type",`${typeLabel(u.p)} · ${u.n} chambre${u.n>1?"s":""} · ${fmt(u.builtArea)} m² de plancher`],
+      ["Les espaces partagés",`${S.green} % du terrain en espaces verts plantés.`+(S.lots.some(l=>l.k==="ecole")?" Une réserve est prévue pour une école.":"")+(S.lots.some(l=>l.k==="marche")?" Une réserve est prévue pour un marché.":"")+" Les programmes de Koffi & Diabaté à Abidjan, comme Abatta Village (31 % d'espaces verts, circulation automobile limitée, cheminements piétons), montrent qu'un quartier agréable commence par là."],
+      ["La voirie et les réseaux",`Voirie, caniveaux, eau potable, électricité et éclairage public sont comptés dans le coût : ${F_(m.vrdT)}.`],
+      ["Le chantier",`Comptez au moins ${Math.round(8+P.nb/12)} mois : voirie et réseaux d'abord, puis les maisons par tranches.`]];
+  return [["Le principe",`${P.nb} immeubles R+${S.nf} de ${S.apts} appartements par étage, espacés d'au moins ${S.sp} m pour la lumière et la ventilation, desservis par une voie d'accès avec ${S.parks.length} places de stationnement.`],
+    ["Les jardins",`${S.green} % du terrain reste en jardin, comme dans les résidences de Koffi & Diabaté à Abidjan (Abatta Village : 31 % d'espaces verts, voitures tenues à l'écart, cheminements piétons).`],
+    ["Les immeubles",`${u.aptDesc}. Séjour et chambres donnent sur la façade, avec un balcon ; cuisine et sanitaires sont regroupés côté palier.`],
+    ["Le chantier",`Comptez au moins ${Math.round(12+P.nb*3)} mois de travaux, par tranches, pour un budget proche de ${F_(m.total)}.`]];
+}
+/* --- devis d'un plan masse : le devis du logement type multiplié par le nombre de logements, plus la voirie et les réseaux --- */
+function devisSite(m){
+  const u=devis(m.unit),n=m.nUnits,vt=m.vrdT;
+  const lots=u.lots.map(lo=>({n:lo.n,l:lo.l.map(x=>Object.assign({},x,{q:x.q*n,mt:x.mt*n})),t:lo.t*n}));
+  lots.push({n:"Voirie et réseaux divers (VRD)",l:m.vrd.map(v=>({d:v.d,u:v.u,q:v.q,pu:v.pu,mt:v.q*v.pu})),t:vt});
+  const total=Math.round(u.total*n+vt),k=m.kCity;
+  return {lots,ex:(u.ex||[]).map(e=>Object.assign({},e,{mt:e.mt*n})),mat:u.mat.map(x=>({n:x.n,v:x.v*n})),sousTotal:u.sousTotal*n+vt,imprevus:u.imprevus*n,imprevusPc:u.imprevusPc,extraSum:(u.extraSum||0)*n,total,
+    bas:Math.round(total*0.85),moyen:total,haut:Math.round(total*1.15),m2:Math.round(total/Math.max(1,m.builtArea)),ref:u.ref,k:u.k,metres:u.metres,
+    enPlus:[{d:"Honoraires d'architecte, de géomètre et de bureau d'études (5 à 8 %)",mt:Math.round(total*0.06)},
+      {d:"Études de sol et d'impact environnemental",mt:Math.round((1500000+m.plot*40)*k)},
+      {d:"Approbation, permis et taxes",mt:Math.round((900000+n*150000)*k)},
+      {d:"Branchements aux réseaux publics (eau, électricité)",mt:Math.round(n*600000*k)}],
+    incert:["Voirie et réseaux : le prix dépend beaucoup du terrain (pente, nature du sol, distance aux réseaux publics).",...u.incert.slice(0,2)],
+    conseils:["Construisez par tranches : voirie et réseaux d'abord, puis les logements au rythme des ventes.",...u.conseils.slice(0,3)]};
+}
 function computePro(p){
   const {W,D,ra,rl,zone,or,type,std}=p,pm=p.pm||PRICE[std],notes=[],sum=a=>a.reduce((s,i)=>s+i.a,0);
   const r=rng(p.seed*7919+(type==="com"?101:211)+(+p.nb||3)*17);
@@ -2309,7 +2699,23 @@ function sides(r,m){
   return s;
 }
 const NOWIN=new Set(["Dégagement","Escalier","Dressing","Palier","Ascenseur","Local technique","Gaine technique","Réserve","Machinerie","Local vélos","Rangement","Archives"]);
+// éditeur 3D : ouvertures choisies à la main pour certains murs (p.ed.O[niveau]["e:pièce:côté" ou "p:pièce:pièce"])
+function edOV(m,li,pairs,ext){
+  const OV=m.edited&&m.p&&m.p.ed&&Array.isArray(m.p.ed.O)?m.p.ed.O[li]:null;
+  if(OV&&typeof OV==="object"){const hmax=(o3Of(m).hsp||2.9)-0.05;
+    const fix=(w,list,ext)=>{const a=w.s0+0.05,b=w.s1-0.05,out=[];
+      list.slice(0,12).forEach(o=>{if(!o||!/^(win|baie|door|entry)$/.test(o.k)) return;let k=o.k,d0=Math.max(a,+o.d0),d1=Math.min(b,+o.d1);
+        if(!(d1-d0>=0.4)) return;if(ext&&k==="door") k="entry";if(!ext&&k==="entry") k="door";
+        let top=Math.max(1.2,Math.min(hmax,+o.top||2.1)),bot=k==="win"?Math.max(0,Math.min(top-0.3,+o.bot||0)):0;
+        if(out.some(q=>d0<q.d1+0.1&&d1>q.d0-0.1)) return;
+        const x={k,d0:Math.round(d0*100)/100,d1:Math.round(d1*100)/100,bot,top};if(k==="door") x.into=o.into===w.b?w.b:w.a;out.push(x)});
+      w.open=out.sort((p,q)=>p.d0-q.d0)};
+    pairs.forEach(p=>{const k="p:"+p.a+":"+p.b;if(Array.isArray(OV[k])&&p.kind!=="open"&&p.kind!=="none") fix(p,OV[k],false)});
+    ext.forEach(e=>{const k="e:"+e.room+":"+e.side;if(Array.isArray(OV[k])) fix(e,OV[k],true)});
+  }
+}
 function openings(m,li){
+  if(m.site) return li<0?{L:[],pairs:[],ext:[],entry:null}:openings(m.unit,li);
   const L=m.levels[li],pairs=[],fin=m.p&&m.p.pv>=2&&!m.pro&&!m.isTower?m.std:null;
   for(let i=0;i<L.length;i++)for(let j=i+1;j<L.length;j++){const s=shared(L[i],L[j]);if(s) pairs.push(Object.assign({a:i,b:j,kind:"wall",open:[]},s))}
   const isOut=r=>r.t==="out",isPat=r=>r.t==="patio";
@@ -2321,6 +2727,8 @@ function openings(m,li){
     else if(isPat(A)||isPat(B)){p.kind="patio";const L2=p.s1-p.s0;if(L2>1.2){const w=Math.min(2.4,L2-0.6),c=(p.s0+p.s1)/2;p.open.push({k:"win",d0:c-w/2,d1:c+w/2,bot:0.4,top:2.3})}}
     else if(isOut(A)||isOut(B)) p.kind="facade";
   });
+  // grands projets : chaque pièce s'ouvre sur sa galerie ou sur l'extérieur (voir bigOpenings)
+  if(m.pro&&m.pro.big){const ext=[];L.forEach((r,i)=>{if(isOut(r)||isPat(r)) return;sides(r,m).forEach(s=>ext.push(Object.assign({room:i,open:[]},s)))});const entry=bigOpenings(m,li,L,pairs,ext);edOV(m,li,pairs,ext);return {L,pairs,ext,entry}}
   const linked=new Set();
   // baies : une par espace extérieur (pas pour le parking)
   L.forEach((r,i)=>{if(!isOut(r)||r.n==="Parking") return;
@@ -2399,19 +2807,7 @@ function openings(m,li){
     const c=(s0+s1)/2;
     e.open.push({k:"win",d0:c-w/2,d1:c+w/2,bot,top});
   });
-  // éditeur 3D : ouvertures choisies à la main pour certains murs (p.ed.O[niveau]["e:pièce:côté" ou "p:pièce:pièce"])
-  const OV=m.edited&&m.p&&m.p.ed&&Array.isArray(m.p.ed.O)?m.p.ed.O[li]:null;
-  if(OV&&typeof OV==="object"){const hmax=(o3Of(m).hsp||2.9)-0.05;
-    const fix=(w,list,ext)=>{const a=w.s0+0.05,b=w.s1-0.05,out=[];
-      list.slice(0,12).forEach(o=>{if(!o||!/^(win|baie|door|entry)$/.test(o.k)) return;let k=o.k,d0=Math.max(a,+o.d0),d1=Math.min(b,+o.d1);
-        if(!(d1-d0>=0.4)) return;if(ext&&k==="door") k="entry";if(!ext&&k==="entry") k="door";
-        let top=Math.max(1.2,Math.min(hmax,+o.top||2.1)),bot=k==="win"?Math.max(0,Math.min(top-0.3,+o.bot||0)):0;
-        if(out.some(q=>d0<q.d1+0.1&&d1>q.d0-0.1)) return;
-        const x={k,d0:Math.round(d0*100)/100,d1:Math.round(d1*100)/100,bot,top};if(k==="door") x.into=o.into===w.b?w.b:w.a;out.push(x)});
-      w.open=out.sort((p,q)=>p.d0-q.d0)};
-    pairs.forEach(p=>{const k="p:"+p.a+":"+p.b;if(Array.isArray(OV[k])&&p.kind!=="open"&&p.kind!=="none") fix(p,OV[k],false)});
-    ext.forEach(e=>{const k="e:"+e.room+":"+e.side;if(Array.isArray(OV[k])) fix(e,OV[k],true)});
-  }
+  edOV(m,li,pairs,ext);
   return {L,pairs,ext,entry};
 }
 
@@ -2477,7 +2873,15 @@ const FUR={
     else for(let y=0.3,k=0;y+4.4<=h;y+=5,k++) if(k%2===0) s+=car(w/2-0.9,y,false);
     if(w>=6&&h>=6){const cx=w>=9.8?w/2:Math.min(w-0.4,4.98);for(let y=5.1;y<h-1;y+=5) s+=R(cx-0.18,y-0.18,0.36,0.36,`fill="${WALL}"`)}
     return s},
-  entry(w,h){if(w<1||h<1.4) return "";return R(0.02,0.4,0.3,Math.min(1.1,h-0.6))+Ci(w-0.3,0.3,0.2)}
+  entry(w,h){if(w<1||h<1.4) return "";return R(0.02,0.4,0.3,Math.min(1.1,h-0.6))+Ci(w-0.3,0.3,0.2)},
+  // grands projets : tableau et tables-bancs d'une classe, lits d'hospitalisation, cabines de latrines, tables de cantine, table d'examen
+  classroom(w,h){if(w<3||h<4) return "";let s=R(w*0.2,0.02,w*0.6,0.08,`fill="${INK}"`)+R(0.3,0.5,1.4,0.7);const cols=Math.max(1,Math.floor((w-0.6)/1.7)),x0=(w-cols*1.7+0.5)/2;
+    for(let y=1.9;y+0.9<=h-0.3;y+=1.15) for(let c=0;c<cols;c++){const x=x0+c*1.7;s+=R(x,y,1.2,0.45)+R(x,y+0.55,1.2,0.25)}return s},
+  ward(w,h,b){let s="";const n=Math.max(1,Math.min(b||2,Math.floor((h-0.2)/1.4)*(w>=4.4?2:1))),per=w>=4.4?Math.ceil(n/2):n;
+    for(let i=0;i<n;i++){const col=i<per?0:1,k=col?i-per:i,y=0.3+k*1.4,x=col?w-2.0:0.02;if(y+0.9>h) break;s+=R(x,y,2.0,0.9)+R(col?x+1.6:x,y+0.1,0.35,0.7,'rx="0.06"')}return s},
+  latrines(w,h){let s="";const k=Math.max(1,Math.floor(w/1.1)),cw=w/k;for(let i=0;i<k;i++){if(i) s+=Ln(i*cw,0,i*cw,Math.min(h,1.5));s+=FUR.toilet(i*cw+cw/2,0.02,0)}return s},
+  canteen(w,h){let s="";for(let y=0.8;y+1.6<=h;y+=2.2) for(let x=0.4;x+2.4<=w;x+=3.0){s+=R(x,y+0.35,2.4,0.8)+R(x,y,2.4,0.25)+R(x,y+1.25,2.4,0.25)}return s},
+  exam(w,h){if(w<1.8||h<2.4) return "";return R(w/2-0.35,0.4,0.7,1.9,'rx="0.08"')+R(w/2-0.25,0.45,0.5,0.3,'rx="0.06"')+R(0.05,h-0.7,1.2,0.6)+Ci(w-0.4,h-0.5,0.2)}
 };
 function furniture(r,ix,iy,iw,ih){
   const n=r.n;
@@ -2514,6 +2918,17 @@ function furniture(r,ix,iy,iw,ih){
   if(/^Terrasse/.test(n)) return fill(FUR.terrace,ix,iy,iw,ih);
   if(n==="Patio") return place(FUR.patio,ix,iy,iw,ih,0);
   if(n==="Entrée") return fill(FUR.entry,ix,iy,iw,ih);
+  // grands projets
+  if(r.ns) return stallsOf(r).map(q=>R(q.x+0.08,q.y+0.06,q.w-0.16,q.h-0.12,'rx="0.04"')).join("");
+  if(r.cls) return fill(FUR.classroom,ix,iy,iw,ih);
+  if(r.beds) return fill((w,h)=>FUR.ward(w,h,r.beds),ix,iy,iw,ih);
+  if(/^Latrines|^WC patients|^Toilettes publiques|^Douches patients/.test(n)) return fill(FUR.latrines,ix,iy,iw,ih);
+  if(n==="Cantine") return fill(FUR.canteen,ix,iy,iw,ih);
+  if(/^Consultation|^Direction$|^Bureau du directeur|^Bureau du major|^Gestion du marché|^Poste de garde|^Salle de garde|^Vaccination/.test(n)) return fill(FUR.office,ix,iy,iw,ih);
+  if(n==="Salle des maîtres") return fill(FUR.dining,ix,iy,iw,ih);
+  if(/^Salle de soins|^Salle de travail|^Salle d'accouchement/.test(n)) return fill(FUR.exam,ix,iy,iw,ih);
+  if(/^Magasin|^Pharmacie|^Stérilisation|^Laboratoire/.test(n)) return fill(FUR.dressing,ix,iy,iw,ih);
+  if(n==="Accueil et caisse") return fill(FUR.reception,ix,iy,iw,ih);
   return "";
 }
 /* ---------- Mode lisible (téléphone) : libellés en pixels d'écran ----------
@@ -2561,12 +2976,14 @@ function mobLabels(L,P){
   return s;
 }
 function drawTech(m,li,opt={}){
+  if(m.site) return li<0||opt.thumb?drawSite(m,opt):drawTech(m.unit,li,opt);
   const thumb=!!opt.thumb;
   // opt.scr : largeur d'affichage en pixels ; sous 700 px, le plan passe en mode lisible
-  const MOB=!thumb&&opt.scr>0&&opt.scr<700;
+  // les grands bâtiments (plus de 30 m) sont toujours en mode lisible : à l'échelle 1:100, leurs textes seraient trop petits
+  const bigB=!thumb&&m.pro&&m.pro.big&&m.bw>30,MOB=!thumb&&(opt.scr>0&&opt.scr<700||bigB);
   li=Math.min(li||0,m.levels.length-1);
   const O=openings(m,li),L=O.L,B={x:m.bx,y:m.by,w:m.bw,h:m.bd};
-  const P=MOB?m.bw/Math.max(120,opt.scr-66):0;
+  const P=MOB?m.bw/Math.max(120,(opt.scr>0?opt.scr:1100)-66):0;
   const ml=thumb?0.6:MOB?52*P:2.4,mt=thumb?0.6:MOB?50*P:2.4,mr=thumb?0.6:MOB?14*P:1.2,mb=thumb?0.6:MOB?(O.entry?56*P:34*P):(O.entry?2.2:1.6),tb=thumb?0:MOB?64*P:3.4;
   const vx=B.x-ml,vy=B.y-mt,vw=B.w+ml+mr,vh=B.h+mt+mb+tb;
   let s=`<svg viewBox="${vx.toFixed(2)} ${vy.toFixed(2)} ${vw.toFixed(2)} ${vh.toFixed(2)}" xmlns="http://www.w3.org/2000/svg" style="color-scheme:only light" role="img" aria-label="Plan ${li?"de l'étage":"du rez-de-chaussée"}">`;
@@ -2673,7 +3090,7 @@ function drawTech(m,li,opt={}){
       const line=(y,t,f,w,fam,col)=>{const ff=Math.min(f,aw/(t.length*w));return `<text x="${x0.toFixed(3)}" y="${y.toFixed(3)}" font-family="${fam}" font-weight="${fam[0]==="O"?(f>11*P?700:500):400}" font-size="${ff.toFixed(3)}" fill="${col}">${t}</text>`};
       s+=line(ty+19*P,title,12.5*P,0.62,"Outfit,sans-serif",INK);
       s+=line(ty+35*P,`${dec(area,1)} m² · bâtiment ${dec(B.w,2)} × ${dec(B.h,2)} m`,10*P,0.55,"Outfit,sans-serif",INK);
-      s+=line(ty+50*P,`TERRAIN ${fmt(m.plot)} m² · ${m.lieu.toUpperCase()}`,8.5*P,0.6,"JetBrains Mono,monospace","#3E4346");
+      s+=line(ty+50*P,`${trL("Terrain").toUpperCase()} ${fmt(m.plot)} m² · ${m.lieu.toUpperCase()}`,8.5*P,0.6,"JetBrains Mono,monospace","#3E4346");
     } else {
       // cartouche
       const ty=B.y+B.h+mb+0.3,tx=B.x-ml+0.4,tw=vw-0.8;
@@ -2701,7 +3118,13 @@ function drawTech(m,li,opt={}){
 }
 
 /* ---------- Récit « dans la vraie vie » ---------- */
+// principe d'un architecte reconnu de la région, appliqué au climat de la zone (sources : MoMA pour Gando, programme Abatta Village, Niamey 2000)
+const ARCHI_ZONE={cote:"Comme dans les logements d'Abatta Village, de Koffi & Diabaté à Abidjan, les pièces sont éclairées et ventilées naturellement, sans dépendre de la climatisation.",
+  foret:"Comme sur les bâtiments de Francis Kéré, de grands débords de toit protègent les murs de la pluie et du soleil.",
+  savane:"Principe de l'école de Gando, de Francis Kéré : des murs en briques de terre et un toit qui déborde largement gardent la fraîcheur à l'intérieur.",
+  sahel:"Comme dans les logements Niamey 2000, de Mariam Kamara, les blocs de terre comprimée et les cours ombragées gardent la fraîcheur."};
 function story(m){
+  if(m.pro&&m.pro.big) return storyBig(m);
   if(m.isTower) return storyTower(m);
   if(m.pro) return storyPro(m);
   const L0=m.levels[0],all=m.levels.flat();
@@ -2725,7 +3148,7 @@ function story(m){
     ["La façade",facadeTxt(m)],
     ["L'arrivée",`${m.p.city&&CITIES[m.p.city]?"À "+CITIES[m.p.city].nom.replace(/ \(.*\)/,"")+", d":"D"}epuis la rue ${orTxt}, un portail ouvre sur une cour de ${dec(m.ra,1)} m de profondeur, assez pour garer une voiture, avant d'atteindre ${ter?"la terrasse couverte":"l'entrée"}.`],
     ["La vie à l'intérieur",`Le séjour de ${sej?dec(sej.w*sej.h,0):"—"} m² ${!(m.p.pv>=2)||(sam&&sej&&shared(sej,sam))?"forme un espace ouvert avec la salle à manger":rep?"forme une seule pièce avec l'espace repas":sam?"est complété par une salle à manger":"est la grande pièce de la maison"}${ter?` et se prolonge dehors sur ${dec(ter.w*ter.h,0)} m² de terrasse`:""}. Les ${m.n} chambres sont regroupées ${m.type!=="pp"?"dans les étages":"vers le fond de la parcelle"}, au calme.`],
-    ["Le confort climatique",(pat?`Le patio de ${dec(pat.w*pat.h,0)} m² laisse entrer la lumière et l'air frais au cœur de la maison. `:"")+`Conçue pour la ${m.Z.nom} : ${m.Z.princ}.`],
+    ["Le confort climatique",(pat?`Le patio de ${dec(pat.w*pat.h,0)} m² laisse entrer la lumière et l'air frais au cœur de la maison. `:"")+`Conçue pour la ${m.Z.nom} : ${m.Z.princ}.`+(ARCHI_ZONE[m.zone]?" "+ARCHI_ZONE[m.zone]:"")],
     ["Une base qui a fait ses preuves",`C'est l'organisation la plus courante des villas de la région : pièces de vie et terrasse côté rue, chambres au calme ${m.type!=="pp"?"à l'étage":"au fond de la parcelle"}, desservies par un seul couloir.${prog}`],
     ["L'idée en plus","Ce plan y ajoute "+ideas.slice(0,3).join(", ")+"."],
     ["Le chantier",`Comptez environ ${months} mois de travaux avec une équipe de 6 à 10 ouvriers, du terrassement à la peinture, pour un budget proche de ${F(m.total)}.`]
@@ -2769,13 +3192,14 @@ function metres(m,li){
   return M;
 }
 function devis(m){
+  if(m.site) return devisSite(m);
   const M=metres(m),M0=metres(m,0),std=m.std,eco=std==="eco",hi=std==="haut"||std==="luxe",lux=std==="luxe";
   const ch=x=>eco?x[0]:std==="std"?x[1]:std==="haut"?x[2]:x[3];   // prix selon la finition
   const o3=(typeof defaults3d==="function")?defaults3d(m):{roof:"plat",roofMat:"tole"};
   const MO=(typeof modele3d==="function")?modele3d(m):{};
-  const plat=o3.roof==="plat"||m.pro||m.isTower,tuile=o3.roofMat==="tuile";
+  const proF=m.pro&&!m.pro.big,plat=o3.roof==="plat"||proF||m.isTower,tuile=o3.roofMat==="tuile";
   // vrai toit-terrasse en dalle, ou simple toiture en bac alu cachée derrière un acrotère
-  const terrasse=plat&&(MO.terr||m.pro||m.isTower);
+  const terrasse=plat&&(MO.terr||proF||m.isTower);
   const NL=Math.max(1,m.levels.length),E=m.foot,Htot=o3.hsp||HSP;
   const Lsem=M0.Lfac+M0.Lint*0.5;                                  // semelles : façade + murs porteurs
   const Stoit=plat?E:E*(o3.pitch?1.12/Math.cos(o3.pitch*Math.PI/180):(o3.roof==="deux"?1.25:1.18));
@@ -2906,7 +3330,7 @@ function devis(m){
     incert,conseils};
 }
 
-if(typeof module!=="undefined") module.exports={compute,openings,drawTech,story,typeLabel,progLabel,sides,CIRC,devis,metres};
+if(typeof module!=="undefined") module.exports={compute,openings,drawTech,story,typeLabel,progLabel,sides,CIRC,devis,metres,isBig,BIG,drawSite};
 </script>
 <script>
 /* ====================== MAQUETTE 3D RÉALISTE ====================== */
@@ -2998,7 +3422,7 @@ function scaleUV(geo,w,h,d){const uv=geo.attributes.uv,dims=[[d,h],[d,h],[w,d],[
 
 function mergeByMaterial(src){
   src.updateMatrixWorld(true);const buckets=new Map();
-  src.traverse(o=>{if(!o.isMesh||!o.geometry||!o.geometry.index) return;const g=o.geometry,mats=Array.isArray(o.material)?o.material:[o.material];
+  src.traverse(o=>{if(!o.isMesh||o.isInstancedMesh||!o.geometry||!o.geometry.index) return;const g=o.geometry,mats=Array.isArray(o.material)?o.material:[o.material];
     const groups=g.groups.length?g.groups:[{start:0,count:g.index.count,materialIndex:0}],m4=o.matrixWorld,nm=new THREE.Matrix3().getNormalMatrix(m4);
     const P=g.attributes.position,N=g.attributes.normal,U=g.attributes.uv,v=new THREE.Vector3();
     groups.forEach(gr=>{const mat=mats[gr.materialIndex]||mats[0];let b=buckets.get(mat);if(!b){b={pos:[],nor:[],uv:[],idx:[],n:0};buckets.set(mat,b)}
@@ -3017,6 +3441,79 @@ function stop3D(){if(!viewer) return;cancelAnimationFrame(viewer.raf);viewer.ro&
   viewer.scene.traverse(o=>{if(o.geometry) o.geometry.dispose();if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(x=>x.dispose())});
   viewer.env&&viewer.env.dispose();viewer.clay&&viewer.clay.dispose();viewer.el.querySelectorAll(".tfade").forEach(x=>x.remove());viewer.scene.overrideMaterial=null;viewer.scene.background&&viewer.scene.background.dispose&&viewer.scene.background.dispose();viewer.renderer.dispose();viewer.renderer.domElement.remove();viewer=null}
 
+/* ---------- maquette des grands projets ---------- */
+// arbres en série : un tronc et une couronne par arbre, dessinés en une seule fois (InstancedMesh)
+function trees3D(par,pts,M){if(!pts.length) return;const d=new THREE.Object3D(),n=pts.length;
+  const tr=new THREE.InstancedMesh(new THREE.CylinderGeometry(0.12,0.18,2.4,6),M.bark,n),cr=new THREE.InstancedMesh(new THREE.SphereGeometry(1,10,7),M.leaf3||M.leaf,n);
+  pts.forEach(([x,z,s],i)=>{d.position.set(x,1.2*s,z);d.scale.set(s,s,s);d.rotation.set(0,0,0);d.updateMatrix();tr.setMatrixAt(i,d.matrix);d.position.set(x,2.9*s,z);d.scale.set(1.7*s,1.25*s,1.7*s);d.updateMatrix();cr.setMatrixAt(i,d.matrix)});
+  [tr,cr].forEach(q=>{q.castShadow=true;q.receiveShadow=true;par.add(q)})}
+// toit à pentes d'un volume simple (maisons de la cité)
+function prism3D(o,x0,x1,z0,z1,y,M,par){const ov=0.5,lx=x1-x0,lz=z1-z0,alongX=lx>=lz,span=(alongX?lz:lx)/2+ov,len=(alongX?lx:lz)+ov*2,sh=new THREE.Shape();
+  if(o.roof==="deux"){const rh=span*Math.tan((o.pitch||24)*Math.PI/180);sh.moveTo(-span,0);sh.lineTo(span,0);sh.lineTo(0,rh);sh.lineTo(-span,0)}
+  else{const rh=2*span*Math.tan((o.pitch||10)*Math.PI/180);sh.moveTo(-span,0);sh.lineTo(span,0);sh.lineTo(span,0.25);sh.lineTo(-span,0.25+rh);sh.lineTo(-span,0)}
+  const g=new THREE.ExtrudeGeometry(sh,{depth:len,bevelEnabled:false});g.translate(0,0,-len/2);const me=new THREE.Mesh(g,[M.facade,M.roofPitch]);me.castShadow=true;me.receiveShadow=true;
+  me.position.set((x0+x1)/2,y,(z0+z1)/2);if(alongX) me.rotation.y=Math.PI/2;par.add(me)}
+// cité ou résidence : volumes des maisons ou des immeubles, voies, stationnement, réserves et arbres
+function site3D(m,o,K){const {scene,roofGrp,box,M,X,Z,base,std,T}=K,S=m.site,u=m.unit,grp=new THREE.Group(),pts=[];
+  const lawn=std({map:T.ground,color:0x9DBB78,roughness:1}),dirt=std({map:T.ground,color:0xC8AE84,roughness:1});
+  const nl=u.levels.length-(u.roofT?1:0),Hb=nl*(H3+SL3),ground=(r,mat)=>box(r.w,0.05,r.h,X(r.x+r.w/2),0.035,Z(r.y+r.h/2),mat,grp,{noCast:true});
+  const plantIn=(r,step,obs)=>{for(let y=r.y+step/2;y<r.y+r.h-step/2+0.01;y+=step) for(let x=r.x+step/2;x<r.x+r.w-step/2+0.01;x+=step) if(!(obs||[]).some(q=>x>q.x&&x<q.x+q.w&&y>q.y&&y<q.y+q.h)) pts.push([X(x),Z(y),0.8+((x*7+y*13)%5)/10])};
+  if(S.kind==="cite"){
+    S.roads.forEach(r=>ground(r,M.asphalt));(S.zones||[]).forEach(z=>{ground(z,lawn);plantIn(z,7)});
+    S.lots.forEach(l=>{
+      if(l.k==="vert"){ground(l,lawn);plantIn(l,6);return}
+      if(l.k!=="lot"){ground(l,dirt);return}
+      // murets de clôture du lot et maison
+      [[l.x+l.w/2,l.y,l.w,0.15],[l.x+l.w/2,l.y+l.h,l.w,0.15]].forEach(([x,z,w,d])=>box(w,1.0,d,X(x),0.5,Z(z),M.fence,grp));
+      [[l.x,l.y+l.h/2],[l.x+l.w,l.y+l.h/2]].forEach(([x,z])=>box(0.15,1.0,l.h,X(x),0.5,Z(z),M.fence,grp));
+      const f=l.fp;if(!f) return;
+      box(f.w+0.3,base,f.h+0.3,X(f.x+f.w/2),base/2,Z(f.y+f.h/2),M.plinth,grp);
+      box(f.w,Hb,f.h,X(f.x+f.w/2),base+Hb/2,Z(f.y+f.h/2),M.facade,grp);
+      const fz=l.dir==="s"?f.y+f.h+0.03:f.y-0.03;for(let i=0;i<nl;i++) box(f.w*0.62,1.25,0.05,X(f.x+f.w/2),base+i*(H3+SL3)+1.55,Z(fz),M.glass,grp);
+      if(o.roof==="plat"){box(f.w+0.6,SL3,f.h+0.6,X(f.x+f.w/2),base+Hb+SL3/2,Z(f.y+f.h/2),M.roofFlat,grp)}
+      else prism3D(o,X(f.x),X(f.x+f.w),Z(f.y),Z(f.y+f.h),base+Hb,M,roofGrp);
+      pts.push([X(l.x+1.4),Z(l.dir==="s"?l.y+1.4:l.y+l.h-1.4),0.75])});
+  }else{
+    const obs=[S.road,S.guard,...S.blds,...S.parks].map(q=>({x:q.x-2.5,y:q.y-2.5,w:q.w+5,h:q.h+5}));
+    box(m.W,0.04,m.D,X(m.W/2),0.025,Z(m.D/2),lawn,grp,{noCast:true});ground(S.road,M.asphalt);S.parks.forEach((q,i)=>{ground(q,M.paver);if(o.car&&i%3===0){box(4.3,1.0,1.8,X(q.x+q.w/2),0.55,Z(q.y+q.h/2),M.car,grp)}});
+    box(S.guard.w,2.8,S.guard.h,X(S.guard.x+S.guard.w/2),1.4,Z(S.guard.y+S.guard.h/2),M.facade,grp);
+    const fl=3.2,nf=S.nf+1;
+    S.blds.forEach(b=>{const H=nf*fl,cx=X(b.x+b.w/2),cz=Z(b.y+b.h/2);
+      box(b.w+0.3,base,b.h+0.3,cx,base/2,cz,M.plinth,grp);box(b.w,H,b.h,cx,base+H/2,cz,M.facade,grp);
+      for(let i=0;i<nf;i++){box(b.w+0.04,1.3,b.h+0.04,cx,base+i*fl+1.55,cz,M.glass,grp);box(b.w+0.5,0.2,b.h+0.5,cx,base+(i+1)*fl-0.1,cz,M.slabSide,grp)}
+      box(b.w,0.7,b.h,cx,base+H+0.35,cz,M.facade,grp)});
+    plantIn({x:0,y:0,w:m.W,h:m.D},9,obs);
+  }
+  trees3D(grp,pts,M);
+  grp.updateMatrixWorld(true);const mg=mergeByMaterial(grp);grp.children.filter(c=>c.isInstancedMesh).forEach(c=>mg.add(c));scene.add(mg);
+  grp.traverse(q=>{if(q.geometry&&!q.isInstancedMesh) q.geometry.dispose()})}
+// grands bâtiments : halle du marché (ombrières ou voûtes, étals, arbre) et tables-bancs des classes
+function big3D(m,L,y0,K){const {roofGrp,inner,box,cyl,M,X,Z,T,std}=K,P=m.pro,d=new THREE.Object3D();
+  const inst=(list,mat)=>{if(!list.length) return;const im=new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1),mat,list.length);
+    list.forEach(([x,y,z,w,h,dd],i)=>{d.position.set(x,y,z);d.scale.set(w,h,dd);d.updateMatrix();im.setMatrixAt(i,d.matrix)});im.castShadow=true;im.receiveShadow=true;inner.add(im)};
+  if(P.kind==="marche"){const H=L.filter(r=>r.n==="Étals");
+    if(P.roof==="voutes"){const vm=std({map:T.btc,roughness:0.95,side:THREE.DoubleSide}),piers=[];
+      H.forEach(r=>{for(let y=r.y;y<r.y+r.h-0.5;y+=5.5){const dd=Math.min(5.5,r.y+r.h-y),rad=dd/2,g=new THREE.CylinderGeometry(rad,rad,r.w,24,1,true,0,Math.PI),me=new THREE.Mesh(g,vm);
+        me.rotation.z=Math.PI/2;me.position.set(X(r.x+r.w/2),y0+2.6,Z(y+dd/2));me.castShadow=true;me.receiveShadow=true;roofGrp.add(me);
+        for(let x=r.x+0.2;x<=r.x+r.w-0.2+1e-6;x+=Math.max(1,(r.w-0.4)/Math.max(1,Math.round((r.w-0.4)/4)))) [y+0.2,y+dd-0.2].forEach(z=>piers.push([X(x),y0+1.3,Z(z),0.4,2.6,0.4]))}});
+      if(piers.length){const im=new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1),vm,piers.length);piers.forEach(([x,y,z,w,h,dd],i)=>{d.position.set(x,y,z);d.scale.set(w,h,dd);d.updateMatrix();im.setMatrixAt(i,d.matrix)});im.castShadow=true;roofGrp.add(im)}}
+    else{const cols=[0xD9822B,0x2A8C82,0xC4513A,0xE0B53A,0x3D6FA8].map(c=>std({color:c,metalness:0.35,roughness:0.5,side:THREE.DoubleSide}));
+      H.forEach((r,qi)=>{const nx=Math.max(1,Math.round(r.w/6)),ny=Math.max(1,Math.round(r.h/5.5)),pw=r.w/nx,pd=r.h/ny;
+        for(let i=0;i<nx;i++) for(let j=0;j<ny;j++){const cx=r.x+pw*(i+0.5),cz=r.y+pd*(j+0.5),hi=4.0+((i+j)%2)*0.5;
+          const pn=box(pw-0.4,0.05,pd-0.4,X(cx),y0+hi,Z(cz),cols[(i+2*j+qi)%cols.length],roofGrp);pn.rotation.x=(i+j)%2?0.14:-0.14;
+          cyl(0.07,0.07,hi,X(cx),y0+hi/2,Z(cz),M.metal,roofGrp,8)}});
+      if(P.tree){const x=X(P.tree.x),z=Z(P.tree.y);cyl(0.3,0.45,4.2,x,y0+2.1,z,M.bark,inner,10);trees3D(inner,[[x,z,2.2]],M)}}
+    const st=H.flatMap(stallsOf);inst(st.map(q=>[X(q.x+q.w/2),y0+0.45,Z(q.y+q.h/2),q.w-0.2,0.9,q.h-0.15]),M.oak);}
+  if(P.kind==="ecole"){const desk=[],bench=[],front=[];
+    L.filter(r=>r.cls).forEach(r=>{box(0.06,1.1,r.h*0.55,X(r.x+0.2),y0+1.55,Z(r.y+r.h/2),M.dark,inner);
+      const cols=Math.max(1,Math.floor((r.h-0.6)/1.7)),z0=r.y+(r.h-cols*1.7+0.5)/2;
+      for(let x=r.x+2.2;x+0.8<=r.x+r.w-0.3;x+=1.15) for(let c=0;c<cols;c++){const z=Z(z0+c*1.7+0.6);desk.push([X(x),y0+0.72,z,0.45,0.04,1.2]);front.push([X(x-0.21),y0+0.37,z,0.03,0.7,1.2]);bench.push([X(x+0.5),y0+0.21,z,0.25,0.42,1.2])}});
+    inst(desk,M.oak);inst(front,M.oak);inst(bench,M.dark)}
+  if(P.kind==="sante"){const fr=[],mat=[];
+    L.filter(r=>r.beds).forEach(r=>{const per=Math.max(1,Math.floor((r.w-0.4)/1.3));for(let i=0;i<r.beds;i++){const row=i<per?0:1,k=row?i-per:i;if(k>=per) break;
+      const x=r.x+0.2+(r.w-0.4)*(k+0.5)/per,z=row?r.y+r.h-1.2:r.y+1.2;fr.push([X(x),y0+0.28,Z(z),0.95,0.55,2.0]);mat.push([X(x),y0+0.6,Z(z),0.88,0.12,1.9])}});
+    inst(fr,M.steel);inst(mat,M.linen)}
+}
 function mount3D(el,m,o,st){
   let keep=null;
   if(viewer&&viewer.el===el&&st.keep&&viewer.mode===st.mode) keep={p:viewer.cam.position.clone(),t:viewer.controls.target.clone()};
@@ -3078,7 +3575,7 @@ function mount3D(el,m,o,st){
   const sph=(r,x,y,z,mat,par,sx,sy,sz)=>{const me=new THREE.Mesh(new THREE.IcosahedronGeometry(r,2),mat);me.position.set(x,y,z);me.scale.set(sx||1,sy||1,sz||1);me.castShadow=true;me.receiveShadow=true;(par||scene).add(me);return me};
 
   /* --- terrain, rue, clôture --- */
-  try{const pad=1.8,cw=m.bw+pad*2,cd=m.bd+pad*2,c=document.createElement("canvas");c.width=c.height=256;const g=c.getContext("2d"),px=pad/cw*256,pz=pad/cd*256;
+  if(!m.site) try{const pad=1.8,cw=m.bw+pad*2,cd=m.bd+pad*2,c=document.createElement("canvas");c.width=c.height=256;const g=c.getContext("2d"),px=pad/cw*256,pz=pad/cd*256;
     for(let k=0;k<40;k++){const t=k/40;g.fillStyle="rgba(0,0,0,0.02)";g.fillRect(px*t,pz*t,256-2*px*t,256-2*pz*t)}
     const pl=new THREE.Mesh(new THREE.PlaneGeometry(cw,cd),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false,opacity:S.night?0.5:0.9,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2}));
     pl.rotation.x=-Math.PI/2;pl.position.set(X(m.bx+m.bw/2),0.045,Z(m.by+m.bd/2));pl.renderOrder=1;scene.add(pl)}catch(e){}
@@ -3089,11 +3586,11 @@ function mount3D(el,m,o,st){
   box(W*5,0.18,0.15,0,0.07,D/2+1.8,M.curb,null,{noCast:true});
   const gw=Math.min(4.2,W*0.32),gx=W/2;
   const entryX=m.bx+m.bw/2;
-  box(gw,0.03,m.ra+0.4,X(gx),0.04,Z(D-m.ra/2),M.paver,null,{noCast:true});
+  if(!m.site) box(gw,0.03,m.ra+0.4,X(gx),0.04,Z(D-m.ra/2),M.paver,null,{noCast:true});
   const fh=1.9,ft=0.2;
   const fseg=(x0,x1,z,alongX)=>{const L=Math.abs(x1-x0);if(L<0.05) return;if(alongX){box(L,fh,ft,X((x0+x1)/2),fh/2,Z(z),M.fence);box(L+0.06,0.06,ft+0.08,X((x0+x1)/2),fh+0.03,Z(z),M.coping)}else{box(ft,fh,L,X(z),fh/2,Z((x0+x1)/2),M.fence);box(ft+0.08,0.06,L+0.06,X(z),fh+0.03,Z((x0+x1)/2),M.coping)}};
-  if(st.mode!=="edit"){fseg(0,W,0.1,true);fseg(0.1,D,0.1,false);fseg(0.1,D,W-0.1,false)}
-  if(st.mode==="edit"){}else if(m.pro){if(m.ra>0.6) box(W-0.4,0.02,m.ra,0,0.035,Z(D-m.ra/2),M.paver,null,{noCast:true})}
+  if(st.mode!=="edit"&&!m.site){fseg(0,W,0.1,true);fseg(0.1,D,0.1,false);fseg(0.1,D,W-0.1,false)}
+  if(st.mode==="edit"||m.site){}else if(m.pro){if(m.ra>0.6) box(W-0.4,0.02,m.ra,0,0.035,Z(D-m.ra/2),M.paver,null,{noCast:true})}
   else{fseg(0,gx-gw/2,D-0.1,true);fseg(gx+gw/2,W,D-0.1,true);
   for(let i=0;i<=Math.floor(gw/0.12);i++) box(0.04,1.7,0.04,X(gx-gw/2+i*0.12),0.88,Z(D-0.1),M.metal);
   box(gw,0.06,0.06,X(gx),1.72,Z(D-0.1),M.metal);box(gw,0.06,0.06,X(gx),0.1,Z(D-0.1),M.metal)}
@@ -3118,7 +3615,7 @@ function mount3D(el,m,o,st){
     for(let z=1.5;z<D-1.5;z+=1.6+rr()){if(free(0.8,z,0.6)) shrub(0.75,z,0.7+rr()*0.3);if(free(W-0.8,z,0.6)) shrub(W-0.75,z,0.7+rr()*0.3)}
   }
   /* --- voiture --- */
-  if(o.car&&m.ra>=4.6){const cg=new THREE.Group(),cz=Z(D-m.ra/2+0.2),cx=X(gx);box(1.8,0.6,4.3,0,0.62,0,M.car,cg);const cab=box(1.6,0.55,2.2,0,1.18,-0.2,M.car,cg);box(1.62,0.45,2.0,0,1.2,-0.2,M.glass,cg);
+  if(o.car&&m.ra>=4.6&&!m.site){const cg=new THREE.Group(),cz=Z(D-m.ra/2+0.2),cx=X(gx);box(1.8,0.6,4.3,0,0.62,0,M.car,cg);const cab=box(1.6,0.55,2.2,0,1.18,-0.2,M.car,cg);box(1.62,0.45,2.0,0,1.2,-0.2,M.glass,cg);
     [[-0.82,1.3],[0.82,1.3],[-0.82,-1.35],[0.82,-1.35]].forEach(([a,b])=>{const t=cyl(0.34,0.34,0.24,a,0.34,b,M.tire,cg,18);t.rotation.z=Math.PI/2});cg.position.set(cx,0,cz);scene.add(cg)}
 
   /* --- équipements extérieurs --- */
@@ -3128,13 +3625,14 @@ function mount3D(el,m,o,st){
     [[P.w+0.6,0.3,P.x+P.w/2,P.y-0.15],[P.w+0.6,0.3,P.x+P.w/2,P.y+P.h+0.15]].forEach(([w,d,x,z])=>box(w,0.1,d,X(x),py+0.12,Z(z),M.coping));
     [[P.x-0.15,P.y+P.h/2],[P.x+P.w+0.15,P.y+P.h/2]].forEach(([x,z])=>box(0.3,0.1,P.h,X(x),py+0.12,Z(z),M.coping));
     if(!P.roof) for(let i=0;i<2;i++){const lx=P.x+P.w+0.9,lz=P.y+0.5+i*1.0;box(0.65,0.3,1.7,X(lx),0.15,Z(lz+0.6),M.oak);box(0.6,0.08,1.6,X(lx),0.34,Z(lz+0.6),M.white)}}
-  if(m.p.citerne){const cx=X(m.rl*0.5+0.4),cz=Z(0.9);[[-0.6,-0.6],[0.6,-0.6],[-0.6,0.6],[0.6,0.6]].forEach(([a,b])=>box(0.12,4,0.12,cx+a,2,cz+b,M.metal));box(1.6,0.12,1.6,cx,4.05,cz,M.metal);cyl(0.75,0.75,1.6,cx,4.9,cz,new THREE.MeshStandardMaterial({color:0x1f4e8c,roughness:0.6}),null,24)}
+  if(m.p.citerne&&!m.site){const cx=X(m.rl*0.5+0.4),cz=Z(0.9);[[-0.6,-0.6],[0.6,-0.6],[-0.6,0.6],[0.6,0.6]].forEach(([a,b])=>box(0.12,4,0.12,cx+a,2,cz+b,M.metal));box(1.6,0.12,1.6,cx,4.05,cz,M.metal);cyl(0.75,0.75,1.6,cx,4.9,cz,new THREE.MeshStandardMaterial({color:0x1f4e8c,roughness:0.6}),null,24)}
   /* --- bâtiment --- */
   const base=m.zone==="cote"?0.5:0.3;
-  box(m.bw+0.3,base,m.bd+0.3,X(m.bx+m.bw/2),base/2,Z(m.by+m.bd/2),M.plinth);
+  if(!m.site) box(m.bw+0.3,base,m.bd+0.3,X(m.bx+m.bw/2),base/2,Z(m.by+m.bd/2),M.plinth);
   const levels=[],ceils=[],roofGrp=new THREE.Group();scene.add(roofGrp);
+  if(m.site) site3D(m,o,{scene,roofGrp,box,cyl,M,X,Z,base,T,std});
   let roomSel=null;
-  if(inside){const all=m.levels.flatMap((L,li)=>L.map(r=>Object.assign({li},r)));roomSel=all.find(r=>r.n===st.room&&r.li===st.roomLi&&(st.roomU===undefined||r.u===st.roomU))||all.find(r=>r.n===st.room&&r.li===st.roomLi)||all.find(r=>/^Séjour/.test(r.n))||all[0]}
+  if(inside&&!m.site){const all=m.levels.flatMap((L,li)=>L.map(r=>Object.assign({li},r)));roomSel=all.find(r=>r.n===st.room&&r.li===st.roomLi&&(st.roomU===undefined||r.u===st.roomU))||all.find(r=>r.n===st.room&&r.li===st.roomLi)||all.find(r=>/^Séjour/.test(r.n))||all[0]}
   // im : matériau de la face tournée vers le nord ou l'ouest (neg) et vers le sud ou l'est (pos), selon la pièce qui la voit
   const faceMats=(ext,o2,im,fm)=>{const a=[M.inner,M.inner,M.facade,M.inner,M.inner,M.inner];
     if(im){if(o2==="h"){if(im.neg) a[5]=im.neg;if(im.pos) a[4]=im.pos}else{if(im.neg) a[1]=im.neg;if(im.pos) a[0]=im.pos}}
@@ -3172,7 +3670,7 @@ function mount3D(el,m,o,st){
     piece(cur,s1,0,H3)};
   const extIdx={top:5,bottom:4,left:1,right:0},extSg={top:-1,bottom:1,left:-1,right:1};
   let nl=0;
-  m.levels.forEach((L,li)=>{
+  if(!m.site) m.levels.forEach((L,li)=>{
     const y0=base+li*(H3+SL3),top=li===m.levels.length-1;
     // étage courant identique : on réutilise la coque déjà construite
     if(L.copyOf!==undefined&&levels[L.copyOf]&&!top){const lev=new THREE.Group(),sh=levels[L.copyOf].userData.shell.clone();if(st.mode==="edit") sh.traverse(o=>{if(o.userData.pick) o.userData.pick.li=li});lev.add(sh);lev.userData.shell=sh;lev.position.y=(li-L.copyOf)*(H3+SL3);scene.add(lev);levels.push(lev);return}
@@ -3192,18 +3690,19 @@ function mount3D(el,m,o,st){
     [[m.bx+TO/2,m.by+TO/2],[m.bx+m.bw-TO/2,m.by+TO/2],[m.bx+TO/2,m.by+m.bd-TO/2],[m.bx+m.bw-TO/2,m.by+m.bd-TO/2]].forEach(([x,z])=>{if(L.some(r=>r.t!=="out"&&r.t!=="patio"&&x>=r.x-EPS&&x<=r.x+r.w+EPS&&z>=r.y-EPS&&z<=r.y+r.h+EPS)) box(TO,H3,TO,X(x),y0+H3/2,Z(z),M.facade,grp)});
     // poteaux des espaces extérieurs, garde-corps
     L.forEach(r=>{if(r.t!=="out") return;const ss=r.n==="Terrasse sur toit"?[]:sides(r,m).map(s=>s.side);
+      if(m.pro&&m.pro.big&&r.gal) L.forEach(q=>{if(q.t!=="patio") return;const sh=shared(r,q);if(sh) ss.push(sh.o==="h"?(Math.abs(sh.c-r.y)<EPS?"top":"bottom"):(Math.abs(sh.c-r.x)<EPS?"left":"right"))});
       [[r.x+0.12,r.y+0.12,"top","left"],[r.x+r.w-0.12,r.y+0.12,"top","right"],[r.x+0.12,r.y+r.h-0.12,"bottom","left"],[r.x+r.w-0.12,r.y+r.h-0.12,"bottom","right"]].forEach(([x,z,a,b])=>{if(ss.includes(a)||ss.includes(b)) box(0.24,H3,0.24,X(x),y0+H3/2,Z(z),M.facade,grp)});
       if(li>0) sides(r,m).forEach(sd=>{const g2=sd.o==="h";const zz=sd.side==="top"?r.y:r.y+r.h,xx=sd.side==="left"?r.x:r.x+r.w;
         if(g2){box(r.w,1.0,0.02,X(r.x+r.w/2),y0+0.55,Z(zz),M.glass,grp);box(r.w,0.05,0.06,X(r.x+r.w/2),y0+1.07,Z(zz),M.steel,grp)}else{box(0.02,1.0,r.h,X(xx),y0+0.55,Z(r.y+r.h/2),M.glass,grp);box(0.06,0.05,r.h,X(xx),y0+1.07,Z(r.y+r.h/2),M.steel,grp)}})});
     // dalle haute / plafond
     const pitched=top&&o.roof!=="plat",OVF=o.ov!==undefined&&o3Of(m).ov!==undefined?Math.max(0.1,o.ov):(MOD.ov||0.5),AO=OVF-0.1; // débord du toit plat, et position de l'acrotère à son bord
-    L.forEach(r=>{if(r.t==="patio") return;if(li>0&&(r.n==="Balcon"||r.n==="Terrasse sur toit")) return;
+    L.forEach(r=>{if(r.t==="patio"||r.hall) return;if(li>0&&(r.n==="Balcon"||r.n==="Terrasse sur toit")) return;
       if(!top&&r.n==="Escalier") return;
       const flatTop=top&&!pitched,ov=flatTop?OVF:0.0,ex=c=>c?ov:0;
       const x0=r.x-ex(Math.abs(r.x-m.bx)<EPS),x1=r.x+r.w+ex(Math.abs(r.x+r.w-m.bx-m.bw)<EPS),z0=r.y-ex(Math.abs(r.y-m.by)<EPS),z1=r.y+r.h+ex(Math.abs(r.y+r.h-m.by-m.bd)<EPS);
       const cb=box(x1-x0,SL3,z1-z0,X((x0+x1)/2),y0+H3+SL3/2,Z((z0+z1)/2),[M.slabSide,M.slabSide,top?M.roofFlat:M.inner,M.ceil,M.slabSide,M.slabSide],top?roofGrp:grp);if(!top){ceils.push(cb);cb.userData.ceil=true}});
     if(top&&!pitched){ // acrotère
-      L.forEach(r=>{if(r.t==="patio"||r.n==="Balcon"||r.n==="Terrasse sur toit") return;sides(r,m).forEach(sd=>{const hP=0.55,yy=y0+H3+SL3+hP/2,off=-0.5+0.1;
+      L.forEach(r=>{if(r.t==="patio"||r.hall||r.n==="Balcon"||r.n==="Terrasse sur toit") return;sides(r,m).forEach(sd=>{const hP=0.55,yy=y0+H3+SL3+hP/2,off=-0.5+0.1;
         if(sd.o==="h"){const z=sd.side==="top"?r.y-AO:r.y+r.h+AO;box(r.w+(sides(r,m).some(q=>q.o==="v")?2*AO:0),hP,0.18,X(r.x+r.w/2),yy,Z(z),M.facade,roofGrp)}
         else{const x=sd.side==="left"?r.x-AO:r.x+r.w+AO;box(0.18,hP,r.h+(sides(r,m).some(q=>q.o==="h")?2*AO:0),X(x),yy,Z(r.y+r.h/2),M.facade,roofGrp)}})})}
     if(pitched){
@@ -3217,8 +3716,11 @@ function mount3D(el,m,o,st){
         else{const rh=2*span*Math.tan(P1);shape.moveTo(-span,0);shape.lineTo(span,0);shape.lineTo(span,0.25);shape.lineTo(-span,0.25+rh);shape.lineTo(-span,0)}
         const g=new THREE.ExtrudeGeometry(shape,{depth:len,bevelEnabled:false});g.translate(0,0,-len/2);
         const me=new THREE.Mesh(g,[M.facade,M.roofPitch]);me.castShadow=true;me.receiveShadow=true;
-        me.position.set(X((bb.x0+bb.x1)/2),y0+H3+SL3,Z((bb.z0+bb.z1)/2));if(alongX) me.rotation.y=Math.PI/2;roofGrp.add(me);
+        const LIFT=m.pro&&m.pro.big?0.6:0;
+        me.position.set(X((bb.x0+bb.x1)/2),y0+H3+SL3+LIFT,Z((bb.z0+bb.z1)/2));if(alongX) me.rotation.y=Math.PI/2;roofGrp.add(me);
+        if(LIFT){const yP=y0+H3+SL3+LIFT/2,step=3;for(let x=bb.x0+0.3;x<=bb.x1-0.3+1e-6;x+=Math.max(1,(bb.x1-bb.x0-0.6)/Math.max(1,Math.round((bb.x1-bb.x0-0.6)/step)))) [bb.z0+0.3,bb.z1-0.3].forEach(z=>cyl(0.05,0.05,LIFT,X(x),yP,Z(z),M.metal,roofGrp,6))}
         if(o.roof==="deux"){const rh=span*Math.tan(P2);const ridge=box(alongX?len:0.18,0.12,alongX?0.18:len,me.position.x,me.position.y+rh,me.position.z,M.metal,roofGrp)}})}
+    if(m.pro&&m.pro.big&&top) big3D(m,L,y0,{roofGrp,inner,box,cyl,M,X,Z,T,std,sph});
     // mobilier et éclairage
     L.forEach(r=>{const fg=furn3D(r,M,box,cyl,sph,li,y0,m);if(fg) inner.add(fg);
       if(r.t!=="out"&&r.t!=="patio"&&r.n!=="Escalier"){cyl(0.22,0.22,0.04,X(r.x+r.w/2),y0+H3-0.02,Z(r.y+r.h/2),M.lamp,inner,24);
@@ -3227,15 +3729,15 @@ function mount3D(el,m,o,st){
     // escalier
     L.forEach(r=>{if(r.n!=="Escalier"||top) return;const n=17,long=r.h>=r.w,run=(long?r.h:r.w)-0.4,wd=(long?r.w:r.h)-0.2,rise=(H3+SL3)/n,dep=run/n;
       for(let i=0;i<n;i++){const u=0.2+dep*(i+0.5);if(long) box(wd,rise*(i+1),dep,X(r.x+r.w/2),y0+rise*(i+1)/2,Z(r.y+r.h-u),M.oak,inner); else box(dep,rise*(i+1),wd,X(r.x+u),y0+rise*(i+1)/2,Z(r.y+r.h/2),M.oak,inner)}});
-    if(m.isTower&&st.mode!=="edit"){lev.updateMatrixWorld(true);const mg=mergeByMaterial(grp);lev.remove(grp);grp.traverse(o=>{if(o.geometry) o.geometry.dispose()});lev.add(mg);lev.userData.shell=mg}
+    if((m.isTower||(m.pro&&m.pro.big))&&st.mode!=="edit"){lev.updateMatrixWorld(true);const mg=mergeByMaterial(grp);lev.remove(grp);grp.traverse(o=>{if(o.geometry) o.geometry.dispose()});lev.add(mg);lev.userData.shell=mg}
   });
-  if(m.p.solaire){const topY=base+(m.levels.length-(m.roofT?1:0))*(H3+SL3),panel=new THREE.MeshStandardMaterial({color:0x14213d,metalness:0.6,roughness:0.15,envMapIntensity:1.6});
+  if(m.p.solaire&&!m.site){const topY=base+(m.levels.length-(m.roofT?1:0))*(H3+SL3),panel=new THREE.MeshStandardMaterial({color:0x14213d,metalness:0.6,roughness:0.15,envMapIntensity:1.6});
     const flat=o.roof==="plat",n=Math.min(10,Math.max(4,Math.floor(m.bw/1.2)));
     for(let i=0;i<n;i++){const pw=1.0,x=m.bx+0.8+i*1.15,z=m.roofT?m.by+m.bd*0.85:m.by+m.bd*0.35;if(x+pw>m.bx+m.bw-0.5) break;
       const pn=new THREE.Mesh(new THREE.BoxGeometry(pw,0.04,1.7),panel);pn.castShadow=true;
       if(flat){pn.position.set(X(x+pw/2),topY+0.5,Z(z));pn.rotation.x=-0.25;roofGrp.add(pn)}else{pn.position.set(X(x+pw/2),1.0,Z(Math.max(1.2,m.by-2.2)));pn.rotation.x=-0.35;scene.add(pn);box(0.05,0.9,0.05,X(x+pw/2),0.45,Z(Math.max(1.2,m.by-2.2)+0.5),M.metal)}}}
   /* --- caméra --- */
-  const cam=new THREE.PerspectiveCamera(inside?70:38,(el.clientWidth||600)/(el.clientHeight||400),inside?0.05:0.2,800);
+  const cam=new THREE.PerspectiveCamera(inside?70:38,(el.clientWidth||600)/(el.clientHeight||400),inside?0.05:0.2,Math.max(800,big*8));
   const controls=THREE.OrbitControls?new THREE.OrbitControls(cam,renderer.domElement):{update(){},target:new THREE.Vector3(),addEventListener(){}};
   controls.enableDamping=true;controls.dampingFactor=0.08;
   let room=null;
@@ -3248,7 +3750,7 @@ function mount3D(el,m,o,st){
     controls.enablePan=false;controls.minDistance=0.2;controls.maxDistance=Math.hypot(dx,dz);controls.minPolarAngle=0.5;controls.maxPolarAngle=2.3;controls.rotateSpeed=0.55;
     m.levels.forEach((L,li)=>{if(li>room.li) levels[li].visible=false});
   }else{
-    const dist=Math.max(big*1.3,HT*1.9),tx=X(m.bx+m.bw/2),tz=Z(m.by+m.bd/2),ty=Math.max(1.6,HT*0.38);
+    const dist=m.site?Math.max(big*0.85,HT*2.2):Math.max(big*1.3,HT*1.9),tx=X(m.bx+m.bw/2),tz=Z(m.by+m.bd/2),ty=Math.max(1.6,HT*0.38);
     controls.target.set(tx,ty,tz);cam.position.set(tx+dist*0.55,ty+dist*0.42,tz+dist*0.9);
     controls.maxPolarAngle=Math.PI*0.48;controls.minDistance=6;controls.maxDistance=Math.max(big*3.2,HT*4.5);
   }
@@ -3385,6 +3887,12 @@ function furn3D(r,M,box,cyl,sph,li,y0,m){
     if(w>=6&&h>=6){const cx=w>=9.8?w/2:Math.min(w-0.4,4.98);for(let v=5.1;v<h-1;v+=5) B(0.36,H3,0.36,cx,H3/2,v,M.facade)}
     return g}
   if(n==="Pièce principale"){bed(1.4,false);return g}
+  // grands projets : bureaux, salles de soins, réserves, sanitaires
+  if(/^Consultation|^Bureau du major|^Bureau du directeur|^Gestion du marché|^Poste de garde|^Salle de garde|^Vaccination|^Direction$|^Salle de soins|^Salle de travail|^Salle d'accouchement/.test(n)){office();return g}
+  if(n==="Salle des maîtres"||n==="Cantine"){dining();return g}
+  if(n==="Accueil et caisse"){reception();return g}
+  if(/^Pharmacie|^Magasin de stockage|^Stérilisation|^Laboratoire/.test(n)){dressing();return g}
+  if(/^Latrines|^WC patients|^Toilettes publiques|^Douches patients/.test(n)){wc();return g}
   if(/^Terrasse/.test(n)){terrace();return g}
   if(n==="Salle de jeux"){salon();return g}
   if(n==="Bibliothèque"){office();return g}
@@ -3535,7 +4043,7 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const OFFERS={
   basique:{nom:"Basique",prix:0,quota:5,d3:false,tools:false,dl:false,ed:false,desc:"Gratuite, pour esquisser vos premiers projets."},
   moyen:{nom:"Moyen",prix:30000,quota:20,d3:true,tools:false,dl:true,ed:true,pro:true,desc:"Ajoutez la maquette 3D, modifiez les pièces et téléchargez vos plans pour convaincre vos clients."},
-  max:{nom:"Max",prix:60000,quota:Infinity,d3:true,tools:true,dl:true,ed:true,pro:true,desc:"Personnalisez entièrement la maison en 3D."}};
+  max:{nom:"Max",prix:60000,quota:Infinity,d3:true,tools:true,dl:true,ed:true,pro:true,big:true,desc:"Personnalisez entièrement la maison en 3D."}};
 let plevel=0,cur=Object.assign({},DEF),level=0,model=null,props=[],selProp=null,dirty=false,lastPropSig=null,opts3d=null;
 const acct={offer:"basique",day:"",count:0};
 const today=()=>new Date().toLocaleDateString("sv");
@@ -3553,7 +4061,18 @@ const ICON={lock:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
   $("#city").innerHTML=`<option value="">Choisissez votre ville</option>`+Object.keys(g).map(z=>`<optgroup label="${g[z]}">${Object.entries(CITIES).filter(([k,c])=>c.zone===z).map(([k,c])=>`<option value="${k}">${c.nom}</option>`).join("")}</optgroup>`).join("")}
 const WISH_TXT={house:["Exemple : 4 chambres, un bureau, un garage pour 2 voitures, une cuisine ouverte et une piscine.","Le plan tient compte des mots qu'il reconnaît : chambres, étage, garage, bureau, piscine, cuisine ouverte, style, finition."],
   com:["Exemple : 6 boutiques sur 1 étage, finition haut de gamme, panneaux solaires.","Le plan tient compte des mots qu'il reconnaît : nombre de boutiques, étage, galerie, style, finition, panneaux solaires, réservoir d'eau."],
-  bur:["Exemple : 8 bureaux sur 2 étages, sans terrasse, style moderne.","Le plan tient compte des mots qu'il reconnaît : nombre de bureaux, étage, terrasse, style, finition, panneaux solaires, réservoir d'eau."]};
+  bur:["Exemple : 8 bureaux sur 2 étages, sans terrasse, style moderne.","Le plan tient compte des mots qu'il reconnaît : nombre de bureaux, étage, terrasse, style, finition, panneaux solaires, réservoir d'eau."],
+  cite:["Exemple : lots de 400 m², maisons de 3 chambres, une réserve pour une école.","Le plan tient compte des mots qu'il reconnaît : taille des lots, chambres, duplex, école, marché, finition."],
+  residence:["Exemple : 4 immeubles R+5, appartements F3, finition standard.","Le plan tient compte des mots qu'il reconnaît : nombre d'immeubles, étages (R+5), studio, F2, F3, F4, finition."],
+  marche:["Exemple : 200 étals, 30 boutiques, toiture en voûtes.","Le plan tient compte des mots qu'il reconnaît : nombre d'étals, nombre de boutiques, voûtes, ombrières, finition."],
+  ecole:["Exemple : 8 classes, une bibliothèque et une cantine.","Le plan tient compte des mots qu'il reconnaît : nombre de classes, bibliothèque, cantine, finition, panneaux solaires."],
+  sante:["Exemple : 12 lits, une maternité et un laboratoire.","Le plan tient compte des mots qu'il reconnaît : nombre de lits, maternité, laboratoire, finition, panneaux solaires."]};
+// grands projets : principe suivi, rappelé sous les réglages
+const BIG_TXT={cite:"Îlots de lots dos à dos, voies de 10 m, espaces verts et réserves pour les équipements, comme dans les programmes de Koffi & Diabaté à Abidjan. Chaque lot reçoit la maison type, dessinée par le générateur.",
+  residence:"Immeubles espacés pour la lumière et l'air, voie d'accès et stationnement au centre, le reste du terrain en jardin.",
+  marche:"Halle d'étals sous toiture, allées qui se croisent et boutiques au pourtour, comme au marché central de Koudougou ; ombrières colorées comme au marché de Dandaji (Niger).",
+  ecole:"Classes autour d'une cour, galeries couvertes et toit décollé du plafond pour la fraîcheur, d'après les écoles de Francis Kéré au Burkina Faso.",
+  sante:"Salles de mêmes dimensions de part et d'autre d'une galerie d'attente ombragée, d'après la clinique de Léo (Francis Kéré)."};
 // boutiques et bureaux : le nombre demandé est le total, réparti entre les niveaux (e = nombre d'étages)
 const PRO_TXT={com:{leg:"Vos boutiques",nb:"Nombre de boutiques",plus:"Galerie couverte devant les vitrines",def:3,
     opts:e=>e===2?[3,4,5,6,8,9,10,12,15,18]:e===1?[2,3,4,5,6,8,10,12]:[1,2,3,4,5,6],lab:(n,e)=>n===1?"1 grande boutique":n+" boutiques"+(e?" en tout":""),
@@ -3561,10 +4080,13 @@ const PRO_TXT={com:{leg:"Vos boutiques",nb:"Nombre de boutiques",plus:"Galerie c
   bur:{leg:"Vos bureaux",nb:"Nombre de bureaux",plus:"Terrasse de pause couverte",def:4,
     opts:e=>e===2?[3,4,6,8,10,12,15,18,24,30,36]:e===1?[2,3,4,6,8,10,12,16,20,24]:[2,3,4,5,6,8,10,12],lab:(n,e)=>n+" bureaux"+(e?" en tout":""),
     note:e=>e?"Couloir central à chaque niveau et escalier ouvert sur le couloir. Accueil en bas, direction au dernier niveau ; les bureaux sont répartis entre les niveaux.":"Plan à couloir central : accueil, bureaux, salle de réunion, sanitaires, archives et coin repas."}};
-function syncTower(want){const t=val("type"),imm=t==="rn"&&val("usage")==="immeuble",pro=isPro(t);$("#towerset").hidden=t!=="rn";$$("[data-imm]").forEach(e=>e.hidden=!imm);$$("[data-house]").forEach(e=>e.hidden=imm||pro);
-  $$("[data-nopro]").forEach(e=>e.hidden=pro);const ps=$("#proset");ps.hidden=!pro;$("#covword").textContent=pro?"le bâtiment":"la maison";$("#bldleg").textContent=pro?"Votre bâtiment":"Votre maison";
-  $("#styleword").textContent=pro?"du bâtiment":"de la maison";$("#st-colonial").textContent=pro?"Colonial":"Colonial avec véranda";
-  {const W=WISH_TXT[pro?t:"house"],w=$("#wish");if(w.placeholder!==W[0]){w.placeholder=W[0];$("#wishhelp").textContent=W[1]}}
+function syncTower(want){const t=val("type"),imm=t==="rn"&&val("usage")==="immeuble",pro=isPro(t),big=isBig(t);$("#towerset").hidden=t!=="rn";$$("[data-imm]").forEach(e=>e.hidden=!imm);$$("[data-house]").forEach(e=>e.hidden=imm||pro||(big&&t!=="cite"));
+  $$("[data-nopro]").forEach(e=>e.hidden=pro||big);const ps=$("#proset");ps.hidden=!pro;$("#covword").textContent=pro?"le bâtiment":t==="cite"?"chaque maison sur son lot":"la maison";$("#bldleg").textContent=big?"Votre projet":pro?"Votre bâtiment":"Votre maison";
+  $("#styleword").textContent=big?"du projet":pro?"du bâtiment":"de la maison";$("#st-colonial").textContent=pro||big?"Colonial":"Colonial avec véranda";
+  // grands projets : réglages propres à chaque sorte de projet ; la part du terrain ne sert qu'aux maisons de la cité
+  $("#bigset").hidden=!big;$$("[data-big]").forEach(e=>e.hidden=e.dataset.big!==t);$("#bignote").textContent=big?BIG_TXT[t]:"";$("#biglegend").textContent=big?BIG[t]:"Votre projet";
+  {const c=$("label[for=cov]");if(c) c.hidden=big&&t!=="cite"}
+  {const W=WISH_TXT[pro||big?t:"house"],w=$("#wish");if(w.placeholder!==W[0]){w.placeholder=W[0];$("#wishhelp").textContent=W[1]}}
   if(!pro) return;
   if(val("style")==="bio"){const d=document.querySelector("input[name=style][value=tropical]");if(d) d.checked=true}
   const e=Math.max(0,Math.min(2,+val("et")||0)),key=t+e,xp=$("#x-plus"),lock=t==="com"&&e>0;
@@ -3574,6 +4096,7 @@ function syncTower(want){const t=val("type"),imm=t==="rn"&&val("usage")==="immeu
   if(v>o[0]&&v<o[o.length-1]&&!o.includes(v)){o.push(v);o.sort((x,y)=>x-y)}
   $("#prolegend").textContent=T.leg;$("#nblabel").textContent=T.nb;$("#pluslabel").textContent=T.plus;$("#pronote").textContent=T.note(e);
   sel.innerHTML=o.map(n=>`<option value="${n}">${T.lab(n,e)}</option>`).join("");sel.value=String(o.includes(v)?v:v<o[0]?o[0]:o[o.length-1])}
+function bigGate(p){if(!isBig(p.type)||O().big) return false;toast(`Les grands projets (cités, résidences, marchés, écoles, centres de santé) sont inclus dans l'offre ${OFFERS.max.nom}.`);location.hash="tarifs";return true}
 function proGate(p){if(!isPro(p.type)||O().pro) return false;toast(`Les plans de boutiques et de bureaux sont inclus dans les offres ${OFFERS.moyen.nom} et ${OFFERS.max.nom}.`);location.hash="tarifs";return true}
 // version des plans de maison : 2 pour un nouveau projet (pièces et fenêtres d'après des maisons réelles) ;
 // un projet déjà enregistré garde la sienne tant qu'il est ouvert, pour que son plan ne change pas quand on le modifie
@@ -3590,7 +4113,11 @@ function readForm(){syncTower();const area=Math.max(100,+$("#area").value||DEF.a
   $("#cityhint").textContent=!$("#city").value?"":"Climat : "+ZONES[C.zone].nom+(C.k!==1?` · prix local ${C.k>1?"+":"−"}${Math.round(Math.abs(C.k-1)*100)} %`:"");
   return {area,shape,city,W:dm.W,D:dm.D,ra:+$("#ra").value||0,rl:+$("#rl").value||0,zone:C.zone,or:val("or"),type:val("type"),n:+$("#ch").value||DEF.n,std:$("#std").value||DEF.std,style:val("style"),pm:+$("#pm").value||PRICE[$("#std").value||DEF.std],pmU:+$("#pm").value>0,cov:covVal(),filled:formMissing().length===0,cityU:!!$("#city").value,seed:cur.seed||1,pv:formPv,fw,garage:+$("#garage").value,
   piscine:$("#x-piscine").checked,bureau:$("#x-bureau").checked,openK:$("#x-openK").checked,suites:$("#x-suites").checked,service:$("#x-service").checked,cellier:$("#x-cellier").checked,solaire:$("#x-solaire").checked,citerne:$("#x-citerne").checked,
-  nf:+$("#nf").value,usage:val("usage"),apts:+$("#apts").value,aptType:$("#aptType").value,rdc:val("rdc"),lift:$("#x-lift").checked,roofTerrace:$("#x-roofT").checked,genset:$("#x-genset").checked,nb:+$("#nb").value||DEF.nb,plus:$("#x-plus").checked,et:isPro(val("type"))?Math.max(0,Math.min(2,+val("et")||0)):0}}
+  nf:+$("#nf").value,usage:val("usage"),apts:+$("#apts").value,aptType:$("#aptType").value,rdc:val("rdc"),lift:$("#x-lift").checked,roofTerrace:$("#x-roofT").checked,genset:$("#x-genset").checked,nb:+$("#nb").value||DEF.nb,plus:$("#x-plus").checked,et:isPro(val("type"))?Math.max(0,Math.min(2,+val("et")||0)):0,
+  lot:+$("#lot").value||DEF.lot,ht:$("#ht").value||DEF.ht,eqE:$("#x-eqE").checked,eqM:$("#x-eqM").checked,nbld:+$("#nbld").value||DEF.nbld,rnf:+$("#rnf").value||DEF.rnf,rapts:+$("#rapts").value||DEF.rapts,raptType:$("#raptType").value||DEF.raptType,
+  nst:+$("#nst").value||DEF.nst,nsh:+$("#nsh").value||0,mroof:val("mroof"),ncl:+$("#ncl").value||DEF.ncl,lib:$("#x-lib").checked,cant:$("#x-cant").checked,beds:+$("#beds").value||0,mat:$("#x-mat").checked,labo:$("#x-labo").checked}}
+// choix d'une liste : une valeur venue des souhaits (« 7 classes ») est ajoutée à la liste si elle n'y est pas
+function selSet(id,v,lab){const e=$(id);v=String(v);if(![...e.options].some(o=>o.value===v)){const o=document.createElement("option");o.value=v;o.textContent=lab?lab(v):v;e.appendChild(o)}e.value=v}
 function writeForm(p){
   formPv=p.filled?(p.pv||1):2;
   if(!p.area){p.area=Math.round(p.W*p.D);const r=p.D/p.W;p.shape=r<1.12?"carre":r<1.6?"rect":"long"}
@@ -3603,6 +4130,9 @@ function writeForm(p){
   ["usage","rdc"].forEach(k=>{const el=document.querySelector(`input[name=${k}][value="${p[k]||DEF[k]}"]`);if(el) el.checked=true});
   $("#x-lift").checked=p.lift!==undefined?!!p.lift:true;$("#x-roofT").checked=p.roofTerrace!==undefined?!!p.roofTerrace:true;$("#x-genset").checked=!!p.genset;
   {const el=document.querySelector(`input[name=et][value="${Math.max(0,Math.min(2,+p.et||0))}"]`);if(el) el.checked=true}
+  {const g=k=>p[k]!==undefined&&p[k]!==null&&p[k]!==""?p[k]:DEF[k];selSet("#lot",g("lot"),v=>v+" m²");$("#ht").value=g("ht")==="r1"?"r1":"pp";selSet("#nbld",g("nbld"));selSet("#rnf",g("rnf"),v=>"R+"+v);selSet("#rapts",g("rapts"));
+    $("#raptType").value=["auto","studio","f2","f3","f4"].includes(g("raptType"))?g("raptType"):"auto";selSet("#nst",g("nst"));selSet("#nsh",g("nsh"));selSet("#ncl",g("ncl"));selSet("#beds",g("beds"));
+    ["eqE","eqM","lib","cant","mat","labo"].forEach(k=>$("#x-"+k).checked=!!p[k]);const el=document.querySelector(`input[name=mroof][value="${g("mroof")==="voutes"?"voutes":"ombrieres"}"]`);if(el) el.checked=true}
   $("#proset").dataset.k="";if(isPro(val("type"))) $("#x-plus").checked=p.plus!==false;syncTower(p.nb||DEF.nb);readForm();stdHint()}
 
 /* ---------- Base de données Firebase : comptes, offre et quota ---------- */
@@ -3644,7 +4174,7 @@ function refreshOffer(){
 }
 function limitReached(){toast(`Limite quotidienne atteinte (${O().quota} plans). Passez à une offre supérieure.`)}
 
-const NEWS=[{"id": "2026-11-13-editeur-3d", "date": "2026-11-13T19:30:00Z", "titre": "Nouveau : l'éditeur 3D sur ordinateur", "texte": "Avec l'offre Max, sur ordinateur, le bouton « Éditeur 3D » sous le plan ouvre la maquette comme dans un logiciel d'architecture : faites glisser les cloisons, ajoutez ou supprimez fenêtres, baies et portes, réglez la hauteur sous plafond, la toiture et les sols pièce par pièce, mesurez et changez de vue. Les immeubles sont pris en charge : une modification faite sur un étage courant s'applique à tous les étages identiques. Le plan et le coût suivent vos modifications.", "action": "creation", "titre_en": "New: the 3D editor on computer", "texte_en": "With the Max plan, on a computer, the \"3D editor\" button below the plan opens the model as in architecture software: drag partitions, add or remove windows, glazed openings and doors, set the ceiling height, the roof and the floors room by room, measure and change views. Apartment buildings are supported: a change made on a typical floor applies to all identical floors. The plan and the cost follow your changes."}, {"id": "2026-11-13-anglais", "date": "2026-11-13T16:30:00Z", "titre": "Nouveau : Architmind CI en anglais", "texte": "Le site existe maintenant en anglais. Utilisez le bouton EN / FR du menu pour changer de langue. Plans, devis, maquette 3D, dossier PDF, notifications et pages légales sont traduits ; un navigateur réglé en anglais ouvre directement le site dans cette langue.", "action": "creation", "titre_en": "New: Architmind CI in English", "texte_en": "The site is now available in English. Use the EN / FR button in the menu to switch language. Plans, quotes, the 3D model, the PDF file, notifications and legal pages are translated; a browser set to English opens the site directly in that language."}, {"id": "2026-11-12-devis-par-lot", "date": "2026-11-12T22:15:00Z", "titre": "Nouveau : le devis estimatif par lot", "texte": "Le coût des travaux est maintenant détaillé comme chez un économiste de la construction : dix lots, du terrassement à la peinture, avec les quantités mesurées sur votre plan, les prix unitaires, les imprévus, la fourchette basse et haute, le coût au m² comparé au marché ivoirien, ce qui reste à prévoir en plus et des conseils pour réduire la facture. Le devis complet est aussi dans le dossier PDF.", "lien": "#resultat", "titre_en": "New: the estimated quote by trade", "texte_en": "The building cost is now broken down the way a quantity surveyor does it: ten trades, from earthworks to painting, with quantities measured on your plan, unit prices, contingencies, the low and high range, the cost per m² compared with the Ivorian market, what to budget on top and tips to cut the bill. The full quote is also in the PDF file."}, {"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation", "titre_en": "New: houses modelled on real homes", "texte_en": "The plans and the 3D model now follow real houses for each level of finish: low-cost home, estate villa, high-end villa, large villa. Walls, roof and windows adapt to your city, in the 11 countries covered. Your saved projects keep their plan."}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation", "titre_en": "New: colours in the 3D model", "texte_en": "The 3D model and the guided tour take on the colours of your level of finish: façade, floors and walls, with a feature wall in the living spaces and bedrooms."}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation", "titre_en": "New: upper floors for shops and offices", "texte_en": "In Create, shops and offices can now have 1 or 2 upper floors. You also choose their style and can describe your wishes in a few words, as for a house."}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation", "titre_en": "New: shop and office plans", "texte_en": "In Create, choose \"Shops\" or \"Offices\" to get the plan, the cost and the 3D model. Included in the Medium and Max plans."}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation", "titre_en": "New: guided tour in 3D", "texte_en": "In the 3D tab of a plan, \"Guided tour\" shows the model from above, then walks through the building room by room."}];
+const NEWS=[{"id": "2026-11-13-grands-projets", "date": "2026-11-13T21:00:00Z", "titre": "Nouveau : les grands projets", "texte": "Avec l'offre Max, dessinez une cité résidentielle, une résidence d'immeubles, un marché couvert, une école ou un centre de santé, avec le plan, le coût (voirie et réseaux compris) et la maquette 3D. Sur ordinateur, l'éditeur 3D les modifie pièce par pièce, comme une maison. Les plans suivent des principes publiés d'architectes reconnus d'Afrique de l'Ouest, comme Francis Kéré et Mariam Kamara : classes autour d'une cour, galerie d'attente ombragée, halle d'étals avec boutiques au pourtour.", "action": "creation", "titre_en": "New: large projects", "texte_en": "With the Max plan, design a housing estate, a residence of apartment buildings, a covered market, a school or a health centre, with the plan, the cost (roads and utilities included) and the 3D model. On a computer, the 3D editor changes them room by room, like a house. The plans follow published principles of renowned West African architects, such as Francis Kéré and Mariam Kamara: classrooms around a courtyard, a shaded waiting gallery, a market hall of stalls with shops around it."}, {"id": "2026-11-13-editeur-3d", "date": "2026-11-13T19:30:00Z", "titre": "Nouveau : l'éditeur 3D sur ordinateur", "texte": "Avec l'offre Max, sur ordinateur, le bouton « Éditeur 3D » sous le plan ouvre la maquette comme dans un logiciel d'architecture : faites glisser les cloisons, ajoutez ou supprimez fenêtres, baies et portes, réglez la hauteur sous plafond, la toiture et les sols pièce par pièce, mesurez et changez de vue. Les immeubles sont pris en charge : une modification faite sur un étage courant s'applique à tous les étages identiques. Le plan et le coût suivent vos modifications.", "action": "creation", "titre_en": "New: the 3D editor on computer", "texte_en": "With the Max plan, on a computer, the \"3D editor\" button below the plan opens the model as in architecture software: drag partitions, add or remove windows, glazed openings and doors, set the ceiling height, the roof and the floors room by room, measure and change views. Apartment buildings are supported: a change made on a typical floor applies to all identical floors. The plan and the cost follow your changes."}, {"id": "2026-11-13-anglais", "date": "2026-11-13T16:30:00Z", "titre": "Nouveau : Architmind CI en anglais", "texte": "Le site existe maintenant en anglais. Utilisez le bouton EN / FR du menu pour changer de langue. Plans, devis, maquette 3D, dossier PDF, notifications et pages légales sont traduits ; un navigateur réglé en anglais ouvre directement le site dans cette langue.", "action": "creation", "titre_en": "New: Architmind CI in English", "texte_en": "The site is now available in English. Use the EN / FR button in the menu to switch language. Plans, quotes, the 3D model, the PDF file, notifications and legal pages are translated; a browser set to English opens the site directly in that language."}, {"id": "2026-11-12-devis-par-lot", "date": "2026-11-12T22:15:00Z", "titre": "Nouveau : le devis estimatif par lot", "texte": "Le coût des travaux est maintenant détaillé comme chez un économiste de la construction : dix lots, du terrassement à la peinture, avec les quantités mesurées sur votre plan, les prix unitaires, les imprévus, la fourchette basse et haute, le coût au m² comparé au marché ivoirien, ce qui reste à prévoir en plus et des conseils pour réduire la facture. Le devis complet est aussi dans le dossier PDF.", "lien": "#resultat", "titre_en": "New: the estimated quote by trade", "texte_en": "The building cost is now broken down the way a quantity surveyor does it: ten trades, from earthworks to painting, with quantities measured on your plan, unit prices, contingencies, the low and high range, the cost per m² compared with the Ivorian market, what to budget on top and tips to cut the bill. The full quote is also in the PDF file."}, {"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation", "titre_en": "New: houses modelled on real homes", "texte_en": "The plans and the 3D model now follow real houses for each level of finish: low-cost home, estate villa, high-end villa, large villa. Walls, roof and windows adapt to your city, in the 11 countries covered. Your saved projects keep their plan."}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation", "titre_en": "New: colours in the 3D model", "texte_en": "The 3D model and the guided tour take on the colours of your level of finish: façade, floors and walls, with a feature wall in the living spaces and bedrooms."}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation", "titre_en": "New: upper floors for shops and offices", "texte_en": "In Create, shops and offices can now have 1 or 2 upper floors. You also choose their style and can describe your wishes in a few words, as for a house."}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation", "titre_en": "New: shop and office plans", "texte_en": "In Create, choose \"Shops\" or \"Offices\" to get the plan, the cost and the 3D model. Included in the Medium and Max plans."}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation", "titre_en": "New: guided tour in 3D", "texte_en": "In the 3D tab of a plan, \"Guided tour\" shows the model from above, then walks through the building room by room."}];
 /* ---------- Comptes : connexion par e-mail et mot de passe (Firebase) ---------- */
 const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false,verified:false};
 // Administrateurs : empreintes SHA-256 des adresses e-mail (config.js), pour ne pas publier les adresses.
@@ -4177,7 +4707,7 @@ function snap3D(m){
 }
 function dossierSvgs(S,css){
   // en anglais, les textes sont traduits ici, avant d'être coupés en lignes (tr ne change rien en français)
-  const m=S.m,p=m.p,nl=levelsOf(m).length,total=2+nl+2,prog=tr(m.isTower&&!m.fam?m.nApts+" logements":m.n+" chambre"+(m.n>1?"s":""));
+  const m=S.m,p=m.p,nl=levelsOf(m).length,total=2+nl+2,prog=tr(m.pro&&m.pro.big?progLabel(m):m.isTower&&!m.fam?m.nApts+" logements":m.n+" chambre"+(m.n>1?"s":""));
   const date=new Date().toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"});
   let shot=snap3D(m);if(!shot||shot.indexOf("data:image/jpeg")!==0||shot.length<4000) shot=null;const name=wrapTxt(tr(S.name),20).slice(0,3);
   const facts=[["Terrain",fmt(m.plot)+" m²"],["Surface de plancher",fmt(m.builtArea)+" m²"],["Niveaux",String(m.levels.length)],["Programme",prog]].map(([k,v])=>[tr(k),v]);
@@ -4292,7 +4822,7 @@ function edWalls(L){
         const inC=r=>r[s]>=s0-EPS&&r[s]+r[ss]<=s1+EPS,a=A.filter(inC),b=B.filter(inC),len=q=>q.reduce((t,r)=>t+r[ss],0);
         if(!a.length||!b.length||Math.abs(len(a)-(s1-s0))>0.05||Math.abs(len(b)-(s1-s0))>0.05) return;
         // pas de cloison mobile entre deux logements, ni dans les parties communes
-        const us=new Set(a.concat(b).map(r=>r.u));if(a.concat(b).some(r=>ED_LOCK.has(r.n)||r.t==="patio"||r.shop)||us.size>1||us.has("c")) return;
+        const us=new Set(a.concat(b).map(r=>r.u));if(a.concat(b).some(r=>ED_LOCK.has(r.n)||r.t==="patio"||(r.shop&&!r.free))||us.size>1||us.has("c")) return;
         const mn=r=>(r.t==="wet"||r.n==="Dégagement"||r.n==="Dressing"||r.n==="Rangement"||r.n==="Cellier"||r.n==="Entrée")?0.9:(r.t==="out"?1.2:1.8);
         const lo=-Math.min(...a.map(r=>r[cs]-mn(r))),hi=Math.min(...b.map(r=>r[cs]-mn(r)));
         out.push({o,c:C,s0,s1,a,b,lo:Math.min(0,r2(lo)),hi:Math.max(0,r2(hi)),ck:c,csk:cs});
@@ -4307,7 +4837,7 @@ let ED=null;
 Object.assign(window,{edWalls,edMove,edKey,r2});window.__am={get model(){return model},get cur(){return cur},get e3(){return E3}};try{Object.defineProperty(window,"ED",{get:()=>ED,configurable:true})}catch(x){}
 function edOpen(){
   if(!model) return;
-  if(model.isTower||model.pro){toast("La modification des pièces est disponible pour les villas, duplex et maisons R+2.");return}
+  if(model.isTower||model.pro){toast(model.pro&&model.pro.big?"Les pièces des grands projets se modifient avec l'éditeur 3D, sur ordinateur (offre Max).":"La modification des pièces est disponible pour les villas, duplex et maisons R+2.");return}
   if(!O().ed){toast(`La modification des pièces est incluse dans les offres ${OFFERS.moyen.nom} et ${OFFERS.max.nom}.`);location.hash="tarifs";return}
   const base=compute(Object.assign({},cur,{ed:null}));
   ED={k:edKey(base.levels),base,li:Math.min(level,model.levels.length-1),L:model.levels.map(L=>L.map(r=>Object.assign({},r))),sel:null,wall:null,drag:null,changed:false};
@@ -4386,11 +4916,12 @@ function e3Open(){
   if(!model) return;
   if(!O().tools){toast(`L'éditeur 3D est inclus dans l'offre ${OFFERS.max.nom}.`);location.hash="tarifs";return}
   if(typeof THREE==="undefined"){toast("La maquette 3D n'a pas pu se charger dans ce navigateur.");return}
-  const base=compute(Object.assign({},cur,{ed:null})),seen=opts3d&&opts3d._sig===sigOf(cur)?opts3d:defaults3d(model),o3={};
+  if(model.site) toast(model.type==="cite"?"Vous modifiez la maison type : vos changements s'appliquent à toutes les maisons de la cité.":"Vous modifiez l'immeuble type : vos changements s'appliquent à tous les immeubles de la résidence.");
+  const base=e3C(Object.assign({},cur,{ed:null})),seen=opts3d&&opts3d._sig===sigOf(cur)?opts3d:defaults3d(model),o3={};
   E3KEYS.forEach(k=>{if(seen[k]!==undefined&&!(k==="hsp"&&seen[k]===2.9)) o3[k]=seen[k]});
   E3={k:edKey(base.levels),base,L:model.levels.map(L=>L.map(r=>Object.assign({},r))),O:model.levels.map((x,li)=>JSON.parse(JSON.stringify((cur.ed&&cur.ed.O&&model.edited&&cur.ed.O[li])||{}))),
     o3,hist:[],fut:[],sel:null,tool:"select",view:"iso",lvl:-1,cut:false,roof:true,snap:0.1,meas:[],look:{hour:seen.hour||10,veg:seen.veg!==false,car:seen.car!==false}};
-  E3.p=e3Build();E3.m=compute(E3.p);
+  E3.p=e3Build();E3.m=e3C(E3.p);
   $("#e3d").hidden=false;document.body.style.overflow="hidden";
   $("#e3d-lv").innerHTML=`<option value="-1">Tous les niveaux</option>`+E3.m.levels.map((x,i)=>`<option value="${i}">${lvName(i)}</option>`).join("");
   e3Mount(false);e3Panel();e3Tools();
@@ -4398,6 +4929,8 @@ function e3Open(){
 function e3Close(back){$("#e3d").hidden=true;document.body.style.overflow="";if(viewer&&viewer.mode==="edit") stop3D();E3=null;
   if(back&&SHOW3D&&RTAB==="3d"&&model) area3D($("#c3d"),model)}
 // immeuble : les étages courants identiques sont modifiés ensemble (on modifie l'étage de référence, recopié ensuite)
+// projet calculé pour l'éditeur : pour une cité ou une résidence, la maison type ou l'immeuble type
+const e3C=p=>{const m=compute(p);return m.site?m.unit:m};
 const e3Root=li=>{const L=E3&&E3.base.levels[li];return L&&L.copyOf!==undefined?L.copyOf:li};
 function e3Sync(){E3.base.levels.forEach((L,j)=>{if(L.copyOf===undefined) return;const r=L.copyOf;
   E3.L[j]=E3.L[r].map(q=>Object.assign({},q));E3.O[j]=JSON.parse(JSON.stringify(E3.O[r]||{}))})}
@@ -4412,11 +4945,11 @@ function e3Restore(s){const v=JSON.parse(s);E3.L=v.L;E3.O=v.O;E3.o3=v.o3}
 // une modification : on la garde si le plan reste valable, sinon on revient en arrière
 function e3Do(fn,msg){
   const snap=e3Snap();try{fn()}catch(x){e3Restore(snap);return false}
-  const p=e3Build();let m;try{m=compute(p);if(p.ed&&!m.edited) throw new Error("ed");levelsOf(m).forEach(x=>{if(x.li>=0){openings(m,x.li);drawTech(m,x.li,{thumb:true})}})}
+  const p=e3Build();let m;try{m=e3C(p);if(p.ed&&!m.edited) throw new Error("ed");levelsOf(m).forEach(x=>{if(x.li>=0){openings(m,x.li);drawTech(m,x.li,{thumb:true})}})}
   catch(x){e3Restore(snap);toast(msg||"Cette modification n'a pas pu être appliquée. Essayez un déplacement plus petit.");return false}
   E3.hist.push(snap);if(E3.hist.length>80) E3.hist.shift();E3.fut=[];E3.p=p;E3.m=m;e3Mount(true);e3Panel();e3Tools();return true}
 function e3Undo(redo){if(!E3) return;const from=redo?E3.fut:E3.hist,to=redo?E3.hist:E3.fut;if(!from.length) return;to.push(e3Snap());e3Restore(from.pop());
-  E3.p=e3Build();E3.m=compute(E3.p);E3.sel=null;e3Mount(true);e3Panel();e3Tools()}
+  E3.p=e3Build();E3.m=e3C(E3.p);E3.sel=null;e3Mount(true);e3Panel();e3Tools()}
 function e3Apply(){if(!E3) return;const p=E3.p,look=E3.look;
   cur=p;model=compute(cur);opts3d=Object.assign(defaults3d(model),look,{_sig:sigOf(cur)});level=Math.min(level,model.levels.length-1);
   e3Close(false);renderPlan();toast("Plan, coût et maquette mis à jour.")}
@@ -4610,7 +5143,7 @@ const WISH_MAX=300;
 const wnorm=t=>String(t||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’`]/g,"'").replace(/\s+/g," ").trim();
 const WNUM={un:1,une:1,deux:2,trois:3,quatre:4,cinq:5,six:6,sept:7,huit:8,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,a:1,an:1};
 function parseWish(text,p){
-  const t=wnorm(text).slice(0,WISH_MAX+40),set={},ok=[],ko=[],tower=p&&p.type==="rn",pro=!!p&&isPro(p.type),com=pro&&p.type==="com";
+  const t=wnorm(text).slice(0,WISH_MAX+40),set={},ok=[],ko=[],tower=p&&p.type==="rn",pro=!!p&&isPro(p.type),com=pro&&p.type==="com",big=!!p&&isBig(p.type);
   if(!t) return {set,ok,ko};
   // souhaits en français, et aussi en anglais (mots ajoutés en plus, le français ne change pas)
   const no=(...ws)=>ws.some(w=>new RegExp("(sans|pas de|pas d'|aucun|aucune|ni|no|without|not) (un |une |de |d'|a |an |any )?"+w).test(t));
@@ -4624,6 +5157,22 @@ function parseWish(text,p){
       if(n>=mn&&n<=mx){set.nb=n;ok.push(n+" "+what+pl(n))}else ko.push(n<mn?`au moins ${mn} ${what}${pl(mn)} pour ce nombre d'étages`:`plus de ${mx} ${what}${pl(mx)} pour ce nombre d'étages`)}
     if(com&&/galerie|gallery|arcade|covered walkway/.test(t)){set.plus=!no("galerie","gallery","arcade","covered walkway");ok.push(set.plus?"galerie couverte":"sans galerie")}
     if(!com&&/terrasse|pause|terrace|break area/.test(t)){set.plus=!no("terrasse","terrace","break area");ok.push(set.plus?"terrasse de pause":"sans terrasse de pause")}
+  }else if(big){
+    // grands projets : nombres (classes, lits, étals, boutiques, immeubles) et options de chaque sorte de projet
+    const k=p.type,NW="(\\d+|"+Object.keys(WNUM).filter(w=>w.length>2).join("|")+")";
+    const num=(re,key,mn,mx,lab)=>{const r=new RegExp(NW+" (?:"+re+")").exec(t);if(!r) return;const n=WNUM[r[1]]||+r[1];if(n>=mn&&n<=mx){set[key]=n;ok.push(n+" "+lab)}else ko.push(`${lab} : de ${mn} à ${mx}`)};
+    if(k==="ecole"){num("(?:salles? de )?classes?\\b|classrooms?\\b","ncl",3,18,"classes");if(/biblioth|library/.test(t)){set.lib=true;ok.push("bibliothèque")}if(/cantine|refectoire|canteen|cafeteria/.test(t)){set.cant=true;ok.push("cantine et cuisine")}}
+    if(k==="sante"){num("lits?\\b|beds?\\b","beds",0,30,"lits");if(/maternit/.test(t)){set.mat=true;ok.push("maternité")}if(/laboratoire|\blabo\b|laborator|\blab\b/.test(t)){set.labo=true;ok.push("laboratoire")}}
+    if(k==="marche"){num("etals?\\b|places? de vente|stalls?\\b|tables?\\b","nst",20,800,"étals");num("boutiques?\\b|magasins?\\b|shops?\\b","nsh",0,200,"boutiques");
+      if(/vout|vault/.test(t)){set.mroof="voutes";ok.push("voûtes en terre")}else if(/ombriere|auvent|canop|parasol/.test(t)){set.mroof="ombrieres";ok.push("ombrières colorées")}}
+    if(k==="cite"){if((m=/lots? de (\d+)|(\d+) ?m2|plots? of (\d+)/.exec(t))){const n=+(m[1]||m[2]||m[3]);if(n>=150&&n<=1000){set.lot=n;ok.push("lots de "+n+" m²")}else ko.push("taille des lots : de 150 à 1 000 m²")}
+      if((m=/(\d+|deux|trois|quatre|cinq|six|sept|huit) chambres?|(\d+|one|two|three|four|five|six|seven|eight) (?:bed|bedroom)s?\b/.exec(t))){const n=WNUM[m[1]||m[2]]||+(m[1]||m[2]);if(n>=1&&n<=8){set.n=n;ok.push(n+" chambre"+(n>1?"s":""))}}
+      if(/duplex|\b(un|1) etage\b|r\+1|a etage|\b(two|2)[- ]stor(e)?y|upstairs/.test(t)){set.ht="r1";ok.push("maisons à 1 étage")}else if(/plain[- ]?pied|sans etage|single[- ]stor(e)?y|bungalow/.test(t)){set.ht="pp";ok.push("maisons sans étage")}
+      if(/ecole|school/.test(t)){set.eqE=true;ok.push("réserve pour une école")}if(/marche|market/.test(t)){set.eqM=true;ok.push("réserve pour un marché")}}
+    if(k==="residence"){num("immeubles?\\b|batiments?\\b|buildings?\\b|blocks?\\b","nbld",1,12,"immeubles");
+      if((m=/[rg]\+(\d+)|(\d+) (?:etages|floors|stor(?:e)?ys)/.exec(t))){const n=+(m[1]||m[2]);if(n>=3&&n<=10){set.rnf=n;ok.push("R+"+n)}else ko.push("étages : de R+3 à R+10")}
+      if((m=/(\d+) (?:appartements?|appts?|logements?|apartments?|flats?) par etage|(\d+) (?:apartments?|flats?) per floor/.exec(t))){const n=+(m[1]||m[2]);if(n>=2&&n<=6){set.rapts=n;ok.push(n+" appartements par étage")}}
+      if((m=/\b(studio|f2|f3|f4)s?\b/.exec(t))){set.raptType=m[1];ok.push("appartements "+m[1].toUpperCase())}}
   }else if(!tower){
     if(/\bplain[- ]?pied\b|sans etage|de plain pied|un seul niveau|single[- ]stor(e)?y|one[- ]stor(e)?y|bungalow|no upstairs/.test(t)){set.type="pp";ok.push("maison sans étage")}
     else if(/\b(deux|2) etages\b|r\+2|triplex|\b(three|3)[- ]stor(e)?y|\b(two|2) upper floors|g\+2/.test(t)){set.type="r2";ok.push("maison à 2 étages")}
@@ -4644,10 +5193,10 @@ function parseWish(text,p){
     if(/groupe electrogene|generateur|generator/.test(t)){set.genset=true;ok.push("groupe électrogène")}
     if((m=/\b(studio|f2|f3|f4)s?\b/.exec(t))){set.aptType=m[1];ok.push("appartements "+m[1].toUpperCase())}
   }
-  if(/piscine|\bpool\b|swimming/.test(t)){if(pro) ko.push("piscine");else if(no("piscine","pool","swimming pool")){set.piscine=false;ok.push("sans piscine")}else{set.piscine=true;ok.push("piscine")}}
+  if(/piscine|\bpool\b|swimming/.test(t)){if(pro||big) ko.push("piscine");else if(no("piscine","pool","swimming pool")){set.piscine=false;ok.push("sans piscine")}else{set.piscine=true;ok.push("piscine")}}
   if(/solaire|panneaux|solar/.test(t)){set.solaire=true;ok.push("panneaux solaires")}
   if(/citerne|chateau d'eau|reservoir|bache a eau|forage|water tank|water tower|borehole|cistern/.test(t)){set.citerne=true;ok.push("réservoir d'eau")}
-  if(/patio|cour interieure|courtyard/.test(t)){if(pro) ko.push("cour intérieure");else{set.style="bio";ok.push("cour intérieure (patio)")}}
+  if(/patio|cour interieure|courtyard/.test(t)){if(pro||big) ko.push("cour intérieure");else{set.style="bio";ok.push("cour intérieure (patio)")}}
   else if(/veranda|colonial/.test(t)){set.style="colonial";ok.push(pro?"style colonial":"style colonial avec véranda")}
   else if(/minimaliste|epure|minimalist|clean lines/.test(t)){set.style="mini";ok.push("style épuré")}
   else if(/africain|afro|african/.test(t)){set.style="afro";ok.push("style africain moderne")}
@@ -4657,12 +5206,12 @@ function parseWish(text,p){
   else if(/haut standing|haut de gamme|standing|high[- ]end|upmarket|premium/.test(t)){set.std="haut";ok.push("finition haut de gamme")}
   else if(/economique|pas cher|petit budget|moins cher|budget (serre|limite|reduit)|cheap|low[- ]cost|affordable|economical|tight budget|low budget/.test(t)){set.std="eco";ok.push("finition économique")}
   // souhaits compris mais non gérés par le générateur
-  if(!pro&&/(grande?|vaste|spacieu\w+|immense) (cuisine|sejour|salon|chambre|salle)|(cuisine|sejour|salon|chambre)s? (plus )?(grande?s?|vastes?|spacieu\w+)|(large|big|spacious|huge) (kitchen|living room|lounge|bedroom|room)/.test(t)) ko.push("taille d'une pièce : à régler avec « Modifier les pièces »");
-  if(!pro&&/dressing|salle de (jeux?|sport|cinema|priere)|home cinema|bibliotheque|buanderie|chambre d'amis|salle a manger|walk-in|game room|\bgym\b|library|laundry|guest room|dining room|prayer room/.test(t)) ko.push("pièce particulière : changez la fonction d'une pièce avec « Modifier les pièces »");
+  if(!pro&&!big&&/(grande?|vaste|spacieu\w+|immense) (cuisine|sejour|salon|chambre|salle)|(cuisine|sejour|salon|chambre)s? (plus )?(grande?s?|vastes?|spacieu\w+)|(large|big|spacious|huge) (kitchen|living room|lounge|bedroom|room)/.test(t)) ko.push("taille d'une pièce : à régler avec « Modifier les pièces »");
+  if(!pro&&!big&&/dressing|salle de (jeux?|sport|cinema|priere)|home cinema|bibliotheque|buanderie|chambre d'amis|salle a manger|walk-in|game room|\bgym\b|library|laundry|guest room|dining room|prayer room/.test(t)) ko.push("pièce particulière : changez la fonction d'une pièce avec « Modifier les pièces »");
   if(pro&&/(grande?|vaste|spacieu\w+|immense) (boutique|magasin|bureau|salle|reserve|accueil)|ascenseur|parking couvert|sous[- ]sol/.test(t)) ko.push("taille d'une pièce, ascenseur, parking couvert ou sous-sol");
-  if(/sous[- ]sol|cave|mezzanine|toit[- ]terrasse|rooftop|balcon|basement|cellar|roof terrace/.test(t)&&!tower&&!pro) ko.push("sous-sol, mezzanine, balcon ou toit-terrasse");
+  if(/sous[- ]sol|cave|mezzanine|toit[- ]terrasse|rooftop|balcon|basement|cellar|roof terrace/.test(t)&&!tower&&!pro&&!big) ko.push("sous-sol, mezzanine, balcon ou toit-terrasse");
   if(/jardin|potager|verger|arbres?|garden|orchard|\btrees?\b/.test(t)) ko.push("aménagement du jardin");
-  if(!pro&&/\bterrasse\b|\bterrace\b/.test(t)&&!/toit[- ]terrasse|roof terrace/.test(t)) ok.push("terrasse (déjà prévue)");
+  if(!pro&&!big&&/\bterrasse\b|\bterrace\b/.test(t)&&!/toit[- ]terrasse|roof terrace/.test(t)) ok.push("terrasse (déjà prévue)");
   if(/budget|million|fcfa|\bf cfa\b/.test(t)) ko.push("budget total : réglez plutôt le coût au m² et la finition");
   return {set,ok:[...new Set(ok)],ko:[...new Set(ko)]};
 }
@@ -4670,12 +5219,12 @@ function applyWish(p){const w=String($("#wish").value||"").slice(0,WISH_MAX).tri
   if(r.set.std&&!+$("#pm").value) p.pm=PRICE[p.std];if("type" in r.set||"n" in r.set){const dm=dimsFrom(p.area,p.shape,p.fw);p.W=dm.W;p.D=dm.D}p.wish=w;return p}
 function wishNote(){const el=$("#wishnote");if(!el) return;const w=cur&&cur.wish;if(!w){el.hidden=true;return}
   const r=parseWish(w,cur);el.hidden=false;
-  el.innerHTML=(r.ok.length?`<b>Souhaits pris en compte :</b> ${r.ok.map(xe).join(", ")}.`:`<b>Aucun souhait reconnu dans votre texte.</b> Utilisez des mots simples : ${isPro(cur.type)?(cur.type==="com"?"boutiques, étage, galerie, finition":"bureaux, étage, terrasse, finition"):"chambres, garage, bureau, piscine, étage"}.`)+(r.ko.length?`<br><b>Non pris en compte :</b> ${r.ko.map(xe).join(" ; ")}.`:"")}
+  el.innerHTML=(r.ok.length?`<b>Souhaits pris en compte :</b> ${r.ok.map(xe).join(", ")}.`:`<b>Aucun souhait reconnu dans votre texte.</b> Utilisez des mots simples : ${isBig(cur.type)?{cite:"lots, chambres, duplex, école, marché",residence:"immeubles, R+5, F3, finition",marche:"étals, boutiques, voûtes, ombrières",ecole:"classes, bibliothèque, cantine",sante:"lits, maternité, laboratoire"}[cur.type]:isPro(cur.type)?(cur.type==="com"?"boutiques, étage, galerie, finition":"bureaux, étage, terrasse, finition"):"chambres, garage, bureau, piscine, étage"}.`)+(r.ko.length?`<br><b>Non pris en compte :</b> ${r.ko.map(xe).join(" ; ")}.`:"")}
 function pmHint(){const s=$("#std"),h=$("#pmhint");if(!h) return;const k=s.value||"std",o=[...s.options].find(x=>x.value===k);h.innerHTML=`Prix courant pour une finition ${xe(FIN3D[k]?FIN3D[k].nom:o.text.toLowerCase())} : <b>${fmt(PRICE[k])} F par m²</b>. <button type="button" class="linkbtn" id="pmuse">Utiliser ce prix</button>`;
   $("#pmuse").onclick=()=>{$("#pm").value=PRICE[s.value||"std"];$("#pmerr").hidden=true;$("#pm").dispatchEvent(new Event("change",{bubbles:true}))}}
 function covVal(){const v=Math.round(+$("#cov").value)||50;return Math.max(10,Math.min(90,v))}
 function formMissing(){
-  const q=n=>document.querySelector(`input[name=${n}]:checked`),t=q("type"),imm=t&&t.value==="rn"&&val("usage")==="immeuble",pro=t&&isPro(t.value),L=[];
+  const q=n=>document.querySelector(`input[name=${n}]:checked`),t=q("type"),imm=t&&t.value==="rn"&&val("usage")==="immeuble",pro=t&&(isPro(t.value)||(isBig(t.value)&&t.value!=="cite")),L=[];
   if(!(+$("#area").value>0)) L.push(["la superficie du terrain",$("#area")]);
   if(!q("shape")) L.push(["la forme du terrain",document.querySelector("input[name=shape]")]);
   if(!$("#city").value) L.push(["la ville",$("#city")]);
@@ -4696,6 +5245,7 @@ window.parseWish=parseWish;
 /* ---------- Export DXF (AutoCAD R12, lisible par les logiciels d'architecture) ----------
    Unités : mètres. Un calque par type d'élément ; tous les niveaux sont posés côte à côte. */
 function planDxf(m,name){
+  if(m.site) m=m.unit; // cité ou résidence : le fichier contient le logement type (le plan masse reste en PDF et en image)
   const A=t=>String(t==null?"":t).normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[²]/g,"2").replace(/[–—]/g,"-").replace(/[«»"]/g,"'").replace(/[^\x20-\x7E]/g,"").trim();
   const n=v=>(Math.round(v*10000)/10000).toFixed(4),E=[],W=m.W,D=m.D,gap=Math.max(8,Math.round(W*0.4));
   let ox=0,minX=0,minY=-4,maxX=0,maxY=D+4;
@@ -4763,7 +5313,7 @@ window.planDxf=planDxf;
 function renderPlan(){wishNote();
   model=compute(cur);
   ["#sacts","#savebar"].forEach(q=>{const e=$(q);if(e) e.hidden=false});syncRes();
-  if(!(model.planLevels||[]).some(x=>x.li===level)) level=0;
+  if(level===null||!(model.planLevels||[]).some(x=>x.li===level)) level=(model.planLevels&&model.planLevels[0]?model.planLevels[0].li:0);
   levelTabs($("#tabs"),model,level,l=>{level=l;drawInto($("#sheet"),model,level);pulse($("#sheet"))});
   $("#ptitle").textContent=[typeLabel(model.p),styleLabel(model),progLabel(model),model.lieu].filter(Boolean).join(" · ");
   drawInto($("#sheet"),model,level);
@@ -4773,7 +5323,7 @@ function renderPlan(){wishNote();
   if(model.pool) notes.push({t:`Piscine de ${dec(model.pool.w,1)} × ${dec(model.pool.h,1)} m prévue dans le jardin arrière (visible sur la maquette 3D).`});
   $("#notes").innerHTML=notes.map(n=>`<div class="note${n.w?" warn":""}">${n.t}</div>`).join("");
   $("#s-t").textContent=fmt(model.plot)+" m²";$("#s-e").textContent=fmt(model.foot)+" m²";
-  $("#s-c").textContent=Math.round(model.foot/model.plot*100)+" %";$("#s-el").textContent=model.pro?"Bâtiment au sol":"Maison au sol";$("#s-s").textContent=fmt(model.builtArea)+" m²";
+  $("#s-c").textContent=Math.round(model.foot/model.plot*100)+" %";$("#s-el").textContent=model.site?"Bâtiments au sol":model.pro?"Bâtiment au sol":"Maison au sol";$("#s-s").textContent=fmt(model.builtArea)+" m²";
   costs(model);dirty=false;$("#dirty").hidden=true;
   pulse($("#sheet"));
   if(SHOW3D) area3D($("#c3d"),model);
@@ -4795,7 +5345,7 @@ function devisHtml(d){
 function costs(m){
   const d=devis(m);
   $("#tot").textContent=F(m.total);$("#range").textContent="de "+F(d.bas)+" à "+F(d.haut);
-  $("#cost-lead").textContent=`${fmt(m.builtArea)} m² à ${fmt(m.pm)} FCFA le m², ajusté pour ${m.lieu}${(m.pro?m.levels.length>1:m.type!=="pp")?" et pour les étages":""}${m.extras.length?", plus les équipements":""}. Le terrain, l'architecte et les raccordements (eau, électricité) ne sont pas compris.`;
+  $("#cost-lead").textContent=m.site?`${m.nUnits} ${m.type==="cite"?"maisons":"immeubles"} de ${fmt(m.unit.builtArea)} m² ${m.type==="cite"?"chacune":"chacun"} à ${fmt(m.pm)} FCFA le m², ajusté pour ${m.lieu}, plus la voirie et les réseaux (${F(m.vrdT)}). Le terrain, l'architecte et les raccordements aux réseaux publics ne sont pas compris.`:`${fmt(m.builtArea)} m² à ${fmt(m.pm)} FCFA le m², ajusté pour ${m.lieu}${(m.pro?m.levels.length>1:m.type!=="pp")?" et pour les étages":""}${m.extras.length?", plus les équipements":""}. Le terrain, l'architecte et les raccordements (eau, électricité) ne sont pas compris.`;
   $("#fourch").innerHTML=[["Estimation basse",d.bas,"mid",false,"si vous achetez au bon moment et sans mauvaise surprise"],
     ["Estimation moyenne",d.moyen,"",true,"le montant le plus probable"],
     ["Estimation haute",d.haut,"",false,"si les prix montent ou si le sol est difficile"]]
@@ -4833,7 +5383,7 @@ function area3D(host,m){
   if(!opts3d||opts3d._sig!==sg) opts3d=Object.assign(defaults3d(m),{_sig:sg});
   const st={mode:"ext",room:null,roomLi:0,spin:true,roof:true,upper:true,keep:false};
   host.innerHTML=`<div class="v3d">
-    <div class="v3dtop"><div class="tabs" data-r="mode"><button type="button" data-mode="ext" aria-pressed="true">Vue extérieure</button><button type="button" data-mode="int" aria-pressed="false">Vue intérieure</button><button type="button" data-mode="tour" aria-pressed="false">Visite guidée</button></div>
+    <div class="v3dtop"><div class="tabs" data-r="mode"><button type="button" data-mode="ext" aria-pressed="true">Vue extérieure</button>${m.site?"":`<button type="button" data-mode="int" aria-pressed="false">Vue intérieure</button><button type="button" data-mode="tour" aria-pressed="false">Visite guidée</button>`}</div>
       <span class="tag" data-r="hint">Glissez pour tourner · molette ou pincement pour zoomer</span></div>
     <div class="rooms" data-r="rooms" hidden></div>
     <div class="three" data-r="three"><div class="ctl" data-r="ctl"></div><div class="tourui" data-r="tour" hidden></div></div>
@@ -4841,12 +5391,12 @@ function area3D(host,m){
   const q=k=>host.querySelector(`[data-r="${k}"]`),three=q("three");
   let rooms;
   if(m.isTower&&!m.fam){rooms=[];m.levels.forEach((L,li)=>L.forEach(r=>{if(r.nolabel||r.t==="patio") return;if((li===0&&(r.n==="Hall d'entrée"||r.shop))||(li===1&&r.u===1&&r.n!=="Dégagement")||(li===m.levels.length-1&&r.n==="Terrasse sur toit")) rooms.push({n:r.n,li,u:r.u})}))}
-  else rooms=m.levels.flatMap((L,li)=>L.filter(r=>r.t!=="patio"&&r.n!=="Dégagement"&&r.n!=="Couloir"&&!r.nolabel&&(r.t!=="out"||r.n==="Terrasse sur toit")&&!["Local technique","Gaine technique","Machinerie","Ascenseur","Palier"].includes(r.n)).map(r=>({n:r.n,li,u:r.u})));
+  else rooms=m.levels.flatMap((L,li)=>L.filter(r=>r.t!=="patio"&&r.n!=="Dégagement"&&r.n!=="Couloir"&&!r.nolabel&&(r.t!=="out"||r.n==="Terrasse sur toit"||(m.pro&&m.pro.big&&r.gal&&r.n!=="Entrée"&&r.n!=="Préau"))&&!["Local technique","Gaine technique","Machinerie","Ascenseur","Palier"].includes(r.n)).map(r=>({n:r.n,li,u:r.u})));
   if(m.pro&&m.pro.kind==="com"){const L0=m.levels[0],u1=(L0.find(r=>r.shop)||{}).u;rooms=L0.filter(r=>r.shop).concat(L0.filter(r=>!r.shop&&r.t!=="out"&&r.u===u1)).map(r=>({n:r.n,li:0,u:r.u}))}
   rooms=rooms.slice(0,40);
   const lvShort=li=>((m.planLevels||[]).find(x=>x.li===li)||{short:lvName(li,true)}).short;
   const ctl=()=>{
-    if(st.mode==="ext") q("ctl").innerHTML=`<button type="button" data-c="spin" aria-pressed="${st.spin}">Rotation</button><button type="button" data-c="roof" aria-pressed="${!st.roof}">Sans toit</button>${m.levels.length>1?`<button type="button" data-c="upper" aria-pressed="${!st.upper}">Masquer ${m.levels.length>2?"les étages":"l'étage"}</button>`:""}`;
+    if(st.mode==="ext") q("ctl").innerHTML=`<button type="button" data-c="spin" aria-pressed="${st.spin}">Rotation</button><button type="button" data-c="roof" aria-pressed="${!st.roof}">Sans toit</button>${m.levels.length>1&&!m.site?`<button type="button" data-c="upper" aria-pressed="${!st.upper}">Masquer ${m.levels.length>2?"les étages":"l'étage"}</button>`:""}`;
     else q("ctl").innerHTML="";
     q("ctl").querySelectorAll("button").forEach(b=>b.onclick=()=>{const c=b.dataset.c;
       if(c==="spin"){st.spin=!st.spin;if(viewer) viewer.controls.autoRotate=st.spin}
@@ -4871,7 +5421,7 @@ function area3D(host,m){
     t.querySelectorAll("button").forEach(b=>b.onclick=()=>{if(viewer&&viewer.tour) viewer.tour[b.dataset.t]()})};
   const go=()=>{ctl();q("tour").dataset.sig="";mount3D(three,m,opts3d,st);if(viewer&&!st.roof) viewer.roofGrp.visible=false};
   q("mode").querySelectorAll("button").forEach(b=>b.onclick=()=>{st.mode=b.dataset.mode;st.keep=false;
-    if(st.mode==="int"&&!st.room){const s=rooms.find(r=>/^Séjour/.test(r.n))||rooms[0];st.room=s.n;st.roomLi=s.li;st.roomU=s.u}
+    if(st.mode==="int"&&!st.room){const s=rooms.find(r=>/^Séjour|^Étals|^Salle de classe|^Galerie d'attente/.test(r.n))||rooms[0];st.room=s.n;st.roomLi=s.li;st.roomU=s.u}
     q("mode").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));go()});
   // outils de personnalisation
   const tools=q("tools");
@@ -4907,6 +5457,26 @@ const PROP_DEF=[
   {name:"Maison Patio",style:"bio",type:"pp",desc:"Bioclimatique, organisée autour d'un patio planté"},
   {name:"Duplex Horizon",style:"mini",type:"r1",desc:"Duplex minimaliste, chambres à l'étage"}];
 function propDefs(base){
+  if(base.type==="cite") return [
+    {name:"Cité Lagune",over:{ht:"pp"},desc:"Maisons sans étage, chacune sur son lot, voies plantées et espaces verts"},
+    {name:"Cité Duplex",over:{ht:"r1"},desc:"Duplex à 1 étage : plus de surface sur le même lot"},
+    {name:"Cité Jardins",over:{lot:Math.min(600,(+base.lot||DEF.lot)+100)},desc:"Lots plus grands, plus de jardin autour de chaque maison"}];
+  if(base.type==="residence") return [
+    {name:"Résidence Lagune",over:{},desc:"Immeubles espacés, stationnement au centre, jardins tout autour"},
+    {name:"Résidence Horizon",over:{rnf:Math.min(10,(+base.rnf||DEF.rnf)+2)},desc:"Deux étages de plus pour plus de logements"},
+    {name:"Résidence Familles",over:{raptType:"f4"},desc:"Grands appartements F4 pour les familles"}];
+  if(base.type==="marche") return [
+    {name:"Marché Dandaji",over:{mroof:"ombrieres"},desc:"Ombrières colorées au-dessus des étals et un arbre au croisement des allées"},
+    {name:"Marché Koudougou",over:{mroof:"voutes"},desc:"Halle couverte de voûtes en briques de terre"},
+    {name:"Marché de quartier",over:{nst:Math.max(40,Math.round((+base.nst||DEF.nst)/2)),nsh:Math.round((+base.nsh||0)/2)},desc:"Moitié moins d'étals et de boutiques, pour un budget réduit"}];
+  if(base.type==="ecole") return [
+    {name:"École Gando",over:{},desc:"Classes autour d'une cour, galeries couvertes, toit décollé du plafond"},
+    {name:"École complète",over:{lib:true,cant:true},desc:"Avec une bibliothèque, une cantine et sa cuisine"},
+    {name:"Groupe scolaire",over:{ncl:Math.min(18,(+base.ncl||DEF.ncl)+6)},desc:"Six classes de plus, pour accueillir plus d'élèves"}];
+  if(base.type==="sante") return [
+    {name:"Centre Léo",over:{},desc:"Salles de soins de part et d'autre d'une galerie d'attente ombragée"},
+    {name:"Centre avec maternité",over:{mat:true},desc:"Salle de travail, salle d'accouchement et suites de couches en plus"},
+    {name:"Centre médical",over:{beds:Math.min(30,(+base.beds||0)+8),labo:true},desc:"Huit lits de plus et un laboratoire"}];
   const et=isPro(base.type)?Math.max(0,Math.min(2,+base.et||0)):0;
   if(base.type==="com"&&et) return [
     {name:"Centre commercial",over:{},desc:"Galerie en bas, coursive couverte en haut, escalier commun"},
@@ -4938,13 +5508,14 @@ function propDefs(base){
     {name:"Duplex Horizon",over:{style:"mini",type:"r1"},desc:"Duplex minimaliste, chambres à l'étage"}]}
 function buildProps(){
   const base=readForm(),sg=sigOf(base);
+  if(isBig(base.type)&&!O().big){$("#pgrid").innerHTML="";$("#prop-sub").textContent="";$("#detail").innerHTML=`<div class="card">${lockHtml("Grands projets : offre Max","Cités, résidences d'immeubles, marchés, écoles et centres de santé, avec leur plan, leur coût et leur maquette 3D, sont inclus dans l'offre Max.")}</div>`;return}
   if(isPro(base.type)&&!O().pro){$("#pgrid").innerHTML="";$("#prop-sub").textContent="";$("#detail").innerHTML=`<div class="card">${lockHtml("Boutiques et bureaux : offres Moyen et Max","Les plans de boutiques et de bureaux, avec leur coût et leur maquette 3D, sont inclus dans les offres payantes.")}</div>`;return}
   if(sg!==lastPropSig){
     if(!useQuota()){$("#pgrid").innerHTML="";$("#detail").innerHTML=`<div class="card">${lockHtml("Limite quotidienne atteinte",`Votre offre ${O().nom} permet ${O().quota} plans par jour. Revenez demain ou passez à une offre supérieure pour générer de nouvelles propositions.`)}</div>`;return}
     lastPropSig=sg;selProp=null;
   }
   props=propDefs(base).map((d,i)=>{const p=Object.assign({},base,d.over,{seed:base.seed*3+i+11});return {d,p,m:compute(p)}});
-  $("#prop-sub").textContent=isPro(base.type)?`Trois bâtiments conçus pour votre terrain de ${fmt(base.area)} m² à ${CITIES[base.city].nom}. Choisissez-en un pour voir son plan, son coût et sa maquette 3D.`:`${base.type==="rn"&&base.usage!=="famille"?"Trois immeubles conçus":"Trois maisons conçues"} pour votre terrain de ${fmt(base.area)} m² à ${CITIES[base.city].nom}, ${base.type==="rn"?(base.usage!=="famille"?`R+${base.nf}, ${base.apts} appartements par étage`:`R+${base.nf}, ${base.n} chambre${base.n>1?"s":""}`):`${base.n} chambre${base.n>1?"s":""}`}. ${base.type==="rn"&&base.usage!=="famille"?"Choisissez-en un":"Choisissez-en une"} pour voir son plan, son coût et sa maquette 3D.`;
+  $("#prop-sub").textContent=isBig(base.type)?`Trois projets conçus pour votre terrain de ${fmt(base.area)} m² à ${CITIES[base.city].nom}. Choisissez-en un pour voir son plan, son coût et sa maquette 3D.`:isPro(base.type)?`Trois bâtiments conçus pour votre terrain de ${fmt(base.area)} m² à ${CITIES[base.city].nom}. Choisissez-en un pour voir son plan, son coût et sa maquette 3D.`:`${base.type==="rn"&&base.usage!=="famille"?"Trois immeubles conçus":"Trois maisons conçues"} pour votre terrain de ${fmt(base.area)} m² à ${CITIES[base.city].nom}, ${base.type==="rn"?(base.usage!=="famille"?`R+${base.nf}, ${base.apts} appartements par étage`:`R+${base.nf}, ${base.n} chambre${base.n>1?"s":""}`):`${base.n} chambre${base.n>1?"s":""}`}. ${base.type==="rn"&&base.usage!=="famille"?"Choisissez-en un":"Choisissez-en une"} pour voir son plan, son coût et sa maquette 3D.`;
   $("#pgrid").innerHTML=props.map((o,i)=>`<button type="button" class="pcard reveal d${i+1}" data-i="${i}" aria-pressed="${selProp===i}">
     <div class="thumb">${drawTech(o.m,o.m.isTower&&!o.m.fam?1:0,{thumb:true})}</div>
     <div class="meta"><h3>${o.d.name}</h3><div class="tagrow"><span class="tag">${typeLabel(o.p)}</span><span class="tag">${fmt(o.m.builtArea)} m²</span><span class="tag">${progLabel(o.m,true)}</span></div>
@@ -4967,15 +5538,15 @@ function openProp(i,silent){
      <div class="dgrid" style="margin-top:20px">
        <div class="soft" style="padding:12px;display:flex;flex-direction:column;gap:10px">
          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:4px 6px"><h3>Plan technique</h3><div class="tabs" id="ptabs" hidden></div><div class="sacts"><button type="button" class="ghost zopen" data-zoom="#psheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Plein écran</button><details class="dlmenu" data-dl="prop"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Télécharger</span></summary></details><button type="button" class="ghost exbtn" data-export="prop" title="Exporter le plan vers un logiciel d'architecture (fichier DXF)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>Exporter</button></div></div>
-         <div class="sheet" id="psheet" style="margin:0">${drawTech(m,0)}</div>
+         <div class="sheet" id="psheet" style="margin:0"></div>
        </div>
        <div class="soft"><h3>Coût des travaux</h3><div class="total"><strong>${F(m.total)}</strong><span>de ${F(m.total*.85)} à ${F(m.total*1.15)} · hors terrain et honoraires</span></div><div class="inner"><table><tbody>${lotsHtml(m)}</tbody></table></div></div>
      </div>
      <div class="soft" style="margin-top:20px"><h3>Comment elle se présentera</h3><div class="story">${st.map(([k,v])=>`<div><b>${k}</b><p>${v}</p></div>`).join("")}</div></div>
    </div>`;
-  $("#p-edit").onclick=()=>{cur=Object.assign({},o.p,{filled:true});writeForm(cur);level=0;renderedOnce=true;SHOW3D=false;RTAB="plan";model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)};
+  $("#p-edit").onclick=()=>{cur=Object.assign({},o.p,{filled:true});writeForm(cur);level=null;renderedOnce=true;SHOW3D=false;RTAB="plan";model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)};
   $("#p-save").onclick=()=>savePlan(o.d.name,o.p,m);
-  plevel=0;drawInto($("#psheet"),m,0);levelTabs($("#ptabs"),m,0,l=>{plevel=l;drawInto($("#psheet"),m,l);pulse($("#psheet"))});
+  const l0=(m.planLevels&&m.planLevels[0]?m.planLevels[0].li:0);plevel=l0;drawInto($("#psheet"),m,l0);levelTabs($("#ptabs"),m,l0,l=>{plevel=l;drawInto($("#psheet"),m,l);pulse($("#psheet"))});
   area3D($("#p3d"),m);
   if(!silent) $("#detail").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
 }
@@ -5032,13 +5603,13 @@ async function renderMine(){
   if(!items.length){$("#mlist").innerHTML=`<div class="empty reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg><h3>Aucun projet pour l'instant</h3><p class="sub">Créez un plan ou choisissez une proposition, puis cliquez sur « Enregistrer dans Mes plans ».</p><a class="btn" href="#creation">Créer un plan</a></div>`;return}
   const card=(it,i)=>{let p;try{p=JSON.parse(it.params)}catch(e){return ""}const m=compute(p);
     return `<article class="mcard reveal d${Math.min(5,i%MINE_PAGE+1)}" data-card="${i}"><div class="thumb">${drawTech(m,m.isTower&&!m.fam?1:0,{thumb:true})}</div><h3 style="padding:0 4px"></h3>
-    <div class="info">${fmt(p.area||p.W*p.D)} m² · ${p.city&&CITIES[p.city]?CITIES[p.city].nom:ZONES[p.zone].nom} · ${isPro(p.type)?(p.type==="com"?((p.nb||DEF.nb)>1?(p.nb||DEF.nb)+" boutiques":"1 boutique"):(p.nb||DEF.nb)+" bureaux"):p.type==="rn"&&p.usage!=="famille"?(p.apts||4)+" appts/étage":p.n+" ch."} · ${typeLabel(p)}<br>${fmt(it.area||m.builtArea)} m² bâtis · ${F(it.total||m.total)}<br>${it.createdAt?new Date(it.createdAt).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}):""}</div>
+    <div class="info">${fmt(p.area||p.W*p.D)} m² · ${p.city&&CITIES[p.city]?CITIES[p.city].nom:ZONES[p.zone].nom} · ${isBig(p.type)?progLabel(m):isPro(p.type)?(p.type==="com"?((p.nb||DEF.nb)>1?(p.nb||DEF.nb)+" boutiques":"1 boutique"):(p.nb||DEF.nb)+" bureaux"):p.type==="rn"&&p.usage!=="famille"?(p.apts||4)+" appts/étage":p.n+" ch."} · ${typeLabel(p)}<br>${fmt(it.area||m.builtArea)} m² bâtis · ${F(it.total||m.total)}<br>${it.createdAt?new Date(it.createdAt).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}):""}</div>
     <div class="actions"><button type="button" data-open="${i}">Ouvrir</button><button type="button" class="ghost" data-del="${i}">Supprimer</button></div></article>`};
   host.innerHTML=`<div class="mgrid" id="mgrid"></div><div class="mmore" id="mmore"></div>`;let shown=0;
   const more=()=>{const part=items.slice(shown,shown+MINE_PAGE);$("#mgrid").insertAdjacentHTML("beforeend",part.map((it,k)=>card(it,shown+k)).join(""));
     part.forEach((it,k)=>{const h=$(`#mgrid [data-card="${shown+k}"] h3`);if(h) h.textContent=it.name});shown+=part.length;const left=items.length-shown;
     $("#mmore").innerHTML=left>0?`<button type="button" class="ghost" id="mmorebtn">Voir plus (${left} autre${left>1?"s":""} projet${left>1?"s":""})</button>`:"";if(left>0) $("#mmorebtn").onclick=more;
-    $$("[data-open]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.open];cur=JSON.parse(it.params);cur.filled=true;writeForm(cur);$("#pname").value=it.name;level=0;
+    $$("[data-open]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.open];cur=JSON.parse(it.params);cur.filled=true;writeForm(cur);$("#pname").value=it.name;level=null;
     if(it.opts3d){try{opts3d=JSON.parse(it.opts3d)}catch(e){}}
     renderedOnce=true;SHOW3D=false;RTAB="plan";model=compute(cur);location.hash="resultat";setTimeout(renderPlan,0)});
     $$("[data-del]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.del];if(b.dataset.armed){deletePlan(it.id)}else{b.dataset.armed="1";b.textContent="Confirmer";b.className="danger";setTimeout(()=>{if(b.isConnected&&b.dataset.armed){delete b.dataset.armed;b.textContent="Supprimer";b.className="ghost"}},4000)}});
@@ -5099,6 +5670,7 @@ function faqData(){
     {g:"Maquette 3D",items:[
       ["Comment voir la maison en 3D ?",`La maquette est incluse dans les offres ${o.moyen.nom} et ${o.max.nom}. Sous le plan ou dans une proposition, choisissez la vue extérieure ou la vue intérieure. Glissez pour tourner, utilisez la molette ou deux doigts pour zoomer, et choisissez une pièce pour la visiter.`],
       ["La 3D ne s'affiche pas, que faire ?","Utilisez un navigateur récent (Chrome, Edge, Safari ou Firefox) et rechargez la page. Sur certains téléphones anciens, la 3D peut être lente ou indisponible ; le plan et le coût restent accessibles."],
+      ["Quels grands projets puis-je dessiner ?",`Avec l'offre ${o.max.nom} : une cité résidentielle (lots, voies, espaces verts et réserves, avec la maison type de chaque lot), une résidence d'immeubles (immeubles, voie d'accès, stationnement et jardins), un marché couvert, une école et un centre de santé, avec leur plan, leur coût et leur maquette 3D. Les plans suivent des principes publiés par des architectes reconnus d'Afrique de l'Ouest, sans copier leurs plans : Francis Kéré pour l'école de Gando, le lycée Schorge et la clinique de Léo, le marché central de Koudougou, Mariam Kamara pour le marché de Dandaji, Koffi & Diabaté pour Abatta Village. Sur ordinateur, l'éditeur 3D les modifie pièce par pièce, comme une maison ; pour une cité ou une résidence, il modifie la maison type ou l'immeuble type, recopié sur tous les lots. Ce sont des esquisses : un architecte, un géomètre et un bureau d'études doivent valider le projet avant le permis de construire.`],
       ["Qu'est-ce que l'éditeur 3D ?",`Sur ordinateur, avec l'offre ${o.max.nom}, le bouton « Éditeur 3D » sous le plan ouvre la maquette comme dans un logiciel d'architecture : cliquez sur une pièce, une cloison, un mur, une porte ou une fenêtre pour la modifier, faites glisser les cloisons, ajoutez ou supprimez des fenêtres, baies et portes, réglez la hauteur sous plafond, le type, la pente et le débord du toit, la façade et les sols pièce par pièce. Vues de dessus, de face et de côté, coupe par niveau, mesure, annuler et rétablir. En cliquant sur « Appliquer », le plan, le coût et la maquette suivent vos modifications. Sur téléphone, « Modifier les pièces » reste disponible.`],
       [`Que permettent les outils de l'offre ${o.max.nom} ?`,"Changer la façade, la couleur des murs, le type et la couleur de la toiture, les menuiseries, le sol intérieur et l'heure de la journée, et afficher ou masquer la végétation et la voiture. Ces réglages sont enregistrés avec le projet."]]},
     {g:"Offres et projets",items:[
@@ -5228,10 +5800,10 @@ function route(){
 /* ---------- Évènements ---------- */
 $("#f").addEventListener("change",e=>{if(e.target.id==="std") pmHint();stdHint();if(!$("#formerr").hidden&&!formMissing().length) $("#formerr").hidden=true;readForm();dirty=true;$("#dirty").hidden=false});
 $("#f").addEventListener("input",()=>readForm());
-$("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;if(!formOk()) return;if(proGate(readForm())) return;if(!useQuota()) return limitReached();const s=cur.seed;cur=applyWish(readForm());cur.seed=s;writeForm(cur);level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
+$("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;if(!formOk()) return;if(proGate(readForm())||bigGate(readForm())) return;if(!useQuota()) return limitReached();const s=cur.seed;cur=applyWish(readForm());cur.seed=s;writeForm(cur);level=0;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
 // la page du plan : le dessin se fait une fois la page affichée (largeur réelle de l'écran)
 function showResult(){model=compute(cur);wishNote();if(location.hash==="#resultat") renderPlan();else{location.hash="resultat";setTimeout(renderPlan,0)}}
-const variante=()=>{if(needVerif()) return;if(proGate(cur)) return;if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;delete cur.ed;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
+const variante=()=>{if(needVerif()) return;if(proGate(cur)||bigGate(cur)) return;if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;delete cur.ed;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
 $("#var").onclick=()=>{if(!formOk()) return;cur=applyWish(readForm());writeForm(cur);variante()};
 $("#var2").onclick=variante;edInit();e3Init();wishInit();
 $("#toprop2").onclick=()=>{location.hash="propositions"};
