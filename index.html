@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-33BCadoRHjUQe/DaTOOBjImh9lYB5vh0vGWEjGDsWOM=' 'sha256-cn4RUPqC2etandQ7G1Z9mmFjW2g4U35z5AxUFUHPx3A=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-wJvbF9oYaRFdMT6Z+uiZNMCBWMuldXS+tSmgcDhxUqc=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-h1Mi48IPNtjB2xZSYlU4jTxfVfnteAu8ys5MJURdF3o=' 'sha256-0j6ki0kPLyBG7/IiK9RXiZFBlCOHcLJTGOmwt2HxSHo=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-b9+TsMR66sy38nk4+zquuGxGwqxig/REo0x7m+z0INo=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -752,6 +752,39 @@ details.advbox[open]>fieldset{margin-top:10px}
 .red-row{display:flex;gap:10px;margin-top:6px}.red-row button{flex:1;min-height:48px}
 .red-foot{display:flex;gap:8px;align-items:center}.red-foot button{min-height:48px}
 @media (min-width:900px){.red-in{display:grid;grid-template-columns:minmax(0,1fr) 320px;grid-template-rows:auto minmax(0,1fr) auto;column-gap:14px}.red-head{grid-column:1/3}#red-svg{grid-row:2/4}.red-panel{align-self:start}.red-foot{align-self:end;flex-wrap:wrap}}
+/* Éditeur 3D (ordinateur seulement) */
+#edit3d{display:none}
+@media (min-width:1024px) and (pointer:fine){#edit3d:not([hidden]){display:inline-flex}}
+#e3d{position:fixed;inset:0;z-index:125;background:var(--ground);display:flex;flex-direction:column;gap:10px;padding:12px}
+#e3d[hidden]{display:none}
+.e3d-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.e3d-top h2{margin:0 6px 0 2px;font-size:18px;white-space:nowrap}
+.e3d-tb{display:flex;gap:2px;padding:3px;border-radius:999px;background:var(--card);border:1px solid var(--hair)}
+.e3d-tb button{min-height:34px;padding:0 12px;border-radius:999px;background:transparent;color:var(--ink);font-size:13.5px;border:0;box-shadow:none}
+.e3d-tb button[aria-pressed="true"]{background:var(--ink);color:var(--card)}
+.e3d-top select{min-height:38px;width:auto;font-size:14px;padding:0 10px}
+.e3d-top>.ghost,.e3d-top>#e3d-apply{min-height:38px;padding:0 14px;font-size:14px}
+#e3d-cut[aria-pressed="true"],#e3d-roof[aria-pressed="false"]{border-color:var(--accent);color:var(--accent)}
+#e3d-undo,#e3d-redo{width:38px;padding:0;font-size:18px}
+.e3d-sp{flex:1}
+.e3d-main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:10px}
+.e3d-view{position:relative;min-height:0;border-radius:var(--r-l);overflow:hidden;border:1px solid var(--hair);background:#dfe3e2}
+.e3d-view canvas{display:block;width:100%!important;height:100%!important;touch-action:none}
+.e3d-hint{position:absolute;left:12px;bottom:12px;z-index:2;max-width:calc(100% - 24px);padding:8px 12px;border-radius:12px;background:rgba(15,18,17,.78);color:#fff;font-size:13px;pointer-events:none}
+.e3d-side{min-height:0;overflow:auto;display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:var(--r-l);background:var(--card);border:1px solid var(--hair)}
+.e3d-side .e3d-h{display:flex;flex-direction:column;gap:2px;margin-bottom:4px}.e3d-side .e3d-h b{font-size:16px}
+.e3d-side .sub{margin:0;font-size:13px}
+.e3d-side .lab{font-size:12.5px;color:var(--muted);margin-top:8px;font-weight:600}
+.e3d-side .opt{display:flex;flex-wrap:wrap;gap:4px}.e3d-side .opt button{min-height:32px;padding:0 10px;font-size:13px}
+.e3d-side .sw{display:flex;flex-wrap:wrap;gap:6px}.e3d-side .sw button{width:26px;height:26px;min-height:0;padding:0;border-radius:50%;border:2px solid var(--hair)}
+.e3d-side .sw button[aria-pressed="true"]{outline:2px solid var(--accent);outline-offset:2px}
+.e3d-side .swnone{background:var(--card);color:var(--muted);font-size:13px}
+.e3d-rng{display:flex;align-items:center;gap:10px}.e3d-rng input{flex:1}.e3d-rng output{min-width:62px;text-align:right;font-size:13px;font-variant-numeric:tabular-nums}
+.e3d-num{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}.e3d-num label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted)}.e3d-num input{min-height:38px;font-size:14px}
+.e3d-side select{min-height:40px;font-size:14px}
+.e3d-side .red-row button{min-height:38px;font-size:13.5px}.e3d-add{flex-wrap:wrap}
+.e3d-mini{margin-top:auto;padding-top:10px;border-top:1px solid var(--hair)}
+.e3d-plan{border-radius:12px;overflow:hidden;background:#FBFBF8;border:1px solid var(--hair);margin-top:6px}.e3d-plan svg{display:block;width:100%;height:auto;max-height:260px}
 /* Création : champ obligatoire et souhaits */
 .req,.opt{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:600;letter-spacing:.02em;vertical-align:middle}
 .req{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--ink)}.opt{background:color-mix(in srgb,var(--ink) 7%,transparent);color:var(--muted)}
@@ -1250,6 +1283,7 @@ window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.docume
     <div class="resacts reveal d1">
       <a class="btn ghostbtn" href="#creation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/></svg>Changer les réglages</a>
       <button type="button" class="ghost" id="editrooms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.500" y="3.500" width="17" height="17" rx="2"/><path d="M12 3.500v17M9 9l-2.500 3L9 15M15 9l2.500 3L15 15"/></svg>Modifier les pièces</button>
+      <button type="button" class="ghost" id="edit3d" title="Éditeur 3D complet, sur ordinateur (offre Max)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.500v9L12 21l-8-4.500v-9z"/><path d="M12 12l8-4.500M12 12v9M12 12L4 7.500"/></svg>Éditeur 3D</button>
       <button type="button" class="ghost" id="var2">Autre variante</button>
       <button type="button" class="ghost" id="toprop2">Voir 3 propositions</button>
     </div>
@@ -1415,6 +1449,29 @@ window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.docume
     <div class="red-foot"><button type="button" class="ghost" id="red-reset">Plan d'origine</button><span style="flex:1"></span><button type="button" class="ghost" id="red-cancel">Annuler</button><button type="button" id="red-apply">Appliquer</button></div>
   </div>
 </div>
+<div id="e3d" hidden role="dialog" aria-modal="true" aria-labelledby="e3d-title">
+  <div class="e3d-top">
+    <h2 id="e3d-title">Éditeur 3D</h2>
+    <div class="e3d-tb" role="toolbar" aria-label="Outils">
+      <button type="button" data-tool="select" aria-pressed="true" title="Sélection (V)">Sélection</button><button type="button" data-tool="win" aria-pressed="false" title="Ajouter une fenêtre (F)">+ Fenêtre</button><button type="button" data-tool="baie" aria-pressed="false" title="Ajouter une baie vitrée (B)">+ Baie</button><button type="button" data-tool="door" aria-pressed="false" title="Ajouter une porte (P)">+ Porte</button><button type="button" data-tool="measure" aria-pressed="false" title="Mesurer (M)">Mesure</button>
+    </div>
+    <div class="e3d-tb" role="toolbar" aria-label="Vues">
+      <button type="button" data-cam="iso" aria-pressed="true">3D</button><button type="button" data-cam="top" aria-pressed="false">Dessus</button><button type="button" data-cam="face" aria-pressed="false">Face</button><button type="button" data-cam="back" aria-pressed="false">Arrière</button><button type="button" data-cam="left" aria-pressed="false">Gauche</button><button type="button" data-cam="right" aria-pressed="false">Droite</button>
+    </div>
+    <select id="e3d-lv" aria-label="Niveau affiché"></select>
+    <button type="button" class="ghost" id="e3d-cut" aria-pressed="false" title="Retirer les plafonds pour voir le niveau comme sur un plan">Coupe</button>
+    <button type="button" class="ghost" id="e3d-roof" aria-pressed="true">Toit</button>
+    <span class="e3d-sp"></span>
+    <button type="button" class="ghost" id="e3d-undo" aria-label="Annuler la dernière modification" title="Annuler (Ctrl+Z)">↶</button>
+    <button type="button" class="ghost" id="e3d-redo" aria-label="Rétablir la modification" title="Rétablir (Ctrl+Y)">↷</button>
+    <button type="button" class="ghost" id="e3d-cancel" title="Fermer sans appliquer les modifications">Fermer</button>
+    <button type="button" id="e3d-apply" title="Appliquer les modifications au plan, au coût et à la maquette">Appliquer</button>
+  </div>
+  <div class="e3d-main">
+    <div class="e3d-view" id="e3d-view"><div class="e3d-hint" id="e3d-hint" aria-live="polite"></div></div>
+    <aside class="e3d-side" id="e3d-side" aria-live="polite"></aside>
+  </div>
+</div>
 <div class="npanel" id="npanel" role="dialog" aria-label="Notifications" hidden></div>
 <div class="ihelp" id="ihelp" role="dialog" aria-modal="true" aria-labelledby="ih-t" hidden>
   <div class="ih-card">
@@ -1506,12 +1563,20 @@ function defaults3dBase(m){const z=m.zone;return {facade:(z==="savane"||z==="sah
 // modèle réel d'une maison : réglages de sa zone et de sa finition, puis particularités du pays ; win : type de fenêtre montré en 3D
 function modele3d(m){const F=FIN3D[m.std]||FIN3D.std,house=!m.pro&&!m.isTower;if(!house) return {win:"coul"};
   const P=PAYS_3D[paysDe(m.p&&m.p.city)];return Object.assign({win:F.win},(MODELES[m.zone]||MODELES.cote)[m.std]||{},P?P(m.std):{})}
+// réglages choisis dans l'éditeur 3D (p.o3) : toiture, pente, débord, hauteur sous plafond, façade, couleurs, menuiseries, sol
+function o3Of(m){const o=m&&m.p&&m.p.o3,r={};if(!o||typeof o!=="object") return r;
+  if(["plat","mono","deux"].includes(o.roof)) r.roof=o.roof;if(["tole","tuile"].includes(o.roofMat)) r.roofMat=o.roofMat;
+  ["roofColor","wall"].forEach(k=>{if(/^#[0-9a-f]{6}$/i.test(String(o[k]||""))) r[k]=o[k]});
+  if(["enduit","btc","pierre","bois","beton"].includes(o.facade)) r.facade=o.facade;if(["anthra","blanc","bois"].includes(o.frame)) r.frame=o.frame;
+  if(["carrelage","parquet","beton","marbre","granit"].includes(o.floor)) r.floor=o.floor;
+  if(+o.pitch>=5&&+o.pitch<=45) r.pitch=+o.pitch;if(+o.ov>=0&&+o.ov<=1.5&&o.ov!==""&&o.ov!==null) r.ov=+o.ov;if(+o.hsp>=2.4&&+o.hsp<=4) r.hsp=+o.hsp;
+  return r}
 function defaults3d(m){const F=FIN3D[m.std]||FIN3D.std,MO=modele3d(m);
   const byStyle={contemporain:{facade:"enduit",roof:"plat",frame:"anthra",floor:"beton"},afro:{facade:"btc",roof:"mono",roofColor:"#5B3E2E",frame:"bois"},colonial:{facade:"enduit",wall:"#E9DFCF",roof:"deux",roofMat:"tuile",frame:"blanc",floor:"parquet"},mediterraneen:{facade:"enduit",wall:"#F4F1EA",roof:"deux",roofMat:"tuile",frame:"bois"},mini:{roof:"plat",facade:"enduit"}}[m.style]||{};
   // la finition donne la teinte de l'enduit, les menuiseries, le sol et la couleur de toiture ; le modèle réel donne façade et toiture ; le style garde la main sur les matériaux
   const fin={wall:F.wall,frame:F.frame,floor:F.floor};if(F.roofColor) fin.roofColor=F.roofColor;
   const mod={};["facade","wall","roof","roofMat","roofColor"].forEach(k=>{if(MO[k]!==undefined) mod[k]=MO[k]});
-  return Object.assign(defaults3dBase(m),fin,mod,m.pro?{roof:"plat",facade:"enduit"}:{},byStyle)}
+  return Object.assign(defaults3dBase(m),fin,mod,m.pro?{roof:"plat",facade:"enduit"}:{},byStyle,o3Of(m))}
 // phrase du récit qui décrit les teintes de la finition, telles que la maquette 3D les montre
 function finTxt(m){const F=FIN3D[m.std]||FIN3D.std,o=defaults3d(m),fr={anthra:"en aluminium anthracite",blanc:"blanches",bois:"en bois"}[o.frame],fl={carrelage:"en carrelage",parquet:"en parquet",beton:"en béton ciré",marbre:"en marbre",granit:"en granit"}[o.floor];
   return `Finition ${F.nom} : ${o.facade==="enduit"?`enduit ${WALL_NAMES[o.wall]||"teinté"}, `:""}soubassement ${F.plinthN}, menuiseries ${fr} et sols ${fl}. À l'intérieur, plafond ${F.ceilN}, murs ${F.inN[0]}, avec un mur ${F.inN[1]} dans les ${m.pro?"pièces principales":`pièces de vie et ${F.inN[2]} dans les chambres`}.`}
@@ -2334,6 +2399,19 @@ function openings(m,li){
     const c=(s0+s1)/2;
     e.open.push({k:"win",d0:c-w/2,d1:c+w/2,bot,top});
   });
+  // éditeur 3D : ouvertures choisies à la main pour certains murs (p.ed.O[niveau]["e:pièce:côté" ou "p:pièce:pièce"])
+  const OV=m.edited&&m.p&&m.p.ed&&Array.isArray(m.p.ed.O)?m.p.ed.O[li]:null;
+  if(OV&&typeof OV==="object"){const hmax=(o3Of(m).hsp||2.9)-0.05;
+    const fix=(w,list,ext)=>{const a=w.s0+0.05,b=w.s1-0.05,out=[];
+      list.slice(0,12).forEach(o=>{if(!o||!/^(win|baie|door|entry)$/.test(o.k)) return;let k=o.k,d0=Math.max(a,+o.d0),d1=Math.min(b,+o.d1);
+        if(!(d1-d0>=0.4)) return;if(ext&&k==="door") k="entry";if(!ext&&k==="entry") k="door";
+        let top=Math.max(1.2,Math.min(hmax,+o.top||2.1)),bot=k==="win"?Math.max(0,Math.min(top-0.3,+o.bot||0)):0;
+        if(out.some(q=>d0<q.d1+0.1&&d1>q.d0-0.1)) return;
+        const x={k,d0:Math.round(d0*100)/100,d1:Math.round(d1*100)/100,bot,top};if(k==="door") x.into=o.into===w.b?w.b:w.a;out.push(x)});
+      w.open=out.sort((p,q)=>p.d0-q.d0)};
+    pairs.forEach(p=>{const k="p:"+p.a+":"+p.b;if(Array.isArray(OV[k])&&p.kind!=="open"&&p.kind!=="none") fix(p,OV[k],false)});
+    ext.forEach(e=>{const k="e:"+e.room+":"+e.side;if(Array.isArray(OV[k])) fix(e,OV[k],true)});
+  }
   return {L,pairs,ext,entry};
 }
 
@@ -2605,7 +2683,7 @@ function drawTech(m,li,opt={}){
       const pl=(m.planLevels||[]).find(x=>x.li===li),title=typeLabel(m.p).toUpperCase()+(m.levels.length>1&&pl?" — "+pl.label.toUpperCase():"")+" · "+progLabel(m,true).toUpperCase();
       const area=L.reduce((t,r)=>t+(r.t==="patio"?0:r.w*r.h),0);
       s+=`<text x="${(tx+1.3).toFixed(3)}" y="${(ty+0.75).toFixed(3)}" font-family="Outfit,sans-serif" font-weight="700" font-size="0.36" fill="${INK}">PLAN ARCHITECTURAL — ${title}</text>`;
-      s+=`<text x="${(tx+1.3).toFixed(3)}" y="${(ty+1.3).toFixed(3)}" font-family="Outfit,sans-serif" font-weight="500" font-size="0.28" fill="${INK}">SURFACE DU NIVEAU : ${dec(area,1)} m² · BÂTIMENT ${dec(B.w,2)} × ${dec(B.h,2)} m</text>`;
+      s+=`<text x="${(tx+1.3).toFixed(3)}" y="${(ty+1.3).toFixed(3)}" font-family="Outfit,sans-serif" font-weight="500" font-size="0.28" fill="${INK}">SURFACE DU NIVEAU : ${dec(area,1)} m² · BÂTIMENT ${dec(B.w,2)} × ${dec(B.h,2)} m${o3Of(m).hsp?` · HSP ${dec(o3Of(m).hsp,2)} m`:""}</text>`;
       s+=`<text x="${(tx+1.3).toFixed(3)}" y="${(ty+1.8).toFixed(3)}" font-family="JetBrains Mono,monospace" font-size="0.22" fill="#3E4346">TERRAIN ${fmt(m.plot)} m² (${dec(m.W,1)} × ${dec(m.D,1)} m) · ${m.lieu.toUpperCase()} · 1:100 · ARCHITMIND CI · ESQUISSE DE PRINCIPE</text>`;
       // légende
       const lx=tx+tw-3.1,ly=ty+0.3;
@@ -2698,9 +2776,9 @@ function devis(m){
   const plat=o3.roof==="plat"||m.pro||m.isTower,tuile=o3.roofMat==="tuile";
   // vrai toit-terrasse en dalle, ou simple toiture en bac alu cachée derrière un acrotère
   const terrasse=plat&&(MO.terr||m.pro||m.isTower);
-  const NL=Math.max(1,m.levels.length),E=m.foot,Htot=HSP;
+  const NL=Math.max(1,m.levels.length),E=m.foot,Htot=o3.hsp||HSP;
   const Lsem=M0.Lfac+M0.Lint*0.5;                                  // semelles : façade + murs porteurs
-  const Stoit=plat?E:E*(o3.roof==="deux"?1.25:1.18);
+  const Stoit=plat?E:E*(o3.pitch?1.12/Math.cos(o3.pitch*Math.PI/180):(o3.roof==="deux"?1.25:1.18));
   const Smurext=Math.max(0,M.Lfac*Htot-M.Sopen),Smurint=Math.max(0,M.Lint*Htot-M.Npint*1.9);
   const Sintfaces=2*M.Lint*Htot+M.Lfac*Htot-M.Sopen*1.4;           // faces à enduire à l'intérieur
   const pts=M.bain*3+M.wc*2+M.cuis+M.buan;                         // points d'eau
@@ -2832,7 +2910,7 @@ if(typeof module!=="undefined") module.exports={compute,openings,drawTech,story,
 </script>
 <script>
 /* ====================== MAQUETTE 3D RÉALISTE ====================== */
-const H3=2.9,SL3=0.28;
+let H3=2.9;const SL3=0.28; // hauteur sous plafond (réglable dans l'éditeur 3D) et épaisseur de dalle
 const WALLS=["#F4F1EA","#E9DFCF","#CDAE80","#C89A5B","#D9C3A0","#C98F6B","#A79A86","#806E5B","#B8BDBF","#6F7D78"];
 const ROOFS=["#3E4246","#5B3E2E","#8C3B2A","#B98E62","#E9E6DF","#2F4A3A"];
 
@@ -2942,7 +3020,7 @@ function stop3D(){if(!viewer) return;cancelAnimationFrame(viewer.raf);viewer.ro&
 function mount3D(el,m,o,st){
   let keep=null;
   if(viewer&&viewer.el===el&&st.keep&&viewer.mode===st.mode) keep={p:viewer.cam.position.clone(),t:viewer.controls.target.clone()};
-  stop3D();
+  stop3D();H3=+o.hsp>=2.4&&+o.hsp<=4?+o.hsp:2.9;
   el.querySelectorAll(".fallback").forEach(x=>x.remove());
   if(typeof THREE==="undefined"){el.insertAdjacentHTML("afterbegin",`<div class="fallback">La maquette 3D n'a pas pu se charger dans ce navigateur. Le plan et le coût restent disponibles.</div>`);return null}
   const W=m.W,D=m.D,X=x=>x-W/2,Z=z=>z-D/2,big=Math.max(W,D),baseH=m.zone==="cote"?0.5:0.3,HT=baseH+m.levels.length*(H3+SL3),ext=Math.max(big,HT);
@@ -2991,6 +3069,7 @@ function mount3D(el,m,o,st){
     lamp:new THREE.MeshStandardMaterial({color:0xfff1d6,emissive:0xffd9a0,emissiveIntensity:lightsOn?1.4:0.05,roughness:0.5}),
     car:std({color:0x2E4C6D,metalness:0.6,roughness:0.28}),tire:std({color:0x151515,roughness:0.9})};
   if(!M.floorNight) M.floorNight=M.floorMain;
+  const flMat=k=>M["fl_"+k]||(M["fl_"+k]=({carrelage:()=>std({map:T.tile,color:FIN.tile,roughness:0.35}),parquet:()=>std({map:T.parquet,roughness:0.55}),beton:()=>std({map:T.concrete,roughness:0.45}),marbre:()=>std({map:T.marble,color:0xD9CDBA,roughness:0.2,envMapIntensity:inside?0.45:1.4}),granit:()=>std({map:T.concrete,color:0x74777A,roughness:0.28,envMapIntensity:inside?0.4:1.1})}[k]||(()=>M.floorMain))());
   M.leaf3=std({color:0x3D6A31,roughness:0.95});
   const relief={btc:0.014,pierre:0.02,bois:0.008,enduit:0.0025,beton:0.004};
   [[M.facade,relief[o.facade]||0.0025],[M.roofPitch,o.roofMat==="tuile"?0.03:0.02],[M.paver,0.012],[M.deck,0.01],[M.ground,0.03],[M.patio,0.03],[M.asphalt,0.006],[M.plinth,0.006],[M.roofFlat,0.006]].forEach(([mt,k])=>{if(mt&&mt.map){mt.bumpMap=mt.map;mt.bumpScale=k}});
@@ -3013,8 +3092,8 @@ function mount3D(el,m,o,st){
   box(gw,0.03,m.ra+0.4,X(gx),0.04,Z(D-m.ra/2),M.paver,null,{noCast:true});
   const fh=1.9,ft=0.2;
   const fseg=(x0,x1,z,alongX)=>{const L=Math.abs(x1-x0);if(L<0.05) return;if(alongX){box(L,fh,ft,X((x0+x1)/2),fh/2,Z(z),M.fence);box(L+0.06,0.06,ft+0.08,X((x0+x1)/2),fh+0.03,Z(z),M.coping)}else{box(ft,fh,L,X(z),fh/2,Z((x0+x1)/2),M.fence);box(ft+0.08,0.06,L+0.06,X(z),fh+0.03,Z((x0+x1)/2),M.coping)}};
-  fseg(0,W,0.1,true);fseg(0.1,D,0.1,false);fseg(0.1,D,W-0.1,false);
-  if(m.pro){if(m.ra>0.6) box(W-0.4,0.02,m.ra,0,0.035,Z(D-m.ra/2),M.paver,null,{noCast:true})}
+  if(st.mode!=="edit"){fseg(0,W,0.1,true);fseg(0.1,D,0.1,false);fseg(0.1,D,W-0.1,false)}
+  if(st.mode==="edit"){}else if(m.pro){if(m.ra>0.6) box(W-0.4,0.02,m.ra,0,0.035,Z(D-m.ra/2),M.paver,null,{noCast:true})}
   else{fseg(0,gx-gw/2,D-0.1,true);fseg(gx+gw/2,W,D-0.1,true);
   for(let i=0;i<=Math.floor(gw/0.12);i++) box(0.04,1.7,0.04,X(gx-gw/2+i*0.12),0.88,Z(D-0.1),M.metal);
   box(gw,0.06,0.06,X(gx),1.72,Z(D-0.1),M.metal);box(gw,0.06,0.06,X(gx),0.1,Z(D-0.1),M.metal)}
@@ -3064,11 +3143,11 @@ function mount3D(el,m,o,st){
   const PLAIN=/^(Entrée|Dégagement|Couloir|Escalier|Palier|Hall|Rangement|Cellier|Archives|Local|Réserve|Garage|Dressing|Ascenseur|Machinerie|Gaine)/;
   // mur d'accent : un grand mur intérieur de la pièce (jamais un mur de façade, où sont les fenêtres)
   const accSide=r=>{const ex=sides(r,m).map(q=>q.side);return (r.w>=r.h?["top","bottom"]:["left","right"]).find(q=>!ex.includes(q))||null};
-  const rw=(r,side)=>{if(r.t==="out"||r.t==="patio") return null;if(r.t==="wet") return wmat(FIN.in.wet);if(PLAIN.test(r.n)) return wmat(FIN.in.circ);
+  const rw=(r,side)=>{if(r.t==="out"||r.t==="patio") return null;if(r.wc) return wmat(r.wc);if(r.t==="wet") return wmat(FIN.in.wet);if(PLAIN.test(r.n)) return wmat(FIN.in.circ);
     const night=r.t==="night",acc=(!night||/^Ch/.test(r.n))&&accSide(r)===side;return wmat(acc?(night?FIN.in.accNight:FIN.in.accDay):(night?FIN.in.night:FIN.in.day))};
-  const windowDress=(o2,c,t,a,b,y0,op,grp,extSign)=>{
+  const windowDress=(o2,c,t,a,b,y0,op,grp,extSign,tag)=>{
     const len=b-a,mid=(a+b)/2,hy=(op.bot+op.top)/2,gh=op.top-op.bot,ft=0.05;
-    const P=(w,h,d,u,y,n,mat)=>o2==="h"?box(w,h,d,X(u),y,Z(c+n),mat,grp):box(d,h,w,X(c+n),y,Z(u),mat,grp);
+    const P=(w,h,d,u,y,n,mat)=>{const me=o2==="h"?box(w,h,d,X(u),y,Z(c+n),mat,grp):box(d,h,w,X(c+n),y,Z(u),mat,grp);if(tag) me.userData.pick=tag;return me};
     P(len,gh,0.02,mid,y0+hy,0,M.glass);
     P(len,ft,0.08,mid,y0+op.top-ft/2,0,M.frame);P(len,ft,0.08,mid,y0+op.bot+ft/2,0,M.frame);
     P(ft,gh,0.08,a+ft/2,y0+hy,0,M.frame);P(ft,gh,0.08,b-ft/2,y0+hy,0,M.frame);
@@ -3077,13 +3156,17 @@ function mount3D(el,m,o,st){
     // finition économique : fenêtres à lames de verre orientables
     if(MOD.win==="naco"&&op.k==="win"&&extSign&&gh>0.5) for(let y=op.bot+0.13;y<op.top-0.08;y+=0.15) P(len-2*ft,0.014,0.1,mid,y0+y,0,M.steel);
   };
-  const segWall=(o2,c,t,s0,s1,y0,ops,grp,extFace,extSign,im,fm)=>{
+  const segWall=(o2,c,t,s0,s1,y0,ops,grp,extFace,extSign,im,fm,wtag)=>{
     ops=ops.slice().sort((p,q)=>p.d0-q.d0);let cur=s0;const mats=faceMats(extFace,o2,im,fm);
     const piece=(a,b,ya,yb)=>{if(b-a<0.01||yb-ya<0.01) return;const len=b-a,mid=(a+b)/2,hy=(ya+yb)/2;
-      if(o2==="h") box(len,yb-ya,t,X(mid),y0+hy,Z(c),mats,grp); else box(t,yb-ya,len,X(c),y0+hy,Z(mid),mats,grp)};
+      const me=o2==="h"?box(len,yb-ya,t,X(mid),y0+hy,Z(c),mats,grp):box(t,yb-ya,len,X(c),y0+hy,Z(mid),mats,grp);if(wtag) me.userData.pick=wtag};
     ops.forEach(op=>{const a=Math.max(s0,op.d0),b=Math.min(s1,op.d1);if(b<=a) return;piece(cur,a,0,H3);piece(a,b,0,op.bot);piece(a,b,op.top,H3);
-      if(op.k==="win"||op.k==="baie") windowDress(o2,c,t,a,b,y0,op,grp,extSign);
-      if(op.k==="entry"){const len=b-a,mid=(a+b)/2;if(op.shop){if(o2==="h") box(len,op.top,0.04,X(mid),y0+op.top/2,Z(c),M.glass,grp); else box(0.04,op.top,len,X(c),y0+op.top/2,Z(mid),M.glass,grp)}else if(o2==="h"){box(len,op.top,0.06,X(mid),y0+op.top/2,Z(c),M.door,grp);box(0.03,0.3,0.05,X(mid+len*0.35),y0+1.05,Z(c+extSign*0.05),M.steel,grp)}else{box(0.06,op.top,len,X(c),y0+op.top/2,Z(mid),M.door,grp)}
+      const otag=wtag?Object.assign({},wtag,{t:"op",d0:op.d0,d1:op.d1,k:op.k}):null;
+      if(op.k==="win"||op.k==="baie") windowDress(o2,c,t,a,b,y0,op,grp,extSign,otag);
+      if(op.k==="door"&&otag){const len=b-a,mid=(a+b)/2,hh=op.top||2.1,me=new THREE.Mesh(o2==="h"?new THREE.BoxGeometry(len,hh,t+0.02):new THREE.BoxGeometry(t+0.02,hh,len),new THREE.MeshBasicMaterial({colorWrite:false,depthWrite:false}));
+        me.position.set(o2==="h"?X(mid):X(c),y0+hh/2,o2==="h"?Z(c):Z(mid));me.userData.pick=otag;grp.add(me)}
+      if(op.k==="entry"){const len=b-a,mid=(a+b)/2,ems=[];if(op.shop){if(o2==="h") ems.push(box(len,op.top,0.04,X(mid),y0+op.top/2,Z(c),M.glass,grp)); else ems.push(box(0.04,op.top,len,X(c),y0+op.top/2,Z(mid),M.glass,grp))}else if(o2==="h"){ems.push(box(len,op.top,0.06,X(mid),y0+op.top/2,Z(c),M.door,grp));box(0.03,0.3,0.05,X(mid+len*0.35),y0+1.05,Z(c+extSign*0.05),M.steel,grp)}else{ems.push(box(0.06,op.top,len,X(c),y0+op.top/2,Z(mid),M.door,grp))}
+        if(otag) ems.forEach(me=>me.userData.pick=otag);
         if(y0>0.25&&extSign){for(let i=0;i<3;i++){const sd=0.32*(3-i);if(o2==="h") box(len+0.8,y0*(i+1)/3,sd,X(mid),y0*(i+1)/6,Z(c+extSign*(t/2+sd/2)),M.plinth); else box(sd,y0*(i+1)/3,len+0.8,X(c+extSign*(t/2+sd/2)),y0*(i+1)/6,Z(mid),M.plinth)}}}
       cur=b});
     piece(cur,s1,0,H3)};
@@ -3096,14 +3179,15 @@ function mount3D(el,m,o,st){
     const lev=new THREE.Group(),grp=new THREE.Group(),inner=new THREE.Group();lev.add(grp);lev.add(inner);lev.userData.shell=grp;scene.add(lev);levels.push(lev);
     const O=openings(m,li);
     // sols
-    L.forEach(r=>{if(r.t==="patio"&&li>0) return;const mat=r.t==="patio"?M.patio:r.t==="out"?(r.gal?M.paver:M.deck):r.t==="wet"?M.floorWet:r.t==="night"?M.floorNight:M.floorMain;box(r.w,0.04,r.h,X(r.x+r.w/2),y0+0.02,Z(r.y+r.h/2),mat,grp,{noCast:true})});
+    L.forEach((r,ri)=>{if(r.t==="patio"&&li>0) return;const mat=r.t==="patio"?M.patio:r.t==="out"?(r.gal?M.paver:M.deck):r.fl?flMat(r.fl):r.t==="wet"?M.floorWet:r.t==="night"?M.floorNight:M.floorMain;const fm=box(r.w,0.04,r.h,X(r.x+r.w/2),y0+0.02,Z(r.y+r.h/2),mat,grp,{noCast:true});if(st.mode==="edit") fm.userData.pick={t:"room",li,i:ri}});
     // murs
-    O.ext.forEach(e=>{const c=rw(L[e.room],e.side);segWall(e.o,e.c,TO,e.s0,e.s1,y0,e.open,grp,extIdx[e.side],extSg[e.side],e.side==="top"||e.side==="left"?{pos:c}:{neg:c},M.accent&&L[e.room].n==="Séjour"?M.accent:null)});
+    const ed=st.mode==="edit";
+    O.ext.forEach(e=>{const c=rw(L[e.room],e.side);segWall(e.o,e.c,TO,e.s0,e.s1,y0,e.open,grp,extIdx[e.side],extSg[e.side],e.side==="top"||e.side==="left"?{pos:c}:{neg:c},M.accent&&L[e.room].n==="Séjour"?M.accent:null,ed?{t:"wall",li,key:"e:"+e.room+":"+e.side,o:e.o,c:e.c,s0:e.s0,s1:e.s1,ext:true,room:e.room}:null)});
     O.pairs.forEach(p=>{if(p.kind==="open"||p.kind==="none") return;const t=(p.kind==="facade"||p.kind==="party")?TO:p.kind==="patio"?0.15:TI;
       let ef=null,sg=0;if(p.kind==="facade"||p.kind==="patio"){const A=L[p.a],B=L[p.b],ou=(A.t==="out"||A.t==="patio")?A:B;
         if(p.o==="h"){const above=ou.y<p.c-EPS;ef=above?5:4;sg=above?-1:1}else{const left=ou.x<p.c-EPS;ef=left?1:0;sg=left?-1:1}}
       const A=L[p.a],B=L[p.b],first=(p.o==="h"?A.y<B.y:A.x<B.x)?A:B,second=first===A?B:A;
-      segWall(p.o,p.c,t,p.s0,p.s1,y0,p.open,grp,ef,sg,p.o==="h"?{neg:rw(first,"bottom"),pos:rw(second,"top")}:{neg:rw(first,"right"),pos:rw(second,"left")})});
+      segWall(p.o,p.c,t,p.s0,p.s1,y0,p.open,grp,ef,sg,p.o==="h"?{neg:rw(first,"bottom"),pos:rw(second,"top")}:{neg:rw(first,"right"),pos:rw(second,"left")},null,ed?{t:"wall",li,key:"p:"+p.a+":"+p.b,o:p.o,c:p.c,s0:p.s0,s1:p.s1,ext:false,a:p.a,b:p.b,kind:p.kind}:null)});
     // coins
     [[m.bx+TO/2,m.by+TO/2],[m.bx+m.bw-TO/2,m.by+TO/2],[m.bx+TO/2,m.by+m.bd-TO/2],[m.bx+m.bw-TO/2,m.by+m.bd-TO/2]].forEach(([x,z])=>{if(L.some(r=>r.t!=="out"&&r.t!=="patio"&&x>=r.x-EPS&&x<=r.x+r.w+EPS&&z>=r.y-EPS&&z<=r.y+r.h+EPS)) box(TO,H3,TO,X(x),y0+H3/2,Z(z),M.facade,grp)});
     // poteaux des espaces extérieurs, garde-corps
@@ -3112,7 +3196,7 @@ function mount3D(el,m,o,st){
       if(li>0) sides(r,m).forEach(sd=>{const g2=sd.o==="h";const zz=sd.side==="top"?r.y:r.y+r.h,xx=sd.side==="left"?r.x:r.x+r.w;
         if(g2){box(r.w,1.0,0.02,X(r.x+r.w/2),y0+0.55,Z(zz),M.glass,grp);box(r.w,0.05,0.06,X(r.x+r.w/2),y0+1.07,Z(zz),M.steel,grp)}else{box(0.02,1.0,r.h,X(xx),y0+0.55,Z(r.y+r.h/2),M.glass,grp);box(0.06,0.05,r.h,X(xx),y0+1.07,Z(r.y+r.h/2),M.steel,grp)}})});
     // dalle haute / plafond
-    const pitched=top&&o.roof!=="plat",OVF=MOD.ov||0.5,AO=OVF-0.1; // débord du toit plat, et position de l'acrotère à son bord
+    const pitched=top&&o.roof!=="plat",OVF=o.ov!==undefined&&o3Of(m).ov!==undefined?Math.max(0.1,o.ov):(MOD.ov||0.5),AO=OVF-0.1; // débord du toit plat, et position de l'acrotère à son bord
     L.forEach(r=>{if(r.t==="patio") return;if(li>0&&(r.n==="Balcon"||r.n==="Terrasse sur toit")) return;
       if(!top&&r.n==="Escalier") return;
       const flatTop=top&&!pitched,ov=flatTop?OVF:0.0,ex=c=>c?ov:0;
@@ -3126,14 +3210,15 @@ function mount3D(el,m,o,st){
       const pat=L.find(r=>r.t==="patio");let boxes=[{x0:m.bx,x1:m.bx+m.bw,z0:m.by,z1:m.by+m.bd}];
       if(L.some(r=>r.n==="Terrasse sur toit")){const g=L.filter(r=>r.t!=="out"&&r.t!=="patio");boxes=[{x0:Math.min(...g.map(r=>r.x)),x1:Math.max(...g.map(r=>r.x+r.w)),z0:Math.min(...g.map(r=>r.y)),z1:Math.max(...g.map(r=>r.y+r.h))}]}
       else if(pat){const a=L.filter(r=>r.y+r.h<=pat.y+EPS&&r.t!=="patio"),b=L.filter(r=>r.y>=pat.y+pat.h-EPS);boxes=[a,b].filter(g=>g.length).map(g=>({x0:Math.min(...g.map(r=>r.x)),x1:Math.max(...g.map(r=>r.x+r.w)),z0:Math.min(...g.map(r=>r.y)),z1:Math.max(...g.map(r=>r.y+r.h))}))}
-      boxes.forEach(bb=>{const ov=MOD.ovP||0.7,lx=bb.x1-bb.x0,lz=bb.z1-bb.z0,alongX=lx>=lz,span=(alongX?lz:lx)/2+ov,len=(alongX?lx:lz)+ov*2;
+      const P2=(o.pitch||24)*Math.PI/180,P1=(o.pitch||10)*Math.PI/180;
+      boxes.forEach(bb=>{const ov=o.ov!==undefined&&o3Of(m).ov!==undefined?o.ov:(MOD.ovP||0.7),lx=bb.x1-bb.x0,lz=bb.z1-bb.z0,alongX=lx>=lz,span=(alongX?lz:lx)/2+ov,len=(alongX?lx:lz)+ov*2;
         let shape=new THREE.Shape();
-        if(o.roof==="deux"){const rh=span*Math.tan(24*Math.PI/180);shape.moveTo(-span,0);shape.lineTo(span,0);shape.lineTo(0,rh);shape.lineTo(-span,0)}
-        else{const rh=2*span*Math.tan(10*Math.PI/180);shape.moveTo(-span,0);shape.lineTo(span,0);shape.lineTo(span,0.25);shape.lineTo(-span,0.25+rh);shape.lineTo(-span,0)}
+        if(o.roof==="deux"){const rh=span*Math.tan(P2);shape.moveTo(-span,0);shape.lineTo(span,0);shape.lineTo(0,rh);shape.lineTo(-span,0)}
+        else{const rh=2*span*Math.tan(P1);shape.moveTo(-span,0);shape.lineTo(span,0);shape.lineTo(span,0.25);shape.lineTo(-span,0.25+rh);shape.lineTo(-span,0)}
         const g=new THREE.ExtrudeGeometry(shape,{depth:len,bevelEnabled:false});g.translate(0,0,-len/2);
         const me=new THREE.Mesh(g,[M.facade,M.roofPitch]);me.castShadow=true;me.receiveShadow=true;
         me.position.set(X((bb.x0+bb.x1)/2),y0+H3+SL3,Z((bb.z0+bb.z1)/2));if(alongX) me.rotation.y=Math.PI/2;roofGrp.add(me);
-        if(o.roof==="deux"){const rh=span*Math.tan(24*Math.PI/180);const ridge=box(alongX?len:0.18,0.12,alongX?0.18:len,me.position.x,me.position.y+rh,me.position.z,M.metal,roofGrp)}})}
+        if(o.roof==="deux"){const rh=span*Math.tan(P2);const ridge=box(alongX?len:0.18,0.12,alongX?0.18:len,me.position.x,me.position.y+rh,me.position.z,M.metal,roofGrp)}})}
     // mobilier et éclairage
     L.forEach(r=>{const fg=furn3D(r,M,box,cyl,sph,li,y0,m);if(fg) inner.add(fg);
       if(r.t!=="out"&&r.t!=="patio"&&r.n!=="Escalier"){cyl(0.22,0.22,0.04,X(r.x+r.w/2),y0+H3-0.02,Z(r.y+r.h/2),M.lamp,inner,24);
@@ -3168,7 +3253,7 @@ function mount3D(el,m,o,st){
     controls.maxPolarAngle=Math.PI*0.48;controls.minDistance=6;controls.maxDistance=Math.max(big*3.2,HT*4.5);
   }
   if(keep){cam.position.copy(keep.p);controls.target.copy(keep.t)}
-  controls.autoRotate=!inside&&st.spin&&!matchMedia("(prefers-reduced-motion: reduce)").matches;controls.autoRotateSpeed=0.5;
+  controls.autoRotate=!inside&&st.spin&&st.mode!=="edit"&&!matchMedia("(prefers-reduced-motion: reduce)").matches;controls.autoRotateSpeed=0.5;
   roofGrp.visible=inside||(st.roof&&st.upper);if(!inside) levels.forEach((g,i)=>{if(i>0) g.visible=st.upper});
   controls.update();
   const ro=new ResizeObserver(()=>{const w=el.clientWidth,h=el.clientHeight;if(!w||!h) return;renderer.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix()});ro.observe(el);
@@ -3225,7 +3310,7 @@ function mount3D(el,m,o,st){
       toggle:()=>{Q.playing=!Q.playing;Q.t0=performance.now();emit()},tick:()=>tourTick(),state:Q,stops};
     setDoll(true);
   }
-  viewer={el,scene,renderer,cam,controls,ro,env,raf:0,mode:st.mode,roofGrp,levels,tour:tourApi,clay};
+  viewer={el,scene,renderer,cam,controls,ro,env,raf:0,mode:st.mode,roofGrp,levels,tour:tourApi,clay,base,X,Z,W,D,m,ceils};
   const loop=()=>{viewer.raf=requestAnimationFrame(loop);if(tourTick) tourTick();else controls.update();renderer.render(scene,cam)};loop();
   if(tourApi){tourTick();if(st.onTour) st.onTour({i:-1,n:tourApi.stops.length,phase:"doll",playing:true,room:null,li:0})}
   return viewer;
@@ -3559,7 +3644,7 @@ function refreshOffer(){
 }
 function limitReached(){toast(`Limite quotidienne atteinte (${O().quota} plans). Passez à une offre supérieure.`)}
 
-const NEWS=[{"id": "2026-11-13-anglais", "date": "2026-11-13T16:30:00Z", "titre": "Nouveau : Architmind CI en anglais", "texte": "Le site existe maintenant en anglais. Utilisez le bouton EN / FR du menu pour changer de langue. Plans, devis, maquette 3D, dossier PDF, notifications et pages légales sont traduits ; un navigateur réglé en anglais ouvre directement le site dans cette langue.", "action": "creation", "titre_en": "New: Architmind CI in English", "texte_en": "The site is now available in English. Use the EN / FR button in the menu to switch language. Plans, quotes, the 3D model, the PDF file, notifications and legal pages are translated; a browser set to English opens the site directly in that language."}, {"id": "2026-11-12-devis-par-lot", "date": "2026-11-12T22:15:00Z", "titre": "Nouveau : le devis estimatif par lot", "texte": "Le coût des travaux est maintenant détaillé comme chez un économiste de la construction : dix lots, du terrassement à la peinture, avec les quantités mesurées sur votre plan, les prix unitaires, les imprévus, la fourchette basse et haute, le coût au m² comparé au marché ivoirien, ce qui reste à prévoir en plus et des conseils pour réduire la facture. Le devis complet est aussi dans le dossier PDF.", "lien": "#resultat", "titre_en": "New: the estimated quote by trade", "texte_en": "The building cost is now broken down the way a quantity surveyor does it: ten trades, from earthworks to painting, with quantities measured on your plan, unit prices, contingencies, the low and high range, the cost per m² compared with the Ivorian market, what to budget on top and tips to cut the bill. The full quote is also in the PDF file."}, {"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation", "titre_en": "New: houses modelled on real homes", "texte_en": "The plans and the 3D model now follow real houses for each level of finish: low-cost home, estate villa, high-end villa, large villa. Walls, roof and windows adapt to your city, in the 11 countries covered. Your saved projects keep their plan."}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation", "titre_en": "New: colours in the 3D model", "texte_en": "The 3D model and the guided tour take on the colours of your level of finish: façade, floors and walls, with a feature wall in the living spaces and bedrooms."}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation", "titre_en": "New: upper floors for shops and offices", "texte_en": "In Create, shops and offices can now have 1 or 2 upper floors. You also choose their style and can describe your wishes in a few words, as for a house."}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation", "titre_en": "New: shop and office plans", "texte_en": "In Create, choose \"Shops\" or \"Offices\" to get the plan, the cost and the 3D model. Included in the Medium and Max plans."}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation", "titre_en": "New: guided tour in 3D", "texte_en": "In the 3D tab of a plan, \"Guided tour\" shows the model from above, then walks through the building room by room."}];
+const NEWS=[{"id": "2026-11-13-editeur-3d", "date": "2026-11-13T19:30:00Z", "titre": "Nouveau : l'éditeur 3D sur ordinateur", "texte": "Avec l'offre Max, sur ordinateur, le bouton « Éditeur 3D » sous le plan ouvre la maquette comme dans un logiciel d'architecture : faites glisser les cloisons, ajoutez ou supprimez fenêtres, baies et portes, réglez la hauteur sous plafond, la toiture et les sols pièce par pièce, mesurez et changez de vue. Le plan et le coût suivent vos modifications.", "action": "creation", "titre_en": "New: the 3D editor on computer", "texte_en": "With the Max plan, on a computer, the \"3D editor\" button below the plan opens the model as in architecture software: drag partitions, add or remove windows, glazed openings and doors, set the ceiling height, the roof and the floors room by room, measure and change views. The plan and the cost follow your changes."}, {"id": "2026-11-13-anglais", "date": "2026-11-13T16:30:00Z", "titre": "Nouveau : Architmind CI en anglais", "texte": "Le site existe maintenant en anglais. Utilisez le bouton EN / FR du menu pour changer de langue. Plans, devis, maquette 3D, dossier PDF, notifications et pages légales sont traduits ; un navigateur réglé en anglais ouvre directement le site dans cette langue.", "action": "creation", "titre_en": "New: Architmind CI in English", "texte_en": "The site is now available in English. Use the EN / FR button in the menu to switch language. Plans, quotes, the 3D model, the PDF file, notifications and legal pages are translated; a browser set to English opens the site directly in that language."}, {"id": "2026-11-12-devis-par-lot", "date": "2026-11-12T22:15:00Z", "titre": "Nouveau : le devis estimatif par lot", "texte": "Le coût des travaux est maintenant détaillé comme chez un économiste de la construction : dix lots, du terrassement à la peinture, avec les quantités mesurées sur votre plan, les prix unitaires, les imprévus, la fourchette basse et haute, le coût au m² comparé au marché ivoirien, ce qui reste à prévoir en plus et des conseils pour réduire la facture. Le devis complet est aussi dans le dossier PDF.", "lien": "#resultat", "titre_en": "New: the estimated quote by trade", "texte_en": "The building cost is now broken down the way a quantity surveyor does it: ten trades, from earthworks to painting, with quantities measured on your plan, unit prices, contingencies, the low and high range, the cost per m² compared with the Ivorian market, what to budget on top and tips to cut the bill. The full quote is also in the PDF file."}, {"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation", "titre_en": "New: houses modelled on real homes", "texte_en": "The plans and the 3D model now follow real houses for each level of finish: low-cost home, estate villa, high-end villa, large villa. Walls, roof and windows adapt to your city, in the 11 countries covered. Your saved projects keep their plan."}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation", "titre_en": "New: colours in the 3D model", "texte_en": "The 3D model and the guided tour take on the colours of your level of finish: façade, floors and walls, with a feature wall in the living spaces and bedrooms."}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation", "titre_en": "New: upper floors for shops and offices", "texte_en": "In Create, shops and offices can now have 1 or 2 upper floors. You also choose their style and can describe your wishes in a few words, as for a house."}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation", "titre_en": "New: shop and office plans", "texte_en": "In Create, choose \"Shops\" or \"Offices\" to get the plan, the cost and the 3D model. Included in the Medium and Max plans."}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation", "titre_en": "New: guided tour in 3D", "texte_en": "In the 3D tab of a plan, \"Guided tour\" shows the model from above, then walks through the building room by room."}];
 /* ---------- Comptes : connexion par e-mail et mot de passe (Firebase) ---------- */
 const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false,verified:false};
 // Administrateurs : empreintes SHA-256 des adresses e-mail (config.js), pour ne pas publier les adresses.
@@ -4181,11 +4266,13 @@ const ED_NAMES=[["Séjour","day"],["Salle à manger","day"],["Cuisine","wet"],["
 const r2=v=>Math.round(v*100)/100;
 function edKey(levels){let h=5381;const s=levels.map(L=>L.map(r=>[r.n,r2(r.x),r2(r.y),r2(r.w),r2(r.h)].join(":")).join("|")).join("/");for(let i=0;i<s.length;i++) h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)+"."+s.length}
 function applyEd(m){
+  const hs=o3Of(m).hsp;if(hs&&!m.hspDone){const k=1+0.35*(hs-2.9)/2.9,ex=m.extraSum||0;m.total=Math.round((m.total-ex)*k+ex);m.hspDone=true}
   const e=m.p&&m.p.ed;if(!e||m.isTower||!Array.isArray(e.L)) return m;
   try{
     if(e.k!==edKey(m.levels)||e.L.length!==m.levels.length) return m;
-    for(let li=0;li<e.L.length;li++){if(e.L[li].length!==m.levels[li].length) return m;for(const q of e.L[li]) if(!Array.isArray(q)||q.length!==6||!(q[4]-q[2]>0.3)||!(q[5]-q[3]>0.3)) return m}
-    e.L.forEach((rs,li)=>rs.forEach((q,i)=>{const r=m.levels[li][i],a0=r.w*r.h;r.n=String(q[0]).replace(/[<>&"'`]/g,"").slice(0,40);r.t=q[1];r.x=q[2];r.y=q[3];r.w=r2(q[4]-q[2]);r.h=r2(q[5]-q[3]);if(r.a&&a0>0) r.a=Math.max(1,Math.round(r.a*(r.w*r.h)/a0))}));
+    for(let li=0;li<e.L.length;li++){if(e.L[li].length!==m.levels[li].length) return m;for(const q of e.L[li]) if(!Array.isArray(q)||(q.length!==6&&q.length!==8)||!(q[4]-q[2]>0.3)||!(q[5]-q[3]>0.3)) return m}
+    e.L.forEach((rs,li)=>rs.forEach((q,i)=>{const r=m.levels[li][i],a0=r.w*r.h;r.n=String(q[0]).replace(/[<>&"'`]/g,"").slice(0,40);r.t=q[1];r.x=q[2];r.y=q[3];r.w=r2(q[4]-q[2]);r.h=r2(q[5]-q[3]);if(r.a&&a0>0) r.a=Math.max(1,Math.round(r.a*(r.w*r.h)/a0));
+      if(["carrelage","parquet","beton","marbre","granit"].includes(q[6])) r.fl=q[6];if(/^#[0-9a-f]{6}$/i.test(String(q[7]||""))) r.wc=q[7]}));
     const nb=m.levels.reduce((s,L)=>s+L.filter(r=>r.t==="night"&&/^Ch/.test(r.n)).length,0);if(nb) m.n=nb;
     m.edited=true;
   }catch(x){}
@@ -4216,7 +4303,7 @@ function edWalls(L){
 function edMove(w,d){d=Math.max(w.lo,Math.min(w.hi,Math.round(d*20)/20));if(!d) return 0;
   const nc=r2(w.c+d);w.a.forEach(r=>{r[w.csk]=r2(nc-r[w.ck])});w.b.forEach(r=>{const end=r2(r[w.ck]+r[w.csk]);r[w.ck]=nc;r[w.csk]=r2(end-nc)});return d}
 let ED=null;
-Object.assign(window,{edWalls,edMove,edKey,r2});window.__am={get model(){return model},get cur(){return cur}};try{Object.defineProperty(window,"ED",{get:()=>ED,configurable:true})}catch(x){}
+Object.assign(window,{edWalls,edMove,edKey,r2});window.__am={get model(){return model},get cur(){return cur},get e3(){return E3}};try{Object.defineProperty(window,"ED",{get:()=>ED,configurable:true})}catch(x){}
 function edOpen(){
   if(!model) return;
   if(model.isTower||model.pro){toast("La modification des pièces est disponible pour les villas, duplex et maisons R+2.");return}
@@ -4263,7 +4350,9 @@ function edPoint(e){const svg=$("#red-svg svg"),b=svg.getBoundingClientRect(),v=
   return {x:v.x+(e.clientX-b.left-(b.width-v.width*k)/2)/k,y:v.y+(e.clientY-b.top-(b.height-v.height*k)/2)/k}}
 function edApply(){
   if(!ED) return;
-  const ed={k:ED.k,L:ED.L.map(L=>L.map(r=>[r.n,r.t,r2(r.x),r2(r.y),r2(r.x+r.w),r2(r.y+r.h)]))},same=edKey(ED.L)===ED.k&&ED.L.every((L,li)=>L.every((r,i)=>r.t===ED.base.levels[li][i].t)),next=Object.assign({},cur);
+  const O3=cur.ed&&Array.isArray(cur.ed.O)&&cur.ed.O.some(o=>o&&Object.keys(o).length)?cur.ed.O:null,deco=ED.L.some(L=>L.some(r=>r.fl||r.wc));
+  const ed={k:ED.k,L:ED.L.map(L=>L.map(r=>{const q=[r.n,r.t,r2(r.x),r2(r.y),r2(r.x+r.w),r2(r.y+r.h)];if(r.fl||r.wc) q.push(r.fl||"",r.wc||"");return q}))},same=edKey(ED.L)===ED.k&&ED.L.every((L,li)=>L.every((r,i)=>r.t===ED.base.levels[li][i].t))&&!O3&&!deco,next=Object.assign({},cur);
+  if(O3) ed.O=O3;
   if(same) delete next.ed;else next.ed=ed;
   try{const m=compute(next);if(!same&&!m.edited) throw new Error("ed");m.levels.forEach((x,li)=>{openings(m,li);drawTech(m,li,{thumb:true})});
     cur=next;model=m;level=Math.min(level,m.levels.length-1);SHOW3D=false;RTAB="plan";edClose();renderPlan();toast("Plan modifié. La maquette 3D suit vos changements.")}
@@ -4281,6 +4370,234 @@ function edInit(){
   $("#red-close").onclick=edClose;$("#red-cancel").onclick=edClose;$("#red-apply").onclick=edApply;$("#red-reset").onclick=edReset;
   $("#editrooms").onclick=edOpen;
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&ED) edClose()});
+}
+/* ---------- Éditeur 3D (ordinateur, offre Max) ----------
+   Comme dans un logiciel d'architecture : on sélectionne dans la maquette une pièce, une cloison, un mur, une porte ou une
+   fenêtre, on la modifie, on ajoute des ouvertures, on règle la toiture et la hauteur sous plafond, on mesure, on change de vue.
+   Tout est rangé dans le projet (p.ed : pièces, sols, couleurs, ouvertures ; p.o3 : toiture, hauteurs, façade…) et réappliqué
+   par compute() : les plans, le coût, les téléchargements et la maquette suivent. Sur téléphone, « Modifier les pièces » reste l'outil. */
+const E3PC=()=>matchMedia("(min-width:1024px) and (pointer:fine)").matches;
+const E3KEYS=["roof","roofMat","roofColor","facade","wall","frame","floor","pitch","ov","hsp"];
+const E3FL=[["carrelage","Carrelage"],["parquet","Parquet"],["beton","Béton ciré"],["marbre","Marbre"],["granit","Granit"]];
+const E3TYPES={win:"Fenêtre",baie:"Baie vitrée",door:"Porte",entry:"Porte d'entrée"};
+let E3=null;
+function e3Open(){
+  if(!model) return;
+  if(model.isTower){toast("L'éditeur 3D est disponible pour les maisons, les boutiques et les bureaux.");return}
+  if(!O().tools){toast(`L'éditeur 3D est inclus dans l'offre ${OFFERS.max.nom}.`);location.hash="tarifs";return}
+  if(typeof THREE==="undefined"){toast("La maquette 3D n'a pas pu se charger dans ce navigateur.");return}
+  const base=compute(Object.assign({},cur,{ed:null})),seen=opts3d&&opts3d._sig===sigOf(cur)?opts3d:defaults3d(model),o3={};
+  E3KEYS.forEach(k=>{if(seen[k]!==undefined&&!(k==="hsp"&&seen[k]===2.9)) o3[k]=seen[k]});
+  E3={k:edKey(base.levels),base,L:model.levels.map(L=>L.map(r=>Object.assign({},r))),O:model.levels.map((x,li)=>JSON.parse(JSON.stringify((cur.ed&&cur.ed.O&&model.edited&&cur.ed.O[li])||{}))),
+    o3,hist:[],fut:[],sel:null,tool:"select",view:"iso",lvl:-1,cut:false,roof:true,snap:0.1,meas:[],look:{hour:seen.hour||10,veg:seen.veg!==false,car:seen.car!==false}};
+  E3.p=e3Build();E3.m=compute(E3.p);
+  $("#e3d").hidden=false;document.body.style.overflow="hidden";
+  $("#e3d-lv").innerHTML=`<option value="-1">Tous les niveaux</option>`+E3.m.levels.map((x,i)=>`<option value="${i}">${lvName(i)}</option>`).join("");
+  e3Mount(false);e3Panel();e3Tools();
+}
+function e3Close(back){$("#e3d").hidden=true;document.body.style.overflow="";if(viewer&&viewer.mode==="edit") stop3D();E3=null;
+  if(back&&SHOW3D&&RTAB==="3d"&&model) area3D($("#c3d"),model)}
+// projet de travail : pièces et ouvertures dans p.ed, réglages dans p.o3
+function e3Build(){
+  const same=edKey(E3.L)===E3.k&&E3.L.every((L,li)=>L.every((r,i)=>r.t===E3.base.levels[li][i].t&&!r.fl&&!r.wc)),hasO=E3.O.some(o=>o&&Object.keys(o).length);
+  const p=Object.assign({},cur);delete p.ed;
+  if(!same||hasO){p.ed={k:E3.k,L:E3.L.map(L=>L.map(r=>{const q=[r.n,r.t,r2(r.x),r2(r.y),r2(r.x+r.w),r2(r.y+r.h)];if(r.fl||r.wc) q.push(r.fl||"",r.wc||"");return q}))};if(hasO) p.ed.O=E3.O.map(o=>o||{})}
+  p.o3=Object.assign({},E3.o3);return p}
+const e3Snap=()=>JSON.stringify({L:E3.L,O:E3.O,o3:E3.o3});
+function e3Restore(s){const v=JSON.parse(s);E3.L=v.L;E3.O=v.O;E3.o3=v.o3}
+// une modification : on la garde si le plan reste valable, sinon on revient en arrière
+function e3Do(fn,msg){
+  const snap=e3Snap();try{fn()}catch(x){e3Restore(snap);return false}
+  const p=e3Build();let m;try{m=compute(p);if(p.ed&&!m.edited) throw new Error("ed");m.levels.forEach((x,li)=>{openings(m,li);drawTech(m,li,{thumb:true})})}
+  catch(x){e3Restore(snap);toast(msg||"Cette modification n'a pas pu être appliquée. Essayez un déplacement plus petit.");return false}
+  E3.hist.push(snap);if(E3.hist.length>80) E3.hist.shift();E3.fut=[];E3.p=p;E3.m=m;e3Mount(true);e3Panel();e3Tools();return true}
+function e3Undo(redo){if(!E3) return;const from=redo?E3.fut:E3.hist,to=redo?E3.hist:E3.fut;if(!from.length) return;to.push(e3Snap());e3Restore(from.pop());
+  E3.p=e3Build();E3.m=compute(E3.p);E3.sel=null;e3Mount(true);e3Panel();e3Tools()}
+function e3Apply(){if(!E3) return;const p=E3.p,look=E3.look;
+  cur=p;model=compute(cur);opts3d=Object.assign(defaults3d(model),look,{_sig:sigOf(cur)});level=Math.min(level,model.levels.length-1);
+  e3Close(false);renderPlan();toast("Plan, coût et maquette mis à jour.")}
+/* --- maquette --- */
+function e3Mount(keep){
+  const host=$("#e3d-view"),o=Object.assign(defaults3d(E3.m),E3.look,{veg:false,car:false});
+  mount3D(host,E3.m,o,{mode:"edit",keep,spin:false,roof:true,upper:true});if(!viewer) return;viewer.cut=Infinity;
+  if(!keep) e3View(E3.view,true);else e3Lim();e3After()}
+// limites de la caméra de l'éditeur (vues lointaines à petit angle, comme des vues à plat)
+function e3Lim(){const V=viewer,m=E3.m,HT=V.base+m.levels.length*(H3+SL3),big=Math.max(m.bw,m.bd,HT);
+  V.cam.fov=E3.view==="iso"?38:16;V.cam.updateProjectionMatrix();V.controls.maxPolarAngle=Math.PI*0.5;V.controls.minDistance=2;V.controls.maxDistance=big*12}
+function e3Y(li){return viewer.base+li*(H3+SL3)}
+function e3After(){
+  if(!viewer) return;const V=viewer,top=V.levels.length-1,show=E3.lvl<0?top:E3.lvl;
+  V.levels.forEach((g,i)=>{g.visible=i<=show});V.roofGrp.visible=E3.roof&&E3.lvl<0&&!E3.cut;
+  // « Coupe » : plafonds, étages supérieurs et toit retirés, on voit le niveau comme sur un plan
+  (V.ceils||[]).forEach(c=>{c.visible=!E3.cut});V.cut=Infinity;
+  // surbrillance de la sélection, repères de mesure
+  const old=V.scene.getObjectByName("e3over");if(old){old.traverse(x=>{if(x.geometry) x.geometry.dispose();if(x.material) x.material.dispose()});V.scene.remove(old)}
+  const g=new THREE.Group();g.name="e3over";V.scene.add(g);
+  const hl=(w,h,d,x,y,z,col,op)=>{const ge=new THREE.BoxGeometry(w,h,d),me=new THREE.Mesh(ge,new THREE.MeshBasicMaterial({color:col||0xE8A33A,transparent:true,opacity:op||0.45,depthTest:false}));me.position.set(x,y,z);me.renderOrder=10;
+    const ed=new THREE.LineSegments(new THREE.EdgesGeometry(ge),new THREE.LineBasicMaterial({color:col===0x2C7A88?0x1B4F59:0xB8650A,depthTest:false}));ed.renderOrder=11;me.add(ed);g.add(me);return me};
+  const s=E3.sel,X=V.X,Z=V.Z;
+  if(s&&s.t==="room"){const r=E3.m.levels[s.li][s.i];if(r) hl(r.w,0.06,r.h,X(r.x+r.w/2),e3Y(s.li)+0.08,Z(r.y+r.h/2))}
+  if(s&&(s.t==="wall"||s.t==="op")){const w=e3Wall(s.li,s.key);if(w){const y0=e3Y(s.li);
+    if(s.t==="wall"){const len=w.s1-w.s0,mid=(w.s0+w.s1)/2,t=0.34;E3.hlWall=w.o==="h"?hl(len,H3,t,X(mid),y0+H3/2,Z(w.c)):hl(t,H3,len,X(w.c),y0+H3/2,Z(mid));E3.hlWall.userData.base=E3.hlWall.position.clone()}
+    else{const op=e3Op(s);if(op){const len=op.d1-op.d0,mid=(op.d0+op.d1)/2,hy=(op.bot+op.top)/2,hh=op.top-op.bot;w.o==="h"?hl(len,hh,0.4,X(mid),y0+hy,Z(w.c),0x2C7A88,0.45):hl(0.4,hh,len,X(w.c),y0+hy,Z(mid),0x2C7A88,0.45)}}}}
+  E3.meas.forEach(p=>{const me=new THREE.Mesh(new THREE.SphereGeometry(0.09,16,8),new THREE.MeshBasicMaterial({color:0xD94F2B,depthTest:false}));me.position.copy(p);me.renderOrder=11;g.add(me)});
+  if(E3.meas.length===2){const ge=new THREE.BufferGeometry().setFromPoints(E3.meas),ln=new THREE.Line(ge,new THREE.LineBasicMaterial({color:0xD94F2B,depthTest:false}));ln.renderOrder=11;g.add(ln)}
+  e3Hint()}
+function e3View(v,quiet){if(!viewer) return;E3.view=v;const V=viewer,m=E3.m,HT=V.base+m.levels.length*(H3+SL3),big=Math.max(m.bw,m.bd,HT);
+  const c=new THREE.Vector3(V.X(m.bx+m.bw/2),Math.max(1.2,HT*0.4),V.Z(m.by+m.bd/2)),d=big*(v==="iso"?1.6:3.6);
+  const P={iso:[0.55,0.42,0.9],top:[0,1,0.0001],face:[0,0.18,1],back:[0,0.18,-1],left:[-1,0.18,0],right:[1,0.18,0]}[v]||[0.55,0.42,0.9];
+  const n=new THREE.Vector3(...P).normalize();e3Lim();V.controls.target.copy(c);V.cam.position.copy(c).addScaledVector(n,v==="iso"?d*1.1:d*1.9);V.controls.update();
+  if(!quiet) e3Tools()}
+/* --- murs, ouvertures, pièces du plan de travail --- */
+function e3Wall(li,key){const O=openings(E3.m,li),[t,a,b]=key.split(":");
+  if(t==="e"){const e=O.ext.find(x=>x.room===+a&&x.side===b);return e?Object.assign({ext:true},e):null}
+  const p=O.pairs.find(x=>x.a===+a&&x.b===+b);return p?Object.assign({ext:false},p):null}
+function e3Op(s){const w=e3Wall(s.li,s.key);if(!w) return null;const mid=s.mid;let best=null;w.open.forEach(o=>{const d=Math.abs((o.d0+o.d1)/2-mid);if(d<0.6&&(!best||d<best.d)) best={o,d}});return best?best.o:null}
+function e3Ops(li,key){const w=e3Wall(li,key);return w?w.open.map(o=>{const x={k:o.k,d0:o.d0,d1:o.d1,bot:o.bot||0,top:o.top||2.1};if(o.into!==undefined) x.into=o.into;return x}):[]}
+function e3SetOps(li,key,list){if(!E3.O[li]) E3.O[li]={};E3.O[li][key]=list}
+function e3Part(li,key){const w=e3Wall(li,key);if(!w||w.ext) return null;const W=edWalls(E3.L[li]);
+  return W.find(x=>x.o===w.o&&Math.abs(x.c-w.c)<EPS&&x.s0<=w.s0+EPS&&x.s1>=w.s1-EPS)||null}
+const e3Allowed=(w,li)=>!w?[]:w.ext?(li>0?["win","baie"]:["win","baie","entry"]):w.kind==="wall"?["door","baie"]:w.kind==="facade"||w.kind==="patio"?["win","baie","door"]:[];
+function e3Add(li,key,k,at){const w=e3Wall(li,key);if(!w) return;const ok=e3Allowed(w,li);
+  if(!ok.length){toast("On ne peut pas percer ce mur : il sépare deux logements ou n'existe pas.");return}
+  if(!ok.includes(k)) k=k==="door"&&ok.includes("entry")?"entry":k==="win"&&ok.includes("baie")?"baie":ok[0];
+  const width={win:1.2,baie:2.4,door:0.9,entry:1.0}[k],hs=(E3.o3.hsp||2.9)-0.05,h={win:[0.9,2.2],baie:[0,2.3],door:[0,2.1],entry:[0,2.2]}[k];
+  const sn=E3.snap||0.1,c=Math.round(Math.max(w.s0+width/2+0.12,Math.min(w.s1-width/2-0.12,at))/sn)*sn;
+  if(w.s1-w.s0<width+0.25){toast("Ce mur est trop court pour cette ouverture.");return}
+  const list=e3Ops(li,key),nw={k,d0:r2(c-width/2),d1:r2(c+width/2),bot:h[0],top:Math.min(hs,h[1])};if(k==="door") nw.into=w.a;
+  if(list.some(q=>nw.d0<q.d1+0.1&&nw.d1>q.d0-0.1)){toast("Pas assez de place à cet endroit : une autre ouverture est trop proche.");return}
+  list.push(nw);e3Do(()=>e3SetOps(li,key,list))&&(E3.sel={t:"op",li,key,mid:c},e3After(),e3Panel())}
+/* --- clic dans la maquette --- */
+function e3Pick(ev){const V=viewer;if(!V) return null;const r=V.renderer.domElement.getBoundingClientRect(),ray=new THREE.Raycaster();
+  ray.setFromCamera(new THREE.Vector2(((ev.clientX-r.left)/r.width)*2-1,-((ev.clientY-r.top)/r.height)*2+1),V.cam);
+  const vis=o=>{for(let x=o;x;x=x.parent) if(!x.visible) return false;return true};
+  const hits=ray.intersectObjects(V.scene.children,true).filter(h=>h.object.name!=="e3over"&&!(h.object.parent&&h.object.parent.name==="e3over")&&vis(h.object)&&h.point.y<=(V.cut===undefined?Infinity:V.cut)+0.01);
+  return {hits,ray,pick:(hits.find(h=>h.object.userData.pick)||{}).object?hits.find(h=>h.object.userData.pick):null,first:hits[0]||null}}
+function e3Click(ev){
+  const P=e3Pick(ev);if(!P) return;const h=P.pick;
+  if(E3.tool==="measure"){const pt=(P.first||{}).point;if(!pt) return;if(E3.meas.length>=2) E3.meas=[];E3.meas.push(pt.clone());e3After();return}
+  if(E3.tool!=="select"){if(!h||(h.object.userData.pick.t!=="wall"&&h.object.userData.pick.t!=="op")){toast("Cliquez sur un mur pour y placer l'ouverture.");return}
+    const u=h.object.userData.pick,at=u.o==="h"?h.point.x+viewer.W/2:h.point.z+viewer.D/2;e3Add(u.li,u.key,E3.tool,at);return}
+  if(!h){E3.sel=null;e3After();e3Panel();return}
+  const u=h.object.userData.pick;
+  E3.sel=u.t==="room"?{t:"room",li:u.li,i:u.i}:u.t==="op"?{t:"op",li:u.li,key:u.key,mid:(u.d0+u.d1)/2}:{t:"wall",li:u.li,key:u.key};
+  e3After();e3Panel()}
+function e3Init(){
+  const host=$("#e3d-view");if(!host) return;let down=null,drag=null;
+  host.addEventListener("pointerdown",e=>{if(!E3||!viewer||e.target!==viewer.renderer.domElement) return;down={x:e.clientX,y:e.clientY};viewer.controls.enabled=true;
+    // glisser une cloison sélectionnée
+    const s=E3.sel;if(E3.tool==="select"&&s&&s.t==="wall"){const P=e3Pick(e),u=P&&P.pick&&P.pick.object.userData.pick;
+      if(u&&u.t==="wall"&&u.key===s.key){const w=e3Part(s.li,s.key);if(w&&w.hi-w.lo>0.04){drag={w,li:s.li,d:0,y:e3Y(s.li)+1.2};viewer.controls.enabled=false;try{host.setPointerCapture(e.pointerId)}catch(x){}}}}},true);
+  host.addEventListener("pointermove",e=>{if(!drag||!viewer) return;const V=viewer,r=V.renderer.domElement.getBoundingClientRect(),ray=new THREE.Raycaster(),pt=new THREE.Vector3();
+    ray.setFromCamera(new THREE.Vector2(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1),V.cam);
+    if(!ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),-drag.y),pt)) return;
+    const w=drag.w,at=w.o==="v"?pt.x+V.W/2:pt.z+V.D/2,sn=Math.max(0.05,E3.snap),d=Math.max(w.lo,Math.min(w.hi,Math.round((at-w.c)/sn)*sn));drag.d=d;
+    if(E3.hlWall){E3.hlWall.position.copy(E3.hlWall.userData.base);if(w.o==="v") E3.hlWall.position.x+=d;else E3.hlWall.position.z+=d}
+    $("#e3d-hint").textContent=`Déplacement : ${d>0?"+":""}${dec(d,2)} m · relâchez pour appliquer`});
+  const up=e=>{if(!E3) return;if(drag){const D=drag;drag=null;if(viewer) viewer.controls.enabled=true;
+      if(Math.abs(D.d)>0.001){const s=E3.sel;e3Do(()=>{const w=e3Part(D.li,s.key);if(!w||!edMove(w,D.d)) throw new Error("mv")})}else e3After();down=null;return}
+    if(down&&Math.hypot(e.clientX-down.x,e.clientY-down.y)<5&&viewer&&e.target===viewer.renderer.domElement) e3Click(e);down=null};
+  host.addEventListener("pointerup",up);host.addEventListener("pointercancel",()=>{drag=null;down=null;if(viewer) viewer.controls.enabled=true});
+  $$("#e3d [data-tool]").forEach(b=>b.onclick=()=>{E3.tool=b.dataset.tool;if(E3.tool!=="measure") E3.meas=[];e3After();e3Tools()});
+  $$("#e3d [data-cam]").forEach(b=>b.onclick=()=>e3View(b.dataset.cam));
+  $("#e3d-lv").onchange=e=>{E3.lvl=+e.target.value;E3.cut=E3.lvl>=0;e3After();e3Panel();e3Tools()};
+  $("#e3d-cut").onclick=()=>{E3.cut=!E3.cut;e3After();e3Tools()};
+  $("#e3d-roof").onclick=()=>{E3.roof=!E3.roof;e3After();e3Tools()};
+  $("#e3d-undo").onclick=()=>e3Undo(false);$("#e3d-redo").onclick=()=>e3Undo(true);
+  $("#e3d-cancel").onclick=()=>e3Close(true);$("#e3d-apply").onclick=e3Apply;
+  $("#edit3d").onclick=e3Open;
+  document.addEventListener("keydown",e=>{if(!E3||$("#e3d").hidden) return;const tg=e.target&&e.target.tagName;if(/INPUT|SELECT|TEXTAREA/.test(tg)) return;
+    const k=e.key.toLowerCase();
+    if((e.ctrlKey||e.metaKey)&&k==="z"){e.preventDefault();e3Undo(e.shiftKey);return}
+    if((e.ctrlKey||e.metaKey)&&k==="y"){e.preventDefault();e3Undo(true);return}
+    if(k==="escape"){if(E3.tool!=="select"||E3.meas.length){E3.tool="select";E3.meas=[];e3After();e3Tools()}else if(E3.sel){E3.sel=null;e3After();e3Panel()}else e3Close(true);return}
+    if((k==="delete"||k==="backspace")&&E3.sel&&E3.sel.t==="op"){e.preventDefault();e3DelOp();return}
+    const map={v:"select",f:"win",b:"baie",p:"door",m:"measure"};if(map[k]&&!e.ctrlKey&&!e.metaKey){E3.tool=map[k];e3After();e3Tools();return}
+    if(/^arrow/.test(k)&&E3.sel&&E3.sel.t==="wall"){const w=e3Part(E3.sel.li,E3.sel.key);if(!w) return;const sg=(k==="arrowright"||k==="arrowdown")?1:-1;e.preventDefault();e3Move(sg*Math.max(0.05,E3.snap))}});
+}
+function e3Move(d){const s=E3.sel;e3Do(()=>{const w=e3Part(s.li,s.key);if(!w||!edMove(w,d)) throw new Error("mv")})}
+function e3DelOp(){const s=E3.sel,list=e3Ops(s.li,s.key),op=e3Op(s);if(!op) return;
+  const i=list.findIndex(q=>Math.abs(q.d0-op.d0)<0.02&&Math.abs(q.d1-op.d1)<0.02);if(i<0) return;list.splice(i,1);
+  if(e3Do(()=>e3SetOps(s.li,s.key,list))){E3.sel={t:"wall",li:s.li,key:s.key};e3After();e3Panel()}}
+/* --- barre d'outils et panneau des propriétés --- */
+function e3Tools(){if(!E3) return;
+  $$("#e3d [data-tool]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.tool===E3.tool)));
+  $$("#e3d [data-cam]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.cam===E3.view)));
+  $("#e3d-cut").setAttribute("aria-pressed",String(E3.cut));$("#e3d-roof").setAttribute("aria-pressed",String(E3.roof));
+  $("#e3d-undo").disabled=!E3.hist.length;$("#e3d-redo").disabled=!E3.fut.length;$("#e3d-lv").value=String(E3.lvl);e3Hint()}
+function e3Hint(){const h=$("#e3d-hint");if(!h||!E3) return;
+  if(E3.tool==="measure"){if(E3.meas.length===2){const [a,b]=E3.meas;h.textContent=`Distance : ${dec(a.distanceTo(b),2)} m · à plat ${dec(Math.hypot(a.x-b.x,a.z-b.z),2)} m · hauteur ${dec(Math.abs(a.y-b.y),2)} m · cliquez pour recommencer`}
+    else h.textContent=E3.meas.length?"Cliquez sur le second point":"Mesure : cliquez sur deux points de la maquette";return}
+  h.textContent=E3.tool==="select"?"Cliquez sur une pièce, un mur, une porte ou une fenêtre · glissez pour tourner, clic droit pour vous déplacer, molette pour zoomer"
+    :`${E3TYPES[E3.tool]||"Porte"} : cliquez sur un mur pour la placer · Échap pour revenir à la sélection`}
+function e3Panel(){
+  const P=$("#e3d-side");if(!P||!E3) return;const m=E3.m,s=E3.sel,o=Object.assign(defaults3d(m),E3.o3);
+  const seg=(k,list,val)=>`<div class="opt" data-g="${k}">${list.map(([v,l])=>`<button type="button" data-k="${k}" data-v="${v}" aria-pressed="${String(val)===String(v)}">${l}</button>`).join("")}</div>`;
+  const sw=(k,list,val,none)=>`<div class="sw">${none?`<button type="button" class="swnone" data-k="${k}" data-v="" aria-pressed="${!val}" aria-label="Couleur d'origine">∅</button>`:""}${list.map(c=>`<button type="button" data-k="${k}" data-v="${c}" aria-pressed="${String(val||"").toLowerCase()===c.toLowerCase()}" style="background:${c}" aria-label="Couleur ${c}"></button>`).join("")}</div>`;
+  const rng=(k,min,max,step,val,unit,lab)=>`<div class="e3d-rng"><input type="range" min="${min}" max="${max}" step="${step}" value="${val}" data-r="${k}" aria-label="${lab}"><output>${dec(val,2)} ${unit}</output></div>`;
+  let html="";const li=s?s.li:Math.max(0,E3.lvl);
+  if(s&&s.t==="room"){const r=E3.L[s.li][s.i],lock=ED_LOCK.has(r.n)||r.t==="out"||r.t==="patio",base=/^Chambre \d+$/.test(r.n)?"Chambre":r.n,opts=(ED_NAMES.some(x=>x[0]===base)?[]:[[base,r.t]]).concat(ED_NAMES);
+    html=`<div class="e3d-h"><b>${xe(r.n)}</b><span class="sub">${lvName(s.li)} · ${dec(r.w,2)} × ${dec(r.h,2)} m, soit ${dec(r.w*r.h,1)} m²</span></div>`+
+      (lock?`<p class="sub">La fonction de cette pièce ne se change pas.</p>`:`<label class="red-lab" for="e3d-name">Fonction de la pièce</label><select id="e3d-name">${opts.map(x=>`<option value="${xe(x[0])}" ${x[0]===base?"selected":""}>${xe(x[0])}</option>`).join("")}</select>`)+
+      (r.t==="out"||r.t==="patio"?"":`<div class="lab">Sol de la pièce</div>${seg("rfl",[["","Par défaut"]].concat(E3FL),r.fl||"")}<div class="lab">Couleur des murs de la pièce</div>${sw("rwc",WALLS,r.wc,true)}`)+
+      `<p class="sub">Pour agrandir la pièce, sélectionnez une de ses cloisons et faites-la glisser.</p>`}
+  else if(s&&s.t==="op"){const w=e3Wall(s.li,s.key),op=e3Op(s);
+    if(!op||!w){E3.sel=null;return e3Panel()}
+    const ok=e3Allowed(w,s.li);
+    html=`<div class="e3d-h"><b>${E3TYPES[op.k]||"Ouverture"}</b><span class="sub">${lvName(s.li)} · ${dec(op.d1-op.d0,2)} m de large</span></div>
+      <div class="lab">Type</div>${seg("ok",ok.map(k=>[k,E3TYPES[k]]),op.k)}
+      <div class="e3d-num"><label>Largeur (m)<input type="number" step="0.05" min="0.4" max="${dec(w.s1-w.s0-0.1,2).replace(",",".")}" value="${(op.d1-op.d0).toFixed(2)}" data-n="w"></label>
+      <label>Position (m)<input type="number" step="0.05" min="0" max="${(w.s1-w.s0).toFixed(2)}" value="${(op.d0-w.s0).toFixed(2)}" data-n="pos"></label>
+      ${op.k==="win"?`<label>Allège (m)<input type="number" step="0.05" min="0" max="2" value="${(op.bot||0).toFixed(2)}" data-n="bot"></label>`:""}
+      <label>Hauteur haute (m)<input type="number" step="0.05" min="1.2" max="${((E3.o3.hsp||2.9)-0.05).toFixed(2)}" value="${(op.top||2.1).toFixed(2)}" data-n="top"></label></div>
+      <p class="sub">La position se mesure depuis le début du mur (${dec(w.s1-w.s0,2)} m de long).</p>
+      <div class="red-row"><button type="button" class="ghost" data-a="del">Supprimer</button></div>`}
+  else if(s&&s.t==="wall"){const w=e3Wall(s.li,s.key);if(!w){E3.sel=null;return e3Panel()}
+    const pw=e3Part(s.li,s.key),ok=e3Allowed(w,s.li),mv=pw&&pw.hi-pw.lo>0.04;
+    html=`<div class="e3d-h"><b>${w.ext?"Mur de façade":w.kind==="wall"?"Cloison":w.kind==="party"?"Mur séparatif":"Mur"}</b><span class="sub">${lvName(s.li)} · ${dec(w.s1-w.s0,2)} m de long · ${w.open.length} ouverture${w.open.length>1?"s":""}</span></div>`+
+      (mv?`<p class="sub">Faites glisser la cloison dans la maquette, ou déplacez-la pas à pas (flèches du clavier).</p>
+        <div class="red-row"><button type="button" class="ghost" data-mv="-1">${w.o==="v"?"← Gauche":"↑ Vers le haut du plan"}</button><button type="button" class="ghost" data-mv="1">${w.o==="v"?"Droite →":"Vers le bas du plan ↓"}</button></div>
+        <p class="sub">Possible : de ${dec(pw.lo,2)} m à +${dec(pw.hi,2)} m.</p>`
+      :w.ext?"":`<p class="sub">Cette cloison ne peut pas bouger : une pièce voisine est à sa taille minimale, ou c'est un mur porteur (escalier, patio, garage).</p>`)+
+      (ok.length?`<div class="lab">Ajouter une ouverture au milieu du mur</div><div class="red-row e3d-add">${ok.map(k=>`<button type="button" class="ghost" data-add="${k}">${E3TYPES[k]}</button>`).join("")}</div>`:`<p class="sub">Ce mur ne peut pas recevoir d'ouverture.</p>`)}
+  else{
+    html=`<div class="e3d-h"><b>Réglages du projet</b><span class="sub">Cliquez dans la maquette pour sélectionner un élément.</span></div>
+      <div class="lab">Hauteur sous plafond</div>${rng("hsp",2.5,3.6,0.05,o.hsp||2.9,"m","Hauteur sous plafond")}
+      <div class="lab">Toiture</div>${seg("roof",[["plat","Toit plat"],["mono","Une pente"],["deux","Deux pentes"]],o.roof)}
+      ${o.roof!=="plat"?`<div class="lab">Pente du toit</div>${rng("pitch",5,40,1,o.pitch||(o.roof==="deux"?24:10),"°","Pente du toit")}${seg("roofMat",[["tole","Tôle bac"],["tuile","Tuiles"]],o.roofMat)}`:""}
+      <div class="lab">Débord de toit</div>${rng("ov",0.1,1.2,0.05,o.ov!==undefined?o.ov:(o.roof==="plat"?0.5:0.7),"m","Débord de toit")}
+      <div class="lab">Couleur de toiture</div>${sw("roofColor",ROOFS,o.roofColor)}
+      <div class="lab">Façade</div>${seg("facade",[["enduit","Enduit"],["btc","Brique de terre"],["pierre","Pierre"],["bois","Bardage bois"],["beton","Béton brut"]],o.facade)}
+      <div class="lab">Couleur des murs</div>${sw("wall",WALLS,o.wall)}
+      <div class="lab">Menuiseries</div>${seg("frame",[["anthra","Alu anthracite"],["blanc","Blanc"],["bois","Bois"]],o.frame)}
+      <div class="lab">Sol intérieur</div>${seg("floor",E3FL,o.floor)}
+      <div class="lab">Magnétisme</div>${seg("snap",[["0.05","5 cm"],["0.1","10 cm"],["0.25","25 cm"],["0.5","50 cm"]],String(E3.snap))}
+      <div class="red-row"><button type="button" class="ghost" data-a="reset">Revenir au plan généré</button></div>`}
+  const lv=s?s.li:Math.max(0,E3.lvl);
+  P.innerHTML=html+`<div class="e3d-mini"><div class="lab">Plan ${xe(lvName(lv))} · suit vos modifications</div><div class="e3d-plan">${drawTech(m,lv,{thumb:true})}</div></div>`;
+  // réglages du projet
+  P.querySelectorAll("button[data-k]").forEach(b=>b.onclick=()=>{const k=b.dataset.k,v=b.dataset.v;
+    if(k==="snap"){E3.snap=+v;e3Panel();return}
+    if(k==="rfl"||k==="rwc"){const r=E3.L[s.li][s.i];e3Do(()=>{if(k==="rfl") r.fl=v||undefined;else r.wc=v||undefined});return}
+    if(k==="ok"){const list=e3Ops(s.li,s.key),op=e3Op(s),i=list.findIndex(q=>Math.abs(q.d0-op.d0)<0.02);if(i<0) return;const q=list[i];q.k=v;
+      const H={win:[0.9,2.2],baie:[0,2.3],door:[0,2.1],entry:[0,2.2]}[v];q.bot=H[0];q.top=Math.min((E3.o3.hsp||2.9)-0.05,H[1]);if(v==="door") q.into=e3Wall(s.li,s.key).a;e3Do(()=>e3SetOps(s.li,s.key,list));return}
+    e3Do(()=>{E3.o3[k]=v;if(k==="roof"&&v==="plat") delete E3.o3.pitch})});
+  P.querySelectorAll("input[data-r]").forEach(i=>{i.oninput=()=>{i.nextElementSibling.textContent=dec(+i.value,2)+" "+(i.dataset.r==="pitch"?"°":"m")};i.onchange=()=>e3Do(()=>{E3.o3[i.dataset.r]=+i.value})});
+  const nm=P.querySelector("#e3d-name");if(nm) nm.onchange=()=>{const r=E3.L[s.li][s.i],op=ED_NAMES.find(x=>x[0]===nm.value)||[nm.value,r.t];let n=op[0];
+    if(n==="Chambre"){const used=new Set(E3.L.flat().filter(q=>q!==r).map(q=>q.n));let k=2;while(used.has("Chambre "+k)) k++;n="Chambre "+k}
+    e3Do(()=>{r.n=n;r.t=op[1]})};
+  P.querySelectorAll("[data-mv]").forEach(b=>b.onclick=()=>e3Move(+b.dataset.mv*Math.max(0.05,E3.snap)));
+  P.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>{const w=e3Wall(s.li,s.key);e3Add(s.li,s.key,b.dataset.add,(w.s0+w.s1)/2)});
+  P.querySelectorAll("input[data-n]").forEach(inp=>inp.onchange=()=>{const w=e3Wall(s.li,s.key),list=e3Ops(s.li,s.key),op=e3Op(s),i=list.findIndex(q=>Math.abs(q.d0-op.d0)<0.02);if(i<0) return;const q=list[i],v=+inp.value;if(!isFinite(v)) return;
+    if(inp.dataset.n==="w"){const c=(q.d0+q.d1)/2,ww=Math.max(0.4,Math.min(w.s1-w.s0-0.1,v));q.d0=r2(c-ww/2);q.d1=r2(c+ww/2)}
+    if(inp.dataset.n==="pos"){const ww=q.d1-q.d0;q.d0=r2(w.s0+Math.max(0.05,Math.min(w.s1-w.s0-ww-0.05,v)));q.d1=r2(q.d0+ww)}
+    if(inp.dataset.n==="bot") q.bot=Math.max(0,Math.min(q.top-0.3,v));
+    if(inp.dataset.n==="top") q.top=Math.max(Math.max(1.2,q.bot+0.3),Math.min((E3.o3.hsp||2.9)-0.05,v));
+    if(q.d0<w.s0+0.05||q.d1>w.s1-0.05){toast("L'ouverture dépasse du mur.");e3Panel();return}
+    if(list.some((x,j)=>j!==i&&q.d0<x.d1+0.1&&q.d1>x.d0-0.1)){toast("Pas assez de place à cet endroit : une autre ouverture est trop proche.");e3Panel();return}
+    if(e3Do(()=>e3SetOps(s.li,s.key,list))){E3.sel={t:"op",li:s.li,key:s.key,mid:(q.d0+q.d1)/2};e3After();e3Panel()}});
+  const del=P.querySelector("[data-a=del]");if(del) del.onclick=e3DelOp;
+  const rs=P.querySelector("[data-a=reset]");if(rs) rs.onclick=()=>e3Do(()=>{E3.L=E3.base.levels.map(L=>L.map(r=>Object.assign({},r)));E3.O=E3.base.levels.map(()=>({}));const d=defaults3d(Object.assign({},E3.base,{p:Object.assign({},E3.base.p,{o3:null})}));E3.o3={};E3KEYS.forEach(k=>{if(d[k]!==undefined&&k!=="hsp") E3.o3[k]=d[k]})});
 }
 /* ---------- Souhaits du client (texte libre) ----------
    Lecture par mots-clés : chaque souhait reconnu règle une option du générateur ; ce qui n'est pas géré
@@ -4778,6 +5095,7 @@ function faqData(){
     {g:"Maquette 3D",items:[
       ["Comment voir la maison en 3D ?",`La maquette est incluse dans les offres ${o.moyen.nom} et ${o.max.nom}. Sous le plan ou dans une proposition, choisissez la vue extérieure ou la vue intérieure. Glissez pour tourner, utilisez la molette ou deux doigts pour zoomer, et choisissez une pièce pour la visiter.`],
       ["La 3D ne s'affiche pas, que faire ?","Utilisez un navigateur récent (Chrome, Edge, Safari ou Firefox) et rechargez la page. Sur certains téléphones anciens, la 3D peut être lente ou indisponible ; le plan et le coût restent accessibles."],
+      ["Qu'est-ce que l'éditeur 3D ?",`Sur ordinateur, avec l'offre ${o.max.nom}, le bouton « Éditeur 3D » sous le plan ouvre la maquette comme dans un logiciel d'architecture : cliquez sur une pièce, une cloison, un mur, une porte ou une fenêtre pour la modifier, faites glisser les cloisons, ajoutez ou supprimez des fenêtres, baies et portes, réglez la hauteur sous plafond, le type, la pente et le débord du toit, la façade et les sols pièce par pièce. Vues de dessus, de face et de côté, coupe par niveau, mesure, annuler et rétablir. En cliquant sur « Appliquer », le plan, le coût et la maquette suivent vos modifications. Sur téléphone, « Modifier les pièces » reste disponible.`],
       [`Que permettent les outils de l'offre ${o.max.nom} ?`,"Changer la façade, la couleur des murs, le type et la couleur de la toiture, les menuiseries, le sol intérieur et l'heure de la journée, et afficher ou masquer la végétation et la voiture. Ces réglages sont enregistrés avec le projet."]]},
     {g:"Offres et projets",items:[
       ["Quelle offre choisir ?",`${o.basique.nom}, gratuite, pour esquisser (${q("basique")}), ${o.moyen.nom} pour présenter vos projets en 3D et télécharger vos plans (${q("moyen")}), ${o.max.nom} pour personnaliser la maquette, ${q("max")}. Les prix sont détaillés dans l'onglet Tarifs.`],
@@ -4911,7 +5229,7 @@ $("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;
 function showResult(){model=compute(cur);wishNote();if(location.hash==="#resultat") renderPlan();else{location.hash="resultat";setTimeout(renderPlan,0)}}
 const variante=()=>{if(needVerif()) return;if(proGate(cur)) return;if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;delete cur.ed;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
 $("#var").onclick=()=>{if(!formOk()) return;cur=applyWish(readForm());writeForm(cur);variante()};
-$("#var2").onclick=variante;edInit();wishInit();
+$("#var2").onclick=variante;edInit();e3Init();wishInit();
 $("#toprop2").onclick=()=>{location.hash="propositions"};
 document.querySelectorAll("#rtabs button").forEach(b=>b.onclick=()=>setRTab(b.dataset.rt));
 $("#toprop").onclick=()=>{location.hash="propositions"};
