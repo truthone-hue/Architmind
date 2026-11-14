@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-wlPr5BE3hkz51muItM4lFKdPhJUkxl7lu6ggbLm86uU=' 'sha256-hB3a8yPZi15dIAnbecefMc+O/qm3s7NKBIat2NImSeI=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-jA0XDOtU6OQpqSRwwovdm+Zh2Kb2GO2CUqu07zTHFuo=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-wlPr5BE3hkz51muItM4lFKdPhJUkxl7lu6ggbLm86uU=' 'sha256-hB3a8yPZi15dIAnbecefMc+O/qm3s7NKBIat2NImSeI=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-qskk3kDrXxjn8ZAKXjPy4OJXlZZlhF54uzU7uw9xpRI=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -752,9 +752,9 @@ details.advbox[open]>fieldset{margin-top:10px}
 .red-row{display:flex;gap:10px;margin-top:6px}.red-row button{flex:1;min-height:48px}
 .red-foot{display:flex;gap:8px;align-items:center}.red-foot button{min-height:48px}
 @media (min-width:900px){.red-in{display:grid;grid-template-columns:minmax(0,1fr) 320px;grid-template-rows:auto minmax(0,1fr) auto;column-gap:14px}.red-head{grid-column:1/3}#red-svg{grid-row:2/4}.red-panel{align-self:start}.red-foot{align-self:end;flex-wrap:wrap}}
-/* Éditeur 3D (ordinateur seulement) */
-#edit3d{display:none}
-@media (min-width:1024px) and (pointer:fine){#edit3d:not([hidden]){display:inline-flex}}
+/* Éditeur 3D (ordinateur et téléphone) */
+#edit3d{display:inline-flex}
+#edit3d[hidden]{display:none}
 #e3d{position:fixed;inset:0;z-index:125;background:var(--ground);display:flex;flex-direction:column;gap:10px;padding:12px}
 #e3d[hidden]{display:none}
 .e3d-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
@@ -763,14 +763,15 @@ details.advbox[open]>fieldset{margin-top:10px}
 .e3d-tb button{min-height:34px;padding:0 10px;border-radius:999px;background:transparent;color:var(--ink);font-size:13.5px;border:0;box-shadow:none}
 .e3d-tb button[aria-pressed="true"]{background:var(--ink);color:var(--card)}
 .e3d-top select{min-height:38px;width:auto;font-size:14px;padding:0 10px}
-.e3d-top>.ghost,.e3d-top>#e3d-apply{min-height:38px;padding:0 14px;font-size:14px}
+.e3d-top .ghost,.e3d-top #e3d-apply{min-height:38px;padding:0 14px;font-size:14px}
+.e3d-strip,.e3d-grp{display:contents}
 #e3d-cut[aria-pressed="true"],#e3d-roof[aria-pressed="false"]{border-color:var(--accent);color:var(--accent)}
 #e3d-undo,#e3d-redo{width:38px;padding:0;font-size:18px}
 .e3d-sp{flex:1}
 .e3d-main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:10px}
 .e3d-view{position:relative;min-height:0;border-radius:var(--r-l);overflow:hidden;border:1px solid var(--hair);background:#dfe3e2}
 .e3d-view canvas{display:block;width:100%!important;height:100%!important;touch-action:none}
-.e3d-hint{position:absolute;left:12px;bottom:12px;z-index:2;max-width:calc(100% - 24px);padding:8px 12px;border-radius:12px;background:rgba(15,18,17,.78);color:#fff;font-size:13px;pointer-events:none}
+.e3d-hint{position:absolute;left:12px;bottom:12px;z-index:2;transition:opacity .4s;max-width:calc(100% - 24px);padding:8px 12px;border-radius:12px;background:rgba(15,18,17,.78);color:#fff;font-size:13px;pointer-events:none}
 .e3d-side{min-height:0;overflow:auto;display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:var(--r-l);background:var(--card);border:1px solid var(--hair)}
 .e3d-side .e3d-h{display:flex;flex-direction:column;gap:2px;margin-bottom:4px}.e3d-side .e3d-h b{font-size:16px}
 .e3d-side .sub{margin:0;font-size:13px}
@@ -778,6 +779,44 @@ details.advbox[open]>fieldset{margin-top:10px}
 .e3d-side .opt{display:flex;flex-wrap:wrap;gap:4px}.e3d-side .opt button{min-height:32px;padding:0 10px;font-size:13px}
 .e3d-side .sw{display:flex;flex-wrap:wrap;gap:6px}.e3d-side .sw button{width:26px;height:26px;min-height:0;padding:0;border-radius:50%;border:2px solid var(--hair)}
 .e3d-side .sw button[aria-pressed="true"]{outline:2px solid var(--accent);outline-offset:2px}
+/* écran tactile : boutons à la taille du doigt */
+@media (pointer:coarse){
+  .e3d-tb button{min-height:40px;padding:0 12px}
+  .e3d-top .ghost,.e3d-top #e3d-apply,.e3d-top select{min-height:44px}
+  #e3d-undo,#e3d-redo{width:44px}
+  .e3d-side .opt button{min-height:40px;padding:0 12px}
+  .e3d-side .sw button{width:34px;height:34px}
+  .e3d-side .ghost{min-height:44px}
+}
+/* écran étroit (téléphone tenu debout) : la maquette en haut, les réglages dessous ; tout sauf le téléphone couché */
+@media (max-width:760px) and (orientation:portrait),(max-width:760px) and (min-height:521px),(max-width:760px) and (pointer:fine),(max-width:760px) and (pointer:none){
+  #e3d{padding:8px 8px max(8px,env(safe-area-inset-bottom));gap:8px}
+  .e3d-top{gap:6px}
+  .e3d-top h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}
+  .e3d-sp{display:none}
+  .e3d-top>#e3d-undo,.e3d-top>#e3d-redo,.e3d-top>#e3d-cancel,.e3d-top>#e3d-apply{order:1}
+  .e3d-top>#e3d-cancel{margin-left:auto}
+  .e3d-strip>.e3d-tb,.e3d-grp{order:2;display:flex;align-items:center;gap:6px;flex:1 1 100%;min-width:0;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;overscroll-behavior-x:contain}
+  .e3d-grp{order:3;padding-bottom:1px}
+  .e3d-strip>.e3d-tb::-webkit-scrollbar,.e3d-grp::-webkit-scrollbar{display:none}
+  .e3d-tb button,.e3d-grp>.e3d-tb,.e3d-grp>select,.e3d-grp>.ghost{flex:0 0 auto;white-space:nowrap}
+  .e3d-main{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(150px,42%);gap:8px}
+  .e3d-side{padding:12px 14px}
+  .e3d-hint{left:8px;bottom:8px;max-width:calc(100% - 16px);font-size:12px;padding:6px 10px}
+}
+/* téléphone couché : une seule ligne d'outils qui défile, la maquette à gauche des réglages */
+@media (max-height:520px) and (orientation:landscape) and (pointer:coarse){
+  #e3d{padding:6px max(6px,env(safe-area-inset-right)) max(6px,env(safe-area-inset-bottom)) max(6px,env(safe-area-inset-left));gap:6px}
+  .e3d-top{flex-wrap:nowrap;gap:5px}
+  .e3d-top h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}
+  .e3d-sp{display:none}
+  .e3d-strip{display:flex;align-items:center;gap:5px;flex:1 1 0;min-width:0;overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain}
+  .e3d-strip::-webkit-scrollbar{display:none}
+  .e3d-strip .e3d-tb,.e3d-strip select,.e3d-strip .ghost,.e3d-tb button{flex:0 0 auto;white-space:nowrap}
+  .e3d-main{grid-template-columns:minmax(0,1fr) min(300px,40vw);gap:6px}
+  .e3d-side{padding:10px 12px}
+  .e3d-hint{font-size:12px;padding:6px 10px}
+}
 .e3d-side .swnone{background:var(--card);color:var(--muted);font-size:13px}
 .e3d-rng{display:flex;align-items:center;gap:10px}.e3d-rng input{flex:1}.e3d-rng output{min-width:62px;text-align:right;font-size:13px;font-variant-numeric:tabular-nums}
 .e3d-num{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}.e3d-num label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted)}.e3d-num input{min-height:38px;font-size:14px}
@@ -1333,7 +1372,7 @@ window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.docume
     <div class="resacts reveal d1">
       <a class="btn ghostbtn" href="#creation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/></svg>Changer les réglages</a>
       <button type="button" class="ghost" id="editrooms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.500" y="3.500" width="17" height="17" rx="2"/><path d="M12 3.500v17M9 9l-2.500 3L9 15M15 9l2.500 3L15 15"/></svg>Modifier les pièces</button>
-      <button type="button" class="ghost" id="edit3d" title="Éditeur 3D complet, sur ordinateur (offre Max)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.500v9L12 21l-8-4.500v-9z"/><path d="M12 12l8-4.500M12 12v9M12 12L4 7.500"/></svg>Éditeur 3D</button>
+      <button type="button" class="ghost" id="edit3d" title="Éditeur 3D complet (offre Max)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.500v9L12 21l-8-4.500v-9z"/><path d="M12 12l8-4.500M12 12v9M12 12L4 7.500"/></svg>Éditeur 3D</button>
       <button type="button" class="ghost" id="var2">Autre variante</button>
       <button type="button" class="ghost" id="toprop2">Voir 3 propositions</button>
     </div>
@@ -1502,15 +1541,19 @@ window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.docume
 <div id="e3d" hidden role="dialog" aria-modal="true" aria-labelledby="e3d-title">
   <div class="e3d-top">
     <h2 id="e3d-title">Éditeur 3D</h2>
+    <div class="e3d-strip">
     <div class="e3d-tb" role="toolbar" aria-label="Outils">
       <button type="button" data-tool="select" aria-pressed="true" title="Sélection (V)">Sélection</button><button type="button" data-tool="win" aria-pressed="false" title="Ajouter une fenêtre (F)">+ Fenêtre</button><button type="button" data-tool="baie" aria-pressed="false" title="Ajouter une baie vitrée (B)">+ Baie</button><button type="button" data-tool="door" aria-pressed="false" title="Ajouter une porte (P)">+ Porte</button><button type="button" data-tool="measure" aria-pressed="false" title="Mesurer (M)">Mesure</button>
     </div>
-    <div class="e3d-tb" role="toolbar" aria-label="Vues">
-      <button type="button" data-cam="iso" aria-pressed="true">3D</button><button type="button" data-cam="top" aria-pressed="false">Dessus</button><button type="button" data-cam="face" aria-pressed="false">Face</button><button type="button" data-cam="back" aria-pressed="false">Arrière</button><button type="button" data-cam="left" aria-pressed="false">Gauche</button><button type="button" data-cam="right" aria-pressed="false">Droite</button>
+    <div class="e3d-grp">
+      <div class="e3d-tb" role="toolbar" aria-label="Vues">
+        <button type="button" data-cam="iso" aria-pressed="true">3D</button><button type="button" data-cam="top" aria-pressed="false">Dessus</button><button type="button" data-cam="face" aria-pressed="false">Face</button><button type="button" data-cam="back" aria-pressed="false">Arrière</button><button type="button" data-cam="left" aria-pressed="false">Gauche</button><button type="button" data-cam="right" aria-pressed="false">Droite</button>
+      </div>
+      <select id="e3d-lv" aria-label="Niveau affiché"></select>
+      <button type="button" class="ghost" id="e3d-cut" aria-pressed="false" title="Retirer les plafonds pour voir le niveau comme sur un plan">Coupe</button>
+      <button type="button" class="ghost" id="e3d-roof" aria-pressed="true">Toit</button>
     </div>
-    <select id="e3d-lv" aria-label="Niveau affiché"></select>
-    <button type="button" class="ghost" id="e3d-cut" aria-pressed="false" title="Retirer les plafonds pour voir le niveau comme sur un plan">Coupe</button>
-    <button type="button" class="ghost" id="e3d-roof" aria-pressed="true">Toit</button>
+    </div>
     <span class="e3d-sp"></span>
     <button type="button" class="ghost" id="e3d-undo" aria-label="Annuler la dernière modification" title="Annuler (Ctrl+Z)">↶</button>
     <button type="button" class="ghost" id="e3d-redo" aria-label="Rétablir la modification" title="Rétablir (Ctrl+Y)">↷</button>
@@ -4174,7 +4217,7 @@ function refreshOffer(){
 }
 function limitReached(){toast(`Limite quotidienne atteinte (${O().quota} plans). Passez à une offre supérieure.`)}
 
-const NEWS=[{"id": "2026-11-13-grands-projets", "date": "2026-11-13T21:00:00Z", "titre": "Nouveau : les grands projets", "texte": "Avec l'offre Max, dessinez une cité résidentielle, une résidence d'immeubles, un marché couvert, une école ou un centre de santé, avec le plan, le coût (voirie et réseaux compris) et la maquette 3D. Sur ordinateur, l'éditeur 3D les modifie pièce par pièce, comme une maison. Les plans suivent des principes publiés d'architectes reconnus d'Afrique de l'Ouest, comme Francis Kéré et Mariam Kamara : classes autour d'une cour, galerie d'attente ombragée, halle d'étals avec boutiques au pourtour.", "action": "creation", "titre_en": "New: large projects", "texte_en": "With the Max plan, design a housing estate, a residence of apartment buildings, a covered market, a school or a health centre, with the plan, the cost (roads and utilities included) and the 3D model. On a computer, the 3D editor changes them room by room, like a house. The plans follow published principles of renowned West African architects, such as Francis Kéré and Mariam Kamara: classrooms around a courtyard, a shaded waiting gallery, a market hall of stalls with shops around it."}, {"id": "2026-11-13-editeur-3d", "date": "2026-11-13T19:30:00Z", "titre": "Nouveau : l'éditeur 3D sur ordinateur", "texte": "Avec l'offre Max, sur ordinateur, le bouton « Éditeur 3D » sous le plan ouvre la maquette comme dans un logiciel d'architecture : faites glisser les cloisons, ajoutez ou supprimez fenêtres, baies et portes, réglez la hauteur sous plafond, la toiture et les sols pièce par pièce, mesurez et changez de vue. Les immeubles sont pris en charge : une modification faite sur un étage courant s'applique à tous les étages identiques. Le plan et le coût suivent vos modifications.", "action": "creation", "titre_en": "New: the 3D editor on computer", "texte_en": "With the Max plan, on a computer, the \"3D editor\" button below the plan opens the model as in architecture software: drag partitions, add or remove windows, glazed openings and doors, set the ceiling height, the roof and the floors room by room, measure and change views. Apartment buildings are supported: a change made on a typical floor applies to all identical floors. The plan and the cost follow your changes."}, {"id": "2026-11-13-anglais", "date": "2026-11-13T16:30:00Z", "titre": "Nouveau : Architmind CI en anglais", "texte": "Le site existe maintenant en anglais. Utilisez le bouton EN / FR du menu pour changer de langue. Plans, devis, maquette 3D, dossier PDF, notifications et pages légales sont traduits ; un navigateur réglé en anglais ouvre directement le site dans cette langue.", "action": "creation", "titre_en": "New: Architmind CI in English", "texte_en": "The site is now available in English. Use the EN / FR button in the menu to switch language. Plans, quotes, the 3D model, the PDF file, notifications and legal pages are translated; a browser set to English opens the site directly in that language."}, {"id": "2026-11-12-devis-par-lot", "date": "2026-11-12T22:15:00Z", "titre": "Nouveau : le devis estimatif par lot", "texte": "Le coût des travaux est maintenant détaillé comme chez un économiste de la construction : dix lots, du terrassement à la peinture, avec les quantités mesurées sur votre plan, les prix unitaires, les imprévus, la fourchette basse et haute, le coût au m² comparé au marché ivoirien, ce qui reste à prévoir en plus et des conseils pour réduire la facture. Le devis complet est aussi dans le dossier PDF.", "lien": "#resultat", "titre_en": "New: the estimated quote by trade", "texte_en": "The building cost is now broken down the way a quantity surveyor does it: ten trades, from earthworks to painting, with quantities measured on your plan, unit prices, contingencies, the low and high range, the cost per m² compared with the Ivorian market, what to budget on top and tips to cut the bill. The full quote is also in the PDF file."}, {"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation", "titre_en": "New: houses modelled on real homes", "texte_en": "The plans and the 3D model now follow real houses for each level of finish: low-cost home, estate villa, high-end villa, large villa. Walls, roof and windows adapt to your city, in the 11 countries covered. Your saved projects keep their plan."}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation", "titre_en": "New: colours in the 3D model", "texte_en": "The 3D model and the guided tour take on the colours of your level of finish: façade, floors and walls, with a feature wall in the living spaces and bedrooms."}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation", "titre_en": "New: upper floors for shops and offices", "texte_en": "In Create, shops and offices can now have 1 or 2 upper floors. You also choose their style and can describe your wishes in a few words, as for a house."}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation", "titre_en": "New: shop and office plans", "texte_en": "In Create, choose \"Shops\" or \"Offices\" to get the plan, the cost and the 3D model. Included in the Medium and Max plans."}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation", "titre_en": "New: guided tour in 3D", "texte_en": "In the 3D tab of a plan, \"Guided tour\" shows the model from above, then walks through the building room by room."}];
+const NEWS=[{"id": "2026-11-14-editeur-3d-telephone", "date": "2026-11-14T12:00:00Z", "titre": "Nouveau : l'éditeur 3D sur téléphone", "texte": "Avec l'offre Max, le bouton « Éditeur 3D » sous le plan est maintenant aussi sur téléphone. Touchez une pièce, un mur, une porte ou une fenêtre pour la modifier, faites tourner la maquette avec un doigt et zoomez avec deux doigts. Tout y est, comme sur ordinateur : cloisons, ouvertures, toiture, façade, sols, vues et mesure, pour les maisons comme pour les grands projets.", "action": "creation", "titre_en": "New: the 3D editor on your phone", "texte_en": "With the Max plan, the \"3D editor\" button below the plan is now on phones too. Tap a room, a wall, a door or a window to change it, turn the model with one finger and zoom with two. Everything is there, as on a computer: partitions, openings, roof, façade, floors, views and measuring, for houses and large projects alike."}, {"id": "2026-11-13-grands-projets", "date": "2026-11-13T21:00:00Z", "titre": "Nouveau : les grands projets", "texte": "Avec l'offre Max, dessinez une cité résidentielle, une résidence d'immeubles, un marché couvert, une école ou un centre de santé, avec le plan, le coût (voirie et réseaux compris) et la maquette 3D. Sur ordinateur, l'éditeur 3D les modifie pièce par pièce, comme une maison. Les plans suivent des principes publiés d'architectes reconnus d'Afrique de l'Ouest, comme Francis Kéré et Mariam Kamara : classes autour d'une cour, galerie d'attente ombragée, halle d'étals avec boutiques au pourtour.", "action": "creation", "titre_en": "New: large projects", "texte_en": "With the Max plan, design a housing estate, a residence of apartment buildings, a covered market, a school or a health centre, with the plan, the cost (roads and utilities included) and the 3D model. On a computer, the 3D editor changes them room by room, like a house. The plans follow published principles of renowned West African architects, such as Francis Kéré and Mariam Kamara: classrooms around a courtyard, a shaded waiting gallery, a market hall of stalls with shops around it."}, {"id": "2026-11-13-editeur-3d", "date": "2026-11-13T19:30:00Z", "titre": "Nouveau : l'éditeur 3D sur ordinateur", "texte": "Avec l'offre Max, sur ordinateur, le bouton « Éditeur 3D » sous le plan ouvre la maquette comme dans un logiciel d'architecture : faites glisser les cloisons, ajoutez ou supprimez fenêtres, baies et portes, réglez la hauteur sous plafond, la toiture et les sols pièce par pièce, mesurez et changez de vue. Les immeubles sont pris en charge : une modification faite sur un étage courant s'applique à tous les étages identiques. Le plan et le coût suivent vos modifications.", "action": "creation", "titre_en": "New: the 3D editor on computer", "texte_en": "With the Max plan, on a computer, the \"3D editor\" button below the plan opens the model as in architecture software: drag partitions, add or remove windows, glazed openings and doors, set the ceiling height, the roof and the floors room by room, measure and change views. Apartment buildings are supported: a change made on a typical floor applies to all identical floors. The plan and the cost follow your changes."}, {"id": "2026-11-13-anglais", "date": "2026-11-13T16:30:00Z", "titre": "Nouveau : Architmind CI en anglais", "texte": "Le site existe maintenant en anglais. Utilisez le bouton EN / FR du menu pour changer de langue. Plans, devis, maquette 3D, dossier PDF, notifications et pages légales sont traduits ; un navigateur réglé en anglais ouvre directement le site dans cette langue.", "action": "creation", "titre_en": "New: Architmind CI in English", "texte_en": "The site is now available in English. Use the EN / FR button in the menu to switch language. Plans, quotes, the 3D model, the PDF file, notifications and legal pages are translated; a browser set to English opens the site directly in that language."}, {"id": "2026-11-12-devis-par-lot", "date": "2026-11-12T22:15:00Z", "titre": "Nouveau : le devis estimatif par lot", "texte": "Le coût des travaux est maintenant détaillé comme chez un économiste de la construction : dix lots, du terrassement à la peinture, avec les quantités mesurées sur votre plan, les prix unitaires, les imprévus, la fourchette basse et haute, le coût au m² comparé au marché ivoirien, ce qui reste à prévoir en plus et des conseils pour réduire la facture. Le devis complet est aussi dans le dossier PDF.", "lien": "#resultat", "titre_en": "New: the estimated quote by trade", "texte_en": "The building cost is now broken down the way a quantity surveyor does it: ten trades, from earthworks to painting, with quantities measured on your plan, unit prices, contingencies, the low and high range, the cost per m² compared with the Ivorian market, what to budget on top and tips to cut the bill. The full quote is also in the PDF file."}, {"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation", "titre_en": "New: houses modelled on real homes", "texte_en": "The plans and the 3D model now follow real houses for each level of finish: low-cost home, estate villa, high-end villa, large villa. Walls, roof and windows adapt to your city, in the 11 countries covered. Your saved projects keep their plan."}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation", "titre_en": "New: colours in the 3D model", "texte_en": "The 3D model and the guided tour take on the colours of your level of finish: façade, floors and walls, with a feature wall in the living spaces and bedrooms."}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation", "titre_en": "New: upper floors for shops and offices", "texte_en": "In Create, shops and offices can now have 1 or 2 upper floors. You also choose their style and can describe your wishes in a few words, as for a house."}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation", "titre_en": "New: shop and office plans", "texte_en": "In Create, choose \"Shops\" or \"Offices\" to get the plan, the cost and the 3D model. Included in the Medium and Max plans."}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation", "titre_en": "New: guided tour in 3D", "texte_en": "In the 3D tab of a plan, \"Guided tour\" shows the model from above, then walks through the building room by room."}];
 /* ---------- Comptes : connexion par e-mail et mot de passe (Firebase) ---------- */
 const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false,verified:false};
 // Administrateurs : empreintes SHA-256 des adresses e-mail (config.js), pour ne pas publier les adresses.
@@ -4837,7 +4880,7 @@ let ED=null;
 Object.assign(window,{edWalls,edMove,edKey,r2});window.__am={get model(){return model},get cur(){return cur},get e3(){return E3}};try{Object.defineProperty(window,"ED",{get:()=>ED,configurable:true})}catch(x){}
 function edOpen(){
   if(!model) return;
-  if(model.isTower||model.pro){toast(model.pro&&model.pro.big?"Les pièces des grands projets se modifient avec l'éditeur 3D, sur ordinateur (offre Max).":"La modification des pièces est disponible pour les villas, duplex et maisons R+2.");return}
+  if(model.isTower||model.pro){toast(model.pro&&model.pro.big?"Les pièces des grands projets se modifient avec l'éditeur 3D (offre Max).":"La modification des pièces est disponible pour les villas, duplex et maisons R+2.");return}
   if(!O().ed){toast(`La modification des pièces est incluse dans les offres ${OFFERS.moyen.nom} et ${OFFERS.max.nom}.`);location.hash="tarifs";return}
   const base=compute(Object.assign({},cur,{ed:null}));
   ED={k:edKey(base.levels),base,li:Math.min(level,model.levels.length-1),L:model.levels.map(L=>L.map(r=>Object.assign({},r))),sel:null,wall:null,drag:null,changed:false};
@@ -4902,12 +4945,12 @@ function edInit(){
   $("#editrooms").onclick=edOpen;
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&ED) edClose()});
 }
-/* ---------- Éditeur 3D (ordinateur, offre Max) ----------
+/* ---------- Éditeur 3D (ordinateur et téléphone, offre Max) ----------
    Comme dans un logiciel d'architecture : on sélectionne dans la maquette une pièce, une cloison, un mur, une porte ou une
    fenêtre, on la modifie, on ajoute des ouvertures, on règle la toiture et la hauteur sous plafond, on mesure, on change de vue.
    Tout est rangé dans le projet (p.ed : pièces, sols, couleurs, ouvertures ; p.o3 : toiture, hauteurs, façade…) et réappliqué
    par compute() : les plans, le coût, les téléchargements et la maquette suivent. Sur téléphone, « Modifier les pièces » reste l'outil. */
-const E3PC=()=>matchMedia("(min-width:1024px) and (pointer:fine)").matches;
+const E3T=()=>matchMedia("(pointer:coarse)").matches; // écran tactile : on dit « touchez » au lieu de « cliquez »
 const E3KEYS=["roof","roofMat","roofColor","facade","wall","frame","floor","pitch","ov","hsp"];
 const E3FL=[["carrelage","Carrelage"],["parquet","Parquet"],["beton","Béton ciré"],["marbre","Marbre"],["granit","Granit"]];
 const E3TYPES={win:"Fenêtre",baie:"Baie vitrée",door:"Porte",entry:"Porte d'entrée"};
@@ -4983,7 +5026,9 @@ function e3After(){
 function e3View(v,quiet){if(!viewer) return;E3.view=v;const V=viewer,m=E3.m,HT=V.base+m.levels.length*(H3+SL3),big=Math.max(m.bw,m.bd,HT);
   const c=new THREE.Vector3(V.X(m.bx+m.bw/2),Math.max(1.2,HT*0.4),V.Z(m.by+m.bd/2)),d=big*(v==="iso"?1.6:3.6);
   const P={iso:[0.55,0.42,0.9],top:[0,1,0.0001],face:[0,0.18,1],back:[0,0.18,-1],left:[-1,0.18,0],right:[1,0.18,0]}[v]||[0.55,0.42,0.9];
-  const n=new THREE.Vector3(...P).normalize();e3Lim();V.controls.target.copy(c);V.cam.position.copy(c).addScaledVector(n,v==="iso"?d*1.1:d*1.9);V.controls.update();
+  // image plus haute que large (téléphone tenu debout) : la caméra recule pour que tout le bâtiment reste visible, sans dépasser le fond de scène
+  const base=v==="iso"?d*1.1:d*1.9,k=Math.max(1,(v==="iso"?1.3:0.62)/(V.cam.aspect||1.5)),dist=Math.max(base,Math.min(base*k,(V.cam.far||800)*0.85-big/2));
+  const n=new THREE.Vector3(...P).normalize();e3Lim();V.controls.target.copy(c);V.cam.position.copy(c).addScaledVector(n,dist);V.controls.update();
   if(!quiet) e3Tools()}
 /* --- murs, ouvertures, pièces du plan de travail --- */
 function e3Wall(li,key){const O=openings(E3.m,li),[t,a,b]=key.split(":");
@@ -5013,15 +5058,18 @@ function e3Pick(ev){const V=viewer;if(!V) return null;const r=V.renderer.domElem
 function e3Click(ev){
   const P=e3Pick(ev);if(!P) return;const h=P.pick;
   if(E3.tool==="measure"){const pt=(P.first||{}).point;if(!pt) return;if(E3.meas.length>=2) E3.meas=[];E3.meas.push(pt.clone());e3After();return}
-  if(E3.tool!=="select"){if(!h||(h.object.userData.pick.t!=="wall"&&h.object.userData.pick.t!=="op")){toast("Cliquez sur un mur pour y placer l'ouverture.");return}
+  if(E3.tool!=="select"){if(!h||(h.object.userData.pick.t!=="wall"&&h.object.userData.pick.t!=="op")){toast(E3T()?"Touchez un mur pour y placer l'ouverture.":"Cliquez sur un mur pour y placer l'ouverture.");return}
     const u=h.object.userData.pick,at=u.o==="h"?h.point.x+viewer.W/2:h.point.z+viewer.D/2;e3Add(u.li,u.key,E3.tool,at);return}
   if(!h){E3.sel=null;e3After();e3Panel();return}
   const u=h.object.userData.pick;
   E3.sel=u.t==="room"?{t:"room",li:u.li,i:u.i}:u.t==="op"?{t:"op",li:u.li,key:u.key,mid:(u.d0+u.d1)/2}:{t:"wall",li:u.li,key:u.key};
   e3After();e3Panel()}
 function e3Init(){
-  const host=$("#e3d-view");if(!host) return;let down=null,drag=null;
-  host.addEventListener("pointerdown",e=>{if(!E3||!viewer||e.target!==viewer.renderer.domElement) return;down={x:e.clientX,y:e.clientY};viewer.controls.enabled=true;
+  const host=$("#e3d-view");if(!host) return;let down=null,drag=null;const fingers=new Set();let multi=false;
+  host.addEventListener("pointerdown",e=>{if(!E3||!viewer||e.target!==viewer.renderer.domElement) return;
+    if(e.isPrimary){fingers.clear();multi=false} // premier doigt posé : on repart de zéro, même si un doigt d'avant n'a jamais été signalé comme relevé
+    fingers.add(e.pointerId);if(fingers.size>1){multi=true;down=null;if(drag){drag=null;e3After()}viewer.controls.enabled=true;return}
+    down={x:e.clientX,y:e.clientY};viewer.controls.enabled=true;
     // glisser une cloison sélectionnée
     const s=E3.sel;if(E3.tool==="select"&&s&&s.t==="wall"){const P=e3Pick(e),u=P&&P.pick&&P.pick.object.userData.pick;
       if(u&&u.t==="wall"&&u.key===s.key){const w=e3Part(s.li,s.key);if(w&&w.hi-w.lo>0.04){drag={w,li:s.li,d:0,y:e3Y(s.li)+1.2};viewer.controls.enabled=false;try{host.setPointerCapture(e.pointerId)}catch(x){}}}}},true);
@@ -5030,11 +5078,14 @@ function e3Init(){
     if(!ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),-drag.y),pt)) return;
     const w=drag.w,at=w.o==="v"?pt.x+V.W/2:pt.z+V.D/2,sn=Math.max(0.05,E3.snap),d=Math.max(w.lo,Math.min(w.hi,Math.round((at-w.c)/sn)*sn));drag.d=d;
     if(E3.hlWall){E3.hlWall.position.copy(E3.hlWall.userData.base);if(w.o==="v") E3.hlWall.position.x+=d;else E3.hlWall.position.z+=d}
-    $("#e3d-hint").textContent=`Déplacement : ${d>0?"+":""}${dec(d,2)} m · relâchez pour appliquer`});
-  const up=e=>{if(!E3) return;if(drag){const D=drag;drag=null;if(viewer) viewer.controls.enabled=true;
+    $("#e3d-hint").style.opacity="";$("#e3d-hint").textContent=`Déplacement : ${d>0?"+":""}${dec(d,2)} m · relâchez pour appliquer`});
+  const up=e=>{fingers.delete(e.pointerId);if(multi){if(!fingers.size) multi=false;down=null;return}
+    if(!E3) return;if(drag){const D=drag;drag=null;if(viewer) viewer.controls.enabled=true;
       if(Math.abs(D.d)>0.001){const s=E3.sel;e3Do(()=>{const w=e3Part(D.li,s.key);if(!w||!edMove(w,D.d)) throw new Error("mv")})}else e3After();down=null;return}
     if(down&&Math.hypot(e.clientX-down.x,e.clientY-down.y)<5&&viewer&&e.target===viewer.renderer.domElement) e3Click(e);down=null};
-  host.addEventListener("pointerup",up);host.addEventListener("pointercancel",()=>{drag=null;down=null;if(viewer) viewer.controls.enabled=true});
+  host.addEventListener("pointerup",up);host.addEventListener("pointercancel",e=>{fingers.delete(e.pointerId);if(!fingers.size) multi=false;drag=null;down=null;if(viewer) viewer.controls.enabled=true});
+  // doigt relevé hors de la maquette : on l'oublie aussi
+  ["pointerup","pointercancel"].forEach(t=>addEventListener(t,e=>{if(!host.contains(e.target)){fingers.delete(e.pointerId);if(!fingers.size) multi=false}}));
   $$("#e3d [data-tool]").forEach(b=>b.onclick=()=>{E3.tool=b.dataset.tool;if(E3.tool!=="measure") E3.meas=[];e3After();e3Tools()});
   $$("#e3d [data-cam]").forEach(b=>b.onclick=()=>e3View(b.dataset.cam));
   $("#e3d-lv").onchange=e=>{E3.lvl=+e.target.value;E3.cut=E3.lvl>=0;e3After();e3Panel();e3Tools()};
@@ -5062,11 +5113,14 @@ function e3Tools(){if(!E3) return;
   $$("#e3d [data-cam]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.cam===E3.view)));
   $("#e3d-cut").setAttribute("aria-pressed",String(E3.cut));$("#e3d-roof").setAttribute("aria-pressed",String(E3.roof));
   $("#e3d-undo").disabled=!E3.hist.length;$("#e3d-redo").disabled=!E3.fut.length;$("#e3d-lv").value=String(E3.lvl);e3Hint()}
-function e3Hint(){const h=$("#e3d-hint");if(!h||!E3) return;
-  if(E3.tool==="measure"){if(E3.meas.length===2){const [a,b]=E3.meas;h.textContent=`Distance : ${dec(a.distanceTo(b),2)} m · à plat ${dec(Math.hypot(a.x-b.x,a.z-b.z),2)} m · hauteur ${dec(Math.abs(a.y-b.y),2)} m · cliquez pour recommencer`}
-    else h.textContent=E3.meas.length?"Cliquez sur le second point":"Mesure : cliquez sur deux points de la maquette";return}
-  h.textContent=E3.tool==="select"?"Cliquez sur une pièce, un mur, une porte ou une fenêtre · glissez pour tourner, clic droit pour vous déplacer, molette pour zoomer"
-    :`${E3TYPES[E3.tool]||"Porte"} : cliquez sur un mur pour la placer · Échap pour revenir à la sélection`}
+function e3Hint(){const h=$("#e3d-hint");if(!h||!E3) return;h.style.opacity="";clearTimeout(e3Hint.t);
+  // sur écran tactile, l'aide de la sélection s'efface après quelques secondes pour laisser voir la maquette
+  if(E3T()&&E3.tool==="select") e3Hint.t=setTimeout(()=>{if(E3&&E3.tool==="select") h.style.opacity="0"},7000);
+  if(E3.tool==="measure"){if(E3.meas.length===2){const [a,b]=E3.meas;h.textContent=`Distance : ${dec(a.distanceTo(b),2)} m · à plat ${dec(Math.hypot(a.x-b.x,a.z-b.z),2)} m · hauteur ${dec(Math.abs(a.y-b.y),2)} m · ${E3T()?"touchez pour recommencer":"cliquez pour recommencer"}`}
+    else h.textContent=E3.meas.length?(E3T()?"Touchez le second point":"Cliquez sur le second point"):(E3T()?"Mesure : touchez deux points de la maquette":"Mesure : cliquez sur deux points de la maquette");return}
+  const t=E3T();
+  h.textContent=E3.tool==="select"?(t?"Touchez une pièce, un mur, une porte ou une fenêtre · un doigt pour tourner, deux doigts pour zoomer ou vous déplacer":"Cliquez sur une pièce, un mur, une porte ou une fenêtre · glissez pour tourner, clic droit pour vous déplacer, molette pour zoomer")
+    :t?`${E3TYPES[E3.tool]||"Porte"} : touchez un mur pour la placer · touchez « Sélection » pour revenir`:`${E3TYPES[E3.tool]||"Porte"} : cliquez sur un mur pour la placer · Échap pour revenir à la sélection`}
 function e3Panel(){
   const P=$("#e3d-side");if(!P||!E3) return;const m=E3.m,s=E3.sel,o=Object.assign(defaults3d(m),E3.o3);
   const seg=(k,list,val)=>`<div class="opt" data-g="${k}">${list.map(([v,l])=>`<button type="button" data-k="${k}" data-v="${v}" aria-pressed="${String(val)===String(v)}">${l}</button>`).join("")}</div>`;
@@ -5098,7 +5152,7 @@ function e3Panel(){
       :w.ext?"":`<p class="sub">Cette cloison ne peut pas bouger : une pièce voisine est à sa taille minimale, ou c'est un mur porteur (escalier, patio, garage).</p>`)+
       (ok.length?`<div class="lab">Ajouter une ouverture au milieu du mur</div><div class="red-row e3d-add">${ok.map(k=>`<button type="button" class="ghost" data-add="${k}">${E3TYPES[k]}</button>`).join("")}</div>`:`<p class="sub">Ce mur ne peut pas recevoir d'ouverture.</p>`)}
   else{
-    html=`<div class="e3d-h"><b>Réglages du projet</b><span class="sub">Cliquez dans la maquette pour sélectionner un élément.</span></div>
+    html=`<div class="e3d-h"><b>Réglages du projet</b><span class="sub">${E3T()?"Touchez la maquette pour sélectionner un élément.":"Cliquez dans la maquette pour sélectionner un élément."}</span></div>
       <div class="lab">Hauteur sous plafond</div>${rng("hsp",2.5,3.6,0.05,o.hsp||2.9,"m","Hauteur sous plafond")}
       <div class="lab">Toiture</div>${seg("roof",[["plat","Toit plat"],["mono","Une pente"],["deux","Deux pentes"]],o.roof)}
       ${o.roof!=="plat"?`<div class="lab">Pente du toit</div>${rng("pitch",5,40,1,o.pitch||(o.roof==="deux"?24:10),"°","Pente du toit")}${seg("roofMat",[["tole","Tôle bac"],["tuile","Tuiles"]],o.roofMat)}`:""}
@@ -5670,8 +5724,8 @@ function faqData(){
     {g:"Maquette 3D",items:[
       ["Comment voir la maison en 3D ?",`La maquette est incluse dans les offres ${o.moyen.nom} et ${o.max.nom}. Sous le plan ou dans une proposition, choisissez la vue extérieure ou la vue intérieure. Glissez pour tourner, utilisez la molette ou deux doigts pour zoomer, et choisissez une pièce pour la visiter.`],
       ["La 3D ne s'affiche pas, que faire ?","Utilisez un navigateur récent (Chrome, Edge, Safari ou Firefox) et rechargez la page. Sur certains téléphones anciens, la 3D peut être lente ou indisponible ; le plan et le coût restent accessibles."],
-      ["Quels grands projets puis-je dessiner ?",`Avec l'offre ${o.max.nom} : une cité résidentielle (lots, voies, espaces verts et réserves, avec la maison type de chaque lot), une résidence d'immeubles (immeubles, voie d'accès, stationnement et jardins), un marché couvert, une école et un centre de santé, avec leur plan, leur coût et leur maquette 3D. Les plans suivent des principes publiés par des architectes reconnus d'Afrique de l'Ouest, sans copier leurs plans : Francis Kéré pour l'école de Gando, le lycée Schorge et la clinique de Léo, le marché central de Koudougou, Mariam Kamara pour le marché de Dandaji, Koffi & Diabaté pour Abatta Village. Sur ordinateur, l'éditeur 3D les modifie pièce par pièce, comme une maison ; pour une cité ou une résidence, il modifie la maison type ou l'immeuble type, recopié sur tous les lots. Ce sont des esquisses : un architecte, un géomètre et un bureau d'études doivent valider le projet avant le permis de construire.`],
-      ["Qu'est-ce que l'éditeur 3D ?",`Sur ordinateur, avec l'offre ${o.max.nom}, le bouton « Éditeur 3D » sous le plan ouvre la maquette comme dans un logiciel d'architecture : cliquez sur une pièce, une cloison, un mur, une porte ou une fenêtre pour la modifier, faites glisser les cloisons, ajoutez ou supprimez des fenêtres, baies et portes, réglez la hauteur sous plafond, le type, la pente et le débord du toit, la façade et les sols pièce par pièce. Vues de dessus, de face et de côté, coupe par niveau, mesure, annuler et rétablir. En cliquant sur « Appliquer », le plan, le coût et la maquette suivent vos modifications. Sur téléphone, « Modifier les pièces » reste disponible.`],
+      ["Quels grands projets puis-je dessiner ?",`Avec l'offre ${o.max.nom} : une cité résidentielle (lots, voies, espaces verts et réserves, avec la maison type de chaque lot), une résidence d'immeubles (immeubles, voie d'accès, stationnement et jardins), un marché couvert, une école et un centre de santé, avec leur plan, leur coût et leur maquette 3D. Les plans suivent des principes publiés par des architectes reconnus d'Afrique de l'Ouest, sans copier leurs plans : Francis Kéré pour l'école de Gando, le lycée Schorge et la clinique de Léo, le marché central de Koudougou, Mariam Kamara pour le marché de Dandaji, Koffi & Diabaté pour Abatta Village. L'éditeur 3D les modifie pièce par pièce, comme une maison, sur ordinateur comme sur téléphone ; pour une cité ou une résidence, il modifie la maison type ou l'immeuble type, recopié sur tous les lots. Ce sont des esquisses : un architecte, un géomètre et un bureau d'études doivent valider le projet avant le permis de construire.`],
+      ["Qu'est-ce que l'éditeur 3D ?",`Sur ordinateur comme sur téléphone, avec l'offre ${o.max.nom}, le bouton « Éditeur 3D » sous le plan ouvre la maquette comme dans un logiciel d'architecture : sélectionnez une pièce, une cloison, un mur, une porte ou une fenêtre pour la modifier, faites glisser les cloisons, ajoutez ou supprimez des fenêtres, baies et portes, réglez la hauteur sous plafond, le type, la pente et le débord du toit, la façade et les sols pièce par pièce. Vues de dessus, de face et de côté, coupe par niveau, mesure, annuler et rétablir. En appuyant sur « Appliquer », le plan, le coût et la maquette suivent vos modifications. Sur téléphone, faites tourner la maquette avec un doigt et zoomez avec deux doigts ; « Modifier les pièces » reste aussi disponible.`],
       [`Que permettent les outils de l'offre ${o.max.nom} ?`,"Changer la façade, la couleur des murs, le type et la couleur de la toiture, les menuiseries, le sol intérieur et l'heure de la journée, et afficher ou masquer la végétation et la voiture. Ces réglages sont enregistrés avec le projet."]]},
     {g:"Offres et projets",items:[
       ["Quelle offre choisir ?",`${o.basique.nom}, gratuite, pour esquisser (${q("basique")}), ${o.moyen.nom} pour présenter vos projets en 3D et télécharger vos plans (${q("moyen")}), ${o.max.nom} pour personnaliser la maquette, ${q("max")}. Les prix sont détaillés dans l'onglet Tarifs.`],
