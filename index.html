@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-o+/xBudFX3l9MLcmECdPupoYbiUNRCeIngTBbsanHuU=' 'sha256-YEqkUz5cmc7s+xXiYun7amwlSUUUWZLjsBRXSxH43RA=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-+ZNqsEB1mYO7fcuQrLJH0rzMIi1iSM1CDHE2nZUvBpg=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-o+/xBudFX3l9MLcmECdPupoYbiUNRCeIngTBbsanHuU=' 'sha256-YEqkUz5cmc7s+xXiYun7amwlSUUUWZLjsBRXSxH43RA=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-248FECwft2tCH5bDmIONqKsrMJydAcwLdgkdZ+drDUs=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -5965,18 +5965,20 @@ function area3D(host,m){
   if(!opts3d||opts3d._sig!==sg) opts3d=Object.assign(defaults3d(m),{_sig:sg});
   const st={mode:"ext",room:null,roomLi:0,spin:true,roof:true,upper:true,keep:false};
   host.innerHTML=`<div class="v3d">
-    <div class="v3dtop"><div class="tabs" data-r="mode"><button type="button" data-mode="ext" aria-pressed="true">Vue extérieure</button>${m.site?"":`<button type="button" data-mode="int" aria-pressed="false">Vue intérieure</button><button type="button" data-mode="tour" aria-pressed="false">Visite guidée</button>`}</div>
+    <div class="v3dtop"><div class="tabs" data-r="mode"><button type="button" data-mode="ext" aria-pressed="true">Vue extérieure</button><button type="button" data-mode="int" aria-pressed="false">Vue intérieure</button><button type="button" data-mode="tour" aria-pressed="false">Visite guidée</button></div>
       <span class="tag" data-r="hint">Glissez pour tourner · molette ou pincement pour zoomer</span></div>
     <div class="rooms" data-r="rooms" hidden></div>
     <div class="three" data-r="three"><div class="ctl" data-r="ctl"></div><div class="tourui" data-r="tour" hidden></div></div>
     <div data-r="tools"></div></div>`;
   const q=k=>host.querySelector(`[data-r="${k}"]`),three=q("three");
-  let rooms;
+  // cité ou résidence : la vue intérieure et la visite guidée se font dans la maison type (du modèle choisi) ou l'immeuble type, sur son terrain
+  const mi=m.site?m.unit:m,unitName=!m.site?"":m.type==="cite"?((m.units||[]).filter(x=>x.n>0).length>1?"Maison des lots "+LOT_L(m.mt||0):"Maison type"):"Immeuble type";
+  {const m=mi;let rooms;
   if(m.isTower&&!m.fam){rooms=[];m.levels.forEach((L,li)=>L.forEach(r=>{if(r.nolabel||r.t==="patio") return;if((li===0&&(r.n==="Hall d'entrée"||r.shop))||(li===1&&r.u===1&&r.n!=="Dégagement")||(li===m.levels.length-1&&r.n==="Terrasse sur toit")) rooms.push({n:r.n,li,u:r.u})}))}
   else rooms=m.levels.flatMap((L,li)=>L.filter(r=>r.t!=="patio"&&r.n!=="Dégagement"&&r.n!=="Couloir"&&!r.nolabel&&(r.t!=="out"||r.n==="Terrasse sur toit"||(m.pro&&m.pro.big&&r.gal&&r.n!=="Entrée"&&r.n!=="Préau"))&&!["Local technique","Gaine technique","Machinerie","Ascenseur","Palier"].includes(r.n)).map(r=>({n:r.n,li,u:r.u})));
   if(m.pro&&m.pro.kind==="com"){const L0=m.levels[0],u1=(L0.find(r=>r.shop)||{}).u;rooms=L0.filter(r=>r.shop).concat(L0.filter(r=>!r.shop&&r.t!=="out"&&r.u===u1)).map(r=>({n:r.n,li:0,u:r.u}))}
-  rooms=rooms.slice(0,40);
-  const lvShort=li=>((m.planLevels||[]).find(x=>x.li===li)||{short:lvName(li,true)}).short;
+  rooms=rooms.slice(0,40);var ROOMS=rooms}
+  const rooms=ROOMS,lvShort=li=>((mi.planLevels||[]).find(x=>x.li===li)||{short:lvName(li,true)}).short;
   const ctl=()=>{
     if(st.mode==="ext") q("ctl").innerHTML=`<button type="button" data-c="spin" aria-pressed="${st.spin}">Rotation</button><button type="button" data-c="roof" aria-pressed="${!st.roof}">Sans toit</button>${m.levels.length>1&&!m.site?`<button type="button" data-c="upper" aria-pressed="${!st.upper}">Masquer ${m.levels.length>2?"les étages":"l'étage"}</button>`:""}`;
     else q("ctl").innerHTML="";
@@ -5986,9 +5988,9 @@ function area3D(host,m){
       if(c==="upper"){st.upper=!st.upper;if(viewer){viewer.levels.forEach((g,i)=>{if(i>0) g.visible=st.upper});viewer.roofGrp.visible=st.roof&&st.upper}}
       ctl()});
     const rq=q("rooms");rq.hidden=st.mode!=="int";
-    if(st.mode==="int") rq.innerHTML=rooms.map((r,i)=>`<button type="button" data-i="${i}" aria-pressed="${r.n===st.room&&r.li===st.roomLi&&r.u===st.roomU}">${r.n}${m.levels.length>1?" · "+lvShort(r.li)+(m.isTower&&!m.fam&&r.u===1?" (appt A)":""):""}</button>`).join("");
+    if(st.mode==="int") rq.innerHTML=rooms.map((r,i)=>`<button type="button" data-i="${i}" aria-pressed="${r.n===st.room&&r.li===st.roomLi&&r.u===st.roomU}">${r.n}${mi.levels.length>1?" · "+lvShort(r.li)+(mi.isTower&&!mi.fam&&r.u===1?" (appt A)":""):""}</button>`).join("");
     rq.querySelectorAll("button").forEach(b=>b.onclick=()=>{const r=rooms[+b.dataset.i];st.room=r.n;st.roomLi=r.li;st.roomU=r.u;st.keep=false;go()});
-    q("hint").textContent=st.mode==="tour"?"La visite avance toute seule · glissez pour regarder autour de vous":st.mode==="int"?"Glissez pour regarder autour de vous · choisissez une pièce":"Glissez pour tourner · molette ou pincement pour zoomer";
+    q("hint").textContent=(unitName&&st.mode!=="ext"?trL(unitName)+" · ":"")+(st.mode==="tour"?trL("La visite avance toute seule · glissez pour regarder autour de vous"):st.mode==="int"?trL("Glissez pour regarder autour de vous · choisissez une pièce"):trL("Glissez pour tourner · molette ou pincement pour zoomer"));
     q("tour").hidden=st.mode!=="tour";
   };
   // visite guidée : carte de la pièce et commandes
@@ -5997,11 +5999,11 @@ function area3D(host,m){
   const floorName=r=>r.t==="out"?"Terrasse en bois":r.t==="wet"?"Carrelage antidérapant":r.t==="night"&&m.std!=="eco"&&/^(carrelage|marbre|granit)$/.test(opts3d.floor)?"Parquet":({carrelage:"Carrelage",parquet:"Parquet",beton:"Béton ciré",marbre:"Marbre",granit:"Granit"}[opts3d.floor]||"Carrelage");
   st.stops=rooms;
   st.onTour=info=>{const t=q("tour");if(!t||st.mode!=="tour") return;const r=info.room,sig=info.i+"|"+info.playing+"|"+(info.phase==="doll");if(t.dataset.sig===sig) return;t.dataset.sig=sig;
-    const card=info.phase==="doll"||!r?`<small>Vue d'ensemble</small><b>${typeLabel(m.p)}</b><span>${info.n} pièce${info.n>1?"s":""} à visiter</span>`
-      :`<small>Pièce ${info.i+1} sur ${info.n}${m.levels.length>1?" · "+lvShort(info.li):""}</small><b>${r.n}</b><span>${dec(r.w*r.h,1)} m² · ${floorName(r)}</span>`;
+    const card=info.phase==="doll"||!r?`<small>${unitName?trL(unitName):"Vue d'ensemble"}</small><b>${typeLabel(mi.p)}</b><span>${info.n} pièce${info.n>1?"s":""} à visiter</span>`
+      :`<small>Pièce ${info.i+1} sur ${info.n}${mi.levels.length>1?" · "+lvShort(info.li):""}</small><b>${r.n}</b><span>${dec(r.w*r.h,1)} m² · ${floorName(r)}</span>`;
     t.innerHTML=`<div class="tourcard" aria-live="polite">${card}</div><div class="tbtns"><button type="button" data-t="overview" aria-label="Revenir à la vue d'ensemble"${info.phase==="doll"?" disabled":""}>${tic("home")}</button><button type="button" data-t="prev" aria-label="Pièce précédente">${tic("prev")}</button><button type="button" data-t="toggle" aria-label="${info.playing?"Mettre la visite en pause":"Reprendre la visite"}">${tic(info.playing?"pause":"play")}</button><button type="button" data-t="next" aria-label="Pièce suivante">${tic("next")}</button></div>`;
     t.querySelectorAll("button").forEach(b=>b.onclick=()=>{if(viewer&&viewer.tour) viewer.tour[b.dataset.t]()})};
-  const go=()=>{ctl();q("tour").dataset.sig="";mount3D(three,m,opts3d,st);if(viewer&&!st.roof) viewer.roofGrp.visible=false};
+  const go=()=>{ctl();q("tour").dataset.sig="";mount3D(three,st.mode==="ext"?m:mi,opts3d,st);if(viewer&&!st.roof) viewer.roofGrp.visible=false};
   q("mode").querySelectorAll("button").forEach(b=>b.onclick=()=>{st.mode=b.dataset.mode;st.keep=false;
     if(st.mode==="int"&&!st.room){const s=rooms.find(r=>/^Séjour|^Étals|^Salle de classe|^Galerie d'attente/.test(r.n))||rooms[0];st.room=s.n;st.roomLi=s.li;st.roomU=s.u}
     q("mode").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));go()});
