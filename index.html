@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-RUAonzX+dnYUVcny1hJ8UfgtLWHv20uT6IdAuY+Bme0=' 'sha256-kVfChaktcXyM+lYRxkMPUV028ozOaIzJ1CZKoG0w1RY=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-jvkCCtutwvDNJnxHjI0CxssZ2skqK/VxvrzFtWkRM0U=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-k9g0/pk/nCCQ21QZFk01ThfrDY+lc4I1gCYuHL2X3Sw=' 'sha256-kVfChaktcXyM+lYRxkMPUV028ozOaIzJ1CZKoG0w1RY=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-/Agvk+YEMhkjr0X1ZbWz47NdK8D6aIdSMxGxRS93VOA=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -134,7 +134,7 @@ button:disabled{opacity:.45;cursor:default;transform:none}
 .lotmenu b{font-size:13px;padding:2px 6px 6px}.lotmenu button{justify-content:flex-start;text-align:left;min-height:40px;background:transparent;color:var(--ink);box-shadow:none;font-weight:500}
 .lotmenu button[aria-checked=true]{background:var(--ink);color:var(--card)}.lotmenu button.reset{margin-top:4px;box-shadow:inset 0 0 0 1px var(--hair)}
 #sheet [data-lot]{cursor:pointer}
-.lotm .row{align-items:flex-end}.lotm .lotx{flex:0 0 auto;min-height:44px}#lotadd{align-self:flex-start;min-height:44px}.lothint{font-size:12px;color:var(--muted)}#mtabs{margin-top:6px}
+.lotm .row{align-items:flex-end}.lotm .lotx{flex:0 0 auto;min-height:44px}#lotadd{align-self:flex-start;min-height:44px}.lothint{font-size:12px;color:var(--muted)}.lothint.warn{display:block;padding:8px 12px;border-radius:10px;background:color-mix(in srgb,var(--warn) 14%,transparent);color:var(--ink);font-size:13px}#mtabs{margin-top:6px}
 .tabs{display:inline-flex;flex-wrap:wrap;gap:4px;background:color-mix(in srgb,var(--ink) 6%,transparent);border-radius:999px;padding:4px}
 .tabs button{background:transparent;color:var(--ink);font-size:12.5px;font-weight:500;padding:6px 14px;box-shadow:none}
 .tabs button[aria-pressed="true"]{background:var(--ink);color:var(--card);box-shadow:0 6px 14px -8px rgba(0,0,0,.6)}
@@ -776,6 +776,10 @@ details.advbox[open]>fieldset{margin-top:10px}
 .e3d-sp{flex:1}
 .e3d-main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:10px}
 .e3d-view{position:relative;min-height:0;border-radius:var(--r-l);overflow:hidden;border:1px solid var(--hair);background:#dfe3e2}
+.e3d-site{position:absolute;left:12px;top:12px;z-index:3;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;max-width:calc(100% - 24px);padding:6px 6px 6px 12px;border-radius:12px;background:rgba(15,18,17,.82);color:#fff;font-size:13px;line-height:1.35}
+.e3d-site[hidden]{display:none}
+.e3d-site button{flex:none;min-height:36px;padding:0 12px;border-radius:9px;background:#fff;color:#0F1211;font-size:13px;font-weight:600;box-shadow:none}
+@media (max-width:640px){.e3d-site{left:8px;top:8px;max-width:calc(100% - 16px);font-size:12px}.e3d-site button{min-height:40px}}
 .e3d-view canvas{display:block;width:100%!important;height:100%!important;touch-action:none}
 .e3d-hint{position:absolute;left:12px;bottom:12px;z-index:2;transition:opacity .4s;max-width:calc(100% - 24px);padding:8px 12px;border-radius:12px;background:rgba(15,18,17,.78);color:#fff;font-size:13px;pointer-events:none}
 .e3d-side{min-height:0;overflow:auto;display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:var(--r-l);background:var(--card);border:1px solid var(--hair)}
@@ -1461,7 +1465,7 @@ window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.docume
     <div class="resacts reveal d1">
       <a class="btn ghostbtn" href="#creation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/></svg>Changer les réglages</a>
       <button type="button" class="ghost" id="editrooms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.500" y="3.500" width="17" height="17" rx="2"/><path d="M12 3.500v17M9 9l-2.500 3L9 15M15 9l2.500 3L15 15"/></svg>Modifier les pièces</button>
-      <button type="button" class="ghost" id="edit3d" title="Éditeur 3D complet (offre Max)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.500v9L12 21l-8-4.500v-9z"/><path d="M12 12l8-4.500M12 12v9M12 12L4 7.500"/></svg>Éditeur 3D</button>
+      <button type="button" class="ghost" id="edit3d" title="Éditeur 3D complet (offre Max)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.500v9L12 21l-8-4.500v-9z"/><path d="M12 12l8-4.500M12 12v9M12 12L4 7.500"/></svg><span id="edit3d-l">Éditeur 3D</span></button>
       <button type="button" class="ghost" id="var2">Autre variante</button>
       <button type="button" class="ghost" id="toprop2">Voir 3 propositions</button>
     </div>
@@ -1494,7 +1498,7 @@ window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.docume
       </div>
     </div>
     <div class="soft reveal" id="res3d" style="margin-top:20px" hidden>
-      <div class="vhead" style="margin-bottom:12px"><div><h3>Maquette 3D</h3><p class="sub">La maison telle qu'elle sera, dehors et dedans.</p></div></div>
+      <div class="vhead" style="margin-bottom:12px"><div><h3>Maquette 3D</h3><p class="sub" id="res3d-sub">La maison telle qu'elle sera, dehors et dedans.</p></div></div>
       <div id="c3d"></div>
     </div>
     <div class="two" id="rescost" hidden>
@@ -1651,7 +1655,7 @@ window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.docume
     <button type="button" id="e3d-apply" title="Appliquer les modifications au plan, au coût et à la maquette">Appliquer</button>
   </div>
   <div class="e3d-main">
-    <div class="e3d-view" id="e3d-view"><div class="e3d-hint" id="e3d-hint" aria-live="polite"></div></div>
+    <div class="e3d-view" id="e3d-view"><div class="e3d-site" id="e3d-site" hidden><span id="e3d-site-t"></span><button type="button" id="e3d-site-b"></button></div><div class="e3d-hint" id="e3d-hint" aria-live="polite"></div></div>
     <aside class="e3d-side" id="e3d-side" aria-live="polite"></aside>
   </div>
 </div>
@@ -2834,6 +2838,10 @@ function bigCite(p,c,notes){
     if(eqs.length) notes.push({t:"Le plan masse et la maquette 3D montrent des bâtiments possibles sur les réserves : ils ne sont pas compris dans le coût de la cité."})}
   // maison type de chaque modèle de lot : les changements faits dans l'éditeur valent pour toutes les maisons du modèle
   const houses=lots.filter(l=>l.k==="lot"),nH=houses.length,mt=clampI(p.mt,0,TY.length-1,0),cov=Math.max(30,Math.min(60,+p.cov||45));
+  // terrain de la taille d'une maison : moins de 4 maisons ; on dit tout de suite quelle surface entrer (1 hectare de la même forme, et ce qu'il donne)
+  if(nH>0&&nH<4&&W*D<10000&&!p.noSmall){const k=Math.sqrt(10000/(W*D));let N=0;
+    try{N=compute(Object.assign({},p,{area:10000,W:r2e(W*k),D:r2e(D*k),noEq:1,noSmall:1,ed:null,edT:null,lotK:null})).nUnits||0}catch(x){N=0}
+    notes.unshift({w:1,t:`Ce terrain de ${fmt(Math.round(W*D))} m² n'a la place que pour ${nH} maison${nH>1?"s":""}.`+(N>nH?` Pour une cité, entrez dans Création la surface totale du terrain : avec 1 hectare (10 000 m²), environ ${N} maisons.`:" Pour une cité, entrez dans Création la surface totale du terrain.")})}
   const unitOf=t=>{const q=TY[t],ed=t===mt?p.ed:(Array.isArray(p.edT)&&p.edT[t])||null;
     return compute(Object.assign({},p,{type:ht,W:q.w,D:q.d,area:Math.round(q.w*q.d),ra:Math.min(5,r2e(q.d*0.2)),rl:Math.min(2,r2e(q.w*0.1)),cov,ed:ed||null,shape:"rect"}))};
   const US=TY.map((q,t)=>{const n=houses.filter(l=>l.t===t).length;return n?{t,u:unitOf(t),n,w:q.w,d:q.d}:null}).filter(Boolean);
@@ -5442,6 +5450,8 @@ function renderExamples(){const g=document.getElementById("exgrid");if(!g) retur
 function syncRes(){
   if(RTAB==="3d"&&!SHOW3D) RTAB="plan";
   document.querySelectorAll("#rtabs button").forEach(b=>{const on=b.dataset.rt===RTAB;b.setAttribute("aria-selected",String(on));b.tabIndex=on?0:-1});
+  {const l=$("#edit3d-l");if(l) l.textContent=trL(model&&model.site?(model.type==="cite"?"Éditeur 3D · maison type":"Éditeur 3D · immeuble type"):"Éditeur 3D")}
+  {const sb=$("#res3d-sub");if(sb) sb.textContent=trL(model&&model.site?(model.type==="cite"?"La cité telle qu'elle sera : toutes les maisons, les voies et les espaces partagés. Dedans, la maison type.":"La résidence telle qu'elle sera : tous les immeubles, la voie et les jardins. Dedans, l'immeuble type."):"La maison telle qu'elle sera, dehors et dedans.")}
   $("#respl").hidden=RTAB!=="plan";$("#res3d").hidden=RTAB!=="3d";$("#rescost").hidden=RTAB!=="cout"||!model;$("#resmat").hidden=RTAB!=="mat"||!model;
 }
 function setRTab(t){
@@ -5727,6 +5737,7 @@ function e3Init(){
   $("#e3d-roof").onclick=()=>{E3.roof=!E3.roof;e3After();e3Tools()};
   $("#e3d-undo").onclick=()=>e3Undo(false);$("#e3d-redo").onclick=()=>e3Undo(true);
   $("#e3d-cancel").onclick=()=>e3Close(true);$("#e3d-apply").onclick=e3Apply;
+$("#e3d-site-b").onclick=()=>{if(!E3) return;if(E3.hist.length) e3Apply();else e3Close(false);setRTab("3d");const t=$("#rtabs");if(t) t.scrollIntoView({block:"start",behavior:"smooth"})};
   $("#edit3d").onclick=e3Open;
   document.addEventListener("keydown",e=>{if(!E3||$("#e3d").hidden) return;const tg=e.target&&e.target.tagName;if(/INPUT|SELECT|TEXTAREA/.test(tg)) return;
     const k=e.key.toLowerCase();
@@ -5742,11 +5753,18 @@ function e3DelOp(){const s=E3.sel,list=e3Ops(s.li,s.key),op=e3Op(s);if(!op) retu
   const i=list.findIndex(q=>Math.abs(q.d0-op.d0)<0.02&&Math.abs(q.d1-op.d1)<0.02);if(i<0) return;list.splice(i,1);
   if(e3Do(()=>e3SetOps(s.li,s.key,list))){E3.sel={t:"wall",li:s.li,key:s.key};e3After();e3Panel()}}
 /* --- barre d'outils et panneau des propriétés --- */
+// cité ou résidence : l'éditeur montre la maison type (ou l'immeuble type) ; le bandeau le rappelle et mène à toute la cité
+function e3SiteBar(){const el=$("#e3d-site");if(!el) return;el.hidden=!(E3&&model&&model.site);if(el.hidden) return;
+  const cite=model.type==="cite",U=(model.units||[]).filter(x=>x.n>0),many=cite&&U.length>1,n=many?((U.find(x=>x.t===model.mt)||{}).n||0):model.nUnits,L=LOT_L(model.mt||0);
+  $("#e3d-site-t").textContent=trL(!cite?(n>1?`Immeuble type : vos changements s'appliquent aux ${n} immeubles de la résidence.`:"Vous modifiez l'immeuble type : vos changements s'appliquent à tous les immeubles de la résidence.")
+    :many?(n>1?`Maison des lots ${L} : vos changements s'appliquent aux ${n} maisons de ces lots.`:`Vous modifiez la maison des lots ${L} : vos changements s'appliquent à toutes les maisons de ces lots.`)
+    :(n>1?`Maison type : vos changements s'appliquent aux ${n} maisons de la cité.`:"Vous modifiez la maison type : vos changements s'appliquent à toutes les maisons de la cité."));
+  $("#e3d-site-b").textContent=trL((E3.hist.length?"Appliquer et voir toute ":"Voir toute ")+(cite?"la cité":"la résidence"))}
 function e3Tools(){if(!E3) return;
   $$("#e3d [data-tool]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.tool===E3.tool)));
   $$("#e3d [data-cam]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.cam===E3.view)));
   $("#e3d-cut").setAttribute("aria-pressed",String(E3.cut));$("#e3d-roof").setAttribute("aria-pressed",String(E3.roof));
-  $("#e3d-undo").disabled=!E3.hist.length;$("#e3d-redo").disabled=!E3.fut.length;$("#e3d-lv").value=String(E3.lvl);e3Hint()}
+  $("#e3d-undo").disabled=!E3.hist.length;$("#e3d-redo").disabled=!E3.fut.length;$("#e3d-lv").value=String(E3.lvl);e3Hint();e3SiteBar()}
 function e3Hint(){const h=$("#e3d-hint");if(!h||!E3) return;h.style.opacity="";clearTimeout(e3Hint.t);
   // sur écran tactile, l'aide de la sélection s'efface après quelques secondes pour laisser voir la maquette
   if(E3T()&&E3.tool==="select") e3Hint.t=setTimeout(()=>{if(E3&&E3.tool==="select") h.style.opacity="0"},7000);
@@ -6556,9 +6574,11 @@ function route(){
 /* ---------- Évènements ---------- */
 $("#f").addEventListener("change",e=>{if(e.target.id==="std") pmHint();stdHint();if(!$("#formerr").hidden&&!formMissing().length) $("#formerr").hidden=true;readForm();dirty=true;$("#dirty").hidden=false;citeHint()});
 // cité : ce que donnent les réglages, avant de générer le plan
-function citeHint(){const h=$("#citehint");if(!h) return;const p=readForm();if(p.type!=="cite"||!(+$("#area").value>0)){h.textContent="";return}
-  try{const m=compute(Object.assign({},p,{ed:null,noEq:1})),U=(m.units||[]).filter(x=>x.n>0);
-    h.textContent=trL(!m.nUnits?"Avec ces réglages, aucun lot ne tient sur ce terrain : réduisez la taille des lots ou la largeur des voies.":U.length>1?`Avec ces réglages : environ ${m.nUnits} maisons de ${U.length} tailles de lots, ${m.site.green} % d'espaces verts.`:`Avec ces réglages : environ ${m.nUnits} maisons, ${m.site.green} % d'espaces verts.`)}catch(x){h.textContent=""}}
+function citeHint(){const h=$("#citehint");if(!h) return;const p=readForm();if(p.type!=="cite"||!(+$("#area").value>0)){h.textContent="";h.classList.remove("warn");return}
+  try{const m=compute(Object.assign({},p,{ed:null,noEq:1,noSmall:1})),U=(m.units||[]).filter(x=>x.n>0),n=m.nUnits,A=p.W*p.D,few=n>0&&n<4&&A<10000;let N=0;
+    if(few){const k=Math.sqrt(10000/A);try{N=compute(Object.assign({},p,{ed:null,noEq:1,noSmall:1,area:10000,W:r2e(p.W*k),D:r2e(p.D*k)})).nUnits||0}catch(x){N=0}}
+    h.classList.toggle("warn",!n||few);
+    h.textContent=trL(few?`Attention : seulement ${n} maison${n>1?"s":""} sur ce terrain de ${fmt(Math.round(A))} m².`+(N>n?` Pour une cité, entrez la surface totale du terrain : 10 000 m² donnent environ ${N} maisons.`:" Pour une cité, entrez la surface totale du terrain."):!m.nUnits?"Avec ces réglages, aucun lot ne tient sur ce terrain : réduisez la taille des lots ou la largeur des voies.":U.length>1?`Avec ces réglages : environ ${m.nUnits} maisons de ${U.length} tailles de lots, ${m.site.green} % d'espaces verts.`:`Avec ces réglages : environ ${m.nUnits} maisons, ${m.site.green} % d'espaces verts.`)}catch(x){h.textContent="";h.classList.remove("warn")}}
 $("#f").addEventListener("input",()=>readForm());
 $("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;if(!formOk()) return;if(proGate(readForm())||bigGate(readForm())) return;if(!useQuota()) return limitReached();const s=cur.seed;cur=applyWish(readForm());cur.seed=s;writeForm(cur);level=null;SHOW3D=false;RTAB="plan";showResult();toast("Plan généré")});
 // la page du plan : le dessin se fait une fois la page affichée (largeur réelle de l'écran)
