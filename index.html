@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-9pQZmN0Q910IvzUik8XE5YDDyP1bSwwfceIx4CHRtaM=' 'sha256-YSIsIxSu9J0MJJzfbQLghQRM9cGqJ7CSvVb1ssAsQvQ=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-wP+JpxTo1eXwY9TxB9bq/EM+u568i5nmQNdrrFTNtqI=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-9pQZmN0Q910IvzUik8XE5YDDyP1bSwwfceIx4CHRtaM=' 'sha256-hjFIkCpt+FokHwKbaaBfyvPovDk23Z+xnERh1yKHp+g=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-KtUrwHSPORcx5OXNHoSbLRhpBo5bAnrGnQ+DJGqYFKM=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -984,6 +984,33 @@ form.wiz #gen.ghost{min-height:46px;font-size:14px}
 .hint3d span{flex:1}
 .hint3d button{flex:none;width:36px;height:36px;margin:-6px 0 -6px 0;padding:0;border-radius:50%;background:none;box-shadow:none;color:var(--muted);font-size:20px;line-height:1}
 .hint3d button:hover{background:color-mix(in srgb,var(--ink) 8%,transparent);color:var(--ink)}
+
+/* ---------- Étape 9 : maquette CAO (Open CASCADE), sur ordinateur ---------- */
+.caop{display:flex;flex-direction:column;gap:10px}
+.caop[hidden]{display:none}
+.caohead{display:flex;justify-content:space-between;align-items:baseline;gap:6px 12px;flex-wrap:wrap}
+.caohead b{font-size:15px}
+.caost{font-size:12.5px;color:var(--muted)}
+.caobox{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:12px 14px;min-width:0}
+.caobox .lab{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.caoopts{display:flex;flex-wrap:wrap;gap:8px 18px}
+.caoopts label{display:flex;align-items:center;gap:7px;font-size:13.5px;cursor:pointer;min-height:32px}
+.caoopts input{width:18px;height:18px;margin:0;accent-color:var(--ink)}
+.caobox table{font-size:13px}
+.caotot{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin-top:10px}
+.caotot div{display:flex;flex-direction:column;gap:2px}
+.caotot small{font-size:12px;color:var(--muted)}
+.caotot b{font-family:var(--fd);font-size:18px;font-variant-numeric:tabular-nums}
+.caovol{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:10px;font-size:13px;color:var(--muted)}
+.caovol b{color:var(--ink);font-family:var(--mono);font-size:12.5px;font-weight:500}
+.caoact{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.caoact small{color:var(--muted);font-size:12.5px}
+.three .caowait{position:absolute;left:50%;top:12px;transform:translateX(-50%);display:flex;align-items:center;gap:9px;max-width:calc(100% - 24px);padding:9px 15px;border-radius:999px;
+  background:rgba(255,255,255,.9);color:#111;font-size:13px;line-height:1.35;box-shadow:0 6px 16px -8px rgba(0,0,0,.4)}
+.three .caowait::before{content:"";flex:none;width:13px;height:13px;border-radius:50%;border:2px solid #111;border-right-color:transparent;animation:caospin .9s linear infinite}
+.three .caowait.err::before{display:none}
+@keyframes caospin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.three .caowait::before{animation:none}}
 /* Version application : e-mail, notifications, abonnement, installation */
 input[type=email]{font:inherit;font-size:15px;font-weight:500;padding:10px 14px;border:1px solid var(--hair);background:var(--card);color:var(--ink);border-radius:var(--r-m);width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
 @media (max-width:760px),(pointer:coarse){input[type=email]{font-size:16px}}
@@ -4238,10 +4265,11 @@ void main(){float z0=lz(dp(vUv)),s=0.0,w=0.0;vec3 n0=texture2D(tN,vUv).xyz*2.0-1
     return {off:false,
       run(scene,cam){size();
         // profondeur et orientation des surfaces, sans les vitres ni les objets transparents ou invisibles
-        const hid=[];scene.traverseVisible(o=>{const m=o.material;if(o.isSprite||o.isLine||o.isPoints||(m&&[].concat(m).some(x=>x.transparent||!x.depthWrite||!x.colorWrite||!x.visible))) hid.push(o)});
+        // feuillages : leur propre matériau (les trous entre les feuilles restent vides) ; ciel et herbe : sans ombre douce
+        const hid=[],sw=[];scene.traverseVisible(o=>{const m=o.material,u=o.userData;if(o.isSprite||o.isLine||o.isPoints||u.noAO||(m&&!u.aoMat&&[].concat(m).some(x=>x.transparent||!x.depthWrite||!x.colorWrite||!x.visible))) hid.push(o);else if(o.isMesh){sw.push(o,m);o.material=u.aoMat||nrmM}});
         const bg=scene.background,au=renderer.shadowMap.autoUpdate,ac=renderer.autoClear;
-        hid.forEach(o=>o.visible=false);scene.background=null;scene.overrideMaterial=nrmM;renderer.shadowMap.autoUpdate=false;
-        try{renderer.setRenderTarget(rtD);renderer.render(scene,cam)}finally{scene.overrideMaterial=null;scene.background=bg;renderer.shadowMap.autoUpdate=au;hid.forEach(o=>o.visible=true)}
+        hid.forEach(o=>o.visible=false);scene.background=null;renderer.shadowMap.autoUpdate=false;
+        try{renderer.setRenderTarget(rtD);renderer.render(scene,cam)}finally{for(let i=0;i<sw.length;i+=2) sw[i].material=sw[i+1];scene.background=bg;renderer.shadowMap.autoUpdate=au;hid.forEach(o=>o.visible=true)}
         aoM.uniforms.tD.value=blM.uniforms.tD.value=rtD.depthTexture;aoM.uniforms.tN.value=blM.uniforms.tN.value=rtD.texture;aoM.uniforms.P.value.copy(cam.projectionMatrix);aoM.uniforms.Pi.value.copy(cam.projectionMatrixInverse);
         blM.uniforms.tA.value=rtA.texture;blM.uniforms.cn.value=cam.near;blM.uniforms.cf.value=cam.far;coM.uniforms.tB.value=rtB.texture;
         quad.material=aoM;renderer.setRenderTarget(rtA);renderer.render(qs,qc);
@@ -4251,14 +4279,437 @@ void main(){float z0=lz(dp(vUv)),s=0.0,w=0.0;vec3 n0=texture2D(tN,vUv).xyz*2.0-1
       dispose(){[rtD,rtA,rtB].forEach(t=>t&&t.dispose());[aoM,blM,coM,dbM,nrmM].forEach(m=>m.dispose());quad.geometry.dispose()}};
   }catch(e){return null}
 }
+/* ---------- Étape 9 : maquette CAO (Open CASCADE), sur ordinateur ---------- */
+// moteur : replicad et son Open CASCADE compilé pour le navigateur (environ 6,5 Mo compressés), téléchargés à la première demande
+const CAO_V="1.2.1",CAO_URLS={lib:`https://cdn.jsdelivr.net/npm/replicad@${CAO_V}/+esm`,oc:`https://cdn.jsdelivr.net/npm/replicad-opencascadejs@${CAO_V}/dist/replicad_single.js`,wasm:`https://cdn.jsdelivr.net/npm/replicad-opencascadejs@${CAO_V}/dist/replicad_single.wasm`};
+let caoW=null,caoN=0;const caoQ=new Map(),caoCache=new Map();
+function caoCall(msg,onp){return new Promise((ok,ko)=>{
+  if(!caoW){try{caoW=new Worker("cao-worker.js",{type:"module"})}catch(e){ko(e);return}
+    caoW.onmessage=e=>{const r=caoQ.get(e.data.id);if(!r) return;if(e.data.progress){if(r.onp) r.onp(e.data);return}caoQ.delete(e.data.id);if(e.data.error) r.ko(new Error(e.data.error));else r.ok(e.data)};
+    caoW.onerror=e=>{if(e&&e.preventDefault) e.preventDefault();caoQ.forEach(r=>r.ko(new Error("moteur indisponible")));caoQ.clear();try{caoW.terminate()}catch(x){}caoW=null}}
+  const id=++caoN;caoQ.set(id,{ok,ko,onp});caoW.postMessage(Object.assign({id,urls:CAO_URLS},msg))})}
+// formes courbes choisies (gardées sur cet appareil)
+const CAO_DEF={arches:true,roundPosts:true,slabEdges:true,corners:true};
+function caoOpts(){try{return Object.assign({},CAO_DEF,JSON.parse(localStorage.getItem("am_cao")||"{}"))}catch(e){return Object.assign({},CAO_DEF)}}
+// description du bâtiment pour Open CASCADE, dans le repère du plan (x, y) et en hauteur : mêmes murs, ouvertures, dalles,
+// poteaux, escaliers et toitures que la maquette 3D (buildB), sans mobilier ni menuiseries
+function cadDesc(m,o){
+  const MOD=modele3d(m),base=m.zone==="cote"?0.5:0.3,NL=m.levels.length,levels=[],parapets=[],roofs=[];
+  const ops=a=>(a||[]).map(op=>({k:op.k,d0:op.d0,d1:op.d1,bot:op.bot||0,top:op.top===undefined?2.1:op.top}));
+  m.levels.forEach((L,li)=>{
+    const y0=base+li*(H3+SL3),top=li===NL-1,O=openings(m,li),walls=[],corners=[],posts=[],slabs=[],steps=[];
+    O.ext.forEach(e=>walls.push({cat:"ext",o:e.o,c:e.c,s0:e.s0,s1:e.s1,t:TO,ext:true,ops:ops(e.open)}));
+    O.pairs.forEach(p=>{if(p.kind==="open"||p.kind==="none") return;
+      const cat=p.kind==="facade"?"ext":p.kind==="party"?"sep":p.kind==="patio"?"patio":"int";
+      walls.push({cat,o:p.o,c:p.c,s0:p.s0,s1:p.s1,t:cat==="ext"||cat==="sep"?TO:cat==="patio"?0.15:TI,ext:cat==="ext"||cat==="patio",ops:ops(p.open)})});
+    [[m.bx+TO/2,m.by+TO/2],[m.bx+m.bw-TO/2,m.by+TO/2],[m.bx+TO/2,m.by+m.bd-TO/2],[m.bx+m.bw-TO/2,m.by+m.bd-TO/2]].forEach(([x,y])=>{if(L.some(r=>r.t!=="out"&&r.t!=="patio"&&x>=r.x-EPS&&x<=r.x+r.w+EPS&&y>=r.y-EPS&&y<=r.y+r.h+EPS)) corners.push({x,y,s:TO})});
+    L.forEach(r=>{if(r.t!=="out") return;const ss=r.n==="Terrasse sur toit"?[]:sides(r,m).map(q=>q.side);
+      if(m.pro&&m.pro.big&&r.gal) L.forEach(q=>{if(q.t!=="patio") return;const sh=shared(r,q);if(sh) ss.push(sh.o==="h"?(Math.abs(sh.c-r.y)<EPS?"top":"bottom"):(Math.abs(sh.c-r.x)<EPS?"left":"right"))});
+      [[r.x+0.12,r.y+0.12,"top","left"],[r.x+r.w-0.12,r.y+0.12,"top","right"],[r.x+0.12,r.y+r.h-0.12,"bottom","left"],[r.x+r.w-0.12,r.y+r.h-0.12,"bottom","right"]].forEach(([x,y,a,b])=>{if(ss.includes(a)||ss.includes(b)) posts.push({x,y})})});
+    const pitched=top&&o.roof!=="plat",OVF=o.ov!==undefined&&o3Of(m).ov!==undefined?Math.max(0.1,o.ov):(MOD.ov||0.5),AO=OVF-0.1;
+    L.forEach(r=>{if(r.t==="patio"||r.hall) return;if(li>0&&(r.n==="Balcon"||r.n==="Terrasse sur toit")) return;if(!top&&r.n==="Escalier") return;
+      const ov=top&&!pitched?OVF:0,ex=c=>c?ov:0;
+      slabs.push({x0:r.x-ex(Math.abs(r.x-m.bx)<EPS),x1:r.x+r.w+ex(Math.abs(r.x+r.w-m.bx-m.bw)<EPS),y0:r.y-ex(Math.abs(r.y-m.by)<EPS),y1:r.y+r.h+ex(Math.abs(r.y+r.h-m.by-m.bd)<EPS)})});
+    if(top&&!pitched) L.forEach(r=>{if(r.t==="patio"||r.hall||r.n==="Balcon"||r.n==="Terrasse sur toit") return;const sd=sides(r,m),hv=sd.some(q=>q.o==="v"),hh=sd.some(q=>q.o==="h"),z0=y0+H3+SL3,z1=z0+0.55;
+      sd.forEach(q=>{if(q.o==="h"){const y=q.side==="top"?r.y-AO:r.y+r.h+AO,e=hv?AO:0;parapets.push({x0:r.x-e,x1:r.x+r.w+e,y0:y-0.09,y1:y+0.09,z0,z1})}
+        else{const x=q.side==="left"?r.x-AO:r.x+r.w+AO,e=hh?AO:0;parapets.push({x0:x-0.09,x1:x+0.09,y0:r.y-e,y1:r.y+r.h+e,z0,z1})}})});
+    if(pitched){
+      const pat=L.find(r=>r.t==="patio");let boxes=[{x0:m.bx,x1:m.bx+m.bw,z0:m.by,z1:m.by+m.bd}];
+      if(L.some(r=>r.n==="Terrasse sur toit")){const g=L.filter(r=>r.t!=="out"&&r.t!=="patio");boxes=[{x0:Math.min(...g.map(r=>r.x)),x1:Math.max(...g.map(r=>r.x+r.w)),z0:Math.min(...g.map(r=>r.y)),z1:Math.max(...g.map(r=>r.y+r.h))}]}
+      else if(pat){const a=L.filter(r=>r.y+r.h<=pat.y+EPS&&r.t!=="patio"),b=L.filter(r=>r.y>=pat.y+pat.h-EPS);boxes=[a,b].filter(g=>g.length).map(g=>({x0:Math.min(...g.map(r=>r.x)),x1:Math.max(...g.map(r=>r.x+r.w)),z0:Math.min(...g.map(r=>r.y)),z1:Math.max(...g.map(r=>r.y+r.h))}))}
+      if(m.pro&&m.pro.blocs) boxes=compBoxes(L.filter(r=>r.t!=="patio"));
+      const P2=(o.pitch||24)*Math.PI/180,P1=(o.pitch||10)*Math.PI/180,LIFT=m.pro&&m.pro.big?0.6:0;
+      boxes.forEach(bb=>{const ov=o.ov!==undefined&&o3Of(m).ov!==undefined?o.ov:(MOD.ovP||0.7),lx=bb.x1-bb.x0,lz=bb.z1-bb.z0,alongX=lx>=lz,span=(alongX?lz:lx)/2+ov,len=(alongX?lx:lz)+ov*2,z=y0+H3+SL3+LIFT,cx=(bb.x0+bb.x1)/2,cy=(bb.z0+bb.z1)/2;
+        const prof=o.roof==="deux"?[[-span,0],[span,0],[0,span*Math.tan(P2)]]:[[-span,0],[span,0],[span,0.25],[-span,0.25+2*span*Math.tan(P1)]];
+        // profil dans le plan vertical perpendiculaire au faîtage, poussé le long du faîtage (comme la maquette 3D)
+        roofs.push(alongX?{pts:prof.map(([u,v])=>[cx-len/2,cy-u,z+v]),v:[len,0,0]}:{pts:prof.map(([u,v])=>[cx+u,cy-len/2,z+v]),v:[0,len,0]})})}
+    L.forEach(r=>{if(r.n!=="Escalier"||top) return;const n=17,long=r.h>=r.w,run=(long?r.h:r.w)-0.4,wd=(long?r.w:r.h)-0.2,rise=(H3+SL3)/n,dep=run/n;
+      for(let i=0;i<n;i++){const u=0.2+dep*(i+0.5);if(long){const c=r.sd?r.y+u:r.y+r.h-u;steps.push({x0:r.x+r.w/2-wd/2,x1:r.x+r.w/2+wd/2,y0:c-dep/2,y1:c+dep/2,h:rise*(i+1),r:rise})}
+        else{const c=r.x+u;steps.push({x0:c-dep/2,x1:c+dep/2,y0:r.y+r.h/2-wd/2,y1:r.y+r.h/2+wd/2,h:rise*(i+1),r:rise})}}});
+    levels.push({li,y0,top,name:lvName(li),same:L.copyOf!==undefined&&!top&&L.copyOf<li?L.copyOf:undefined,walls,corners,posts,slabs,steps})});
+  return {W:m.W,D:m.D,H:H3,SL:SL3,TO,TI,levels,parapets,roofs,plinth:{x0:m.bx-0.15,y0:m.by-0.15,x1:m.bx+m.bw+0.15,y1:m.by+m.bd+0.15,h:base},
+    corners:[[m.bx,m.by],[m.bx+m.bw,m.by],[m.bx,m.by+m.bd],[m.bx+m.bw,m.by+m.bd]]};
+}
+// maquette blanche, comme une maquette d'architecte : murs clairs, dalles et toit un peu plus foncés, arêtes dessinées
+const CAO_COL={ext:0xF2EEE7,pat:0xF2EEE7,sep:0xE6E1D8,int:0xF7F5F1,posts:0xEDE9E1,stair:0xD5CEC2,slab:0xDFDBD3,acro:0xF2EEE7,roof:0xCBC4B8,plinth:0xD1CABE};
+function caoShow(V,res,st){
+  const mats={},line=new THREE.LineBasicMaterial({color:0x2a2622,transparent:true,opacity:0.3});
+  const mat=c=>mats[c]||(mats[c]=new THREE.MeshStandardMaterial({color:CAO_COL[c]||0xEEEEEE,roughness:0.88,metalness:0,envMapIntensity:0.35}));
+  const grp=li=>{if(li<0) return V.roofGrp;while(V.levels.length<=li){const g=new THREE.Group();V.scene.add(g);V.levels.push(g)}return V.levels[li]};
+  res.meshes.forEach(k=>{const g=new THREE.BufferGeometry();g.setAttribute("position",new THREE.BufferAttribute(k.pos,3));g.setAttribute("normal",new THREE.BufferAttribute(k.nor,3));g.setIndex(new THREE.BufferAttribute(k.idx,1));
+    const me=new THREE.Mesh(g,mat(k.cat));me.castShadow=me.receiveShadow=true;me.name="cao";const G=grp(k.li);G.add(me);
+    if(k.ed&&k.ed.length){const eg=new THREE.BufferGeometry();eg.setAttribute("position",new THREE.BufferAttribute(k.ed,3));const l=new THREE.LineSegments(eg,line);l.raycast=()=>{};G.add(l)}});
+  V.levels.forEach((g,i)=>{if(i>0) g.visible=st.upper});V.roofGrp.visible=st.roof&&st.upper}
+// lance le calcul (ou reprend le dernier résultat) et affiche l'avancement dans la maquette
+function caoAttach(V,m,o,st){
+  const w=document.createElement("div");w.className="caowait";w.setAttribute("role","status");
+  let d;try{d=cadDesc(m,o)}catch(e){w.classList.add("err");w.textContent=trL("La maquette CAO n'est pas disponible pour ce projet.");V.el.appendChild(w);if(st.onCao) st.onCao({state:"err"});return}
+  const opts=caoOpts(),key=JSON.stringify([d,opts]),build=onp=>caoCall({cmd:"build",desc:Object.assign({key},d),opts},onp);
+  const done=res=>{if(viewer!==V) return;w.remove();caoShow(V,res,st);if(st.onCao) st.onCao({state:"ok",q:res.q,ms:res.ms,key,m,build})};
+  const c=caoCache.get(key);if(c){done(c);return}
+  V.el.appendChild(w);const say=t=>{w.textContent=trL(t)};
+  say("Chargement d'Open CASCADE, le moteur des logiciels de CAO (environ 6,5 Mo, une seule fois)…");if(st.onCao) st.onCao({state:"wait"});
+  build(p=>{if(viewer!==V) return;if(p.progress==="level") say("Calcul de la maquette exacte · "+lvName(p.li)+"…");else if(p.progress==="roof") say("Calcul de la toiture…")})
+    .then(res=>{caoCache.set(key,res);if(caoCache.size>4) caoCache.delete(caoCache.keys().next().value);done(res)},
+      ()=>{if(viewer!==V) return;w.classList.add("err");say("Open CASCADE n'a pas pu se charger. Vérifiez votre connexion, puis rouvrez la maquette CAO.");if(st.onCao) st.onCao({state:"err"})})}
+// métré exact : les quantités du devis remplacées par celles de la maquette CAO, aux mêmes prix unitaires
+function caoDevis(m,q){
+  if(m.site) return null;const d=devis(m),M=metres(m);if(!d||!d.lots) return null;
+  const line=re=>{for(const lo of d.lots) for(const x of lo.l) if(re.test(x.d)) return x;return null};
+  const terr=!!line(/^Étanchéité/),encInt=q.murExt+q.murPatio+2*(q.murInt+q.murSep)+q.ouvTab,encExt=q.murExt+q.murPatio;
+  const rows=[["Murs de façade",line(/^Murs extérieurs en agglos/),q.murExt+q.murPatio],["Cloisons intérieures",line(/^Cloisons intérieures/),q.murInt],["Murs séparatifs",line(/^Murs séparatifs/),q.murSep],
+    ["Planchers en dalle pleine",line(/^Plancher en dalle pleine/),(q.dalles+(terr?q.dallesTop:0))/SL3],["Acrotères",line(/^Acrotère/),q.acroL],
+    ["Enduit intérieur",line(/^Enduit intérieur/),encInt],["Enduit extérieur",line(/^Enduit extérieur/),encExt],
+    ["Peinture intérieure",line(/^Peinture intérieure/),encInt+M.Scouv],["Peinture extérieure",line(/^Peinture extérieure/),encExt]]
+    .filter(r=>r[1]&&r[1].q>0).map(([n,x,v])=>{const qe=Math.round(v*10)/10;return {n,u:x.u,est:x.q,qe,dm:Math.round((qe-x.q)*x.pu)}});
+  const delta=rows.reduce((t,r)=>t+r.dm,0);
+  return {rows,total:d.total,neu:d.total+delta,delta,beton:q.dalles+q.dallesTop+q.poteaux+q.escalier,macon:(q.murExt+q.murSep)*TO+q.murPatio*0.15+q.murInt*TI+q.acrotere}}
+/* ---------- ordinateur : végétation, voitures et chaussée réalistes ; formes de la maquette CAO dans la vue réaliste ---------- */
+// normales lissées entre faces voisines peu inclinées (arrondis, cintres, carrosseries) ; les arêtes vives restent vives
+function creaseN(g,deg){const P=g.attributes.position,N=g.attributes.normal,n=P.count,cs=Math.cos(deg*Math.PI/180),fn=[],map=new Map(),a=new THREE.Vector3(),b=new THREE.Vector3(),c=new THREE.Vector3();
+  for(let f=0;f<n/3;f++){a.fromBufferAttribute(P,3*f);b.fromBufferAttribute(P,3*f+1);c.fromBufferAttribute(P,3*f+2);c.sub(b).cross(a.sub(b));const l=c.length();fn.push(l>1e-12?c.clone().divideScalar(l):new THREE.Vector3(0,1,0))}
+  for(let i=0;i<n;i++){const k=Math.round(P.getX(i)*1e3)+"_"+Math.round(P.getY(i)*1e3)+"_"+Math.round(P.getZ(i)*1e3);let l=map.get(k);if(!l) map.set(k,l=[]);l.push(i)}
+  map.forEach(l=>{for(const i of l){const fi=fn[(i/3)|0];a.set(0,0,0);for(const j of l){const fj=fn[(j/3)|0];if(fi.dot(fj)>=cs) a.add(fj)}a.normalize();N.setXYZ(i,a.x,a.y,a.z)}});
+  N.needsUpdate=true;return g}
+// réunion de géométries (chacune avec sa position) en une seule, sans index
+function mergeG(list){let n=0;const L=list.map(([g,m])=>{const q=g.index?g.toNonIndexed():g;n+=q.attributes.position.count;return [q,m]});
+  const P=new Float32Array(n*3),N=new Float32Array(n*3),U=new Float32Array(n*2),v=new THREE.Vector3(),nm=new THREE.Matrix3();let o=0;
+  L.forEach(([g,m])=>{const p=g.attributes.position,q=g.attributes.normal,u=g.attributes.uv;if(m) nm.getNormalMatrix(m);
+    for(let i=0;i<p.count;i++){const j=o+i;v.fromBufferAttribute(p,i);if(m) v.applyMatrix4(m);P[3*j]=v.x;P[3*j+1]=v.y;P[3*j+2]=v.z;
+      if(q){v.fromBufferAttribute(q,i);if(m) v.applyMatrix3(nm).normalize();N[3*j]=v.x;N[3*j+1]=v.y;N[3*j+2]=v.z}if(u){U[2*j]=u.getX(i);U[2*j+1]=u.getY(i)}}
+    o+=p.count});
+  const g=new THREE.BufferGeometry();g.setAttribute("position",new THREE.BufferAttribute(P,3));g.setAttribute("normal",new THREE.BufferAttribute(N,3));g.setAttribute("uv",new THREE.BufferAttribute(U,2));g.computeBoundingSphere();return g}
+// textures « cartes » à fond transparent (feuillages, palmes, herbe) : le fond garde une couleur de feuille, pour des bords sans liseré noir de loin
+function cardTex(key,w,h,draw,bg){if(TEX[key]) return TEX[key];
+  const c=document.createElement("canvas");c.width=w;c.height=h;const g=c.getContext("2d");draw(g,w,h,rng(key.length*7919+w*31+h));
+  const d=g.getImageData(0,0,w,h).data,o=new Uint8Array(w*h*4),k=new THREE.Color(bg||"#3A6A2A"),br=Math.round(k.r*255),bgc=Math.round(k.g*255),bb=Math.round(k.b*255);
+  for(let y=0;y<h;y++){const s=y*w*4,t=(h-1-y)*w*4;for(let x=0;x<w*4;x+=4){const a=d[s+x+3];if(a<8){o[t+x]=br;o[t+x+1]=bgc;o[t+x+2]=bb}else{o[t+x]=d[s+x];o[t+x+1]=d[s+x+1];o[t+x+2]=d[s+x+2]}o[t+x+3]=a}}
+  // niveaux réduits qui gardent la même part de feuilles : de loin, buissons et couronnes ne deviennent pas transparents
+  const cov=(q,s)=>{let n=0;for(let i=3;i<q.length;i+=4) if(q[i]*s>=127.5) n++;return n/(q.length/4)},c0=cov(o,1),mips=[{data:o,width:w,height:h}];let cur=mips[0];
+  while(cur.width>1||cur.height>1){const W2=Math.max(1,cur.width>>1),H2=Math.max(1,cur.height>>1),q=new Uint8Array(W2*H2*4),src=cur.data,sw=cur.width;
+    for(let y=0;y<H2;y++) for(let x=0;x<W2;x++){let r=0,gg=0,b=0,a=0;for(let dy=0;dy<2;dy++) for(let dx=0;dx<2;dx++){const i=(Math.min(cur.height-1,2*y+dy)*sw+Math.min(sw-1,2*x+dx))*4,al=src[i+3]+1;r+=src[i]*al;gg+=src[i+1]*al;b+=src[i+2]*al;a+=al}
+      const j=(y*W2+x)*4;q[j]=r/a;q[j+1]=gg/a;q[j+2]=b/a;q[j+3]=(a-4)/4}
+    let lo=0.5,hi=8;for(let it=0;it<12;it++){const m=(lo+hi)/2;if(cov(q,m)<c0) lo=m;else hi=m}for(let i=3;i<q.length;i+=4) q[i]=Math.min(255,q[i]*hi);
+    cur={data:q,width:W2,height:H2};mips.push(cur)}
+  const t=new THREE.DataTexture(o,w,h,THREE.RGBAFormat);t.mipmaps=mips;t.magFilter=THREE.LinearFilter;t.minFilter=THREE.LinearMipmapLinearFilter;t.generateMipmaps=false;t.encoding=THREE.sRGBEncoding;t.anisotropy=4;t.needsUpdate=true;
+  return TEX[key]=t}
+const hexA=(c,a)=>{const k=new THREE.Color(c);return `rgba(${Math.round(k.r*255)},${Math.round(k.g*255)},${Math.round(k.b*255)},${a})`};
+function leaf2D(g,x,y,a,L,W,col){g.save();g.translate(x,y);g.rotate(a);const gr=g.createLinearGradient(0,-W/2,0,W/2);
+  gr.addColorStop(0,"#"+col.clone().offsetHSL(0,0,0.07).getHexString());gr.addColorStop(0.55,"#"+col.getHexString());gr.addColorStop(1,"#"+col.clone().offsetHSL(0,0,-0.08).getHexString());
+  g.fillStyle=gr;g.beginPath();g.moveTo(0,0);g.quadraticCurveTo(L*0.4,-W*0.95,L,0);g.quadraticCurveTo(L*0.4,W*0.95,0,0);g.fill();
+  if(L>14){g.strokeStyle="rgba(225,240,190,0.25)";g.lineWidth=1;g.beginPath();g.moveTo(1,0);g.lineTo(L*0.88,0);g.stroke()}g.restore()}
+// feuille composée (acacia, flamboyant) : une tige et ses folioles par paires
+function fern2D(g,x,y,a,L,col,R,tw){g.save();g.translate(x,y);g.rotate(a);g.strokeStyle=tw||"#5A4A30";g.lineWidth=1.3;g.beginPath();g.moveTo(0,0);g.lineTo(L,0);g.stroke();
+  for(let s=4;s<L-1;s+=3.4){const sz=6*(0.55+0.45*Math.sin(Math.PI*s/L));g.fillStyle="#"+col.clone().offsetHSL(0,0,(R()-0.5)*0.07).getHexString();
+    for(const sd of [-1,1]){g.save();g.translate(s,0);g.rotate(sd*(0.95+R()*0.2));g.beginPath();g.ellipse(sz*0.55,0,sz*0.55,sz*0.23,0,0,Math.PI*2);g.fill();g.restore()}}
+  g.restore()}
+function flower2D(g,x,y,f,R){const n=f.bract?3:4+Math.floor(R()*3);for(let i=0;i<n;i++){const px=x+(R()-0.5)*16,py=y+(R()-0.5)*16;g.fillStyle=f.cols[Math.floor(R()*f.cols.length)];
+  if(f.bract){for(let k=0;k<3;k++){const a=k*2.09+R();g.beginPath();g.ellipse(px+Math.cos(a)*4,py+Math.sin(a)*4,6,4.2,a,0,Math.PI*2);g.fill()}}
+  else{for(let k=0;k<5;k++){const a=k*1.2566+R()*0.3;g.beginPath();g.ellipse(px+Math.cos(a)*3.6,py+Math.sin(a)*3.6,3.8,2.6,a,0,Math.PI*2);g.fill()}g.fillStyle="#F5C542";g.beginPath();g.arc(px,py,1.3,0,Math.PI*2);g.fill()}}}
+// touffe de feuilles vue de près : beaucoup de feuilles qui rayonnent depuis des rameaux
+const LEAFCARD={
+  broad:{cols:["#2E5B22","#386A28","#447A2E","#2A4E1D","#52873A","#3F6F2A"],n:250,len:[30,52],wid:[11,18],tw:7,twig:"#5B4632",bg:"#36612A"},
+  acacia:{fern:true,cols:["#6E9A3C","#7FA847","#5E8A33","#8BB052"],n:95,len:[44,74],tw:6,twig:"#6B5338",bg:"#6E9A3C"},
+  flamb:{fern:true,cols:["#4E7F2C","#5C8F34","#41702A"],n:110,len:[44,72],tw:6,twig:"#6B5338",fl:{n:40,cols:["#D42A1C","#E33A22","#C21E14","#EE4A2A"]},bg:"#55702E"},
+  haie:{cols:["#2F6224","#3A7229","#467F31","#2A5720","#55893C","#36692A"],n:420,len:[15,24],wid:[8,12],tw:0,bg:"#3A6E2A"},
+  bougain:{cols:["#3F6E2A","#4C7D33","#335F24"],n:150,len:[16,24],wid:[9,13],tw:4,twig:"#5B4632",fl:{n:95,cols:["#C2186B","#D81B7A","#E4398F","#A8125A"],bract:true},bg:"#7A2F55"},
+  hibis:{cols:["#2C5A20","#356A26","#2F6224"],n:260,len:[20,30],wid:[12,17],tw:3,twig:"#5B4632",fl:{n:18,cols:["#D3202A","#E8323A","#C21A2A"]},bg:"#2F5E24"}};
+function leafCardTex(kind){const o=LEAFCARD[kind];return cardTex("lf_"+kind,512,512,(g,w,h,R)=>{const cx=w/2,cy=h/2,rad=w/2-o.len[1]-6;g.lineCap="round";
+  for(let i=0;i<(o.tw||0);i++){const a=R()*Math.PI*2,l=rad*(0.6+R()*0.4);g.strokeStyle=o.twig;g.lineWidth=2+R()*2.5;g.beginPath();g.moveTo(cx,cy);g.quadraticCurveTo(cx+Math.cos(a+0.4)*l*0.5,cy+Math.sin(a+0.4)*l*0.5,cx+Math.cos(a)*l,cy+Math.sin(a)*l);g.stroke()}
+  const pts=[];for(let i=0;i<o.n;i++){const r=Math.pow(R(),0.6)*rad,a=R()*Math.PI*2;pts.push([cx+Math.cos(a)*r,cy+Math.sin(a)*r,a,r])}
+  pts.sort((p,q)=>p[3]-q[3]);const C=o.cols.map(c=>new THREE.Color(c));
+  pts.forEach(([x,y,a,r])=>{const k=r/rad,col=C[Math.floor(R()*C.length)].clone().offsetHSL((R()-0.5)*0.025,0,(k-0.55)*0.1+(R()-0.5)*0.05),L=o.len[0]+R()*(o.len[1]-o.len[0]);
+    if(o.fern) fern2D(g,x,y,a+(R()-0.5)*1.2,L,col,R,o.twig);else leaf2D(g,x,y,a+(R()-0.5)*1.5,L,o.wid[0]+R()*(o.wid[1]-o.wid[0]),col)});
+  if(o.fl) for(let i=0;i<o.fl.n;i++){const r=Math.pow(R(),0.5)*rad*0.95,a=R()*Math.PI*2;flower2D(g,cx+Math.cos(a)*r,cy+Math.sin(a)*r,o.fl,R)}},o.bg)}
+// palme de cocotier : nervure au milieu, folioles fines vers la pointe
+function frondTex(){return cardTex("palme",1024,256,(g,w,h,R)=>{const cy=h/2,C=["#3E6E22","#4A7C28","#55882E","#5F9134","#466F26"];g.lineCap="round";
+  for(let x=26;x<w-6;x+=5.2){const t=x/w,L=h*0.47*Math.pow(Math.sin(Math.PI*Math.min(1,t*1.07)),0.55)+5;
+    for(const sd of [-1,1]){const an=0.95+R()*0.18,ex=x+Math.cos(an)*L,ey=cy+sd*Math.sin(an)*L,c=new THREE.Color(C[Math.floor(R()*C.length)]).offsetHSL(0,0,(R()-0.5)*0.06);
+      const px=-Math.sin(an)*sd,py=Math.cos(an);g.fillStyle="#"+c.getHexString();g.beginPath();g.moveTo(x+px*2.4,cy+py*2.4*sd);g.lineTo(ex,ey);g.lineTo(x-px*2.4,cy-py*2.4*sd);g.closePath();g.fill();
+      g.strokeStyle="rgba(215,225,150,0.22)";g.lineWidth=0.8;g.beginPath();g.moveTo(x,cy);g.lineTo(ex,ey);g.stroke()}}
+  for(let x=0;x<w;x+=4){g.strokeStyle="#B4A45A";g.lineWidth=5-4*x/w;g.beginPath();g.moveTo(x,cy);g.lineTo(x+5,cy);g.stroke()}},"#4A7A28")}
+function grassTex(){return cardTex("herbe",256,256,(g,w,h,R)=>{const C=["#4E8A2A","#5C9A32","#6AA63A","#467C24","#7FA244"];
+  for(let i=0;i<75;i++){const x0=18+R()*(w-36),L=h*(0.4+R()*0.55),bd=(R()-0.5)*70,wd=2.2+R()*2.6;g.fillStyle="#"+new THREE.Color(C[Math.floor(R()*C.length)]).offsetHSL(0,0,(R()-0.5)*0.08).getHexString();
+    g.beginPath();g.moveTo(x0-wd,h);g.quadraticCurveTo(x0+bd*0.35,h-L*0.6,x0+bd,h-L);g.quadraticCurveTo(x0+bd*0.35+1,h-L*0.6,x0+wd,h);g.fill()}},"#4E8A2A")}
+// matériau d'une carte de feuillage, son ombre portée (trouée comme les feuilles) et sa version pour les ombres douces
+function cardMats(t,o){o=o||{};
+  return {m:new THREE.MeshStandardMaterial({map:t,alphaTest:0.5,roughness:o.rough||0.78,metalness:0,vertexColors:true,envMapIntensity:0.45}),
+    d:new THREE.MeshDepthMaterial({depthPacking:THREE.RGBADepthPacking,map:t,alphaTest:0.5}),
+    a:new THREE.ShaderMaterial({uniforms:{map:{value:t}},
+      vertexShader:"varying vec2 vUv;varying vec3 vN;void main(){vUv=uv;vec3 n=normal;vec4 p=vec4(position,1.0);\n#ifdef USE_INSTANCING\np=instanceMatrix*p;n=mat3(instanceMatrix)*n;\n#endif\nvN=normalize(normalMatrix*n);gl_Position=projectionMatrix*modelViewMatrix*p;}",
+      fragmentShader:"uniform sampler2D map;varying vec2 vUv;varying vec3 vN;void main(){if(texture2D(map,vUv).a<0.5) discard;gl_FragColor=vec4(normalize(vN)*0.5+0.5,1.0);}"})}}
+
+/* --- arbres, palmiers, buissons, herbe : modèles faits une fois, posés en série (InstancedMesh) --- */
+function vegKit(seed){
+  const R=rng(seed*131+17),tmp=new THREE.Object3D(),K={},up=new THREE.Vector3(0,1,0),MAT={};
+  const acc=()=>({P:[],N:[],U:[],C:[],I:[]});
+  const geoOf=(b,col)=>{const g=new THREE.BufferGeometry();g.setAttribute("position",new THREE.Float32BufferAttribute(b.P,3));g.setAttribute("normal",new THREE.Float32BufferAttribute(b.N,3));g.setAttribute("uv",new THREE.Float32BufferAttribute(b.U,2));
+    if(col) g.setAttribute("color",new THREE.Float32BufferAttribute(b.C,3));g.setIndex(b.I);g.computeBoundingSphere();return g};
+  // branche : tube qui s'amincit le long d'un chemin (texture d'écorce en mètres)
+  const tube=(b,pts,r0,r1,seg,col)=>{const base=b.P.length/3,n=pts.length,t=new THREE.Vector3(),nn=new THREE.Vector3(),bb=new THREE.Vector3(),d=new THREE.Vector3();let len=0,prev=null;
+    for(let i=0;i<n;i++){t.subVectors(pts[Math.min(n-1,i+1)],pts[Math.max(0,i-1)]).normalize();if(!prev){prev=new THREE.Vector3(1,0,0);if(Math.abs(t.x)>0.9) prev.set(0,0,1)}
+      nn.copy(prev).addScaledVector(t,-prev.dot(t)).normalize();prev.copy(nn);bb.crossVectors(t,nn);if(i) len+=pts[i].distanceTo(pts[i-1]);const r=r0+(r1-r0)*i/(n-1),p=pts[i];
+      for(let k=0;k<=seg;k++){const a=k/seg*Math.PI*2;d.copy(nn).multiplyScalar(Math.cos(a)).addScaledVector(bb,Math.sin(a));b.P.push(p.x+d.x*r,p.y+d.y*r,p.z+d.z*r);b.N.push(d.x,d.y,d.z);b.U.push(k/seg*2*Math.PI*r0,len);b.C.push(...(col||[1,1,1]))}}
+    for(let i=0;i<n-1;i++) for(let k=0;k<seg;k++){const a=base+i*(seg+1)+k,c=a+seg+1;b.I.push(a,a+1,c,a+1,c+1,c)}};
+  // une touffe de cartes de feuillage ; normales tournées vers l'extérieur de la couronne (la couronne paraît ronde et pleine)
+  const cards=(b,c,rad,n,size,cc,crR,o)=>{const p=new THREE.Vector3(),out=new THREE.Vector3(),rnd=new THREE.Vector3(),nrm=new THREE.Vector3(),u=new THREE.Vector3(),v=new THREE.Vector3(),q=new THREE.Vector3(),sn=new THREE.Vector3();
+    for(let i=0;i<n;i++){let x,y,z;do{x=R()*2-1;y=R()*2-1;z=R()*2-1}while(x*x+y*y+z*z>1);
+      if(o.shell){const l=Math.hypot(x,y,z)||1,k=0.82+0.18*R();x=x/l*k;y=y/l*k;z=z/l*k}
+      p.set(c.x+x*rad,c.y+y*rad*(o.flat||1),c.z+z*rad);out.subVectors(p,cc);if(out.lengthSq()<1e-6) out.set(0,1,0);out.normalize();rnd.set(R()*2-1,R()*2-1,R()*2-1).normalize();
+      if(o.up) nrm.copy(out).multiplyScalar(0.35).addScaledVector(up,o.up).addScaledVector(rnd,0.45).normalize();else nrm.copy(out).multiplyScalar(o.out||0.55).addScaledVector(rnd,0.75).normalize();
+      u.crossVectors(nrm,Math.abs(nrm.y)<0.95?up:new THREE.Vector3(1,0,0)).normalize().applyAxisAngle(nrm,R()*Math.PI*2);v.crossVectors(nrm,u);
+      const s=size*(0.75+R()*0.5)/2,base=b.P.length/3,dist=Math.min(1,p.distanceTo(cc)/crR),sh=Math.min(1.08,(0.6+0.4*dist+0.12*(p.y-cc.y)/crR)*(0.9+R()*0.2)),tn=o.tint||[1,1,1];
+      for(const [a,bq,uu,vv] of [[-1,-1,0,0],[1,-1,1,0],[1,1,1,1],[-1,1,0,1]]){q.copy(p).addScaledVector(u,a*s).addScaledVector(v,bq*s);sn.subVectors(q,cc).normalize().multiplyScalar(0.7).addScaledVector(nrm,0.3).normalize();
+        b.P.push(q.x,q.y,q.z);b.N.push(sn.x,sn.y,sn.z);b.U.push(uu,vv);b.C.push(sh*tn[0],sh*tn[1],sh*tn[2])}
+      b.I.push(base,base+1,base+2,base,base+2,base+3,base,base+2,base+1,base,base+3,base+2)}};
+  // arbre à branches : tronc, branches maîtresses, rameaux, une touffe au bout de chaque rameau
+  const branchy=o=>{const w=acc(),l=acc(),H=o.h*(0.9+R()*0.2),lx=(R()-0.5)*0.5,lz=(R()-0.5)*0.5,tr=[];
+    for(let i=0;i<=5;i++){const t=i/5;tr.push(new THREE.Vector3(lx*t*t,H*t,lz*t*t))}
+    tube(w,tr,o.r,o.r*0.55,8);const tips=[],nb=o.nb+Math.floor(R()*2);
+    for(let k=0;k<nb;k++){const a=k/nb*Math.PI*2+R()*0.7,el=o.el[0]+R()*(o.el[1]-o.el[0]),L=o.bl*(0.75+R()*0.5),p0=tr[Math.min(5,Math.round((0.6+R()*0.4)*5))].clone(),
+        dir=new THREE.Vector3(Math.cos(a)*Math.cos(el),Math.sin(el),Math.sin(a)*Math.cos(el)),pts=[p0];
+      for(let i=1;i<=4;i++){const t=i/4;pts.push(p0.clone().addScaledVector(dir,L*t).add(new THREE.Vector3(0,o.curl*L*t*t,0)))}
+      tube(w,pts,o.r*0.42,o.r*0.12,6);tips.push(pts[4]);
+      for(let j=0;j<o.sb;j++){const q0=pts[2+j%2],a2=a+(R()-0.5)*1.6,el2=el+0.15+R()*0.4,L2=L*(0.45+R()*0.25),d2=new THREE.Vector3(Math.cos(a2)*Math.cos(el2),Math.sin(el2),Math.sin(a2)*Math.cos(el2)),e=q0.clone().addScaledVector(d2,L2);
+        tube(w,[q0,q0.clone().lerp(e,0.5),e],o.r*0.16,o.r*0.06,5);tips.push(e)}}
+    const cc=tips.reduce((s,p)=>s.add(p),new THREE.Vector3()).divideScalar(tips.length);cc.y-=o.cr*0.3;let crR=0;tips.forEach(p=>{crR=Math.max(crR,p.distanceTo(cc))});crR+=o.cr*0.8;
+    tips.forEach(p=>cards(l,p,o.cr*(0.8+R()*0.4),o.nc,o.cs,cc,crR,o));
+    for(let i=0;i<o.fill;i++){const p=cc.clone().add(new THREE.Vector3((R()-0.5)*crR*0.9,(R()-0.2)*crR*0.5*(o.flat||1),(R()-0.5)*crR*0.9));cards(l,p,o.cr*0.75,Math.ceil(o.nc*0.7),o.cs,cc,crR,o)}
+    return [geoOf(w),geoOf(l,true)]};
+  // palmier (cocotier) : stipe courbe annelé, bourgeon vert, palmes retombantes en « V » renversé, noix de coco
+  const frond=(b,top,a,e0,L,dr,W)=>{const Hd=new THREE.Vector3(Math.cos(a),0,Math.sin(a)),S=new THREE.Vector3(-Math.sin(a),0,Math.cos(a)),n=12,base=b.P.length/3,p=new THREE.Vector3(),q=new THREE.Vector3(),nn=new THREE.Vector3();
+    for(let i=0;i<=n;i++){const t=i/n;p.copy(top).addScaledVector(Hd,L*t*Math.cos(e0)*0.95);p.y+=L*t*Math.sin(e0)-dr*L*t*t;const wd=W*Math.pow(Math.sin(Math.PI*Math.min(1,t*1.04+0.03)),0.6)/2,fold=wd*0.5;
+      for(const [sd,v] of [[1,0],[0,0.5],[-1,1]]){q.copy(p).addScaledVector(S,sd*wd);q.y-=Math.abs(sd)*fold;nn.set(0,1,0).addScaledVector(S,sd*0.45).addScaledVector(Hd,0.1).normalize();
+        b.P.push(q.x,q.y,q.z);b.N.push(nn.x,nn.y,nn.z);b.U.push(t,v);const sh=0.78+0.28*t;b.C.push(sh,sh,sh)}}
+    for(let i=0;i<n;i++){const a0=base+i*3,a1=a0+3;for(let k=0;k<2;k++){const p0=a0+k,q0=a1+k;b.I.push(p0,q0,p0+1,p0+1,q0,q0+1,p0,p0+1,q0,p0+1,q0+1,q0)}}};
+  const palm=o=>{const w=acc(),l=acc(),H=o.h*(0.85+R()*0.3),lx=(R()-0.5)*1.1,lz=(R()-0.5)*1.1,tr=[];
+    for(let i=0;i<=9;i++){const t=i/9;tr.push(new THREE.Vector3(lx*t*t,H*t,lz*t*t))}
+    tube(w,tr,o.r*1.3,o.r*0.82,9);const top=tr[9].clone();
+    tube(w,[top.clone().add(new THREE.Vector3(0,-0.55,0)),top.clone().add(new THREE.Vector3(0,-0.2,0)),top.clone().add(new THREE.Vector3(0,0.15,0))],o.r*1.05,o.r*0.7,8,[0.62,0.78,0.4]);
+    const nut=new THREE.IcosahedronGeometry(o.r*0.75,1).toNonIndexed(),np=nut.attributes.position,nnn=nut.attributes.normal;
+    for(let k=0;k<6;k++){const a=k*1.05+R()*0.4,c=top.clone().add(new THREE.Vector3(Math.cos(a)*o.r*1.2,-0.32-R()*0.12,Math.sin(a)*o.r*1.2)),base=w.P.length/3,col=k%3?[0.45,0.5,0.22]:[0.5,0.36,0.2];
+      for(let i=0;i<np.count;i++){w.P.push(c.x+np.getX(i),c.y+np.getY(i),c.z+np.getZ(i));w.N.push(nnn.getX(i),nnn.getY(i),nnn.getZ(i));w.U.push(0.1,0.1);w.C.push(...col);w.I.push(base+i)}}
+    nut.dispose();
+    for(let f=0;f<o.nf;f++){const a=f/o.nf*Math.PI*2+R()*0.35,ring=f%3,e0=(ring===0?0.75:ring===1?0.32:-0.05)+(R()-0.5)*0.2,Lf=o.fl*(0.8+R()*0.35),dr=0.45+R()*0.4+(ring===2?0.25:0);
+      frond(l,top.clone().add(new THREE.Vector3(0,0.05,0)),a,e0,Lf,dr,o.fw*(0.85+R()*0.3))}
+    return [geoOf(w,true),geoOf(l,true)]};
+  // buisson : boule taillée (comme dans les jardins d'agence), ou massif fleuri plus libre
+  const bush=o=>{const l=acc(),c=new THREE.Vector3(0,o.y,0);
+    if(o.ball){cards(l,c,o.rad,o.n,o.cs,c,o.rad,{shell:true,out:1.1,flat:o.flat||0.92});cards(l,c,o.rad*0.7,Math.ceil(o.n*0.3),o.cs,c,o.rad,{out:0.6})}
+    else for(let k=0;k<3;k++){const a=k*2.1+R(),cc=new THREE.Vector3(Math.cos(a)*o.rad*0.45,o.y*(0.8+R()*0.4),Math.sin(a)*o.rad*0.45);cards(l,cc,o.rad*0.7,o.n,o.cs,c,o.rad*1.2,{out:0.7})}
+    return [null,geoOf(l,true)]};
+  const tuft=()=>{const b=acc();for(let k=0;k<2;k++){const a=k*Math.PI/2+0.4,dx=Math.cos(a)*0.2,dz=Math.sin(a)*0.2,base=b.P.length/3;
+      for(const [s,y,u,v] of [[-1,0,0,0],[1,0,1,0],[1,0.34,1,1],[-1,0.34,0,1]]){b.P.push(dx*s,y,dz*s);b.N.push(0,1,0);b.U.push(u,v);b.C.push(1,1,1)}
+      b.I.push(base,base+1,base+2,base,base+2,base+3,base,base+2,base+1,base,base+3,base+2)}return [null,geoOf(b,true)]};
+  const SPEC={
+    arbre:{f:branchy,o:{h:2.3,r:0.2,nb:5,el:[0.5,0.95],bl:2.2,curl:0.15,sb:2,cr:0.95,nc:11,cs:1.3,fill:3},leaf:"broad",bark:"bark"},
+    acacia:{f:branchy,o:{h:2.6,r:0.15,nb:4,el:[0.55,0.85],bl:2.4,curl:-0.05,sb:2,cr:1.0,nc:10,cs:1.35,fill:2,flat:0.38,up:1.2},leaf:"acacia",bark:"bark"},
+    flamb:{f:branchy,o:{h:2.2,r:0.22,nb:5,el:[0.32,0.6],bl:3.1,curl:0.1,sb:2,cr:1.15,nc:12,cs:1.45,fill:4,flat:0.45,up:0.9},leaf:"flamb",bark:"bark"},
+    palmier:{f:palm,o:{h:6.4,r:0.15,nf:22,fl:3.4,fw:1.5},leaf:"palme",bark:"stipe"},
+    boule:{f:bush,o:{ball:true,y:0.52,rad:0.55,n:110,cs:0.4},leaf:"haie"},
+    bougain:{f:bush,o:{y:0.6,rad:0.7,n:14,cs:0.65},leaf:"bougain"},
+    hibis:{f:bush,o:{y:0.6,rad:0.65,n:14,cs:0.6},leaf:"hibis"},
+    herbe:{f:tuft,o:{},leaf:"herbe",flat:true}};
+  const leafOf=k=>MAT["l"+k]||(MAT["l"+k]=cardMats(k==="palme"?frondTex():k==="herbe"?grassTex():leafCardTex(k),{rough:k==="palme"?0.7:0.78}));
+  const barkOf=k=>MAT["b"+k]||(MAT["b"+k]=new THREE.MeshStandardMaterial({map:k==="stipe"?mkTex("stipe",256,0.7,(g,s,R)=>{g.fillStyle="#8A7E6E";g.fillRect(0,0,s,s);speck(g,s,R,["#6B5F52","#A39684","#7A6E60"],2500,2,0.5);
+      for(let y=0;y<s;y+=s/6){g.fillStyle="rgba(55,46,38,0.6)";g.fillRect(0,y,s,3+R()*2);g.fillStyle="rgba(178,168,150,0.45)";g.fillRect(0,y+6,s,2)}})
+    :mkTex("ecorce",256,1.0,(g,s,R)=>{g.fillStyle="#8E806F";g.fillRect(0,0,s,s);for(let i=0;i<90;i++){let x=R()*s;g.strokeStyle=R()>0.5?"rgba(60,48,36,0.45)":"rgba(185,172,152,0.35)";g.lineWidth=1+R()*2.5;g.beginPath();g.moveTo(x,0);for(let y=0;y<=s;y+=16){x+=(R()-0.5)*6;g.lineTo(x,y)}g.stroke()}}),
+    roughness:1,metalness:0,vertexColors:true,envMapIntensity:0.3}));
+  return {
+    add(kind,x,z,s,y,rot){const S=SPEC[kind];if(!S) return;const k=K[kind]||(K[kind]={m:[]}),vi=Math.floor(R()*(S.flat?1:3));
+      tmp.position.set(x,y||0,z);tmp.rotation.set(0,rot===undefined?R()*Math.PI*2:rot,0);tmp.scale.setScalar(s||1);tmp.updateMatrix();(k.m[vi]=k.m[vi]||[]).push(tmp.matrix.clone())},
+    count(){return Object.values(K).reduce((s,k)=>s+k.m.reduce((t,m)=>t+(m?m.length:0),0),0)},
+    build(par){Object.entries(K).forEach(([kind,k])=>{const S=SPEC[kind];k.m.forEach(ms=>{if(!ms||!ms.length) return;const [wg,lg]=S.f(S.o),L=leafOf(S.leaf);
+      if(wg){const im=new THREE.InstancedMesh(wg,barkOf(S.bark),ms.length);ms.forEach((m,i)=>im.setMatrixAt(i,m));im.castShadow=true;im.receiveShadow=true;im.frustumCulled=false;im.userData.veg=kind;par.add(im)}
+      const im=new THREE.InstancedMesh(lg,L.m,ms.length);ms.forEach((m,i)=>im.setMatrixAt(i,m));im.castShadow=!S.flat;im.receiveShadow=true;im.customDepthMaterial=L.d;
+      if(S.flat) im.userData.noAO=true;else im.userData.aoMat=L.a;im.frustumCulled=false;im.userData.veg=kind;par.add(im)})})}};
+}
+
+/* --- voitures : berline et 4 × 4, carrosserie arrondie et vernie, vitres teintées, jantes, phares ; posées en série --- */
+function carKit(env,night){
+  const tex=(k,w,h,f)=>{if(TEX[k]) return TEX[k];const c=document.createElement("canvas");c.width=w;c.height=h;f(c.getContext("2d"),w,h);const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.anisotropy=4;return TEX[k]=t};
+  const rimT=tex("jante",256,256,(g,w)=>{const c=w/2;g.fillStyle="#2A2C2E";g.fillRect(0,0,w,w);const gr=g.createRadialGradient(c,c,10,c,c,c);gr.addColorStop(0,"#E6E8EA");gr.addColorStop(0.75,"#B9BDC1");gr.addColorStop(0.92,"#F2F3F4");gr.addColorStop(1,"#8E9296");
+    g.fillStyle=gr;g.beginPath();g.arc(c,c,c,0,Math.PI*2);g.fill();g.fillStyle="#1D1F21";for(let k=0;k<5;k++){const a=k*Math.PI*2/5;g.beginPath();g.moveTo(c+Math.cos(a+0.2)*30,c+Math.sin(a+0.2)*30);g.arc(c,c,c*0.8,a+0.28,a+Math.PI*2/5-0.28);g.lineTo(c+Math.cos(a+Math.PI*2/5-0.2)*30,c+Math.sin(a+Math.PI*2/5-0.2)*30);g.closePath();g.fill()}
+    g.fillStyle="#C9CCD0";g.beginPath();g.arc(c,c,24,0,Math.PI*2);g.fill();g.fillStyle="#6E7276";g.beginPath();g.arc(c,c,9,0,Math.PI*2);g.fill()});
+  const plateT=tex("plaque",256,64,(g,w,h)=>{g.fillStyle="#F4F4EF";g.fillRect(0,0,w,h);g.strokeStyle="#222";g.lineWidth=4;g.strokeRect(3,3,w-6,h-6);g.fillStyle="#1C2A5A";g.fillRect(6,6,26,h-12);g.fillStyle="#222";g.font="bold 38px sans-serif";g.textBaseline="middle";g.fillText("1234 AB 01",42,h/2+2)});
+  const MAT={paint:new THREE.MeshPhysicalMaterial({color:0xffffff,metalness:0.35,roughness:0.32,clearcoat:1,clearcoatRoughness:0.06,envMap:env||null,envMapIntensity:1.15}),
+    glass:new THREE.MeshStandardMaterial({color:0x10161C,metalness:0.88,roughness:0.05,envMap:env||null,envMapIntensity:1.5}),
+    dark:new THREE.MeshStandardMaterial({color:0x141516,roughness:0.62,metalness:0.1,envMapIntensity:0.5}),
+    chrome:new THREE.MeshStandardMaterial({color:0xDCDEE0,metalness:1,roughness:0.14,envMap:env||null}),
+    tire:new THREE.MeshStandardMaterial({color:0x18181A,roughness:0.88,side:THREE.DoubleSide}),
+    rim:new THREE.MeshStandardMaterial({map:rimT,metalness:0.8,roughness:0.3,envMap:env||null}),
+    head:new THREE.MeshStandardMaterial({color:0xF2F5F8,metalness:0.4,roughness:0.06,emissive:0x101010,envMap:env||null}),
+    tail:new THREE.MeshStandardMaterial({color:0x8A0B0B,metalness:0.2,roughness:0.15,emissive:0x3A0000}),
+    plate:new THREE.MeshStandardMaterial({map:plateT,roughness:0.5})};
+  // profils latéraux (x vers l'avant, y vers le haut) ; les arrondis de l'extrusion ajoutent 7 cm (caisse) et 5 cm (pavillon) tout autour
+  const arc=(x,r)=>["A",x,r[0],r[1],-0.045,Math.PI+0.045,false];
+  const TY={
+    berline:{body:[[-2.14,0.3],[-2.2,0.52],[-2.17,0.76],[-2.06,0.87],[-1.52,0.93],[1.06,0.92],[1.9,0.8],[2.08,0.74],[2.17,0.64],[2.2,0.5],[2.12,0.3],arc(1.38,[0.32,0.45]),arc(-1.32,[0.32,0.45])],bw:1.66,bev:0.07,
+      gh:[[-1.55,0.9],[-1.02,1.33],[-0.72,1.4],[0.3,1.42],[0.62,1.36],[1.1,0.9]],gw:1.5,gb:0.05,belt:0.95,roof:1.47,th:0.16,sill:1.0,bp:-0.18,cp:null,
+      wb:[-1.32,1.38],wr:0.32,wz:0.78,head:[2.1,0.73,0.6,0.2,0.09,0.36],tail:[-2.17,0.79,0.63,0.1,0.11,0.36],grille:[2.21,0.53,0.08,0.13,0.78],pf:[2.25,0.4],pr:[-2.23,0.6],mir:[0.98,1.02,0.97],
+      seams:[1.02,-0.18,-1.3],sy:[0.36,0.9],hdl:[0.38,-0.72],hy:0.83,rock:[-0.9,0.95]},
+    suv:{body:[[-2.2,0.42],[-2.28,0.62],[-2.27,1.02],[-2.16,1.14],[0.95,1.14],[1.95,1.04],[2.24,0.9],[2.3,0.62],[2.22,0.42],arc(1.42,[0.36,0.5]),arc(-1.4,[0.36,0.5])],bw:1.72,bev:0.07,trims:[0.43,0.075],rails:true,
+      gh:[[-2.1,1.1],[-1.88,1.52],[-1.62,1.62],[0.2,1.66],[0.72,1.52],[1.28,1.1]],gw:1.56,gb:0.05,belt:1.14,roof:1.71,th:0.14,sill:1.24,bp:-0.25,cp:-1.38,
+      wb:[-1.4,1.42],wr:0.36,wz:0.8,head:[2.2,0.91,0.62,0.18,0.1,0.38],tail:[-2.3,0.98,0.66,0.08,0.18,0.24],grille:[2.3,0.7,0.08,0.2,0.84],pf:[2.33,0.52],pr:[-2.33,0.72],mir:[1.12,1.16,1.0],
+      seams:[1.15,-0.2,-1.42],sy:[0.48,1.04],hdl:[0.45,-0.85],hy:0.98,rock:[-0.95,0.98]}};
+  const prof=pts=>{const s=new THREE.Shape();pts.forEach((p,i)=>{if(p[0]==="A") s.absarc(p[1],p[2],p[3],p[4],p[5],p[6]);else if(!i) s.moveTo(p[0],p[1]);else s.lineTo(p[0],p[1])});return s};
+  const ext=(pts,depth,bev)=>{const g=new THREE.ExtrudeGeometry(prof(pts),{depth,bevelEnabled:true,bevelThickness:bev,bevelSize:bev,bevelSegments:3,curveSegments:14,steps:1});g.translate(0,0,-depth/2);return g};
+  // tri des triangles d'une géométrie sans index selon leur orientation : une géométrie par matériau
+  const split=(g,cls,nc)=>{const P=g.attributes.position,N=g.attributes.normal,U=g.attributes.uv,out=[...Array(nc)].map(()=>({p:[],n:[],u:[]})),a=new THREE.Vector3(),b=new THREE.Vector3(),c=new THREE.Vector3(),f=new THREE.Vector3();
+    for(let t=0;t<P.count/3;t++){a.fromBufferAttribute(P,3*t);b.fromBufferAttribute(P,3*t+1);c.fromBufferAttribute(P,3*t+2);f.subVectors(b,a).cross(c.clone().sub(a)).normalize();const o=out[cls(f,a)];
+      for(let i=0;i<3;i++){const j=3*t+i;o.p.push(P.getX(j),P.getY(j),P.getZ(j));o.n.push(N.getX(j),N.getY(j),N.getZ(j));o.u.push(U?U.getX(j):0,U?U.getY(j):0)}}
+    return out.map(o=>{const q=new THREE.BufferGeometry();q.setAttribute("position",new THREE.Float32BufferAttribute(o.p,3));q.setAttribute("normal",new THREE.Float32BufferAttribute(o.n,3));q.setAttribute("uv",new THREE.Float32BufferAttribute(o.u,2));return q})};
+  const inset=(pts,d)=>{let A=0;const n=pts.length;pts.forEach((p,i)=>{const q=pts[(i+1)%n];A+=p[0]*q[1]-q[0]*p[1]});const s=A>0?1:-1;
+    const L=pts.map((p,i)=>{const q=pts[(i+1)%n],dx=q[0]-p[0],dy=q[1]-p[1],l=Math.hypot(dx,dy);return [p[0]-dy/l*s*d,p[1]+dx/l*s*d,dx,dy]});
+    return L.map((L1,i)=>{const L0=L[(i+n-1)%n],den=L0[2]*L1[3]-L0[3]*L1[2];if(Math.abs(den)<1e-9) return [L1[0],L1[1]];const t=((L1[0]-L0[0])*L1[3]-(L1[1]-L0[1])*L1[2])/den;return [L0[0]+L0[2]*t,L0[1]+L0[3]*t]})};
+  const clip=(pts,f)=>{const out=[];pts.forEach((p,i)=>{const q=pts[(i+1)%pts.length],a=f(p),b=f(q);if(a>=0) out.push(p);if((a>=0)!==(b>=0)){const t=a/(a-b);out.push([p[0]+(q[0]-p[0])*t,p[1]+(q[1]-p[1])*t])}});return out};
+  const M4=(x,y,z,ry)=>new THREE.Matrix4().makeRotationY(ry||0).setPosition(x,y,z);
+  const build=t=>{const T=TY[t],P={paint:[],glass:[],dark:[],chrome:[],tire:[],rim:[],head:[],tail:[],plate:[]};
+    // caisse : dessous et passages de roues en noir
+    const body=creaseN(ext(T.body,T.bw,T.bev),32),[bp,bd]=split(body,f=>f.y<-0.3?1:0,2);P.paint.push([bp]);P.dark.push([bd]);
+    // pavillon : le haut se resserre ; pare-brise et lunette en verre, toit et montants peints
+    const gh=ext(T.gh,T.gw,T.gb),G=gh.attributes.position,zf=y=>1-T.th*Math.max(0,y-T.belt)/(T.roof-T.belt);
+    for(let i=0;i<G.count;i++) G.setZ(i,G.getZ(i)*zf(G.getY(i)));creaseN(gh,32);
+    const [gp,gg]=split(gh,f=>f.y>0.72||Math.abs(f.z)>0.55?0:1,2);P.paint.push([gp]);P.glass.push([gg]);
+    // vitres latérales posées sur le flanc du pavillon, séparées par les montants
+    const base=clip(inset(T.gh,0.075),p=>p[1]-T.sill),cuts=T.cp?[[-9,T.cp-0.045],[T.cp+0.045,T.bp-0.045],[T.bp+0.045,9]]:[[-9,T.bp-0.045],[T.bp+0.045,9]];
+    cuts.forEach(([x0,x1])=>{const poly=clip(clip(base,p=>p[0]-x0),p=>x1-p[0]);if(poly.length<3) return;
+      [1,-1].forEach(sd=>{const g=new THREE.ShapeGeometry(new THREE.Shape(poly.map(([x,y])=>new THREE.Vector2(x,y)))),p=g.attributes.position;
+        for(let i=0;i<p.count;i++) p.setZ(i,sd*((T.gw/2+T.gb)*zf(p.getY(i))+0.004));if(sd<0){const ix=g.index.array;for(let i=0;i<ix.length;i+=3){const k=ix[i];ix[i]=ix[i+2];ix[i+2]=k}}
+        g.computeVertexNormals();P.glass.push([g])})});
+    // roues : pneu (profil tourné), jante à 5 branches côté extérieur
+    const k=T.wr/0.326,tire=new THREE.LatheGeometry([[0.205,-0.1],[0.27,-0.105],[0.305,-0.095],[0.322,-0.065],[0.326,0],[0.322,0.065],[0.305,0.095],[0.27,0.105],[0.205,0.1]].map(([r,y])=>new THREE.Vector2(r*k,y)),22);tire.rotateX(Math.PI/2);
+    const rim=new THREE.CylinderGeometry(0.205*k,0.205*k,0.05,24,1);rim.rotateX(Math.PI/2);
+    T.wb.forEach(x=>[1,-1].forEach(sd=>{P.tire.push([tire,M4(x,T.wr,sd*T.wz)]);P.rim.push([rim,new THREE.Matrix4().makeRotationY(sd>0?0:Math.PI).setPosition(x,T.wr,sd*(T.wz+0.06))])}));
+    // phares, feux, calandre, plaques, rétroviseurs
+    const rb=(w,h,d,r)=>rbox(w,h,d,r),H=T.head,L=T.tail,Gr=T.grille;
+    [1,-1].forEach(sd=>{P.head.push([rb(H[3],H[4],H[5],0.03),M4(H[0],H[1],sd*H[2])]);P.tail.push([rb(L[3],L[4],L[5],0.025),M4(L[0],L[1],sd*L[2])]);
+      P.paint.push([rb(0.2,0.11,0.2,0.04),M4(T.mir[0],T.mir[1],sd*T.mir[2])]);P.dark.push([rb(0.06,0.1,0.06,0.02),M4(T.mir[0]+0.02,T.mir[1]-0.07,sd*(T.mir[2]-0.08))])});
+    P.dark.push([rb(Gr[2],Gr[3],Gr[4],0.03),M4(Gr[0],Gr[1],0)]);
+    P.plate.push([new THREE.BoxGeometry(0.02,0.12,0.5),M4(T.pf[0],T.pf[1],0)]);P.plate.push([new THREE.BoxGeometry(0.02,0.12,0.5),M4(T.pr[0],T.pr[1],0,Math.PI)]);
+    // joints des portes, poignées, bas de caisse
+    const zs=T.bw/2+T.bev+0.002;[1,-1].forEach(sd=>{T.seams.forEach(x=>P.dark.push([new THREE.BoxGeometry(0.008,T.sy[1]-T.sy[0],0.004),M4(x,(T.sy[0]+T.sy[1])/2,sd*zs)]));
+      T.hdl.forEach(x=>P.chrome.push([rb(0.16,0.03,0.02,0.008),M4(x,T.hy,sd*(zs+0.006))]));
+      P.dark.push([new THREE.BoxGeometry(T.rock[1]-T.rock[0],0.09,0.012),M4((T.rock[0]+T.rock[1])/2,T.sy[0]-0.03,sd*zs)])});
+    // 4 × 4 : élargisseurs d'ailes noirs autour des passages de roues, barres de toit
+    if(T.trims) T.wb.forEach(x=>{const [ri,tw]=T.trims,s=new THREE.Shape();s.absarc(x,T.wr,ri+tw,-0.06,Math.PI+0.06,false);s.absarc(x,T.wr,ri,Math.PI+0.06,-0.06,true);
+      const g=new THREE.ExtrudeGeometry(s,{depth:0.03,bevelEnabled:false,curveSegments:16});[1,-1].forEach(sd=>P.dark.push([g,new THREE.Matrix4().makeTranslation(0,0,sd>0?zs-0.012:-zs-0.018)]))});
+    if(T.rails) [1,-1].forEach(sd=>P.dark.push([rb(1.7,0.05,0.05,0.02),M4(-0.75,T.roof+0.03,sd*0.56)]));
+    const out={};Object.entries(P).forEach(([m,l])=>{if(l.length) out[m]=mergeG(l)});return out};
+  const COL=["#F4F5F2","#F4F5F2","#EEEFEC","#F7F7F5","#C9CCCF","#B0B4B8","#1C1E21","#2B2F35","#5A6068","#1F3A5F","#7A1E1E","#E8892B","#D9C9A3"],tmp=new THREE.Object3D(),inst={},tpl={};
+  return {COL,
+    add(t,x,z,rot,col){(inst[t]=inst[t]||[]).push([x,z,rot,col||COL[0]])},
+    build(par){Object.entries(inst).forEach(([t,L])=>{const G=tpl[t]||(tpl[t]=build(t));Object.entries(G).forEach(([m,g])=>{const im=new THREE.InstancedMesh(g,MAT[m],L.length);
+      L.forEach(([x,z,r,c],i)=>{tmp.position.set(x,0,z);tmp.rotation.set(0,r,0);tmp.updateMatrix();im.setMatrixAt(i,tmp.matrix);if(m==="paint") im.setColorAt(i,new THREE.Color(c).convertSRGBToLinear())});
+      im.castShadow=true;im.receiveShadow=true;im.frustumCulled=false;im.userData.car=t;par.add(im)})})}};
+}
+
+/* --- formes de la maquette CAO (Open CASCADE) : mêmes règles et mêmes dimensions que cao-worker.js --- */
+// contour d'une réunion de rectangles [x0,z0,x1,z1] : boucles fermées, la matière à gauche ; petits écarts (< 2,5 cm) bouchés
+function rectLoops(Rs){const snap=v=>{const s=[...new Set(v)].sort((a,b)=>a-b),m=new Map();let c=null;s.forEach(x=>{if(c===null||x-c>0.025) c=x;m.set(x,c)});return m};
+  const mx=snap(Rs.flatMap(r=>[r[0],r[2]])),mz=snap(Rs.flatMap(r=>[r[1],r[3]])),R2=Rs.map(r=>[mx.get(r[0]),mz.get(r[1]),mx.get(r[2]),mz.get(r[3])]);
+  const xs=[...new Set(mx.values())].sort((a,b)=>a-b),zs=[...new Set(mz.values())].sort((a,b)=>a-b),nx=xs.length-1,nz=zs.length-1,cov=new Uint8Array(Math.max(0,nx*nz));
+  for(let j=0;j<nz;j++) for(let i=0;i<nx;i++){const cx=(xs[i]+xs[i+1])/2,cz=(zs[j]+zs[j+1])/2;cov[j*nx+i]=R2.some(r=>cx>r[0]&&cx<r[2]&&cz>r[1]&&cz<r[3])?1:0}
+  const on=(i,j)=>i>=0&&j>=0&&i<nx&&j<nz&&cov[j*nx+i]===1,E=new Map(),add=(a,b)=>{const k=a[0]+","+a[1];(E.get(k)||E.set(k,[]).get(k)).push(b)};
+  for(let j=0;j<nz;j++) for(let i=0;i<nx;i++){if(!on(i,j)) continue;
+    if(!on(i,j-1)) add([i,j],[i+1,j]);if(!on(i+1,j)) add([i+1,j],[i+1,j+1]);if(!on(i,j+1)) add([i+1,j+1],[i,j+1]);if(!on(i-1,j)) add([i,j+1],[i,j])}
+  const loops=[];
+  for(const [k0,l0] of E){while(l0.length){const s=k0.split(",").map(Number);let cur=s,prev=null,nxt=l0.shift();const loop=[s];
+      for(let g=0;g<100000;g++){prev=cur;cur=nxt;if(cur[0]===s[0]&&cur[1]===s[1]) break;loop.push(cur);const L=E.get(cur[0]+","+cur[1]);if(!L||!L.length) break;
+        let pick=0;if(L.length>1){const dx=cur[0]-prev[0],dz=cur[1]-prev[1];pick=L.findIndex(q=>(dx*(q[1]-cur[1])-dz*(q[0]-cur[0]))>0);if(pick<0) pick=0}nxt=L.splice(pick,1)[0]}
+      const pts=loop.map(([i,j])=>[xs[i],zs[j]]).filter((p,i,a)=>{const q=a[(i+a.length-1)%a.length],r=a[(i+1)%a.length];return Math.abs((p[0]-q[0])*(r[1]-p[1])-(p[1]-q[1])*(r[0]-p[0]))>1e-9});
+      if(pts.length>=3) loops.push(pts)}}
+  return loops}
+// dalle d'un niveau : réunion des dalles des pièces, arêtes du dessus et du dessous arrondies (rayon r), épaisseur e ; repère : x, −z en plan, épaisseur vers le haut
+function slabGeo(Rs,e,r,X,Z){const loops=rectLoops(Rs),area=p=>p.reduce((s,q,i)=>{const n=p[(i+1)%p.length];return s+q[0]*n[1]-n[0]*q[1]},0)/2;
+  const off=p=>p.map((q,i)=>{const a=p[(i+p.length-1)%p.length],b=p[(i+1)%p.length],d1=[q[0]-a[0],q[1]-a[1]],d2=[b[0]-q[0],b[1]-q[1]],l1=Math.hypot(...d1),l2=Math.hypot(...d2),n1=[-d1[1]/l1,d1[0]/l1],n2=[-d2[1]/l2,d2[0]/l2],k=1+n1[0]*n2[0]+n1[1]*n2[1];
+    return [q[0]+r*(n1[0]+n2[0])/k,q[1]+r*(n1[1]+n2[1])/k]});
+  const V=p=>p.map(([x,z])=>new THREE.Vector2(X(x),-Z(z))),outs=loops.filter(p=>area(p)>0.05),holes=loops.filter(p=>area(p)<-0.05);
+  const inP=(pt,p)=>{let c=false;for(let i=0,j=p.length-1;i<p.length;j=i++){const a=p[i],b=p[j];if((a[1]>pt[1])!==(b[1]>pt[1])&&pt[0]<(b[0]-a[0])*(pt[1]-a[1])/(b[1]-a[1])+a[0]) c=!c}return c};
+  const shapes=outs.map(p=>{const s=new THREE.Shape(V(off(p)));holes.filter(h=>inP(h[0],p)).forEach(h=>s.holes.push(new THREE.Path(V(off(h)))));return s});
+  if(!shapes.length) return null;
+  const g=new THREE.ExtrudeGeometry(shapes,{depth:Math.max(0.01,e-2*r),bevelEnabled:true,bevelThickness:r,bevelSize:r,bevelOffset:0,bevelSegments:3,curveSegments:4});
+  g.rotateX(-Math.PI/2);g.translate(0,r,0);
+  const g0=g.groups[0],g1=g.groups[1],h=g0.count/2;g.clearGroups();g.addGroup(g0.start,h,0);g.addGroup(g0.start+h,h,1);g.addGroup(g1.start,g1.count,2);return creaseN(g,40)}
+// mur au-dessus d'une fenêtre cintrée : rectangle de top − flèche jusqu'au plafond, creusé par l'arc (même cercle que la maquette CAO)
+function archGeo(len,rise,hc,t){const rr=(len*len/4+rise*rise)/(2*rise),a1=Math.atan2(rr-rise,-len/2),a2=Math.atan2(rr-rise,len/2),s=new THREE.Shape();
+  s.moveTo(0,0);s.absarc(len/2,rise-rr,rr,a1,a2,true);s.lineTo(len,hc);s.lineTo(0,hc);s.lineTo(0,0);
+  const g=new THREE.ExtrudeGeometry(s,{depth:t,bevelEnabled:false,curveSegments:18});g.translate(0,0,-t/2);
+  const g0=g.groups[0],g1=g.groups[1],h=g0.count/2;g.clearGroups();g.addGroup(g0.start,h,0);g.addGroup(g0.start+h,h,1);g.addGroup(g1.start,g1.count,2);return creaseN(g,30)}
+// vitre et cadre d'une fenêtre cintrée (repère : x le long du mur depuis a, y depuis l'allège)
+function archGlass(len,h1,rise){const rr=(len*len/4+rise*rise)/(2*rise),a1=Math.atan2(rr-rise,-len/2),a2=Math.atan2(rr-rise,len/2),s=new THREE.Shape();
+  s.moveTo(0,0);s.lineTo(len,0);s.lineTo(len,h1);s.absarc(len/2,h1+rise-rr,rr,a2,a1,false);s.lineTo(0,0);return new THREE.ShapeGeometry(s,18)}
+function archFrame(len,h1,rise,ft,d){const rr=(len*len/4+rise*rise)/(2*rise),a1=Math.atan2(rr-rise,-len/2),a2=Math.atan2(rr-rise,len/2),cy=h1+rise-rr,s=new THREE.Shape();
+  s.absarc(len/2,cy,rr,a2,a1,false);s.absarc(len/2,cy,rr-ft,a1,a2,true);
+  const g=new THREE.ExtrudeGeometry(s,{depth:d,bevelEnabled:false,curveSegments:18});g.translate(0,0,-d/2);return creaseN(g,30)}
+// angle de façade adouci : carré de l'épaisseur du mur, son angle extérieur (sx, sz) arrondi (rayon r)
+function cornerGeo(TO,H,r,sx,sz){const h=TO/2,c=[sx*(h-r),sz*(h-r)],f=Math.atan2(sz,sx),pts=[];
+  [[h,h],[-h,h],[-h,-h],[h,-h]].forEach(([x,z])=>{if(Math.sign(x)===sx&&Math.sign(z)===sz){for(let i=0;i<=8;i++){const a=f-Math.PI/4+i/8*Math.PI/2;pts.push([c[0]+r*Math.cos(a),c[1]+r*Math.sin(a)])}}else pts.push([x,z])});
+  pts.sort((p,q)=>Math.atan2(p[1],p[0])-Math.atan2(q[1],q[0]));
+  const g=new THREE.ExtrudeGeometry(new THREE.Shape(pts.map(([x,z])=>new THREE.Vector2(x,-z))),{depth:H,bevelEnabled:false,curveSegments:8});g.rotateX(-Math.PI/2);return creaseN(g,30)}
+// pelouse plus fine, bien verte (taches claires et foncées, brins), selon la zone ; enrobé de chaussée (granulats, usure, fissures)
+function lawnTex(zone){const C=zone==="sahel"?["#B9A673","#A8955F","#C8B585","#9C8C5C","#8E8A55"]:zone==="savane"?["#7E9440","#8FA44B","#6E8436","#9DAF58","#68803A"]:["#3E7C24","#478A2A","#367020","#529637","#2F661C"];
+  return mkTex("pelouse"+zone,1024,4,(g,s,R)=>{g.fillStyle=C[0];g.fillRect(0,0,s,s);
+    for(let i=0;i<46;i++){const x=R()*s,y=R()*s,r=40+R()*130,c=C[1+Math.floor(R()*4)],a=0.18+R()*0.22;
+      for(const dx of [-s,0,s]) for(const dy of [-s,0,s]){const q=g.createRadialGradient(x+dx,y+dy,0,x+dx,y+dy,r);q.addColorStop(0,hexA(c,a));q.addColorStop(1,hexA(c,0));g.fillStyle=q;g.fillRect(x+dx-r,y+dy-r,2*r,2*r)}}
+    for(let i=0;i<70000;i++){g.globalAlpha=0.3+R()*0.5;g.fillStyle=C[Math.floor(R()*5)];g.fillRect(R()*s,R()*s,1,2+R()*4)}
+    g.globalAlpha=0.25;for(let i=0;i<5000;i++){g.fillStyle=R()>0.5?"#2E5A1C":"#9CC25A";g.fillRect(R()*s,R()*s,1,1)}g.globalAlpha=1})}
+function asphTex(){return mkTex("enrobe",1024,5,(g,s,R)=>{g.fillStyle="#45484B";g.fillRect(0,0,s,s);
+  for(let i=0;i<30;i++){const x=R()*s,y=R()*s,r=60+R()*180,c=R()>0.5?"#3A3D40":"#55585C",a=0.08+R()*0.1;
+    for(const dx of [-s,0,s]) for(const dy of [-s,0,s]){const q=g.createRadialGradient(x+dx,y+dy,0,x+dx,y+dy,r);q.addColorStop(0,hexA(c,a));q.addColorStop(1,hexA(c,0));g.fillStyle=q;g.fillRect(x+dx-r,y+dy-r,2*r,2*r)}}
+  speck(g,s,R,["#2E3033","#5C5F63","#6E7175","#3A3C3F","#85888B"],90000,2.2,0.55);
+  g.strokeStyle="rgba(24,25,27,0.45)";for(let i=0;i<4;i++){let x=s*0.1+R()*s*0.8,y=s*0.1+R()*s*0.8;g.lineWidth=0.8+R()*0.8;g.beginPath();g.moveTo(x,y);for(let k=0;k<12;k++){x+=(R()-0.5)*26;y+=(R()-0.5)*26;g.lineTo(x,y)}g.stroke()}})}
+// bruit doux (deux échelles) pour varier la teinte d'un grand sol sans motif répété
+function vnoise(seed){const R=rng(seed*977+3),N=64,G=new Float32Array(N*N).map(()=>R()),f=(x,z)=>{const i=Math.floor(x),j=Math.floor(z),u=x-i,v=z-j,a=(p,q)=>G[((q%N+N)%N)*N+((p%N+N)%N)],s=t=>t*t*(3-2*t);
+  return a(i,j)*(1-s(u))*(1-s(v))+a(i+1,j)*s(u)*(1-s(v))+a(i,j+1)*(1-s(u))*s(v)+a(i+1,j+1)*s(u)*s(v)};return (x,z)=>0.65*f(x/11,z/11)+0.35*f(x/3.7+17,z/3.7+9)}
+// grand sol plat subdivisé : coordonnées de texture en mètres, couleur qui varie doucement (pelouse plus ou moins verte, zones plus sèches)
+function groundGeo(w,d,cx,cz,seed,amp){const nx=Math.max(2,Math.min(160,Math.round(w/1.5))),nz=Math.max(2,Math.min(160,Math.round(d/1.5))),g=new THREE.PlaneGeometry(w,d,nx,nz);g.rotateX(-Math.PI/2);
+  const P=g.attributes.position,U=g.attributes.uv,C=[],nf=vnoise(seed);
+  for(let i=0;i<P.count;i++){const x=P.getX(i)+cx,z=P.getZ(i)+cz;U.setXY(i,x,-z);const n=nf(x,z),k=1-amp+amp*2*n,dry=Math.max(0,n-0.62)*2.2;C.push(k*(1+0.12*dry),k*(1-0.02*dry),k*(1-0.25*dry))}
+  g.setAttribute("color",new THREE.Float32BufferAttribute(C,3));g.translate(cx,0,cz);return g}
+// ciel bleu profond et cumulus (ordinateur) : dessiné sur une grande sphère qui suit la caméra, sans passer par le rendu « cinéma » qui le grisait ;
+// renvoie la texture et la couleur de l'horizon (pour la brume)
+function skyHQ(S,seed){const C=k=>new THREE.Color(k);let top,mid,hor,haze;
+  if(S.night){top=C(0x0E1D45);mid=C(0x1D376A);hor=C(0x3D5D93);haze=C(0x4A6696)}
+  else if(S.gold){const k=Math.min(1,Math.max(0,(S.el-4)/14));top=C(0x3A64A8).lerp(C(0x3F78C8),k);mid=C(0x8C8FB8).lerp(C(0x74A4DC),k);hor=C(0xF0B88A).lerp(C(0xB8D3EE),k);haze=C(0xF6CFA2).lerp(C(0xD2E2F2),k)}
+  else{top=C(0x3A73C6);mid=C(0x6C9EDB);hor=C(0xB3D0EF);haze=C(0xD0E1F3)}
+  try{const W=2048,H=1024,c=document.createElement("canvas");c.width=W;c.height=H;const g=c.getContext("2d"),R=rng((seed||1)*131+7),hx=k=>"#"+k.getHexString();
+    const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,hx(top));gr.addColorStop(0.25,hx(mid));gr.addColorStop(0.44,hx(hor));gr.addColorStop(0.5,hx(haze));gr.addColorStop(1,hx(haze));
+    g.fillStyle=gr;g.fillRect(0,0,W,H);
+    const puff=(x,y,r,col,a)=>{for(const dx of [-W,0,W]){if(x+dx+r<0||x+dx-r>W) continue;const q=g.createRadialGradient(x+dx,y,0,x+dx,y,r);q.addColorStop(0,`rgba(${col},${a})`);q.addColorStop(0.55,`rgba(${col},${a*0.75})`);q.addColorStop(1,`rgba(${col},0)`);g.fillStyle=q;g.fillRect(x+dx-r,y-r,r*2,r*2)}};
+    if(S.night){for(let i=0;i<700;i++){g.globalAlpha=0.2+R()*0.6;g.fillStyle="#fff";const r=R()>0.93?2.2:1.2;g.fillRect(R()*W,R()*H*0.36,r,r)}g.globalAlpha=1}
+    else{const sx=(Math.atan2(S.dir.z,S.dir.x)/(2*Math.PI)+0.5)*W,sy=(0.5-Math.asin(Math.max(-1,Math.min(1,S.dir.y)))/Math.PI)*H,sc=S.color.clone().lerp(C(0xffffff),0.4),rgb=[sc.r,sc.g,sc.b].map(v=>Math.round(v*255)).join(",");
+      puff(sx,sy,S.gold?380:240,rgb,S.gold?0.5:0.3);puff(sx,sy,70,"255,255,255",0.85);puff(sx,sy,24,"255,255,255",1);
+      const lit=S.gold?"255,228,196":"255,255,255",shade=S.gold?"176,150,160":"170,186,206";
+      for(let k=0;k<26;k++){const v=0.13+R()*0.32,d=(v-0.13)/0.32,s=1.15-0.7*d,cx=R()*W,cy=H*v,w=(80+R()*170)*s,n=9+Math.floor(R()*10);
+        for(let i=0;i<n;i++){const t=R()*2-1,r=(16+R()*24)*s*(1-Math.abs(t)*0.4);puff(cx+t*w,cy+r*0.45+R()*6*s,r*1.05,shade,0.4)}
+        for(let i=0;i<n;i++){const t=R()*2-1,r=(16+R()*28)*s*(1-Math.abs(t)*0.4);puff(cx+t*w,cy-(1-Math.abs(t))*22*s-R()*10*s,r,lit,0.6)}
+        for(let i=0;i<Math.ceil(n/2);i++){const t=R()*1.6-0.8,r=(10+R()*14)*s;puff(cx+t*w,cy-(1-Math.abs(t))*30*s-r*0.3,r,"255,255,255",0.55)}}}
+    const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.mapping=THREE.EquirectangularReflectionMapping;return {t,hor:haze};
+  }catch(e){return {t:skyTex(S,seed),hor:S.hor}}}
+// sphère du ciel : toujours centrée sur la caméra (déplacée à chaque image), dessinée telle quelle (ni brume, ni rendu « cinéma »), ignorée par les ombres douces
+function skyDome(t,R){const g=new THREE.SphereGeometry(R,64,32),u=g.attributes.uv;for(let i=0;i<u.count;i++) u.setX(i,1-u.getX(i));
+  const me=new THREE.Mesh(g,new THREE.MeshBasicMaterial({map:t,side:THREE.BackSide,toneMapped:false,fog:false,depthWrite:false}));me.renderOrder=-1;me.frustumCulled=false;me.userData.noAO=true;me.userData.sky=true;return me}
+// le soir (ordinateur) : bandeaux lumineux couleur chaude (affichés tels quels), lumière qui descend sur les murs et flaques de lumière au sol (ajoutées à l'image)
+function ledMats(){const T=(k,f)=>{if(TEX[k]) return TEX[k];const c=document.createElement("canvas");c.width=c.height=128;const g=c.getContext("2d"),d=g.createImageData(128,128);
+    for(let y=0;y<128;y++) for(let x=0;x<128;x++){const a=f(x/127,y/127),i=(y*128+x)*4;d.data[i]=255;d.data[i+1]=196;d.data[i+2]=128;d.data[i+3]=Math.round(Math.max(0,Math.min(1,a))*255)}
+    g.putImageData(d,0,0);const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;return TEX[k]=t};
+  const sm=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t)},add=t=>new THREE.MeshBasicMaterial({map:t,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false,toneMapped:false,fog:false,side:THREE.DoubleSide});
+  return {strip:new THREE.MeshBasicMaterial({color:0xFFE6BE,toneMapped:false}),
+    wash:add(T("ledLave",(u,v)=>0.8*Math.pow(1-v,2.2)*sm(u/0.06)*sm((1-u)/0.06))),
+    side:add(T("ledCote",(u,v)=>0.5*Math.exp(-Math.pow((u-0.5)/0.2,2))*sm(v/0.08)*sm((1-v)/0.08))),
+    pool:add(T("ledSol",(u,v)=>{const r=Math.hypot(u-0.5,v-0.5)*2;return r<1?0.55*Math.pow(1-r,1.8):0}))}}
+function ledPool(scene,L,x,z,r){const me=new THREE.Mesh(new THREE.PlaneGeometry(2*r,2*r),L.pool);me.rotation.x=-Math.PI/2;me.position.set(x,0.07,z);me.userData.noAO=true;me.renderOrder=2;scene.add(me);return me}
+// essence d'arbre selon la zone (palmiers fréquents sur la côte), tirée d'après la position : toujours la même au même endroit
+function vegKind(zone,x,z){const r=Math.abs(Math.sin(x*12.9898+z*78.233)*43758.5453)%1;return zone==="cote"?(r<0.66?"palmier":r<0.76?"flamb":"arbre"):zone==="foret"?(r<0.55?"arbre":"palmier"):zone==="savane"?(r<0.35?"acacia":r<0.5?"flamb":r<0.8?"arbre":"palmier"):(r<0.7?"acacia":"palmier")}
 let viewer=null;
 function stop3D(){if(!viewer) return;cancelAnimationFrame(viewer.raf);viewer.ro&&viewer.ro.disconnect();
-  viewer.scene.traverse(o=>{if(o.geometry) o.geometry.dispose();if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(x=>x.dispose())});
-  viewer.env&&viewer.env.dispose();viewer.scene.userData.env2&&viewer.scene.userData.env2.dispose();viewer.ao&&viewer.ao.dispose();viewer.clay&&viewer.clay.dispose();viewer.el.querySelectorAll(".tfade").forEach(x=>x.remove());viewer.scene.overrideMaterial=null;viewer.scene.background&&viewer.scene.background.dispose&&viewer.scene.background.dispose();viewer.renderer.dispose();viewer.renderer.domElement.remove();viewer=null}
+  viewer.scene.traverse(o=>{if(o.geometry) o.geometry.dispose();if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(x=>x.dispose());o.customDepthMaterial&&o.customDepthMaterial.dispose();o.userData.aoMat&&o.userData.aoMat.dispose()});
+  viewer.scene.userData.skyT&&viewer.scene.userData.skyT.dispose();viewer.env&&viewer.env.dispose();viewer.scene.userData.env2&&viewer.scene.userData.env2.dispose();viewer.ao&&viewer.ao.dispose();viewer.clay&&viewer.clay.dispose();viewer.el.querySelectorAll(".tfade").forEach(x=>x.remove());viewer.scene.overrideMaterial=null;viewer.scene.background&&viewer.scene.background.dispose&&viewer.scene.background.dispose();viewer.renderer.dispose();viewer.renderer.domElement.remove();viewer=null}
 
 /* ---------- maquette des grands projets ---------- */
 // arbres en série : un tronc et une couronne par arbre, dessinés en une seule fois (InstancedMesh)
-function trees3D(par,pts,M){if(!pts.length) return;const d=new THREE.Object3D(),n=pts.length;
+function trees3D(par,pts,M){if(!pts.length) return;if(M.veg){pts.forEach(([x,z,s])=>M.veg.add(vegKind(M.zone,x,z),x,z,s*1.1));return}const d=new THREE.Object3D(),n=pts.length;
   const tr=new THREE.InstancedMesh(new THREE.CylinderGeometry(0.12,0.18,2.4,6),M.bark,n),cr=new THREE.InstancedMesh(new THREE.SphereGeometry(1,10,7),M.leaf3||M.leaf,n);
   pts.forEach(([x,z,s],i)=>{d.position.set(x,1.2*s,z);d.scale.set(s,s,s);d.rotation.set(0,0,0);d.updateMatrix();tr.setMatrixAt(i,d.matrix);d.position.set(x,2.9*s,z);d.scale.set(1.7*s,1.25*s,1.7*s);d.updateMatrix();cr.setMatrixAt(i,d.matrix)});
   [tr,cr].forEach(q=>{q.castShadow=true;q.receiveShadow=true;q.frustumCulled=false;par.add(q)})}
@@ -4276,7 +4727,7 @@ function prism3D(o,x0,x1,z0,z1,y,M,par){const ov=0.5,lx=x1-x0,lz=z1-z0,alongX=lx
   me.position.set((x0+x1)/2,y,(z0+z1)/2);if(alongX) me.rotation.y=Math.PI/2;par.add(me)}
 // cité ou résidence : volumes des maisons ou des immeubles, voies, stationnement, réserves et arbres
 function site3D(m,o,K){const {scene,roofGrp,box,M,X,Z,base,std,T}=K,S=m.site,u=m.unit,grp=new THREE.Group(),pts=[];
-  const lawn=std({map:T.ground,color:0x9DBB78,roughness:1}),dirt=std({map:T.ground,color:0xC8AE84,roughness:1});
+  const lawn=M.lawnHQ||std({map:T.ground,color:0x9DBB78,roughness:1}),dirt=std({map:T.ground,color:0xC8AE84,roughness:1});
   const ground=(r,mat,y)=>box(r.w,0.05,r.h,X(r.x+r.w/2),y||0.035,Z(r.y+r.h/2),mat,grp,{noCast:true});
   // lampadaires en série : un mât et une tête par point, dessinés en une seule fois (la tête est tournée vers le milieu de la voie)
   const lamps3D=P=>{if(!P.length) return;const d=new THREE.Object3D(),pole=new THREE.InstancedMesh(new THREE.CylinderGeometry(0.07,0.1,6,8),M.metal,P.length),head=new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1),M.lamp,P.length);
@@ -4297,6 +4748,12 @@ function site3D(m,o,K){const {scene,roofGrp,box,M,X,Z,base,std,T}=K,S=m.site,u=m
     const roadM=S.rev==="laterite"?std({map:T.ground,color:0xB9774C,roughness:1}):S.rev==="paves"?M.paver:M.asphalt;
     // voies ; les trottoirs et les caniveaux s'arrêtent aux carrefours et font le tour du rond-point
     S.roads.forEach(r=>ground(r,roadM));
+    // ordinateur : ligne axiale discontinue sur les voies en enrobé, coupée aux carrefours et au rond-point ; voitures garées le long des voies
+    if(M.paint) S.roads.forEach((r,ri)=>{const hz=r.w>=r.h,Ln=hz?r.w:r.h,wd=hz?r.h:r.w;if(Ln<16||wd<5.5) return;const c=hz?r.y+r.h/2:r.x+r.w/2;let sg=[[hz?r.x:r.y,hz?r.x+r.w:r.y+r.h]];
+      S.roads.forEach((q,qi)=>{if(qi===ri) return;const a=hz?q.x:q.y,b=hz?q.x+q.w:q.y+q.h,c0=hz?q.y:q.x,c1=hz?q.y+q.h:q.x+q.w;if(c<c0-0.1||c>c1+0.1) return;sg=sg.flatMap(([u,v])=>b<=u||a>=v?[[u,v]]:[[u,a-1.5],[b+1.5,v]].filter(([e,f])=>f-e>2))});
+      if(roadM===M.asphalt) sg.forEach(([u,v])=>{for(let t=u+1.5;t+3<=v-1;t+=6){const mx=hz?t+1.5:c,mz=hz?c:t+1.5;if(S.rp&&Math.hypot(mx-S.rp.x,mz-S.rp.y)<S.rp.r+3) continue;box(hz?3:0.12,0.004,hz?0.12:3,X(mx),0.0625,Z(mz),M.paint,grp,{noCast:true})}});
+      if(M.cars&&o.car) sg.forEach(([u,v])=>{for(let t=u+7,k=ri;t+5<=v;t+=16+(k*7)%15,k++){const sd=k%2?1:-1,off=wd/2-1.15,cx=hz?t:c+sd*off,cz=hz?c+sd*off:t;if(S.rp&&Math.hypot(cx-S.rp.x,cz-S.rp.y)<S.rp.r+6) continue;
+        M.cars.add(k%3?"berline":"suv",X(cx),Z(cz),hz?(sd>0?0:Math.PI):(sd>0?-Math.PI/2:Math.PI/2),M.cars.COL[(k*5+ri)%M.cars.COL.length])}})});
     if(S.trot) citeStrips(S,1.5,0).forEach(([x,y,w,h])=>box(w,0.14,h,X(x+w/2),0.08,Z(y+h/2),M.paver,grp,{noCast:true}));
     {const gut=std({map:T.concrete,color:0x8C9196,roughness:0.9});citeStrips(S,0.5,S.trot?1.5:0).forEach(([x,y,w,h])=>box(w,0.02,h,X(x+w/2),0.07,Z(y+h/2),gut,grp,{noCast:true}))}
     (S.vens||[]).forEach(v=>ground(v,dirt,0.03));
@@ -4313,7 +4770,7 @@ function site3D(m,o,K){const {scene,roofGrp,box,M,X,Z,base,std,T}=K,S=m.site,u=m
     S.lots.forEach(l=>{
       if(l.k==="vert"||l.k==="parc"){ground(l,lawn);plantIn(l,l.k==="parc"?8:6);return}
       if(l.k==="sport"){ground(l,pitch);return}
-      if(l.k==="parking"){ground(l,lawn);parkOf(l).forEach((q,i)=>{ground(q,M.paver,0.05);if(o.car&&i%2===0) box(1.8,1.0,4.3,X(q.x+q.w/2),0.55,Z(q.y+q.h/2),M.car,grp)});
+      if(l.k==="parking"){ground(l,lawn);parkOf(l).forEach((q,i)=>{ground(q,M.paver,0.05);if(o.car&&i%2===0){if(M.cars) M.cars.add((i>>1)%3===1?"suv":"berline",X(q.x+q.w/2),Z(q.y+q.h/2),(i%4?1:-1)*Math.PI/2,M.cars.COL[(i*5+Math.round(q.x))%M.cars.COL.length]);else box(1.8,1.0,4.3,X(q.x+q.w/2),0.55,Z(q.y+q.h/2),M.car,grp)}});
         const back=l.dir==="s"?{x:l.x,y:l.y,w:l.w,h:l.h-5}:{x:l.x,y:l.y+5,w:l.w,h:l.h-5};if(back.h>=4) plantIn(back,6);return}
       if(l.k!=="lot"){ground(l,dirt);return}
       // murets de clôture du lot
@@ -4359,7 +4816,7 @@ function site3D(m,o,K){const {scene,roofGrp,box,M,X,Z,base,std,T}=K,S=m.site,u=m
       if(RP){pts.push([X(RP.x),Z(RP.y),1.3]);[0,1,2].forEach(i=>{const a=i*2.094+0.5;pts.push([X(RP.x)+Math.cos(a)*RP.ri*0.6,Z(RP.y)+Math.sin(a)*RP.ri*0.6,0.7])})}}
   }else{
     const obs=[S.road,S.guard,...S.blds,...S.parks].map(q=>({x:q.x-2.5,y:q.y-2.5,w:q.w+5,h:q.h+5}));
-    box(m.W,0.04,m.D,X(m.W/2),0.025,Z(m.D/2),lawn,grp,{noCast:true});ground(S.road,M.asphalt);S.parks.forEach((q,i)=>{ground(q,M.paver);if(o.car&&i%3===0){box(4.3,1.0,1.8,X(q.x+q.w/2),0.55,Z(q.y+q.h/2),M.car,grp)}});
+    box(m.W,0.04,m.D,X(m.W/2),0.025,Z(m.D/2),lawn,grp,{noCast:true});ground(S.road,M.asphalt);S.parks.forEach((q,i)=>{ground(q,M.paver);if(o.car&&i%3===0){if(M.cars) M.cars.add(i%2?"suv":"berline",X(q.x+q.w/2),Z(q.y+q.h/2),i%6?0:Math.PI,M.cars.COL[(i*5)%M.cars.COL.length]);else box(4.3,1.0,1.8,X(q.x+q.w/2),0.55,Z(q.y+q.h/2),M.car,grp)}});
     box(S.guard.w,2.8,S.guard.h,X(S.guard.x+S.guard.w/2),1.4,Z(S.guard.y+S.guard.h/2),M.facade,grp);
     // le vrai immeuble type sur chaque emplacement
     // immeubles tournés (en U autour d'un jardin) : on fait pivoter l'immeuble type autour du centre de son emprise
@@ -4412,23 +4869,27 @@ function mount3D(el,m,o,st){
   el.querySelectorAll(".fallback").forEach(x=>x.remove());
   if(typeof THREE==="undefined"){el.insertAdjacentHTML("afterbegin",`<div class="fallback">La maquette 3D n'a pas pu se charger dans ce navigateur. Le plan et le coût restent disponibles.</div>`);return null}
   const W=m.W,D=m.D,X=x=>x-W/2,Z=z=>z-D/2,big=Math.max(W,D),baseH=m.zone==="cote"?0.5:0.3,HT=baseH+m.levels.length*(H3+SL3),ext=Math.max(big,HT);
-  const tour=st.mode==="tour",T=textures(m.zone),S=sunState(tour?19.2:o.hour,m.or),inside=st.mode==="int"||tour;
+  const tour=st.mode==="tour",cao=st.mode==="cao",T=textures(m.zone),S=sunState(tour?19.2:o.hour,m.or),inside=st.mode==="int"||tour;
   const lightsOn=inside||S.el<10;
   const scene=new THREE.Scene();
   const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance"});
   const phone=matchMedia("(pointer:coarse)").matches&&Math.min(screen.width,screen.height)<900,HQ=hq3D();
+  // ordinateur, hors éditeur et maquette CAO : ciel, végétation, voitures et chaussée réalistes ;
+  // abonnés Max : formes de la maquette CAO (fenêtres cintrées, poteaux ronds, dalles aux bords arrondis, angles adoucis), mêmes réglages que la maquette CAO
+  // (window.__noHQX : seulement pour les anciens tests automatiques, très lents sans carte graphique)
+  const HQX=HQ&&st.mode!=="edit"&&!cao&&!window.__noHQX,CADV=HQX&&typeof caoOpts==="function"&&window.amMax?caoOpts():null;
   renderer.setPixelRatio(Math.min(phone?1.5:2,window.devicePixelRatio||1));renderer.setSize(el.clientWidth||600,el.clientHeight||400);
   renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=inside?(S.night?0.7:0.6):(S.night?0.9:0.82);
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
   el.prepend(renderer.domElement);
-  scene.background=skyTex(S,m.p&&m.p.seed);
+  const SK=HQX?skyHQ(S,m.p&&m.p.seed):null;scene.background=SK?null:skyTex(S,m.p&&m.p.seed);if(SK) scene.userData.skyT=SK.t;
   const pm=new THREE.PMREMGenerator(renderer);const env=pm.fromScene(envScene(S),0.04);scene.environment=env.texture;pm.dispose();
   // plan masse (cité, résidence) : la caméra de départ montre tout le terrain, toutes les maisons comprises
   const fitD=m.site?0.5*Math.hypot(W,D)*0.82/Math.sin(Math.min(0.33,Math.atan(Math.tan(0.33)*((el.clientWidth||600)/(el.clientHeight||400))))):0;
-  if(!inside&&st.mode!=="edit") scene.fog=new THREE.Fog(S.hor.getHex(),Math.max(ext*2.4,fitD*1.2),Math.max(ext*6,fitD*3.5)); // pas de brume dans l'éditeur : vues lointaines « à plat »
+  if(!inside&&st.mode!=="edit") scene.fog=new THREE.Fog((SK?SK.hor:S.hor).getHex(),Math.max(ext*2.4,fitD*1.2),Math.max(ext*6,fitD*3.5)); // pas de brume dans l'éditeur : vues lointaines « à plat »
   // lumières
   // dedans, la lumière d'ambiance est chaude (réfléchie par les murs) ; dehors elle garde le bleu du ciel
-  scene.add(new THREE.HemisphereLight(inside?0xfff1dc:S.top.getHex(),inside?0xcdbfa8:S.gnd.getHex(),inside?S.hemi*0.86:S.hemi*0.68));
+  scene.add(new THREE.HemisphereLight(inside?0xfff1dc:S.top.getHex(),inside?0xcdbfa8:S.gnd.getHex(),inside?S.hemi*0.86:S.hemi*0.68*(HQX&&S.night?2.6:1)));
   const sun=new THREE.DirectionalLight(S.color,S.intensity);sun.position.copy(S.dir).multiplyScalar(Math.max(big*2,HT*2.5));sun.castShadow=true;
   const sc=Math.max(big*0.8,HT*0.9);Object.assign(sun.shadow.camera,{left:-sc,right:sc,top:sc,bottom:-sc,near:1,far:Math.max(big*5,HT*7)});sun.shadow.camera.updateProjectionMatrix();
   const shm=phone?1024:(renderer.capabilities.maxTextureSize>=4096?4096:2048);sun.shadow.mapSize.set(shm,shm);sun.shadow.bias=-0.0004;sun.shadow.normalBias=0.03;scene.add(sun);scene.add(sun.target);
@@ -4464,9 +4925,13 @@ function mount3D(el,m,o,st){
     if(b&&b[0]){mt.bumpMap=b[0];mt.bumpScale=b[1]}return mt};
   if(HQ) [M.floorMain,M.floorWet,M.floorNight,M.inner].forEach(bumpIn);
   // vitres : de dehors, elles reflètent le vrai ciel (nuages, soleil)
-  if(HQ&&!inside&&scene.background&&scene.background.isTexture){try{const pg=new THREE.PMREMGenerator(renderer),rt=pg.fromEquirectangular(scene.background);pg.dispose();M.glass.envMap=rt.texture;scene.userData.env2=rt}catch(e){}}
+  const skyT=SK?SK.t:scene.background;if(HQ&&!inside&&skyT&&skyT.isTexture){try{const pg=new THREE.PMREMGenerator(renderer),rt=pg.fromEquirectangular(skyT);pg.dispose();M.glass.envMap=rt.texture;scene.userData.env2=rt}catch(e){}}
   const flMat=k=>M["fl_"+k]||(M["fl_"+k]=bumpIn(({carrelage:()=>std({map:T.tile,color:FIN.tile,roughness:0.35}),parquet:()=>std({map:T.parquet,roughness:0.55}),beton:()=>std({map:T.concrete,roughness:0.45}),marbre:()=>std({map:T.marble,color:0xD9CDBA,roughness:0.2,envMapIntensity:inside?0.45:1.4}),granit:()=>std({map:T.concrete,color:0x74777A,roughness:0.28,envMapIntensity:inside?0.4:1.1})}[k]||(()=>M.floorMain))()));
   M.leaf3=std({color:0x3D6A31,roughness:0.95});
+  // ordinateur : pelouse fine et variée, enrobé de chaussée, arbres et palmiers en feuilles, voitures vernies
+  const LED=HQX&&!inside&&lightsOn?ledMats():null,VEG=HQX?vegKit(m.p.seed||1):null,CARS=HQX?carKit(scene.userData.env2?scene.userData.env2.texture:null,S.night):null;
+  if(HQX){const lt=lawnTex(m.zone);M.lawnHQ=std({map:lt,color:0x8C6E6B,roughness:1});M.lawnV=std({map:lt,color:0x8C6E6B,roughness:1,vertexColors:true});[M.lawnHQ,M.lawnV].forEach(x=>{x.bumpMap=lt;x.bumpScale=0.02});
+    M.asphalt.map=asphTex();M.paint=std({color:0xEDECE6,roughness:0.6});M.veg=VEG;M.cars=CARS;M.zone=m.zone}
   const relief={btc:0.014,pierre:0.02,bois:0.008,enduit:0.0025,beton:0.004};
   [[M.facade,relief[o.facade]||0.0025],[M.roofPitch,o.roofMat==="tuile"?0.03:0.02],[M.paver,0.012],[M.deck,0.01],[M.ground,0.03],[M.patio,0.03],[M.asphalt,0.006],[M.plinth,0.006],[M.roofFlat,0.006]].forEach(([mt,k])=>{if(mt&&mt.map){mt.bumpMap=mt.map;mt.bumpScale=k}});
   const box=(w,h,d,x,y,z,mat,par,opt)=>{const g=new THREE.BoxGeometry(Math.max(0.005,w),Math.max(0.005,h),Math.max(0.005,d));scaleUV(g,w,h,d);const me=new THREE.Mesh(g,mat);me.position.set(x,y,z);me.castShadow=!(opt&&opt.noCast);me.receiveShadow=true;(par||scene).add(me);return me};
@@ -4482,11 +4947,19 @@ function mount3D(el,m,o,st){
     for(let k=0;k<40;k++){const t=k/40;g.fillStyle="rgba(0,0,0,0.02)";g.fillRect(px*t,pz*t,256-2*px*t,256-2*pz*t)}
     const pl=new THREE.Mesh(new THREE.PlaneGeometry(cw,cd),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false,opacity:S.night?0.5:0.9,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2}));
     pl.rotation.x=-Math.PI/2;pl.position.set(X(m.bx+m.bw/2),0.045,Z(m.by+m.bd/2));pl.renderOrder=1;scene.add(pl)}catch(e){}
-  box(W*5,0.1,D*5,0,-0.06,0,M.ground,null,{noCast:true});
-  box(W+0.01,0.06,D+0.01,0,0.0,0,M.ground,null,{noCast:true});
-  box(W*5,0.04,7,0,0.0,D/2+4.6,M.asphalt,null,{noCast:true});
-  box(W*5,0.14,1.6,0,0.05,D/2+0.95,M.paver,null,{noCast:true});
-  box(W*5,0.18,0.15,0,0.07,D/2+1.8,M.curb,null,{noCast:true});
+  if(HQX){const gp=(g,y)=>{const me=new THREE.Mesh(g,M.lawnV);me.position.y=y;me.receiveShadow=true;scene.add(me)};gp(groundGeo(Math.max(W*5,600),Math.max(D*5,600),0,0,(m.p.seed||1)+5,0.12),-0.01);gp(groundGeo(W+0.01,D+0.01,0,0,(m.p.seed||1)+5,0.12),0.03)}
+  else{box(W*5,0.1,D*5,0,-0.06,0,M.ground,null,{noCast:true});
+  box(W+0.01,0.06,D+0.01,0,0.0,0,M.ground,null,{noCast:true})}
+  const RL=HQX?Math.max(W*5,420):W*5;
+  box(RL,0.04,7,0,0.0,D/2+4.6,M.asphalt,null,{noCast:true});
+  box(RL,0.14,1.6,0,0.05,D/2+0.95,M.paver,null,{noCast:true});
+  box(RL,0.18,0.15,0,0.07,D/2+1.8,M.curb,null,{noCast:true});
+  // ordinateur : marquage blanc (ligne axiale discontinue, lignes de rive), bordure et trottoir en face
+  if(HQX){const L5=RL,za=D/2+1.875,zb=D/2+8.1,mid=(za+zb)/2;for(let x=-L5/2+1;x<L5/2-3;x+=6) box(3,0.004,0.12,x+1.5,0.022,mid,M.paint,null,{noCast:true});
+    [za+0.35,zb-0.35].forEach(z=>box(L5,0.004,0.12,0,0.022,z,M.paint,null,{noCast:true}));
+    box(L5,0.18,0.15,0,0.07,zb+0.075,M.curb,null,{noCast:true});box(L5,0.14,1.6,0,0.05,zb+0.95,M.paver,null,{noCast:true});
+    // lampadaires sur le trottoir d'en face (le soir : ampoule allumée et flaque de lumière sur la chaussée)
+    for(let x=-40;x<=40;x+=26){const z=zb+1.35;cyl(0.06,0.09,6.2,x,3.1,z,M.metal,null,10);box(0.08,0.08,1.5,x,6.15,z-0.7,M.metal);const hd=box(0.36,0.1,0.7,x,6.08,z-1.35,LED?LED.strip:M.lamp,null,{noCast:true});hd.userData.noAO=true;if(LED) ledPool(scene,LED,x,z-2.6,4.2)}}
   const gw=Math.min(4.2,W*0.32),gx=W/2;
   const entryX=m.bx+m.bw/2;
   if(!m.site) box(gw,0.03,m.ra+0.4,X(gx),0.04,Z(D-m.ra/2),M.paver,null,{noCast:true});
@@ -4510,7 +4983,20 @@ function mount3D(el,m,o,st){
     [[0,3.1,0,1.45],[0.8,2.7,0.35,1.05],[-0.7,2.8,-0.3,1.1],[0.15,3.75,-0.4,0.95],[-0.3,2.6,0.75,0.9],[0.45,3.3,-0.8,0.85],[-0.85,3.4,0.3,0.75]].forEach(([a,b,c,r],i)=>blob(r*s,X(x)+a*s,b*s,Z(z)+c*s,LEAVES[i%3],1,0.85,1))};
   const acacia=(x,z,s)=>{cyl(0.1*s,0.16*s,2.6*s,X(x),1.3*s,Z(z),M.bark);blob(1.9*s,X(x),2.9*s,Z(z),M.leaf2,1,0.3,1);blob(1.1*s,X(x)+0.5*s,3.2*s,Z(z)-0.3*s,M.leaf3,1,0.28,1)};
   const shrub=(x,z,s)=>blob(0.55*s,X(x),0.4*s,Z(z),LEAVES[Math.floor(rr()*3)],1.2,0.8,1);
-  if(o.veg){
+  if(VEG&&o.veg&&!m.site){const free=(x,z,pad)=>!(x>m.bx-pad&&x<m.bx+m.bw+pad&&z>m.by-pad&&z<m.by+m.bd+pad)&&!(z>D-m.ra-0.6&&Math.abs(x-gx)<gw/2+1.2)&&x>0.8&&x<W-0.8&&z>0.8&&z<D-0.8,add=(k,x,z,s)=>VEG.add(k,X(x),Z(z),s),bush=()=>rr()<0.2?"bougain":"boule";
+    // dans le jardin : arbres et palmiers, buissons ronds le long des murs et devant la façade, quelques bougainvilliers
+    let placed=0;for(let i=0;i<60&&placed<7;i++){const x=rr()*W,z=rr()*D;if(!free(x,z,2.2)) continue;add(vegKind(m.zone,x,z),x,z,0.85+rr()*0.35);placed++;if(LED) ledPool(scene,LED,X(x),Z(z),1.6)}
+    // le soir : bornes lumineuses de part et d'autre de l'allée
+    if(LED&&m.ra>=2) [gx-gw/2-0.35,gx+gw/2+0.35].forEach(x=>[D-0.6,D-m.ra+0.5].forEach(z=>{box(0.12,0.55,0.12,X(x),0.3,Z(z),M.metal);const t=box(0.13,0.08,0.13,X(x),0.56,Z(z),LED.strip,null,{noCast:true});t.userData.noAO=true;ledPool(scene,LED,X(x),Z(z),1.1)}))
+    for(let x=1.0;x<W-1;x+=1.4+rr()*0.7){if(free(x,0.8,0.6)) add(bush(),x,0.75,0.75+rr()*0.3)}
+    for(let z=1.5;z<D-1.5;z+=1.5+rr()*0.8){if(free(0.8,z,0.6)) add(bush(),0.75,z,0.75+rr()*0.25);if(free(W-0.8,z,0.6)) add(bush(),W-0.75,z,0.75+rr()*0.25)}
+    const zf=m.by+m.bd+0.75;if(D-zf>0.9) for(let x=m.bx+0.6;x<m.bx+m.bw-0.4;x+=1.5){if(Math.abs(x-gx)<gw/2+0.7||Math.abs(x-entryX)<1.1) continue;add("boule",x,zf,0.65+rr()*0.15)}
+    // autour du terrain : jardins voisins plantés ; au loin, une ligne d'arbres (pas entre la caméra et la maison)
+    for(let i=0;i<24;i++){const sd=i%3,x=sd===0?-2-rr()*9:sd===1?W+2+rr()*9:-6+rr()*(W+12),z=sd===2?-2-rr()*10:rr()*D*0.5-D*0.1;add(vegKind(m.zone,x,z),x,z,0.9+rr()*0.5)}
+    for(let i=0;i<34;i++){const a=i/34*Math.PI*2+rr()*0.12,r=Math.max(W,D)*0.5+28+rr()*22,x=W/2+Math.cos(a)*r,z=D/2+Math.sin(a)*r;if(Math.sin(a)>0.35||(z>D-1&&z<D+11)) continue;add(vegKind(m.zone,x,z),x,z,1.1+rr()*0.6)}
+    // rue : deux palmiers (ou flamboyants) sur le trottoir, de part et d'autre du terrain
+    add(m.zone==="sahel"||m.zone==="savane"?"acacia":"palmier",-2.5,D+0.95,1.0+rr()*0.2)}
+  else if(o.veg){
     const free=(x,z,pad)=>!(x>m.bx-pad&&x<m.bx+m.bw+pad&&z>m.by-pad&&z<m.by+m.bd+pad)&&!(z>D-m.ra-0.6&&Math.abs(x-gx)<gw/2+1.2)&&x>0.8&&x<W-0.8&&z>0.8&&z<D-0.8;
     let placed=0;for(let i=0;i<60&&placed<7;i++){const x=rr()*W,z=rr()*D;if(!free(x,z,2.2)) continue;const s=0.8+rr()*0.5;
       if(m.zone==="cote"&&rr()>0.3) palm(x,z,s); else if(m.zone==="foret") broad(x,z,s); else if(m.zone==="savane") (rr()>0.5?acacia:broad)(x,z,s); else acacia(x,z,s);placed++}
@@ -4518,7 +5004,10 @@ function mount3D(el,m,o,st){
     for(let z=1.5;z<D-1.5;z+=1.6+rr()){if(free(0.8,z,0.6)) shrub(0.75,z,0.7+rr()*0.3);if(free(W-0.8,z,0.6)) shrub(W-0.75,z,0.7+rr()*0.3)}
   }
   /* --- voiture --- */
-  if(o.car&&m.ra>=4.6&&!m.site){const cg=new THREE.Group(),cz=Z(D-m.ra/2+0.2),cx=X(gx);box(1.8,0.6,4.3,0,0.62,0,M.car,cg);const cab=box(1.6,0.55,2.2,0,1.18,-0.2,M.car,cg);box(1.62,0.45,2.0,0,1.2,-0.2,M.glass,cg);
+  if(CARS&&o.car&&!m.site){const cr=rng((m.p.seed||1)*7+1),pick=()=>CARS.COL[Math.floor(cr()*CARS.COL.length)],ty=()=>cr()<0.5?"suv":"berline";
+    if(m.ra>=4.6) CARS.add(ty(),X(gx),Z(D-m.ra/2+0.2),Math.PI/2,pick());
+    CARS.add(ty(),X(gx)+6.5+cr()*4,D/2+7.0,Math.PI,pick());CARS.add(ty(),X(gx)-8.5-cr()*4,D/2+3.0,0,pick())}
+  else if(o.car&&m.ra>=4.6&&!m.site){const cg=new THREE.Group(),cz=Z(D-m.ra/2+0.2),cx=X(gx);box(1.8,0.6,4.3,0,0.62,0,M.car,cg);const cab=box(1.6,0.55,2.2,0,1.18,-0.2,M.car,cg);box(1.62,0.45,2.0,0,1.2,-0.2,M.glass,cg);
     [[-0.82,1.3],[0.82,1.3],[-0.82,-1.35],[0.82,-1.35]].forEach(([a,b])=>{const t=cyl(0.34,0.34,0.24,a,0.34,b,M.tire,cg,18);t.rotation.z=Math.PI/2});cg.position.set(cx,0,cz);scene.add(cg)}
 
   /* --- équipements extérieurs --- */
@@ -4531,7 +5020,7 @@ function mount3D(el,m,o,st){
   if(m.p.citerne&&!m.site){const cx=X(m.rl*0.5+0.4),cz=Z(0.9);[[-0.6,-0.6],[0.6,-0.6],[-0.6,0.6],[0.6,0.6]].forEach(([a,b])=>box(0.12,4,0.12,cx+a,2,cz+b,M.metal));box(1.6,0.12,1.6,cx,4.05,cz,M.metal);cyl(0.75,0.75,1.6,cx,4.9,cz,new THREE.MeshStandardMaterial({color:0x1f4e8c,roughness:0.6}),null,24)}
   /* --- bâtiment --- */
   const base=m.zone==="cote"?0.5:0.3;
-  if(!m.site) box(m.bw+0.3,base,m.bd+0.3,X(m.bx+m.bw/2),base/2,Z(m.by+m.bd/2),M.plinth);
+  if(!m.site&&!cao) box(m.bw+0.3,base,m.bd+0.3,X(m.bx+m.bw/2),base/2,Z(m.by+m.bd/2),M.plinth);
   const levels=[],ceils=[],roofGrp=new THREE.Group();scene.add(roofGrp);
   let roomSel=null;
   if(inside&&!m.site){const all=m.levels.flatMap((L,li)=>L.map(r=>Object.assign({li},r)));roomSel=all.find(r=>r.n===st.room&&r.li===st.roomLi&&(st.roomU===undefined||r.u===st.roomU))||all.find(r=>r.n===st.room&&r.li===st.roomLi)||all.find(r=>/^Séjour/.test(r.n))||all[0]}
@@ -4549,24 +5038,36 @@ function mount3D(el,m,o,st){
   const accSide=r=>{const ex=sides(r,m).map(q=>q.side);return (r.w>=r.h?["top","bottom"]:["left","right"]).find(q=>!ex.includes(q))||null};
   const rw=(r,side)=>{if(r.t==="out"||r.t==="patio") return null;if(r.wc) return wmat(r.wc);if(r.t==="wet") return wmat(FIN.in.wet);if(PLAIN.test(r.n)) return wmat(FIN.in.circ);
     const night=r.t==="night",acc=(!night||/^Ch/.test(r.n))&&accSide(r)===side;return wmat(acc?(night?FIN.in.accNight:FIN.in.accDay):(night?FIN.in.night:FIN.in.day))};
-  const windowDress=(o2,c,t,a,b,y0,op,grp,extSign,tag)=>{
+  let CORN=[];
+  const windowDress=(o2,c,t,a,b,y0,op,grp,extSign,tag,rise)=>{
     const len=b-a,mid=(a+b)/2,hy=(op.bot+op.top)/2,gh=op.top-op.bot,ft=0.05;
     const P=(w,h,d,u,y,n,mat)=>{const me=o2==="h"?box(w,h,d,X(u),y,Z(c+n),mat,grp):box(d,h,w,X(c+n),y,Z(u),mat,grp);if(tag) me.userData.pick=tag;return me};
-    P(len,gh,0.02,mid,y0+hy,0,M.glass);
-    P(len,ft,0.08,mid,y0+op.top-ft/2,0,M.frame);P(len,ft,0.08,mid,y0+op.bot+ft/2,0,M.frame);
-    P(ft,gh,0.08,a+ft/2,y0+hy,0,M.frame);P(ft,gh,0.08,b-ft/2,y0+hy,0,M.frame);
-    if(len>1.3) P(0.04,gh,0.07,mid,y0+hy,0,M.frame);
+    // fenêtre cintrée (maquette CAO) : la vitre et le haut du cadre suivent l'arc
+    const put=(g,mat)=>{const me=new THREE.Mesh(g,mat);if(o2==="h") me.position.set(X(a),y0+op.bot,Z(c));else{me.rotation.y=-Math.PI/2;me.position.set(X(c),y0+op.bot,Z(a))}me.castShadow=true;me.receiveShadow=true;if(tag) me.userData.pick=tag;grp.add(me)};
+    const top=rise?Math.min(op.top,H3-0.02):op.top,h1=top-(rise||0)-op.bot;
+    if(rise){put(archGlass(len,h1,rise),M.glass);put(archFrame(len,h1,rise,ft,0.08),M.frame);P(ft,h1,0.08,a+ft/2,y0+op.bot+h1/2,0,M.frame);P(ft,h1,0.08,b-ft/2,y0+op.bot+h1/2,0,M.frame)}
+    else{P(len,gh,0.02,mid,y0+hy,0,M.glass);P(len,ft,0.08,mid,y0+op.top-ft/2,0,M.frame);P(ft,gh,0.08,a+ft/2,y0+hy,0,M.frame);P(ft,gh,0.08,b-ft/2,y0+hy,0,M.frame)}
+    P(len,ft,0.08,mid,y0+op.bot+ft/2,0,M.frame);
+    if(len>1.3) P(0.04,top-op.bot,0.07,mid,y0+(op.bot+top)/2,0,M.frame);
     if(op.bot>0.2&&extSign) P(len+0.12,0.05,0.2,mid,y0+op.bot-0.025,extSign*(t/2+0.06),M.coping);
     // finition économique : fenêtres à lames de verre orientables
-    if(MOD.win==="naco"&&op.k==="win"&&extSign&&gh>0.5) for(let y=op.bot+0.13;y<op.top-0.08;y+=0.15) P(len-2*ft,0.014,0.1,mid,y0+y,0,M.steel);
+    if(MOD.win==="naco"&&op.k==="win"&&extSign&&gh>0.5) for(let y=op.bot+0.13;y<top-(rise||0)-0.08;y+=0.15) P(len-2*ft,0.014,0.1,mid,y0+y,0,M.steel);
   };
   const segWall=(o2,c,t,s0,s1,y0,ops,grp,extFace,extSign,im,fm,wtag)=>{
-    ops=ops.slice().sort((p,q)=>p.d0-q.d0);let cur=s0;const mats=faceMats(extFace,o2,im,fm);
-    const piece=(a,b,ya,yb)=>{if(b-a<0.01||yb-ya<0.01) return;const len=b-a,mid=(a+b)/2,hy=(ya+yb)/2;
+    ops=ops.slice().sort((p,q)=>p.d0-q.d0);let cur=s0;const mats=faceMats(extFace,o2,im,fm),isExt=extFace!==undefined&&extFace!==null;
+    // angles adoucis (maquette CAO) : le mur de façade laisse la place au poteau d'angle arrondi
+    const cut=isExt?CORN.filter(([x,z])=>o2==="h"?Math.abs(z-c)<EPS:Math.abs(x-c)<EPS).map(([x,z])=>o2==="h"?[x-TO/2,x+TO/2]:[z-TO/2,z+TO/2]):[];
+    const piece0=(a,b,ya,yb)=>{if(b-a<0.01||yb-ya<0.01) return;const len=b-a,mid=(a+b)/2,hy=(ya+yb)/2;
       const me=o2==="h"?box(len,yb-ya,t,X(mid),y0+hy,Z(c),mats,grp):box(t,yb-ya,len,X(c),y0+hy,Z(mid),mats,grp);if(wtag) me.userData.pick=wtag};
-    ops.forEach(op=>{const a=Math.max(s0,op.d0),b=Math.min(s1,op.d1);if(b<=a) return;piece(cur,a,0,H3);piece(a,b,0,op.bot);piece(a,b,op.top,H3);
+    const piece=(a,b,ya,yb)=>{let sg=[[a,b]];cut.forEach(([u,v])=>{sg=sg.flatMap(([p,q])=>v<=p||u>=q?[[p,q]]:[[p,Math.min(q,u)],[Math.max(p,v),q]].filter(([e,f])=>f-e>0.005))});sg.forEach(([p,q])=>piece0(p,q,ya,yb))};
+    ops.forEach(op=>{const a=Math.max(s0,op.d0),b=Math.min(s1,op.d1);if(b<=a) return;piece(cur,a,0,H3);piece(a,b,0,op.bot);
+      // fenêtre cintrée (maquette CAO) : mêmes conditions et même flèche que le calcul Open CASCADE (cao-worker.js)
+      const top=Math.min(op.top,H3-0.02),bt=op.bot<=0.001?-0.05:op.bot,rise=CADV&&CADV.arches&&isExt&&op.k==="win"&&b-a>=0.5&&top-bt>0.6?Math.min(0.3,(b-a)*0.25):0;
+      if(rise){const me=new THREE.Mesh(archGeo(b-a,rise,H3-(top-rise),t),o2==="h"?[mats[5],mats[4],mats[3]]:[mats[0],mats[1],mats[3]]);
+        if(o2==="h") me.position.set(X(a),y0+top-rise,Z(c));else{me.rotation.y=-Math.PI/2;me.position.set(X(c),y0+top-rise,Z(a))}me.castShadow=true;me.receiveShadow=true;if(wtag) me.userData.pick=wtag;grp.add(me)}
+      else piece(a,b,op.top,H3);
       const otag=wtag?Object.assign({},wtag,{t:"op",d0:op.d0,d1:op.d1,k:op.k}):null;
-      if(op.k==="win"||op.k==="baie") windowDress(o2,c,t,a,b,y0,op,grp,extSign,otag);
+      if(op.k==="win"||op.k==="baie") windowDress(o2,c,t,a,b,y0,op,grp,extSign,otag,rise);
       if(op.k==="door"&&otag){const len=b-a,mid=(a+b)/2,hh=op.top||2.1,me=new THREE.Mesh(o2==="h"?new THREE.BoxGeometry(len,hh,t+0.02):new THREE.BoxGeometry(t+0.02,hh,len),new THREE.MeshBasicMaterial({colorWrite:false,depthWrite:false}));
         me.position.set(o2==="h"?X(mid):X(c),y0+hh/2,o2==="h"?Z(c):Z(mid));me.userData.pick=otag;grp.add(me)}
       if(op.k==="entry"){const len=b-a,mid=(a+b)/2,ems=[];if(op.shop){if(o2==="h") ems.push(box(len,op.top,0.04,X(mid),y0+op.top/2,Z(c),M.glass,grp)); else ems.push(box(0.04,op.top,len,X(c),y0+op.top/2,Z(mid),M.glass,grp))}else if(o2==="h"){ems.push(box(len,op.top,0.06,X(mid),y0+op.top/2,Z(c),M.door,grp));box(0.03,0.3,0.05,X(mid+len*0.35),y0+1.05,Z(c+extSign*0.05),M.steel,grp)}else{ems.push(box(0.06,op.top,len,X(c),y0+op.top/2,Z(mid),M.door,grp))}
@@ -4581,6 +5082,7 @@ function mount3D(el,m,o,st){
     if(L.copyOf!==undefined&&levels[L.copyOf]&&!top){const lev=new THREE.Group(),sh=levels[L.copyOf].userData.shell.clone();if(st.mode==="edit") sh.traverse(o=>{if(o.userData.pick) o.userData.pick.li=li});lev.add(sh);lev.userData.shell=sh;lev.position.y=(li-L.copyOf)*(H3+SL3);scene.add(lev);levels.push(lev);return}
     const lev=new THREE.Group(),grp=new THREE.Group(),inner=new THREE.Group();lev.add(grp);lev.add(inner);lev.userData.shell=grp;scene.add(lev);levels.push(lev);
     const O=openings(m,li);
+    CORN=CADV&&CADV.corners?[[m.bx+TO/2,m.by+TO/2],[m.bx+m.bw-TO/2,m.by+TO/2],[m.bx+TO/2,m.by+m.bd-TO/2],[m.bx+m.bw-TO/2,m.by+m.bd-TO/2]].filter(([x,z])=>L.some(r=>r.t!=="out"&&r.t!=="patio"&&x>=r.x-EPS&&x<=r.x+r.w+EPS&&z>=r.y-EPS&&z<=r.y+r.h+EPS)):[];
     // sols
     L.forEach((r,ri)=>{if(r.t==="patio"&&li>0) return;const mat=r.t==="patio"?M.patio:r.t==="out"?(r.gal?M.paver:M.deck):r.fl?flMat(r.fl):r.t==="wet"?M.floorWet:r.t==="night"?M.floorNight:M.floorMain;const fm=box(r.w,0.04,r.h,X(r.x+r.w/2),y0+0.02,Z(r.y+r.h/2),mat,grp,{noCast:true});if(st.mode==="edit") fm.userData.pick={t:"room",li,i:ri}});
     // murs
@@ -4591,12 +5093,21 @@ function mount3D(el,m,o,st){
         if(p.o==="h"){const above=ou.y<p.c-EPS;ef=above?5:4;sg=above?-1:1}else{const left=ou.x<p.c-EPS;ef=left?1:0;sg=left?-1:1}}
       const A=L[p.a],B=L[p.b],first=(p.o==="h"?A.y<B.y:A.x<B.x)?A:B,second=first===A?B:A;
       segWall(p.o,p.c,t,p.s0,p.s1,y0,p.open,grp,ef,sg,p.o==="h"?{neg:rw(first,"bottom"),pos:rw(second,"top")}:{neg:rw(first,"right"),pos:rw(second,"left")},null,ed?{t:"wall",li,key:"p:"+p.a+":"+p.b,o:p.o,c:p.c,s0:p.s0,s1:p.s1,ext:false,a:p.a,b:p.b,kind:p.kind}:null)});
+    // le soir (ordinateur) : bandeau lumineux sous la dalle de chaque façade, lumière qui descend sur le mur ; deux lignes verticales de part et d'autre de l'entrée
+    if(LED&&!lite) O.ext.forEach(e=>{const sg=extSg[e.side],len=e.s1-e.s0,mid=(e.s0+e.s1)/2,f=e.c+sg*TO/2,h=e.o==="h";if(len<0.6) return;
+      const at=(me,u,y,off)=>{if(h){me.position.set(X(u),y,Z(f+sg*off));if(sg<0) me.rotation.y=Math.PI}else{me.position.set(X(f+sg*off),y,Z(u));me.rotation.y=sg>0?Math.PI/2:-Math.PI/2}me.userData.noAO=true;grp.add(me)};
+      at(new THREE.Mesh(new THREE.BoxGeometry(len-0.1,0.03,0.035),LED.strip),mid,y0+H3-0.03,0.02);
+      at(new THREE.Mesh(new THREE.PlaneGeometry(len-0.1,2.1),LED.wash),mid,y0+H3-1.08,0.006);
+      e.open.forEach(op=>{if(op.k!=="entry") return;const hh=(op.top||2.2)+0.4;[op.d0-0.2,op.d1+0.2].forEach(u=>{at(new THREE.Mesh(new THREE.BoxGeometry(0.035,hh,0.035),LED.strip),u,y0+hh/2,0.02);at(new THREE.Mesh(new THREE.PlaneGeometry(0.7,hh),LED.side),u,y0+hh/2,0.006)})})});
     // coins
-    [[m.bx+TO/2,m.by+TO/2],[m.bx+m.bw-TO/2,m.by+TO/2],[m.bx+TO/2,m.by+m.bd-TO/2],[m.bx+m.bw-TO/2,m.by+m.bd-TO/2]].forEach(([x,z])=>{if(L.some(r=>r.t!=="out"&&r.t!=="patio"&&x>=r.x-EPS&&x<=r.x+r.w+EPS&&z>=r.y-EPS&&z<=r.y+r.h+EPS)) box(TO,H3,TO,X(x),y0+H3/2,Z(z),M.facade,grp)});
+    [[m.bx+TO/2,m.by+TO/2],[m.bx+m.bw-TO/2,m.by+TO/2],[m.bx+TO/2,m.by+m.bd-TO/2],[m.bx+m.bw-TO/2,m.by+m.bd-TO/2]].forEach(([x,z])=>{if(L.some(r=>r.t!=="out"&&r.t!=="patio"&&x>=r.x-EPS&&x<=r.x+r.w+EPS&&z>=r.y-EPS&&z<=r.y+r.h+EPS)){
+      if(CADV&&CADV.corners){const me=new THREE.Mesh(cornerGeo(TO,H3,0.08,x<m.bx+m.bw/2?-1:1,z<m.by+m.bd/2?-1:1),M.facade);me.position.set(X(x),y0,Z(z));me.castShadow=true;me.receiveShadow=true;grp.add(me)}
+      else box(TO,H3,TO,X(x),y0+H3/2,Z(z),M.facade,grp)}});
     // poteaux des espaces extérieurs, garde-corps
     L.forEach(r=>{if(r.t!=="out") return;const ss=r.n==="Terrasse sur toit"?[]:sides(r,m).map(s=>s.side);
       if(m.pro&&m.pro.big&&r.gal) L.forEach(q=>{if(q.t!=="patio") return;const sh=shared(r,q);if(sh) ss.push(sh.o==="h"?(Math.abs(sh.c-r.y)<EPS?"top":"bottom"):(Math.abs(sh.c-r.x)<EPS?"left":"right"))});
-      [[r.x+0.12,r.y+0.12,"top","left"],[r.x+r.w-0.12,r.y+0.12,"top","right"],[r.x+0.12,r.y+r.h-0.12,"bottom","left"],[r.x+r.w-0.12,r.y+r.h-0.12,"bottom","right"]].forEach(([x,z,a,b])=>{if(ss.includes(a)||ss.includes(b)) box(0.24,H3,0.24,X(x),y0+H3/2,Z(z),M.facade,grp)});
+      [[r.x+0.12,r.y+0.12,"top","left"],[r.x+r.w-0.12,r.y+0.12,"top","right"],[r.x+0.12,r.y+r.h-0.12,"bottom","left"],[r.x+r.w-0.12,r.y+r.h-0.12,"bottom","right"]].forEach(([x,z,a,b])=>{if(ss.includes(a)||ss.includes(b)){if(CADV&&CADV.roundPosts){const p=cyl(0.125,0.125,H3,X(x),y0+H3/2,Z(z),M.facade,grp,24),u=p.geometry.attributes.uv;for(let i=0;i<u.count;i++) u.setXY(i,u.getX(i)*0.785,u.getY(i)*H3)}
+        else box(0.24,H3,0.24,X(x),y0+H3/2,Z(z),M.facade,grp)}});
       if(li>0) sides(r,m).forEach(sd=>{const g2=sd.o==="h";const zz=sd.side==="top"?r.y:r.y+r.h,xx=sd.side==="left"?r.x:r.x+r.w;
         if(g2){box(r.w,1.0,0.02,X(r.x+r.w/2),y0+0.55,Z(zz),M.glass,grp);box(r.w,0.05,0.06,X(r.x+r.w/2),y0+1.07,Z(zz),M.steel,grp)}else{box(0.02,1.0,r.h,X(xx),y0+0.55,Z(r.y+r.h/2),M.glass,grp);box(0.06,0.05,r.h,X(xx),y0+1.07,Z(r.y+r.h/2),M.steel,grp)}});
       // garde-corps le long d'un vide (vide sur cour, vide sur patio)
@@ -4604,11 +5115,15 @@ function mount3D(el,m,o,st){
         if(sh.o==="h"){box(len,1.0,0.02,X(mid),y0+0.55,Z(sh.c),M.glass,grp);box(len,0.05,0.06,X(mid),y0+1.07,Z(sh.c),M.steel,grp)}else{box(0.02,1.0,len,X(sh.c),y0+0.55,Z(mid),M.glass,grp);box(0.06,0.05,len,X(sh.c),y0+1.07,Z(mid),M.steel,grp)}})});
     // dalle haute / plafond
     const pitched=top&&o.roof!=="plat",OVF=o.ov!==undefined&&o3Of(m).ov!==undefined?Math.max(0.1,o.ov):(MOD.ov||0.5),AO=OVF-0.1; // débord du toit plat, et position de l'acrotère à son bord
+    const SR=[];
     L.forEach(r=>{if(r.t==="patio"||r.hall) return;if(li>0&&(r.n==="Balcon"||r.n==="Terrasse sur toit")) return;
       if(!top&&r.n==="Escalier") return;
       const flatTop=top&&!pitched,ov=flatTop?OVF:0.0,ex=c=>c?ov:0;
       const x0=r.x-ex(Math.abs(r.x-m.bx)<EPS),x1=r.x+r.w+ex(Math.abs(r.x+r.w-m.bx-m.bw)<EPS),z0=r.y-ex(Math.abs(r.y-m.by)<EPS),z1=r.y+r.h+ex(Math.abs(r.y+r.h-m.by-m.bd)<EPS);
+      if(CADV&&CADV.slabEdges){SR.push([x0,z0,x1,z1]);return}
       const cb=box(x1-x0,SL3,z1-z0,X((x0+x1)/2),y0+H3+SL3/2,Z((z0+z1)/2),[M.slabSide,M.slabSide,top?M.roofFlat:M.inner,M.ceil,M.slabSide,M.slabSide],top?roofGrp:grp);if(!top){ceils.push(cb);cb.userData.ceil=true}});
+    // dalles aux bords arrondis (maquette CAO) : une dalle par niveau, réunion des dalles des pièces, arêtes du dessus et du dessous arrondies (10 cm)
+    if(SR.length){const g=slabGeo(SR,SL3,0.1,X,Z);if(g){const me=new THREE.Mesh(g,[M.ceil,top?M.roofFlat:M.inner,M.slabSide]);me.position.y=y0+H3;me.castShadow=true;me.receiveShadow=true;(top?roofGrp:grp).add(me);if(!top){ceils.push(me);me.userData.ceil=true}}}
     if(top&&!pitched){ // acrotère
       L.forEach(r=>{if(r.t==="patio"||r.hall||r.n==="Balcon"||r.n==="Terrasse sur toit") return;sides(r,m).forEach(sd=>{const hP=0.55,yy=y0+H3+SL3+hP/2,off=-0.5+0.1;
         if(sd.o==="h"){const z=sd.side==="top"?r.y-AO:r.y+r.h+AO;box(r.w+(sides(r,m).some(q=>q.o==="v")?2*AO:0),hP,0.18,X(r.x+r.w/2),yy,Z(z),M.facade,roofGrp)}
@@ -4646,9 +5161,15 @@ function mount3D(el,m,o,st){
       const pn=new THREE.Mesh(new THREE.BoxGeometry(pw,0.04,1.7),panel);pn.castShadow=true;
       if(flat){pn.position.set(X(x+pw/2),topY+0.5,Z(z));pn.rotation.x=-0.25;roofGrp.add(pn)}else{pn.position.set(X(x+pw/2),1.0,Z(Math.max(1.2,m.by-2.2)));pn.rotation.x=-0.35;scene.add(pn);box(0.05,0.9,0.05,X(x+pw/2),0.45,Z(Math.max(1.2,m.by-2.2)+0.5),M.metal)}}}
   };
-  if(m.site) site3D(m,o,{scene,roofGrp,box,cyl,M,X,Z,base,T,std,house:buildB});else buildB(m,X,Z,scene,roofGrp,levels,ceils,false);
+  if(cao){/* maquette CAO : les solides arrivent d'Open CASCADE (caoAttach) */}
+  else if(m.site) site3D(m,o,{scene,roofGrp,box,cyl,M,X,Z,base,T,std,house:buildB});else buildB(m,X,Z,scene,roofGrp,levels,ceils,false);
+  // autour d'une cité ou d'une résidence : petits bosquets répartis le long des quatre côtés (pas sur la rue, moins devant la caméra)
+  if(VEG&&o.veg&&m.site){const r2=rng((m.p.seed||1)*53+9);for(let i=0;i<64;i++){const sd=i%4,t=r2(),d=6+Math.pow(r2(),0.7)*38,x=sd===0?-W/2-d:sd===1?W/2+d:(t-0.5)*(W+60),z=sd===2?-D/2-d:sd===3?D/2+d:(t-0.5)*(D+60);
+    if((z>D/2-1&&z<D/2+11&&Math.abs(x)<W*2.5)||(sd===3&&r2()<0.5)) continue;const n=1+Math.floor(r2()*3);for(let k=0;k<n;k++){const xx=x+(r2()-0.5)*6,zz=z+(r2()-0.5)*6;VEG.add(vegKind(m.zone,xx,zz),xx,zz,1.0+r2()*0.6)}}}
+  if(VEG) VEG.build(scene);if(CARS) CARS.build(scene);
   /* --- caméra --- */
   const cam=new THREE.PerspectiveCamera(inside?70:38,(el.clientWidth||600)/(el.clientHeight||400),inside?0.05:0.2,Math.max(800,big*8,fitD*5));
+  const dome=SK?skyDome(SK.t,cam.far*0.92):null;if(dome) scene.add(dome);
   const controls=THREE.OrbitControls?new THREE.OrbitControls(cam,renderer.domElement):{update(){},target:new THREE.Vector3(),addEventListener(){}};
   controls.enableDamping=true;controls.dampingFactor=0.08;
   let room=null;
@@ -4692,7 +5213,7 @@ function mount3D(el,m,o,st){
     const dollP=()=>new THREE.Vector3(bcx+Math.cos(ang)*dd*0.74,dollT.y+dd*(m.isTower?0.6:0.92),bcz+Math.sin(ang)*dd*0.74);
     const Q={i:-1,phase:"doll",t0:performance.now(),last:performance.now(),dur:0,from:null,to:null,playing:true,yaw:0,pitch:0,stay:0,swapped:false,fromDoll:false};
     const levelFor=li=>{levels.forEach((g,i)=>{g.visible=i<=li});roofGrp.visible=li>=m.levels.length-1};
-    const setDoll=on=>{scene.background=on?white:sky;ceils.forEach(c=>{c.visible=!on});light.visible=!on;
+    const setDoll=on=>{scene.background=on?white:sky;if(dome) dome.visible=!on;ceils.forEach(c=>{c.visible=!on});light.visible=!on;
       if(on){levels.forEach((g,i)=>{g.visible=i===0||!!m.isTower});roofGrp.visible=!!m.isTower;cam.fov=36;cam.near=0.2;
         sun.position.set(bcx+dd*0.6,dollT.y+dd*1.6,bcz+dd*0.45);sun.color.set(0xfff4e6);sun.intensity=1.25;amb.intensity=0.3;renderer.toneMappingExposure=0.5}
       else{cam.fov=cam.aspect<0.8?84:70;cam.near=0.05;sun.position.copy(sun0.p);sun.color.copy(sun0.c);sun.intensity=sun0.i;amb.intensity=0.1;renderer.toneMappingExposure=0.7}
@@ -4725,11 +5246,12 @@ function mount3D(el,m,o,st){
   }
   // ordinateur : ombres douces dans les coins, dessinées après chaque image ; coupées si l'ordinateur n'arrive pas à suivre (moins de 22 images par seconde)
   const ao=HQ&&st.mode!=="edit"&&!window.__noAO?aoPass(renderer,inside?0.5:1.0,0.85):null;let fN=0,fT=0,fL=performance.now();
-  const draw=()=>{renderer.render(scene,cam);if(ao&&!ao.off) ao.run(scene,cam)};
+  const draw=()=>{if(dome) dome.position.copy(cam.position);renderer.render(scene,cam);if(ao&&!ao.off) ao.run(scene,cam)};
   viewer={el,scene,renderer,cam,controls,ro,env,raf:0,mode:st.mode,roofGrp,levels,tour:tourApi,clay,base,X,Z,W,D,m,ceils,ao,draw};
   const loop=()=>{viewer.raf=requestAnimationFrame(loop);if(tourTick) tourTick();else controls.update();draw();
     if(ao&&!ao.off){const t=performance.now(),dt=t-fL;fL=t;if(dt<500&&++fN>30){fT+=dt;if(fN===150&&fT/120>45) ao.off=true}}};loop();
   if(tourApi){tourTick();if(st.onTour) st.onTour({i:-1,n:tourApi.stops.length,phase:"doll",playing:true,room:null,li:0})}
+  if(cao) caoAttach(viewer,m,o,st);
   return viewer;
 }
 
@@ -5108,6 +5630,8 @@ const userDoc=()=>FB.db.collection("utilisateurs").doc(AUTH.uid);
 const plansCol=()=>userDoc().collection("plans");
 function saveAcct(){if(!AUTH.ok) return;userDoc().set({quota:{jour:acct.day,nb:acct.count}},{merge:true}).catch(()=>{})}
 const O=()=>OFFERS[acct.offer];
+// offre Max : lue par la maquette 3D (formes de la maquette CAO dans la vue réaliste)
+try{Object.defineProperty(window,"amMax",{get:()=>!!(O()&&O().tools),configurable:true})}catch(e){}
 function quotaLeft(){if(acct.day!==today()){acct.day=today();acct.count=0}return O().quota-acct.count}
 function useQuota(){if(quotaLeft()<=0) return false;acct.count++;saveAcct();refreshOffer();return true}
 function refreshOffer(){
@@ -5121,7 +5645,7 @@ function refreshOffer(){
 }
 function limitReached(){toast(`Limite quotidienne atteinte (${O().quota} plans). Passez à une offre supérieure.`)}
 
-const NEWS=[{"id": "2026-11-16-3d-realiste-ordinateur", "date": "2026-11-16T23:20:00Z", "titre": "Nouveau : une maquette 3D plus réaliste sur ordinateur", "texte": "Sur ordinateur, la maquette 3D est plus réaliste : des ombres douces dans les coins, au pied des murs et sous les meubles, des meubles aux bords arrondis, des sols en relief (joints du carrelage, lames du parquet) et des vitres qui reflètent le ciel. Sur téléphone, rien ne change : un petit message vous propose d'enregistrer votre plan dans « Mes plans » pour l'ouvrir sur un ordinateur.", "action": "creation", "titre_en": "New: a more realistic 3D model on a computer", "texte_en": "On a computer, the 3D model is more realistic: soft shadows in the corners, at the foot of the walls and under the furniture, furniture with rounded edges, textured floors (tile joints, parquet boards) and windows that reflect the sky. On a phone, nothing changes: a short message suggests saving your plan to “My plans” to open it on a computer."}, {"id": "2026-11-16-creation-en-etapes", "date": "2026-11-16T05:30:00Z", "titre": "Nouveau : la Création en 3 étapes, un menu plus simple et un plan qui se dessine", "texte": "La Création se fait maintenant en 3 étapes : le terrain, le bâtiment, vos souhaits, avec « Retour » et « Suivant ». Chaque sorte de bâtiment a son dessin et chaque disposition son petit plan. Pas d'idée ? « Voir un exemple de plan » affiche tout de suite un plan d'exemple. En haut du résultat, vous voyez le coût estimé, la surface et le programme, et le plan se dessine sous vos yeux. Le menu n'a plus que 5 entrées : Propositions, Questions fréquentes et la langue sont dans « Plus ». Le site est aussi plus léger : la maquette 3D ne se télécharge que lorsque vous l'ouvrez.", "action": "creation", "titre_en": "New: Create in 3 steps, a simpler menu and a plan that draws itself", "texte_en": "Creating a plan now takes 3 steps: the plot, the building, your wishes, with “Back” and “Next”. Each kind of building has its own drawing and each layout its small plan. No idea yet? “See a sample plan” shows a sample plan right away. At the top of the result, you see the estimated cost, the floor area and the programme, and the plan draws itself before your eyes. The menu now has only 5 entries: Proposals, Frequently asked questions and the language are under “More”. The site is also lighter: the 3D model is only downloaded when you open it."}, {"id": "2026-11-16-dispositions", "date": "2026-11-16T02:00:00Z", "titre": "Nouveau : choisissez la disposition de votre école, centre de santé, marché ou résidence", "texte": "Dans Création, choisissez maintenant comment le bâtiment est organisé. École : selon le terrain, une barrette, autour d'une cour, ou en blocs de 3 classes séparés comme les EPP. Centre de santé : galerie centrale, une barrette avec la galerie d'attente sur la rue, ou deux ailes autour d'une cour plantée. Marché : une halle avec les boutiques autour, ou des rangées d'étals avec une rangée de boutiques sur la rue. Résidence : en rangées, en quinconce, ou en U autour d'un jardin. Chaque disposition a son plan, sa maquette 3D et son coût. Vous pouvez aussi l'écrire dans vos souhaits. Si le terrain est trop petit pour la disposition choisie, une note vous dit pourquoi.", "action": "creation", "titre_en": "New: choose the layout of your school, health centre, market or residence", "texte_en": "In Create, you can now choose how the building is organised. School: based on the land, one row, around a courtyard, or separate blocks of 3 classrooms like public primary schools. Health centre: central gallery, one row with the waiting gallery on the street, or two wings around a planted courtyard. Market: a hall with shops around it, or rows of stalls with a row of shops on the street. Residence: in rows, staggered, or U-shaped around a garden. Each layout has its own plan, 3D model and cost. You can also write it in your wishes. If the land is too small for the chosen layout, a note tells you why."}, {"id": "2026-11-15-maquette-complete", "date": "2026-11-15T22:20:00Z", "titre": "Nouveau : toute la cité sur la maquette, avec un rond-point si vous le voulez", "texte": "Pour une cité résidentielle, cochez « Avec un rond-point au carrefour central » : il marche avec les trois dispositions (rangées dos à dos, avec une venelle ou autour d'un parc). Le plan masse et la maquette 3D montrent maintenant toutes les structures : voies, trottoirs et caniveaux, lampadaires, rond-point planté, allées des parcs, buts du terrain de sport, voitures sur le parking, et des exemples de bâtiments sur les réserves (école, marché, centre de santé, lieu de culte), qui ne sont pas comptés dans le coût. Pour une résidence, la clôture et les lampadaires apparaissent aussi. Dans une cité ou une résidence, la vue intérieure et la visite guidée se font dans la maison type ou l'immeuble type.", "action": "creation", "titre_en": "New: the whole estate on the 3D model, with a roundabout if you want one", "texte_en": "For a housing estate, tick “With a roundabout at the main crossing”: it works with all three layouts (back-to-back rows, with a back lane or around a park). The site plan and the 3D model now show every structure: roads, sidewalks and gutters, street lights, planted roundabout, park paths, sports ground goals, cars in the car park, and example buildings on the reserved land (school, market, health centre, place of worship), which are not counted in the cost. For a residence, the fence and street lights appear too. In a housing estate or a residence, the interior view and the guided tour take place in the model house or the model building."}, {"id": "2026-11-15-cite-sur-mesure", "date": "2026-11-15T21:00:00Z", "titre": "Nouveau : votre cité sur mesure, avec toutes les maisons en 3D", "texte": "Avec l'offre Max, pour une cité résidentielle, choisissez la taille des lots (15 × 20 m, 20 × 25 m ou la façade et la profondeur de votre choix), jusqu'à trois tailles avec le nombre de lots de chacune, leur disposition (rangées dos à dos, avec une venelle ou autour d'un parc), la largeur et le revêtement des voies, les trottoirs, la part d'espaces verts, les réserves (école, marché, centre de santé, lieu de culte, terrain de sport) et le parking des visiteurs. Sur le plan masse, touchez un lot pour en faire une maison, un espace vert, un parking ou une réserve. La maquette 3D montre maintenant la vraie maison sur chaque lot, et le vrai immeuble dans une résidence : un changement fait sur une maison s'applique à toutes les maisons de la même taille de lot. Les propositions donnent trois cités adaptées à la surface de votre terrain. Pour les autres grands projets, réglez aussi l'écart entre les immeubles, la voie d'accès, leur disposition et un parking en sous-sol pour une résidence, les allées et la taille des étals pour un marché, et la taille des classes pour une école.", "action": "creation", "titre_en": "New: your custom housing estate, with every house in 3D", "texte_en": "With the Max plan, for a housing estate, choose the plot size (15 × 20 m, 20 × 25 m or the frontage and depth you want), up to three sizes with the number of plots of each, their layout (back-to-back rows, with a back lane or around a park), the road widths and surface, the sidewalks, the share of green space, the reserved land (school, market, health centre, place of worship, sports ground) and visitor parking. On the site plan, tap a plot to make it a house, a green space, parking or reserved land. The 3D model now shows the real house on every plot, and the real building in a residence: a change made to one house applies to every house of the same plot size. The proposals give three housing estates suited to the size of your land. For the other large projects, also set the gap between the buildings, the access road, their layout and an underground car park for a residence, the aisles and the stall size for a market, and the classroom size for a school."}, {"id": "2026-11-15-pieces-par-etage", "date": "2026-11-15T18:00:00Z", "titre": "Nouveau : choisissez les pièces de chaque étage", "texte": "Pour une maison à étage, avec les offres Moyen et Max, la partie « Répartition par étage » de Création place au rez-de-chaussée la chambre d'amis, la chambre des parents ou d'autres chambres, et à l'étage le salon, le balcon et le bureau. L'escalier est maintenant à la même place à chaque niveau, et chaque pièce est accessible depuis l'entrée ou l'escalier, dans les nouveaux plans comme dans les anciens. Pour des boutiques à étage, choisissez « Aux étages : des bureaux » pour avoir des bureaux au-dessus des boutiques.", "action": "creation", "titre_en": "New: choose the rooms on each floor", "texte_en": "For a house with an upper floor, with the Medium and Max plans, the \"Rooms on each floor\" section of Create puts the guest room, the parents' bedroom or other bedrooms on the ground floor, and the lounge, the balcony and the study upstairs. The staircase is now in the same place on every level, and every room can be reached from the entrance or the staircase, in new plans as in older ones. For shops with upper floors, choose \"On the upper floors: offices\" to have offices above the shops."}, {"id": "2026-11-15-taille-pieces", "date": "2026-11-15T16:00:00Z", "titre": "Nouveau : tapez la taille exacte d'une pièce", "texte": "Avec les offres Moyen et Max, ouvrez « Modifier les pièces » sous le plan, touchez une pièce et tapez sa largeur et sa profondeur en mètres. Les cloisons se déplacent, et le plan, le coût et la maquette 3D suivent. L'outil indique les tailles possibles. Avec l'offre Max, l'éditeur 3D le permet aussi pour tous les projets : maisons, immeubles, boutiques, bureaux et grands projets.", "action": "creation", "titre_en": "New: type the exact size of a room", "texte_en": "With the Medium and Max plans, open \"Edit the rooms\" below the plan, tap a room and type its width and depth in metres. The partitions move, and the plan, the cost and the 3D model follow. The tool shows the possible sizes. With the Max plan, the 3D editor does it too for all projects: houses, apartment buildings, shops, offices and large projects."}, {"id": "2026-11-15-toiture-etages", "date": "2026-11-15T12:00:00Z", "titre": "Nouveau : toit en tôle ou dalle en béton, et plus d'étages", "texte": "Dans Création, choisissez la toiture : toit en tôle, dalle en béton (toit-terrasse) ou celle de votre région. Le coût, le devis et la maquette 3D suivent. Les boutiques et les bureaux peuvent maintenant avoir jusqu'à 4 étages, les écoles 2 étages, les centres de santé 1 étage avec l'hospitalisation en haut, et les maisons d'une cité 2 étages.", "action": "creation", "titre_en": "New: metal sheet roof or concrete slab, and more floors", "texte_en": "In Create, choose the roof: metal sheet roof, concrete slab (flat roof terrace) or the usual roof of your region. The cost, the quote and the 3D model follow. Shops and offices can now have up to 4 upper floors, schools 2 upper floors, health centres 1 upper floor with the inpatient ward upstairs, and the houses of a housing estate 2 upper floors."}, {"id": "2026-11-14-editeur-3d-telephone", "date": "2026-11-14T12:00:00Z", "titre": "Nouveau : l'éditeur 3D sur téléphone", "texte": "Avec l'offre Max, le bouton « Éditeur 3D » sous le plan est maintenant aussi sur téléphone. Touchez une pièce, un mur, une porte ou une fenêtre pour la modifier, faites tourner la maquette avec un doigt et zoomez avec deux doigts. Tout y est, comme sur ordinateur : cloisons, ouvertures, toiture, façade, sols, vues et mesure, pour les maisons comme pour les grands projets.", "action": "creation", "titre_en": "New: the 3D editor on your phone", "texte_en": "With the Max plan, the \"3D editor\" button below the plan is now on phones too. Tap a room, a wall, a door or a window to change it, turn the model with one finger and zoom with two. Everything is there, as on a computer: partitions, openings, roof, façade, floors, views and measuring, for houses and large projects alike."}, {"id": "2026-11-13-grands-projets", "date": "2026-11-13T21:00:00Z", "titre": "Nouveau : les grands projets", "texte": "Avec l'offre Max, dessinez une cité résidentielle, une résidence d'immeubles, un marché couvert, une école ou un centre de santé, avec le plan, le coût (voirie et réseaux compris) et la maquette 3D. Sur ordinateur, l'éditeur 3D les modifie pièce par pièce, comme une maison. Les plans suivent des principes publiés d'architectes reconnus d'Afrique de l'Ouest, comme Francis Kéré et Mariam Kamara : classes autour d'une cour, galerie d'attente ombragée, halle d'étals avec boutiques au pourtour.", "action": "creation", "titre_en": "New: large projects", "texte_en": "With the Max plan, design a housing estate, a residence of apartment buildings, a covered market, a school or a health centre, with the plan, the cost (roads and utilities included) and the 3D model. On a computer, the 3D editor changes them room by room, like a house. The plans follow published principles of renowned West African architects, such as Francis Kéré and Mariam Kamara: classrooms around a courtyard, a shaded waiting gallery, a market hall of stalls with shops around it."}, {"id": "2026-11-13-editeur-3d", "date": "2026-11-13T19:30:00Z", "titre": "Nouveau : l'éditeur 3D sur ordinateur", "texte": "Avec l'offre Max, sur ordinateur, le bouton « Éditeur 3D » sous le plan ouvre la maquette comme dans un logiciel d'architecture : faites glisser les cloisons, ajoutez ou supprimez fenêtres, baies et portes, réglez la hauteur sous plafond, la toiture et les sols pièce par pièce, mesurez et changez de vue. Les immeubles sont pris en charge : une modification faite sur un étage courant s'applique à tous les étages identiques. Le plan et le coût suivent vos modifications.", "action": "creation", "titre_en": "New: the 3D editor on computer", "texte_en": "With the Max plan, on a computer, the \"3D editor\" button below the plan opens the model as in architecture software: drag partitions, add or remove windows, glazed openings and doors, set the ceiling height, the roof and the floors room by room, measure and change views. Apartment buildings are supported: a change made on a typical floor applies to all identical floors. The plan and the cost follow your changes."}, {"id": "2026-11-13-anglais", "date": "2026-11-13T16:30:00Z", "titre": "Nouveau : Architmind CI en anglais", "texte": "Le site existe maintenant en anglais. Utilisez le bouton EN / FR du menu pour changer de langue. Plans, devis, maquette 3D, dossier PDF, notifications et pages légales sont traduits ; un navigateur réglé en anglais ouvre directement le site dans cette langue.", "action": "creation", "titre_en": "New: Architmind CI in English", "texte_en": "The site is now available in English. Use the EN / FR button in the menu to switch language. Plans, quotes, the 3D model, the PDF file, notifications and legal pages are translated; a browser set to English opens the site directly in that language."}, {"id": "2026-11-12-devis-par-lot", "date": "2026-11-12T22:15:00Z", "titre": "Nouveau : le devis estimatif par lot", "texte": "Le coût des travaux est maintenant détaillé comme chez un économiste de la construction : dix lots, du terrassement à la peinture, avec les quantités mesurées sur votre plan, les prix unitaires, les imprévus, la fourchette basse et haute, le coût au m² comparé au marché ivoirien, ce qui reste à prévoir en plus et des conseils pour réduire la facture. Le devis complet est aussi dans le dossier PDF.", "lien": "#resultat", "titre_en": "New: the estimated quote by trade", "texte_en": "The building cost is now broken down the way a quantity surveyor does it: ten trades, from earthworks to painting, with quantities measured on your plan, unit prices, contingencies, the low and high range, the cost per m² compared with the Ivorian market, what to budget on top and tips to cut the bill. The full quote is also in the PDF file."}, {"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation", "titre_en": "New: houses modelled on real homes", "texte_en": "The plans and the 3D model now follow real houses for each level of finish: low-cost home, estate villa, high-end villa, large villa. Walls, roof and windows adapt to your city, in the 11 countries covered. Your saved projects keep their plan."}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation", "titre_en": "New: colours in the 3D model", "texte_en": "The 3D model and the guided tour take on the colours of your level of finish: façade, floors and walls, with a feature wall in the living spaces and bedrooms."}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation", "titre_en": "New: upper floors for shops and offices", "texte_en": "In Create, shops and offices can now have 1 or 2 upper floors. You also choose their style and can describe your wishes in a few words, as for a house."}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation", "titre_en": "New: shop and office plans", "texte_en": "In Create, choose \"Shops\" or \"Offices\" to get the plan, the cost and the 3D model. Included in the Medium and Max plans."}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation", "titre_en": "New: guided tour in 3D", "texte_en": "In the 3D tab of a plan, \"Guided tour\" shows the model from above, then walks through the building room by room."}];
+const NEWS=[{"id": "2026-11-17-3d-decor-realiste", "date": "2026-11-17T05:11:00Z", "titre": "Nouveau : une maquette 3D encore plus réaliste sur ordinateur", "texte": "Sur ordinateur, la maquette 3D a maintenant un ciel bleu avec des nuages, des palmiers, des arbres et des buissons taillés en boule, des voitures et une rue avec son marquage. Réglez l'heure vers 20 h : la façade s'éclaire avec des bandeaux lumineux sous les dalles, des lignes de lumière de chaque côté de l'entrée et des bornes dans l'allée. Avec l'offre Max, la vue réaliste reprend aussi les formes de la maquette CAO : fenêtres cintrées, poteaux ronds, dalles aux bords arrondis et angles adoucis. Sur téléphone, rien ne change.", "action": "creation", "titre_en": "New: an even more realistic 3D model on a computer", "texte_en": "On a computer, the 3D model now has a blue sky with clouds, palm trees, trees and round trimmed bushes, cars and a street with its road markings. Set the time to around 20:00 (8 pm): the façade lights up with light strips under the slabs, lines of light on each side of the entrance and bollards along the driveway. With the Max plan, the realistic view also shows the shapes of the CAD model: arched windows, round posts, slabs with rounded edges and softened corners. On a phone, nothing changes."}, {"id": "2026-11-17-maquette-cao", "date": "2026-11-17T05:10:00Z", "titre": "Nouveau : la maquette CAO avec Open CASCADE, sur ordinateur (offre Max)", "texte": "Sur ordinateur, l'onglet 3D a un nouveau mode « Maquette CAO ». Open CASCADE, le moteur de formes des logiciels de CAO, y calcule une maquette exacte de votre bâtiment : murs percés de leurs portes et fenêtres, dalles, poteaux, escaliers et toiture. Choisissez des formes courbes (fenêtres cintrées, poteaux ronds, dalles aux bords arrondis, angles adoucis), voyez le métré exact et le coût recalculé, puis téléchargez la maquette en fichier STEP pour AutoCAD, FreeCAD, Rhino ou SketchUp.", "action": "creation", "titre_en": "New: the CAD model with Open CASCADE, on a computer (Max plan)", "texte_en": "On a computer, the 3D tab has a new “CAD model” mode. Open CASCADE, the shape engine used by CAD software, computes an exact model of your building: walls with their doors and windows cut out, slabs, posts, stairs and roof. Choose curved shapes (arched windows, round posts, slabs with rounded edges, softened corners), see the exact quantities and the recalculated cost, then download the model as a STEP file for AutoCAD, FreeCAD, Rhino or SketchUp."}, {"id": "2026-11-16-3d-realiste-ordinateur", "date": "2026-11-16T23:20:00Z", "titre": "Nouveau : une maquette 3D plus réaliste sur ordinateur", "texte": "Sur ordinateur, la maquette 3D est plus réaliste : des ombres douces dans les coins, au pied des murs et sous les meubles, des meubles aux bords arrondis, des sols en relief (joints du carrelage, lames du parquet) et des vitres qui reflètent le ciel. Sur téléphone, rien ne change : un petit message vous propose d'enregistrer votre plan dans « Mes plans » pour l'ouvrir sur un ordinateur.", "action": "creation", "titre_en": "New: a more realistic 3D model on a computer", "texte_en": "On a computer, the 3D model is more realistic: soft shadows in the corners, at the foot of the walls and under the furniture, furniture with rounded edges, textured floors (tile joints, parquet boards) and windows that reflect the sky. On a phone, nothing changes: a short message suggests saving your plan to “My plans” to open it on a computer."}, {"id": "2026-11-16-creation-en-etapes", "date": "2026-11-16T05:30:00Z", "titre": "Nouveau : la Création en 3 étapes, un menu plus simple et un plan qui se dessine", "texte": "La Création se fait maintenant en 3 étapes : le terrain, le bâtiment, vos souhaits, avec « Retour » et « Suivant ». Chaque sorte de bâtiment a son dessin et chaque disposition son petit plan. Pas d'idée ? « Voir un exemple de plan » affiche tout de suite un plan d'exemple. En haut du résultat, vous voyez le coût estimé, la surface et le programme, et le plan se dessine sous vos yeux. Le menu n'a plus que 5 entrées : Propositions, Questions fréquentes et la langue sont dans « Plus ». Le site est aussi plus léger : la maquette 3D ne se télécharge que lorsque vous l'ouvrez.", "action": "creation", "titre_en": "New: Create in 3 steps, a simpler menu and a plan that draws itself", "texte_en": "Creating a plan now takes 3 steps: the plot, the building, your wishes, with “Back” and “Next”. Each kind of building has its own drawing and each layout its small plan. No idea yet? “See a sample plan” shows a sample plan right away. At the top of the result, you see the estimated cost, the floor area and the programme, and the plan draws itself before your eyes. The menu now has only 5 entries: Proposals, Frequently asked questions and the language are under “More”. The site is also lighter: the 3D model is only downloaded when you open it."}, {"id": "2026-11-16-dispositions", "date": "2026-11-16T02:00:00Z", "titre": "Nouveau : choisissez la disposition de votre école, centre de santé, marché ou résidence", "texte": "Dans Création, choisissez maintenant comment le bâtiment est organisé. École : selon le terrain, une barrette, autour d'une cour, ou en blocs de 3 classes séparés comme les EPP. Centre de santé : galerie centrale, une barrette avec la galerie d'attente sur la rue, ou deux ailes autour d'une cour plantée. Marché : une halle avec les boutiques autour, ou des rangées d'étals avec une rangée de boutiques sur la rue. Résidence : en rangées, en quinconce, ou en U autour d'un jardin. Chaque disposition a son plan, sa maquette 3D et son coût. Vous pouvez aussi l'écrire dans vos souhaits. Si le terrain est trop petit pour la disposition choisie, une note vous dit pourquoi.", "action": "creation", "titre_en": "New: choose the layout of your school, health centre, market or residence", "texte_en": "In Create, you can now choose how the building is organised. School: based on the land, one row, around a courtyard, or separate blocks of 3 classrooms like public primary schools. Health centre: central gallery, one row with the waiting gallery on the street, or two wings around a planted courtyard. Market: a hall with shops around it, or rows of stalls with a row of shops on the street. Residence: in rows, staggered, or U-shaped around a garden. Each layout has its own plan, 3D model and cost. You can also write it in your wishes. If the land is too small for the chosen layout, a note tells you why."}, {"id": "2026-11-15-maquette-complete", "date": "2026-11-15T22:20:00Z", "titre": "Nouveau : toute la cité sur la maquette, avec un rond-point si vous le voulez", "texte": "Pour une cité résidentielle, cochez « Avec un rond-point au carrefour central » : il marche avec les trois dispositions (rangées dos à dos, avec une venelle ou autour d'un parc). Le plan masse et la maquette 3D montrent maintenant toutes les structures : voies, trottoirs et caniveaux, lampadaires, rond-point planté, allées des parcs, buts du terrain de sport, voitures sur le parking, et des exemples de bâtiments sur les réserves (école, marché, centre de santé, lieu de culte), qui ne sont pas comptés dans le coût. Pour une résidence, la clôture et les lampadaires apparaissent aussi. Dans une cité ou une résidence, la vue intérieure et la visite guidée se font dans la maison type ou l'immeuble type.", "action": "creation", "titre_en": "New: the whole estate on the 3D model, with a roundabout if you want one", "texte_en": "For a housing estate, tick “With a roundabout at the main crossing”: it works with all three layouts (back-to-back rows, with a back lane or around a park). The site plan and the 3D model now show every structure: roads, sidewalks and gutters, street lights, planted roundabout, park paths, sports ground goals, cars in the car park, and example buildings on the reserved land (school, market, health centre, place of worship), which are not counted in the cost. For a residence, the fence and street lights appear too. In a housing estate or a residence, the interior view and the guided tour take place in the model house or the model building."}, {"id": "2026-11-15-cite-sur-mesure", "date": "2026-11-15T21:00:00Z", "titre": "Nouveau : votre cité sur mesure, avec toutes les maisons en 3D", "texte": "Avec l'offre Max, pour une cité résidentielle, choisissez la taille des lots (15 × 20 m, 20 × 25 m ou la façade et la profondeur de votre choix), jusqu'à trois tailles avec le nombre de lots de chacune, leur disposition (rangées dos à dos, avec une venelle ou autour d'un parc), la largeur et le revêtement des voies, les trottoirs, la part d'espaces verts, les réserves (école, marché, centre de santé, lieu de culte, terrain de sport) et le parking des visiteurs. Sur le plan masse, touchez un lot pour en faire une maison, un espace vert, un parking ou une réserve. La maquette 3D montre maintenant la vraie maison sur chaque lot, et le vrai immeuble dans une résidence : un changement fait sur une maison s'applique à toutes les maisons de la même taille de lot. Les propositions donnent trois cités adaptées à la surface de votre terrain. Pour les autres grands projets, réglez aussi l'écart entre les immeubles, la voie d'accès, leur disposition et un parking en sous-sol pour une résidence, les allées et la taille des étals pour un marché, et la taille des classes pour une école.", "action": "creation", "titre_en": "New: your custom housing estate, with every house in 3D", "texte_en": "With the Max plan, for a housing estate, choose the plot size (15 × 20 m, 20 × 25 m or the frontage and depth you want), up to three sizes with the number of plots of each, their layout (back-to-back rows, with a back lane or around a park), the road widths and surface, the sidewalks, the share of green space, the reserved land (school, market, health centre, place of worship, sports ground) and visitor parking. On the site plan, tap a plot to make it a house, a green space, parking or reserved land. The 3D model now shows the real house on every plot, and the real building in a residence: a change made to one house applies to every house of the same plot size. The proposals give three housing estates suited to the size of your land. For the other large projects, also set the gap between the buildings, the access road, their layout and an underground car park for a residence, the aisles and the stall size for a market, and the classroom size for a school."}, {"id": "2026-11-15-pieces-par-etage", "date": "2026-11-15T18:00:00Z", "titre": "Nouveau : choisissez les pièces de chaque étage", "texte": "Pour une maison à étage, avec les offres Moyen et Max, la partie « Répartition par étage » de Création place au rez-de-chaussée la chambre d'amis, la chambre des parents ou d'autres chambres, et à l'étage le salon, le balcon et le bureau. L'escalier est maintenant à la même place à chaque niveau, et chaque pièce est accessible depuis l'entrée ou l'escalier, dans les nouveaux plans comme dans les anciens. Pour des boutiques à étage, choisissez « Aux étages : des bureaux » pour avoir des bureaux au-dessus des boutiques.", "action": "creation", "titre_en": "New: choose the rooms on each floor", "texte_en": "For a house with an upper floor, with the Medium and Max plans, the \"Rooms on each floor\" section of Create puts the guest room, the parents' bedroom or other bedrooms on the ground floor, and the lounge, the balcony and the study upstairs. The staircase is now in the same place on every level, and every room can be reached from the entrance or the staircase, in new plans as in older ones. For shops with upper floors, choose \"On the upper floors: offices\" to have offices above the shops."}, {"id": "2026-11-15-taille-pieces", "date": "2026-11-15T16:00:00Z", "titre": "Nouveau : tapez la taille exacte d'une pièce", "texte": "Avec les offres Moyen et Max, ouvrez « Modifier les pièces » sous le plan, touchez une pièce et tapez sa largeur et sa profondeur en mètres. Les cloisons se déplacent, et le plan, le coût et la maquette 3D suivent. L'outil indique les tailles possibles. Avec l'offre Max, l'éditeur 3D le permet aussi pour tous les projets : maisons, immeubles, boutiques, bureaux et grands projets.", "action": "creation", "titre_en": "New: type the exact size of a room", "texte_en": "With the Medium and Max plans, open \"Edit the rooms\" below the plan, tap a room and type its width and depth in metres. The partitions move, and the plan, the cost and the 3D model follow. The tool shows the possible sizes. With the Max plan, the 3D editor does it too for all projects: houses, apartment buildings, shops, offices and large projects."}, {"id": "2026-11-15-toiture-etages", "date": "2026-11-15T12:00:00Z", "titre": "Nouveau : toit en tôle ou dalle en béton, et plus d'étages", "texte": "Dans Création, choisissez la toiture : toit en tôle, dalle en béton (toit-terrasse) ou celle de votre région. Le coût, le devis et la maquette 3D suivent. Les boutiques et les bureaux peuvent maintenant avoir jusqu'à 4 étages, les écoles 2 étages, les centres de santé 1 étage avec l'hospitalisation en haut, et les maisons d'une cité 2 étages.", "action": "creation", "titre_en": "New: metal sheet roof or concrete slab, and more floors", "texte_en": "In Create, choose the roof: metal sheet roof, concrete slab (flat roof terrace) or the usual roof of your region. The cost, the quote and the 3D model follow. Shops and offices can now have up to 4 upper floors, schools 2 upper floors, health centres 1 upper floor with the inpatient ward upstairs, and the houses of a housing estate 2 upper floors."}, {"id": "2026-11-14-editeur-3d-telephone", "date": "2026-11-14T12:00:00Z", "titre": "Nouveau : l'éditeur 3D sur téléphone", "texte": "Avec l'offre Max, le bouton « Éditeur 3D » sous le plan est maintenant aussi sur téléphone. Touchez une pièce, un mur, une porte ou une fenêtre pour la modifier, faites tourner la maquette avec un doigt et zoomez avec deux doigts. Tout y est, comme sur ordinateur : cloisons, ouvertures, toiture, façade, sols, vues et mesure, pour les maisons comme pour les grands projets.", "action": "creation", "titre_en": "New: the 3D editor on your phone", "texte_en": "With the Max plan, the \"3D editor\" button below the plan is now on phones too. Tap a room, a wall, a door or a window to change it, turn the model with one finger and zoom with two. Everything is there, as on a computer: partitions, openings, roof, façade, floors, views and measuring, for houses and large projects alike."}, {"id": "2026-11-13-grands-projets", "date": "2026-11-13T21:00:00Z", "titre": "Nouveau : les grands projets", "texte": "Avec l'offre Max, dessinez une cité résidentielle, une résidence d'immeubles, un marché couvert, une école ou un centre de santé, avec le plan, le coût (voirie et réseaux compris) et la maquette 3D. Sur ordinateur, l'éditeur 3D les modifie pièce par pièce, comme une maison. Les plans suivent des principes publiés d'architectes reconnus d'Afrique de l'Ouest, comme Francis Kéré et Mariam Kamara : classes autour d'une cour, galerie d'attente ombragée, halle d'étals avec boutiques au pourtour.", "action": "creation", "titre_en": "New: large projects", "texte_en": "With the Max plan, design a housing estate, a residence of apartment buildings, a covered market, a school or a health centre, with the plan, the cost (roads and utilities included) and the 3D model. On a computer, the 3D editor changes them room by room, like a house. The plans follow published principles of renowned West African architects, such as Francis Kéré and Mariam Kamara: classrooms around a courtyard, a shaded waiting gallery, a market hall of stalls with shops around it."}, {"id": "2026-11-13-editeur-3d", "date": "2026-11-13T19:30:00Z", "titre": "Nouveau : l'éditeur 3D sur ordinateur", "texte": "Avec l'offre Max, sur ordinateur, le bouton « Éditeur 3D » sous le plan ouvre la maquette comme dans un logiciel d'architecture : faites glisser les cloisons, ajoutez ou supprimez fenêtres, baies et portes, réglez la hauteur sous plafond, la toiture et les sols pièce par pièce, mesurez et changez de vue. Les immeubles sont pris en charge : une modification faite sur un étage courant s'applique à tous les étages identiques. Le plan et le coût suivent vos modifications.", "action": "creation", "titre_en": "New: the 3D editor on computer", "texte_en": "With the Max plan, on a computer, the \"3D editor\" button below the plan opens the model as in architecture software: drag partitions, add or remove windows, glazed openings and doors, set the ceiling height, the roof and the floors room by room, measure and change views. Apartment buildings are supported: a change made on a typical floor applies to all identical floors. The plan and the cost follow your changes."}, {"id": "2026-11-13-anglais", "date": "2026-11-13T16:30:00Z", "titre": "Nouveau : Architmind CI en anglais", "texte": "Le site existe maintenant en anglais. Utilisez le bouton EN / FR du menu pour changer de langue. Plans, devis, maquette 3D, dossier PDF, notifications et pages légales sont traduits ; un navigateur réglé en anglais ouvre directement le site dans cette langue.", "action": "creation", "titre_en": "New: Architmind CI in English", "texte_en": "The site is now available in English. Use the EN / FR button in the menu to switch language. Plans, quotes, the 3D model, the PDF file, notifications and legal pages are translated; a browser set to English opens the site directly in that language."}, {"id": "2026-11-12-devis-par-lot", "date": "2026-11-12T22:15:00Z", "titre": "Nouveau : le devis estimatif par lot", "texte": "Le coût des travaux est maintenant détaillé comme chez un économiste de la construction : dix lots, du terrassement à la peinture, avec les quantités mesurées sur votre plan, les prix unitaires, les imprévus, la fourchette basse et haute, le coût au m² comparé au marché ivoirien, ce qui reste à prévoir en plus et des conseils pour réduire la facture. Le devis complet est aussi dans le dossier PDF.", "lien": "#resultat", "titre_en": "New: the estimated quote by trade", "texte_en": "The building cost is now broken down the way a quantity surveyor does it: ten trades, from earthworks to painting, with quantities measured on your plan, unit prices, contingencies, the low and high range, the cost per m² compared with the Ivorian market, what to budget on top and tips to cut the bill. The full quote is also in the PDF file."}, {"id": "2026-11-12-modeles-reels", "date": "2026-11-12T16:20:00Z", "titre": "Nouveau : des maisons calquées sur des maisons réelles", "texte": "Les plans et la maquette 3D suivent maintenant des maisons réelles pour chaque niveau de finition : logement économique, villa de lotissement, villa haut standing, grande villa. Murs, toiture et fenêtres s'adaptent à votre ville, dans les 11 pays couverts. Vos projets déjà enregistrés gardent leur plan.", "action": "creation", "titre_en": "New: houses modelled on real homes", "texte_en": "The plans and the 3D model now follow real houses for each level of finish: low-cost home, estate villa, high-end villa, large villa. Walls, roof and windows adapt to your city, in the 11 countries covered. Your saved projects keep their plan."}, {"id": "2026-11-12-couleurs-3d", "date": "2026-11-12T11:18:00Z", "titre": "Nouveau : des couleurs dans la maquette 3D", "texte": "La maquette 3D et la visite guidée prennent les couleurs de votre niveau de finition : façade, sols et murs, avec un mur de couleur dans les pièces de vie et les chambres.", "action": "creation", "titre_en": "New: colours in the 3D model", "texte_en": "The 3D model and the guided tour take on the colours of your level of finish: façade, floors and walls, with a feature wall in the living spaces and bedrooms."}, {"id": "2026-11-12-etages-boutiques-bureaux", "date": "2026-11-12T09:56:00Z", "titre": "Nouveau : étages pour les boutiques et les bureaux", "texte": "Dans Création, les boutiques et les bureaux peuvent maintenant avoir 1 ou 2 étages. Vous choisissez aussi leur style et vous pouvez décrire vos souhaits en quelques mots, comme pour une maison.", "action": "creation", "titre_en": "New: upper floors for shops and offices", "texte_en": "In Create, shops and offices can now have 1 or 2 upper floors. You also choose their style and can describe your wishes in a few words, as for a house."}, {"id": "2026-11-12-boutiques-bureaux", "date": "2026-11-12T07:30:00Z", "titre": "Nouveau : plans de boutiques et de bureaux", "texte": "Dans Création, choisissez « Boutiques » ou « Bureaux » pour obtenir le plan, le coût et la maquette 3D. Inclus dans les offres Moyen et Max.", "action": "creation", "titre_en": "New: shop and office plans", "texte_en": "In Create, choose \"Shops\" or \"Offices\" to get the plan, the cost and the 3D model. Included in the Medium and Max plans."}, {"id": "2026-11-12-visite-guidee", "date": "2026-11-12T06:10:00Z", "titre": "Nouveau : visite guidée en 3D", "texte": "Dans l'onglet 3D d'un plan, « Visite guidée » montre la maquette vue du dessus, puis parcourt le bâtiment pièce par pièce.", "action": "creation", "titre_en": "New: guided tour in 3D", "texte_en": "In the 3D tab of a plan, \"Guided tour\" shows the model from above, then walks through the building room by room."}];
 /* ---------- Comptes : connexion par e-mail et mot de passe (Firebase) ---------- */
 const AUTH={ok:false,uid:null,user:null,profile:null,abo:null,notifs:[],pending:null,first:false,mode:"login",unsub:[],sessionP:null,admin:false,adminEmail:false,verified:false};
 // Administrateurs : empreintes SHA-256 des adresses e-mail (config.js), pour ne pas publier les adresses.
@@ -5556,6 +6080,32 @@ function makePdf(pages){
   put(t+`trailer\n<< /Size ${N} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF\n`);
   return new Blob(parts,{type:"application/pdf"});
 }
+// panneau de la maquette CAO (formes courbes, métré exact, coût recalculé, fichier STEP)
+function caoPanel(el,m,info,st,go){
+  if(!el) return;const op=caoOpts(),chk=(k,l)=>`<label><input type="checkbox" data-o="${k}"${op[k]?" checked":""}> ${l}</label>`;
+  const sg=v=>(v>0?"+":v<0?"−":"")+fmt(Math.abs(v));
+  let body="";
+  if(info.state==="ok"){const c=caoDevis(m,info.q),Q=info.q;
+    body=(c?`<div class="caobox"><div class="lab">Métré exact et coût</div><div style="overflow-x:auto"><table><thead><tr><th>Poste</th><th>U</th><th class="n">Estimation</th><th class="n">Maquette CAO</th><th class="n">Écart (FCFA)</th></tr></thead>
+      <tbody>${c.rows.map(r=>`<tr><td>${r.n}</td><td>${r.u}</td><td class="n">${nbq(r.est)}</td><td class="n">${nbq(r.qe)}</td><td class="n">${sg(r.dm)}</td></tr>`).join("")}</tbody></table></div>
+      <div class="caotot"><div><small>Coût recalculé avec le métré exact</small><b>${F(c.neu)}</b></div><div><small>Estimation</small><b>${F(c.total)}</b></div><div><small>Écart</small><b>${(c.delta>0?"+":c.delta<0?"−":"")+dec(Math.abs(c.delta)/c.total*100,1)} %</b></div></div>
+      <div class="caovol"><span>Béton (dalles, poteaux, escaliers) <b>${dec(c.beton,1)} m³</b></span><span>Maçonnerie (murs, acrotères) <b>${dec(c.macon,1)} m³</b></span></div>
+      <p class="sub" style="margin:8px 0 0">Les fondations, les menuiseries, la plomberie et l'électricité restent estimées.</p></div>`
+      :`<div class="caobox"><div class="lab">Volumes exacts</div><div class="caovol"><span>Béton (dalles, poteaux, escaliers) <b>${dec(Q.dalles+Q.dallesTop+Q.poteaux+Q.escalier,1)} m³</b></span><span>Murs de façade <b>${dec(Q.murExt+Q.murPatio,1)} m²</b></span><span>Cloisons intérieures <b>${dec(Q.murInt,1)} m²</b></span></div></div>`)
+      +`<div class="caoact"><button type="button" class="btn" data-r="step">Télécharger la maquette CAO (.step)</button><small>S'ouvre dans AutoCAD, FreeCAD, Rhino ou SketchUp.</small></div>`}
+  else if(info.state==="err") body=`<p class="sub">Open CASCADE n'a pas pu se charger. Vérifiez votre connexion, puis rouvrez la maquette CAO.</p>`;
+  else body=`<p class="sub">Calcul de la maquette exacte en cours…</p>`;
+  el.innerHTML=`<div class="caohead"><b>Maquette CAO · Open CASCADE</b><span class="caost">${info.state==="ok"?"Calculée en "+dec(info.ms/1000,1)+" s":""}</span></div>
+    <div class="caobox"><div class="lab">Formes courbes exactes</div><div class="caoopts">${chk("arches","Fenêtres cintrées")}${chk("roundPosts","Poteaux ronds")}${chk("slabEdges","Dalles aux bords arrondis")}${chk("corners","Angles adoucis")}</div></div>${body}`;
+  el.querySelectorAll("input[data-o]").forEach(i=>i.onchange=()=>{const o2=caoOpts();o2[i.dataset.o]=i.checked;try{localStorage.setItem("am_cao",JSON.stringify(o2))}catch(e){}st.keep=true;go()});
+  const sb=el.querySelector('[data-r="step"]');
+  if(sb) sb.onclick=async()=>{if(sb.disabled) return;sb.disabled=true;const old=sb.textContent;sb.textContent=trL("Préparation du fichier STEP…");
+    try{let r;try{r=await caoCall({cmd:"step",key:info.key})}catch(e){await info.build();r=await caoCall({cmd:"step",key:info.key})}
+      const S=dlSource(),dl=await getDL();
+      const nm="architmind-"+slug(S?S.name:tr(typeLabel(m.p)))+".step",res=dl&&await dl.save({filename:nm,data:new Blob([r.step],{type:"model/step"})});
+      if(res&&res.status==="saved") toast(trL("Maquette CAO téléchargée (STEP)"))}
+    catch(e){toast(trL("Le fichier STEP n'a pas pu être préparé. Réessayez."))}
+    sb.disabled=false;sb.textContent=old}}
 function dlSource(src){
   if(src==="prop"){const o=props[selProp];return o?{m:o.m,li:plevel,name:o.d.name}:null}
   return model?{m:model,li:level,name:$("#pname").value.trim()||(tr(typeLabel(model.p))+" "+model.lieu)}:null;
@@ -6440,10 +6990,11 @@ function area3D(host,m){
   if(!opts3d||opts3d._sig!==sg) opts3d=Object.assign(defaults3d(m),{_sig:sg});
   const st={mode:"ext",room:null,roomLi:0,spin:true,roof:true,upper:true,keep:false};
   host.innerHTML=`<div class="v3d">
-    <div class="v3dtop"><div class="tabs" data-r="mode"><button type="button" data-mode="ext" aria-pressed="true">Vue extérieure</button><button type="button" data-mode="int" aria-pressed="false">Vue intérieure</button><button type="button" data-mode="tour" aria-pressed="false">Visite guidée</button></div>
+    <div class="v3dtop"><div class="tabs" data-r="mode"><button type="button" data-mode="ext" aria-pressed="true">Vue extérieure</button><button type="button" data-mode="int" aria-pressed="false">Vue intérieure</button><button type="button" data-mode="tour" aria-pressed="false">Visite guidée</button>${hq3D()?'<button type="button" data-mode="cao" aria-pressed="false">Maquette CAO</button>':""}</div>
       <span class="tag" data-r="hint">Glissez pour tourner · molette ou pincement pour zoomer</span></div>
     <div class="rooms" data-r="rooms" hidden></div>
     <div class="three" data-r="three"><div class="ctl" data-r="ctl"></div><div class="tourui" data-r="tour" hidden></div></div>
+    <div class="caop" data-r="cao" hidden></div>
     <div data-r="tools"></div></div>`;
   const q=k=>host.querySelector(`[data-r="${k}"]`),three=q("three");
   // cité ou résidence : la vue intérieure et la visite guidée se font dans la maison type (du modèle choisi) ou l'immeuble type, sur son terrain
@@ -6455,7 +7006,7 @@ function area3D(host,m){
   rooms=rooms.slice(0,40);var ROOMS=rooms}
   const rooms=ROOMS,lvShort=li=>((mi.planLevels||[]).find(x=>x.li===li)||{short:lvName(li,true)}).short;
   const ctl=()=>{
-    if(st.mode==="ext") q("ctl").innerHTML=`<button type="button" data-c="spin" aria-pressed="${st.spin}">Rotation</button><button type="button" data-c="roof" aria-pressed="${!st.roof}">Sans toit</button>${m.levels.length>1&&!m.site?`<button type="button" data-c="upper" aria-pressed="${!st.upper}">Masquer ${m.levels.length>2?"les étages":"l'étage"}</button>`:""}`;
+    if(st.mode==="ext"||st.mode==="cao") q("ctl").innerHTML=`<button type="button" data-c="spin" aria-pressed="${st.spin}">Rotation</button><button type="button" data-c="roof" aria-pressed="${!st.roof}">Sans toit</button>${m.levels.length>1&&!m.site?`<button type="button" data-c="upper" aria-pressed="${!st.upper}">Masquer ${m.levels.length>2?"les étages":"l'étage"}</button>`:""}`;
     else q("ctl").innerHTML="";
     q("ctl").querySelectorAll("button").forEach(b=>b.onclick=()=>{const c=b.dataset.c;
       if(c==="spin"){st.spin=!st.spin;if(viewer) viewer.controls.autoRotate=st.spin}
@@ -6467,6 +7018,8 @@ function area3D(host,m){
     rq.querySelectorAll("button").forEach(b=>b.onclick=()=>{const r=rooms[+b.dataset.i];st.room=r.n;st.roomLi=r.li;st.roomU=r.u;st.keep=false;go()});
     q("hint").textContent=(unitName&&st.mode!=="ext"?trL(unitName)+" · ":"")+(st.mode==="tour"?trL("La visite avance toute seule · glissez pour regarder autour de vous"):st.mode==="int"?trL("Glissez pour regarder autour de vous · choisissez une pièce"):trL("Glissez pour tourner · molette ou pincement pour zoomer"));
     q("tour").hidden=st.mode!=="tour";
+    if(st.mode==="cao") q("hint").textContent=trL("Maquette exacte calculée par Open CASCADE · glissez pour tourner");
+    q("cao").hidden=st.mode!=="cao";
   };
   // visite guidée : carte de la pièce et commandes
   const TI={prev:'<path d="M15 6l-6 6 6 6"/>',next:'<path d="M9 6l6 6-6 6"/>',play:'<path d="M8 5.5v13l11-6.500z" fill="currentColor"/>',pause:'<path d="M8 5v14M16 5v14"/>',home:'<path d="M4 11l8-7 8 7v9H4z"/>'};
@@ -6479,7 +7032,10 @@ function area3D(host,m){
     t.innerHTML=`<div class="tourcard" aria-live="polite">${card}</div><div class="tbtns"><button type="button" data-t="overview" aria-label="Revenir à la vue d'ensemble"${info.phase==="doll"?" disabled":""}>${tic("home")}</button><button type="button" data-t="prev" aria-label="Pièce précédente">${tic("prev")}</button><button type="button" data-t="toggle" aria-label="${info.playing?"Mettre la visite en pause":"Reprendre la visite"}">${tic(info.playing?"pause":"play")}</button><button type="button" data-t="next" aria-label="Pièce suivante">${tic("next")}</button></div>`;
     t.querySelectorAll("button").forEach(b=>b.onclick=()=>{if(viewer&&viewer.tour) viewer.tour[b.dataset.t]()})};
   const go=()=>{ctl();q("tour").dataset.sig="";mount3D(three,st.mode==="ext"?m:mi,opts3d,st);if(viewer&&!st.roof) viewer.roofGrp.visible=false};
-  q("mode").querySelectorAll("button").forEach(b=>b.onclick=()=>{st.mode=b.dataset.mode;st.keep=false;
+  st.onCao=info=>caoPanel(q("cao"),mi,info,st,go);
+  q("mode").querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    if(b.dataset.mode==="cao"&&!O().tools){const c=q("cao");c.hidden=false;c.innerHTML=lockHtml("Maquette CAO · offre Max","Maquette exacte calculée avec Open CASCADE, métré exact, coût recalculé et fichier STEP pour AutoCAD.",true);return}
+    st.mode=b.dataset.mode;st.keep=false;
     if(st.mode==="int"&&!st.room){const s=rooms.find(r=>/^Séjour|^Étals|^Salle de classe|^Galerie d'attente/.test(r.n))||rooms[0];st.room=s.n;st.roomLi=s.li;st.roomU=s.u}
     q("mode").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));go()});
   // outils de personnalisation
