@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-9pQZmN0Q910IvzUik8XE5YDDyP1bSwwfceIx4CHRtaM=' 'sha256-hjFIkCpt+FokHwKbaaBfyvPovDk23Z+xnERh1yKHp+g=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-KtUrwHSPORcx5OXNHoSbLRhpBo5bAnrGnQ+DJGqYFKM=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-9pQZmN0Q910IvzUik8XE5YDDyP1bSwwfceIx4CHRtaM=' 'sha256-tBl2a/z8NSygiGaArOZUHZznseHiyVpdrOPJtJBViIY=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-KtUrwHSPORcx5OXNHoSbLRhpBo5bAnrGnQ+DJGqYFKM=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -4206,7 +4206,9 @@ function mergeByMaterial(src){
   return out;
 }
 // ordinateur (souris, grand écran) : maquette 3D plus réaliste ; téléphone et tablette : inchangée
-function hq3D(){try{return !matchMedia("(pointer:coarse)").matches&&Math.min(screen.width,screen.height)>=700}catch(e){return false}}
+function hq3D(){try{const ua=navigator.userAgent||"",s=Math.min(screen.width,screen.height);
+  if(/Android|iPhone|iPad|iPod|Mobile/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1)) return false;
+  return /Windows NT|CrOS|X11|Linux x86_64|Macintosh/.test(ua)?s>=600:!matchMedia("(pointer:coarse)").matches&&s>=700}catch(e){return false}}
 // pavé aux arêtes arrondies (meubles) : mêmes dimensions et mêmes coordonnées de texture (en mètres) qu'un pavé simple
 function rbox(w,h,d,r){const g=new THREE.BoxGeometry(1,1,1,3,3,3),P=g.attributes.position,N=g.attributes.normal,U=g.attributes.uv,n=new THREE.Vector3(),sg=c=>Math.abs(c)>0.4?Math.sign(c):0;
   for(let i=0;i<P.count;i++){const a=P.getX(i),b=P.getY(i),c=P.getZ(i);n.set(sg(a),sg(b),sg(c)).normalize();
