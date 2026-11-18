@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-HEAGuARJqw3Kle/D6HYBLDzRyhzVA9DOQfhd3ODA5vw=' 'sha256-yppo2KOu6tck1PzIZIoJJtIarQ25zBtvKDcDxmHEXzE=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-LyimHKUFbAgPMrx2Va+pPGIH/VGcGr+74sZqFukECzM=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V45rm+UgnY4dRTSn3Mayvqdm3QESmULiuzkuMSv6QJI=' 'sha256-HEAGuARJqw3Kle/D6HYBLDzRyhzVA9DOQfhd3ODA5vw=' 'sha256-yppo2KOu6tck1PzIZIoJJtIarQ25zBtvKDcDxmHEXzE=' 'sha256-Q+OEVFo9QYuJI3o1ghhFNovXD8d0LSUdbKOIFqnja7I=' 'sha256-UUHIP4yOXYLyQrfRMVsUrlJD+nKl33Wyz8BVy+FMifI=' 'sha256-3krZstIbvavZgIfIhTOqBsiOekQH5yXEOGxaqvV7NEY=' https://www.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://dns.google https://architmind-paiement.cheickcamra24ht.workers.dev; frame-src https://architmind-74294.firebaseapp.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Architmind CI · Plans de maison, coût des travaux et 3D</title>
@@ -910,7 +910,6 @@ details.advbox[open]>fieldset{margin-top:10px}
 @media (max-width:760px){
   .vhead .sub{display:none}
   .acctchip .nm,.acctchip [data-logout]{display:none}
-  #var,#toprop{display:none}
   .block{margin-top:44px}
   .exgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:2px 16px 12px;scrollbar-width:none}
   .exgrid::-webkit-scrollbar{display:none}
@@ -1669,8 +1668,6 @@ window.AM_LANG=L;if(L==="en"){document.documentElement.lang="en";document.docume
         <div class="actions">
           <button type="button" class="ghost wizb" id="wizback" hidden>Retour</button><button type="button" class="wizb" id="wiznext" hidden>Suivant</button>
           <button type="submit" id="gen" style="flex:1 1 100%">Générer le plan</button>
-          <button type="button" class="ghost" id="var" style="flex:1 1 100%">Autre variante</button>
-          <button type="button" class="ghost" id="toprop" style="flex:1 1 100%">Voir les propositions →</button>
         </div>
       </form>
     </div>
@@ -6084,7 +6081,7 @@ function refreshOffer(){
   const left=quotaLeft(),txt=AUTH.admin?`<i></i><span>Plans illimités · <b>accès administrateur</b></span>`:of.quota===Infinity?`<i></i><span>Plans illimités · offre <b>${of.nom}</b></span>`:`<i></i><span>Plans aujourd'hui : <b>${acct.count} / ${of.quota}</b> · offre ${of.nom}</span>`;
   ["#quota","#quota2"].forEach(s=>{const q=$(s);if(q){q.innerHTML=txt;q.classList.toggle("out",left<=0)}});
   const lim=$("#limit");if(lim){if(left<=0){lim.hidden=false;lim.innerHTML=`Limite de ${of.quota} plans atteinte pour aujourd'hui avec l'offre ${of.nom}. Revenez demain ou <a href="#tarifs">passez à une offre supérieure</a>.`}else lim.hidden=true}
-  $("#gen").disabled=$("#var").disabled=left<=0;
+  $("#gen").disabled=left<=0;
   if(typeof syncDl==="function") syncDl();
   if(location.hash==="#tarifs") renderTarifs();
 }
@@ -8015,7 +8012,7 @@ $("#f").addEventListener("submit",e=>{e.preventDefault();if(needVerif()) return;
 // la page du plan : le dessin se fait une fois la page affichée (largeur réelle de l'écran)
 function showResult(){model=compute(cur);wishNote();if(location.hash==="#resultat") renderPlan();else{location.hash="resultat";setTimeout(renderPlan,0)}}
 const variante=()=>{if(needVerif()) return;if(proGate(cur)||bigGate(cur)) return;if(!useQuota()) return limitReached();cur.seed=(cur.seed||1)+1;delete cur.ed;delete cur.edT;delete cur.lotK;SHOW3D=false;RTAB="plan";showResult();toast("Nouvelle variante générée")};
-$("#var").onclick=()=>{if(!formOk()) return;cur=applyWish(readForm());writeForm(cur);variante()};
+
 
 // téléphone, tablette : une invitation (qu'on peut fermer) à ouvrir la maquette 3D sur ordinateur
 function hint3DInit(){const h=$("#hint3d");if(!h) return;let off=false;try{off=localStorage.getItem("am_hint3d")==="1"}catch(e){}
@@ -8112,7 +8109,7 @@ $("#var2").onclick=variante;edInit();e3Init();wishInit();lotInit();lotSync();wiz
 $("#sheet").addEventListener("click",e=>{const g=e.target.closest&&e.target.closest("[data-lot]");if(!g||!model||!model.site||model.type!=="cite"||level!==-1) return;e.stopPropagation();lotMenu(+g.dataset.lot,e.clientX,e.clientY)});
 $("#toprop2").onclick=()=>{location.hash="propositions"};
 document.querySelectorAll("#rtabs button").forEach(b=>b.onclick=()=>setRTab(b.dataset.rt));
-$("#toprop").onclick=()=>{location.hash="propositions"};
+
 
 $("#save").onclick=()=>savePlan($("#pname").value,cur,model);
 window.addEventListener("hashchange",route);
@@ -8256,7 +8253,7 @@ function essaiUI(){const on=!AUTH.ok,bar=$("#essaibar");
   const left=quotaLeft();
   Q.forEach(q=>{q.setAttribute("href","#connexion");q.innerHTML=left>0?`<i></i><span>Essai sans compte : <b>${typeof ESSAI!=="undefined"?ESSAI.quota:1} plan offert</b> aujourd'hui</span>`:`<i></i><span>Plan d'essai utilisé · <b>compte gratuit</b></span>`;q.classList.toggle("out",left<=0)});
   const lim=$("#limit");if(lim){lim.hidden=left>0;if(left<=0) lim.innerHTML=`Vous avez utilisé votre plan d'essai d'aujourd'hui. <a href="#connexion" data-signup>Créez votre compte gratuit</a> pour générer jusqu'à ${OFFERS.basique.quota} plans par jour et les enregistrer dans Mes plans.`}
-  $("#gen").disabled=$("#var").disabled=false;essaiUI()}}
+  $("#gen").disabled=false;essaiUI()}}
 {const RA=renderAcct;renderAcct=function(){RA();essaiUI()}}
 window.addEventListener("hashchange",essaiUI);
 
